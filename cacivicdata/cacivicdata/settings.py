@@ -14,9 +14,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-STATIC_ROOT = os.path.join(BASE_DIR, ".static")
-MEDIA_ROOT = os.path.join(BASE_DIR, ".media")
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -24,8 +21,17 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'calaccess_raw'
+    'calaccess_raw',
+    'storages',
 ]
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+AWS_STORAGE_BUCKET_NAME = 'django-calaccess'
+
+S3_URL = 'https://{}.s3.amazonaws.com/media/'.format(AWS_STORAGE_BUCKET_NAME)
+
+STATIC_ROOT = os.path.join(BASE_DIR, ".static")
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
@@ -89,7 +95,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 CALACCESS_DAT_SOURCE = ''
-CALACCESS_STORE_ARCHIVE = False
+CALACCESS_STORE_ARCHIVE = True
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.9/topics/i18n/
