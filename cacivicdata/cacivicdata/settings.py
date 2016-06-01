@@ -29,7 +29,7 @@ DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 AWS_STORAGE_BUCKET_NAME = 'django-calaccess'
 
-S3_URL = 'https://{}.s3.amazonaws.com/media/'.format(AWS_STORAGE_BUCKET_NAME)
+S3_URL = 'https://{}.s3-accelerate.amazonaws.com/'.format(AWS_STORAGE_BUCKET_NAME)
 
 STATIC_ROOT = os.path.join(BASE_DIR, ".static")
 
@@ -115,3 +115,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
+
+try:
+    from settings_local import *
+except ImportError:
+    pass
