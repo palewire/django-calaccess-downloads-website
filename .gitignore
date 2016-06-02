@@ -2,3 +2,4 @@
 .DS_Store
 data/
 settings_local.py
+config.yml
