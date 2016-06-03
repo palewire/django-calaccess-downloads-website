@@ -11,10 +11,10 @@ def createrds(block_gb_size=12):
     """
     Spin up a new database backend with Amazon RDS.
     """
-    client = boto3.client('rds')
     loadconfig()
+    client = boto3.client('rds')
 
-    db_instance_identifier = "calaccessraw-2".format(
+    db_instance_identifier = "calaccessraw-{0}".format(
         random.choice(range(0, 99))
     )
 
@@ -33,7 +33,7 @@ def createrds(block_gb_size=12):
                 random.choice(range(0, 99))
             )
 
-    print("- Reserving a database")
+    print "- Reserving a database"
     db = client.create_db_instance(
         DBName='calaccess_raw',
         DBInstanceIdentifier=db_instance_identifier,
@@ -97,6 +97,37 @@ def createrds(block_gb_size=12):
 
     db = client.describe_db_instances(DBInstanceIdentifier=db_instance_identifier)
 
-    print db['DBInstances'][0]['Endpoint']['Address']
-
     return db['DBInstances'][0]['Endpoint']['Address']
+
+
+@task
+def createserver(
+    ami='ami-978dd9a7',
+    block_gb_size=100
+):
+    """
+    Spin up a new Ubuntu 14.04 server on Amazon EC2.
+    Returns the id and public address.
+    """
+    loadconfig()
+
+    ec2 = boto3.resource('ec2')
+
+    new_instance = ec2.create_instances(
+        ImageId='ami-978dd9a7',
+        MinCount=1,
+        MaxCount=1,
+        SecurityGroupIds=[
+            'default',
+        ],
+    )[0]
+
+    new_instance.create_tags(Tags=[{"Key": "Name", "Value": "calaccess"}])
+    
+    print '- Waiting for instance to start'
+    waiter = boto3.client('ec2').get_waiter('instance_running')
+    waiter.wait(InstanceIds=[new_instance.id])
+
+    print "- Provisioned at: {0}".format(new_instance.public_dns_name)
+
+    return (new_instance.id, new_instance.public_dns_name)

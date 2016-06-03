@@ -4,12 +4,13 @@ import yaml
 
 from configure import configure, loadconfig
 from configure import ConfigTask
-from amazon import createrds
+from amazon import createrds, createserver
 
 __all__ = (
     'configure',
     'loadconfig',
     'createrds',
+    'createserver',
     'pipinstall',
     'manage',
     'migrate',
