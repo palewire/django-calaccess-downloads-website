@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 import os
 import yaml
 from fabric.tasks import Task
@@ -43,11 +45,14 @@ def configure():
         "Target AWS region [Default: us-west-2]:"
     ) or 'us-west-2'
     config['AWS_SECURITY_GROUP'] = raw_input(
-        "Target security group [Default: default]:"
+        "Target security group name [Default: default]:"
     ) or 'default'
     config['DB_USER_PASSWORD'] = raw_input(
         "Password for RDS instance database [Required]:"
     )
+    config['EC2_INSTANCE_TYPE'] = raw_input(
+        "Target EC2 instance size [Default: m3.medium]:"
+    ) or 'm3.medium'
 
     # Write it to a YAML file
     config_file = open('./config.yml', 'w')
@@ -74,10 +79,11 @@ def loadconfig():
         env.AWS_REGION = config['AWS_REGION']
         env.AWS_SECURITY_GROUP = config['AWS_SECURITY_GROUP']
         env.DB_USER_PASSWORD = config['DB_USER_PASSWORD']
+        env.EC2_INSTANCE_TYPE = config['EC2_INSTANCE_TYPE']
     except (KeyError, TypeError):
         pass
     try:
-        env.hosts = [config['host'],]
+        env.hosts = [config['host'], ]
         env.host = config['host']
         env.host_string = config['host']
     except (KeyError, TypeError):
