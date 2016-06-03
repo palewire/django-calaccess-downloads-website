@@ -90,7 +90,7 @@ def createserver(ami='ami-978dd9a7', block_gb_size=100):
             {
                 'DeviceName': '/dev/sda1',
                 'Ebs': {
-                    'VolumeSize': 100,
+                    'VolumeSize': block_gb_size,
                 },
             },
         ],
