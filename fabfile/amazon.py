@@ -1,4 +1,5 @@
-import time
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 import random
 import boto3
 from botocore.exceptions import ClientError
@@ -14,7 +15,7 @@ def createrds(block_gb_size=12):
     loadconfig()
     client = boto3.client('rds')
 
-    db_instance_identifier = "calaccessraw-{0}".format(
+    db_instance_id = "calaccessraw-{0}".format(
         random.choice(range(0, 99))
     )
 
@@ -22,21 +23,24 @@ def createrds(block_gb_size=12):
     while True:
         try:
             client.describe_db_instances(
-                DBInstanceIdentifier=db_instance_identifier
+                DBInstanceIdentifier=db_instance_id
             )
         except ClientError as e:
             if 'DBInstanceNotFound' in e.message:
                 break
         else:
-            # if the db instance already exists, generate a new id 
-            db_instance_identifier = "calaccessraw-{0}".format(
+            # if the db instance already exists, generate a new id
+            db_instance_id = "calaccessraw-{0}".format(
                 random.choice(range(0, 99))
             )
 
     print "- Reserving a database"
+
+    # full list of kwargs:
+    # http://boto3.readthedocs.io/en/latest/reference/services/rds.html#RDS.Client.create_db_instance # noqa
     db = client.create_db_instance(
         DBName='calaccess_raw',
-        DBInstanceIdentifier=db_instance_identifier,
+        DBInstanceIdentifier=db_instance_id,
         AllocatedStorage=block_gb_size,
         DBInstanceClass='db.t1.micro',
         Engine='postgres',
@@ -50,61 +54,22 @@ def createrds(block_gb_size=12):
         PubliclyAccessible=True,
         StorageType='gp2',
         StorageEncrypted=False,
-        # An error occurred (InvalidParameterCombination) when calling the 
-        # CreateDBInstance operation: DB Security Groups can only be associated 
-        # with VPC DB Instances using API versions 2012-01-15 through 2012-09-17.
-        # DBSecurityGroups=[env.AWS_SECURITY_GROUP],
-        
-        # An error occurred (InvalidParameterValue) when calling the CreateDBInstance
-        # operation: Character sets not supported on create for engine: 
-        # postgres and version9.4.5
-        # CharacterSetName='UTF-8',
-        
-        # not required?
-        # AvailabilityZone=env.AWS_REGION,
-        # VpcSecurityGroupIds=[
-        #     'string',
-        # ],
-        # DBSubnetGroupName='string',
-        # PreferredMaintenanceWindow='string',
-        # DBParameterGroupName='string',
-        # AutoMinorVersionUpgrade=True,
-        # LicenseModel='string',
-        # Iops=123,
-        # OptionGroupName='string',
-        # Tags=[
-        #     {
-        #         'Key': 'string',
-        #         'Value': 'string'
-        #     },
-        # ],
-        # DBClusterIdentifier='string',
-        # TdeCredentialArn='string',
-        # TdeCredentialPassword='string',
-        # KmsKeyId='string',
-        # Domain='string',
-        # CopyTagsToSnapshot=True|False,
-        # MonitoringInterval=123,
-        # MonitoringRoleArn='string',
-        # DomainIAMRoleName='string',
-        # PromotionTier=123,   
+        DBSecurityGroups=[env.AWS_SECURITY_GROUP],
     )
 
     # Check up on its status every so often
-    print '- Waiting for instance {0} to start'.format(db_instance_identifier)
+    print '- Waiting for instance {0} to start'.format(db_instance_id)
     waiter = client.get_waiter('db_instance_available')
-    waiter.wait(DBInstanceIdentifier=db_instance_identifier)
+    waiter.wait(DBInstanceIdentifier=db_instance_id)
 
-    db = client.describe_db_instances(DBInstanceIdentifier=db_instance_identifier)
+    db = client.describe_db_instances(
+        DBInstanceIdentifier=db_instance_id)
 
     return db['DBInstances'][0]['Endpoint']['Address']
 
 
 @task
-def createserver(
-    ami='ami-978dd9a7',
-    block_gb_size=100
-):
+def createserver(ami='ami-978dd9a7', block_gb_size=100):
     """
     Spin up a new Ubuntu 14.04 server on Amazon EC2.
     Returns the id and public address.
@@ -113,20 +78,28 @@ def createserver(
 
     ec2 = boto3.resource('ec2')
 
+    # full list of kwargs:
+    # http://boto3.readthedocs.io/en/latest/reference/services/ec2.html#EC2.ServiceResource.create_instances # noqa
     new_instance = ec2.create_instances(
         ImageId='ami-978dd9a7',
         MinCount=1,
         MaxCount=1,
-        SecurityGroupIds=[
-            'default',
+        InstanceType=env.EC2_INSTANCE_TYPE,
+        SecurityGroups=[env.AWS_SECURITY_GROUP],
+        BlockDeviceMappings=[
+            {
+                'DeviceName': '/dev/sda1',
+                'Ebs': {
+                    'VolumeSize': 100,
+                },
+            },
         ],
     )[0]
 
     new_instance.create_tags(Tags=[{"Key": "Name", "Value": "calaccess"}])
-    
+
     print '- Waiting for instance to start'
-    waiter = boto3.client('ec2').get_waiter('instance_running')
-    waiter.wait(InstanceIds=[new_instance.id])
+    new_instance.wait_until_running()
 
     print "- Provisioned at: {0}".format(new_instance.public_dns_name)
 
