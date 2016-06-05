@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import os
+from os.path import expanduser
 import yaml
 from fabric.tasks import Task
 from fabric.colors import green
@@ -39,7 +40,7 @@ def configure():
         'Your AWS secret key [Required]:'
     )
     config['key_name'] = require_input(
-        'Your AWS key name [Required]:'
+        'EC2 Key Pair name [Required]:'
     )
     config['AWS_REGION'] = raw_input(
         "Target AWS region [Default: us-west-2]:"
@@ -76,6 +77,7 @@ def loadconfig():
         env.AWS_ACCESS_KEY_ID = config['AWS_ACCESS_KEY_ID']
         env.AWS_SECRET_ACCESS_KEY = config['AWS_SECRET_ACCESS_KEY']
         env.key_name = config['key_name']
+        env.key_filename = (expanduser("~/.ec2/%s.pem" % env.key_name),)
         env.AWS_REGION = config['AWS_REGION']
         env.AWS_SECURITY_GROUP = config['AWS_SECURITY_GROUP']
         env.DB_USER_PASSWORD = config['DB_USER_PASSWORD']

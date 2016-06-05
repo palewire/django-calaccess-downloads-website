@@ -1,0 +1,22 @@
+Django
+Fabric
+South
+argparse
+boto
+coverage
+django-debug-toolbar
+greeking
+pep8
+mysql-python
+pycrypto
+pyflakes
+pyinotify
+python-coveralls
+python-memcached
+pytz
+six
+sqlparse
+django-bakery
+django-storages
+-e git+https://github.com/california-civic-data-coalition/django-calaccess-raw-data.git@HEAD#egg=django-calaccess-raw-data
+-e git+https://github.com/california-civic-data-coalition/django-calaccess-campaign-browser.git@HEAD#egg=django-calaccess-campaign-browser

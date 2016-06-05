@@ -1,0 +1,6 @@
+<VirtualHost *:<%= @apache_port %>>
+    WSGIScriptAlias / /apps/<%= @app_name %>/repo/project/wsgi.py
+    WSGIDaemonProcess <%= @app_name %> user=<%= @apps_user %> python-path=/apps/<%= @app_name %>/repo:/apps/<%= @app_name %>/lib/python2.7/site-packages display-name=%{GROUP} processes=2 threads=15
+    WSGIProcessGroup <%= @app_name %>
+    WSGIApplicationGroup %{GLOBAL}
+</VirtualHost>

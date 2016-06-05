@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+import os
+import stat
 import random
 import boto3
 from botocore.exceptions import ClientError
@@ -94,6 +96,7 @@ def createserver(ami='ami-978dd9a7', block_gb_size=100):
                 },
             },
         ],
+        KeyName=env.key_name,
     )[0]
 
     new_instance.create_tags(Tags=[{"Key": "Name", "Value": "calaccess"}])
@@ -104,3 +107,32 @@ def createserver(ami='ami-978dd9a7', block_gb_size=100):
     print "- Provisioned at: {0}".format(new_instance.public_dns_name)
 
     return (new_instance.id, new_instance.public_dns_name)
+
+
+@task
+def createkeypair():
+    """
+    Creates an EC2 key pair and saves it to a .pem file
+    """
+    loadconfig()
+    client = boto3.client('ec2')
+
+    key_file_dir = os.path.expanduser("~/.ec2/")
+
+    os.path.exists(key_file_dir) or os.makedirs(key_file_dir)
+
+    try:
+        key_pair = client.create_key_pair(KeyName=env.key_name)
+    except ClientError as e:
+        if 'InvalidKeyPair.Duplicate' in e.message:
+            print "A key with named {0} already exists".format(env.key_name)
+        else:
+            raise e
+    else:
+        print "- Saving to {0}".format(env.key_filename[0])
+        with open(env.key_filename[0], 'w') as f:
+            f.write(key_pair['KeyMaterial'])
+
+        os.chmod(env.key_filename[0], stat.S_IRUSR)
+
+    
