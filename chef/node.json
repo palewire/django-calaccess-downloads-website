@@ -42,6 +42,9 @@
         "branch": "master"
     },
 
+    "apps_user": "ccdc",
+    "apps_password": "ccdc",
+
     "crons": {
         "loaddump": {
             "minute": "2",
