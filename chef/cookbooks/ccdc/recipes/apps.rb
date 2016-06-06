@@ -28,3 +28,11 @@ git "/apps/#{node[:app][:name]}/repo"  do
   group node[:apps_group]
   action :sync
 end
+
+# Install the virtualenv requirements
+script "Install requirements" do
+  interpreter "bash"
+  user node[:apps_user]
+  group node[:apps_group]
+  code "/apps/calaccess/bin/pip install -r /apps/calaccess/repo/requirements.txt"
+end
