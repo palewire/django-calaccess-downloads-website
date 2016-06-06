@@ -36,21 +36,17 @@
     
     "pip_python_packages": {},
     
-    "app_name": "calaccess",
-    "apps_user": "ccdc",
-    "apps_password": "ccdc",
-    
-    "db_name": "ccdc",
-    "db_user": "ccdc",
-    "db_password": "ccdc",
-    
-    "apache_port": "80",
-    
+    "app": {
+        "name": "calaccess",
+        "repo": "https://github.com/california-civic-data-coalition/django-calaccess-downloads-website.git",
+        "branch": "master"
+    },
+
     "crons": {
         "loaddump": {
             "minute": "2",
             "hour": "7",
-            "command": "/apps/calaccess/bin/python /apps/calaccess/repo/manage.py downloadcalaccessrawdata --noinput > /dev/null 2>&1 && /apps/calaccess/bin/python /apps/calaccess/repo/manage.py buildcalaccesscampaignbrowser > /dev/null 2>&1"
+            "command": "/apps/calaccess/bin/python /apps/calaccess/repo/manage.py downloadcalaccessrawdata --noinput"
         }
     }
 }
