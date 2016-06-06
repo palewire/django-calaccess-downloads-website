@@ -15,7 +15,7 @@ from app import pipinstall, manage, migrate, collectstatic, rmpyc
 env.user = 'ubuntu'
 env.chef = '/usr/bin/chef-solo -c solo.rb -j node.json'
 env.app_user = 'ccdc'
-env.project_dir = '/apps/calaccess/repo/'
+env.project_dir = '/apps/calaccess/repo/cacivicdata/'
 env.activate = 'source /apps/calaccess/bin/activate'
 
 @task
