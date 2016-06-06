@@ -43,6 +43,7 @@
     },
 
     "apps_user": "ccdc",
+    "apps_group": "ccdc",
     "apps_password": "ccdc",
 
     "crons": {
