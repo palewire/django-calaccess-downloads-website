@@ -56,7 +56,6 @@ def createrds(block_gb_size=12):
         PubliclyAccessible=True,
         StorageType='gp2',
         StorageEncrypted=False,
-        DBSecurityGroups=[env.AWS_SECURITY_GROUP],
     )
 
     # Check up on its status every so often
