@@ -8,7 +8,7 @@ import yaml
 
 from configure import configure, loadconfig
 from configure import ConfigTask
-from chef import installchef, cook
+from chef import installchef, rendernodejson, cook
 from amazon import createrds, createserver, createkeypair
 from app import pipinstall, manage, migrate, collectstatic, rmpyc
 
@@ -37,6 +37,7 @@ def ec2bootstrap():
     print "- Waiting 60 seconds before logging in to configure machine"
     time.sleep(60)
 
+    rendernodejson()
     # Install chef and run it
     installchef()
     cook()
@@ -74,7 +75,7 @@ def ssh():
     """
     Log into the EC2 instance using SSH.
     """
-    local("ssh %s@%s -i %s" % (env.user, env.EC2_HOST, env.key_filename[0]))
+    local("ssh %s@%s -i %s" % (env.user, env.host, env.key_filename[0]))
 
 
 __all__ = (
@@ -85,6 +86,7 @@ __all__ = (
     'createkeypair',
     'installchef',
     'pipinstall',
+    'rendernodejson',
     'cook',
     'manage',
     'migrate',
