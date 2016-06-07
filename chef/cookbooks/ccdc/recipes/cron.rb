@@ -5,8 +5,8 @@ node[:crons].each_pair do |cronname, options|
       day options[:day] || "*"
       month options[:month] || "*"
       weekday options[:weekday] || "*"
-      command options[:command]
       user options[:user] || node[:apps_user]
+      command "source /home/#{user}/.bash_profile && #{options[:command]}"
     end
 end
 
