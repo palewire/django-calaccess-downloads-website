@@ -29,7 +29,7 @@ def ec2bootstrap():
 
     # Add the new server's host name to the configuration file
     config = yaml.load(open('./config.yml', 'rb'))
-    config['host'] = str(host)
+    config['EC2_HOST'] = str(host)
     config_file = open('./config.yml', 'w')
     config_file.write(yaml.dump(config, default_flow_style=False))
     config_file.close()
@@ -61,7 +61,7 @@ def rdsbootstrap():
 
     # Add the new server's host name to the configuration file
     config = yaml.load(open('./config.yml', 'rb'))
-    config['host'] = str(host)
+    config['RDS_HOST'] = str(host)
     config_file = open('./config.yml', 'w')
     config_file.write(yaml.dump(config, default_flow_style=False))
     config_file.close()
@@ -74,7 +74,7 @@ def ssh():
     """
     Log into the EC2 instance using SSH.
     """
-    local("ssh %s@%s -i %s" % (env.user, env.hosts[0], env.key_filename[0]))
+    local("ssh %s@%s -i %s" % (env.user, env.EC2_HOST, env.key_filename[0]))
 
 
 __all__ = (

@@ -85,12 +85,13 @@ def loadconfig():
     except (KeyError, TypeError):
         pass
     try:
-        env.hosts = [config['host'], ]
-        env.host = config['host']
-        env.host_string = config['host']
+        env.EC2_HOST = config['EC2_HOST']
     except (KeyError, TypeError):
         pass
-
+    try:
+        env.RDS_HOST = config['RDS_HOST']
+    except (KeyError, TypeError):
+        pass
 
 class ConfigTask(Task):
     def __init__(self, func, *args, **kwargs):
