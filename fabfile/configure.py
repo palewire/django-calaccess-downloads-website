@@ -85,7 +85,9 @@ def loadconfig():
     except (KeyError, TypeError):
         pass
     try:
-        env.EC2_HOST = config['EC2_HOST']
+        env.hosts = [config['EC2_HOST'],]
+        env.host = config['EC2_HOST']
+        env.host_string = config['EC2_HOST']
     except (KeyError, TypeError):
         pass
     try:
