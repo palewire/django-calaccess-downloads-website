@@ -40,11 +40,15 @@ node[:users].each_pair do |username, info|
         mode 0700
     end
 
-    cookbook_file "/home/#{username}/.bash_profile" do
-        source "users/bash_profile"
+    template "/home/#{username}/.bash_profile" do
+        source "users/bash_profile.erb"
         owner username
         group username
         mode 0755
+        variables({
+          :db_host => node[:db_host],
+          :db_password => node[:db_user_password]
+        })
     end
 end
 
