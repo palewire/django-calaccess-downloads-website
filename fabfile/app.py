@@ -31,7 +31,12 @@ def _venv(cmd):
     A wrapper for running commands inside the virturalenv
     """
     with cd(env.project_dir):
-        sudo("%s && %s" % (env.activate, cmd), user=env.app_user)
+        sudo("source /home/%s/.bash_profile && %s && %s" % (
+            env.app_user,
+            env.activate,
+            cmd,
+        ),
+        user=env.app_user)
 
 
 @task(task_class=ConfigTask)
