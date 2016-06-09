@@ -70,7 +70,7 @@ def createrds(block_gb_size=12):
 
 
 @task
-def createserver(ami='ami-978dd9a7', block_gb_size=100):
+def createserver(block_gb_size=100):
     """
     Spin up a new Ubuntu 14.04 server on Amazon EC2.
     Returns the id and public address.
@@ -82,7 +82,7 @@ def createserver(ami='ami-978dd9a7', block_gb_size=100):
     # full list of kwargs:
     # http://boto3.readthedocs.io/en/latest/reference/services/ec2.html#EC2.ServiceResource.create_instances # noqa
     new_instance = ec2.create_instances(
-        ImageId='ami-978dd9a7',
+        ImageId=env.AMI,
         MinCount=1,
         MaxCount=1,
         InstanceType=env.EC2_INSTANCE_TYPE,

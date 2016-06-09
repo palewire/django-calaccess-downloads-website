@@ -54,6 +54,9 @@ def configure():
     config['EC2_INSTANCE_TYPE'] = raw_input(
         "Target EC2 instance size [Default: m3.medium]:"
     ) or 'm3.medium'
+    config['AMI'] = raw_input(
+        "Target EC2 instance size [Default: ami-978dd9a7]:"
+    ) or 'ami-978dd9a7'
 
     # Write it to a YAML file
     config_file = open('./config.yml', 'w')
@@ -82,6 +85,7 @@ def loadconfig():
         env.AWS_SECURITY_GROUP = config['AWS_SECURITY_GROUP']
         env.DB_USER_PASSWORD = config['DB_USER_PASSWORD']
         env.EC2_INSTANCE_TYPE = config['EC2_INSTANCE_TYPE']
+        env.AMI = config['AMI']
     except (KeyError, TypeError):
         pass
     try:
