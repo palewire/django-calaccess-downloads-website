@@ -3,6 +3,7 @@
 data/
 settings_local.py
 config.yml
+config*.yml
 *.ipynb
 .ipynb_checkpoints/
 node.json
