@@ -79,8 +79,8 @@ def rendernodejson():
 
         "crons": {
             "update": {
-                "minute": "50",
-                "hour": "3",
+                "minute": "25",
+                "hour": "11",
                 "command": "/apps/calaccess/bin/python {project_dir}manage.py updatecalaccessrawdata --noinput --skip-load --verbosity=3 2>&1 > output.log".format(**env)
             }
         }
