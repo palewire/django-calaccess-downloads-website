@@ -44,7 +44,6 @@
 
         "apps_user": "ccdc",
         "apps_group": "ccdc",
-        "apps_password": "ccdc",
 
         "db_user_password": null,
         "db_host": null,
