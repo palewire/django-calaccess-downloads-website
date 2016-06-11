@@ -30,8 +30,7 @@
             "python-pip",
             "python-dev",
             "libpq-dev",
-            "python-virtualenv",
-            "fabric"
+            "python-virtualenv"
         ],
     
         "pip_python_packages": {},
