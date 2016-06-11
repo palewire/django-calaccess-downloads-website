@@ -1,7 +1,9 @@
+import collections
 from configure import ConfigTask
 from fabric.api import sudo, task, env
 from fabric.contrib.project import rsync_project
 import json
+
 
 @task(task_class=ConfigTask)
 def installchef():
@@ -23,71 +25,17 @@ def rendernodejson():
     """
     Render chef's node.json file from a template
     """
-    data = {
-        "run_list": [
-            "ccdc::default",
-            "ccdc::python",
-            "ccdc::apps",
-            "ccdc::cron"
-        ],
-    
-        "base_packages": [
-            "git-core",
-            "bash-completion"
-        ],
-    
-        "users": {
-            "ccdc": {
-              "id": 1003,
-              "full_name": "ccdc"
-            }
-        },
-    
-        "groups": {
-            "ccdc": {
-              "gid": 203,
-              "members": ["ccdc"]
-            }
-        },
-    
-        "ubuntu_python_packages": [
-            "python-setuptools",
-            "python-pip",
-            "python-dev",
-            "libpq-dev",
-            "python-virtualenv",
-            "fabric"
-        ],
-    
-        "pip_python_packages": {},
-    
-        "app": {
-            "name": "calaccess",
-            "repo": "https://github.com/california-civic-data-coalition/django-calaccess-downloads-website.git",
-            "branch": "master"
-        },
-
-        "apps_user": "ccdc",
-        "apps_group": "ccdc",
-        "apps_password": "ccdc",
-
-        "db_user_password": env.DB_USER_PASSWORD,
-        "db_host": env.RDS_HOST,
-
-        "aws_access_key_id": env.AWS_ACCESS_KEY_ID,
-        "aws_secret_access_key": env.AWS_SECRET_ACCESS_KEY,
-
-        "crons": {
-            "update": {
-                "minute": "25",
-                "hour": "11",
-                "command": "/apps/calaccess/bin/python {project_dir}manage.py updatecalaccessrawdata --noinput --skip-load --verbosity=3 2>&1 > output.log".format(**env)
-            }
-        }
-    }
-
+    template = json.load(
+        open("./chef/node.json.template", "r"),
+        object_pairs_hook=collections.OrderedDict
+    )
+    template["db_user_password"] = env.DB_USER_PASSWORD
+    template["db_host"] = env.RDS_HOST
+    template["aws_access_key_id"] = env.AWS_ACCESS_KEY_ID
+    template["aws_secret_access_key"] = env.AWS_SECRET_ACCESS_KEY
+    template["crons"]["update"] = "/apps/calaccess/bin/python {project_dir}manage.py updatecalaccessrawdata --noinput --skip-load --verbosity=3 2>&1 > output.log".format(**env)
     with open('./chef/node.json', 'w') as f:
-     json.dump(data, f, indent=4, separators=(',', ': '))
+     json.dump(template, f, indent=4, separators=(',', ': '))
 
 
 @task(task_class=ConfigTask)

@@ -1,0 +1,62 @@
+{
+        "run_list": [
+            "ccdc::default",
+            "ccdc::python",
+            "ccdc::apps",
+            "ccdc::cron"
+        ],
+    
+        "base_packages": [
+            "git-core",
+            "bash-completion"
+        ],
+    
+        "users": {
+            "ccdc": {
+              "id": 1003,
+              "full_name": "ccdc"
+            }
+        },
+    
+        "groups": {
+            "ccdc": {
+              "gid": 203,
+              "members": ["ccdc"]
+            }
+        },
+    
+        "ubuntu_python_packages": [
+            "python-setuptools",
+            "python-pip",
+            "python-dev",
+            "libpq-dev",
+            "python-virtualenv",
+            "fabric"
+        ],
+    
+        "pip_python_packages": {},
+    
+        "app": {
+            "name": "calaccess",
+            "repo": "https://github.com/california-civic-data-coalition/django-calaccess-downloads-website.git",
+            "branch": "master"
+        },
+
+        "apps_user": "ccdc",
+        "apps_group": "ccdc",
+        "apps_password": "ccdc",
+
+        "db_user_password": null,
+        "db_host": null,
+
+        "aws_access_key_id": null,
+        "aws_secret_access_key": null,
+
+        "crons": {
+            "update": {
+                "minute": "25",
+                "hour": "11",
+                "command": null
+            }
+        }
+    }

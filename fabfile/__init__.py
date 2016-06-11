@@ -19,6 +19,7 @@ env.app_user = 'ccdc'
 env.project_dir = '/apps/calaccess/repo/cacivicdata/'
 env.activate = 'source /apps/calaccess/bin/activate'
 
+
 @task
 def ec2bootstrap():
     """
