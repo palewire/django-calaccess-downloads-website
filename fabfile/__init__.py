@@ -11,12 +11,14 @@ from configure import ConfigTask
 from chef import installchef, rendernodejson, cook
 from amazon import createrds, createserver, createkeypair
 from app import pipinstall, manage, migrate, collectstatic, rmpyc
+from dev import rs
 
 env.user = 'ubuntu'
 env.chef = '/usr/bin/chef-solo -c solo.rb -j node.json'
 env.app_user = 'ccdc'
 env.project_dir = '/apps/calaccess/repo/cacivicdata/'
 env.activate = 'source /apps/calaccess/bin/activate'
+
 
 @task
 def ec2bootstrap():
@@ -94,4 +96,5 @@ __all__ = (
     'collectstatic',
     'ec2bootstrap',
     'rdsbootstrap',
+    'rs',
 )
