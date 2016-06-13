@@ -1,21 +1,28 @@
-"""cacivicdata URL Configuration
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/1.9/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  url(r'^$', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  url(r'^$', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.conf.urls import url, include
-    2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
-"""
 from django.conf.urls import url
 from django.contrib import admin
+from . import views
+from calaccess_raw.models.tracking import RawDataVersion
+
+app_name = 'cacivicdata'
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^$', views.versions_list, name='index'),
+    url(r'^versions/$', views.versions_list, name='versions'),
+    url(
+        r'^versions/(?P<version>[0-9]{4}\-[0-9]{1,2}\-[0-9]{1,2})/$',
+        views.version,
+        name='version'
+    ),
+    url(
+        r'^latest/$',
+        views.version,
+        {'version': RawDataVersion.objects.latest(
+                'release_datetime'
+            ).release_datetime.strftime('%Y-%m-%d')
+        },
+        name='latest',
+    ),
+    url(r'^data_files/$', views.data_files_list, name='data_files'),
+    url(r'^data_files/(?P<file_name>\w+)/$', views.data_file, name='data_file'),
 ]
