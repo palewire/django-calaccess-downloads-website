@@ -1,0 +1,19 @@
+<h2>{{ file_name }}</h2>
+
+
+<ul>
+{% for file in file_versions %}
+    <li>{{ file.version.release_datetime|date:"l, N d, Y, (P)" }}
+    {% if file.download_file_archive or file.clean_file_archive %}
+        <ul>
+        {% if file.download_file_archive %}
+            <li><a href="https://s3-us-west-2.amazonaws.com/django-calaccess/{{ file.download_file_archive.name }}">raw .tsv file</a></li>
+        {% endif %}
+        {% if file.clean_file_archive %}
+            <li><a href="https://s3-us-west-2.amazonaws.com/django-calaccess/{{ file.clean_file_archive.name }}">clean .csv file</a></li>
+        {% endif %}
+        </ul>
+    {% endif %}
+    </li>
+{% endfor %}
+</ul>
