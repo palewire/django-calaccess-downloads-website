@@ -21,6 +21,7 @@ end
 # Loop through the user list, create the user, load the authorized_keys
 # and mint a bash_profile
 node[:users].each_pair do |username, info|
+
     group username do
        gid info[:id] 
     end
