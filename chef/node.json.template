@@ -1,7 +1,7 @@
 {
         "run_list": [
             "ccdc::default",
-            "ccdc::apps",
+            "ccdc::app",
             "ccdc::cron",
             "ccdc::motd"
         ],
