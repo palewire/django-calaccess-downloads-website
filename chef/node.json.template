@@ -3,7 +3,8 @@
             "ccdc::default",
             "ccdc::python",
             "ccdc::apps",
-            "ccdc::cron"
+            "ccdc::cron",
+            "ccdc::motd"
         ],
     
         "base_packages": [
