@@ -34,8 +34,6 @@
             "python-virtualenv"
         ],
     
-        "pip_python_packages": {},
-    
         "app": {
             "name": "calaccess",
             "repo": "https://github.com/california-civic-data-coalition/django-calaccess-downloads-website.git",
