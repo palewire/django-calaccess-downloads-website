@@ -8,7 +8,7 @@
         ],
     
         "base_packages": [
-            "git-core",
+            "git"
         ],
     
         "users": {
