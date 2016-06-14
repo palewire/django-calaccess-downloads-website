@@ -42,11 +42,5 @@
         "aws_access_key_id": null,
         "aws_secret_access_key": null,
 
-        "crons": {
-            "update": {
-                "minute": "25",
-                "hour": "11",
-                "command": null
-            }
-        }
+        "crons": {}
     }

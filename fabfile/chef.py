@@ -33,9 +33,14 @@ def rendernodejson():
     template["db_host"] = env.RDS_HOST
     template["aws_access_key_id"] = env.AWS_ACCESS_KEY_ID
     template["aws_secret_access_key"] = env.AWS_SECRET_ACCESS_KEY
-    template["crons"]["update"] = "/apps/calaccess/bin/python {project_dir}manage.py updatecalaccessrawdata --noinput --skip-load --verbosity=3 2>&1 > output.log".format(**env)
+    template["crons"]["update"] = {
+        "minute": "25",
+        "hour": "11",
+        "command": "/apps/calaccess/bin/python {project_dir}manage.py updatecalaccessrawdata --noinput --skip-load --verbosity=3 2>&1 > output.log".format(**env)
+    }
+
     with open('./chef/node.json', 'w') as f:
-     json.dump(template, f, indent=4, separators=(',', ': '))
+        json.dump(template, f, indent=4, separators=(',', ': '))
 
 
 @task(task_class=ConfigTask)
