@@ -1,14 +1,16 @@
 {
         "run_list": [
             "ccdc::default",
-            "ccdc::python",
             "ccdc::apps",
             "ccdc::cron",
             "ccdc::motd"
         ],
     
         "base_packages": [
-            "git"
+            "git",
+            "python-pip",
+            "python-dev",
+            "python-virtualenv"
         ],
     
         "users": {
@@ -24,14 +26,6 @@
               "members": ["ccdc"]
             }
         },
-    
-        "ubuntu_python_packages": [
-            "python-setuptools",
-            "python-pip",
-            "python-dev",
-            "libpq-dev",
-            "python-virtualenv"
-        ],
     
         "app": {
             "name": "calaccess",
