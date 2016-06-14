@@ -34,12 +34,6 @@ node[:users].each_pair do |username, info|
         home "/home/#{username}"
     end
 
-    directory "/home/#{username}/.ssh" do
-        owner username
-        group username
-        mode 0700
-    end
-
     template "/home/#{username}/.bash_profile" do
         source "users/bash_profile.erb"
         owner username
