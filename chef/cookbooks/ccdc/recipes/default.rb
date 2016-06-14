@@ -62,13 +62,6 @@ node[:groups].each_pair do |name, info|
     end
 end
 
-# Load the authorized keys for the root user
-directory "/root/.ssh" do
-    owner "root"
-    group "root"
-    mode 0700
-end
-
 template "/etc/sudoers" do
   source "users/sudoers.erb"
   mode 0440
