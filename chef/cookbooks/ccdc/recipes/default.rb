@@ -79,39 +79,3 @@ template "/etc/sudoers" do
   })
 end
 
-script "Fix libfreetype.so" do
-  interpreter "bash"
-  user "root"
-  group "root"
-  code <<-EOH
-    ln -s /usr/lib/`uname -i`-linux-gnu/libfreetype.so /usr/lib/
-  EOH
-  not_if do
-    File.exists?("/usr/lib/libfreetype.so")
-  end
-end
-
-script "Fix libz.so" do
-  interpreter "bash"
-  user "root"
-  group "root"
-  code <<-EOH
-    ln -s /usr/lib/`uname -i`-linux-gnu/libz.so /usr/lib/
-  EOH
-  not_if do
-    File.exists?("/usr/lib/libz.so")
-  end
-end
-
-script "Fix libjpeg.so" do
-  interpreter "bash"
-  user "root"
-  group "root"
-  code <<-EOH
-    ln -s /usr/lib/`uname -i`-linux-gnu/libjpeg.so /usr/lib/
-  EOH
-  not_if do
-    File.exists?("/usr/lib/libjpeg.so")
-  end
-end
-
