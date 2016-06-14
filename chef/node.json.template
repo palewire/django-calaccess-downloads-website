@@ -9,7 +9,6 @@
     
         "base_packages": [
             "git-core",
-            "bash-completion"
         ],
     
         "users": {
