@@ -48,11 +48,14 @@ def configure():
     config['AWS_SECURITY_GROUP'] = raw_input(
         "Target security group name [Default: default]:"
     ) or 'default'
+    config['RDS_INSTANCE_TYPE'] = raw_input(
+        "Target RDS instance type and size [Default: db.t2.large]:"
+    ) or 'db.t2.large'
     config['DB_USER_PASSWORD'] = raw_input(
         "Password for RDS instance database [Required]:"
     )
     config['EC2_INSTANCE_TYPE'] = raw_input(
-        "Target EC2 instance size [Default: m3.medium]:"
+        "Target EC2 instance type and size [Default: m3.medium]:"
     ) or 'm3.medium'
     config['AMI'] = raw_input(
         "Target EC2 instance size [Default: ami-978dd9a7]:"
@@ -83,6 +86,7 @@ def loadconfig():
         env.key_filename = (expanduser("~/.ec2/%s.pem" % env.key_name),)
         env.AWS_REGION = config['AWS_REGION']
         env.AWS_SECURITY_GROUP = config['AWS_SECURITY_GROUP']
+        env.RDS_INSTANCE_TYPE = config['RDS_INSTANCE_TYPE']
         env.DB_USER_PASSWORD = config['DB_USER_PASSWORD']
         env.EC2_INSTANCE_TYPE = config['EC2_INSTANCE_TYPE']
         env.AMI = config['AMI']
