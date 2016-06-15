@@ -1,4 +1,3 @@
-Django
 django-calaccess-raw-data
 psycopg2
 -e git+https://github.com/syapse/django-storages.git@boto3-new#egg=django-storages
