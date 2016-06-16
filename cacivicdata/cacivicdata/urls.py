@@ -3,7 +3,6 @@ from django.contrib import admin
 from . import views
 from calaccess_raw.models.tracking import RawDataVersion
 
-app_name = 'cacivicdata'
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
