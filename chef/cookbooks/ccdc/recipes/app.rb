@@ -6,14 +6,14 @@ directory "/apps/" do
 end
 
 # Make the directory for the app
-virtualenv "/apps/calaccess" do
+virtualenv "/apps/#{node[:app][:name]}" do
     owner node[:apps_user]
     group node[:apps_group]
     mode 0775
 end
 
 # Make the directory for the django project
-directory "/apps/calaccess/repo" do
+directory "/apps/#{node[:app][:name]}/repo" do
     owner node[:apps_user]
     group node[:apps_group]
     mode 0775
@@ -34,5 +34,5 @@ script "Install requirements" do
   interpreter "bash"
   user node[:apps_user]
   group node[:apps_group]
-  code "/apps/calaccess/bin/pip install -r /apps/calaccess/repo/requirements.txt"
+  code "/apps/#{node[:app][:name]}/bin/pip install -r /apps/#{node[:app][:name]}/repo/requirements.txt"
 end
