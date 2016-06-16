@@ -55,8 +55,8 @@ def configure():
         "Password for RDS instance database [Required]:"
     )
     config['EC2_INSTANCE_TYPE'] = raw_input(
-        "Target EC2 instance type and size [Default: m3.medium]:"
-    ) or 'm3.medium'
+        "Target EC2 instance type and size [Default: c3.large]:"
+    ) or 'c3.large'
     config['AMI'] = raw_input(
         "Target EC2 instance size [Default: ami-978dd9a7]:"
     ) or 'ami-978dd9a7'
