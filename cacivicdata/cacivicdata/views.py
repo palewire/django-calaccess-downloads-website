@@ -19,6 +19,13 @@ def version(request, version):
     return render(request, 'version.html', context)
 
 
+def latest_version(request):
+    context = {
+        'version': RawDataVersion.objects.latest('release_datetime')
+    }
+    return render(request, 'version.html', context)
+
+
 def data_files_list(request):
     context = {
         'files_list': RawDataFile.objects.distinct('file_name').order_by('file_name')
