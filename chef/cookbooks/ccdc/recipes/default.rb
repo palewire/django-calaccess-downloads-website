@@ -40,12 +40,6 @@ node[:users].each_pair do |username, info|
         owner username
         group username
         mode 0755
-        variables({
-          :aws_access_key_id => node[:aws_access_key_id],
-          :aws_secret_access_key => node[:aws_secret_access_key],
-          :db_host => node[:db_host],
-          :db_password => node[:db_user_password]
-        })
     end
 end
 

@@ -36,3 +36,17 @@ script "Install requirements" do
   group node[:apps_group]
   code "/apps/#{node[:app][:name]}/bin/pip install -r /apps/#{node[:app][:name]}/repo/requirements.txt"
 end
+
+# create .secrets file from template
+template "/apps/#{node[:app][:name]}/.secrets" do
+  source "secrets.erb"
+  mode 0555
+  owner node[:apps_user]
+  group node[:apps_group]
+  variables({
+    :aws_access_key_id => node[:aws_access_key_id],
+    :aws_secret_access_key => node[:aws_secret_access_key],
+    :db_host => node[:db_host],
+    :db_password => node[:db_user_password]
+  })
+end

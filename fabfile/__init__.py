@@ -3,7 +3,7 @@
 import time
 
 from fabric.colors import green
-from fabric.api import env, local, task
+from fabric.api import env, local, task, sudo
 import yaml
 
 from configure import configure, loadconfig
@@ -43,6 +43,9 @@ def ec2bootstrap():
     # Install chef and run it
     installchef()
     cook()
+
+    # source secrets in activate script
+    sudo("echo 'source /apps/calaccess/.secrets' >> /apps/calaccess/bin/activate")
 
     # Fire up the Django project
     migrate()
