@@ -13,7 +13,11 @@ urlpatterns = [
         views.version,
         name='version'
     ),
-    url(r'^latest/$',views.latest_version, name='latest'),
+    url(r'^latest/$', views.latest_version, name='latest'),
     url(r'^data_files/$', views.data_files_list, name='data_files'),
-    url(r'^data_files/(?P<file_name>\w+)/$', views.data_file, name='data_file'),
+    url(
+        r'^data_files/(?P<file_name>\w+)/$',
+        views.data_file,
+        name='data_file',
+    ),
 ]

@@ -28,7 +28,9 @@ def latest_version(request):
 
 def data_files_list(request):
     context = {
-        'files_list': RawDataFile.objects.distinct('file_name').order_by('file_name')
+        'files_list': RawDataFile.objects.distinct(
+            'file_name'
+        ).order_by('file_name')
     }
     return render(request, 'data_files_list.html', context)
 
@@ -37,6 +39,8 @@ def data_file(request, file_name):
     file_name_upper = file_name.upper()
     context = {
         'file_name': file_name_upper,
-        'file_versions': RawDataFile.objects.filter(file_name=file_name_upper).order_by('-id'),
+        'file_versions': RawDataFile.objects.filter(
+            file_name=file_name_upper
+        ).order_by('-id'),
     }
     return render(request, 'data_file.html', context)
