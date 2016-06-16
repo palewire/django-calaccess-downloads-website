@@ -35,8 +35,10 @@ def rendernodejson():
     template["aws_secret_access_key"] = env.AWS_SECRET_ACCESS_KEY
     template["crons"]["update"] = {
         "minute": "25",
-        "hour": "11",
-        "command": "/apps/calaccess/bin/python {project_dir}manage.py updatecalaccessrawdata --noinput --skip-load --verbosity=3 2>&1 > output.log".format(**env)
+        "hour": "5,11,17,23",
+        "command": "source /apps/calaccess/bin/activate && /apps/calaccess/bin/"
+                   "python {project_dir}manage.py updatecalaccessrawdata "
+                   "--noinput --verbosity=3 2>&1 > output.log".format(**env)
     }
 
     with open('./chef/node.json', 'w') as f:

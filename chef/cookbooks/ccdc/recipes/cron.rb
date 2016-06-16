@@ -7,7 +7,7 @@ node[:crons].each_pair do |cronname, options|
       weekday options[:weekday] || "*"
       user options[:user] || node[:apps_user]
       shell '/bin/bash'
-      command "source /home/#{user}/.bash_profile && #{options[:command]}"
+      command options[:command]
     end
 end
 
