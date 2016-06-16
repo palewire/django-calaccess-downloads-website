@@ -10,7 +10,8 @@
             "git",
             "python-pip",
             "python-dev",
-            "python-virtualenv"
+            "python-virtualenv",
+            "libpq-dev"
         ],
     
         "users": {

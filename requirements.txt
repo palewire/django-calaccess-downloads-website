@@ -1,7 +1,6 @@
 Django
 django-calaccess-raw-data
 psycopg2
-libpq-dev
 -e git+https://github.com/syapse/django-storages.git@boto3-new#egg=django-storages
 boto3
 Fabric
