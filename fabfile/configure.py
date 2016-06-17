@@ -2,19 +2,24 @@
 # -*- coding: utf-8 -*-
 import os
 from os.path import expanduser
+from getpass import getpass
 import yaml
 from fabric.tasks import Task
 from fabric.colors import green
 from fabric.api import task, env
 
 
-def require_input(prompt):
+def require_input(prompt, hide=False):
     """
     Demand input from the user.
     """
     i = None
     while not i:
-        i = raw_input(prompt.strip()+' ')
+        if hide:
+            i = getpass(prompt.strip()+' ')
+        else:
+            i = raw_input(prompt.strip()+' ')
+        
         if not i:
             print '  I need this, please.'
     return i
