@@ -45,21 +45,9 @@ def configure():
     config['AWS_REGION'] = raw_input(
         "Target AWS region [Default: us-west-2]:"
     ) or 'us-west-2'
-    config['AWS_SECURITY_GROUP'] = raw_input(
-        "Target security group name [Default: default]:"
-    ) or 'default'
-    config['RDS_INSTANCE_TYPE'] = raw_input(
-        "Target RDS instance type and size [Default: db.t2.large]:"
-    ) or 'db.t2.large'
     config['DB_USER_PASSWORD'] = raw_input(
         "Password for RDS instance database [Required]:"
     )
-    config['EC2_INSTANCE_TYPE'] = raw_input(
-        "Target EC2 instance type and size [Default: c3.large]:"
-    ) or 'c3.large'
-    config['AMI'] = raw_input(
-        "Target EC2 instance size [Default: ami-978dd9a7]:"
-    ) or 'ami-978dd9a7'
 
     # Write it to a YAML file
     config_file = open('./config.yml', 'w')

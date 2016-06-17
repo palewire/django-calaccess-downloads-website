@@ -10,7 +10,7 @@ from configure import loadconfig
 
 
 @task
-def createrds(block_gb_size=12):
+def createrds(block_gb_size=12, instance_type='db.t2.large'):
     """
     Spin up a new database backend with Amazon RDS.
     """
@@ -44,7 +44,7 @@ def createrds(block_gb_size=12):
         DBName='calaccess_raw',
         DBInstanceIdentifier=db_instance_id,
         AllocatedStorage=block_gb_size,
-        DBInstanceClass=env.RDS_INSTANCE_TYPE,
+        DBInstanceClass=instance_type,
         Engine='postgres',
         MasterUsername='cacivicdata',
         MasterUserPassword=env.DB_USER_PASSWORD,
@@ -70,7 +70,8 @@ def createrds(block_gb_size=12):
 
 
 @task
-def createserver(block_gb_size=100):
+def createserver(block_gb_size=100, instance_type='c3.large',
+                 ami='ami-978dd9a7'):
     """
     Spin up a new Ubuntu 14.04 server on Amazon EC2.
     Returns the id and public address.
@@ -85,8 +86,7 @@ def createserver(block_gb_size=100):
         ImageId=env.AMI,
         MinCount=1,
         MaxCount=1,
-        InstanceType=env.EC2_INSTANCE_TYPE,
-        SecurityGroups=[env.AWS_SECURITY_GROUP],
+        InstanceType=env.instance_type,
         BlockDeviceMappings=[
             {
                 'DeviceName': '/dev/sda1',
