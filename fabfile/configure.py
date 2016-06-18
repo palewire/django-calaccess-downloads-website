@@ -7,6 +7,7 @@ import yaml
 from fabric.tasks import Task
 from fabric.colors import green
 from fabric.api import task, env
+from boto3 import Session
 
 
 def require_input(prompt, hide=False):
@@ -38,21 +39,12 @@ def configure():
     print('')
 
     # Request data from the user
-    config['AWS_ACCESS_KEY_ID'] = require_input(
-        'Your AWS access key [Required]:'
-    )
-    config['AWS_SECRET_ACCESS_KEY'] = require_input(
-        'Your AWS secret key [Required]:'
-    )
     config['key_name'] = require_input(
         'EC2 Key Pair name [Required]:'
     )
     config['AWS_REGION'] = raw_input(
         "Target AWS region [Default: us-west-2]:"
     ) or 'us-west-2'
-    config['DB_USER_PASSWORD'] = raw_input(
-        "Password for RDS instance database [Required]:"
-    )
 
     # Write it to a YAML file
     config_file = open('./config.yml', 'w')
@@ -67,34 +59,32 @@ def configure():
 
 def loadconfig():
     """
-    Load secret credentials from the YAML configuration file
+    Load aws configs into fab env (prompt if necessary)
     """
-    if not os.path.exists('./config.yml'):
-        configure()
-    config = yaml.load(open('./config.yml', 'rb'))
-    try:
-        env.AWS_ACCESS_KEY_ID = config['AWS_ACCESS_KEY_ID']
-        env.AWS_SECRET_ACCESS_KEY = config['AWS_SECRET_ACCESS_KEY']
-        env.key_name = config['key_name']
-        env.key_filename = (expanduser("~/.ec2/%s.pem" % env.key_name),)
-        env.AWS_REGION = config['AWS_REGION']
-        env.AWS_SECURITY_GROUP = config['AWS_SECURITY_GROUP']
-        env.RDS_INSTANCE_TYPE = config['RDS_INSTANCE_TYPE']
-        env.DB_USER_PASSWORD = config['DB_USER_PASSWORD']
-        env.EC2_INSTANCE_TYPE = config['EC2_INSTANCE_TYPE']
-        env.AMI = config['AMI']
-    except (KeyError, TypeError):
-        pass
-    try:
-        env.hosts = [config['EC2_HOST'],]
-        env.host = config['EC2_HOST']
-        env.host_string = config['EC2_HOST']
-    except (KeyError, TypeError):
-        pass
-    try:
-        env.RDS_HOST = config['RDS_HOST']
-    except (KeyError, TypeError):
-        pass
+    creds = Session().get_credentials()
+
+    if creds:
+        env.AWS_ACCESS_KEY_ID = creds.access_key
+        env.AWS_SECRET_ACCESS_KEY = creds.secret_key
+    else:
+        env.AWS_ACCESS_KEY_ID = require_input(
+            'Your AWS access key [Required]:',
+            hide=True
+        )
+        env.AWS_SECRET_ACCESS_KEY = require_input(
+            'Your AWS access key [Required]:',
+            hide=True
+        )
+    
+    env.DB_USER_PASSWORD = os.getenv('DB_PASSWORD') or require_input(
+            'Password for RDS instance database [Required]:',
+            hide=True
+        )
+
+    env.key_name = config['key_name']
+    env.key_filename = (expanduser("~/.ec2/%s.pem" % env.key_name),)
+    env.AWS_REGION = config['AWS_REGION']
+
 
 class ConfigTask(Task):
     def __init__(self, func, *args, **kwargs):
