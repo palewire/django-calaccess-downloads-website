@@ -109,11 +109,10 @@ def createserver(block_gb_size=100, instance_type='c3.large',
 
 
 @task
-def createkeypair():
+def createkeypair(key_name='my-key-pair'):
     """
     Creates an EC2 key pair and saves it to a .pem file
     """
-    loadconfig()
     client = boto3.client('ec2')
 
     key_file_dir = os.path.expanduser("~/.ec2/")
@@ -121,17 +120,15 @@ def createkeypair():
     os.path.exists(key_file_dir) or os.makedirs(key_file_dir)
 
     try:
-        key_pair = client.create_key_pair(KeyName=env.key_name)
+        key_pair = client.create_key_pair(KeyName=key_name)
     except ClientError as e:
         if 'InvalidKeyPair.Duplicate' in e.message:
-            print "A key with named {0} already exists".format(env.key_name)
+            print "A key with named {0} already exists".format(key_name)
         else:
             raise e
     else:
-        print "- Saving to {0}".format(env.key_filename[0])
+        print "- Saving to {0}".format(key_name)
         with open(env.key_filename[0], 'w') as f:
             f.write(key_pair['KeyMaterial'])
 
         os.chmod(env.key_filename[0], stat.S_IRUSR)
-
-    
