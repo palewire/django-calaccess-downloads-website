@@ -6,7 +6,7 @@ from fabric.colors import green
 from fabric.api import env, local, task, sudo
 import yaml
 
-from configure import configure, loadconfig
+from configure import loadconfig
 from configure import ConfigTask
 from chef import installchef, rendernodejson, cook
 from amazon import createrds, createserver, createkeypair
@@ -18,6 +18,7 @@ env.chef = '/usr/bin/chef-solo -c solo.rb -j node.json'
 env.app_user = 'ccdc'
 env.project_dir = '/apps/calaccess/repo/cacivicdata/'
 env.activate = 'source /apps/calaccess/bin/activate'
+env.AWS_REGION = 'us-west-2'
 
 
 @task
@@ -84,7 +85,6 @@ def ssh():
 
 
 __all__ = (
-    'configure',
     'loadconfig',
     'createrds',
     'createserver',

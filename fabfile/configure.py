@@ -26,37 +26,6 @@ def require_input(prompt, hide=False):
     return i
 
 
-@task
-def configure():
-    """
-    Create a configuration file that stores your credentials to a secret file.
-    """
-    config = {}
-
-    print('')
-    print('AWS configuration')
-    print('=================')
-    print('')
-
-    # Request data from the user
-    config['key_name'] = require_input(
-        'EC2 Key Pair name [Required]:'
-    )
-    config['AWS_REGION'] = raw_input(
-        "Target AWS region [Default: us-west-2]:"
-    ) or 'us-west-2'
-
-    # Write it to a YAML file
-    config_file = open('./config.yml', 'w')
-    config_file.write(yaml.dump(config, default_flow_style=False))
-    config_file.close()
-
-    print('')
-    print(green('That\'s it. All set up!'))
-    print('Configuration saved in config.yml')
-    print('')
-
-
 def loadconfig():
     """
     Load aws configs into fab env (prompt if necessary)
@@ -81,9 +50,12 @@ def loadconfig():
             hide=True
         )
 
-    env.key_name = config['key_name']
-    env.key_filename = (expanduser("~/.ec2/%s.pem" % env.key_name),)
-    env.AWS_REGION = config['AWS_REGION']
+    try:
+        env.key_name
+    except AttributeError:
+        env.key_name = require_input('EC2 Key Pair name [Required]:')
+    finally:
+        env.key_filename = (expanduser("~/.ec2/%s.pem" % env.key_name),)
 
 
 class ConfigTask(Task):
