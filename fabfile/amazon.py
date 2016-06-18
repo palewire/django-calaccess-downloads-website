@@ -83,10 +83,10 @@ def createserver(block_gb_size=100, instance_type='c3.large',
     # full list of kwargs:
     # http://boto3.readthedocs.io/en/latest/reference/services/ec2.html#EC2.ServiceResource.create_instances # noqa
     new_instance = ec2.create_instances(
-        ImageId=env.AMI,
+        ImageId=ami,
         MinCount=1,
         MaxCount=1,
-        InstanceType=env.instance_type,
+        InstanceType=instance_type,
         BlockDeviceMappings=[
             {
                 'DeviceName': '/dev/sda1',
