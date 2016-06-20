@@ -33,8 +33,7 @@ def add_aws_config(setting, value):
     if not os.path.isfile(config_file):
         print "Creating aws_config.py"
         with open(config_file, 'w') as f:
-            f.write('from fabric.api import env\n\n')
-            f.write("env.{0}='{1}'\n".format(setting, value))
+            f.write('config = \{\}\n')
     else:
         with open(config_file, 'r') as f:
             lines = f.readlines()

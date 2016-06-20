@@ -5,7 +5,6 @@ from os.path import expanduser, join
 
 from fabric.colors import green
 from fabric.api import env, local, task, sudo
-import yaml
 
 from configure import loadconfig, add_aws_config
 from configure import ConfigTask
@@ -31,6 +30,11 @@ try:
 except AttributeError:
     pass
 
+try:
+    env.hosts = [env.EC2_HOST,]
+except AttributeError:
+    pass
+
 
 @task
 def ec2bootstrap():
@@ -39,11 +43,10 @@ def ec2bootstrap():
     an Amazon EC2 instance.
     """
     # Fire up a new server
-    # id, host = createserver()
-    host = 'ec2-52-40-8-142.us-west-2.compute.amazonaws.com'
+    id, host = createserver()
 
     # Add the new server's host to the configuration file
-    add_aws_config('hosts', [host,])
+    add_aws_config('EC2_HOST', host)
     
     print "- Waiting 60 seconds before logging in to configure machine"
     time.sleep(60)
