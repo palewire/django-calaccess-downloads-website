@@ -1,17 +1,20 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import time
+from os.path import expanduser, join
 
 from fabric.colors import green
 from fabric.api import env, local, task, sudo
 import yaml
 
-from configure import loadconfig
+from configure import loadconfig, add_aws_config
 from configure import ConfigTask
 from chef import installchef, rendernodejson, cook
 from amazon import createrds, createserver, createkeypair
 from app import pipinstall, manage, migrate, collectstatic, rmpyc
 from dev import rs
+
+import aws_config
 
 env.user = 'ubuntu'
 env.chef = '/usr/bin/chef-solo -c solo.rb -j node.json'
@@ -19,6 +22,14 @@ env.app_user = 'ccdc'
 env.project_dir = '/apps/calaccess/repo/cacivicdata/'
 env.activate = 'source /apps/calaccess/bin/activate'
 env.AWS_REGION = 'us-west-2'
+env.key_file_dir = expanduser('~/.ec2/')
+
+try:
+    env.key_filename = (
+        join(env.key_file_dir, "%s.pem" % env.key_name),
+    )
+except AttributeError:
+    pass
 
 
 @task
@@ -28,15 +39,12 @@ def ec2bootstrap():
     an Amazon EC2 instance.
     """
     # Fire up a new server
-    id, host = createserver()
+    # id, host = createserver()
+    host = 'ec2-52-40-8-142.us-west-2.compute.amazonaws.com'
 
-    # Add the new server's host name to the configuration file
-    config = yaml.load(open('./config.yml', 'rb'))
-    config['EC2_HOST'] = str(host)
-    config_file = open('./config.yml', 'w')
-    config_file.write(yaml.dump(config, default_flow_style=False))
-    config_file.close()
-
+    # Add the new server's host to the configuration file
+    add_aws_config('hosts', [host,])
+    
     print "- Waiting 60 seconds before logging in to configure machine"
     time.sleep(60)
 
@@ -64,14 +72,11 @@ def rdsbootstrap():
     an Amazon RDS instance.
     """
     # Fire up a new server
-    host = createrds()
+    # host = createrds()
+    host = 'calaccessraw-95.ccfcfvva9ujy.us-west-2.rds.amazonaws.com'
 
-    # Add the new server's host name to the configuration file
-    config = yaml.load(open('./config.yml', 'rb'))
-    config['RDS_HOST'] = str(host)
-    config_file = open('./config.yml', 'w')
-    config_file.write(yaml.dump(config, default_flow_style=False))
-    config_file.close()
+    # Add the new server's host to the configuration file
+    add_aws_config('RDS_HOST', host)
 
     print(green("Success!"))
 

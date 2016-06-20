@@ -1,9 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import os
-from os.path import expanduser
 from getpass import getpass
-import yaml
 from fabric.tasks import Task
 from fabric.colors import green
 from fabric.api import task, env
@@ -24,6 +22,35 @@ def require_input(prompt, hide=False):
         if not i:
             print '  I need this, please.'
     return i
+
+
+def add_aws_config(setting, value):
+    """
+    Add an aws configuration (setting name and value) to the fab env.
+    """
+    config_file = 'fabfile/aws_config.py'
+
+    if not os.path.isfile(config_file):
+        print "Creating aws_config.py"
+        with open(config_file, 'w') as f:
+            f.write('from fabric.api import env\n\n')
+            f.write("env.{0}='{1}'\n".format(setting, value))
+    else:
+        with open(config_file, 'r') as f:
+            lines = f.readlines()
+        with open(config_file, 'w') as f:
+            for line in lines:
+                prev_set = False
+                if 'env.{}='.format(setting) in line:
+                    prev_set = True
+                    f.write("env.{0}='{1}'\n".format(setting, value))
+                elif len(line) == 0:
+                    pass
+                else:
+                    f.write(line)
+
+            if not prev_set:
+                f.write("env.{0}='{1}'\n".format(setting, value))
 
 
 def loadconfig():
@@ -49,13 +76,6 @@ def loadconfig():
             'Password for RDS instance database [Required]:',
             hide=True
         )
-
-    try:
-        env.key_name
-    except AttributeError:
-        env.key_name = require_input('EC2 Key Pair name [Required]:')
-    finally:
-        env.key_filename = (expanduser("~/.ec2/%s.pem" % env.key_name),)
 
 
 class ConfigTask(Task):
