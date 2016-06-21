@@ -1,38 +1,44 @@
 from datetime import datetime
-from django.shortcuts import render
+from django.http import Http404
+from django.shortcuts import get_object_or_404, render
+from django.views.generic import ListView, DetailView
+from calaccess_raw import get_model_list
 from calaccess_raw.models.tracking import RawDataVersion, RawDataFile
 
 
-def versions_list(request):
-    context = {
-        'versions_list': RawDataVersion.objects.order_by('-release_datetime'),
-    }
-    return render(request, 'versions_list.html', context)
+class VersionList(ListView):
+    queryset = RawDataVersion.objects.order_by('-release_datetime')
+    template_name = 'versions_list.html'
+    context_object_name = 'versions'
 
 
-def version(request, version):
-    context = {
-        'version': RawDataVersion.objects.filter(
-            release_datetime__date=datetime.strptime(version, '%Y-%m-%d')
-        )[0]
-    }
-    return render(request, 'version.html', context)
+class VersionDetail(DetailView):
+    template_name = 'version.html'
+    context_object_name = 'version'
+
+    def get_object(self):
+        object = get_object_or_404(
+            RawDataVersion,
+            release_datetime__date=datetime.strptime(self.kwargs['version'], '%Y-%m-%d')
+        )
+        return object
 
 
-def latest_version(request):
-    context = {
-        'version': RawDataVersion.objects.latest('release_datetime')
-    }
-    return render(request, 'version.html', context)
+class LatestVersion(VersionDetail):
+
+    def get_object(self):
+        try:
+            object = RawDataVersion.objects.latest('release_datetime')
+        except RawDataVersion.DoesNotExist:
+            raise Http404("No versions found.")
+        else:
+            return object
 
 
-def data_files_list(request):
-    context = {
-        'files_list': RawDataFile.objects.distinct(
-            'file_name'
-        ).order_by('file_name')
-    }
-    return render(request, 'data_files_list.html', context)
+class DataFileList(ListView):
+    queryset = get_model_list()
+    template_name = 'data_files_list.html'
+    context_object_name = 'files'
 
 
 def data_file(request, file_name):

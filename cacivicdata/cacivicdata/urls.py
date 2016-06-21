@@ -6,15 +6,14 @@ from calaccess_raw.models.tracking import RawDataVersion
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', views.versions_list, name='index'),
-    url(r'^versions/$', views.versions_list, name='versions'),
+    url(r'^$', views.VersionList.as_view()),
+    url(r'^versions/$', views.VersionList.as_view()),
     url(
         r'^versions/(?P<version>[0-9]{4}\-[0-9]{1,2}\-[0-9]{1,2})/$',
-        views.version,
-        name='version'
+        views.VersionDetail.as_view()
     ),
-    url(r'^latest/$', views.latest_version, name='latest'),
-    url(r'^data_files/$', views.data_files_list, name='data_files'),
+    url(r'^latest/$', views.LatestVersion.as_view(), name='latest'),
+    url(r'^data_files/$', views.DataFileList.as_view(), name='data_files'),
     url(
         r'^data_files/(?P<file_name>\w+)/$',
         views.data_file,

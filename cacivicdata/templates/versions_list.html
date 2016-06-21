@@ -1,8 +1,8 @@
 <h2>CAL-ACCESS Releases</h2>
 
-{% if versions_list %}
+{% if object_list %}
     <ul>
-    {% for version in versions_list %}
+    {% for version in object_list %}
         <li>{{ version.release_datetime|date:"l, N d, Y, (P)" }}
             <ul>
                 <li><a href="https://s3-us-west-2.amazonaws.com/django-calaccess/{{ version.zip_file_archive.name }}">zip file</a></li>

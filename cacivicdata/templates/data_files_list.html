@@ -1,7 +1,7 @@
 <h2>CAL-ACCESS Data Files</h2>
 
 <ul>
-{% for file in files_list %}
-    <li><a href="{{ file }}">{{ file }}</a></li>
+{% for file in object_list %}
+    <li><a href="{{ file.db_table }}">{{ file.db_table }}</a></li>
 {% endfor %}
 </ul>

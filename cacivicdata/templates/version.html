@@ -1,10 +1,10 @@
-<h2>CAL-ACCESS Release: {{ version.release_datetime|date:"l, N d, Y, (P)" }}</h2>
+<h2>CAL-ACCESS Release: {{ object.release_datetime|date:"l, N d, Y, (P)" }}</h2>
 
-<h3><a href="https://s3-us-west-2.amazonaws.com/django-calaccess/{{ version.zip_file_archive.name }}">original zip file</a></h3>
+<h3><a href="https://s3-us-west-2.amazonaws.com/django-calaccess/{{ object.zip_file_archive.name }}">original zip file</a></h3>
 
-{% if version.files.all %}
+{% if object.files.all %}
     <ul>
-    {% for file in version.files.all %}
+    {% for file in object.files.all %}
         <li>{{ file.file_name }}
         {% if file.download_file_archive or file.clean_file_archive %}
             <ul>
