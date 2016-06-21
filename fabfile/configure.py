@@ -49,7 +49,7 @@ def add_aws_config(setting, value):
                     f.write(line)
 
             if not prev_set:
-                f.write("env.{0}='{1}'\n".format(setting, value))
+                f.write("\nenv.{0}='{1}'\n".format(setting, value))
 
 
 def loadconfig():
