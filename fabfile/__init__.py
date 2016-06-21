@@ -30,11 +30,6 @@ try:
 except AttributeError:
     pass
 
-try:
-    env.hosts = [env.EC2_HOST,]
-except AttributeError:
-    pass
-
 
 @task
 def ec2bootstrap():
@@ -43,13 +38,20 @@ def ec2bootstrap():
     an Amazon EC2 instance.
     """
     # Fire up a new server
-    id, host = createserver()
+    id, env.EC2_HOST = createserver()
 
     # Add the new server's host to the configuration file
-    add_aws_config('EC2_HOST', host)
+    add_aws_config('EC2_HOST', env.EC2_HOST)
     
     print "- Waiting 60 seconds before logging in to configure machine"
     time.sleep(60)
+
+    try:
+        env.hosts = [env.EC2_HOST,]
+        env.host = env.EC2_HOST
+        env.host_string = env.EC2_HOST
+    except AttributeError:
+        pass
 
     rendernodejson()
     # Install chef and run it
@@ -65,7 +67,7 @@ def ec2bootstrap():
 
     # Done deal
     print(green("Success!"))
-    print "Visit the app at %s" % host
+    print "Visit the app at %s" % env.EC2_HOST
 
 
 @task
@@ -89,7 +91,7 @@ def ssh():
     """
     Log into the EC2 instance using SSH.
     """
-    local("ssh %s@%s -i %s" % (env.user, env.host, env.key_filename[0]))
+    local("ssh %s@%s -i %s" % (env.user, env.EC2_HOST, env.key_filename[0]))
 
 
 __all__ = (
