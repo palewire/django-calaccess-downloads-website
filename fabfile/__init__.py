@@ -6,7 +6,7 @@ from os.path import expanduser, join
 from fabric.colors import green
 from fabric.api import env, local, task, sudo
 
-from configure import loadconfig, add_aws_config
+from configure import configure, loadconfig, add_aws_config
 from configure import ConfigTask
 from chef import installchef, rendernodejson, cook
 from amazon import createrds, createserver, createkeypair
@@ -91,6 +91,7 @@ def ssh():
 
 
 __all__ = (
+    'configure',
     'loadconfig',
     'createrds',
     'createserver',

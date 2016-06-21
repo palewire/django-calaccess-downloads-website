@@ -53,6 +53,34 @@ def add_aws_config(setting, value):
                 f.write("env.{0}='{1}'\n".format(setting, value))
 
 
+@task
+def configure():
+    """
+    Create a configuration file that stores AWS configuration (e.g., host end-points).
+    """
+    config = {}
+
+    print('')
+    print('AWS configuration')
+    print('=================')
+    print('')
+
+    # Request data from the user
+    config['key_name'] = raw_input(
+        'Your AWS key name [Default: my-key-pair]:'
+    ) or 'my-key-pair'
+    config['RDS_HOST'] = require_input('RDS Host:')
+    config['EC2_HOST'] = require_input('EC2 Host:')
+
+    for k, v in config.iteritems():
+        print k, v
+        add_aws_config(k, v)
+
+    print('')
+    print(green('That\'s it. All set up!'))
+    print('Configuration saved in config.yml')
+    print('')
+
 
 def loadconfig():
     """
