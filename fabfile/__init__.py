@@ -46,12 +46,9 @@ def ec2bootstrap():
     print "- Waiting 60 seconds before logging in to configure machine"
     time.sleep(60)
 
-    try:
-        env.hosts = [env.EC2_HOST,]
-        env.host = env.EC2_HOST
-        env.host_string = env.EC2_HOST
-    except AttributeError:
-        pass
+    env.hosts = [env.EC2_HOST,]
+    env.host = env.EC2_HOST
+    env.host_string = env.EC2_HOST
 
     rendernodejson()
     # Install chef and run it
