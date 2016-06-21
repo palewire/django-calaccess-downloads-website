@@ -77,8 +77,7 @@ def rdsbootstrap():
     an Amazon RDS instance.
     """
     # Fire up a new server
-    # host = createrds()
-    host = 'calaccessraw-95.ccfcfvva9ujy.us-west-2.rds.amazonaws.com'
+    host = createrds()
 
     # Add the new server's host to the configuration file
     add_aws_config('RDS_HOST', host)
