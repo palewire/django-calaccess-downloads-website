@@ -4,6 +4,5 @@ psycopg2
 -e git+https://github.com/syapse/django-storages.git@boto3-new#egg=django-storages
 boto3
 Fabric
-PyYAML
 flake8
 coveralls
