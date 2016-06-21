@@ -19,7 +19,9 @@ class VersionDetail(DetailView):
     def get_object(self):
         object = get_object_or_404(
             RawDataVersion,
-            release_datetime__date=datetime.strptime(self.kwargs['version'], '%Y-%m-%d')
+            release_datetime__date=datetime.strptime(
+                self.kwargs['version'], '%Y-%m-%d',
+            )
         )
         return object
 

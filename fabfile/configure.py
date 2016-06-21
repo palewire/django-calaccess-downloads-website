@@ -18,7 +18,7 @@ def require_input(prompt, hide=False):
             i = getpass(prompt.strip()+' ')
         else:
             i = raw_input(prompt.strip()+' ')
-        
+
         if not i:
             print '  I need this, please.'
     return i
@@ -34,7 +34,7 @@ def add_aws_config(setting, value):
         print "Creating aws_config.py"
         with open(config_file, 'w') as f:
             f.write('from fabric.api import env\n\n')
-            f.write("env.{0}='{1}'\n".format(setting, value))
+            f.write("env.{0} = '{1}'\n".format(setting, value))
     else:
         with open(config_file, 'r') as f:
             lines = f.readlines()
@@ -43,20 +43,21 @@ def add_aws_config(setting, value):
             for line in lines:
                 if 'env.{}='.format(setting) in line:
                     prev_set = True
-                    f.write("env.{0}='{1}'\n".format(setting, value))
+                    f.write("env.{0} = '{1}'\n".format(setting, value))
                 elif len(line) == 0:
                     pass
                 else:
                     f.write(line)
 
             if not prev_set:
-                f.write("env.{0}='{1}'\n".format(setting, value))
+                f.write("env.{0} = '{1}'\n".format(setting, value))
 
 
 @task
 def configure():
     """
-    Create a configuration file that stores AWS configuration (e.g., host end-points).
+    Create a configuration file that stores AWS configuration
+    (e.g., host end-points).
     """
     config = {}
 
@@ -100,7 +101,7 @@ def loadconfig():
             'Your AWS access key [Required]:',
             hide=True
         )
-    
+
     env.DB_USER_PASSWORD = os.getenv('DB_PASSWORD') or require_input(
             'Password for RDS instance database [Required]:',
             hide=True

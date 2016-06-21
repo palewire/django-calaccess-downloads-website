@@ -5,6 +5,7 @@ from fabric.api import sudo, env, cd, task
 # System commands
 #
 
+
 @task(task_class=ConfigTask)
 def rmpyc():
     """
@@ -17,6 +18,7 @@ def rmpyc():
 #
 # Python commands
 #
+
 
 @task(task_class=ConfigTask)
 def pipinstall():
