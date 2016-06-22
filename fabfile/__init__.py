@@ -11,7 +11,7 @@ from configure import ConfigTask
 from chef import installchef, rendernodejson, cook
 from amazon import createrds, createserver, createkeypair
 from app import pipinstall, manage, migrate, collectstatic, rmpyc
-from dev import rs
+from dev import rs, git_pull
 
 import aws_config
 
@@ -107,4 +107,5 @@ __all__ = (
     'ec2bootstrap',
     'rdsbootstrap',
     'rs',
+    'git_pull',
 )
