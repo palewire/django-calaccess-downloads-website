@@ -13,10 +13,14 @@ urlpatterns = [
         views.VersionDetail.as_view()
     ),
     url(r'^latest/$', views.LatestVersion.as_view(), name='latest'),
-    url(r'^data_files/$', views.DataFileList.as_view(), name='data_files'),
     url(
-        r'^data_files/(?P<file_name>\w+)/$',
-        views.data_file,
-        name='data_file',
+        r'^raw_data_files/$',
+        views.RawDataFileList.as_view(),
+        name='raw_data_files'
+    ),
+    url(
+        r'^raw_data_files/(?P<file_name>\w+)/$',
+        views.raw_data_file,
+        name='raw_data_file',
     ),
 ]

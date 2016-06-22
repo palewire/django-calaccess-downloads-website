@@ -37,13 +37,13 @@ class LatestVersion(VersionDetail):
             return object
 
 
-class DataFileList(ListView):
+class RawDataFileList(ListView):
     queryset = get_model_list()
-    template_name = 'data_files_list.html'
-    context_object_name = 'files'
+    template_name = 'raw_data_files_list.html'
+    context_object_name = 'raw data files'
 
 
-def data_file(request, file_name):
+def raw_data_file(request, file_name):
     file_name_upper = file_name.upper()
     context = {
         'file_name': file_name_upper,
@@ -51,4 +51,4 @@ def data_file(request, file_name):
             file_name=file_name_upper
         ).order_by('-id'),
     }
-    return render(request, 'data_file.html', context)
+    return render(request, 'raw_data_file.html', context)
