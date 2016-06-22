@@ -4,7 +4,7 @@ import os
 from getpass import getpass
 from fabric.tasks import Task
 from fabric.colors import green
-from fabric.api import task, env
+from fabric.api import task, env, local
 from boto3 import Session
 
 
@@ -26,38 +26,30 @@ def require_input(prompt, hide=False):
 
 def add_aws_config(setting, value):
     """
-    Add an aws configuration (setting name and value) to the fab env.
+    Add an aws configuration (setting name and value) to the config file.
     """
-    config_file = 'fabfile/aws_config.py'
+    with open(env.config_file, 'r') as f:
+        lines = f.readlines()
+    with open(env.config_file, 'w') as f:
+        prev_set = False
+        for line in lines:
+            if 'export {0}='.format(setting.upper()) in line:
+                prev_set = True
+                f.write('export {0}={1}\n'.format(setting.upper(), value))
+            elif len(line) == 0:
+                pass
+            else:
+                f.write(line)
 
-    if not os.path.isfile(config_file):
-        print "Creating aws_config.py"
-        with open(config_file, 'w') as f:
-            f.write('from fabric.api import env\n\n')
-            f.write("env.{0} = '{1}'\n".format(setting, value))
-    else:
-        with open(config_file, 'r') as f:
-            lines = f.readlines()
-        with open(config_file, 'w') as f:
-            prev_set = False
-            for line in lines:
-                if 'env.{}='.format(setting) in line:
-                    prev_set = True
-                    f.write("env.{0} = '{1}'\n".format(setting, value))
-                elif len(line) == 0:
-                    pass
-                else:
-                    f.write(line)
-
-            if not prev_set:
-                f.write("env.{0} = '{1}'\n".format(setting, value))
+        if not prev_set:
+            f.write('export {0}={1}\n'.format(setting.upper(), value))
 
 
 @task
 def configure():
     """
-    Create a configuration file that stores AWS configuration
-    (e.g., host end-points).
+    Create a configuration file that stores AWS configuration that exports
+    aws settings into the current environment.
     """
     config = {}
 
@@ -67,14 +59,30 @@ def configure():
     print('')
 
     # Request data from the user
+    config['AWS_ACCESS_KEY_ID'] = require_input(
+        'Your AWS access key [Required]:',
+        hide=True,
+    )
+    config['AWS_SECRET_ACCESS_KEY'] = require_input(
+        'Your AWS secret key [Required]:',
+        hide=True,
+    )
     config['key_name'] = raw_input(
         'Your AWS key name [Default: my-key-pair]:'
     ) or 'my-key-pair'
-    config['RDS_HOST'] = require_input('RDS Host:')
-    config['EC2_HOST'] = require_input('EC2 Host:')
+    config['RDS_HOST'] = raw_input('RDS Host [press ENTER (RETURN) to skip]:')
+    config['EC2_HOST'] = raw_input('EC2 Host[press ENTER (RETURN) to skip]:')
+    config['DB_PASSWORD'] = require_input(
+        'Database user password [Required]:',
+        hide=True,
+    )
+
+    print "Creating .secrets..."
+    
+    with open(env.config_file, 'w') as f:
+        f.write('#!/bin/bash\n\n')
 
     for k, v in config.iteritems():
-        print k, v
         add_aws_config(k, v)
 
     print('')
@@ -85,27 +93,28 @@ def configure():
 
 def loadconfig():
     """
-    Load aws configs into fab env (prompt if necessary)
+    Load aws configs into fab env
     """
-    creds = Session().get_credentials()
 
-    if creds:
-        env.AWS_ACCESS_KEY_ID = creds.access_key
-        env.AWS_SECRET_ACCESS_KEY = creds.secret_key
-    else:
-        env.AWS_ACCESS_KEY_ID = require_input(
-            'Your AWS access key [Required]:',
-            hide=True
-        )
-        env.AWS_SECRET_ACCESS_KEY = require_input(
-            'Your AWS access key [Required]:',
-            hide=True
-        )
+    if not os.path.isfile(env.config_file):
+        configure()
 
-    env.DB_USER_PASSWORD = os.getenv('DB_PASSWORD') or require_input(
-            'Password for RDS instance database [Required]:',
-            hide=True
-        )
+    local('source {0}'.format(env.config_file))
+
+    env.AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
+    env.AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
+    env.KEY_NAME = os.getenv('KEY_NAME')
+    env.EC2_HOST = os.getenv('EC2_HOST')
+    env.RDS_HOST = os.getenv('RDS_HOST')
+    env.DB_USER_PASSWORD = os.getenv('DB_PASSWORD')
+
+    env.key_filename = (
+        os.path.join(env.key_file_dir, "%s.pem" % env.KEY_NAME),
+    )
+
+    env.hosts = [env.EC2_HOST,]
+    env.host = env.EC2_HOST
+    env.host_string = env.EC2_HOST
 
 
 class ConfigTask(Task):

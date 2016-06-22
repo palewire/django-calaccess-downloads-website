@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import time
-from os.path import expanduser, join
+from os.path import expanduser
 
 from fabric.colors import green
 from fabric.api import env, local, task, sudo
@@ -13,8 +13,6 @@ from amazon import createrds, createserver, createkeypair
 from app import pipinstall, manage, migrate, collectstatic, rmpyc
 from dev import rs, git_pull
 
-import aws_config
-
 env.user = 'ubuntu'
 env.chef = '/usr/bin/chef-solo -c solo.rb -j node.json'
 env.app_user = 'ccdc'
@@ -22,13 +20,7 @@ env.project_dir = '/apps/calaccess/repo/cacivicdata/'
 env.activate = 'source /apps/calaccess/bin/activate'
 env.AWS_REGION = 'us-west-2'
 env.key_file_dir = expanduser('~/.ec2/')
-
-try:
-    env.key_filename = (
-        join(env.key_file_dir, "%s.pem" % env.key_name),
-    )
-except AttributeError:
-    pass
+env.config_file = expanduser('~/.secrets')
 
 
 @task
@@ -45,10 +37,6 @@ def ec2bootstrap():
 
     print "- Waiting 60 seconds before logging in to configure machine"
     time.sleep(60)
-
-    env.hosts = [env.EC2_HOST, ]
-    env.host = env.EC2_HOST
-    env.host_string = env.EC2_HOST
 
     rendernodejson()
     # Install chef and run it
