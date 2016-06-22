@@ -43,12 +43,26 @@ class RawDataFileList(ListView):
     context_object_name = 'raw data files'
 
 
-def raw_data_file(request, file_name):
-    file_name_upper = file_name.upper()
-    context = {
-        'file_name': file_name_upper,
-        'file_versions': RawDataFile.objects.filter(
-            file_name=file_name_upper
-        ).order_by('-id'),
-    }
-    return render(request, 'raw_data_file.html', context)
+class RawDataFileDetail(DetailView):
+    template_name = 'raw_data_file.html'
+    context_object_name = 'raw data file'
+
+    def get_object(self):
+        obj_search = [
+            x for x in get_model_list() 
+            if x().get_tsv_name() == self.kwargs['file_name'].upper() + '.TSV'
+        ]
+        
+        if len(obj_search) == 0:
+            raise Http404("No versions found.")
+        else:
+            return obj_search[0]
+
+    def get_context_data(self, **kwargs):
+        context = super(RawDataFileDetail, self).get_context_data(**kwargs)
+
+        context['file_versions'] = RawDataFile.objects.filter(
+            file_name=self.kwargs['file_name'].upper()
+        ).order_by('-version__release_datetime')
+
+        return context

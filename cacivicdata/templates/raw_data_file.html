@@ -1,5 +1,6 @@
-<h2>{{ file_name }}</h2>
+<h2>{{ object.db_table }}</h2>
 
+<p>{{ object.doc.strip|safe }}</p>
 
 <ul>
 {% for file in file_versions %}

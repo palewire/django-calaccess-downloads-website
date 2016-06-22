@@ -20,7 +20,7 @@ urlpatterns = [
     ),
     url(
         r'^raw_data_files/(?P<file_name>\w+)/$',
-        views.raw_data_file,
+        views.RawDataFileDetail.as_view(),
         name='raw_data_file',
     ),
 ]
