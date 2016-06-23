@@ -70,8 +70,8 @@ def configure():
     config['key_name'] = raw_input(
         'Your AWS key name [Default: my-key-pair]:'
     ) or 'my-key-pair'
-    config['RDS_HOST'] = require_input('RDS Host:')
-    config['EC2_HOST'] = require_input('EC2 Host:')
+    config['RDS_HOST'] = raw_input('RDS Host: [Press ENTER to skip]')
+    config['EC2_HOST'] = raw_input('EC2 Host: [Press ENTER to skip]')
 
     for k, v in config.iteritems():
         print k, v
