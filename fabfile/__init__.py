@@ -6,7 +6,7 @@ from os.path import expanduser
 from fabric.colors import green
 from fabric.api import env, local, task, sudo
 
-from configure import configure, loadconfig, add_aws_config
+from configure import configure, loadconfig, add_aws_config, require_input
 from configure import ConfigTask
 from chef import installchef, rendernodejson, cook
 from amazon import createrds, createserver, createkeypair
@@ -70,11 +70,17 @@ def rdsbootstrap(block_gb_size=12, instance_type='db.t2.large'):
 
 
 @task(task_class=ConfigTask)
-def ssh():
+def ssh(ec2_instance=''):
     """
     Log into the EC2 instance using SSH.
     """
-    local("ssh %s@%s -i %s" % (env.user, env.EC2_HOST, env.key_filename[0]))
+    if not ec2_instance:
+        try:
+            ec2_instance = env.hosts[0]
+        except IndexError:
+            ec2_instance = require_input('EC2 Host [Required]:')
+
+    local("ssh %s@%s -i %s" % (env.user, ec2_instance, env.key_filename[0]))
 
 
 __all__ = (
