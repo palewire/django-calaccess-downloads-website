@@ -86,6 +86,8 @@ def loadconfig():
     """
     Load aws configs into fab env (prompt if necessary)
     """
+    import aws_config
+    
     creds = Session().get_credentials()
 
     if creds:
@@ -105,6 +107,20 @@ def loadconfig():
             'Password for RDS instance database [Required]:',
             hide=True
         )
+
+    try:
+        env.hosts = [env.EC2_HOST, ]
+        env.host = env.EC2_HOST
+        env.host_string = env.EC2_HOST
+    except AttributeError:
+        pass
+
+    try:
+        env.key_filename = (
+            os.path.join(env.key_file_dir, "%s.pem" % env.key_name),
+        )
+    except AttributeError:
+        pass
 
 
 class ConfigTask(Task):
