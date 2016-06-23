@@ -74,7 +74,6 @@ def configure():
     config['EC2_HOST'] = raw_input('EC2 Host: [Press ENTER to skip]')
 
     for k, v in config.iteritems():
-        print k, v
         add_aws_config(k, v)
 
     print('')
