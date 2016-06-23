@@ -30,9 +30,9 @@ def ec2bootstrap(block_gb_size=100, instance_type='c3.large',
     an Amazon EC2 instance.
     """
     # Fire up a new server
-    id, host = createserver(block_gb_size, instance_type, ami)
+    id, env.EC2_HOST = createserver(block_gb_size, instance_type, ami)
     # Add the new server's host to the configuration file
-    add_aws_config('EC2_HOST', host)
+    add_aws_config('EC2_HOST', env.EC2_HOST)
 
     print "- Waiting 60 seconds before logging in to configure machine"
     time.sleep(60)
