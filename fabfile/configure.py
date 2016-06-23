@@ -41,7 +41,7 @@ def add_aws_config(setting, value):
         with open(config_file, 'w') as f:
             prev_set = False
             for line in lines:
-                if 'env.{}='.format(setting) in line:
+                if 'env.{0} ='.format(setting) in line:
                     prev_set = True
                     f.write("env.{0} = '{1}'\n".format(setting, value))
                 elif len(line) == 0:
