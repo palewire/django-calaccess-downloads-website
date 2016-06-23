@@ -67,7 +67,7 @@ def configure():
         'Your AWS secret key [Required]:',
         hide=True,
     )
-    config['key_name'] = raw_input(
+    config['KEY_NAME'] = raw_input(
         'Your AWS key name [Default: my-key-pair]:'
     ) or 'my-key-pair'
     config['RDS_HOST'] = raw_input('RDS Host [press ENTER (RETURN) to skip]:')

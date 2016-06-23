@@ -95,7 +95,7 @@ def createserver(block_gb_size=100, instance_type='c3.large',
                 },
             },
         ],
-        KeyName=env.key_name,
+        KeyName=env.KEY_NAME,
     )[0]
 
     new_instance.create_tags(Tags=[{"Key": "Name", "Value": "calaccess"}])
@@ -119,7 +119,7 @@ def createkeypair(key_name='my-key-pair'):
 
     os.path.exists(key_file_dir) or os.makedirs(key_file_dir)
 
-    add_aws_config('key_name', key_name)
+    add_aws_config('KEY_NAME', key_name)
 
     try:
         key_pair = client.create_key_pair(KeyName=key_name)
