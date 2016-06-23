@@ -23,13 +23,14 @@ env.key_file_dir = expanduser('~/.ec2/')
 
 
 @task
-def ec2bootstrap():
+def ec2bootstrap(block_gb_size=100, instance_type='c3.large',
+                 ami='ami-978dd9a7'):
     """
     Install chef and use it to fully install the application on
     an Amazon EC2 instance.
     """
     # Fire up a new server
-    id, host = createserver()
+    id, host = createserver(block_gb_size, instance_type, ami)
     # Add the new server's host to the configuration file
     add_aws_config('EC2_HOST', host)
 
@@ -54,13 +55,13 @@ def ec2bootstrap():
 
 
 @task
-def rdsbootstrap():
+def rdsbootstrap(block_gb_size=12, instance_type='db.t2.large'):
     """
     Install chef and use it to fully install the database on
     an Amazon RDS instance.
     """
     # Fire up a new server
-    host = createrds()
+    host = createrds(block_gb_size, instance_type)
 
     # Add the new server's host to the configuration file
     add_aws_config('RDS_HOST', host)
