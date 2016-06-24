@@ -10,7 +10,7 @@ from configure import loadconfig, add_aws_config
 
 
 @task
-def createrds(block_gb_size=12, instance_type='db.t2.large'):
+def createrds(block_gb_size=40, instance_type='db.t2.large'):
     """
     Spin up a new database backend with Amazon RDS.
     """
