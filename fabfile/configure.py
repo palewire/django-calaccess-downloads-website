@@ -24,32 +24,41 @@ def require_input(prompt, hide=False):
     return i
 
 
+def get_current_config():
+    """
+    Return a dict of the vars currently in the config_file
+    """
+    config = {}
+
+    if os.path.isfile(env.config_file):
+        with open(env.config_file) as f:
+            for line in f:
+                if 'export' in line:
+                    line = line.replace('export', '').strip().split('=')
+                    config[line[0]] = line[1]
+
+    return config
+
+
 def add_aws_config(setting, value):
     """
     Add an aws configuration (setting name and value) to the config file.
     """
-    with open(env.config_file, 'r') as f:
-        lines = f.readlines()
+    config = get_current_config()
+    
     with open(env.config_file, 'w') as f:
-        prev_set = False
-        for line in lines:
-            if 'export {0}='.format(setting.upper()) in line:
-                prev_set = True
-                f.write('export {0}={1}\n'.format(setting.upper(), value))
-            elif len(line) == 0:
-                pass
-            else:
-                f.write(line)
+        f.write('#!/bin/bash\n\n')
 
-        if not prev_set:
-            f.write('export {0}={1}\n'.format(setting.upper(), value))
+        config[setting.upper()] = value
+
+        for k, v in config.iteritems():
+            f.write('export {0}={1}\n'.format(k, v))
 
 
 @task
 def configure():
     """
-    Create a configuration file that stores AWS configuration that exports
-    aws settings into the current environment.
+    Initialize AWS configuration, which are stored in the config_file.
     """
     config = {}
 
@@ -70,24 +79,22 @@ def configure():
     config['KEY_NAME'] = raw_input(
         'Your AWS key name [Default: my-key-pair]:'
     ) or 'my-key-pair'
-    config['RDS_HOST'] = raw_input('RDS Host [press ENTER (RETURN) to skip]:')
-    config['EC2_HOST'] = raw_input('EC2 Host[press ENTER (RETURN) to skip]:')
     config['DB_PASSWORD'] = require_input(
         'Database user password [Required]:',
         hide=True,
     )
+    config['RDS_HOST'] = raw_input('RDS Host [press ENTER to skip]:')
+    config['EC2_HOST'] = raw_input('EC2 Host [press ENTER to skip]:')
 
-    print "Creating .secrets..."
-    
     with open(env.config_file, 'w') as f:
         f.write('#!/bin/bash\n\n')
 
-    for k, v in config.iteritems():
-        add_aws_config(k, v)
+        for k, v in config.iteritems():
+            f.write('export {0}={1}\n'.format(k, v))
 
     print('')
     print(green('That\'s it. All set up!'))
-    print('Configuration saved in config.yml')
+    print('Configuration saved in {0}'.format(env.config_file))
     print('')
 
 
@@ -95,26 +102,27 @@ def loadconfig():
     """
     Load aws configs into fab env
     """
-
     if not os.path.isfile(env.config_file):
         configure()
 
-    local('source {0}'.format(env.config_file))
+    config = get_current_config()
 
-    env.AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
-    env.AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
-    env.KEY_NAME = os.getenv('KEY_NAME')
-    env.EC2_HOST = os.getenv('EC2_HOST')
-    env.RDS_HOST = os.getenv('RDS_HOST')
-    env.DB_USER_PASSWORD = os.getenv('DB_PASSWORD')
+    for k, v in config.iteritems():
+        env[k] = v
+    
+    try:
+        env.hosts = [env.EC2_HOST, ]
+        env.host = env.EC2_HOST
+        env.host_string = env.EC2_HOST
+    except AttributeError:
+        pass
 
-    env.key_filename = (
-        os.path.join(env.key_file_dir, "%s.pem" % env.KEY_NAME),
-    )
-
-    env.hosts = [env.EC2_HOST,]
-    env.host = env.EC2_HOST
-    env.host_string = env.EC2_HOST
+    try:
+        env.key_filename = (
+            os.path.join(env.key_file_dir, "%s.pem" % env.KEY_NAME),
+        )
+    except AttributeError:
+        pass
 
 
 class ConfigTask(Task):
