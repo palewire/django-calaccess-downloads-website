@@ -86,7 +86,10 @@ def loadconfig():
     """
     Load aws configs into fab env (prompt if necessary)
     """
-    import aws_config
+    try:
+        import aws_config
+    except ImportError:
+        configure()
     
     creds = Session().get_credentials()
 
