@@ -70,15 +70,15 @@ def configure():
     config['key_name'] = raw_input(
         'Your AWS key name [Default: my-key-pair]:'
     ) or 'my-key-pair'
-    config['RDS_HOST'] = raw_input('RDS Host: [Press ENTER to skip]')
-    config['EC2_HOST'] = raw_input('EC2 Host: [Press ENTER to skip]')
+    config['RDS_HOST'] = raw_input('RDS Host: [Press ENTER to skip]:')
+    config['EC2_HOST'] = raw_input('EC2 Host: [Press ENTER to skip]:')
 
     for k, v in config.iteritems():
         add_aws_config(k, v)
 
     print('')
     print(green('That\'s it. All set up!'))
-    print('Configuration saved in config.yml')
+    print('Configuration saved in aws_config.py')
     print('')
 
 
