@@ -47,7 +47,7 @@ def createrds(block_gb_size=12, instance_type='db.t2.large'):
         DBInstanceClass=instance_type,
         Engine='postgres',
         MasterUsername='cacivicdata',
-        MasterUserPassword=env.DB_USER_PASSWORD,
+        MasterUserPassword=env.DB_PASSWORD,
         BackupRetentionPeriod=14,
         PreferredBackupWindow='22:30-23:00',
         Port=5432,

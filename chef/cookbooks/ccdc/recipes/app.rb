@@ -47,6 +47,6 @@ template "/apps/#{node[:app][:name]}/.secrets" do
     :aws_access_key_id => node[:aws_access_key_id],
     :aws_secret_access_key => node[:aws_secret_access_key],
     :db_host => node[:db_host],
-    :db_password => node[:db_user_password]
+    :db_password => node[:db_password]
   })
 end

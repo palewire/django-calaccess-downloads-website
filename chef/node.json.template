@@ -37,7 +37,7 @@
         "apps_user": "ccdc",
         "apps_group": "ccdc",
 
-        "db_user_password": null,
+        "db_password": null,
         "db_host": null,
 
         "aws_access_key_id": null,
