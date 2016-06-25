@@ -12,6 +12,7 @@ from configure import (
     createconfig,
     loadconfig,
     printconfig,
+    printenv,
     require_input,
 )
 from configure import ConfigTask
@@ -87,7 +88,6 @@ def ssh(ec2_instance=''):
             ec2_instance = env.hosts[0]
         except IndexError:
             ec2_instance = require_input('EC2 Host [Required]:')
-
     local("ssh %s@%s -i %s" % (env.user, ec2_instance, env.key_filename[0]))
 
 
@@ -105,6 +105,7 @@ __all__ = (
     'cook',
     'manage',
     'migrate',
+    'printenv',
     'ssh',
     'collectstatic',
     'ec2bootstrap',

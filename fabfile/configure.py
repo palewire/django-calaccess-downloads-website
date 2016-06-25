@@ -9,51 +9,9 @@ from fabric.colors import green
 from fabric.api import task, env, local
 from boto3 import Session
 
-
-def require_input(prompt, hide=False):
-    """
-    Demand input from the user.
-    """
-    i = None
-    while not i:
-        if hide:
-            i = getpass(prompt.strip()+' ')
-        else:
-            i = raw_input(prompt.strip()+' ')
-
-        if not i:
-            print '  I need this, please.'
-    return i
-
-
-def getconfig():
-    """
-    Return a dict of the vars currently in the config_file
-    """
-    # Hack to get around the fact that our .env file lacks a section header,
-    # which is a silly requirement of ConfigParser.
-    config = StringIO.StringIO()
-    config.write('[fabric]\n')
-    config.write(open(env.config_file).read())
-    config.seek(0, os.SEEK_SET)
-
-    # Parse the configuration
-    cp = ConfigParser.ConfigParser()
-    cp.readfp(config)
-
-    # Pass it out
-    return dict(cp.items("fabric"))
-
-
-@task
-def printconfig():
-    """
-    Print out the configuration settings for the local environment.
-    """
-    # Loop through the current configuration
-    for k, v in getconfig().items():
-        # Print out each setting
-        print("{}:{}".format(k, v))
+#
+# Tasks
+#
 
 
 @task
@@ -92,16 +50,16 @@ def setconfig(key, value):
 @task
 def createconfig():
     """
-    Initialize AWS configuration, which are stored in the config_file.
+    Prompt users for settings to be stored in the config_file.
     """
-    config = {}
-
+    # Kick it off
     print('')
-    print('AWS configuration')
+    print('Configuration')
     print('=================')
     print('')
 
     # Request data from the user
+    config = {}
     config['AWS_ACCESS_KEY_ID'] = require_input(
         'Your AWS access key [Required]:',
         hide=True,
@@ -120,60 +78,96 @@ def createconfig():
     config['RDS_HOST'] = raw_input('RDS Host [press ENTER to skip]:')
     config['EC2_HOST'] = raw_input('EC2 Host [press ENTER to skip]:')
 
-    with open(env.config_file, 'w') as f:
-        f.write('#!/bin/bash\n\n')
+    # Save it to the configuration file
+    [setconfig(k, v) for k, v in config.items()]
 
-        for k, v in config.iteritems():
-            f.write('export {0}={1}\n'.format(k, v))
-
+    # Tell the user they are done
     print('')
     print(green('That\'s it. All set up!'))
     print('Configuration saved in {0}'.format(env.config_file))
     print('')
 
 
+@task
+def printconfig():
+    """
+    Print out the configuration settings for the local environment.
+    """
+    # Loop through the current configuration
+    for k, v in getconfig().items():
+        # Print out each setting
+        print("{}:{}".format(k, v))
+
+
+@task
+def printenv():
+    """
+    Print out the Fabric env settings.
+    """
+    # Load settings from the config file
+    loadconfig()
+    # Loop through the Fabric env
+    for k, v in sorted(env.items()):
+        # Print out each setting
+        print("{}:{}".format(k, v))
+
+
+#
+# Helpers
+#
+
+def getconfig():
+    """
+    Return a dict of the vars currently in the config_file
+    """
+    # Hack to get around the fact that our .env file lacks a section header,
+    # which is a silly requirement of ConfigParser.
+    config = StringIO.StringIO()
+    config.write('[fabric]\n')
+    config.write(open(env.config_file).read())
+    config.seek(0, os.SEEK_SET)
+
+    # Parse the configuration
+    cp = ConfigParser.ConfigParser()
+    cp.readfp(config)
+
+    # Uppercase the settings
+    d = dict((k.upper(), v) for k, v in cp.items("fabric"))
+
+    # Pass it out
+    return d
+
+
 def loadconfig():
     """
-    Load aws configs into fab env
+    Load configuration settings into the Fabric env
     """
+    # If the config file doesn't exist, force its creation
     if not os.path.isfile(env.config_file):
         createconfig()
 
+    # Load all of the configuration settings
     config = getconfig()
-
     for k, v in config.iteritems():
         env[k] = v
-    
-    try:
-        env.hosts = [env.EC2_HOST, ]
+
+    # If there is an EC2_HOST set, patch it onto the Fabric env object
+    if hasattr(env, 'EC2_HOST'):
+        env.hosts = [env.EC2_HOST,]
         env.host = env.EC2_HOST
         env.host_string = env.EC2_HOST
-    except AttributeError:
-        pass
 
-    try:
-        env.key_filename = (
-            os.path.join(env.key_file_dir, "%s.pem" % env.KEY_NAME),
-        )
-    except AttributeError:
-        pass
-
-    try:
-        env.hosts = [env.EC2_HOST, ]
-        env.host = env.EC2_HOST
-        env.host_string = env.EC2_HOST
-    except AttributeError:
-        pass
-
-    try:
-        env.key_filename = (
-            os.path.join(env.key_file_dir, "%s.pem" % env.key_name),
-        )
-    except AttributeError:
-        pass
+    # If there is a KEY_NAME set, path it onto the Fabric env object
+    if hasattr(env, 'KEY_NAME'):
+        key_path = os.path.join(env.key_file_dir, "%s.pem" % env.KEY_NAME)
+        env.key_filename = (key_path,)
 
 
 class ConfigTask(Task):
+    """
+    A custom Fabric @task that loads settings from an external configuration
+    file before execution.
+    """
     def __init__(self, func, *args, **kwargs):
         super(ConfigTask, self).__init__(*args, **kwargs)
         self.func = func
@@ -182,5 +176,20 @@ class ConfigTask(Task):
         self.run()
 
     def run(self, *args, **kwargs):
-        loadconfig()
+        loadconfig()  # <-- the action
         return self.func(*args, **kwargs)
+
+
+def require_input(prompt, hide=False):
+    """
+    Demand input from the user.
+    """
+    i = None
+    while not i:
+        if hide:
+            i = getpass(prompt.strip()+' ')
+        else:
+            i = raw_input(prompt.strip()+' ')
+        if not i:
+            print '  I need this, please.'
+    return i
