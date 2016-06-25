@@ -2,11 +2,11 @@
 # -*- coding: utf-8 -*-
 import os
 import stat
-import random
 import boto3
-from botocore.exceptions import ClientError
+import random
 from fabric.api import task, env
 from configure import loadconfig, setconfig
+from botocore.exceptions import ClientError
 
 
 @task

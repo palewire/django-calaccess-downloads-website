@@ -11,14 +11,13 @@ from configure import (
     createconfig,
     loadconfig,
     printconfig,
-    printenv,
-    require_input,
+    printenv
 )
 from configure import ConfigTask
 from chef import installchef, rendernodejson, cook
 from amazon import createrds, createserver, createkeypair
 from app import pipinstall, manage, migrate, collectstatic, rmpyc
-from dev import rs, git_pull
+from dev import rs, pull, ssh
 
 env.user = 'ubuntu'
 env.chef = '/usr/bin/chef-solo -c solo.rb -j node.json'
@@ -77,19 +76,6 @@ def rdsbootstrap(block_gb_size=40, instance_type='db.t2.large'):
     print(green("Success!"))
 
 
-@task(task_class=ConfigTask)
-def ssh(ec2_instance=''):
-    """
-    Log into the EC2 instance using SSH.
-    """
-    if not ec2_instance:
-        try:
-            ec2_instance = env.hosts[0]
-        except IndexError:
-            ec2_instance = require_input('EC2 Host [Required]:')
-    local("ssh %s@%s -i %s" % (env.user, ec2_instance, env.key_filename[0]))
-
-
 __all__ = (
     'setconfig',
     'createconfig',
@@ -111,5 +97,6 @@ __all__ = (
     'rdsbootstrap',
     'rmpyc',
     'rs',
-    'git_pull',
+    'pull',
+    'ssh',
 )

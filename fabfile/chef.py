@@ -1,8 +1,10 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+import json
 import collections
 from configure import ConfigTask
 from fabric.api import sudo, task, env
 from fabric.contrib.project import rsync_project
-import json
 
 
 @task(task_class=ConfigTask)
