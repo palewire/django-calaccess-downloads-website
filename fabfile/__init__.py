@@ -1,7 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-from os.path import expanduser
 from fabric.api import env
+from os.path import expanduser
+
+from amazon import createrds, createec2, createkey
+from app import pipinstall, manage, migrate, collectstatic, rmpyc
+from dev import rs, pull, ssh
+from chef import bootstrap, installchef, rendernodejson, cook
 from configure import (
     setconfig,
     createconfig,
@@ -9,10 +14,6 @@ from configure import (
     printconfig,
     printenv
 )
-from chef import installchef, rendernodejson, cook
-from amazon import createrds, createserver, createkey, ec2bootstrap
-from app import pipinstall, manage, migrate, collectstatic, rmpyc
-from dev import rs, pull, ssh
 
 env.user = 'ubuntu'
 env.chef = '/usr/bin/chef-solo -c solo.rb -j node.json'
@@ -23,13 +24,13 @@ env.AWS_REGION = 'us-west-2'
 env.key_file_dir = expanduser('~/.ec2/')
 env.config_file = '.env'
 
-
 __all__ = (
+    'bootstrap',
     'setconfig',
     'createconfig',
     'loadconfig',
     'createrds',
-    'createserver',
+    'createec2',
     'createkey',
     'ec2bootstrap',
     'installchef',
@@ -42,8 +43,6 @@ __all__ = (
     'printenv',
     'ssh',
     'collectstatic',
-    'ec2bootstrap',
-    'rdsbootstrap',
     'rmpyc',
     'rs',
     'pull',

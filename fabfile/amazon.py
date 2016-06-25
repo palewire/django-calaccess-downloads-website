@@ -66,43 +66,9 @@ def createrds(
     print(green("Success!"))
 
 
-@task
-def ec2bootstrap(
-    block_gb_size=100,
-    instance_type='c3.large',
-    ami='ami-978dd9a7'
-):
-    """
-    Install chef and use it to fully install the application on
-    an Amazon EC2 instance.
-    """
-    # Fire up a new server
-    id, env.EC2_HOST = createserver(block_gb_size, instance_type, ami)
-    # Add the new server's host to the configuration file
-    setconfig('EC2_HOST', env.EC2_HOST)
-
-    print "- Waiting 60 seconds before logging in to configure machine"
-    time.sleep(60)
-
-    rendernodejson()
-    # Install chef and run it
-    installchef()
-    cook()
-
-    # source secrets in activate script
-    sudo("echo 'source /apps/calaccess/.secrets' >> /apps/calaccess/bin/activate")
-
-    # Fire up the Django project
-    migrate()
-    collectstatic()
-
-    # Done deal
-    print(green("Success!"))
-    print "Visit the app at %s" % env.EC2_HOST
-
-
 @task(task_class=ConfigTask)
-def createserver(
+def createec2(
+    instance_name="calaccess_website",
     block_gb_size=100,
     instance_type='c3.large',
     ami='ami-978dd9a7'
@@ -111,10 +77,15 @@ def createserver(
     Spin up a new Ubuntu 14.04 server on Amazon EC2.
     Returns the id and public address.
     """
-    ec2 = boto3.resource('ec2')
+    # Connect to boto
+    session = boto3.Session(
+        aws_access_key_id=env.AWS_ACCESS_KEY_ID,
+        aws_secret_access_key=env.AWS_SECRET_ACCESS_KEY,
+        region_name=env.AWS_REGION
+    )
+    ec2 = session.resource('ec2')
 
-    # full list of kwargs:
-    # http://boto3.readthedocs.io/en/latest/reference/services/ec2.html#EC2.ServiceResource.create_instances # noqa
+    # Create the instance
     new_instance = ec2.create_instances(
         ImageId=ami,
         MinCount=1,
@@ -131,14 +102,19 @@ def createserver(
         KeyName=env.KEY_NAME,
     )[0]
 
-    new_instance.create_tags(Tags=[{"Key": "Name", "Value": "calaccess"}])
+    # Name the instance
+    new_instance.create_tags(Tags=[{"Key": "Name", "Value": instance_name}])
 
+    # Wait for it start running
     print '- Waiting for instance to start'
     new_instance.wait_until_running()
 
-    print "- Provisioned at: {0}".format(new_instance.public_dns_name)
+    # Add the new server's host to the configuration file
+    env.EC2_HOST = new_instance.public_dns_name
+    setconfig('EC2_HOST', env.EC2_HOST)
 
-    return (new_instance.id, new_instance.public_dns_name)
+    # Print out where it was created
+    print "- Provisioned at: {0}".format(env.EC2_HOST)
 
 
 @task(task_class=ConfigTask)

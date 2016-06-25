@@ -8,6 +8,30 @@ from fabric.contrib.project import rsync_project
 
 
 @task(task_class=ConfigTask)
+def bootstrap():
+    """
+    Install Chef and use it to install the app on an EC2 instance.
+    """
+    # Prepare node to use secrets from our configuration file
+    rendernodejson()
+
+    # Install chef and run it
+    installchef()
+    cook()
+
+    # source secrets in activate script
+    sudo("echo 'source /apps/calaccess/.secrets' >> /apps/calaccess/bin/activate")
+
+    # Fire up the Django project
+    migrate()
+    collectstatic()
+
+    # Done deal
+    print(green("Success!"))
+    print "Visit the app at %s" % env.EC2_HOST
+
+
+@task(task_class=ConfigTask)
 def installchef():
     """
     Install all the dependencies to run a Chef cookbook
