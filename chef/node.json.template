@@ -37,11 +37,5 @@
         "apps_user": "ccdc",
         "apps_group": "ccdc",
 
-        "db_password": null,
-        "db_host": null,
-
-        "aws_access_key_id": null,
-        "aws_secret_access_key": null,
-
         "crons": {}
     }

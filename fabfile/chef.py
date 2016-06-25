@@ -21,9 +21,6 @@ def bootstrap():
     installchef()
     cook()
 
-    # source secrets in activate script
-    sudo("echo 'source /apps/calaccess/.secrets' >> /apps/calaccess/bin/activate")
-
     # Copy local env to new instance
     copy_config()
 
@@ -60,10 +57,6 @@ def rendernodejson():
         open("./chef/node.json.template", "r"),
         object_pairs_hook=collections.OrderedDict
     )
-    template["db_password"] = env.DB_USER_PASSWORD
-    template["db_host"] = env.RDS_HOST
-    template["aws_access_key_id"] = env.AWS_ACCESS_KEY_ID
-    template["aws_secret_access_key"] = env.AWS_SECRET_ACCESS_KEY
     template["crons"]["update"] = {
         "minute": "25",
         "hour": "5,11,17,23",
