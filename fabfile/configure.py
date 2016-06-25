@@ -36,9 +36,11 @@ def getconfig():
     config.write('[fabric]\n')
     config.write(open(env.config_file).read())
     config.seek(0, os.SEEK_SET)
+
     # Parse the configuration
     cp = ConfigParser.ConfigParser()
     cp.readfp(config)
+
     # Pass it out
     return dict(cp.items("fabric"))
 
