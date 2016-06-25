@@ -3,7 +3,7 @@
 import json
 import collections
 from app import migrate, collectstatic
-from configure import ConfigTask
+from configure import ConfigTask, copy_config
 from fabric.api import sudo, task, env
 from fabric.contrib.project import rsync_project
 from fabric.colors import green
@@ -23,6 +23,9 @@ def bootstrap():
 
     # source secrets in activate script
     sudo("echo 'source /apps/calaccess/.secrets' >> /apps/calaccess/bin/activate")
+
+    # Copy local env to new instance
+    copy_config()
 
     # Fire up the Django project
     migrate()

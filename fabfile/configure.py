@@ -6,7 +6,8 @@ import ConfigParser
 from getpass import getpass
 from fabric.tasks import Task
 from fabric.colors import green
-from fabric.api import task, env
+from fabric.api import task, env, sudo
+from fabric.operations import put
 
 #
 # Tasks
@@ -193,3 +194,16 @@ def require_input(prompt, hide=False):
         if not i:
             print '  I need this, please.'
     return i
+
+
+@task(task_class=ConfigTask)
+def copy_config():
+    """
+    Copy configurations in local dev environment to current ec2 instance.
+    """
+    put(env.config_file, env.repo_dir, use_sudo=True)
+
+    sudo('chown {0} {1}'.format(
+        env.app_user,
+        os.path.join(env.repo_dir, '.env'))
+    )

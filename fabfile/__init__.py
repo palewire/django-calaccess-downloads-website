@@ -18,6 +18,7 @@ from configure import (
 env.user = 'ubuntu'
 env.chef = '/usr/bin/chef-solo -c solo.rb -j node.json'
 env.app_user = 'ccdc'
+env.repo_dir = '/apps/calaccess/repo/'
 env.project_dir = '/apps/calaccess/repo/cacivicdata/'
 env.activate = 'source /apps/calaccess/bin/activate'
 env.AWS_REGION = 'us-west-2'
