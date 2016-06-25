@@ -135,4 +135,3 @@ def createkeypair(key_name='my-key-pair'):
             f.write(key_pair['KeyMaterial'])
 
         os.chmod(env.key_filename[0], stat.S_IRUSR)
-

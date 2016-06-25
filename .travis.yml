@@ -17,6 +17,7 @@ install:
  - pip install -q Django==$DJANGO_VERSION
 
 script:
+ - flake8 fabfile
  - flake8 cacivicdata/cacivicdata
  - coverage run cacivicdata/manage.py test
 

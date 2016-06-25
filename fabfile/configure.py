@@ -6,13 +6,12 @@ import ConfigParser
 from getpass import getpass
 from fabric.tasks import Task
 from fabric.colors import green
-from fabric.api import task, env, local
-from boto3 import Session
+from fabric.api import task, env
+
 
 #
 # Tasks
 #
-
 
 @task
 def setconfig(key, value):
@@ -153,7 +152,7 @@ def loadconfig():
 
     # If there is an EC2_HOST set, patch it onto the Fabric env object
     if hasattr(env, 'EC2_HOST'):
-        env.hosts = [env.EC2_HOST,]
+        env.hosts = [env.EC2_HOST]
         env.host = env.EC2_HOST
         env.host_string = env.EC2_HOST
 

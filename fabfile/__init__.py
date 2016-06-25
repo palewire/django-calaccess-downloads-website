@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-import os
 import time
 from os.path import expanduser
 
@@ -110,6 +109,7 @@ __all__ = (
     'collectstatic',
     'ec2bootstrap',
     'rdsbootstrap',
+    'rmpyc',
     'rs',
     'git_pull',
 )
