@@ -23,6 +23,7 @@ env.activate = 'source /apps/calaccess/bin/activate'
 env.AWS_REGION = 'us-west-2'
 env.key_file_dir = expanduser('~/.ec2/')
 env.config_file = '.env'
+env.connection_attempts = 15
 
 __all__ = (
     'bootstrap',
