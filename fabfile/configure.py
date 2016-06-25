@@ -123,7 +123,8 @@ def getconfig():
     # which is a silly requirement of ConfigParser.
     config = StringIO.StringIO()
     config.write('[fabric]\n')
-    config.write(open(env.config_file).read())
+    if os.path.isfile(env.config_file):
+        config.write(open(env.config_file).read())
     config.seek(0, os.SEEK_SET)
 
     # Parse the configuration
