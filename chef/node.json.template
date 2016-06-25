@@ -31,7 +31,7 @@
         "app": {
             "name": "calaccess",
             "repo": "https://github.com/california-civic-data-coalition/django-calaccess-downloads-website.git",
-            "branch": "master"
+            "branch": "os_env_vars"
         },
 
         "apps_user": "ccdc",
