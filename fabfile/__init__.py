@@ -1,12 +1,19 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+import os
 import time
 from os.path import expanduser
 
 from fabric.colors import green
 from fabric.api import env, local, task, sudo
 
-from configure import configure, loadconfig, add_aws_config, require_input
+from configure import (
+    configure,
+    loadconfig,
+    add_aws_config,
+    require_input,
+    printconfig
+)
 from configure import ConfigTask
 from chef import installchef, rendernodejson, cook
 from amazon import createrds, createserver, createkeypair
@@ -92,6 +99,7 @@ __all__ = (
     'createkeypair',
     'installchef',
     'pipinstall',
+    'printconfig',
     'rendernodejson',
     'cook',
     'manage',

@@ -5,3 +5,4 @@ settings_local.py
 *.ipynb
 .ipynb_checkpoints/
 node.json
+.env

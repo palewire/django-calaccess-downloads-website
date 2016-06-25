@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import os
+import StringIO
+import ConfigParser
 from getpass import getpass
 from fabric.tasks import Task
 from fabric.colors import green
@@ -28,16 +30,23 @@ def get_current_config():
     """
     Return a dict of the vars currently in the config_file
     """
-    config = {}
+    config = StringIO.StringIO()
+    config.write('[fabric]\n')
+    config.write(open('.env').read())
+    config.seek(0, os.SEEK_SET)
 
-    if os.path.isfile(env.config_file):
-        with open(env.config_file) as f:
-            for line in f:
-                if 'export' in line:
-                    line = line.replace('export', '').strip().split('=')
-                    config[line[0]] = line[1]
+    cp = ConfigParser.ConfigParser()
+    cp.readfp(config)
+    return dict(cp.items("fabric"))
 
-    return config
+
+@task
+def printconfig():
+    """
+    Print out the configuration settings for the local environment.
+    """
+    for k, v in get_current_config().items():
+        print("{}:{}".format(k, v))
 
 
 def add_aws_config(setting, value):
