@@ -48,7 +48,9 @@ def printconfig():
     """
     Print out the configuration settings for the local environment.
     """
+    # Loop through the current configuration
     for k, v in getconfig().items():
+        # Print out each setting
         print("{}:{}".format(k, v))
 
 
