@@ -1,11 +1,14 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import os
+import time
 import stat
 import boto3
 from fabric.colors import green
-from fabric.api import task, env
+from fabric.api import task, env, sudo
+from app import migrate, collectstatic
 from botocore.exceptions import ClientError
+from chef import rendernodejson, installchef, cook
 from configure import loadconfig, setconfig, ConfigTask
 
 
@@ -61,6 +64,41 @@ def createrds(
     # Add the new server's host to the configuration file
     setconfig('RDS_HOST', host)
     print(green("Success!"))
+
+
+@task
+def ec2bootstrap(
+    block_gb_size=100,
+    instance_type='c3.large',
+    ami='ami-978dd9a7'
+):
+    """
+    Install chef and use it to fully install the application on
+    an Amazon EC2 instance.
+    """
+    # Fire up a new server
+    id, env.EC2_HOST = createserver(block_gb_size, instance_type, ami)
+    # Add the new server's host to the configuration file
+    setconfig('EC2_HOST', env.EC2_HOST)
+
+    print "- Waiting 60 seconds before logging in to configure machine"
+    time.sleep(60)
+
+    rendernodejson()
+    # Install chef and run it
+    installchef()
+    cook()
+
+    # source secrets in activate script
+    sudo("echo 'source /apps/calaccess/.secrets' >> /apps/calaccess/bin/activate")
+
+    # Fire up the Django project
+    migrate()
+    collectstatic()
+
+    # Done deal
+    print(green("Success!"))
+    print "Visit the app at %s" % env.EC2_HOST
 
 
 @task(task_class=ConfigTask)
