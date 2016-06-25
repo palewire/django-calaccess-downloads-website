@@ -27,7 +27,7 @@ env.project_dir = '/apps/calaccess/repo/cacivicdata/'
 env.activate = 'source /apps/calaccess/bin/activate'
 env.AWS_REGION = 'us-west-2'
 env.key_file_dir = expanduser('~/.ec2/')
-env.config_file = expanduser('~/.secrets')
+env.config_file = '.env'
 
 
 @task
