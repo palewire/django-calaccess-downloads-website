@@ -8,10 +8,10 @@ from fabric.tasks import Task
 from fabric.colors import green
 from fabric.api import task, env
 
-
 #
 # Tasks
 #
+
 
 @task
 def setconfig(key, value):

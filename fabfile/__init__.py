@@ -58,21 +58,6 @@ def ec2bootstrap(block_gb_size=100, instance_type='c3.large',
     print "Visit the app at %s" % env.EC2_HOST
 
 
-@task
-def rdsbootstrap(block_gb_size=40, instance_type='db.t2.large'):
-    """
-    Install chef and use it to fully install the database on
-    an Amazon RDS instance.
-    """
-    # Fire up a new server
-    host = createrds(block_gb_size, instance_type)
-
-    # Add the new server's host to the configuration file
-    setconfig('RDS_HOST', host)
-
-    print(green("Success!"))
-
-
 __all__ = (
     'setconfig',
     'createconfig',

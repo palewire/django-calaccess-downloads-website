@@ -3,7 +3,6 @@
 import os
 import stat
 import boto3
-import random
 from fabric.colors import green
 from fabric.api import task, env
 from botocore.exceptions import ClientError
@@ -11,46 +10,37 @@ from configure import loadconfig, setconfig, ConfigTask
 
 
 @task(task_class=ConfigTask)
-def createrds(block_gb_size=40, instance_type='db.t2.large'):
+def createrds(
+    instance_name,
+    database_name="calaccess_website",
+    database_user="cacivicdata",
+    database_port=5432,
+    block_gb_size=40,
+    instance_type='db.t2.large'
+):
     """
     Spin up a new database backend with Amazon RDS.
     """
-    client = boto3.client('rds')
-
-    db_instance_id = "calaccessraw-{0}".format(
-        random.choice(range(0, 99))
+    # Connect to boto
+    session = boto3.Session(
+        aws_access_key_id=env.AWS_ACCESS_KEY_ID,
+        aws_secret_access_key=env.AWS_SECRET_ACCESS_KEY,
+        region_name=env.AWS_REGION
     )
-
-    # check to see if there db instance already exists
-    while True:
-        try:
-            client.describe_db_instances(
-                DBInstanceIdentifier=db_instance_id
-            )
-        except ClientError as e:
-            if 'DBInstanceNotFound' in e.message:
-                break
-        else:
-            # if the db instance already exists, generate a new id
-            db_instance_id = "calaccessraw-{0}".format(
-                random.choice(range(0, 99))
-            )
+    client = session.client('rds')
 
     print "- Reserving a database"
-
-    # full list of kwargs:
-    # http://boto3.readthedocs.io/en/latest/reference/services/rds.html#RDS.Client.create_db_instance # noqa
     db = client.create_db_instance(
-        DBName='calaccess_raw',
-        DBInstanceIdentifier=db_instance_id,
+        DBName=database_name,
+        DBInstanceIdentifier=instance_name,
         AllocatedStorage=int(block_gb_size),
         DBInstanceClass=instance_type,
         Engine='postgres',
-        MasterUsername='cacivicdata',
+        MasterUsername=database_user,
         MasterUserPassword=env.DB_PASSWORD,
         BackupRetentionPeriod=14,
         PreferredBackupWindow='22:30-23:00',
-        Port=5432,
+        Port=database_port,
         MultiAZ=False,
         EngineVersion='9.4.5',
         PubliclyAccessible=True,
@@ -59,14 +49,17 @@ def createrds(block_gb_size=40, instance_type='db.t2.large'):
     )
 
     # Check up on its status every so often
-    print '- Waiting for instance {0} to start'.format(db_instance_id)
+    print '- Waiting for instance {0} to start'.format(instance_name)
     waiter = client.get_waiter('db_instance_available')
-    waiter.wait(DBInstanceIdentifier=db_instance_id)
+    waiter.wait(DBInstanceIdentifier=instance_name)
 
-    db = client.describe_db_instances(
-        DBInstanceIdentifier=db_instance_id)
+    # Once its there pass back the address of the instance
+    db = client.describe_db_instances(DBInstanceIdentifier=instance_name)
+    host = db['DBInstances'][0]['Endpoint']['Address']
 
-    return db['DBInstances'][0]['Endpoint']['Address']
+    # Add the new server's host to the configuration file
+    setconfig('RDS_HOST', host)
+    print(green("Success!"))
 
 
 @task(task_class=ConfigTask)
@@ -120,7 +113,7 @@ def createkey(name):
     # Connect to boto
     session = boto3.Session(
         aws_access_key_id=env.AWS_ACCESS_KEY_ID,
-        aws_secret_access_key=env.AWS_SECRET_ACCESS_KEY, 
+        aws_secret_access_key=env.AWS_SECRET_ACCESS_KEY,
         region_name=env.AWS_REGION
     )
     client = session.client('ec2')
