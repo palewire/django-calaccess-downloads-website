@@ -46,6 +46,7 @@ def createrds(
         PubliclyAccessible=True,
         StorageType='gp2',
         StorageEncrypted=False,
+        DBParameterGroupName='fewer-checkpoints',
     )
 
     # Check up on its status every so often
