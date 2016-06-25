@@ -90,7 +90,7 @@ def setconfig(key, value):
 
 
 @task
-def configure():
+def createconfig():
     """
     Initialize AWS configuration, which are stored in the config_file.
     """
@@ -137,7 +137,7 @@ def loadconfig():
     Load aws configs into fab env
     """
     if not os.path.isfile(env.config_file):
-        configure()
+        createconfig()
 
     config = getconfig()
 

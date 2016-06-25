@@ -9,7 +9,7 @@ from fabric.api import env, local, task, sudo
 
 from configure import (
     setconfig,
-    configure,
+    createconfig,
     loadconfig,
     printconfig,
     require_input,
@@ -93,7 +93,7 @@ def ssh(ec2_instance=''):
 
 __all__ = (
     'setconfig',
-    'configure',
+    'createconfig',
     'loadconfig',
     'createrds',
     'createserver',
