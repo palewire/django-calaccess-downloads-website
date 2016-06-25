@@ -10,7 +10,7 @@ from configure import loadconfig, add_aws_config
 
 
 @task
-def createrds(block_gb_size=12, instance_type='db.t2.large'):
+def createrds(block_gb_size=40, instance_type='db.t2.large'):
     """
     Spin up a new database backend with Amazon RDS.
     """
@@ -43,7 +43,7 @@ def createrds(block_gb_size=12, instance_type='db.t2.large'):
     db = client.create_db_instance(
         DBName='calaccess_raw',
         DBInstanceIdentifier=db_instance_id,
-        AllocatedStorage=block_gb_size,
+        AllocatedStorage=int(block_gb_size),
         DBInstanceClass=instance_type,
         Engine='postgres',
         MasterUsername='cacivicdata',

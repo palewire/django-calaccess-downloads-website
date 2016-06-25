@@ -45,12 +45,10 @@ def add_aws_config(setting, value):
     Add an aws configuration (setting name and value) to the config file.
     """
     config = get_current_config()
-    
+
     with open(env.config_file, 'w') as f:
         f.write('#!/bin/bash\n\n')
-
         config[setting.upper()] = value
-
         for k, v in config.iteritems():
             f.write('export {0}={1}\n'.format(k, v))
 
@@ -120,6 +118,20 @@ def loadconfig():
     try:
         env.key_filename = (
             os.path.join(env.key_file_dir, "%s.pem" % env.KEY_NAME),
+        )
+    except AttributeError:
+        pass
+
+    try:
+        env.hosts = [env.EC2_HOST, ]
+        env.host = env.EC2_HOST
+        env.host_string = env.EC2_HOST
+    except AttributeError:
+        pass
+
+    try:
+        env.key_filename = (
+            os.path.join(env.key_file_dir, "%s.pem" % env.key_name),
         )
     except AttributeError:
         pass
