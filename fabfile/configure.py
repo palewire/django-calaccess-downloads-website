@@ -30,13 +30,16 @@ def get_current_config():
     """
     Return a dict of the vars currently in the config_file
     """
+    # Hack to get around the fact that our .env file lacks a section header,
+    # which is a silly requirement of ConfigParser.
     config = StringIO.StringIO()
     config.write('[fabric]\n')
     config.write(open('.env').read())
     config.seek(0, os.SEEK_SET)
-
+    # Parse the configuration
     cp = ConfigParser.ConfigParser()
     cp.readfp(config)
+    # Pass it out
     return dict(cp.items("fabric"))
 
 
