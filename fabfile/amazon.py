@@ -6,7 +6,7 @@ import random
 import boto3
 from botocore.exceptions import ClientError
 from fabric.api import task, env
-from configure import loadconfig, add_aws_config
+from configure import loadconfig, setconfig
 
 
 @task
@@ -119,7 +119,7 @@ def createkeypair(key_name='my-key-pair'):
 
     os.path.exists(key_file_dir) or os.makedirs(key_file_dir)
 
-    add_aws_config('KEY_NAME', key_name)
+    setconfig('KEY_NAME', key_name)
 
     try:
         key_pair = client.create_key_pair(KeyName=key_name)

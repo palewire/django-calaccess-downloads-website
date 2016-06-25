@@ -8,11 +8,11 @@ from fabric.colors import green
 from fabric.api import env, local, task, sudo
 
 from configure import (
+    setconfig,
     configure,
     loadconfig,
-    add_aws_config,
+    printconfig,
     require_input,
-    printconfig
 )
 from configure import ConfigTask
 from chef import installchef, rendernodejson, cook
@@ -40,7 +40,7 @@ def ec2bootstrap(block_gb_size=100, instance_type='c3.large',
     # Fire up a new server
     id, env.EC2_HOST = createserver(block_gb_size, instance_type, ami)
     # Add the new server's host to the configuration file
-    add_aws_config('EC2_HOST', env.EC2_HOST)
+    setconfig('EC2_HOST', env.EC2_HOST)
 
     print "- Waiting 60 seconds before logging in to configure machine"
     time.sleep(60)
@@ -72,7 +72,7 @@ def rdsbootstrap(block_gb_size=40, instance_type='db.t2.large'):
     host = createrds(block_gb_size, instance_type)
 
     # Add the new server's host to the configuration file
-    add_aws_config('RDS_HOST', host)
+    setconfig('RDS_HOST', host)
 
     print(green("Success!"))
 
@@ -92,6 +92,7 @@ def ssh(ec2_instance=''):
 
 
 __all__ = (
+    'setconfig',
     'configure',
     'loadconfig',
     'createrds',

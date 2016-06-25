@@ -26,7 +26,7 @@ def require_input(prompt, hide=False):
     return i
 
 
-def get_current_config():
+def getconfig():
     """
     Return a dict of the vars currently in the config_file
     """
@@ -48,21 +48,41 @@ def printconfig():
     """
     Print out the configuration settings for the local environment.
     """
-    for k, v in get_current_config().items():
+    for k, v in getconfig().items():
         print("{}:{}".format(k, v))
 
 
-def add_aws_config(setting, value):
+@task
+def setconfig(key, value):
     """
-    Add an aws configuration (setting name and value) to the config file.
+    Add or edit a key-value pair in the .env configuration file.
     """
-    config = get_current_config()
+    # Get the existing config
+    config = getconfig()
 
-    with open(env.config_file, 'w') as f:
-        f.write('#!/bin/bash\n\n')
-        config[setting.upper()] = value
-        for k, v in config.iteritems():
-            f.write('export {0}={1}\n'.format(k, v))
+    # Set the value provided by the user
+    config[key] = value
+
+    # Create a configure a parser object
+    cp = ConfigParser.ConfigParser()
+    cp.add_section('fabric')
+    for k, v in config.items():
+        cp.set("fabric", k, v)
+
+    # Write the object to a virtual file object
+    io = StringIO.StringIO()
+    cp.write(io)
+    s = io.getvalue()
+
+    # Remove the section name from the first line because we don't want it
+    s = '\n'.join(io.getvalue().split('\n')[1:-1])
+
+    # Write out the real file
+    with open(env.config_file, 'wb') as f:
+        f.write(s)
+
+    # Close the virtual file
+    io.close()
 
 
 @task
@@ -115,7 +135,7 @@ def loadconfig():
     if not os.path.isfile(env.config_file):
         configure()
 
-    config = get_current_config()
+    config = getconfig()
 
     for k, v in config.iteritems():
         env[k] = v
