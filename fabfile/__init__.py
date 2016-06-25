@@ -2,10 +2,8 @@
 # -*- coding: utf-8 -*-
 import time
 from os.path import expanduser
-
 from fabric.colors import green
-from fabric.api import env, local, task, sudo
-
+from fabric.api import env, task, sudo
 from configure import (
     setconfig,
     createconfig,
@@ -13,7 +11,6 @@ from configure import (
     printconfig,
     printenv
 )
-from configure import ConfigTask
 from chef import installchef, rendernodejson, cook
 from amazon import createrds, createserver, createkeypair
 from app import pipinstall, manage, migrate, collectstatic, rmpyc
