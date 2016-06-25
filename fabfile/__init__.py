@@ -12,7 +12,7 @@ from configure import (
     printenv
 )
 from chef import installchef, rendernodejson, cook
-from amazon import createrds, createserver, createkeypair
+from amazon import createrds, createserver, createkey
 from app import pipinstall, manage, migrate, collectstatic, rmpyc
 from dev import rs, pull, ssh
 
@@ -79,7 +79,7 @@ __all__ = (
     'loadconfig',
     'createrds',
     'createserver',
-    'createkeypair',
+    'createkey',
     'installchef',
     'pipinstall',
     'printconfig',

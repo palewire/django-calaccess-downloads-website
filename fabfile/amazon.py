@@ -4,17 +4,17 @@ import os
 import stat
 import boto3
 import random
+from fabric.colors import green
 from fabric.api import task, env
-from configure import loadconfig, setconfig
 from botocore.exceptions import ClientError
+from configure import loadconfig, setconfig, ConfigTask
 
 
-@task
+@task(task_class=ConfigTask)
 def createrds(block_gb_size=40, instance_type='db.t2.large'):
     """
     Spin up a new database backend with Amazon RDS.
     """
-    loadconfig()
     client = boto3.client('rds')
 
     db_instance_id = "calaccessraw-{0}".format(
@@ -69,15 +69,16 @@ def createrds(block_gb_size=40, instance_type='db.t2.large'):
     return db['DBInstances'][0]['Endpoint']['Address']
 
 
-@task
-def createserver(block_gb_size=100, instance_type='c3.large',
-                 ami='ami-978dd9a7'):
+@task(task_class=ConfigTask)
+def createserver(
+    block_gb_size=100,
+    instance_type='c3.large',
+    ami='ami-978dd9a7'
+):
     """
     Spin up a new Ubuntu 14.04 server on Amazon EC2.
     Returns the id and public address.
     """
-    loadconfig()
-
     ec2 = boto3.resource('ec2')
 
     # full list of kwargs:
@@ -108,30 +109,43 @@ def createserver(block_gb_size=100, instance_type='c3.large',
     return (new_instance.id, new_instance.public_dns_name)
 
 
-@task
-def createkeypair(key_name='my-key-pair'):
+@task(task_class=ConfigTask)
+def createkey(name):
     """
     Creates an EC2 key pair and saves it to a .pem file
     """
-    client = boto3.client('ec2')
+    # Make sure the key directory is there
+    os.path.exists(env.key_file_dir) or os.makedirs(env.key_file_dir)
 
-    key_file_dir = os.path.expanduser("~/.ec2/")
+    # Connect to boto
+    session = boto3.Session(
+        aws_access_key_id=env.AWS_ACCESS_KEY_ID,
+        aws_secret_access_key=env.AWS_SECRET_ACCESS_KEY, 
+        region_name=env.AWS_REGION
+    )
+    client = session.client('ec2')
 
-    os.path.exists(key_file_dir) or os.makedirs(key_file_dir)
-
-    setconfig('KEY_NAME', key_name)
-
+    # Create the key
     try:
-        key_pair = client.create_key_pair(KeyName=key_name)
+        key_pair = client.create_key_pair(KeyName=name)
     except ClientError as e:
         if 'InvalidKeyPair.Duplicate' in e.message:
-            print "A key with named {0} already exists".format(key_name)
+            print "A key with named {0} already exists".format(name)
+            return False
         else:
             raise e
-    else:
-        print "- Saving to {0}".format(key_name)
 
-        with open(env.key_filename[0], 'w') as f:
-            f.write(key_pair['KeyMaterial'])
+    # Save the key name to the configuration file
+    setconfig('KEY_NAME', name)
 
-        os.chmod(env.key_filename[0], stat.S_IRUSR)
+    # Reboot the env
+    loadconfig()
+
+    # Save the key
+    with open(env.key_filename[0], 'w') as f:
+        f.write(key_pair['KeyMaterial'])
+    # Set it to tight permissions
+    os.chmod(env.key_filename[0], stat.S_IRUSR)
+
+    print(green("Success!"))
+    print("Key created at {}".format(env.key_filename[0]))
