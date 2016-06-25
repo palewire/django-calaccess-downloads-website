@@ -10,7 +10,7 @@ from configure import loadconfig, add_aws_config
 
 
 @task
-def createrds(block_gb_size=40, instance_type='db.t2.large'):
+def createrds(block_gb_size=100, instance_type='db.t2.large'):
     """
     Spin up a new database backend with Amazon RDS.
     """
@@ -56,6 +56,7 @@ def createrds(block_gb_size=40, instance_type='db.t2.large'):
         PubliclyAccessible=True,
         StorageType='gp2',
         StorageEncrypted=False,
+        DBParameterGroupName='fewer-checkpoints',
     )
 
     # Check up on its status every so often

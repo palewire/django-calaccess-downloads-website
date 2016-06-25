@@ -55,7 +55,7 @@ def ec2bootstrap(block_gb_size=100, instance_type='c3.large',
 
 
 @task
-def rdsbootstrap(block_gb_size=40, instance_type='db.t2.large'):
+def rdsbootstrap(block_gb_size=100, instance_type='db.t2.large'):
     """
     Install chef and use it to fully install the database on
     an Amazon RDS instance.
