@@ -60,8 +60,8 @@ def rendernodejson():
     template["crons"]["update"] = {
         "minute": "25",
         "hour": "5,11,17,23",
-        "command": "source /apps/calaccess/bin/activate && /apps/calaccess/bin/"
-                   "python {project_dir}manage.py updatecalaccessrawdata "
+        "command": "source /apps/calaccess/bin/activate && /apps/calaccess/bin"
+                   "/python {project_dir}manage.py updatecalaccessrawdata "
                    "--noinput --verbosity=3 2>&1 > output.log".format(**env)
     }
 
