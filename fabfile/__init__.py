@@ -80,5 +80,4 @@ __all__ = (
     'rmpyc',
     'rs',
     'pull',
-    'ssh',
 )
