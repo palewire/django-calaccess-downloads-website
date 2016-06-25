@@ -1,14 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import os
-import time
 import stat
 import boto3
 from fabric.colors import green
-from fabric.api import task, env, sudo
-from app import migrate, collectstatic
+from fabric.api import task, env
 from botocore.exceptions import ClientError
-from chef import rendernodejson, installchef, cook
 from configure import loadconfig, setconfig, ConfigTask
 
 
