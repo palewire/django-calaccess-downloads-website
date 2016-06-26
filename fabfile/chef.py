@@ -30,7 +30,7 @@ def bootstrap():
 
     # Done deal
     print(green("Success!"))
-    print "Visit the app at %s" % env.EC2_HOST
+    print("Visit the app at %s" % env.EC2_HOST)
 
 
 @task(task_class=ConfigTask)

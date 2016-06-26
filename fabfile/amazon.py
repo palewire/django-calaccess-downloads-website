@@ -29,7 +29,7 @@ def createrds(
     )
     client = session.client('rds')
 
-    print "- Reserving a database"
+    print("- Reserving a database")
     db = client.create_db_instance(
         DBName=database_name,
         DBInstanceIdentifier=instance_name,

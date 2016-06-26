@@ -207,5 +207,5 @@ def require_input(prompt, hide=False):
         else:
             i = raw_input(prompt.strip()+' ')
         if not i:
-            print '  I need this, please.'
+            print('  I need this, please.')
     return i
