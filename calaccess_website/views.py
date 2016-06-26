@@ -7,14 +7,15 @@ from calaccess_raw.models.tracking import RawDataVersion, RawDataFile
 
 
 class VersionList(ListView):
+    """
+    A list of all versions of CAL-ACCESS in our archive
+    """
     queryset = RawDataVersion.objects.order_by('-release_datetime')
-    template_name = 'calaccess_website/versions_list.html'
-    context_object_name = 'versions'
+    template_name = "calaccess_website/version_list.html"
 
 
 class VersionDetail(DetailView):
-    template_name = 'calaccess_website/version.html'
-    context_object_name = 'version'
+    template_name = 'calaccess_website/version_detail.html'
 
     def get_object(self):
         obj = get_object_or_404(
