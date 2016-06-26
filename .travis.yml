@@ -18,8 +18,8 @@ install:
 
 script:
  - flake8 fabfile
- - flake8 cacivicdata/cacivicdata
- - coverage run cacivicdata/manage.py test
+ - flake8 project
+ - coverage run manage.py test
 
 after_success:
  - coveralls
