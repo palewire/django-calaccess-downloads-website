@@ -12,6 +12,10 @@ from django.template.defaultfilters import slugify
 from calaccess_raw.models.tracking import RawDataVersion, RawDataFile
 
 
+#
+# Version based archives
+#
+
 class VersionArchiveIndex(ArchiveIndexView):
     """
     A list of the latest versions of CAL-ACCESS in our archive
@@ -53,6 +57,10 @@ class LatestVersion(RedirectView):
             raise Http404
         return reverse("version_detail", kwargs=dict(pk=obj.pk))
 
+
+#
+# Raw data file based archives
+#
 
 class RawDataFileList(ListView):
     queryset = get_model_list()
