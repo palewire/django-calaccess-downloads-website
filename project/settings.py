@@ -27,6 +27,10 @@ S3_URL = 'https://{}.s3-accelerate.amazonaws.com/'.format(
     AWS_STORAGE_BUCKET_NAME
 )
 
+AWS_ACCESS_KEY_ID = os.getenv('aws_access_key_id')
+
+AWS_SECRET_ACCESS_KEY = os.getenv('aws_secret_access_key')
+
 STATIC_ROOT = os.path.join(BASE_DIR, ".static")
 
 MIDDLEWARE_CLASSES = [
