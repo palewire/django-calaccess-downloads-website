@@ -3,7 +3,6 @@
 import os
 import StringIO
 import ConfigParser
-from builtins import input
 from getpass import getpass
 from fabric.tasks import Task
 from fabric.colors import green
