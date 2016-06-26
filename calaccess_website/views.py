@@ -17,13 +17,13 @@ class VersionDetail(DetailView):
     context_object_name = 'version'
 
     def get_object(self):
-        object = get_object_or_404(
+        obj = get_object_or_404(
             RawDataVersion,
             release_datetime__date=datetime.strptime(
                 self.kwargs['version'], '%Y-%m-%d',
             )
         )
-        return object
+        return obj
 
 
 class LatestVersion(VersionDetail):
