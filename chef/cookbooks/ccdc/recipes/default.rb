@@ -11,53 +11,11 @@ execute "set-locale" do
   }
 end
 
-# Load any base system wide packages
-node[:base_packages].each do |pkg|
+
+# Load system dependencies with apt-get
+node[:dependencies].each do |pkg|
     package pkg do
         :upgrade
     end
-end
-
-# Loop through the user list, create the user, load the authorized_keys
-# and mint a bash_profile
-node[:users].each_pair do |username, info|
-
-    group username do
-       gid info[:id] 
-    end
-
-    user username do 
-        comment info[:full_name]
-        uid info[:id]
-        gid info[:id]
-        shell info[:disabled] ? "/sbin/nologin" : "/bin/bash"
-        supports :manage_home => true
-        home "/home/#{username}"
-    end
-
-    template "/home/#{username}/.bash_profile" do
-        source "users/bash_profile.erb"
-        owner username
-        group username
-        mode 0755
-    end
-end
-
-# Set the user groups
-node[:groups].each_pair do |name, info|
-    group name do
-        gid info[:gid]
-        members info[:members]
-    end
-end
-
-template "/etc/sudoers" do
-  source "users/sudoers.erb"
-  mode 0440
-  owner "root"
-  group "root"
-  variables({
-     :apps_user => node[:apps_user]
-  })
 end
 
