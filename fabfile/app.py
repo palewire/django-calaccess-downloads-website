@@ -13,7 +13,7 @@ def rmpyc():
     """
     Erases pyc files from the app's code directory.
     """
-    with cd(env.project_dir):
+    with cd(env.repo_dir):
         sudo("find . -name '*.pyc' -print0|xargs -0 rm", pty=True)
 
 #
