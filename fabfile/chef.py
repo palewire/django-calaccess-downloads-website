@@ -53,20 +53,13 @@ def rendernodejson():
     """
     Render chef's node.json file from a template
     """
-    template = json.load(
-        open("./chef/node.json.template", "r"),
+    template = open("./chef/node.json.template", "r").read()
+    data = json.loads(
+        template % env,
         object_pairs_hook=collections.OrderedDict
     )
-    template['app']['branch'] = env.branch
-    template["crons"]["update"] = {
-        "minute": "25",
-        "hour": "5,11,17,23",
-        "command": "source /apps/calaccess/bin/activate && /apps/calaccess/bin"
-                   "/python {project_dir}manage.py updatecalaccessrawdata "
-                   "--noinput --verbosity=3 2>&1 > output.log".format(**env)
-    }
     with open('./chef/node.json', 'w') as f:
-        json.dump(template, f, indent=4, separators=(',', ': '))
+        json.dump(data, f, indent=4, separators=(',', ': '))
 
 
 @task(task_class=ConfigTask)
