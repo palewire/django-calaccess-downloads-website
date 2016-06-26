@@ -135,7 +135,7 @@ def createkey(name):
         key_pair = client.create_key_pair(KeyName=name)
     except ClientError as e:
         if 'InvalidKeyPair.Duplicate' in e.message:
-            print "A key with named {0} already exists".format(name)
+            print("A key with named {0} already exists".format(name))
             return False
         else:
             raise e
