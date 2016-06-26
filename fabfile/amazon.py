@@ -54,7 +54,7 @@ def createrds(
     waiter = client.get_waiter('db_instance_available')
     waiter.wait(DBInstanceIdentifier=instance_name)
 
-    # Once its there pass back the address of the instance
+    # Once it's there pass back the address of the instance
     db = client.describe_db_instances(DBInstanceIdentifier=instance_name)
     host = db['DBInstances'][0]['Endpoint']['Address']
 
