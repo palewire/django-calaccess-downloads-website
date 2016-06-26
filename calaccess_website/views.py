@@ -99,7 +99,7 @@ class RawDataFileDetail(DetailView):
         Add some extra bits to the template's context
         """
         context = super(RawDataFileDetail, self).get_context_data(**kwargs)
-        # Pull all previous versions of the provided file 
+        # Pull all previous versions of the provided file
         context['version_list'] = RawDataFile.objects.filter(
             file_name=self.kwargs['file_name'].upper()
         ).order_by('-version__release_datetime')
