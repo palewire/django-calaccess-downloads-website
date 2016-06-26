@@ -1,20 +1,15 @@
 # Create user and group
-group node[:app][:group] do
-    gid 101
-end
-
 user node[:app][:user] do 
     comment node[:app][:user]
-    uid 102
-    gid 101
+    uid 1001
     shell "/bin/bash"
     supports :manage_home => true
     home "/home/" + node[:app][:user]
 end
 
 group node[:app][:group] do
-    gid 101
-    members node[:app][:user]
+    gid 1002
+    members [node[:app][:user],]
 end
 
 
