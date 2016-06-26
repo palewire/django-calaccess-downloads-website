@@ -1,7 +1,14 @@
+{% load calaccess_website_tags %}
 
 <h1>All archived versions for {{ year|date:"Y" }}</h1>
 
 <table border=1 cellpadding=8>
+<thead>
+    <th>Version</th>
+    <th>Size</th>
+    <th>Raw ZIP</th>
+</thead>
+<tbody>
 {% for obj in object_list %}
     <tr>
         <td>
@@ -9,6 +16,15 @@
                 {{ obj.release_datetime|date:"Y-m-d" }}
             </a>
         </td>
+        <td>
+            {{ obj.pretty_size }}
+        </td>
+        <td>
+            {% if object.zip_file_archive.name %}
+            <a href="{% archive_url object.zip_file_archive.name %}">.ZIP</a>
+            {% endif %}
+        </td>
     </tr>
 {% endfor %}
+</tbody>
 </table>
