@@ -67,7 +67,7 @@ DATABASES = {
         'USER': 'cacivicdata',
         'PASSWORD': os.getenv('db_password'),
         'HOST': os.getenv('rds_host'),
-        'PORT': '5432'
+        'PORT': '5432',
     },
 }
 
@@ -117,6 +117,6 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 try:
-    from settings_local import *
+    from settings_local import *  # NOQA
 except ImportError:
     pass

@@ -1,6 +1,6 @@
 from datetime import datetime
 from django.http import Http404
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404
 from django.views.generic import ListView, DetailView
 from calaccess_raw import get_model_list
 from calaccess_raw.models.tracking import RawDataVersion, RawDataFile
@@ -49,10 +49,9 @@ class RawDataFileDetail(DetailView):
 
     def get_object(self):
         obj_search = [
-            x for x in get_model_list() 
+            x for x in get_model_list()
             if x().get_tsv_name() == self.kwargs['file_name'].upper() + '.TSV'
         ]
-        
         if len(obj_search) == 0:
             raise Http404("No versions found.")
         else:

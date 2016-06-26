@@ -6,3 +6,4 @@ settings_local.py
 .ipynb_checkpoints/
 node.json
 .env
+.coverage

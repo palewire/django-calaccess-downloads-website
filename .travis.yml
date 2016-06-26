@@ -17,9 +17,7 @@ install:
  - pip install -q Django==$DJANGO_VERSION
 
 script:
- - flake8 fabfile
- - flake8 project
- - coverage run manage.py test
+  - make test
 
 after_success:
  - coveralls
