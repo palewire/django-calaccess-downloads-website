@@ -16,18 +16,24 @@ from configure import (
     printenv
 )
 
+# Server credentials
 env.user = 'ubuntu'
-env.chef = '/usr/bin/chef-solo -c solo.rb -j node.json'
+env.key_file_dir = os.path.expanduser('~/.ec2/')
+env.config_file = '.env'
+
+# Application data
 env.app_user = 'ccdc'
 env.app_group = 'ccdc'
+env.repo = "california-civic-data-coalition/django-calaccess-downloads-website"
 env.branch = 'master'
 env.app_dir = '/apps/calaccess/'
 env.repo_dir = os.path.join(env.app_dir, 'repo/')
 env.project_dir = os.path.join(env.repo_dir, 'cacivicdata/')
-env.activate = 'source /apps/calaccess/bin/activate'
+env.activate = 'source {}bin/activate'.format(env.app_dir)
+
+# Extras
 env.AWS_REGION = 'us-west-2'
-env.key_file_dir = os.path.expanduser('~/.ec2/')
-env.config_file = '.env'
+env.chef = '/usr/bin/chef-solo -c solo.rb -j node.json'
 env.connection_attempts = 15
 
 __all__ = (

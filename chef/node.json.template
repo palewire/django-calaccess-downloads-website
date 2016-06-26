@@ -5,34 +5,20 @@
         "ccdc::cron",
         "ccdc::motd"
     ],
-    "base_packages": [
+    "dependencies": [
         "git",
         "python-pip",
         "python-dev",
         "python-virtualenv",
         "libpq-dev"
     ],
-    "users": {
-        "%(app_user)s": {
-            "id": 1003,
-            "full_name": "%(app_user)s"
-        }
-    },
-    "groups": {
-        "%(app_group)s": {
-            "gid": 203,
-            "members": [
-                "%(app_user)s"
-            ]
-        }
-    },
     "app": {
         "name": "calaccess",
-        "repo": "https://github.com/california-civic-data-coalition/django-calaccess-downloads-website.git",
+        "user": "%(app_user)s",
+        "group": "%(app_group)s",
+        "repo": "https://github.com/%(repo)s.git",
         "branch": "%(branch)s"
     },
-    "apps_user": "%(app_user)s",
-    "apps_group": "%(app_group)s",
     "crons": {
         "update": {
             "command": "source %(app_dir)sbin/activate && %(app_dir)sbin/python %(project_dir)smanage.py updatecalaccessrawdata --noinput --verbosity=3 2>&1 > output.log",
