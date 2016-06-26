@@ -4,7 +4,15 @@ import os
 from fabric.api import env
 
 from amazon import createrds, createec2, createkey
-from app import pipinstall, manage, migrate, collectstatic, rmpyc, pull
+from app import (
+    deploy,
+    pipinstall,
+    manage,
+    migrate,
+    collectstatic,
+    rmpyc,
+    pull
+)
 from dev import rs, ssh
 from chef import bootstrap, installchef, rendernodejson, cook
 from configure import (
@@ -28,7 +36,6 @@ env.repo = "california-civic-data-coalition/django-calaccess-downloads-website"
 env.branch = 'master'
 env.app_dir = '/apps/calaccess/'
 env.repo_dir = os.path.join(env.app_dir, 'repo/')
-env.project_dir = os.path.join(env.repo_dir, 'cacivicdata/')
 env.activate = 'source {}bin/activate'.format(env.app_dir)
 
 # Extras
@@ -39,6 +46,7 @@ env.connection_attempts = 15
 __all__ = (
     'bootstrap',
     'copyconfig',
+    'deploy',
     'setconfig',
     'createconfig',
     'loadconfig',
