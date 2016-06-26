@@ -120,8 +120,9 @@ def copyconfig():
     # Load settings from the config file
     loadconfig()
     put(env.config_file, env.repo_dir, use_sudo=True)
-    sudo('chown {0} {1}'.format(
+    sudo('chown {}:{} {}'.format(
         env.app_user,
+        env.app_group,
         os.path.join(env.repo_dir, '.env'))
     )
 
