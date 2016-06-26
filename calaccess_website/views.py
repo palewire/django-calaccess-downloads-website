@@ -8,12 +8,12 @@ from calaccess_raw.models.tracking import RawDataVersion, RawDataFile
 
 class VersionList(ListView):
     queryset = RawDataVersion.objects.order_by('-release_datetime')
-    template_name = 'versions_list.html'
+    template_name = 'calaccess_website/versions_list.html'
     context_object_name = 'versions'
 
 
 class VersionDetail(DetailView):
-    template_name = 'version.html'
+    template_name = 'calaccess_website/version.html'
     context_object_name = 'version'
 
     def get_object(self):
@@ -39,12 +39,12 @@ class LatestVersion(VersionDetail):
 
 class RawDataFileList(ListView):
     queryset = get_model_list()
-    template_name = 'raw_data_files_list.html'
+    template_name = 'calaccess_website/raw_data_files_list.html'
     context_object_name = 'raw data files'
 
 
 class RawDataFileDetail(DetailView):
-    template_name = 'raw_data_file.html'
+    template_name = 'calaccess_website/raw_data_file.html'
     context_object_name = 'raw data file'
 
     def get_object(self):
