@@ -6,6 +6,7 @@ from django.views.generic import (
     YearArchiveView
 )
 from calaccess_raw import get_model_list
+from django.template.defaultfilters import slugify
 from calaccess_raw.models.tracking import RawDataVersion, RawDataFile
 
 
@@ -54,24 +55,38 @@ class RawDataFileList(ListView):
 
 
 class RawDataFileDetail(DetailView):
-    template_name = 'calaccess_website/raw_data_file.html'
-    context_object_name = 'raw data file'
+    """
+    A detail page with everything we know about the provided raw data file.
+    """
+    template_name = 'calaccess_website/rawdatafile_detail.html'
+
+    def get_object_list(self):
+        """
+        Returns a list of the raw data files as a key dictionary
+        with the URL slug as the keys.
+        """
+        return dict((slugify(m().get_tsv_name()), m) for m in get_model_list())
 
     def get_object(self):
-        obj_search = [
-            x for x in get_model_list()
-            if x().get_tsv_name() == self.kwargs['file_name'].upper() + '.TSV'
-        ]
-        if len(obj_search) == 0:
-            raise Http404("No versions found.")
-        else:
-            return obj_search[0]
+        """
+        Returns the file model from the CAL-ACCESS raw data app that
+        matches the provided slug.
+
+        Raises a 404 error if one is not found
+        """
+        key = self.kwargs['file_name'] + 'tsv'
+        try:
+            return self.get_object_list()[key]
+        except KeyError:
+            raise Http404
 
     def get_context_data(self, **kwargs):
+        """
+        Add some extra bits to the template's context
+        """
         context = super(RawDataFileDetail, self).get_context_data(**kwargs)
-
-        context['file_versions'] = RawDataFile.objects.filter(
+        # Pull all previous versions of the provided file 
+        context['version_list'] = RawDataFile.objects.filter(
             file_name=self.kwargs['file_name'].upper()
         ).order_by('-version__release_datetime')
-
         return context

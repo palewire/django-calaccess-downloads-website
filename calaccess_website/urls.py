@@ -18,13 +18,13 @@ urlpatterns = [
     ),
     url(r'^latest/$', views.LatestVersion.as_view(), name='latest'),
     url(
-        r'^raw_data_files/$',
+        r'^raw-data-files/$',
         views.RawDataFileList.as_view(),
-        name='raw_data_files'
+        name='rawdatafiles_list'
     ),
     url(
-        r'^raw_data_files/(?P<file_name>\w+)/$',
+        r'^raw-data-files/(?P<file_name>\w+)/$',
         views.RawDataFileDetail.as_view(),
-        name='raw_data_file',
+        name='rawdatafile_detail',
     ),
 ]
