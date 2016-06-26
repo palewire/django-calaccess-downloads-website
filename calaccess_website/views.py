@@ -31,6 +31,9 @@ class VersionYearArchiveList(YearArchiveView):
 
 
 class VersionDetail(DetailView):
+    """
+    A detail page with everything about an individual CAL-ACCESS version
+    """
     model = RawDataVersion
     template_name = 'calaccess_website/version_detail.html'
 
