@@ -4,11 +4,12 @@ from fabric.api import env
 from os.path import expanduser
 
 from amazon import createrds, createec2, createkey
-from app import pipinstall, manage, migrate, collectstatic, rmpyc
-from dev import rs, pull, ssh
+from app import pipinstall, manage, migrate, collectstatic, rmpyc, pull
+from dev import rs, ssh
 from chef import bootstrap, installchef, rendernodejson, cook
 from configure import (
     setconfig,
+    copyconfig,
     createconfig,
     loadconfig,
     printconfig,
@@ -19,6 +20,7 @@ env.user = 'ubuntu'
 env.chef = '/usr/bin/chef-solo -c solo.rb -j node.json'
 env.app_user = 'ccdc'
 env.repo_dir = '/apps/calaccess/repo/'
+env.branch = "master"
 env.project_dir = '/apps/calaccess/repo/cacivicdata/'
 env.activate = 'source /apps/calaccess/bin/activate'
 env.AWS_REGION = 'us-west-2'
@@ -28,6 +30,7 @@ env.connection_attempts = 15
 
 __all__ = (
     'bootstrap',
+    'copyconfig',
     'setconfig',
     'createconfig',
     'loadconfig',

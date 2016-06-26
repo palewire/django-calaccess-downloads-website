@@ -3,7 +3,7 @@
 import json
 import collections
 from app import migrate, collectstatic
-from configure import ConfigTask, copy_config
+from configure import ConfigTask, copyconfig
 from fabric.api import sudo, task, env
 from fabric.contrib.project import rsync_project
 from fabric.colors import green
@@ -22,7 +22,7 @@ def bootstrap():
     cook()
 
     # Copy local env to new instance
-    copy_config()
+    copyconfig()
 
     # Fire up the Django project
     migrate()
@@ -57,6 +57,7 @@ def rendernodejson():
         open("./chef/node.json.template", "r"),
         object_pairs_hook=collections.OrderedDict
     )
+    template['app']['branch'] = env.branch
     template["crons"]["update"] = {
         "minute": "25",
         "hour": "5,11,17,23",
@@ -64,7 +65,6 @@ def rendernodejson():
                    "/python {project_dir}manage.py updatecalaccessrawdata "
                    "--noinput --verbosity=3 2>&1 > output.log".format(**env)
     }
-
     with open('./chef/node.json', 'w') as f:
         json.dump(template, f, indent=4, separators=(',', ': '))
 

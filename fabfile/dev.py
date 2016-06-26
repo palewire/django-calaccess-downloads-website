@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from configure import ConfigTask, require_input
-from fabric.api import local, task, sudo, cd, env
+from fabric.api import local, task, env
 
 
 @task
@@ -10,18 +10,6 @@ def rs(port=8000):
     Start up the Django runserver.
     """
     local("python cacivicdata/manage.py runserver 0.0.0.0:%s" % port)
-
-
-@task
-def pull():
-    """
-    Pull the lastest changes from the GitHub repo
-    """
-    with cd('/apps/calaccess/repo'):
-        sudo(
-            'git pull origin master',
-            user=env.app_user
-        )
 
 
 @task(task_class=ConfigTask)

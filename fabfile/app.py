@@ -42,6 +42,18 @@ def _venv(cmd):
 
 
 @task(task_class=ConfigTask)
+def pull():
+    """
+    Pull the lastest changes from the GitHub repo
+    """
+    with cd(env.repo_dir):
+        sudo(
+            'git pull origin {}'.format(env.branch),
+            user=env.app_user
+        )
+
+
+@task(task_class=ConfigTask)
 def manage(cmd):
     """
     Run a manage.py command inside the Django virtualenv
