@@ -1,0 +1,14 @@
+
+<h1>All archived versions for {{ year|date:"Y" }}</h1>
+
+<table border=1 cellpadding=8>
+{% for obj in object_list %}
+    <tr>
+        <td>
+            <a href="{% url 'version_detail' pk=obj.id %}">
+                {{ obj.release_datetime|date:"Y-m-d" }}
+            </a>
+        </td>
+    </tr>
+{% endfor %}
+</table>

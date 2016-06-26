@@ -1,31 +1,38 @@
 from datetime import datetime
 from django.http import Http404
 from django.shortcuts import get_object_or_404
-from django.views.generic import ListView, DetailView, ArchiveIndexView
+from django.views.generic import (
+    ListView,
+    DetailView,
+    ArchiveIndexView,
+    YearArchiveView
+)
 from calaccess_raw import get_model_list
 from calaccess_raw.models.tracking import RawDataVersion, RawDataFile
 
 
-class VersionList(ArchiveIndexView):
+class VersionArchiveIndex(ArchiveIndexView):
     """
-    A list of all versions of CAL-ACCESS in our archive
+    A list of the latest versions of CAL-ACCESS in our archive
     """
     model = RawDataVersion
     date_field = "release_datetime"
     template_name = "calaccess_website/version_archive.html"
 
 
-class VersionDetail(DetailView):
-    template_name = 'calaccess_website/version_detail.html'
+class VersionYearArchiveList(YearArchiveView):
+    """
+    A list of all versions of CAL-ACCESS in a given year
+    """
+    model = RawDataVersion
+    date_field = "release_datetime"
+    make_object_list = True
+    template_name = "calaccess_website/version_archive_year.html"
 
-    def get_object(self):
-        obj = get_object_or_404(
-            RawDataVersion,
-            release_datetime__date=datetime.strptime(
-                self.kwargs['version'], '%Y-%m-%d',
-            )
-        )
-        return obj
+
+class VersionDetail(DetailView):
+    model = RawDataVersion
+    template_name = 'calaccess_website/version_detail.html'
 
 
 class LatestVersion(VersionDetail):
