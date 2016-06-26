@@ -1,11 +1,13 @@
-from django.http import Http404
 from django.views.generic import (
     ListView,
     DetailView,
     ArchiveIndexView,
-    YearArchiveView
+    YearArchiveView,
+    RedirectView,
 )
+from django.http import Http404
 from calaccess_raw import get_model_list
+from django.core.urlresolvers import reverse
 from django.template.defaultfilters import slugify
 from calaccess_raw.models.tracking import RawDataVersion, RawDataFile
 
@@ -37,15 +39,19 @@ class VersionDetail(DetailView):
     template_name = 'calaccess_website/version_detail.html'
 
 
-class LatestVersion(VersionDetail):
+class LatestVersion(RedirectView):
+    """
+    Redirect to the detail page of the latest CAL-ACCESS version
+    """
+    permanent = False
+    pattern_name = 'version_detail'
 
-    def get_object(self):
+    def get_redirect_url(self, *args, **kwargs):
         try:
-            object = RawDataVersion.objects.latest('release_datetime')
+            obj = RawDataVersion.objects.latest('release_datetime')
         except RawDataVersion.DoesNotExist:
-            raise Http404("No versions found.")
-        else:
-            return object
+            raise Http404
+        return reverse("version_detail", kwargs=dict(pk=obj.pk))
 
 
 class RawDataFileList(ListView):
