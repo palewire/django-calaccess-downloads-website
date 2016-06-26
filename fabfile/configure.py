@@ -3,6 +3,7 @@
 import os
 import StringIO
 import ConfigParser
+from builtins import input
 from getpass import getpass
 from fabric.tasks import Task
 from fabric.colors import green
@@ -68,15 +69,15 @@ def createconfig():
         'Your AWS secret key [Required]:',
         hide=True,
     )
-    config['KEY_NAME'] = raw_input(
+    config['KEY_NAME'] = input(
         'Your AWS key name [Default: my-key-pair]:'
     ) or 'my-key-pair'
     config['DB_PASSWORD'] = require_input(
         'Database user password [Required]:',
         hide=True,
     )
-    config['RDS_HOST'] = raw_input('RDS Host [press ENTER to skip]:')
-    config['EC2_HOST'] = raw_input('EC2 Host [press ENTER to skip]:')
+    config['RDS_HOST'] = input('RDS Host [press ENTER to skip]:')
+    config['EC2_HOST'] = input('EC2 Host [press ENTER to skip]:')
 
     # Save it to the configuration file
     [setconfig(k, v) for k, v in config.items()]
@@ -205,7 +206,7 @@ def require_input(prompt, hide=False):
         if hide:
             i = getpass(prompt.strip()+' ')
         else:
-            i = raw_input(prompt.strip()+' ')
+            i = input(prompt.strip()+' ')
         if not i:
             print('  I need this, please.')
     return i

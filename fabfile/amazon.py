@@ -50,7 +50,7 @@ def createrds(
     )
 
     # Check up on its status every so often
-    print '- Waiting for instance {0} to start'.format(instance_name)
+    print('- Waiting for instance {0} to start'.format(instance_name))
     waiter = client.get_waiter('db_instance_available')
     waiter.wait(DBInstanceIdentifier=instance_name)
 
@@ -103,7 +103,7 @@ def createec2(
     new_instance.create_tags(Tags=[{"Key": "Name", "Value": instance_name}])
 
     # Wait for it start running
-    print '- Waiting for instance to start'
+    print('- Waiting for instance to start')
     new_instance.wait_until_running()
 
     # Add the new server's host to the configuration file
@@ -111,7 +111,7 @@ def createec2(
     setconfig('EC2_HOST', env.EC2_HOST)
 
     # Print out where it was created
-    print "- Provisioned at: {0}".format(env.EC2_HOST)
+    print("- Provisioned at: {0}".format(env.EC2_HOST))
 
 
 @task(task_class=ConfigTask)
