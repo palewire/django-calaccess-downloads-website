@@ -12,7 +12,7 @@ user username do
     home "/home/" + node[:app][:user]
 end
 
-group node[:app][:user] do
+group node[:app][:group] do
     gid 101
     members node[:app][:user]
 end
