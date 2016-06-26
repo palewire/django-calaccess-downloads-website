@@ -1,5 +1,7 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 from configure import ConfigTask
-from fabric.api import sudo, env, cd, task
+from fabric.api import sudo, env, cd, task, settings
 
 #
 # System commands
@@ -11,8 +13,7 @@ def rmpyc():
     """
     Erases pyc files from the app's code directory.
     """
-    env.shell = "/bin/bash -c"
-    with cd(env.project_dir):
+    with cd(env.repo_dir):
         sudo("find . -name '*.pyc' -print0|xargs -0 rm", pty=True)
 
 #
@@ -25,18 +26,26 @@ def pipinstall():
     """
     Install the Python requirements inside the virtualenv
     """
-    _venv("pip install -r requirements.txt")
+    _venv("pip install -r requirements.txt --log-file=/tmp/pip.log")
 
 
 def _venv(cmd):
     """
     A wrapper for running commands inside the virturalenv
     """
-    with cd(env.project_dir):
+    with cd(env.repo_dir):
         sudo(
-            "%s && %s" % (env.activate, cmd),
+            "{} && {}".format(env.activate, cmd),
             user=env.app_user
         )
+
+
+@task(task_class=ConfigTask)
+def pull():
+    """
+    Pull the lastest changes from the GitHub repo
+    """
+    _venv('git pull origin {}'.format(env.branch))
 
 
 @task(task_class=ConfigTask)
@@ -62,3 +71,16 @@ def collectstatic():
     """
     _venv("rm -rf ./static")
     _venv("python manage.py collectstatic --noinput")
+
+
+@task(task_class=ConfigTask)
+def deploy():
+    """
+    Run a full deployment of code to the remote server
+    """
+    pull()
+    with settings(warn_only=True):
+        rmpyc()
+    pipinstall()
+    migrate()
+    collectstatic()
