@@ -3,28 +3,39 @@ from calaccess_website import views
 
 
 urlpatterns = [
+    # The homepage
     url(
         r'^$',
         views.VersionArchiveIndex.as_view(),
         name="version_index",
     ),
-    url(r'^versions/archive/(?P<year>[0-9]{4})/$',
+
+    # Version archive views
+    url(
+        r'^versions/archive/(?P<year>[0-9]{4})/$',
         views.VersionYearArchiveList.as_view(),
-        name="version_year_archive"),
+        name="version_year_archive"
+    ),
     url(
         r'^versions/(?P<pk>[0-9]{1,})/$',
         views.VersionDetail.as_view(),
         name="version_detail"
     ),
-    url(r'^latest/$', views.LatestVersion.as_view(), name='latest'),
     url(
-        r'^raw_data_files/$',
+        r'^versions/latest/$',
+        views.LatestVersion.as_view(),
+        name='version_latest_redirect'
+    ),
+
+    # Raw data file archive views
+    url(
+        r'^raw-data-files/$',
         views.RawDataFileList.as_view(),
-        name='raw_data_files'
+        name='rawdatafiles_list'
     ),
     url(
-        r'^raw_data_files/(?P<file_name>\w+)/$',
+        r'^raw-data-files/(?P<file_name>\w+)/$',
         views.RawDataFileDetail.as_view(),
-        name='raw_data_file',
+        name='rawdatafile_detail',
     ),
 ]

@@ -1,11 +1,13 @@
+{% load calaccess_website_tags %}
+
 <h2>CAL-ACCESS Releases</h2>
 
 <ul>
-{% for version in latest %}
-    <li>{{ version.release_datetime|date:"l, N d, Y, (P)" }}
+{% for obj in latest %}
+    <li>{{ obj.release_datetime|date:"l, N d, Y, (P)" }}
         <ul>
-            <li><a href="https://s3-us-west-2.amazonaws.com/django-calaccess/{{ version.zip_file_archive.name }}">zip file</a></li>
-            <li><a href="versions/{{ version.release_datetime|date:"o-n-d" }}">details</a></li>
+            <li><a href="{% archive_url obj.zip_file_archive.name %}">zip file</a></li>
+            <li><a href="{% url 'version_detail' pk=obj.id %}">details</a></li>
         </ul>   
     </li>
 {% endfor %}
@@ -13,6 +15,10 @@
 
 {% for year in date_list %}
 <h4>Browse archive</h4>
+
+<h5><a href="{% url 'version_latest_redirect' %}">Latest version</a></h5>
+
+<h5>By year</h5>
 <ul>
     <li>
         <a href="{% url 'version_year_archive' year=year.year %}">
