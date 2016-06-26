@@ -3,11 +3,11 @@ group node[:app][:group] do
     gid 101
 end
 
-user username do 
+user node[:app][:user] do 
     comment node[:app][:user]
     uid 102
     gid 101
-    shell info[:disabled] ? "/sbin/nologin" : "/bin/bash"
+    shell "/bin/bash"
     supports :manage_home => true
     home "/home/" + node[:app][:user]
 end
@@ -59,7 +59,7 @@ git "/apps/#{node[:app][:name]}/repo"  do
     repository node[:app][:repo]
     reference "HEAD"
     revision node[:app][:branch]
-    owner node[:app][:user]
+    user node[:app][:user]
     group node[:app][:group]
     action :sync
 end
@@ -68,7 +68,7 @@ end
 # Install the virtualenv requirements
 script "Install requirements" do
     interpreter "bash"
-    owner node[:app][:user]
+    user node[:app][:user]
     group node[:app][:group]
     code "/apps/#{node[:app][:name]}/bin/pip install -r /apps/#{node[:app][:name]}/repo/requirements.txt"
 end
