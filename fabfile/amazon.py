@@ -15,7 +15,7 @@ def createrds(
     database_name="calaccess_website",
     database_user="cacivicdata",
     database_port=5432,
-    block_gb_size=40,
+    block_gb_size=100,
     instance_type='db.t2.large'
 ):
     """
