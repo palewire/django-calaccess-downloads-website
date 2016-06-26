@@ -1,7 +1,8 @@
 """
 Settings overrides for running unittests
 """
-from settings import *  # NOQA
+from __future__ import absolute_import
+from .settings import *  # NOQA
 
 DATABASES = {
     'default': {
