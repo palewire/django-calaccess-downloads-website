@@ -25,7 +25,7 @@ def createrds(
     session = boto3.Session(
         aws_access_key_id=env.AWS_ACCESS_KEY_ID,
         aws_secret_access_key=env.AWS_SECRET_ACCESS_KEY,
-        region_name=env.AWS_REGION
+        region_name=env.AWS_REGION_NAME
     )
     client = session.client('rds')
 
@@ -78,7 +78,7 @@ def createec2(
     session = boto3.Session(
         aws_access_key_id=env.AWS_ACCESS_KEY_ID,
         aws_secret_access_key=env.AWS_SECRET_ACCESS_KEY,
-        region_name=env.AWS_REGION
+        region_name=env.AWS_REGION_NAME
     )
     ec2 = session.resource('ec2')
 
@@ -126,7 +126,7 @@ def createkey(name):
     session = boto3.Session(
         aws_access_key_id=env.AWS_ACCESS_KEY_ID,
         aws_secret_access_key=env.AWS_SECRET_ACCESS_KEY,
-        region_name=env.AWS_REGION
+        region_name=env.AWS_REGION_NAME
     )
     client = session.client('ec2')
 
