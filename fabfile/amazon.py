@@ -12,8 +12,6 @@ from configure import loadconfig, setconfig, ConfigTask
 @task(task_class=ConfigTask)
 def createrds(
     instance_name,
-    database_name="calaccess_website",
-    database_user="cacivicdata",
     database_port=5432,
     block_gb_size=100,
     instance_type='db.t2.large'
@@ -31,12 +29,12 @@ def createrds(
 
     print("- Reserving a database")
     db = client.create_db_instance(
-        DBName=database_name,
+        DBName=env.DB_NAME,
         DBInstanceIdentifier=instance_name,
         AllocatedStorage=int(block_gb_size),
         DBInstanceClass=instance_type,
         Engine='postgres',
-        MasterUsername=database_user,
+        MasterUsername=env.DB_USER,
         MasterUserPassword=env.DB_PASSWORD,
         BackupRetentionPeriod=14,
         PreferredBackupWindow='22:30-23:00',
