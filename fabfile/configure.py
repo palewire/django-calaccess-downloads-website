@@ -10,7 +10,8 @@ from fabric.api import task, env, sudo
 from fabric.operations import put
 
 
-# input() throws an error if you just hit enter, but raw_input is called input in py3
+# input throws an error if user just hits enter, raw_input is recommend instead
+# but raw_input is called input in py3
 # http://stackoverflow.com/questions/21731043/use-of-input-raw-input-in-python-2-and-3
 try:
     input = raw_input
@@ -20,6 +21,7 @@ except NameError:
 #
 # Tasks
 #
+
 
 @task
 def setconfig(key, value):
