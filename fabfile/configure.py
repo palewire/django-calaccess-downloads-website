@@ -9,10 +9,17 @@ from fabric.colors import green
 from fabric.api import task, env, sudo
 from fabric.operations import put
 
+
+# input() throws an error if you just hit enter, but raw_input is called input in py3
+# http://stackoverflow.com/questions/21731043/use-of-input-raw-input-in-python-2-and-3
+try:
+    input = raw_input
+except NameError:
+    pass
+
 #
 # Tasks
 #
-
 
 @task
 def setconfig(key, value):
@@ -68,15 +75,26 @@ def createconfig():
         'Your AWS secret key [Required]:',
         hide=True,
     )
-    config['KEY_NAME'] = input(
-        'Your AWS key name [Default: my-key-pair]:'
-    ) or 'my-key-pair'
+    config['AWS_REGION_NAME'] = require_input(
+        'Your AWS region name [Default: us-west-2]:',
+        default='us-west-2',
+    )
+    config['KEY_NAME'] = require_input(
+        'Your AWS key name [Default: my-key-pair]:',
+        default='my-key-pair',
+    )
     config['DB_PASSWORD'] = require_input(
         'Database user password [Required]:',
         hide=True,
     )
-    config['RDS_HOST'] = input('RDS Host [press ENTER to skip]:')
-    config['EC2_HOST'] = input('EC2 Host [press ENTER to skip]:')
+    config['RDS_HOST'] = require_input(
+        'RDS Host [press ENTER to skip]:',
+        default='',
+    )
+    config['EC2_HOST'] = require_input(
+        'EC2 Host [press ENTER to skip]:',
+        default='',
+    )
 
     # Save it to the configuration file
     [setconfig(k, v) for k, v in config.items()]
@@ -196,7 +214,7 @@ class ConfigTask(Task):
         return self.func(*args, **kwargs)
 
 
-def require_input(prompt, hide=False):
+def require_input(prompt, hide=False, default=None):
     """
     Demand input from the user.
     """
@@ -206,6 +224,10 @@ def require_input(prompt, hide=False):
             i = getpass(prompt.strip()+' ')
         else:
             i = input(prompt.strip()+' ')
+
         if not i:
-            print('  I need this, please.')
+            if default:
+                i = default
+            else:
+                print('  I need this, please.')
     return i
