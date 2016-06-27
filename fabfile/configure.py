@@ -83,6 +83,10 @@ def createconfig():
         'Your AWS key name [Default: my-key-pair]:',
         default='my-key-pair',
     )
+    config['DB_NAME'] = require_input(
+        'Database name [Default: calaccess_website]:',
+        default='calaccess_website',
+    )
     config['DB_USER'] = require_input(
         'Database user [Default: {0}]:'.format(env.app_user),
         default=env.app_user,
