@@ -101,13 +101,11 @@ def createconfig():
         'Database user password [Required]:',
         hide=True,
     )
-    config['RDS_HOST'] = require_input(
+    config['RDS_HOST'] = input(
         'RDS Host [press ENTER to skip]:',
-        default='',
     )
-    config['EC2_HOST'] = require_input(
+    config['EC2_HOST'] = input(
         'EC2 Host [press ENTER to skip]:',
-        default='',
     )
 
     # Save it to the configuration file
