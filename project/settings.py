@@ -31,6 +31,8 @@ AWS_ACCESS_KEY_ID = os.getenv('aws_access_key_id')
 
 AWS_SECRET_ACCESS_KEY = os.getenv('aws_secret_access_key')
 
+AWS_S3_REGION_NAME = os.getenv('aws_region_name')
+
 STATIC_ROOT = os.path.join(BASE_DIR, ".static")
 
 MIDDLEWARE_CLASSES = [

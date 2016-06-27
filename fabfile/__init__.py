@@ -39,7 +39,6 @@ env.repo_dir = os.path.join(env.app_dir, 'repo/')
 env.activate = 'source {}bin/activate'.format(env.app_dir)
 
 # Extras
-env.AWS_REGION = 'us-west-2'
 env.chef = '/usr/bin/chef-solo -c solo.rb -j node.json'
 env.connection_attempts = 15
 
