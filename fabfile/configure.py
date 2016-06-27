@@ -83,6 +83,10 @@ def createconfig():
         'Your AWS key name [Default: my-key-pair]:',
         default='my-key-pair',
     )
+    config['DB_USER'] = require_input(
+        'Database user [Default: {0}]:'.format(env.app_user),
+        default=env.app_user,
+    )
     config['DB_PASSWORD'] = require_input(
         'Database user password [Required]:',
         hide=True,

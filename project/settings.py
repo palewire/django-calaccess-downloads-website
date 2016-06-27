@@ -71,7 +71,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'calaccess_website',
-        'USER': 'cacivicdata',
+        'USER': os.getenv('db_user'),
         'PASSWORD': os.getenv('db_password'),
         'HOST': os.getenv('rds_host'),
         'PORT': '5432',
