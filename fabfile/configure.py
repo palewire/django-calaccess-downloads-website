@@ -102,10 +102,10 @@ def createconfig():
         hide=True,
     )
     config['RDS_HOST'] = input(
-        'RDS Host [press ENTER to skip]:',
+        'RDS Host [press ENTER to skip]: ',
     )
     config['EC2_HOST'] = input(
-        'EC2 Host [press ENTER to skip]:',
+        'EC2 Host [press ENTER to skip]: ',
     )
 
     # Save it to the configuration file
