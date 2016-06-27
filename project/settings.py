@@ -21,7 +21,7 @@ INSTALLED_APPS = [
 
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
-AWS_STORAGE_BUCKET_NAME = 'django-calaccess'
+AWS_STORAGE_BUCKET_NAME = os.getenv('aws_storage_bucket_name')
 
 S3_URL = 'https://{}.s3-accelerate.amazonaws.com/'.format(
     AWS_STORAGE_BUCKET_NAME

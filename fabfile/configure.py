@@ -83,6 +83,10 @@ def createconfig():
         'Your AWS key name [Default: my-key-pair]:',
         default='my-key-pair',
     )
+    config['AWS_STORAGE_BUCKET_NAME'] = require_input(
+        'S3 bucket name [Default: django-calaccess]:',
+        default='django-calaccess',
+    )
     config['DB_NAME'] = require_input(
         'Database name [Default: calaccess_website]:',
         default='calaccess_website',
