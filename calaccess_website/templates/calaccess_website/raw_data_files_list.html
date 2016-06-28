@@ -2,6 +2,6 @@
 
 <ul>
 {% for file in object_list %}
-    <li><a href="{{ file.db_table }}">{{ file.db_table }}</a></li>
+    <li><a href="{{ file.db_table|slugify }}">{{ file.db_table }}</a></li>
 {% endfor %}
 </ul>

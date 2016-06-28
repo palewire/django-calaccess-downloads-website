@@ -79,7 +79,7 @@ class RawDataFileDetail(DetailView):
         Returns a list of the raw data files as a key dictionary
         with the URL slug as the keys.
         """
-        return dict((slugify(m().get_tsv_name()), m) for m in get_model_list())
+        return dict((slugify(m().db_table), m) for m in get_model_list())
 
     def get_object(self):
         """
@@ -88,9 +88,9 @@ class RawDataFileDetail(DetailView):
 
         Raises a 404 error if one is not found
         """
-        key = self.kwargs['file_name'] + 'tsv'
+        key = self.kwargs['file_name']
         try:
-            return self.get_object_list()[key]
+            return self.get_object_list()[key.lower()]
         except KeyError:
             raise Http404
 
