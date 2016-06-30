@@ -80,12 +80,17 @@ class RawDataFileDetail(BuildableDetailView):
     """
     template_name = 'calaccess_website/rawdatafile_detail.html'
 
-    def get_object_list(self):
+    def get_queryset(self):
         """
         Returns a list of the raw data files as a key dictionary
         with the URL slug as the keys.
         """
         return dict((slugify(m().db_table), m) for m in get_model_list())
+
+    def set_kwargs(self, obj):
+        self.kwargs = {
+            'file_name': obj
+        }
 
     def get_object(self):
         """
@@ -96,9 +101,12 @@ class RawDataFileDetail(BuildableDetailView):
         """
         key = self.kwargs['file_name']
         try:
-            return self.get_object_list()[key.lower()]
+            return self.get_queryset()[key.lower()]
         except KeyError:
             raise Http404
+
+    def get_url(self, obj):
+        return reverse('rawdatafile_detail', kwargs=dict(file_name=obj))
 
     def get_context_data(self, **kwargs):
         """
@@ -110,3 +118,6 @@ class RawDataFileDetail(BuildableDetailView):
             file_name=self.kwargs['file_name'].upper()
         ).order_by('-version__release_datetime')
         return context
+    
+    def build_queryset(self):
+        [self.build_object(o) for o in self.get_queryset()]
