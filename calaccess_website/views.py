@@ -121,6 +121,7 @@ class RawDataFileDetail(BuildableDetailView):
     def build_queryset(self):
         [self.build_object(o) for o in self.get_queryset()]
 
+
 #
 # Extra stuff
 #
