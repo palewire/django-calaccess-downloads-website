@@ -1,5 +1,5 @@
-import urlparse
 from django import template
+from six.moves.urllib import parse as urlparse
 register = template.Library()
 
 
