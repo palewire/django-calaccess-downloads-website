@@ -20,36 +20,12 @@ INSTALLED_APPS = [
     'storages',
 ]
 
-#
-# Bakery
-#
-
-BUILD_DIR = os.path.join(BASE_DIR, '.build')
-BAKERY_VIEWS = (
-    'calaccess_website.views.VersionArchiveIndex',
-    'calaccess_website.views.VersionYearArchiveList',
-    'calaccess_website.views.VersionDetail',
-    'calaccess_website.views.LatestVersion',
-    'calaccess_website.views.RawDataFileList',
-    'calaccess_website.views.RawDataFileDetail',
-)
-
-#
-# Archiving
-#
-
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-AWS_STORAGE_BUCKET_NAME = os.getenv('aws_storage_bucket_name')
-S3_URL = 'https://{}.s3-accelerate.amazonaws.com/'.format(
-    AWS_STORAGE_BUCKET_NAME
-)
-
-AWS_ACCESS_KEY_ID = os.getenv('aws_access_key_id')
-
-AWS_SECRET_ACCESS_KEY = os.getenv('aws_secret_access_key')
-
-AWS_S3_REGION_NAME = os.getenv('aws_region_name')
-
+LANGUAGE_CODE = 'en-us'
+TIME_ZONE = 'UTC'
+USE_I18N = True
+USE_L10N = True
+USE_TZ = True
+STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, ".static")
 
 MIDDLEWARE_CLASSES = [
@@ -84,6 +60,35 @@ TEMPLATES = [
 WSGI_APPLICATION = 'project.wsgi.application'
 
 
+#
+# Bakery
+#
+
+BUILD_DIR = os.path.join(BASE_DIR, '.build')
+BAKERY_VIEWS = (
+    'calaccess_website.views.VersionArchiveIndex',
+    'calaccess_website.views.VersionYearArchiveList',
+    'calaccess_website.views.VersionDetail',
+    'calaccess_website.views.LatestVersion',
+    'calaccess_website.views.RawDataFileList',
+    'calaccess_website.views.RawDataFileDetail',
+)
+
+#
+# Archiving
+#
+
+CALACCESS_DAT_SOURCE = ''
+CALACCESS_STORE_ARCHIVE = True
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+AWS_STORAGE_BUCKET_NAME = os.getenv('aws_storage_bucket_name')
+S3_URL = 'https://{}.s3-accelerate.amazonaws.com/'.format(
+    AWS_STORAGE_BUCKET_NAME
+)
+AWS_ACCESS_KEY_ID = os.getenv('aws_access_key_id')
+AWS_SECRET_ACCESS_KEY = os.getenv('aws_secret_access_key')
+AWS_S3_REGION_NAME = os.getenv('aws_region_name')
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -117,28 +122,6 @@ AUTH_PASSWORD_VALIDATORS = [
                 'NumericPasswordValidator',
     },
 ]
-
-CALACCESS_DAT_SOURCE = ''
-CALACCESS_STORE_ARCHIVE = True
-
-# Internationalization
-# https://docs.djangoproject.com/en/1.9/topics/i18n/
-
-LANGUAGE_CODE = 'en-us'
-
-TIME_ZONE = 'UTC'
-
-USE_I18N = True
-
-USE_L10N = True
-
-USE_TZ = True
-
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.9/howto/static-files/
-
-STATIC_URL = '/static/'
 
 try:
     from settings_local import *  # NOQA
