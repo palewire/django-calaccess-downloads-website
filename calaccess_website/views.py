@@ -9,6 +9,7 @@ from django.http import Http404
 from calaccess_raw import get_model_list
 from django.core.urlresolvers import reverse
 from django.template.defaultfilters import slugify
+from bakery.views import  BuildableArchiveIndexView
 from calaccess_raw.models.tracking import RawDataVersion, RawDataFile
 
 
@@ -16,13 +17,14 @@ from calaccess_raw.models.tracking import RawDataVersion, RawDataFile
 # Version based archives
 #
 
-class VersionArchiveIndex(ArchiveIndexView):
+class VersionArchiveIndex(BuildableArchiveIndexView):
     """
     A list of the latest versions of CAL-ACCESS in our archive
     """
     model = RawDataVersion
     date_field = "release_datetime"
     template_name = "calaccess_website/version_archive.html"
+    build_path = "index.html"
 
 
 class VersionYearArchiveList(YearArchiveView):

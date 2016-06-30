@@ -14,15 +14,27 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
+    'bakery',
     'calaccess_raw',
     'calaccess_website',
     'storages',
 ]
 
+#
+# Bakery
+#
+
+BUILD_DIR = os.path.join(BASE_DIR, '.build')
+BAKERY_VIEWS = (
+    'calaccess_website.views.VersionArchiveIndex',
+)
+
+#
+# Archiving
+#
+
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-
 AWS_STORAGE_BUCKET_NAME = os.getenv('aws_storage_bucket_name')
-
 S3_URL = 'https://{}.s3-accelerate.amazonaws.com/'.format(
     AWS_STORAGE_BUCKET_NAME
 )
