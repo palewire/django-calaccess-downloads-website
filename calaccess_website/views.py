@@ -1,5 +1,4 @@
 from django.views.generic import (
-    ListView,
     RedirectView,
 )
 from django.http import Http404
@@ -10,6 +9,7 @@ from bakery.views import (
     BuildableArchiveIndexView,
     BuildableYearArchiveView,
     BuildableDetailView,
+    BuildableListView,
 )
 from calaccess_raw.models.tracking import RawDataVersion, RawDataFile
 
@@ -68,7 +68,7 @@ class LatestVersion(RedirectView):
 # Raw data file based archives
 #
 
-class RawDataFileList(ListView):
+class RawDataFileList(BuildableListView):
     queryset = get_model_list()
     template_name = 'calaccess_website/raw_data_files_list.html'
     context_object_name = 'raw data files'
