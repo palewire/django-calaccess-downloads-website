@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-from configure import ConfigTask, require_input
+from configure import ConfigTask
+from fabric.operations import prompt
 from fabric.api import local, task, env
 
 
@@ -21,5 +22,5 @@ def ssh(ec2_instance=''):
         try:
             ec2_instance = env.hosts[0]
         except IndexError:
-            ec2_instance = require_input('EC2 Host [Required]:')
+            ec2_instance = prompt('EC2 Host:')
     local("ssh %s@%s -i %s" % (env.user, ec2_instance, env.key_filename[0]))

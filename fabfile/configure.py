@@ -3,20 +3,10 @@
 import os
 import StringIO
 import ConfigParser
-from getpass import getpass
 from fabric.tasks import Task
 from fabric.colors import green
 from fabric.api import task, env, sudo
-from fabric.operations import put
-
-
-# input throws an error if user just hits enter, raw_input is recommend instead
-# but raw_input is called input in py3
-# http://stackoverflow.com/questions/21731043/use-of-input-raw-input-in-python-2-and-3
-try:
-    input = raw_input
-except NameError:
-    pass
+from fabric.operations import put, prompt
 
 #
 # Tasks
@@ -69,44 +59,19 @@ def createconfig():
 
     # Request data from the user
     config = {}
-    config['AWS_ACCESS_KEY_ID'] = require_input(
-        'Your AWS access key [Required]:',
-        hide=True,
-    )
-    config['AWS_SECRET_ACCESS_KEY'] = require_input(
-        'Your AWS secret key [Required]:',
-        hide=True,
-    )
-    config['AWS_REGION_NAME'] = require_input(
-        'Your AWS region name [Default: us-west-2]:',
-        default='us-west-2',
-    )
-    config['KEY_NAME'] = require_input(
-        'Your AWS key name [Default: my-key-pair]:',
-        default='my-key-pair',
-    )
-    config['AWS_STORAGE_BUCKET_NAME'] = require_input(
-        'S3 bucket name [Default: django-calaccess]:',
+    config['AWS_ACCESS_KEY_ID'] = prompt('Your AWS access key:')
+    config['AWS_SECRET_ACCESS_KEY'] = prompt('Your AWS secret key:')
+    config['AWS_REGION_NAME'] = prompt('Your AWS region name:', default='us-west-2')
+    config['KEY_NAME'] = prompt('Your AWS key name:', default='my-key-pair')
+    config['AWS_STORAGE_BUCKET_NAME'] = prompt(
+        'S3 bucket name:',
         default='django-calaccess',
     )
-    config['DB_NAME'] = require_input(
-        'Database name [Default: calaccess_website]:',
-        default='calaccess_website',
-    )
-    config['DB_USER'] = require_input(
-        'Database user [Default: {0}]:'.format(env.app_user),
-        default=env.app_user,
-    )
-    config['DB_PASSWORD'] = require_input(
-        'Database user password [Required]:',
-        hide=True,
-    )
-    config['RDS_HOST'] = input(
-        'RDS Host [press ENTER to skip]: ',
-    )
-    config['EC2_HOST'] = input(
-        'EC2 Host [press ENTER to skip]: ',
-    )
+    config['DB_NAME'] = prompt('Database name:', default='calaccess_website')
+    config['DB_USER'] = prompt('Database user:', default=env.app_user)
+    config['DB_PASSWORD'] = prompt('Database user password:')
+    config['RDS_HOST'] = prompt('RDS host:')
+    config['EC2_HOST'] = prompt('EC2 host:')
 
     # Save it to the configuration file
     [setconfig(k, v) for k, v in config.items()]
@@ -224,22 +189,3 @@ class ConfigTask(Task):
     def run(self, *args, **kwargs):
         loadconfig()  # <-- the action
         return self.func(*args, **kwargs)
-
-
-def require_input(prompt, hide=False, default=None):
-    """
-    Demand input from the user.
-    """
-    i = None
-    while not i:
-        if hide:
-            i = getpass(prompt.strip()+' ')
-        else:
-            i = input(prompt.strip()+' ')
-
-        if not i:
-            if default:
-                i = default
-            else:
-                print('  I need this, please.')
-    return i
