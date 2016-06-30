@@ -1,6 +1,5 @@
 from django.views.generic import (
     ListView,
-    DetailView,
     RedirectView,
 )
 from django.http import Http404
@@ -10,6 +9,7 @@ from django.template.defaultfilters import slugify
 from bakery.views import (
     BuildableArchiveIndexView,
     BuildableYearArchiveView,
+    BuildableDetailView,
 )
 from calaccess_raw.models.tracking import RawDataVersion, RawDataFile
 
@@ -38,12 +38,15 @@ class VersionYearArchiveList(BuildableYearArchiveView):
     template_name = "calaccess_website/version_archive_year.html"
 
 
-class VersionDetail(DetailView):
+class VersionDetail(BuildableDetailView):
     """
     A detail page with everything about an individual CAL-ACCESS version
     """
     model = RawDataVersion
     template_name = 'calaccess_website/version_detail.html'
+
+    def get_url(self, obj):
+        return reverse('version_detail', kwargs=dict(pk=obj.pk))
 
 
 class LatestVersion(RedirectView):
@@ -71,7 +74,7 @@ class RawDataFileList(ListView):
     context_object_name = 'raw data files'
 
 
-class RawDataFileDetail(DetailView):
+class RawDataFileDetail(BuildableDetailView):
     """
     A detail page with everything we know about the provided raw data file.
     """
