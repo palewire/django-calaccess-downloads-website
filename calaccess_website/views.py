@@ -1,4 +1,3 @@
-import os
 from django.http import Http404
 from calaccess_raw import get_model_list
 from django.core.urlresolvers import reverse
@@ -117,6 +116,6 @@ class RawDataFileDetail(BuildableDetailView):
             file_name=self.kwargs['file_name'].upper()
         ).order_by('-version__release_datetime')
         return context
-    
+
     def build_queryset(self):
         [self.build_object(o) for o in self.get_queryset()]
