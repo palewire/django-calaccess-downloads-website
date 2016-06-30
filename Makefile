@@ -4,4 +4,4 @@ test:
 	flake8 fabfile
 	flake8 calaccess_website
 	flake8 project
-	coverage run manage.py test --settings=project.settings_test calaccess_website
+	coverage run manage.py test calaccess_website
