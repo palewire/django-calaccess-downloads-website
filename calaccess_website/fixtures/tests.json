@@ -1,0 +1,5158 @@
+[
+{
+    "model": "calaccess_raw.rawdataversion",
+    "pk": 1,
+    "fields": {
+        "release_datetime": "2016-06-27T11:20:29Z",
+        "size": 754726807,
+        "zip_file_archive": "2016-6-27_11-20-29/dbwebexport.zip"
+    }
+},
+{
+    "model": "calaccess_raw.rawdataversion",
+    "pk": 2,
+    "fields": {
+        "release_datetime": "2016-06-28T11:20:28Z",
+        "size": 754835538,
+        "zip_file_archive": "2016-6-28_11-20-28/dbwebexport.zip"
+    }
+},
+{
+    "model": "calaccess_raw.rawdataversion",
+    "pk": 3,
+    "fields": {
+        "release_datetime": "2016-06-29T11:20:31Z",
+        "size": 754867444,
+        "zip_file_archive": "2016-6-29_11-20-31/dbwebexport.zip"
+    }
+},
+{
+    "model": "calaccess_raw.rawdataversion",
+    "pk": 4,
+    "fields": {
+        "release_datetime": "2016-06-30T11:20:31Z",
+        "size": 754913499,
+        "zip_file_archive": "2016-6-30_11-20-31/dbwebexport.zip"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 1,
+    "fields": {
+        "version": 1,
+        "file_name": "BALLOT_MEASURES_CD",
+        "download_records_count": 110,
+        "clean_records_count": 109,
+        "load_records_count": 0,
+        "download_columns_count": 6,
+        "clean_columns_count": 6,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-27_11-20-29/BALLOT_MEASURES_CD.TSV",
+        "clean_file_archive": "2016-6-27_11-20-29/ballot_measures_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 2,
+    "fields": {
+        "version": 1,
+        "file_name": "LOBBYIST_FIRM2_CD",
+        "download_records_count": 257,
+        "clean_records_count": 256,
+        "load_records_count": 0,
+        "download_columns_count": 18,
+        "clean_columns_count": 18,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-27_11-20-29/LOBBYIST_FIRM2_CD.TSV",
+        "clean_file_archive": "2016-6-27_11-20-29/lobbyist_firm2_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 3,
+    "fields": {
+        "version": 1,
+        "file_name": "FILINGS_CD",
+        "download_records_count": 1752542,
+        "clean_records_count": 1752541,
+        "load_records_count": 0,
+        "download_columns_count": 2,
+        "clean_columns_count": 2,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-27_11-20-29/FILINGS_CD.TSV",
+        "clean_file_archive": "2016-6-27_11-20-29/filings_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 4,
+    "fields": {
+        "version": 1,
+        "file_name": "F501_502_CD",
+        "download_records_count": 15665,
+        "clean_records_count": 15664,
+        "load_records_count": 0,
+        "download_columns_count": 54,
+        "clean_columns_count": 54,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-27_11-20-29/F501_502_CD.TSV",
+        "clean_file_archive": "2016-6-27_11-20-29/f501_502_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 5,
+    "fields": {
+        "version": 1,
+        "file_name": "LOBBYIST_EMPLOYER_HISTORY_CD",
+        "download_records_count": 0,
+        "clean_records_count": -1,
+        "load_records_count": 0,
+        "download_columns_count": 0,
+        "clean_columns_count": 0,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-27_11-20-29/LOBBYIST_EMPLOYER_HISTORY_CD.TSV",
+        "clean_file_archive": ""
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 6,
+    "fields": {
+        "version": 1,
+        "file_name": "LEMP_CD",
+        "download_records_count": 276033,
+        "clean_records_count": 276032,
+        "load_records_count": 0,
+        "download_columns_count": 24,
+        "clean_columns_count": 24,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-27_11-20-29/LEMP_CD.TSV",
+        "clean_file_archive": "2016-6-27_11-20-29/lemp_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 7,
+    "fields": {
+        "version": 1,
+        "file_name": "FILERS_CD",
+        "download_records_count": 349566,
+        "clean_records_count": 349565,
+        "load_records_count": 0,
+        "download_columns_count": 1,
+        "clean_columns_count": 1,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-27_11-20-29/FILERS_CD.TSV",
+        "clean_file_archive": "2016-6-27_11-20-29/filers_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 8,
+    "fields": {
+        "version": 1,
+        "file_name": "F495P2_CD",
+        "download_records_count": 967,
+        "clean_records_count": 966,
+        "load_records_count": 0,
+        "download_columns_count": 8,
+        "clean_columns_count": 8,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-27_11-20-29/F495P2_CD.TSV",
+        "clean_file_archive": "2016-6-27_11-20-29/f495p2_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 9,
+    "fields": {
+        "version": 1,
+        "file_name": "CVR2_SO_CD",
+        "download_records_count": 38224,
+        "clean_records_count": 38223,
+        "load_records_count": 0,
+        "download_columns_count": 33,
+        "clean_columns_count": 33,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-27_11-20-29/CVR2_SO_CD.TSV",
+        "clean_file_archive": "2016-6-27_11-20-29/cvr2_so_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 10,
+    "fields": {
+        "version": 1,
+        "file_name": "FILER_FILINGS_CD",
+        "download_records_count": 1886815,
+        "clean_records_count": 1886814,
+        "load_records_count": 0,
+        "download_columns_count": 16,
+        "clean_columns_count": 16,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-27_11-20-29/FILER_FILINGS_CD.TSV",
+        "clean_file_archive": "2016-6-27_11-20-29/filer_filings_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 11,
+    "fields": {
+        "version": 1,
+        "file_name": "LOBBYING_CHG_LOG_CD",
+        "download_records_count": 59933,
+        "clean_records_count": 59932,
+        "load_records_count": 0,
+        "download_columns_count": 24,
+        "clean_columns_count": 24,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-27_11-20-29/LOBBYING_CHG_LOG_CD.TSV",
+        "clean_file_archive": "2016-6-27_11-20-29/lobbying_chg_log_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 12,
+    "fields": {
+        "version": 1,
+        "file_name": "LEGISLATIVE_SESSIONS_CD",
+        "download_records_count": 31,
+        "clean_records_count": 30,
+        "load_records_count": 0,
+        "download_columns_count": 3,
+        "clean_columns_count": 3,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-27_11-20-29/LEGISLATIVE_SESSIONS_CD.TSV",
+        "clean_file_archive": "2016-6-27_11-20-29/legislative_sessions_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 13,
+    "fields": {
+        "version": 1,
+        "file_name": "LOBBYIST_FIRM_LOBBYIST2_CD",
+        "download_records_count": 578,
+        "clean_records_count": 577,
+        "load_records_count": 0,
+        "download_columns_count": 6,
+        "clean_columns_count": 6,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-27_11-20-29/LOBBYIST_FIRM_LOBBYIST2_CD.TSV",
+        "clean_file_archive": "2016-6-27_11-20-29/lobbyist_firm_lobbyist2_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 14,
+    "fields": {
+        "version": 1,
+        "file_name": "CVR2_CAMPAIGN_DISCLOSURE_CD",
+        "download_records_count": 100186,
+        "clean_records_count": 100186,
+        "load_records_count": 0,
+        "download_columns_count": 38,
+        "clean_columns_count": 38,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-27_11-20-29/CVR2_CAMPAIGN_DISCLOSURE_CD.TSV",
+        "clean_file_archive": "2016-6-27_11-20-29/cvr2_campaign_disclosure_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 15,
+    "fields": {
+        "version": 1,
+        "file_name": "LOAN_CD",
+        "download_records_count": 69303,
+        "clean_records_count": 69302,
+        "load_records_count": 0,
+        "download_columns_count": 49,
+        "clean_columns_count": 49,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-27_11-20-29/LOAN_CD.TSV",
+        "clean_file_archive": "2016-6-27_11-20-29/loan_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 16,
+    "fields": {
+        "version": 1,
+        "file_name": "REPORTS_CD",
+        "download_records_count": 39,
+        "clean_records_count": 38,
+        "load_records_count": 0,
+        "download_columns_count": 8,
+        "clean_columns_count": 8,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-27_11-20-29/REPORTS_CD.TSV",
+        "clean_file_archive": "2016-6-27_11-20-29/reports_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 17,
+    "fields": {
+        "version": 1,
+        "file_name": "TEXT_MEMO_CD",
+        "download_records_count": 1608808,
+        "clean_records_count": 1608825,
+        "load_records_count": 0,
+        "download_columns_count": 7,
+        "clean_columns_count": 7,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-27_11-20-29/TEXT_MEMO_CD.TSV",
+        "clean_file_archive": "2016-6-27_11-20-29/text_memo_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 18,
+    "fields": {
+        "version": 1,
+        "file_name": "GROUP_TYPES_CD",
+        "download_records_count": 21,
+        "clean_records_count": 20,
+        "load_records_count": 0,
+        "download_columns_count": 3,
+        "clean_columns_count": 3,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-27_11-20-29/GROUP_TYPES_CD.TSV",
+        "clean_file_archive": "2016-6-27_11-20-29/group_types_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 19,
+    "fields": {
+        "version": 1,
+        "file_name": "FILER_XREF_CD",
+        "download_records_count": 349532,
+        "clean_records_count": 349531,
+        "load_records_count": 0,
+        "download_columns_count": 4,
+        "clean_columns_count": 4,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-27_11-20-29/FILER_XREF_CD.TSV",
+        "clean_file_archive": "2016-6-27_11-20-29/filer_xref_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 20,
+    "fields": {
+        "version": 1,
+        "file_name": "LOTH_CD",
+        "download_records_count": 13857,
+        "clean_records_count": 13856,
+        "load_records_count": 0,
+        "download_columns_count": 20,
+        "clean_columns_count": 20,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-27_11-20-29/LOTH_CD.TSV",
+        "clean_file_archive": "2016-6-27_11-20-29/loth_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 21,
+    "fields": {
+        "version": 1,
+        "file_name": "FILER_INTERESTS_CD",
+        "download_records_count": 36165,
+        "clean_records_count": 36164,
+        "load_records_count": 0,
+        "download_columns_count": 4,
+        "clean_columns_count": 4,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-27_11-20-29/FILER_INTERESTS_CD.TSV",
+        "clean_file_archive": "2016-6-27_11-20-29/filer_interests_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 22,
+    "fields": {
+        "version": 1,
+        "file_name": "RCPT_CD",
+        "download_records_count": 9521428,
+        "clean_records_count": 9530794,
+        "load_records_count": 0,
+        "download_columns_count": 63,
+        "clean_columns_count": 63,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-27_11-20-29/RCPT_CD.TSV",
+        "clean_file_archive": "2016-6-27_11-20-29/rcpt_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 23,
+    "fields": {
+        "version": 1,
+        "file_name": "HDR_CD",
+        "download_records_count": 700548,
+        "clean_records_count": 700547,
+        "load_records_count": 0,
+        "download_columns_count": 9,
+        "clean_columns_count": 9,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-27_11-20-29/HDR_CD.TSV",
+        "clean_file_archive": "2016-6-27_11-20-29/hdr_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 24,
+    "fields": {
+        "version": 1,
+        "file_name": "LOOKUP_CODES_CD",
+        "download_records_count": 1131,
+        "clean_records_count": 1130,
+        "load_records_count": 0,
+        "download_columns_count": 3,
+        "clean_columns_count": 3,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-27_11-20-29/LOOKUP_CODES_CD.TSV",
+        "clean_file_archive": "2016-6-27_11-20-29/lookup_codes_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 25,
+    "fields": {
+        "version": 1,
+        "file_name": "LOBBYIST_FIRM_HISTORY_CD",
+        "download_records_count": 0,
+        "clean_records_count": -1,
+        "load_records_count": 0,
+        "download_columns_count": 0,
+        "clean_columns_count": 0,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-27_11-20-29/LOBBYIST_FIRM_HISTORY_CD.TSV",
+        "clean_file_archive": ""
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 26,
+    "fields": {
+        "version": 1,
+        "file_name": "FILING_PERIOD_CD",
+        "download_records_count": 1449,
+        "clean_records_count": 1448,
+        "load_records_count": 0,
+        "download_columns_count": 7,
+        "clean_columns_count": 7,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-27_11-20-29/FILING_PERIOD_CD.TSV",
+        "clean_file_archive": "2016-6-27_11-20-29/filing_period_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 27,
+    "fields": {
+        "version": 1,
+        "file_name": "CVR2_REGISTRATION_CD",
+        "download_records_count": 94719,
+        "clean_records_count": 94718,
+        "load_records_count": 0,
+        "download_columns_count": 12,
+        "clean_columns_count": 12,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-27_11-20-29/CVR2_REGISTRATION_CD.TSV",
+        "clean_file_archive": "2016-6-27_11-20-29/cvr2_registration_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 28,
+    "fields": {
+        "version": 1,
+        "file_name": "FILER_ACRONYMS_CD",
+        "download_records_count": 1802,
+        "clean_records_count": 1801,
+        "load_records_count": 0,
+        "download_columns_count": 2,
+        "clean_columns_count": 2,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-27_11-20-29/FILER_ACRONYMS_CD.TSV",
+        "clean_file_archive": "2016-6-27_11-20-29/filer_acronyms_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 29,
+    "fields": {
+        "version": 1,
+        "file_name": "LOBBYIST_FIRM_EMPLOYER1_CD",
+        "download_records_count": 171,
+        "clean_records_count": 170,
+        "load_records_count": 0,
+        "download_columns_count": 11,
+        "clean_columns_count": 11,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-27_11-20-29/LOBBYIST_FIRM_EMPLOYER1_CD.TSV",
+        "clean_file_archive": "2016-6-27_11-20-29/lobbyist_firm_employer1_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 30,
+    "fields": {
+        "version": 1,
+        "file_name": "RECEIVED_FILINGS_CD",
+        "download_records_count": 401045,
+        "clean_records_count": 401044,
+        "load_records_count": 0,
+        "download_columns_count": 7,
+        "clean_columns_count": 7,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-27_11-20-29/RECEIVED_FILINGS_CD.TSV",
+        "clean_file_archive": "2016-6-27_11-20-29/received_filings_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 31,
+    "fields": {
+        "version": 1,
+        "file_name": "HEADER_CD",
+        "download_records_count": 89,
+        "clean_records_count": 88,
+        "load_records_count": 0,
+        "download_columns_count": 12,
+        "clean_columns_count": 12,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-27_11-20-29/HEADER_CD.TSV",
+        "clean_file_archive": "2016-6-27_11-20-29/header_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 32,
+    "fields": {
+        "version": 1,
+        "file_name": "LOBBYIST_EMPLOYER1_CD",
+        "download_records_count": 1731,
+        "clean_records_count": 1730,
+        "load_records_count": 0,
+        "download_columns_count": 20,
+        "clean_columns_count": 20,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-27_11-20-29/LOBBYIST_EMPLOYER1_CD.TSV",
+        "clean_file_archive": "2016-6-27_11-20-29/lobbyist_employer1_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 33,
+    "fields": {
+        "version": 1,
+        "file_name": "CVR_CAMPAIGN_DISCLOSURE_CD",
+        "download_records_count": 359777,
+        "clean_records_count": 359777,
+        "load_records_count": 0,
+        "download_columns_count": 86,
+        "clean_columns_count": 86,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-27_11-20-29/CVR_CAMPAIGN_DISCLOSURE_CD.TSV",
+        "clean_file_archive": "2016-6-27_11-20-29/cvr_campaign_disclosure_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 34,
+    "fields": {
+        "version": 1,
+        "file_name": "LCCM_CD",
+        "download_records_count": 90133,
+        "clean_records_count": 90132,
+        "load_records_count": 0,
+        "download_columns_count": 24,
+        "clean_columns_count": 24,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-27_11-20-29/LCCM_CD.TSV",
+        "clean_file_archive": "2016-6-27_11-20-29/lccm_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 35,
+    "fields": {
+        "version": 1,
+        "file_name": "LOBBYIST_EMPLOYER2_CD",
+        "download_records_count": 1731,
+        "clean_records_count": 1730,
+        "load_records_count": 0,
+        "download_columns_count": 20,
+        "clean_columns_count": 20,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-27_11-20-29/LOBBYIST_EMPLOYER2_CD.TSV",
+        "clean_file_archive": "2016-6-27_11-20-29/lobbyist_employer2_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 36,
+    "fields": {
+        "version": 1,
+        "file_name": "LOBBYIST_EMP_LOBBYIST1_CD",
+        "download_records_count": 1501,
+        "clean_records_count": 1500,
+        "load_records_count": 0,
+        "download_columns_count": 6,
+        "clean_columns_count": 6,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-27_11-20-29/LOBBYIST_EMP_LOBBYIST1_CD.TSV",
+        "clean_file_archive": "2016-6-27_11-20-29/lobbyist_emp_lobbyist1_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 37,
+    "fields": {
+        "version": 1,
+        "file_name": "NAMES_CD",
+        "download_records_count": 438164,
+        "clean_records_count": 438163,
+        "load_records_count": 0,
+        "download_columns_count": 10,
+        "clean_columns_count": 10,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-27_11-20-29/NAMES_CD.TSV",
+        "clean_file_archive": "2016-6-27_11-20-29/names_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 38,
+    "fields": {
+        "version": 1,
+        "file_name": "ACRONYMS_CD",
+        "download_records_count": 885,
+        "clean_records_count": 884,
+        "load_records_count": 0,
+        "download_columns_count": 4,
+        "clean_columns_count": 4,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-27_11-20-29/ACRONYMS_CD.TSV",
+        "clean_file_archive": "2016-6-27_11-20-29/acronyms_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 39,
+    "fields": {
+        "version": 1,
+        "file_name": "LOBBY_AMENDMENTS_CD",
+        "download_records_count": 11266,
+        "clean_records_count": 11265,
+        "load_records_count": 0,
+        "download_columns_count": 42,
+        "clean_columns_count": 42,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-27_11-20-29/LOBBY_AMENDMENTS_CD.TSV",
+        "clean_file_archive": "2016-6-27_11-20-29/lobby_amendments_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 40,
+    "fields": {
+        "version": 1,
+        "file_name": "IMAGE_LINKS_CD",
+        "download_records_count": 14833,
+        "clean_records_count": 14832,
+        "load_records_count": 0,
+        "download_columns_count": 5,
+        "clean_columns_count": 5,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-27_11-20-29/IMAGE_LINKS_CD.TSV",
+        "clean_file_archive": "2016-6-27_11-20-29/image_links_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 41,
+    "fields": {
+        "version": 1,
+        "file_name": "LPAY_CD",
+        "download_records_count": 449848,
+        "clean_records_count": 449847,
+        "load_records_count": 0,
+        "download_columns_count": 26,
+        "clean_columns_count": 26,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-27_11-20-29/LPAY_CD.TSV",
+        "clean_file_archive": "2016-6-27_11-20-29/lpay_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 42,
+    "fields": {
+        "version": 1,
+        "file_name": "LOBBYIST_EMPLOYER_FIRMS2_CD",
+        "download_records_count": 525,
+        "clean_records_count": 524,
+        "load_records_count": 0,
+        "download_columns_count": 5,
+        "clean_columns_count": 5,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-27_11-20-29/LOBBYIST_EMPLOYER_FIRMS2_CD.TSV",
+        "clean_file_archive": "2016-6-27_11-20-29/lobbyist_employer_firms2_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 43,
+    "fields": {
+        "version": 1,
+        "file_name": "EFS_FILING_LOG_CD",
+        "download_records_count": 146814,
+        "clean_records_count": 146813,
+        "load_records_count": 0,
+        "download_columns_count": 6,
+        "clean_columns_count": 6,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-27_11-20-29/EFS_FILING_LOG_CD.TSV",
+        "clean_file_archive": "2016-6-27_11-20-29/efs_filing_log_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 44,
+    "fields": {
+        "version": 1,
+        "file_name": "LOBBYIST_CONTRIBUTIONS2_CD",
+        "download_records_count": 6506,
+        "clean_records_count": 6505,
+        "load_records_count": 0,
+        "download_columns_count": 7,
+        "clean_columns_count": 7,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-27_11-20-29/LOBBYIST_CONTRIBUTIONS2_CD.TSV",
+        "clean_file_archive": "2016-6-27_11-20-29/lobbyist_contributions2_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 45,
+    "fields": {
+        "version": 1,
+        "file_name": "SPLT_CD",
+        "download_records_count": 3254482,
+        "clean_records_count": 3260039,
+        "load_records_count": 0,
+        "download_columns_count": 8,
+        "clean_columns_count": 8,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-27_11-20-29/SPLT_CD.TSV",
+        "clean_file_archive": "2016-6-27_11-20-29/splt_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 46,
+    "fields": {
+        "version": 1,
+        "file_name": "FILERNAME_CD",
+        "download_records_count": 696840,
+        "clean_records_count": 696839,
+        "load_records_count": 0,
+        "download_columns_count": 17,
+        "clean_columns_count": 17,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-27_11-20-29/FILERNAME_CD.TSV",
+        "clean_file_archive": "2016-6-27_11-20-29/filername_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 47,
+    "fields": {
+        "version": 1,
+        "file_name": "S401_CD",
+        "download_records_count": 42715,
+        "clean_records_count": 42714,
+        "load_records_count": 0,
+        "download_columns_count": 37,
+        "clean_columns_count": 37,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-27_11-20-29/S401_CD.TSV",
+        "clean_file_archive": "2016-6-27_11-20-29/s401_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 48,
+    "fields": {
+        "version": 1,
+        "file_name": "LOBBYIST_FIRM3_CD",
+        "download_records_count": 257,
+        "clean_records_count": 256,
+        "load_records_count": 0,
+        "download_columns_count": 18,
+        "clean_columns_count": 18,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-27_11-20-29/LOBBYIST_FIRM3_CD.TSV",
+        "clean_file_archive": "2016-6-27_11-20-29/lobbyist_firm3_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 49,
+    "fields": {
+        "version": 1,
+        "file_name": "S498_CD",
+        "download_records_count": 10533,
+        "clean_records_count": 10532,
+        "load_records_count": 0,
+        "download_columns_count": 37,
+        "clean_columns_count": 37,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-27_11-20-29/S498_CD.TSV",
+        "clean_file_archive": "2016-6-27_11-20-29/s498_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 50,
+    "fields": {
+        "version": 1,
+        "file_name": "FILER_ADDRESS_CD",
+        "download_records_count": 406800,
+        "clean_records_count": 406799,
+        "load_records_count": 0,
+        "download_columns_count": 5,
+        "clean_columns_count": 5,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-27_11-20-29/FILER_ADDRESS_CD.TSV",
+        "clean_file_archive": "2016-6-27_11-20-29/filer_address_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 51,
+    "fields": {
+        "version": 1,
+        "file_name": "CVR_LOBBY_DISCLOSURE_CD",
+        "download_records_count": 289342,
+        "clean_records_count": 289341,
+        "load_records_count": 0,
+        "download_columns_count": 52,
+        "clean_columns_count": 52,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-27_11-20-29/CVR_LOBBY_DISCLOSURE_CD.TSV",
+        "clean_file_archive": "2016-6-27_11-20-29/cvr_lobby_disclosure_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 52,
+    "fields": {
+        "version": 1,
+        "file_name": "CVR3_VERIFICATION_INFO_CD",
+        "download_records_count": 228220,
+        "clean_records_count": 228220,
+        "load_records_count": 0,
+        "download_columns_count": 13,
+        "clean_columns_count": 13,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-27_11-20-29/CVR3_VERIFICATION_INFO_CD.TSV",
+        "clean_file_archive": "2016-6-27_11-20-29/cvr3_verification_info_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 53,
+    "fields": {
+        "version": 1,
+        "file_name": "S496_CD",
+        "download_records_count": 38415,
+        "clean_records_count": 38414,
+        "load_records_count": 0,
+        "download_columns_count": 12,
+        "clean_columns_count": 12,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-27_11-20-29/S496_CD.TSV",
+        "clean_file_archive": "2016-6-27_11-20-29/s496_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 54,
+    "fields": {
+        "version": 1,
+        "file_name": "CVR_F470_CD",
+        "download_records_count": 0,
+        "clean_records_count": -1,
+        "load_records_count": 0,
+        "download_columns_count": 0,
+        "clean_columns_count": 0,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-27_11-20-29/CVR_F470_CD.TSV",
+        "clean_file_archive": ""
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 55,
+    "fields": {
+        "version": 1,
+        "file_name": "FILER_LINKS_CD",
+        "download_records_count": 264404,
+        "clean_records_count": 264403,
+        "load_records_count": 0,
+        "download_columns_count": 9,
+        "clean_columns_count": 9,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-27_11-20-29/FILER_LINKS_CD.TSV",
+        "clean_file_archive": "2016-6-27_11-20-29/filer_links_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 56,
+    "fields": {
+        "version": 1,
+        "file_name": "CVR2_LOBBY_DISCLOSURE_CD",
+        "download_records_count": 99015,
+        "clean_records_count": 99014,
+        "load_records_count": 0,
+        "download_columns_count": 13,
+        "clean_columns_count": 13,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-27_11-20-29/CVR2_LOBBY_DISCLOSURE_CD.TSV",
+        "clean_file_archive": "2016-6-27_11-20-29/cvr2_lobby_disclosure_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 57,
+    "fields": {
+        "version": 1,
+        "file_name": "LOBBYIST_EMP_LOBBYIST2_CD",
+        "download_records_count": 1501,
+        "clean_records_count": 1500,
+        "load_records_count": 0,
+        "download_columns_count": 6,
+        "clean_columns_count": 6,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-27_11-20-29/LOBBYIST_EMP_LOBBYIST2_CD.TSV",
+        "clean_file_archive": "2016-6-27_11-20-29/lobbyist_emp_lobbyist2_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 58,
+    "fields": {
+        "version": 1,
+        "file_name": "FILER_TYPE_PERIODS_CD",
+        "download_records_count": 0,
+        "clean_records_count": -1,
+        "load_records_count": 0,
+        "download_columns_count": 0,
+        "clean_columns_count": 0,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-27_11-20-29/FILER_TYPE_PERIODS_CD.TSV",
+        "clean_file_archive": ""
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 59,
+    "fields": {
+        "version": 1,
+        "file_name": "FILER_TO_FILER_TYPE_CD",
+        "download_records_count": 486322,
+        "clean_records_count": 486321,
+        "load_records_count": 0,
+        "download_columns_count": 16,
+        "clean_columns_count": 16,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-27_11-20-29/FILER_TO_FILER_TYPE_CD.TSV",
+        "clean_file_archive": "2016-6-27_11-20-29/filer_to_filer_type_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 60,
+    "fields": {
+        "version": 1,
+        "file_name": "FILER_ETHICS_CLASS_CD",
+        "download_records_count": 15175,
+        "clean_records_count": 15174,
+        "load_records_count": 0,
+        "download_columns_count": 3,
+        "clean_columns_count": 3,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-27_11-20-29/FILER_ETHICS_CLASS_CD.TSV",
+        "clean_file_archive": "2016-6-27_11-20-29/filer_ethics_class_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 61,
+    "fields": {
+        "version": 1,
+        "file_name": "CVR_REGISTRATION_CD",
+        "download_records_count": 44187,
+        "clean_records_count": 44186,
+        "load_records_count": 0,
+        "download_columns_count": 71,
+        "clean_columns_count": 71,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-27_11-20-29/CVR_REGISTRATION_CD.TSV",
+        "clean_file_archive": "2016-6-27_11-20-29/cvr_registration_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 62,
+    "fields": {
+        "version": 1,
+        "file_name": "LOBBYIST_FIRM1_CD",
+        "download_records_count": 257,
+        "clean_records_count": 256,
+        "load_records_count": 0,
+        "download_columns_count": 18,
+        "clean_columns_count": 18,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-27_11-20-29/LOBBYIST_FIRM1_CD.TSV",
+        "clean_file_archive": "2016-6-27_11-20-29/lobbyist_firm1_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 63,
+    "fields": {
+        "version": 1,
+        "file_name": "SMRY_CD",
+        "download_records_count": 8215077,
+        "clean_records_count": 8215076,
+        "load_records_count": 0,
+        "download_columns_count": 9,
+        "clean_columns_count": 9,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-27_11-20-29/SMRY_CD.TSV",
+        "clean_file_archive": "2016-6-27_11-20-29/smry_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 64,
+    "fields": {
+        "version": 1,
+        "file_name": "S497_CD",
+        "download_records_count": 605967,
+        "clean_records_count": 605966,
+        "load_records_count": 0,
+        "download_columns_count": 41,
+        "clean_columns_count": 41,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-27_11-20-29/S497_CD.TSV",
+        "clean_file_archive": "2016-6-27_11-20-29/s497_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 65,
+    "fields": {
+        "version": 1,
+        "file_name": "FILER_TYPES_CD",
+        "download_records_count": 19,
+        "clean_records_count": 18,
+        "load_records_count": 0,
+        "download_columns_count": 5,
+        "clean_columns_count": 5,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-27_11-20-29/FILER_TYPES_CD.TSV",
+        "clean_file_archive": "2016-6-27_11-20-29/filer_types_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 66,
+    "fields": {
+        "version": 1,
+        "file_name": "LOBBYIST_CONTRIBUTIONS3_CD",
+        "download_records_count": 6506,
+        "clean_records_count": 6505,
+        "load_records_count": 0,
+        "download_columns_count": 7,
+        "clean_columns_count": 7,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-27_11-20-29/LOBBYIST_CONTRIBUTIONS3_CD.TSV",
+        "clean_file_archive": "2016-6-27_11-20-29/lobbyist_contributions3_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 67,
+    "fields": {
+        "version": 1,
+        "file_name": "LOBBYIST_CONTRIBUTIONS1_CD",
+        "download_records_count": 6506,
+        "clean_records_count": 6505,
+        "load_records_count": 0,
+        "download_columns_count": 7,
+        "clean_columns_count": 7,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-27_11-20-29/LOBBYIST_CONTRIBUTIONS1_CD.TSV",
+        "clean_file_archive": "2016-6-27_11-20-29/lobbyist_contributions1_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 68,
+    "fields": {
+        "version": 1,
+        "file_name": "FILER_STATUS_TYPES_CD",
+        "download_records_count": 9,
+        "clean_records_count": 8,
+        "load_records_count": 0,
+        "download_columns_count": 2,
+        "clean_columns_count": 2,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-27_11-20-29/FILER_STATUS_TYPES_CD.TSV",
+        "clean_file_archive": "2016-6-27_11-20-29/filer_status_types_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 69,
+    "fields": {
+        "version": 1,
+        "file_name": "LOBBYIST_FIRM_LOBBYIST1_CD",
+        "download_records_count": 578,
+        "clean_records_count": 577,
+        "load_records_count": 0,
+        "download_columns_count": 6,
+        "clean_columns_count": 6,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-27_11-20-29/LOBBYIST_FIRM_LOBBYIST1_CD.TSV",
+        "clean_file_archive": "2016-6-27_11-20-29/lobbyist_firm_lobbyist1_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 70,
+    "fields": {
+        "version": 1,
+        "file_name": "CVR_E530_CD",
+        "download_records_count": 191,
+        "clean_records_count": 190,
+        "load_records_count": 0,
+        "download_columns_count": 32,
+        "clean_columns_count": 32,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-27_11-20-29/CVR_E530_CD.TSV",
+        "clean_file_archive": "2016-6-27_11-20-29/cvr_e530_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 71,
+    "fields": {
+        "version": 1,
+        "file_name": "CVR_SO_CD",
+        "download_records_count": 15221,
+        "clean_records_count": 15220,
+        "load_records_count": 0,
+        "download_columns_count": 54,
+        "clean_columns_count": 54,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-27_11-20-29/CVR_SO_CD.TSV",
+        "clean_file_archive": "2016-6-27_11-20-29/cvr_so_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 72,
+    "fields": {
+        "version": 1,
+        "file_name": "LOBBYIST_EMPLOYER3_CD",
+        "download_records_count": 1731,
+        "clean_records_count": 1730,
+        "load_records_count": 0,
+        "download_columns_count": 20,
+        "clean_columns_count": 20,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-27_11-20-29/LOBBYIST_EMPLOYER3_CD.TSV",
+        "clean_file_archive": "2016-6-27_11-20-29/lobbyist_employer3_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 73,
+    "fields": {
+        "version": 1,
+        "file_name": "LOBBYIST_EMPLOYER_FIRMS1_CD",
+        "download_records_count": 525,
+        "clean_records_count": 524,
+        "load_records_count": 0,
+        "download_columns_count": 5,
+        "clean_columns_count": 5,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-27_11-20-29/LOBBYIST_EMPLOYER_FIRMS1_CD.TSV",
+        "clean_file_archive": "2016-6-27_11-20-29/lobbyist_employer_firms1_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 74,
+    "fields": {
+        "version": 1,
+        "file_name": "F690P2_CD",
+        "download_records_count": 18901,
+        "clean_records_count": 18900,
+        "load_records_count": 0,
+        "download_columns_count": 11,
+        "clean_columns_count": 11,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-27_11-20-29/F690P2_CD.TSV",
+        "clean_file_archive": "2016-6-27_11-20-29/f690p2_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 75,
+    "fields": {
+        "version": 1,
+        "file_name": "LATT_CD",
+        "download_records_count": 74846,
+        "clean_records_count": 74845,
+        "load_records_count": 0,
+        "download_columns_count": 20,
+        "clean_columns_count": 20,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-27_11-20-29/LATT_CD.TSV",
+        "clean_file_archive": "2016-6-27_11-20-29/latt_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 76,
+    "fields": {
+        "version": 1,
+        "file_name": "ADDRESS_CD",
+        "download_records_count": 331649,
+        "clean_records_count": 331648,
+        "load_records_count": 0,
+        "download_columns_count": 7,
+        "clean_columns_count": 7,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-27_11-20-29/ADDRESS_CD.TSV",
+        "clean_file_archive": "2016-6-27_11-20-29/address_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 77,
+    "fields": {
+        "version": 1,
+        "file_name": "DEBT_CD",
+        "download_records_count": 418971,
+        "clean_records_count": 419350,
+        "load_records_count": 0,
+        "download_columns_count": 33,
+        "clean_columns_count": 33,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-27_11-20-29/DEBT_CD.TSV",
+        "clean_file_archive": "2016-6-27_11-20-29/debt_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 78,
+    "fields": {
+        "version": 1,
+        "file_name": "LOBBYIST_FIRM_EMPLOYER2_CD",
+        "download_records_count": 171,
+        "clean_records_count": 170,
+        "load_records_count": 0,
+        "download_columns_count": 11,
+        "clean_columns_count": 11,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-27_11-20-29/LOBBYIST_FIRM_EMPLOYER2_CD.TSV",
+        "clean_file_archive": "2016-6-27_11-20-29/lobbyist_firm_employer2_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 79,
+    "fields": {
+        "version": 1,
+        "file_name": "LEXP_CD",
+        "download_records_count": 184337,
+        "clean_records_count": 184336,
+        "load_records_count": 0,
+        "download_columns_count": 25,
+        "clean_columns_count": 25,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-27_11-20-29/LEXP_CD.TSV",
+        "clean_file_archive": "2016-6-27_11-20-29/lexp_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 80,
+    "fields": {
+        "version": 1,
+        "file_name": "EXPN_CD",
+        "download_records_count": 4996063,
+        "clean_records_count": 4998161,
+        "load_records_count": 0,
+        "download_columns_count": 53,
+        "clean_columns_count": 53,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-27_11-20-29/EXPN_CD.TSV",
+        "clean_file_archive": "2016-6-27_11-20-29/expn_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 81,
+    "fields": {
+        "version": 2,
+        "file_name": "BALLOT_MEASURES_CD",
+        "download_records_count": 110,
+        "clean_records_count": 109,
+        "load_records_count": 109,
+        "download_columns_count": 6,
+        "clean_columns_count": 6,
+        "load_columns_count": 7,
+        "download_file_archive": "2016-6-28_11-20-28/BALLOT_MEASURES_CD.TSV",
+        "clean_file_archive": "2016-6-28_11-20-28/ballot_measures_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 82,
+    "fields": {
+        "version": 2,
+        "file_name": "LOBBYIST_FIRM2_CD",
+        "download_records_count": 257,
+        "clean_records_count": 256,
+        "load_records_count": 256,
+        "download_columns_count": 18,
+        "clean_columns_count": 18,
+        "load_columns_count": 19,
+        "download_file_archive": "2016-6-28_11-20-28/LOBBYIST_FIRM2_CD.TSV",
+        "clean_file_archive": "2016-6-28_11-20-28/lobbyist_firm2_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 83,
+    "fields": {
+        "version": 2,
+        "file_name": "FILINGS_CD",
+        "download_records_count": 1752601,
+        "clean_records_count": 1752600,
+        "load_records_count": 1752600,
+        "download_columns_count": 2,
+        "clean_columns_count": 2,
+        "load_columns_count": 3,
+        "download_file_archive": "2016-6-28_11-20-28/FILINGS_CD.TSV",
+        "clean_file_archive": "2016-6-28_11-20-28/filings_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 84,
+    "fields": {
+        "version": 2,
+        "file_name": "F501_502_CD",
+        "download_records_count": 15665,
+        "clean_records_count": 15664,
+        "load_records_count": 15664,
+        "download_columns_count": 54,
+        "clean_columns_count": 54,
+        "load_columns_count": 55,
+        "download_file_archive": "2016-6-28_11-20-28/F501_502_CD.TSV",
+        "clean_file_archive": "2016-6-28_11-20-28/f501_502_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 85,
+    "fields": {
+        "version": 2,
+        "file_name": "LOBBYIST_EMPLOYER_HISTORY_CD",
+        "download_records_count": 0,
+        "clean_records_count": -1,
+        "load_records_count": 0,
+        "download_columns_count": 0,
+        "clean_columns_count": 0,
+        "load_columns_count": 21,
+        "download_file_archive": "2016-6-28_11-20-28/LOBBYIST_EMPLOYER_HISTORY_CD.TSV",
+        "clean_file_archive": ""
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 86,
+    "fields": {
+        "version": 2,
+        "file_name": "LEMP_CD",
+        "download_records_count": 276254,
+        "clean_records_count": 276253,
+        "load_records_count": 276253,
+        "download_columns_count": 24,
+        "clean_columns_count": 24,
+        "load_columns_count": 25,
+        "download_file_archive": "2016-6-28_11-20-28/LEMP_CD.TSV",
+        "clean_file_archive": "2016-6-28_11-20-28/lemp_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 87,
+    "fields": {
+        "version": 2,
+        "file_name": "FILERS_CD",
+        "download_records_count": 349594,
+        "clean_records_count": 349593,
+        "load_records_count": 349593,
+        "download_columns_count": 1,
+        "clean_columns_count": 1,
+        "load_columns_count": 2,
+        "download_file_archive": "2016-6-28_11-20-28/FILERS_CD.TSV",
+        "clean_file_archive": "2016-6-28_11-20-28/filers_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 88,
+    "fields": {
+        "version": 2,
+        "file_name": "F495P2_CD",
+        "download_records_count": 967,
+        "clean_records_count": 966,
+        "load_records_count": 966,
+        "download_columns_count": 8,
+        "clean_columns_count": 8,
+        "load_columns_count": 9,
+        "download_file_archive": "2016-6-28_11-20-28/F495P2_CD.TSV",
+        "clean_file_archive": "2016-6-28_11-20-28/f495p2_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 89,
+    "fields": {
+        "version": 2,
+        "file_name": "CVR2_SO_CD",
+        "download_records_count": 38232,
+        "clean_records_count": 38231,
+        "load_records_count": 38231,
+        "download_columns_count": 33,
+        "clean_columns_count": 33,
+        "load_columns_count": 34,
+        "download_file_archive": "2016-6-28_11-20-28/CVR2_SO_CD.TSV",
+        "clean_file_archive": "2016-6-28_11-20-28/cvr2_so_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 90,
+    "fields": {
+        "version": 2,
+        "file_name": "FILER_FILINGS_CD",
+        "download_records_count": 1886948,
+        "clean_records_count": 1886947,
+        "load_records_count": 1886947,
+        "download_columns_count": 16,
+        "clean_columns_count": 16,
+        "load_columns_count": 17,
+        "download_file_archive": "2016-6-28_11-20-28/FILER_FILINGS_CD.TSV",
+        "clean_file_archive": "2016-6-28_11-20-28/filer_filings_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 91,
+    "fields": {
+        "version": 2,
+        "file_name": "LOBBYING_CHG_LOG_CD",
+        "download_records_count": 59967,
+        "clean_records_count": 59966,
+        "load_records_count": 59966,
+        "download_columns_count": 24,
+        "clean_columns_count": 24,
+        "load_columns_count": 25,
+        "download_file_archive": "2016-6-28_11-20-28/LOBBYING_CHG_LOG_CD.TSV",
+        "clean_file_archive": "2016-6-28_11-20-28/lobbying_chg_log_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 92,
+    "fields": {
+        "version": 2,
+        "file_name": "LEGISLATIVE_SESSIONS_CD",
+        "download_records_count": 31,
+        "clean_records_count": 30,
+        "load_records_count": 30,
+        "download_columns_count": 3,
+        "clean_columns_count": 3,
+        "load_columns_count": 4,
+        "download_file_archive": "2016-6-28_11-20-28/LEGISLATIVE_SESSIONS_CD.TSV",
+        "clean_file_archive": "2016-6-28_11-20-28/legislative_sessions_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 93,
+    "fields": {
+        "version": 2,
+        "file_name": "LOBBYIST_FIRM_LOBBYIST2_CD",
+        "download_records_count": 578,
+        "clean_records_count": 577,
+        "load_records_count": 577,
+        "download_columns_count": 6,
+        "clean_columns_count": 6,
+        "load_columns_count": 7,
+        "download_file_archive": "2016-6-28_11-20-28/LOBBYIST_FIRM_LOBBYIST2_CD.TSV",
+        "clean_file_archive": "2016-6-28_11-20-28/lobbyist_firm_lobbyist2_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 94,
+    "fields": {
+        "version": 2,
+        "file_name": "CVR2_CAMPAIGN_DISCLOSURE_CD",
+        "download_records_count": 100194,
+        "clean_records_count": 100194,
+        "load_records_count": 100193,
+        "download_columns_count": 38,
+        "clean_columns_count": 38,
+        "load_columns_count": 39,
+        "download_file_archive": "2016-6-28_11-20-28/CVR2_CAMPAIGN_DISCLOSURE_CD.TSV",
+        "clean_file_archive": "2016-6-28_11-20-28/cvr2_campaign_disclosure_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 95,
+    "fields": {
+        "version": 2,
+        "file_name": "LOAN_CD",
+        "download_records_count": 69303,
+        "clean_records_count": 69302,
+        "load_records_count": 69302,
+        "download_columns_count": 49,
+        "clean_columns_count": 49,
+        "load_columns_count": 50,
+        "download_file_archive": "2016-6-28_11-20-28/LOAN_CD.TSV",
+        "clean_file_archive": "2016-6-28_11-20-28/loan_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 96,
+    "fields": {
+        "version": 2,
+        "file_name": "REPORTS_CD",
+        "download_records_count": 39,
+        "clean_records_count": 38,
+        "load_records_count": 38,
+        "download_columns_count": 8,
+        "clean_columns_count": 8,
+        "load_columns_count": 9,
+        "download_file_archive": "2016-6-28_11-20-28/REPORTS_CD.TSV",
+        "clean_file_archive": "2016-6-28_11-20-28/reports_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 97,
+    "fields": {
+        "version": 2,
+        "file_name": "TEXT_MEMO_CD",
+        "download_records_count": 1610140,
+        "clean_records_count": 1610157,
+        "load_records_count": 1610139,
+        "download_columns_count": 7,
+        "clean_columns_count": 7,
+        "load_columns_count": 8,
+        "download_file_archive": "2016-6-28_11-20-28/TEXT_MEMO_CD.TSV",
+        "clean_file_archive": "2016-6-28_11-20-28/text_memo_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 98,
+    "fields": {
+        "version": 2,
+        "file_name": "GROUP_TYPES_CD",
+        "download_records_count": 21,
+        "clean_records_count": 20,
+        "load_records_count": 20,
+        "download_columns_count": 3,
+        "clean_columns_count": 3,
+        "load_columns_count": 4,
+        "download_file_archive": "2016-6-28_11-20-28/GROUP_TYPES_CD.TSV",
+        "clean_file_archive": "2016-6-28_11-20-28/group_types_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 99,
+    "fields": {
+        "version": 2,
+        "file_name": "FILER_XREF_CD",
+        "download_records_count": 349560,
+        "clean_records_count": 349559,
+        "load_records_count": 349559,
+        "download_columns_count": 4,
+        "clean_columns_count": 4,
+        "load_columns_count": 5,
+        "download_file_archive": "2016-6-28_11-20-28/FILER_XREF_CD.TSV",
+        "clean_file_archive": "2016-6-28_11-20-28/filer_xref_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 100,
+    "fields": {
+        "version": 2,
+        "file_name": "LOTH_CD",
+        "download_records_count": 13857,
+        "clean_records_count": 13856,
+        "load_records_count": 13856,
+        "download_columns_count": 20,
+        "clean_columns_count": 20,
+        "load_columns_count": 21,
+        "download_file_archive": "2016-6-28_11-20-28/LOTH_CD.TSV",
+        "clean_file_archive": "2016-6-28_11-20-28/loth_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 101,
+    "fields": {
+        "version": 2,
+        "file_name": "FILER_INTERESTS_CD",
+        "download_records_count": 36169,
+        "clean_records_count": 36168,
+        "load_records_count": 36168,
+        "download_columns_count": 4,
+        "clean_columns_count": 4,
+        "load_columns_count": 5,
+        "download_file_archive": "2016-6-28_11-20-28/FILER_INTERESTS_CD.TSV",
+        "clean_file_archive": "2016-6-28_11-20-28/filer_interests_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 102,
+    "fields": {
+        "version": 2,
+        "file_name": "RCPT_CD",
+        "download_records_count": 9522645,
+        "clean_records_count": 9532011,
+        "load_records_count": 9522644,
+        "download_columns_count": 63,
+        "clean_columns_count": 63,
+        "load_columns_count": 64,
+        "download_file_archive": "2016-6-28_11-20-28/RCPT_CD.TSV",
+        "clean_file_archive": "2016-6-28_11-20-28/rcpt_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 103,
+    "fields": {
+        "version": 2,
+        "file_name": "HDR_CD",
+        "download_records_count": 700591,
+        "clean_records_count": 700590,
+        "load_records_count": 700590,
+        "download_columns_count": 9,
+        "clean_columns_count": 9,
+        "load_columns_count": 10,
+        "download_file_archive": "2016-6-28_11-20-28/HDR_CD.TSV",
+        "clean_file_archive": "2016-6-28_11-20-28/hdr_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 104,
+    "fields": {
+        "version": 2,
+        "file_name": "LOOKUP_CODES_CD",
+        "download_records_count": 1131,
+        "clean_records_count": 1130,
+        "load_records_count": 1130,
+        "download_columns_count": 3,
+        "clean_columns_count": 3,
+        "load_columns_count": 4,
+        "download_file_archive": "2016-6-28_11-20-28/LOOKUP_CODES_CD.TSV",
+        "clean_file_archive": "2016-6-28_11-20-28/lookup_codes_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 105,
+    "fields": {
+        "version": 2,
+        "file_name": "LOBBYIST_FIRM_HISTORY_CD",
+        "download_records_count": 0,
+        "clean_records_count": -1,
+        "load_records_count": 0,
+        "download_columns_count": 0,
+        "clean_columns_count": 0,
+        "load_columns_count": 19,
+        "download_file_archive": "2016-6-28_11-20-28/LOBBYIST_FIRM_HISTORY_CD.TSV",
+        "clean_file_archive": ""
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 106,
+    "fields": {
+        "version": 2,
+        "file_name": "FILING_PERIOD_CD",
+        "download_records_count": 1449,
+        "clean_records_count": 1448,
+        "load_records_count": 1448,
+        "download_columns_count": 7,
+        "clean_columns_count": 7,
+        "load_columns_count": 8,
+        "download_file_archive": "2016-6-28_11-20-28/FILING_PERIOD_CD.TSV",
+        "clean_file_archive": "2016-6-28_11-20-28/filing_period_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 107,
+    "fields": {
+        "version": 2,
+        "file_name": "CVR2_REGISTRATION_CD",
+        "download_records_count": 94762,
+        "clean_records_count": 94761,
+        "load_records_count": 94761,
+        "download_columns_count": 12,
+        "clean_columns_count": 12,
+        "load_columns_count": 13,
+        "download_file_archive": "2016-6-28_11-20-28/CVR2_REGISTRATION_CD.TSV",
+        "clean_file_archive": "2016-6-28_11-20-28/cvr2_registration_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 108,
+    "fields": {
+        "version": 2,
+        "file_name": "FILER_ACRONYMS_CD",
+        "download_records_count": 1802,
+        "clean_records_count": 1801,
+        "load_records_count": 1801,
+        "download_columns_count": 2,
+        "clean_columns_count": 2,
+        "load_columns_count": 3,
+        "download_file_archive": "2016-6-28_11-20-28/FILER_ACRONYMS_CD.TSV",
+        "clean_file_archive": "2016-6-28_11-20-28/filer_acronyms_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 109,
+    "fields": {
+        "version": 2,
+        "file_name": "LOBBYIST_FIRM_EMPLOYER1_CD",
+        "download_records_count": 171,
+        "clean_records_count": 170,
+        "load_records_count": 170,
+        "download_columns_count": 11,
+        "clean_columns_count": 11,
+        "load_columns_count": 12,
+        "download_file_archive": "2016-6-28_11-20-28/LOBBYIST_FIRM_EMPLOYER1_CD.TSV",
+        "clean_file_archive": "2016-6-28_11-20-28/lobbyist_firm_employer1_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 110,
+    "fields": {
+        "version": 2,
+        "file_name": "RECEIVED_FILINGS_CD",
+        "download_records_count": 401069,
+        "clean_records_count": 401068,
+        "load_records_count": 401068,
+        "download_columns_count": 7,
+        "clean_columns_count": 7,
+        "load_columns_count": 8,
+        "download_file_archive": "2016-6-28_11-20-28/RECEIVED_FILINGS_CD.TSV",
+        "clean_file_archive": "2016-6-28_11-20-28/received_filings_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 111,
+    "fields": {
+        "version": 2,
+        "file_name": "HEADER_CD",
+        "download_records_count": 89,
+        "clean_records_count": 88,
+        "load_records_count": 88,
+        "download_columns_count": 12,
+        "clean_columns_count": 12,
+        "load_columns_count": 13,
+        "download_file_archive": "2016-6-28_11-20-28/HEADER_CD.TSV",
+        "clean_file_archive": "2016-6-28_11-20-28/header_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 112,
+    "fields": {
+        "version": 2,
+        "file_name": "LOBBYIST_EMPLOYER1_CD",
+        "download_records_count": 1731,
+        "clean_records_count": 1730,
+        "load_records_count": 1730,
+        "download_columns_count": 20,
+        "clean_columns_count": 20,
+        "load_columns_count": 21,
+        "download_file_archive": "2016-6-28_11-20-28/LOBBYIST_EMPLOYER1_CD.TSV",
+        "clean_file_archive": "2016-6-28_11-20-28/lobbyist_employer1_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 113,
+    "fields": {
+        "version": 2,
+        "file_name": "CVR_CAMPAIGN_DISCLOSURE_CD",
+        "download_records_count": 359811,
+        "clean_records_count": 359811,
+        "load_records_count": 359810,
+        "download_columns_count": 86,
+        "clean_columns_count": 86,
+        "load_columns_count": 87,
+        "download_file_archive": "2016-6-28_11-20-28/CVR_CAMPAIGN_DISCLOSURE_CD.TSV",
+        "clean_file_archive": "2016-6-28_11-20-28/cvr_campaign_disclosure_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 114,
+    "fields": {
+        "version": 2,
+        "file_name": "LCCM_CD",
+        "download_records_count": 90133,
+        "clean_records_count": 90132,
+        "load_records_count": 90132,
+        "download_columns_count": 24,
+        "clean_columns_count": 24,
+        "load_columns_count": 25,
+        "download_file_archive": "2016-6-28_11-20-28/LCCM_CD.TSV",
+        "clean_file_archive": "2016-6-28_11-20-28/lccm_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 115,
+    "fields": {
+        "version": 2,
+        "file_name": "LOBBYIST_EMPLOYER2_CD",
+        "download_records_count": 1731,
+        "clean_records_count": 1730,
+        "load_records_count": 1730,
+        "download_columns_count": 20,
+        "clean_columns_count": 20,
+        "load_columns_count": 21,
+        "download_file_archive": "2016-6-28_11-20-28/LOBBYIST_EMPLOYER2_CD.TSV",
+        "clean_file_archive": "2016-6-28_11-20-28/lobbyist_employer2_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 116,
+    "fields": {
+        "version": 2,
+        "file_name": "LOBBYIST_EMP_LOBBYIST1_CD",
+        "download_records_count": 1501,
+        "clean_records_count": 1500,
+        "load_records_count": 1500,
+        "download_columns_count": 6,
+        "clean_columns_count": 6,
+        "load_columns_count": 7,
+        "download_file_archive": "2016-6-28_11-20-28/LOBBYIST_EMP_LOBBYIST1_CD.TSV",
+        "clean_file_archive": "2016-6-28_11-20-28/lobbyist_emp_lobbyist1_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 117,
+    "fields": {
+        "version": 2,
+        "file_name": "NAMES_CD",
+        "download_records_count": 438193,
+        "clean_records_count": 438192,
+        "load_records_count": 438192,
+        "download_columns_count": 10,
+        "clean_columns_count": 10,
+        "load_columns_count": 11,
+        "download_file_archive": "2016-6-28_11-20-28/NAMES_CD.TSV",
+        "clean_file_archive": "2016-6-28_11-20-28/names_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 118,
+    "fields": {
+        "version": 2,
+        "file_name": "ACRONYMS_CD",
+        "download_records_count": 885,
+        "clean_records_count": 884,
+        "load_records_count": 884,
+        "download_columns_count": 4,
+        "clean_columns_count": 4,
+        "load_columns_count": 5,
+        "download_file_archive": "2016-6-28_11-20-28/ACRONYMS_CD.TSV",
+        "clean_file_archive": "2016-6-28_11-20-28/acronyms_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 119,
+    "fields": {
+        "version": 2,
+        "file_name": "LOBBY_AMENDMENTS_CD",
+        "download_records_count": 11271,
+        "clean_records_count": 11270,
+        "load_records_count": 11270,
+        "download_columns_count": 42,
+        "clean_columns_count": 42,
+        "load_columns_count": 43,
+        "download_file_archive": "2016-6-28_11-20-28/LOBBY_AMENDMENTS_CD.TSV",
+        "clean_file_archive": "2016-6-28_11-20-28/lobby_amendments_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 120,
+    "fields": {
+        "version": 2,
+        "file_name": "IMAGE_LINKS_CD",
+        "download_records_count": 14833,
+        "clean_records_count": 14832,
+        "load_records_count": 14832,
+        "download_columns_count": 5,
+        "clean_columns_count": 5,
+        "load_columns_count": 6,
+        "download_file_archive": "2016-6-28_11-20-28/IMAGE_LINKS_CD.TSV",
+        "clean_file_archive": "2016-6-28_11-20-28/image_links_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 121,
+    "fields": {
+        "version": 2,
+        "file_name": "LPAY_CD",
+        "download_records_count": 449848,
+        "clean_records_count": 449847,
+        "load_records_count": 449847,
+        "download_columns_count": 26,
+        "clean_columns_count": 26,
+        "load_columns_count": 27,
+        "download_file_archive": "2016-6-28_11-20-28/LPAY_CD.TSV",
+        "clean_file_archive": "2016-6-28_11-20-28/lpay_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 122,
+    "fields": {
+        "version": 2,
+        "file_name": "LOBBYIST_EMPLOYER_FIRMS2_CD",
+        "download_records_count": 525,
+        "clean_records_count": 524,
+        "load_records_count": 524,
+        "download_columns_count": 5,
+        "clean_columns_count": 5,
+        "load_columns_count": 6,
+        "download_file_archive": "2016-6-28_11-20-28/LOBBYIST_EMPLOYER_FIRMS2_CD.TSV",
+        "clean_file_archive": "2016-6-28_11-20-28/lobbyist_employer_firms2_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 123,
+    "fields": {
+        "version": 2,
+        "file_name": "EFS_FILING_LOG_CD",
+        "download_records_count": 146814,
+        "clean_records_count": 146813,
+        "load_records_count": 146813,
+        "download_columns_count": 6,
+        "clean_columns_count": 6,
+        "load_columns_count": 7,
+        "download_file_archive": "2016-6-28_11-20-28/EFS_FILING_LOG_CD.TSV",
+        "clean_file_archive": "2016-6-28_11-20-28/efs_filing_log_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 124,
+    "fields": {
+        "version": 2,
+        "file_name": "LOBBYIST_CONTRIBUTIONS2_CD",
+        "download_records_count": 6506,
+        "clean_records_count": 6505,
+        "load_records_count": 6505,
+        "download_columns_count": 7,
+        "clean_columns_count": 7,
+        "load_columns_count": 8,
+        "download_file_archive": "2016-6-28_11-20-28/LOBBYIST_CONTRIBUTIONS2_CD.TSV",
+        "clean_file_archive": "2016-6-28_11-20-28/lobbyist_contributions2_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 125,
+    "fields": {
+        "version": 2,
+        "file_name": "SPLT_CD",
+        "download_records_count": 3254683,
+        "clean_records_count": 3260240,
+        "load_records_count": 3254682,
+        "download_columns_count": 8,
+        "clean_columns_count": 8,
+        "load_columns_count": 9,
+        "download_file_archive": "2016-6-28_11-20-28/SPLT_CD.TSV",
+        "clean_file_archive": "2016-6-28_11-20-28/splt_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 126,
+    "fields": {
+        "version": 2,
+        "file_name": "FILERNAME_CD",
+        "download_records_count": 696896,
+        "clean_records_count": 696895,
+        "load_records_count": 696895,
+        "download_columns_count": 17,
+        "clean_columns_count": 17,
+        "load_columns_count": 18,
+        "download_file_archive": "2016-6-28_11-20-28/FILERNAME_CD.TSV",
+        "clean_file_archive": "2016-6-28_11-20-28/filername_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 127,
+    "fields": {
+        "version": 2,
+        "file_name": "S401_CD",
+        "download_records_count": 42715,
+        "clean_records_count": 42714,
+        "load_records_count": 42714,
+        "download_columns_count": 37,
+        "clean_columns_count": 37,
+        "load_columns_count": 38,
+        "download_file_archive": "2016-6-28_11-20-28/S401_CD.TSV",
+        "clean_file_archive": "2016-6-28_11-20-28/s401_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 128,
+    "fields": {
+        "version": 2,
+        "file_name": "LOBBYIST_FIRM3_CD",
+        "download_records_count": 257,
+        "clean_records_count": 256,
+        "load_records_count": 256,
+        "download_columns_count": 18,
+        "clean_columns_count": 18,
+        "load_columns_count": 19,
+        "download_file_archive": "2016-6-28_11-20-28/LOBBYIST_FIRM3_CD.TSV",
+        "clean_file_archive": "2016-6-28_11-20-28/lobbyist_firm3_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 129,
+    "fields": {
+        "version": 2,
+        "file_name": "S498_CD",
+        "download_records_count": 10533,
+        "clean_records_count": 10532,
+        "load_records_count": 10532,
+        "download_columns_count": 37,
+        "clean_columns_count": 37,
+        "load_columns_count": 38,
+        "download_file_archive": "2016-6-28_11-20-28/S498_CD.TSV",
+        "clean_file_archive": "2016-6-28_11-20-28/s498_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 130,
+    "fields": {
+        "version": 2,
+        "file_name": "FILER_ADDRESS_CD",
+        "download_records_count": 406838,
+        "clean_records_count": 406837,
+        "load_records_count": 406837,
+        "download_columns_count": 5,
+        "clean_columns_count": 5,
+        "load_columns_count": 6,
+        "download_file_archive": "2016-6-28_11-20-28/FILER_ADDRESS_CD.TSV",
+        "clean_file_archive": "2016-6-28_11-20-28/filer_address_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 131,
+    "fields": {
+        "version": 2,
+        "file_name": "CVR_LOBBY_DISCLOSURE_CD",
+        "download_records_count": 289342,
+        "clean_records_count": 289341,
+        "load_records_count": 289341,
+        "download_columns_count": 52,
+        "clean_columns_count": 52,
+        "load_columns_count": 53,
+        "download_file_archive": "2016-6-28_11-20-28/CVR_LOBBY_DISCLOSURE_CD.TSV",
+        "clean_file_archive": "2016-6-28_11-20-28/cvr_lobby_disclosure_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 132,
+    "fields": {
+        "version": 2,
+        "file_name": "CVR3_VERIFICATION_INFO_CD",
+        "download_records_count": 228233,
+        "clean_records_count": 228233,
+        "load_records_count": 228232,
+        "download_columns_count": 13,
+        "clean_columns_count": 13,
+        "load_columns_count": 14,
+        "download_file_archive": "2016-6-28_11-20-28/CVR3_VERIFICATION_INFO_CD.TSV",
+        "clean_file_archive": "2016-6-28_11-20-28/cvr3_verification_info_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 133,
+    "fields": {
+        "version": 2,
+        "file_name": "S496_CD",
+        "download_records_count": 38415,
+        "clean_records_count": 38414,
+        "load_records_count": 38414,
+        "download_columns_count": 12,
+        "clean_columns_count": 12,
+        "load_columns_count": 13,
+        "download_file_archive": "2016-6-28_11-20-28/S496_CD.TSV",
+        "clean_file_archive": "2016-6-28_11-20-28/s496_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 134,
+    "fields": {
+        "version": 2,
+        "file_name": "CVR_F470_CD",
+        "download_records_count": 0,
+        "clean_records_count": -1,
+        "load_records_count": 0,
+        "download_columns_count": 0,
+        "clean_columns_count": 0,
+        "load_columns_count": 29,
+        "download_file_archive": "2016-6-28_11-20-28/CVR_F470_CD.TSV",
+        "clean_file_archive": ""
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 135,
+    "fields": {
+        "version": 2,
+        "file_name": "FILER_LINKS_CD",
+        "download_records_count": 264424,
+        "clean_records_count": 264423,
+        "load_records_count": 264423,
+        "download_columns_count": 9,
+        "clean_columns_count": 9,
+        "load_columns_count": 10,
+        "download_file_archive": "2016-6-28_11-20-28/FILER_LINKS_CD.TSV",
+        "clean_file_archive": "2016-6-28_11-20-28/filer_links_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 136,
+    "fields": {
+        "version": 2,
+        "file_name": "CVR2_LOBBY_DISCLOSURE_CD",
+        "download_records_count": 99015,
+        "clean_records_count": 99014,
+        "load_records_count": 99014,
+        "download_columns_count": 13,
+        "clean_columns_count": 13,
+        "load_columns_count": 14,
+        "download_file_archive": "2016-6-28_11-20-28/CVR2_LOBBY_DISCLOSURE_CD.TSV",
+        "clean_file_archive": "2016-6-28_11-20-28/cvr2_lobby_disclosure_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 137,
+    "fields": {
+        "version": 2,
+        "file_name": "LOBBYIST_EMP_LOBBYIST2_CD",
+        "download_records_count": 1501,
+        "clean_records_count": 1500,
+        "load_records_count": 1500,
+        "download_columns_count": 6,
+        "clean_columns_count": 6,
+        "load_columns_count": 7,
+        "download_file_archive": "2016-6-28_11-20-28/LOBBYIST_EMP_LOBBYIST2_CD.TSV",
+        "clean_file_archive": "2016-6-28_11-20-28/lobbyist_emp_lobbyist2_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 138,
+    "fields": {
+        "version": 2,
+        "file_name": "FILER_TYPE_PERIODS_CD",
+        "download_records_count": 0,
+        "clean_records_count": -1,
+        "load_records_count": 0,
+        "download_columns_count": 0,
+        "clean_columns_count": 0,
+        "load_columns_count": 4,
+        "download_file_archive": "2016-6-28_11-20-28/FILER_TYPE_PERIODS_CD.TSV",
+        "clean_file_archive": ""
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 139,
+    "fields": {
+        "version": 2,
+        "file_name": "FILER_TO_FILER_TYPE_CD",
+        "download_records_count": 486372,
+        "clean_records_count": 486371,
+        "load_records_count": 486371,
+        "download_columns_count": 16,
+        "clean_columns_count": 16,
+        "load_columns_count": 17,
+        "download_file_archive": "2016-6-28_11-20-28/FILER_TO_FILER_TYPE_CD.TSV",
+        "clean_file_archive": "2016-6-28_11-20-28/filer_to_filer_type_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 140,
+    "fields": {
+        "version": 2,
+        "file_name": "FILER_ETHICS_CLASS_CD",
+        "download_records_count": 15175,
+        "clean_records_count": 15174,
+        "load_records_count": 15174,
+        "download_columns_count": 3,
+        "clean_columns_count": 3,
+        "load_columns_count": 4,
+        "download_file_archive": "2016-6-28_11-20-28/FILER_ETHICS_CLASS_CD.TSV",
+        "clean_file_archive": "2016-6-28_11-20-28/filer_ethics_class_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 141,
+    "fields": {
+        "version": 2,
+        "file_name": "CVR_REGISTRATION_CD",
+        "download_records_count": 44194,
+        "clean_records_count": 44193,
+        "load_records_count": 44193,
+        "download_columns_count": 71,
+        "clean_columns_count": 71,
+        "load_columns_count": 72,
+        "download_file_archive": "2016-6-28_11-20-28/CVR_REGISTRATION_CD.TSV",
+        "clean_file_archive": "2016-6-28_11-20-28/cvr_registration_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 142,
+    "fields": {
+        "version": 2,
+        "file_name": "LOBBYIST_FIRM1_CD",
+        "download_records_count": 257,
+        "clean_records_count": 256,
+        "load_records_count": 256,
+        "download_columns_count": 18,
+        "clean_columns_count": 18,
+        "load_columns_count": 19,
+        "download_file_archive": "2016-6-28_11-20-28/LOBBYIST_FIRM1_CD.TSV",
+        "clean_file_archive": "2016-6-28_11-20-28/lobbyist_firm1_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 143,
+    "fields": {
+        "version": 2,
+        "file_name": "SMRY_CD",
+        "download_records_count": 8215428,
+        "clean_records_count": 8215427,
+        "load_records_count": 8215427,
+        "download_columns_count": 9,
+        "clean_columns_count": 9,
+        "load_columns_count": 10,
+        "download_file_archive": "2016-6-28_11-20-28/SMRY_CD.TSV",
+        "clean_file_archive": "2016-6-28_11-20-28/smry_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 144,
+    "fields": {
+        "version": 2,
+        "file_name": "S497_CD",
+        "download_records_count": 606071,
+        "clean_records_count": 606070,
+        "load_records_count": 606070,
+        "download_columns_count": 41,
+        "clean_columns_count": 41,
+        "load_columns_count": 42,
+        "download_file_archive": "2016-6-28_11-20-28/S497_CD.TSV",
+        "clean_file_archive": "2016-6-28_11-20-28/s497_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 145,
+    "fields": {
+        "version": 2,
+        "file_name": "FILER_TYPES_CD",
+        "download_records_count": 19,
+        "clean_records_count": 18,
+        "load_records_count": 18,
+        "download_columns_count": 5,
+        "clean_columns_count": 5,
+        "load_columns_count": 5,
+        "download_file_archive": "2016-6-28_11-20-28/FILER_TYPES_CD.TSV",
+        "clean_file_archive": "2016-6-28_11-20-28/filer_types_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 146,
+    "fields": {
+        "version": 2,
+        "file_name": "LOBBYIST_CONTRIBUTIONS3_CD",
+        "download_records_count": 6506,
+        "clean_records_count": 6505,
+        "load_records_count": 6505,
+        "download_columns_count": 7,
+        "clean_columns_count": 7,
+        "load_columns_count": 8,
+        "download_file_archive": "2016-6-28_11-20-28/LOBBYIST_CONTRIBUTIONS3_CD.TSV",
+        "clean_file_archive": "2016-6-28_11-20-28/lobbyist_contributions3_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 147,
+    "fields": {
+        "version": 2,
+        "file_name": "LOBBYIST_CONTRIBUTIONS1_CD",
+        "download_records_count": 6506,
+        "clean_records_count": 6505,
+        "load_records_count": 6505,
+        "download_columns_count": 7,
+        "clean_columns_count": 7,
+        "load_columns_count": 8,
+        "download_file_archive": "2016-6-28_11-20-28/LOBBYIST_CONTRIBUTIONS1_CD.TSV",
+        "clean_file_archive": "2016-6-28_11-20-28/lobbyist_contributions1_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 148,
+    "fields": {
+        "version": 2,
+        "file_name": "FILER_STATUS_TYPES_CD",
+        "download_records_count": 9,
+        "clean_records_count": 8,
+        "load_records_count": 8,
+        "download_columns_count": 2,
+        "clean_columns_count": 2,
+        "load_columns_count": 3,
+        "download_file_archive": "2016-6-28_11-20-28/FILER_STATUS_TYPES_CD.TSV",
+        "clean_file_archive": "2016-6-28_11-20-28/filer_status_types_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 149,
+    "fields": {
+        "version": 2,
+        "file_name": "LOBBYIST_FIRM_LOBBYIST1_CD",
+        "download_records_count": 578,
+        "clean_records_count": 577,
+        "load_records_count": 577,
+        "download_columns_count": 6,
+        "clean_columns_count": 6,
+        "load_columns_count": 7,
+        "download_file_archive": "2016-6-28_11-20-28/LOBBYIST_FIRM_LOBBYIST1_CD.TSV",
+        "clean_file_archive": "2016-6-28_11-20-28/lobbyist_firm_lobbyist1_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 150,
+    "fields": {
+        "version": 2,
+        "file_name": "CVR_E530_CD",
+        "download_records_count": 191,
+        "clean_records_count": 190,
+        "load_records_count": 190,
+        "download_columns_count": 32,
+        "clean_columns_count": 32,
+        "load_columns_count": 33,
+        "download_file_archive": "2016-6-28_11-20-28/CVR_E530_CD.TSV",
+        "clean_file_archive": "2016-6-28_11-20-28/cvr_e530_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 151,
+    "fields": {
+        "version": 2,
+        "file_name": "CVR_SO_CD",
+        "download_records_count": 15223,
+        "clean_records_count": 15222,
+        "load_records_count": 15222,
+        "download_columns_count": 54,
+        "clean_columns_count": 54,
+        "load_columns_count": 55,
+        "download_file_archive": "2016-6-28_11-20-28/CVR_SO_CD.TSV",
+        "clean_file_archive": "2016-6-28_11-20-28/cvr_so_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 152,
+    "fields": {
+        "version": 2,
+        "file_name": "LOBBYIST_EMPLOYER3_CD",
+        "download_records_count": 1731,
+        "clean_records_count": 1730,
+        "load_records_count": 1730,
+        "download_columns_count": 20,
+        "clean_columns_count": 20,
+        "load_columns_count": 21,
+        "download_file_archive": "2016-6-28_11-20-28/LOBBYIST_EMPLOYER3_CD.TSV",
+        "clean_file_archive": "2016-6-28_11-20-28/lobbyist_employer3_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 153,
+    "fields": {
+        "version": 2,
+        "file_name": "LOBBYIST_EMPLOYER_FIRMS1_CD",
+        "download_records_count": 525,
+        "clean_records_count": 524,
+        "load_records_count": 524,
+        "download_columns_count": 5,
+        "clean_columns_count": 5,
+        "load_columns_count": 6,
+        "download_file_archive": "2016-6-28_11-20-28/LOBBYIST_EMPLOYER_FIRMS1_CD.TSV",
+        "clean_file_archive": "2016-6-28_11-20-28/lobbyist_employer_firms1_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 154,
+    "fields": {
+        "version": 2,
+        "file_name": "F690P2_CD",
+        "download_records_count": 18901,
+        "clean_records_count": 18900,
+        "load_records_count": 18900,
+        "download_columns_count": 11,
+        "clean_columns_count": 11,
+        "load_columns_count": 12,
+        "download_file_archive": "2016-6-28_11-20-28/F690P2_CD.TSV",
+        "clean_file_archive": "2016-6-28_11-20-28/f690p2_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 155,
+    "fields": {
+        "version": 2,
+        "file_name": "LATT_CD",
+        "download_records_count": 74846,
+        "clean_records_count": 74845,
+        "load_records_count": 74845,
+        "download_columns_count": 20,
+        "clean_columns_count": 20,
+        "load_columns_count": 21,
+        "download_file_archive": "2016-6-28_11-20-28/LATT_CD.TSV",
+        "clean_file_archive": "2016-6-28_11-20-28/latt_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 156,
+    "fields": {
+        "version": 2,
+        "file_name": "ADDRESS_CD",
+        "download_records_count": 331687,
+        "clean_records_count": 331686,
+        "load_records_count": 331686,
+        "download_columns_count": 7,
+        "clean_columns_count": 7,
+        "load_columns_count": 8,
+        "download_file_archive": "2016-6-28_11-20-28/ADDRESS_CD.TSV",
+        "clean_file_archive": "2016-6-28_11-20-28/address_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 157,
+    "fields": {
+        "version": 2,
+        "file_name": "DEBT_CD",
+        "download_records_count": 418977,
+        "clean_records_count": 419356,
+        "load_records_count": 418976,
+        "download_columns_count": 33,
+        "clean_columns_count": 33,
+        "load_columns_count": 34,
+        "download_file_archive": "2016-6-28_11-20-28/DEBT_CD.TSV",
+        "clean_file_archive": "2016-6-28_11-20-28/debt_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 158,
+    "fields": {
+        "version": 2,
+        "file_name": "LOBBYIST_FIRM_EMPLOYER2_CD",
+        "download_records_count": 171,
+        "clean_records_count": 170,
+        "load_records_count": 170,
+        "download_columns_count": 11,
+        "clean_columns_count": 11,
+        "load_columns_count": 12,
+        "download_file_archive": "2016-6-28_11-20-28/LOBBYIST_FIRM_EMPLOYER2_CD.TSV",
+        "clean_file_archive": "2016-6-28_11-20-28/lobbyist_firm_employer2_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 159,
+    "fields": {
+        "version": 2,
+        "file_name": "LEXP_CD",
+        "download_records_count": 184337,
+        "clean_records_count": 184336,
+        "load_records_count": 184336,
+        "download_columns_count": 25,
+        "clean_columns_count": 25,
+        "load_columns_count": 26,
+        "download_file_archive": "2016-6-28_11-20-28/LEXP_CD.TSV",
+        "clean_file_archive": "2016-6-28_11-20-28/lexp_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 160,
+    "fields": {
+        "version": 2,
+        "file_name": "EXPN_CD",
+        "download_records_count": 4996579,
+        "clean_records_count": 4998677,
+        "load_records_count": 4996578,
+        "download_columns_count": 53,
+        "clean_columns_count": 53,
+        "load_columns_count": 54,
+        "download_file_archive": "2016-6-28_11-20-28/EXPN_CD.TSV",
+        "clean_file_archive": "2016-6-28_11-20-28/expn_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 161,
+    "fields": {
+        "version": 3,
+        "file_name": "BALLOT_MEASURES_CD",
+        "download_records_count": 110,
+        "clean_records_count": 109,
+        "load_records_count": 0,
+        "download_columns_count": 6,
+        "clean_columns_count": 6,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-29_11-20-31/BALLOT_MEASURES_CD.TSV",
+        "clean_file_archive": "2016-6-29_11-20-31/ballot_measures_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 162,
+    "fields": {
+        "version": 3,
+        "file_name": "LOBBYIST_FIRM2_CD",
+        "download_records_count": 257,
+        "clean_records_count": 256,
+        "load_records_count": 0,
+        "download_columns_count": 18,
+        "clean_columns_count": 18,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-29_11-20-31/LOBBYIST_FIRM2_CD.TSV",
+        "clean_file_archive": "2016-6-29_11-20-31/lobbyist_firm2_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 163,
+    "fields": {
+        "version": 3,
+        "file_name": "FILINGS_CD",
+        "download_records_count": 1752650,
+        "clean_records_count": 1752649,
+        "load_records_count": 0,
+        "download_columns_count": 2,
+        "clean_columns_count": 2,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-29_11-20-31/FILINGS_CD.TSV",
+        "clean_file_archive": "2016-6-29_11-20-31/filings_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 164,
+    "fields": {
+        "version": 3,
+        "file_name": "F501_502_CD",
+        "download_records_count": 15665,
+        "clean_records_count": 15664,
+        "load_records_count": 0,
+        "download_columns_count": 54,
+        "clean_columns_count": 54,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-29_11-20-31/F501_502_CD.TSV",
+        "clean_file_archive": "2016-6-29_11-20-31/f501_502_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 165,
+    "fields": {
+        "version": 3,
+        "file_name": "LOBBYIST_EMPLOYER_HISTORY_CD",
+        "download_records_count": 0,
+        "clean_records_count": -1,
+        "load_records_count": 0,
+        "download_columns_count": 0,
+        "clean_columns_count": 0,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-29_11-20-31/LOBBYIST_EMPLOYER_HISTORY_CD.TSV",
+        "clean_file_archive": ""
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 166,
+    "fields": {
+        "version": 3,
+        "file_name": "LEMP_CD",
+        "download_records_count": 276464,
+        "clean_records_count": 276463,
+        "load_records_count": 0,
+        "download_columns_count": 24,
+        "clean_columns_count": 24,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-29_11-20-31/LEMP_CD.TSV",
+        "clean_file_archive": "2016-6-29_11-20-31/lemp_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 167,
+    "fields": {
+        "version": 3,
+        "file_name": "FILERS_CD",
+        "download_records_count": 349605,
+        "clean_records_count": 349604,
+        "load_records_count": 0,
+        "download_columns_count": 1,
+        "clean_columns_count": 1,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-29_11-20-31/FILERS_CD.TSV",
+        "clean_file_archive": "2016-6-29_11-20-31/filers_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 168,
+    "fields": {
+        "version": 3,
+        "file_name": "F495P2_CD",
+        "download_records_count": 967,
+        "clean_records_count": 966,
+        "load_records_count": 0,
+        "download_columns_count": 8,
+        "clean_columns_count": 8,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-29_11-20-31/F495P2_CD.TSV",
+        "clean_file_archive": "2016-6-29_11-20-31/f495p2_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 169,
+    "fields": {
+        "version": 3,
+        "file_name": "CVR2_SO_CD",
+        "download_records_count": 38245,
+        "clean_records_count": 38244,
+        "load_records_count": 0,
+        "download_columns_count": 33,
+        "clean_columns_count": 33,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-29_11-20-31/CVR2_SO_CD.TSV",
+        "clean_file_archive": "2016-6-29_11-20-31/cvr2_so_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 170,
+    "fields": {
+        "version": 3,
+        "file_name": "FILER_FILINGS_CD",
+        "download_records_count": 1887014,
+        "clean_records_count": 1887013,
+        "load_records_count": 0,
+        "download_columns_count": 16,
+        "clean_columns_count": 16,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-29_11-20-31/FILER_FILINGS_CD.TSV",
+        "clean_file_archive": "2016-6-29_11-20-31/filer_filings_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 171,
+    "fields": {
+        "version": 3,
+        "file_name": "LOBBYING_CHG_LOG_CD",
+        "download_records_count": 59986,
+        "clean_records_count": 59985,
+        "load_records_count": 0,
+        "download_columns_count": 24,
+        "clean_columns_count": 24,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-29_11-20-31/LOBBYING_CHG_LOG_CD.TSV",
+        "clean_file_archive": "2016-6-29_11-20-31/lobbying_chg_log_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 172,
+    "fields": {
+        "version": 3,
+        "file_name": "LEGISLATIVE_SESSIONS_CD",
+        "download_records_count": 31,
+        "clean_records_count": 30,
+        "load_records_count": 0,
+        "download_columns_count": 3,
+        "clean_columns_count": 3,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-29_11-20-31/LEGISLATIVE_SESSIONS_CD.TSV",
+        "clean_file_archive": "2016-6-29_11-20-31/legislative_sessions_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 173,
+    "fields": {
+        "version": 3,
+        "file_name": "LOBBYIST_FIRM_LOBBYIST2_CD",
+        "download_records_count": 578,
+        "clean_records_count": 577,
+        "load_records_count": 0,
+        "download_columns_count": 6,
+        "clean_columns_count": 6,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-29_11-20-31/LOBBYIST_FIRM_LOBBYIST2_CD.TSV",
+        "clean_file_archive": "2016-6-29_11-20-31/lobbyist_firm_lobbyist2_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 174,
+    "fields": {
+        "version": 3,
+        "file_name": "CVR2_CAMPAIGN_DISCLOSURE_CD",
+        "download_records_count": 100198,
+        "clean_records_count": 100198,
+        "load_records_count": 0,
+        "download_columns_count": 38,
+        "clean_columns_count": 38,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-29_11-20-31/CVR2_CAMPAIGN_DISCLOSURE_CD.TSV",
+        "clean_file_archive": "2016-6-29_11-20-31/cvr2_campaign_disclosure_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 175,
+    "fields": {
+        "version": 3,
+        "file_name": "LOAN_CD",
+        "download_records_count": 69303,
+        "clean_records_count": 69302,
+        "load_records_count": 0,
+        "download_columns_count": 49,
+        "clean_columns_count": 49,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-29_11-20-31/LOAN_CD.TSV",
+        "clean_file_archive": "2016-6-29_11-20-31/loan_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 176,
+    "fields": {
+        "version": 3,
+        "file_name": "REPORTS_CD",
+        "download_records_count": 39,
+        "clean_records_count": 38,
+        "load_records_count": 0,
+        "download_columns_count": 8,
+        "clean_columns_count": 8,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-29_11-20-31/REPORTS_CD.TSV",
+        "clean_file_archive": "2016-6-29_11-20-31/reports_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 177,
+    "fields": {
+        "version": 3,
+        "file_name": "TEXT_MEMO_CD",
+        "download_records_count": 1610173,
+        "clean_records_count": 1610190,
+        "load_records_count": 0,
+        "download_columns_count": 7,
+        "clean_columns_count": 7,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-29_11-20-31/TEXT_MEMO_CD.TSV",
+        "clean_file_archive": "2016-6-29_11-20-31/text_memo_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 178,
+    "fields": {
+        "version": 3,
+        "file_name": "GROUP_TYPES_CD",
+        "download_records_count": 21,
+        "clean_records_count": 20,
+        "load_records_count": 0,
+        "download_columns_count": 3,
+        "clean_columns_count": 3,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-29_11-20-31/GROUP_TYPES_CD.TSV",
+        "clean_file_archive": "2016-6-29_11-20-31/group_types_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 179,
+    "fields": {
+        "version": 3,
+        "file_name": "FILER_XREF_CD",
+        "download_records_count": 349571,
+        "clean_records_count": 349570,
+        "load_records_count": 0,
+        "download_columns_count": 4,
+        "clean_columns_count": 4,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-29_11-20-31/FILER_XREF_CD.TSV",
+        "clean_file_archive": "2016-6-29_11-20-31/filer_xref_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 180,
+    "fields": {
+        "version": 3,
+        "file_name": "LOTH_CD",
+        "download_records_count": 13857,
+        "clean_records_count": 13856,
+        "load_records_count": 0,
+        "download_columns_count": 20,
+        "clean_columns_count": 20,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-29_11-20-31/LOTH_CD.TSV",
+        "clean_file_archive": "2016-6-29_11-20-31/loth_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 181,
+    "fields": {
+        "version": 3,
+        "file_name": "FILER_INTERESTS_CD",
+        "download_records_count": 36170,
+        "clean_records_count": 36169,
+        "load_records_count": 0,
+        "download_columns_count": 4,
+        "clean_columns_count": 4,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-29_11-20-31/FILER_INTERESTS_CD.TSV",
+        "clean_file_archive": "2016-6-29_11-20-31/filer_interests_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 182,
+    "fields": {
+        "version": 3,
+        "file_name": "RCPT_CD",
+        "download_records_count": 9522666,
+        "clean_records_count": 9532032,
+        "load_records_count": 0,
+        "download_columns_count": 63,
+        "clean_columns_count": 63,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-29_11-20-31/RCPT_CD.TSV",
+        "clean_file_archive": "2016-6-29_11-20-31/rcpt_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 183,
+    "fields": {
+        "version": 3,
+        "file_name": "HDR_CD",
+        "download_records_count": 700628,
+        "clean_records_count": 700627,
+        "load_records_count": 0,
+        "download_columns_count": 9,
+        "clean_columns_count": 9,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-29_11-20-31/HDR_CD.TSV",
+        "clean_file_archive": "2016-6-29_11-20-31/hdr_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 184,
+    "fields": {
+        "version": 3,
+        "file_name": "LOOKUP_CODES_CD",
+        "download_records_count": 1131,
+        "clean_records_count": 1130,
+        "load_records_count": 0,
+        "download_columns_count": 3,
+        "clean_columns_count": 3,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-29_11-20-31/LOOKUP_CODES_CD.TSV",
+        "clean_file_archive": "2016-6-29_11-20-31/lookup_codes_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 185,
+    "fields": {
+        "version": 3,
+        "file_name": "LOBBYIST_FIRM_HISTORY_CD",
+        "download_records_count": 0,
+        "clean_records_count": -1,
+        "load_records_count": 0,
+        "download_columns_count": 0,
+        "clean_columns_count": 0,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-29_11-20-31/LOBBYIST_FIRM_HISTORY_CD.TSV",
+        "clean_file_archive": ""
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 186,
+    "fields": {
+        "version": 3,
+        "file_name": "FILING_PERIOD_CD",
+        "download_records_count": 1449,
+        "clean_records_count": 1448,
+        "load_records_count": 0,
+        "download_columns_count": 7,
+        "clean_columns_count": 7,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-29_11-20-31/FILING_PERIOD_CD.TSV",
+        "clean_file_archive": "2016-6-29_11-20-31/filing_period_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 187,
+    "fields": {
+        "version": 3,
+        "file_name": "CVR2_REGISTRATION_CD",
+        "download_records_count": 94795,
+        "clean_records_count": 94794,
+        "load_records_count": 0,
+        "download_columns_count": 12,
+        "clean_columns_count": 12,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-29_11-20-31/CVR2_REGISTRATION_CD.TSV",
+        "clean_file_archive": "2016-6-29_11-20-31/cvr2_registration_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 188,
+    "fields": {
+        "version": 3,
+        "file_name": "FILER_ACRONYMS_CD",
+        "download_records_count": 1802,
+        "clean_records_count": 1801,
+        "load_records_count": 0,
+        "download_columns_count": 2,
+        "clean_columns_count": 2,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-29_11-20-31/FILER_ACRONYMS_CD.TSV",
+        "clean_file_archive": "2016-6-29_11-20-31/filer_acronyms_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 189,
+    "fields": {
+        "version": 3,
+        "file_name": "LOBBYIST_FIRM_EMPLOYER1_CD",
+        "download_records_count": 171,
+        "clean_records_count": 170,
+        "load_records_count": 0,
+        "download_columns_count": 11,
+        "clean_columns_count": 11,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-29_11-20-31/LOBBYIST_FIRM_EMPLOYER1_CD.TSV",
+        "clean_file_archive": "2016-6-29_11-20-31/lobbyist_firm_employer1_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 190,
+    "fields": {
+        "version": 3,
+        "file_name": "RECEIVED_FILINGS_CD",
+        "download_records_count": 401092,
+        "clean_records_count": 401091,
+        "load_records_count": 0,
+        "download_columns_count": 7,
+        "clean_columns_count": 7,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-29_11-20-31/RECEIVED_FILINGS_CD.TSV",
+        "clean_file_archive": "2016-6-29_11-20-31/received_filings_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 191,
+    "fields": {
+        "version": 3,
+        "file_name": "HEADER_CD",
+        "download_records_count": 89,
+        "clean_records_count": 88,
+        "load_records_count": 0,
+        "download_columns_count": 12,
+        "clean_columns_count": 12,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-29_11-20-31/HEADER_CD.TSV",
+        "clean_file_archive": "2016-6-29_11-20-31/header_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 192,
+    "fields": {
+        "version": 3,
+        "file_name": "LOBBYIST_EMPLOYER1_CD",
+        "download_records_count": 1731,
+        "clean_records_count": 1730,
+        "load_records_count": 0,
+        "download_columns_count": 20,
+        "clean_columns_count": 20,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-29_11-20-31/LOBBYIST_EMPLOYER1_CD.TSV",
+        "clean_file_archive": "2016-6-29_11-20-31/lobbyist_employer1_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 193,
+    "fields": {
+        "version": 3,
+        "file_name": "CVR_CAMPAIGN_DISCLOSURE_CD",
+        "download_records_count": 359829,
+        "clean_records_count": 359829,
+        "load_records_count": 0,
+        "download_columns_count": 86,
+        "clean_columns_count": 86,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-29_11-20-31/CVR_CAMPAIGN_DISCLOSURE_CD.TSV",
+        "clean_file_archive": "2016-6-29_11-20-31/cvr_campaign_disclosure_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 194,
+    "fields": {
+        "version": 3,
+        "file_name": "LCCM_CD",
+        "download_records_count": 90133,
+        "clean_records_count": 90132,
+        "load_records_count": 0,
+        "download_columns_count": 24,
+        "clean_columns_count": 24,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-29_11-20-31/LCCM_CD.TSV",
+        "clean_file_archive": "2016-6-29_11-20-31/lccm_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 195,
+    "fields": {
+        "version": 3,
+        "file_name": "LOBBYIST_EMPLOYER2_CD",
+        "download_records_count": 1731,
+        "clean_records_count": 1730,
+        "load_records_count": 0,
+        "download_columns_count": 20,
+        "clean_columns_count": 20,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-29_11-20-31/LOBBYIST_EMPLOYER2_CD.TSV",
+        "clean_file_archive": "2016-6-29_11-20-31/lobbyist_employer2_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 196,
+    "fields": {
+        "version": 3,
+        "file_name": "LOBBYIST_EMP_LOBBYIST1_CD",
+        "download_records_count": 1501,
+        "clean_records_count": 1500,
+        "load_records_count": 0,
+        "download_columns_count": 6,
+        "clean_columns_count": 6,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-29_11-20-31/LOBBYIST_EMP_LOBBYIST1_CD.TSV",
+        "clean_file_archive": "2016-6-29_11-20-31/lobbyist_emp_lobbyist1_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 197,
+    "fields": {
+        "version": 3,
+        "file_name": "NAMES_CD",
+        "download_records_count": 438209,
+        "clean_records_count": 438208,
+        "load_records_count": 0,
+        "download_columns_count": 10,
+        "clean_columns_count": 10,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-29_11-20-31/NAMES_CD.TSV",
+        "clean_file_archive": "2016-6-29_11-20-31/names_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 198,
+    "fields": {
+        "version": 3,
+        "file_name": "ACRONYMS_CD",
+        "download_records_count": 885,
+        "clean_records_count": 884,
+        "load_records_count": 0,
+        "download_columns_count": 4,
+        "clean_columns_count": 4,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-29_11-20-31/ACRONYMS_CD.TSV",
+        "clean_file_archive": "2016-6-29_11-20-31/acronyms_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 199,
+    "fields": {
+        "version": 3,
+        "file_name": "LOBBY_AMENDMENTS_CD",
+        "download_records_count": 11277,
+        "clean_records_count": 11276,
+        "load_records_count": 0,
+        "download_columns_count": 42,
+        "clean_columns_count": 42,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-29_11-20-31/LOBBY_AMENDMENTS_CD.TSV",
+        "clean_file_archive": "2016-6-29_11-20-31/lobby_amendments_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 200,
+    "fields": {
+        "version": 3,
+        "file_name": "IMAGE_LINKS_CD",
+        "download_records_count": 14833,
+        "clean_records_count": 14832,
+        "load_records_count": 0,
+        "download_columns_count": 5,
+        "clean_columns_count": 5,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-29_11-20-31/IMAGE_LINKS_CD.TSV",
+        "clean_file_archive": "2016-6-29_11-20-31/image_links_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 201,
+    "fields": {
+        "version": 3,
+        "file_name": "LPAY_CD",
+        "download_records_count": 449850,
+        "clean_records_count": 449849,
+        "load_records_count": 0,
+        "download_columns_count": 26,
+        "clean_columns_count": 26,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-29_11-20-31/LPAY_CD.TSV",
+        "clean_file_archive": "2016-6-29_11-20-31/lpay_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 202,
+    "fields": {
+        "version": 3,
+        "file_name": "LOBBYIST_EMPLOYER_FIRMS2_CD",
+        "download_records_count": 525,
+        "clean_records_count": 524,
+        "load_records_count": 0,
+        "download_columns_count": 5,
+        "clean_columns_count": 5,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-29_11-20-31/LOBBYIST_EMPLOYER_FIRMS2_CD.TSV",
+        "clean_file_archive": "2016-6-29_11-20-31/lobbyist_employer_firms2_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 203,
+    "fields": {
+        "version": 3,
+        "file_name": "EFS_FILING_LOG_CD",
+        "download_records_count": 146814,
+        "clean_records_count": 146813,
+        "load_records_count": 0,
+        "download_columns_count": 6,
+        "clean_columns_count": 6,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-29_11-20-31/EFS_FILING_LOG_CD.TSV",
+        "clean_file_archive": "2016-6-29_11-20-31/efs_filing_log_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 204,
+    "fields": {
+        "version": 3,
+        "file_name": "LOBBYIST_CONTRIBUTIONS2_CD",
+        "download_records_count": 6506,
+        "clean_records_count": 6505,
+        "load_records_count": 0,
+        "download_columns_count": 7,
+        "clean_columns_count": 7,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-29_11-20-31/LOBBYIST_CONTRIBUTIONS2_CD.TSV",
+        "clean_file_archive": "2016-6-29_11-20-31/lobbyist_contributions2_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 205,
+    "fields": {
+        "version": 3,
+        "file_name": "SPLT_CD",
+        "download_records_count": 3254708,
+        "clean_records_count": 3260265,
+        "load_records_count": 0,
+        "download_columns_count": 8,
+        "clean_columns_count": 8,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-29_11-20-31/SPLT_CD.TSV",
+        "clean_file_archive": "2016-6-29_11-20-31/splt_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 206,
+    "fields": {
+        "version": 3,
+        "file_name": "FILERNAME_CD",
+        "download_records_count": 696921,
+        "clean_records_count": 696920,
+        "load_records_count": 0,
+        "download_columns_count": 17,
+        "clean_columns_count": 17,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-29_11-20-31/FILERNAME_CD.TSV",
+        "clean_file_archive": "2016-6-29_11-20-31/filername_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 207,
+    "fields": {
+        "version": 3,
+        "file_name": "S401_CD",
+        "download_records_count": 42715,
+        "clean_records_count": 42714,
+        "load_records_count": 0,
+        "download_columns_count": 37,
+        "clean_columns_count": 37,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-29_11-20-31/S401_CD.TSV",
+        "clean_file_archive": "2016-6-29_11-20-31/s401_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 208,
+    "fields": {
+        "version": 3,
+        "file_name": "LOBBYIST_FIRM3_CD",
+        "download_records_count": 257,
+        "clean_records_count": 256,
+        "load_records_count": 0,
+        "download_columns_count": 18,
+        "clean_columns_count": 18,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-29_11-20-31/LOBBYIST_FIRM3_CD.TSV",
+        "clean_file_archive": "2016-6-29_11-20-31/lobbyist_firm3_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 209,
+    "fields": {
+        "version": 3,
+        "file_name": "S498_CD",
+        "download_records_count": 10533,
+        "clean_records_count": 10532,
+        "load_records_count": 0,
+        "download_columns_count": 37,
+        "clean_columns_count": 37,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-29_11-20-31/S498_CD.TSV",
+        "clean_file_archive": "2016-6-29_11-20-31/s498_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 210,
+    "fields": {
+        "version": 3,
+        "file_name": "FILER_ADDRESS_CD",
+        "download_records_count": 406854,
+        "clean_records_count": 406853,
+        "load_records_count": 0,
+        "download_columns_count": 5,
+        "clean_columns_count": 5,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-29_11-20-31/FILER_ADDRESS_CD.TSV",
+        "clean_file_archive": "2016-6-29_11-20-31/filer_address_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 211,
+    "fields": {
+        "version": 3,
+        "file_name": "CVR_LOBBY_DISCLOSURE_CD",
+        "download_records_count": 289346,
+        "clean_records_count": 289345,
+        "load_records_count": 0,
+        "download_columns_count": 52,
+        "clean_columns_count": 52,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-29_11-20-31/CVR_LOBBY_DISCLOSURE_CD.TSV",
+        "clean_file_archive": "2016-6-29_11-20-31/cvr_lobby_disclosure_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 212,
+    "fields": {
+        "version": 3,
+        "file_name": "CVR3_VERIFICATION_INFO_CD",
+        "download_records_count": 228243,
+        "clean_records_count": 228243,
+        "load_records_count": 0,
+        "download_columns_count": 13,
+        "clean_columns_count": 13,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-29_11-20-31/CVR3_VERIFICATION_INFO_CD.TSV",
+        "clean_file_archive": "2016-6-29_11-20-31/cvr3_verification_info_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 213,
+    "fields": {
+        "version": 3,
+        "file_name": "S496_CD",
+        "download_records_count": 38415,
+        "clean_records_count": 38414,
+        "load_records_count": 0,
+        "download_columns_count": 12,
+        "clean_columns_count": 12,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-29_11-20-31/S496_CD.TSV",
+        "clean_file_archive": "2016-6-29_11-20-31/s496_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 214,
+    "fields": {
+        "version": 3,
+        "file_name": "CVR_F470_CD",
+        "download_records_count": 0,
+        "clean_records_count": -1,
+        "load_records_count": 0,
+        "download_columns_count": 0,
+        "clean_columns_count": 0,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-29_11-20-31/CVR_F470_CD.TSV",
+        "clean_file_archive": ""
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 215,
+    "fields": {
+        "version": 3,
+        "file_name": "FILER_LINKS_CD",
+        "download_records_count": 264436,
+        "clean_records_count": 264435,
+        "load_records_count": 0,
+        "download_columns_count": 9,
+        "clean_columns_count": 9,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-29_11-20-31/FILER_LINKS_CD.TSV",
+        "clean_file_archive": "2016-6-29_11-20-31/filer_links_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 216,
+    "fields": {
+        "version": 3,
+        "file_name": "CVR2_LOBBY_DISCLOSURE_CD",
+        "download_records_count": 99016,
+        "clean_records_count": 99015,
+        "load_records_count": 0,
+        "download_columns_count": 13,
+        "clean_columns_count": 13,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-29_11-20-31/CVR2_LOBBY_DISCLOSURE_CD.TSV",
+        "clean_file_archive": "2016-6-29_11-20-31/cvr2_lobby_disclosure_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 217,
+    "fields": {
+        "version": 3,
+        "file_name": "LOBBYIST_EMP_LOBBYIST2_CD",
+        "download_records_count": 1501,
+        "clean_records_count": 1500,
+        "load_records_count": 0,
+        "download_columns_count": 6,
+        "clean_columns_count": 6,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-29_11-20-31/LOBBYIST_EMP_LOBBYIST2_CD.TSV",
+        "clean_file_archive": "2016-6-29_11-20-31/lobbyist_emp_lobbyist2_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 218,
+    "fields": {
+        "version": 3,
+        "file_name": "FILER_TYPE_PERIODS_CD",
+        "download_records_count": 0,
+        "clean_records_count": -1,
+        "load_records_count": 0,
+        "download_columns_count": 0,
+        "clean_columns_count": 0,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-29_11-20-31/FILER_TYPE_PERIODS_CD.TSV",
+        "clean_file_archive": ""
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 219,
+    "fields": {
+        "version": 3,
+        "file_name": "FILER_TO_FILER_TYPE_CD",
+        "download_records_count": 486399,
+        "clean_records_count": 486398,
+        "load_records_count": 0,
+        "download_columns_count": 16,
+        "clean_columns_count": 16,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-29_11-20-31/FILER_TO_FILER_TYPE_CD.TSV",
+        "clean_file_archive": "2016-6-29_11-20-31/filer_to_filer_type_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 220,
+    "fields": {
+        "version": 3,
+        "file_name": "FILER_ETHICS_CLASS_CD",
+        "download_records_count": 15175,
+        "clean_records_count": 15174,
+        "load_records_count": 0,
+        "download_columns_count": 3,
+        "clean_columns_count": 3,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-29_11-20-31/FILER_ETHICS_CLASS_CD.TSV",
+        "clean_file_archive": "2016-6-29_11-20-31/filer_ethics_class_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 221,
+    "fields": {
+        "version": 3,
+        "file_name": "CVR_REGISTRATION_CD",
+        "download_records_count": 44205,
+        "clean_records_count": 44204,
+        "load_records_count": 0,
+        "download_columns_count": 71,
+        "clean_columns_count": 71,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-29_11-20-31/CVR_REGISTRATION_CD.TSV",
+        "clean_file_archive": "2016-6-29_11-20-31/cvr_registration_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 222,
+    "fields": {
+        "version": 3,
+        "file_name": "LOBBYIST_FIRM1_CD",
+        "download_records_count": 257,
+        "clean_records_count": 256,
+        "load_records_count": 0,
+        "download_columns_count": 18,
+        "clean_columns_count": 18,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-29_11-20-31/LOBBYIST_FIRM1_CD.TSV",
+        "clean_file_archive": "2016-6-29_11-20-31/lobbyist_firm1_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 223,
+    "fields": {
+        "version": 3,
+        "file_name": "SMRY_CD",
+        "download_records_count": 8215590,
+        "clean_records_count": 8215589,
+        "load_records_count": 0,
+        "download_columns_count": 9,
+        "clean_columns_count": 9,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-29_11-20-31/SMRY_CD.TSV",
+        "clean_file_archive": "2016-6-29_11-20-31/smry_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 224,
+    "fields": {
+        "version": 3,
+        "file_name": "S497_CD",
+        "download_records_count": 606159,
+        "clean_records_count": 606158,
+        "load_records_count": 0,
+        "download_columns_count": 41,
+        "clean_columns_count": 41,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-29_11-20-31/S497_CD.TSV",
+        "clean_file_archive": "2016-6-29_11-20-31/s497_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 225,
+    "fields": {
+        "version": 3,
+        "file_name": "FILER_TYPES_CD",
+        "download_records_count": 19,
+        "clean_records_count": 18,
+        "load_records_count": 0,
+        "download_columns_count": 5,
+        "clean_columns_count": 5,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-29_11-20-31/FILER_TYPES_CD.TSV",
+        "clean_file_archive": "2016-6-29_11-20-31/filer_types_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 226,
+    "fields": {
+        "version": 3,
+        "file_name": "LOBBYIST_CONTRIBUTIONS3_CD",
+        "download_records_count": 6506,
+        "clean_records_count": 6505,
+        "load_records_count": 0,
+        "download_columns_count": 7,
+        "clean_columns_count": 7,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-29_11-20-31/LOBBYIST_CONTRIBUTIONS3_CD.TSV",
+        "clean_file_archive": "2016-6-29_11-20-31/lobbyist_contributions3_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 227,
+    "fields": {
+        "version": 3,
+        "file_name": "LOBBYIST_CONTRIBUTIONS1_CD",
+        "download_records_count": 6506,
+        "clean_records_count": 6505,
+        "load_records_count": 0,
+        "download_columns_count": 7,
+        "clean_columns_count": 7,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-29_11-20-31/LOBBYIST_CONTRIBUTIONS1_CD.TSV",
+        "clean_file_archive": "2016-6-29_11-20-31/lobbyist_contributions1_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 228,
+    "fields": {
+        "version": 3,
+        "file_name": "FILER_STATUS_TYPES_CD",
+        "download_records_count": 9,
+        "clean_records_count": 8,
+        "load_records_count": 0,
+        "download_columns_count": 2,
+        "clean_columns_count": 2,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-29_11-20-31/FILER_STATUS_TYPES_CD.TSV",
+        "clean_file_archive": "2016-6-29_11-20-31/filer_status_types_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 229,
+    "fields": {
+        "version": 3,
+        "file_name": "LOBBYIST_FIRM_LOBBYIST1_CD",
+        "download_records_count": 578,
+        "clean_records_count": 577,
+        "load_records_count": 0,
+        "download_columns_count": 6,
+        "clean_columns_count": 6,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-29_11-20-31/LOBBYIST_FIRM_LOBBYIST1_CD.TSV",
+        "clean_file_archive": "2016-6-29_11-20-31/lobbyist_firm_lobbyist1_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 230,
+    "fields": {
+        "version": 3,
+        "file_name": "CVR_E530_CD",
+        "download_records_count": 191,
+        "clean_records_count": 190,
+        "load_records_count": 0,
+        "download_columns_count": 32,
+        "clean_columns_count": 32,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-29_11-20-31/CVR_E530_CD.TSV",
+        "clean_file_archive": "2016-6-29_11-20-31/cvr_e530_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 231,
+    "fields": {
+        "version": 3,
+        "file_name": "CVR_SO_CD",
+        "download_records_count": 15227,
+        "clean_records_count": 15226,
+        "load_records_count": 0,
+        "download_columns_count": 54,
+        "clean_columns_count": 54,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-29_11-20-31/CVR_SO_CD.TSV",
+        "clean_file_archive": "2016-6-29_11-20-31/cvr_so_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 232,
+    "fields": {
+        "version": 3,
+        "file_name": "LOBBYIST_EMPLOYER3_CD",
+        "download_records_count": 1731,
+        "clean_records_count": 1730,
+        "load_records_count": 0,
+        "download_columns_count": 20,
+        "clean_columns_count": 20,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-29_11-20-31/LOBBYIST_EMPLOYER3_CD.TSV",
+        "clean_file_archive": "2016-6-29_11-20-31/lobbyist_employer3_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 233,
+    "fields": {
+        "version": 3,
+        "file_name": "LOBBYIST_EMPLOYER_FIRMS1_CD",
+        "download_records_count": 525,
+        "clean_records_count": 524,
+        "load_records_count": 0,
+        "download_columns_count": 5,
+        "clean_columns_count": 5,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-29_11-20-31/LOBBYIST_EMPLOYER_FIRMS1_CD.TSV",
+        "clean_file_archive": "2016-6-29_11-20-31/lobbyist_employer_firms1_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 234,
+    "fields": {
+        "version": 3,
+        "file_name": "F690P2_CD",
+        "download_records_count": 18903,
+        "clean_records_count": 18902,
+        "load_records_count": 0,
+        "download_columns_count": 11,
+        "clean_columns_count": 11,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-29_11-20-31/F690P2_CD.TSV",
+        "clean_file_archive": "2016-6-29_11-20-31/f690p2_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 235,
+    "fields": {
+        "version": 3,
+        "file_name": "LATT_CD",
+        "download_records_count": 74846,
+        "clean_records_count": 74845,
+        "load_records_count": 0,
+        "download_columns_count": 20,
+        "clean_columns_count": 20,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-29_11-20-31/LATT_CD.TSV",
+        "clean_file_archive": "2016-6-29_11-20-31/latt_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 236,
+    "fields": {
+        "version": 3,
+        "file_name": "ADDRESS_CD",
+        "download_records_count": 331703,
+        "clean_records_count": 331702,
+        "load_records_count": 0,
+        "download_columns_count": 7,
+        "clean_columns_count": 7,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-29_11-20-31/ADDRESS_CD.TSV",
+        "clean_file_archive": "2016-6-29_11-20-31/address_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 237,
+    "fields": {
+        "version": 3,
+        "file_name": "DEBT_CD",
+        "download_records_count": 418997,
+        "clean_records_count": 419376,
+        "load_records_count": 0,
+        "download_columns_count": 33,
+        "clean_columns_count": 33,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-29_11-20-31/DEBT_CD.TSV",
+        "clean_file_archive": "2016-6-29_11-20-31/debt_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 238,
+    "fields": {
+        "version": 3,
+        "file_name": "LOBBYIST_FIRM_EMPLOYER2_CD",
+        "download_records_count": 171,
+        "clean_records_count": 170,
+        "load_records_count": 0,
+        "download_columns_count": 11,
+        "clean_columns_count": 11,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-29_11-20-31/LOBBYIST_FIRM_EMPLOYER2_CD.TSV",
+        "clean_file_archive": "2016-6-29_11-20-31/lobbyist_firm_employer2_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 239,
+    "fields": {
+        "version": 3,
+        "file_name": "LEXP_CD",
+        "download_records_count": 184337,
+        "clean_records_count": 184336,
+        "load_records_count": 0,
+        "download_columns_count": 25,
+        "clean_columns_count": 25,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-29_11-20-31/LEXP_CD.TSV",
+        "clean_file_archive": "2016-6-29_11-20-31/lexp_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 240,
+    "fields": {
+        "version": 3,
+        "file_name": "EXPN_CD",
+        "download_records_count": 4996603,
+        "clean_records_count": 4998701,
+        "load_records_count": 0,
+        "download_columns_count": 53,
+        "clean_columns_count": 53,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-29_11-20-31/EXPN_CD.TSV",
+        "clean_file_archive": "2016-6-29_11-20-31/expn_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 241,
+    "fields": {
+        "version": 4,
+        "file_name": "BALLOT_MEASURES_CD",
+        "download_records_count": 110,
+        "clean_records_count": 109,
+        "load_records_count": 0,
+        "download_columns_count": 6,
+        "clean_columns_count": 6,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-30_11-20-31/BALLOT_MEASURES_CD.TSV",
+        "clean_file_archive": "2016-6-30_11-20-31/ballot_measures_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 242,
+    "fields": {
+        "version": 4,
+        "file_name": "LOBBYIST_FIRM2_CD",
+        "download_records_count": 257,
+        "clean_records_count": 256,
+        "load_records_count": 0,
+        "download_columns_count": 18,
+        "clean_columns_count": 18,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-30_11-20-31/LOBBYIST_FIRM2_CD.TSV",
+        "clean_file_archive": "2016-6-30_11-20-31/lobbyist_firm2_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 243,
+    "fields": {
+        "version": 4,
+        "file_name": "FILINGS_CD",
+        "download_records_count": 1752650,
+        "clean_records_count": 1752649,
+        "load_records_count": 0,
+        "download_columns_count": 2,
+        "clean_columns_count": 2,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-30_11-20-31/FILINGS_CD.TSV",
+        "clean_file_archive": "2016-6-30_11-20-31/filings_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 244,
+    "fields": {
+        "version": 4,
+        "file_name": "F501_502_CD",
+        "download_records_count": 15665,
+        "clean_records_count": 15664,
+        "load_records_count": 0,
+        "download_columns_count": 54,
+        "clean_columns_count": 54,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-30_11-20-31/F501_502_CD.TSV",
+        "clean_file_archive": "2016-6-30_11-20-31/f501_502_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 245,
+    "fields": {
+        "version": 4,
+        "file_name": "LOBBYIST_EMPLOYER_HISTORY_CD",
+        "download_records_count": 0,
+        "clean_records_count": -1,
+        "load_records_count": 0,
+        "download_columns_count": 0,
+        "clean_columns_count": 0,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-30_11-20-31/LOBBYIST_EMPLOYER_HISTORY_CD.TSV",
+        "clean_file_archive": ""
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 246,
+    "fields": {
+        "version": 4,
+        "file_name": "LEMP_CD",
+        "download_records_count": 276464,
+        "clean_records_count": 276463,
+        "load_records_count": 0,
+        "download_columns_count": 24,
+        "clean_columns_count": 24,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-30_11-20-31/LEMP_CD.TSV",
+        "clean_file_archive": "2016-6-30_11-20-31/lemp_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 247,
+    "fields": {
+        "version": 4,
+        "file_name": "FILERS_CD",
+        "download_records_count": 349605,
+        "clean_records_count": 349604,
+        "load_records_count": 0,
+        "download_columns_count": 1,
+        "clean_columns_count": 1,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-30_11-20-31/FILERS_CD.TSV",
+        "clean_file_archive": "2016-6-30_11-20-31/filers_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 248,
+    "fields": {
+        "version": 4,
+        "file_name": "F495P2_CD",
+        "download_records_count": 967,
+        "clean_records_count": 966,
+        "load_records_count": 0,
+        "download_columns_count": 8,
+        "clean_columns_count": 8,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-30_11-20-31/F495P2_CD.TSV",
+        "clean_file_archive": "2016-6-30_11-20-31/f495p2_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 249,
+    "fields": {
+        "version": 4,
+        "file_name": "CVR2_SO_CD",
+        "download_records_count": 38245,
+        "clean_records_count": 38244,
+        "load_records_count": 0,
+        "download_columns_count": 33,
+        "clean_columns_count": 33,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-30_11-20-31/CVR2_SO_CD.TSV",
+        "clean_file_archive": "2016-6-30_11-20-31/cvr2_so_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 250,
+    "fields": {
+        "version": 4,
+        "file_name": "FILER_FILINGS_CD",
+        "download_records_count": 1887014,
+        "clean_records_count": 1887013,
+        "load_records_count": 0,
+        "download_columns_count": 16,
+        "clean_columns_count": 16,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-30_11-20-31/FILER_FILINGS_CD.TSV",
+        "clean_file_archive": "2016-6-30_11-20-31/filer_filings_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 251,
+    "fields": {
+        "version": 4,
+        "file_name": "LOBBYING_CHG_LOG_CD",
+        "download_records_count": 59986,
+        "clean_records_count": 59985,
+        "load_records_count": 0,
+        "download_columns_count": 24,
+        "clean_columns_count": 24,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-30_11-20-31/LOBBYING_CHG_LOG_CD.TSV",
+        "clean_file_archive": "2016-6-30_11-20-31/lobbying_chg_log_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 252,
+    "fields": {
+        "version": 4,
+        "file_name": "LEGISLATIVE_SESSIONS_CD",
+        "download_records_count": 31,
+        "clean_records_count": 30,
+        "load_records_count": 0,
+        "download_columns_count": 3,
+        "clean_columns_count": 3,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-30_11-20-31/LEGISLATIVE_SESSIONS_CD.TSV",
+        "clean_file_archive": "2016-6-30_11-20-31/legislative_sessions_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 253,
+    "fields": {
+        "version": 4,
+        "file_name": "LOBBYIST_FIRM_LOBBYIST2_CD",
+        "download_records_count": 578,
+        "clean_records_count": 577,
+        "load_records_count": 0,
+        "download_columns_count": 6,
+        "clean_columns_count": 6,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-30_11-20-31/LOBBYIST_FIRM_LOBBYIST2_CD.TSV",
+        "clean_file_archive": "2016-6-30_11-20-31/lobbyist_firm_lobbyist2_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 254,
+    "fields": {
+        "version": 4,
+        "file_name": "CVR2_CAMPAIGN_DISCLOSURE_CD",
+        "download_records_count": 100198,
+        "clean_records_count": 100198,
+        "load_records_count": 0,
+        "download_columns_count": 38,
+        "clean_columns_count": 38,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-30_11-20-31/CVR2_CAMPAIGN_DISCLOSURE_CD.TSV",
+        "clean_file_archive": "2016-6-30_11-20-31/cvr2_campaign_disclosure_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 255,
+    "fields": {
+        "version": 4,
+        "file_name": "LOAN_CD",
+        "download_records_count": 69303,
+        "clean_records_count": 69302,
+        "load_records_count": 0,
+        "download_columns_count": 49,
+        "clean_columns_count": 49,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-30_11-20-31/LOAN_CD.TSV",
+        "clean_file_archive": "2016-6-30_11-20-31/loan_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 256,
+    "fields": {
+        "version": 4,
+        "file_name": "REPORTS_CD",
+        "download_records_count": 39,
+        "clean_records_count": 38,
+        "load_records_count": 0,
+        "download_columns_count": 8,
+        "clean_columns_count": 8,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-30_11-20-31/REPORTS_CD.TSV",
+        "clean_file_archive": "2016-6-30_11-20-31/reports_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 257,
+    "fields": {
+        "version": 4,
+        "file_name": "TEXT_MEMO_CD",
+        "download_records_count": 1610173,
+        "clean_records_count": 1610190,
+        "load_records_count": 0,
+        "download_columns_count": 7,
+        "clean_columns_count": 7,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-30_11-20-31/TEXT_MEMO_CD.TSV",
+        "clean_file_archive": "2016-6-30_11-20-31/text_memo_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 258,
+    "fields": {
+        "version": 4,
+        "file_name": "GROUP_TYPES_CD",
+        "download_records_count": 21,
+        "clean_records_count": 20,
+        "load_records_count": 0,
+        "download_columns_count": 3,
+        "clean_columns_count": 3,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-30_11-20-31/GROUP_TYPES_CD.TSV",
+        "clean_file_archive": "2016-6-30_11-20-31/group_types_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 259,
+    "fields": {
+        "version": 4,
+        "file_name": "FILER_XREF_CD",
+        "download_records_count": 349571,
+        "clean_records_count": 349570,
+        "load_records_count": 0,
+        "download_columns_count": 4,
+        "clean_columns_count": 4,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-30_11-20-31/FILER_XREF_CD.TSV",
+        "clean_file_archive": "2016-6-30_11-20-31/filer_xref_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 260,
+    "fields": {
+        "version": 4,
+        "file_name": "LOTH_CD",
+        "download_records_count": 13857,
+        "clean_records_count": 13856,
+        "load_records_count": 0,
+        "download_columns_count": 20,
+        "clean_columns_count": 20,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-30_11-20-31/LOTH_CD.TSV",
+        "clean_file_archive": "2016-6-30_11-20-31/loth_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 261,
+    "fields": {
+        "version": 4,
+        "file_name": "FILER_INTERESTS_CD",
+        "download_records_count": 36170,
+        "clean_records_count": 36169,
+        "load_records_count": 0,
+        "download_columns_count": 4,
+        "clean_columns_count": 4,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-30_11-20-31/FILER_INTERESTS_CD.TSV",
+        "clean_file_archive": "2016-6-30_11-20-31/filer_interests_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 262,
+    "fields": {
+        "version": 4,
+        "file_name": "RCPT_CD",
+        "download_records_count": 9522666,
+        "clean_records_count": 9532032,
+        "load_records_count": 0,
+        "download_columns_count": 63,
+        "clean_columns_count": 63,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-30_11-20-31/RCPT_CD.TSV",
+        "clean_file_archive": "2016-6-30_11-20-31/rcpt_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 263,
+    "fields": {
+        "version": 4,
+        "file_name": "HDR_CD",
+        "download_records_count": 700628,
+        "clean_records_count": 700627,
+        "load_records_count": 0,
+        "download_columns_count": 9,
+        "clean_columns_count": 9,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-30_11-20-31/HDR_CD.TSV",
+        "clean_file_archive": "2016-6-30_11-20-31/hdr_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 264,
+    "fields": {
+        "version": 4,
+        "file_name": "LOOKUP_CODES_CD",
+        "download_records_count": 1131,
+        "clean_records_count": 1130,
+        "load_records_count": 0,
+        "download_columns_count": 3,
+        "clean_columns_count": 3,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-30_11-20-31/LOOKUP_CODES_CD.TSV",
+        "clean_file_archive": "2016-6-30_11-20-31/lookup_codes_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 265,
+    "fields": {
+        "version": 4,
+        "file_name": "LOBBYIST_FIRM_HISTORY_CD",
+        "download_records_count": 0,
+        "clean_records_count": -1,
+        "load_records_count": 0,
+        "download_columns_count": 0,
+        "clean_columns_count": 0,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-30_11-20-31/LOBBYIST_FIRM_HISTORY_CD.TSV",
+        "clean_file_archive": ""
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 266,
+    "fields": {
+        "version": 4,
+        "file_name": "FILING_PERIOD_CD",
+        "download_records_count": 1449,
+        "clean_records_count": 1448,
+        "load_records_count": 0,
+        "download_columns_count": 7,
+        "clean_columns_count": 7,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-30_11-20-31/FILING_PERIOD_CD.TSV",
+        "clean_file_archive": "2016-6-30_11-20-31/filing_period_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 267,
+    "fields": {
+        "version": 4,
+        "file_name": "CVR2_REGISTRATION_CD",
+        "download_records_count": 94795,
+        "clean_records_count": 94794,
+        "load_records_count": 0,
+        "download_columns_count": 12,
+        "clean_columns_count": 12,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-30_11-20-31/CVR2_REGISTRATION_CD.TSV",
+        "clean_file_archive": "2016-6-30_11-20-31/cvr2_registration_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 268,
+    "fields": {
+        "version": 4,
+        "file_name": "FILER_ACRONYMS_CD",
+        "download_records_count": 1802,
+        "clean_records_count": 1801,
+        "load_records_count": 0,
+        "download_columns_count": 2,
+        "clean_columns_count": 2,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-30_11-20-31/FILER_ACRONYMS_CD.TSV",
+        "clean_file_archive": "2016-6-30_11-20-31/filer_acronyms_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 269,
+    "fields": {
+        "version": 4,
+        "file_name": "LOBBYIST_FIRM_EMPLOYER1_CD",
+        "download_records_count": 171,
+        "clean_records_count": 170,
+        "load_records_count": 0,
+        "download_columns_count": 11,
+        "clean_columns_count": 11,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-30_11-20-31/LOBBYIST_FIRM_EMPLOYER1_CD.TSV",
+        "clean_file_archive": "2016-6-30_11-20-31/lobbyist_firm_employer1_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 270,
+    "fields": {
+        "version": 4,
+        "file_name": "RECEIVED_FILINGS_CD",
+        "download_records_count": 401092,
+        "clean_records_count": 401091,
+        "load_records_count": 0,
+        "download_columns_count": 7,
+        "clean_columns_count": 7,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-30_11-20-31/RECEIVED_FILINGS_CD.TSV",
+        "clean_file_archive": "2016-6-30_11-20-31/received_filings_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 271,
+    "fields": {
+        "version": 4,
+        "file_name": "HEADER_CD",
+        "download_records_count": 89,
+        "clean_records_count": 88,
+        "load_records_count": 0,
+        "download_columns_count": 12,
+        "clean_columns_count": 12,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-30_11-20-31/HEADER_CD.TSV",
+        "clean_file_archive": "2016-6-30_11-20-31/header_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 272,
+    "fields": {
+        "version": 4,
+        "file_name": "LOBBYIST_EMPLOYER1_CD",
+        "download_records_count": 1731,
+        "clean_records_count": 1730,
+        "load_records_count": 0,
+        "download_columns_count": 20,
+        "clean_columns_count": 20,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-30_11-20-31/LOBBYIST_EMPLOYER1_CD.TSV",
+        "clean_file_archive": "2016-6-30_11-20-31/lobbyist_employer1_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 273,
+    "fields": {
+        "version": 4,
+        "file_name": "CVR_CAMPAIGN_DISCLOSURE_CD",
+        "download_records_count": 359829,
+        "clean_records_count": 359829,
+        "load_records_count": 0,
+        "download_columns_count": 86,
+        "clean_columns_count": 86,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-30_11-20-31/CVR_CAMPAIGN_DISCLOSURE_CD.TSV",
+        "clean_file_archive": "2016-6-30_11-20-31/cvr_campaign_disclosure_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 274,
+    "fields": {
+        "version": 4,
+        "file_name": "LCCM_CD",
+        "download_records_count": 90133,
+        "clean_records_count": 90132,
+        "load_records_count": 0,
+        "download_columns_count": 24,
+        "clean_columns_count": 24,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-30_11-20-31/LCCM_CD.TSV",
+        "clean_file_archive": "2016-6-30_11-20-31/lccm_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 275,
+    "fields": {
+        "version": 4,
+        "file_name": "LOBBYIST_EMPLOYER2_CD",
+        "download_records_count": 1731,
+        "clean_records_count": 1730,
+        "load_records_count": 0,
+        "download_columns_count": 20,
+        "clean_columns_count": 20,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-30_11-20-31/LOBBYIST_EMPLOYER2_CD.TSV",
+        "clean_file_archive": "2016-6-30_11-20-31/lobbyist_employer2_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 276,
+    "fields": {
+        "version": 4,
+        "file_name": "LOBBYIST_EMP_LOBBYIST1_CD",
+        "download_records_count": 1501,
+        "clean_records_count": 1500,
+        "load_records_count": 0,
+        "download_columns_count": 6,
+        "clean_columns_count": 6,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-30_11-20-31/LOBBYIST_EMP_LOBBYIST1_CD.TSV",
+        "clean_file_archive": "2016-6-30_11-20-31/lobbyist_emp_lobbyist1_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 277,
+    "fields": {
+        "version": 4,
+        "file_name": "NAMES_CD",
+        "download_records_count": 438209,
+        "clean_records_count": 438208,
+        "load_records_count": 0,
+        "download_columns_count": 10,
+        "clean_columns_count": 10,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-30_11-20-31/NAMES_CD.TSV",
+        "clean_file_archive": "2016-6-30_11-20-31/names_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 278,
+    "fields": {
+        "version": 4,
+        "file_name": "ACRONYMS_CD",
+        "download_records_count": 885,
+        "clean_records_count": 884,
+        "load_records_count": 0,
+        "download_columns_count": 4,
+        "clean_columns_count": 4,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-30_11-20-31/ACRONYMS_CD.TSV",
+        "clean_file_archive": "2016-6-30_11-20-31/acronyms_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 279,
+    "fields": {
+        "version": 4,
+        "file_name": "LOBBY_AMENDMENTS_CD",
+        "download_records_count": 11277,
+        "clean_records_count": 11276,
+        "load_records_count": 0,
+        "download_columns_count": 42,
+        "clean_columns_count": 42,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-30_11-20-31/LOBBY_AMENDMENTS_CD.TSV",
+        "clean_file_archive": "2016-6-30_11-20-31/lobby_amendments_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 280,
+    "fields": {
+        "version": 4,
+        "file_name": "IMAGE_LINKS_CD",
+        "download_records_count": 14833,
+        "clean_records_count": 14832,
+        "load_records_count": 0,
+        "download_columns_count": 5,
+        "clean_columns_count": 5,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-30_11-20-31/IMAGE_LINKS_CD.TSV",
+        "clean_file_archive": "2016-6-30_11-20-31/image_links_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 281,
+    "fields": {
+        "version": 4,
+        "file_name": "LPAY_CD",
+        "download_records_count": 449850,
+        "clean_records_count": 449849,
+        "load_records_count": 0,
+        "download_columns_count": 26,
+        "clean_columns_count": 26,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-30_11-20-31/LPAY_CD.TSV",
+        "clean_file_archive": "2016-6-30_11-20-31/lpay_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 282,
+    "fields": {
+        "version": 4,
+        "file_name": "LOBBYIST_EMPLOYER_FIRMS2_CD",
+        "download_records_count": 525,
+        "clean_records_count": 524,
+        "load_records_count": 0,
+        "download_columns_count": 5,
+        "clean_columns_count": 5,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-30_11-20-31/LOBBYIST_EMPLOYER_FIRMS2_CD.TSV",
+        "clean_file_archive": "2016-6-30_11-20-31/lobbyist_employer_firms2_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 283,
+    "fields": {
+        "version": 4,
+        "file_name": "EFS_FILING_LOG_CD",
+        "download_records_count": 146814,
+        "clean_records_count": 146813,
+        "load_records_count": 0,
+        "download_columns_count": 6,
+        "clean_columns_count": 6,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-30_11-20-31/EFS_FILING_LOG_CD.TSV",
+        "clean_file_archive": "2016-6-30_11-20-31/efs_filing_log_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 284,
+    "fields": {
+        "version": 4,
+        "file_name": "LOBBYIST_CONTRIBUTIONS2_CD",
+        "download_records_count": 6506,
+        "clean_records_count": 6505,
+        "load_records_count": 0,
+        "download_columns_count": 7,
+        "clean_columns_count": 7,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-30_11-20-31/LOBBYIST_CONTRIBUTIONS2_CD.TSV",
+        "clean_file_archive": "2016-6-30_11-20-31/lobbyist_contributions2_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 285,
+    "fields": {
+        "version": 4,
+        "file_name": "SPLT_CD",
+        "download_records_count": 3254708,
+        "clean_records_count": 3260265,
+        "load_records_count": 0,
+        "download_columns_count": 8,
+        "clean_columns_count": 8,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-30_11-20-31/SPLT_CD.TSV",
+        "clean_file_archive": "2016-6-30_11-20-31/splt_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 286,
+    "fields": {
+        "version": 4,
+        "file_name": "FILERNAME_CD",
+        "download_records_count": 696921,
+        "clean_records_count": 696920,
+        "load_records_count": 0,
+        "download_columns_count": 17,
+        "clean_columns_count": 17,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-30_11-20-31/FILERNAME_CD.TSV",
+        "clean_file_archive": "2016-6-30_11-20-31/filername_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 287,
+    "fields": {
+        "version": 4,
+        "file_name": "S401_CD",
+        "download_records_count": 42715,
+        "clean_records_count": 42714,
+        "load_records_count": 0,
+        "download_columns_count": 37,
+        "clean_columns_count": 37,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-30_11-20-31/S401_CD.TSV",
+        "clean_file_archive": "2016-6-30_11-20-31/s401_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 288,
+    "fields": {
+        "version": 4,
+        "file_name": "LOBBYIST_FIRM3_CD",
+        "download_records_count": 257,
+        "clean_records_count": 256,
+        "load_records_count": 0,
+        "download_columns_count": 18,
+        "clean_columns_count": 18,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-30_11-20-31/LOBBYIST_FIRM3_CD.TSV",
+        "clean_file_archive": "2016-6-30_11-20-31/lobbyist_firm3_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 289,
+    "fields": {
+        "version": 4,
+        "file_name": "S498_CD",
+        "download_records_count": 10533,
+        "clean_records_count": 10532,
+        "load_records_count": 0,
+        "download_columns_count": 37,
+        "clean_columns_count": 37,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-30_11-20-31/S498_CD.TSV",
+        "clean_file_archive": "2016-6-30_11-20-31/s498_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 290,
+    "fields": {
+        "version": 4,
+        "file_name": "FILER_ADDRESS_CD",
+        "download_records_count": 406854,
+        "clean_records_count": 406853,
+        "load_records_count": 0,
+        "download_columns_count": 5,
+        "clean_columns_count": 5,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-30_11-20-31/FILER_ADDRESS_CD.TSV",
+        "clean_file_archive": "2016-6-30_11-20-31/filer_address_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 291,
+    "fields": {
+        "version": 4,
+        "file_name": "CVR_LOBBY_DISCLOSURE_CD",
+        "download_records_count": 289346,
+        "clean_records_count": 289345,
+        "load_records_count": 0,
+        "download_columns_count": 52,
+        "clean_columns_count": 52,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-30_11-20-31/CVR_LOBBY_DISCLOSURE_CD.TSV",
+        "clean_file_archive": "2016-6-30_11-20-31/cvr_lobby_disclosure_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 292,
+    "fields": {
+        "version": 4,
+        "file_name": "CVR3_VERIFICATION_INFO_CD",
+        "download_records_count": 228243,
+        "clean_records_count": 228243,
+        "load_records_count": 0,
+        "download_columns_count": 13,
+        "clean_columns_count": 13,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-30_11-20-31/CVR3_VERIFICATION_INFO_CD.TSV",
+        "clean_file_archive": "2016-6-30_11-20-31/cvr3_verification_info_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 293,
+    "fields": {
+        "version": 4,
+        "file_name": "S496_CD",
+        "download_records_count": 38415,
+        "clean_records_count": 38414,
+        "load_records_count": 0,
+        "download_columns_count": 12,
+        "clean_columns_count": 12,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-30_11-20-31/S496_CD.TSV",
+        "clean_file_archive": "2016-6-30_11-20-31/s496_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 294,
+    "fields": {
+        "version": 4,
+        "file_name": "CVR_F470_CD",
+        "download_records_count": 0,
+        "clean_records_count": -1,
+        "load_records_count": 0,
+        "download_columns_count": 0,
+        "clean_columns_count": 0,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-30_11-20-31/CVR_F470_CD.TSV",
+        "clean_file_archive": ""
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 295,
+    "fields": {
+        "version": 4,
+        "file_name": "FILER_LINKS_CD",
+        "download_records_count": 264436,
+        "clean_records_count": 264435,
+        "load_records_count": 0,
+        "download_columns_count": 9,
+        "clean_columns_count": 9,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-30_11-20-31/FILER_LINKS_CD.TSV",
+        "clean_file_archive": "2016-6-30_11-20-31/filer_links_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 296,
+    "fields": {
+        "version": 4,
+        "file_name": "CVR2_LOBBY_DISCLOSURE_CD",
+        "download_records_count": 99016,
+        "clean_records_count": 99015,
+        "load_records_count": 0,
+        "download_columns_count": 13,
+        "clean_columns_count": 13,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-30_11-20-31/CVR2_LOBBY_DISCLOSURE_CD.TSV",
+        "clean_file_archive": "2016-6-30_11-20-31/cvr2_lobby_disclosure_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 297,
+    "fields": {
+        "version": 4,
+        "file_name": "LOBBYIST_EMP_LOBBYIST2_CD",
+        "download_records_count": 1501,
+        "clean_records_count": 1500,
+        "load_records_count": 0,
+        "download_columns_count": 6,
+        "clean_columns_count": 6,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-30_11-20-31/LOBBYIST_EMP_LOBBYIST2_CD.TSV",
+        "clean_file_archive": "2016-6-30_11-20-31/lobbyist_emp_lobbyist2_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 298,
+    "fields": {
+        "version": 4,
+        "file_name": "FILER_TYPE_PERIODS_CD",
+        "download_records_count": 0,
+        "clean_records_count": -1,
+        "load_records_count": 0,
+        "download_columns_count": 0,
+        "clean_columns_count": 0,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-30_11-20-31/FILER_TYPE_PERIODS_CD.TSV",
+        "clean_file_archive": ""
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 299,
+    "fields": {
+        "version": 4,
+        "file_name": "FILER_TO_FILER_TYPE_CD",
+        "download_records_count": 486399,
+        "clean_records_count": 486398,
+        "load_records_count": 0,
+        "download_columns_count": 16,
+        "clean_columns_count": 16,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-30_11-20-31/FILER_TO_FILER_TYPE_CD.TSV",
+        "clean_file_archive": "2016-6-30_11-20-31/filer_to_filer_type_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 300,
+    "fields": {
+        "version": 4,
+        "file_name": "FILER_ETHICS_CLASS_CD",
+        "download_records_count": 15175,
+        "clean_records_count": 15174,
+        "load_records_count": 0,
+        "download_columns_count": 3,
+        "clean_columns_count": 3,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-30_11-20-31/FILER_ETHICS_CLASS_CD.TSV",
+        "clean_file_archive": "2016-6-30_11-20-31/filer_ethics_class_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 301,
+    "fields": {
+        "version": 4,
+        "file_name": "CVR_REGISTRATION_CD",
+        "download_records_count": 44205,
+        "clean_records_count": 44204,
+        "load_records_count": 0,
+        "download_columns_count": 71,
+        "clean_columns_count": 71,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-30_11-20-31/CVR_REGISTRATION_CD.TSV",
+        "clean_file_archive": "2016-6-30_11-20-31/cvr_registration_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 302,
+    "fields": {
+        "version": 4,
+        "file_name": "LOBBYIST_FIRM1_CD",
+        "download_records_count": 257,
+        "clean_records_count": 256,
+        "load_records_count": 0,
+        "download_columns_count": 18,
+        "clean_columns_count": 18,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-30_11-20-31/LOBBYIST_FIRM1_CD.TSV",
+        "clean_file_archive": "2016-6-30_11-20-31/lobbyist_firm1_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 303,
+    "fields": {
+        "version": 4,
+        "file_name": "SMRY_CD",
+        "download_records_count": 8215590,
+        "clean_records_count": 8215589,
+        "load_records_count": 0,
+        "download_columns_count": 9,
+        "clean_columns_count": 9,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-30_11-20-31/SMRY_CD.TSV",
+        "clean_file_archive": "2016-6-30_11-20-31/smry_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 304,
+    "fields": {
+        "version": 4,
+        "file_name": "S497_CD",
+        "download_records_count": 606159,
+        "clean_records_count": 606158,
+        "load_records_count": 0,
+        "download_columns_count": 41,
+        "clean_columns_count": 41,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-30_11-20-31/S497_CD.TSV",
+        "clean_file_archive": "2016-6-30_11-20-31/s497_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 305,
+    "fields": {
+        "version": 4,
+        "file_name": "FILER_TYPES_CD",
+        "download_records_count": 19,
+        "clean_records_count": 18,
+        "load_records_count": 0,
+        "download_columns_count": 5,
+        "clean_columns_count": 5,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-30_11-20-31/FILER_TYPES_CD.TSV",
+        "clean_file_archive": "2016-6-30_11-20-31/filer_types_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 306,
+    "fields": {
+        "version": 4,
+        "file_name": "LOBBYIST_CONTRIBUTIONS3_CD",
+        "download_records_count": 6506,
+        "clean_records_count": 6505,
+        "load_records_count": 0,
+        "download_columns_count": 7,
+        "clean_columns_count": 7,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-30_11-20-31/LOBBYIST_CONTRIBUTIONS3_CD.TSV",
+        "clean_file_archive": "2016-6-30_11-20-31/lobbyist_contributions3_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 307,
+    "fields": {
+        "version": 4,
+        "file_name": "LOBBYIST_CONTRIBUTIONS1_CD",
+        "download_records_count": 6506,
+        "clean_records_count": 6505,
+        "load_records_count": 0,
+        "download_columns_count": 7,
+        "clean_columns_count": 7,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-30_11-20-31/LOBBYIST_CONTRIBUTIONS1_CD.TSV",
+        "clean_file_archive": "2016-6-30_11-20-31/lobbyist_contributions1_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 308,
+    "fields": {
+        "version": 4,
+        "file_name": "FILER_STATUS_TYPES_CD",
+        "download_records_count": 9,
+        "clean_records_count": 8,
+        "load_records_count": 0,
+        "download_columns_count": 2,
+        "clean_columns_count": 2,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-30_11-20-31/FILER_STATUS_TYPES_CD.TSV",
+        "clean_file_archive": "2016-6-30_11-20-31/filer_status_types_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 309,
+    "fields": {
+        "version": 4,
+        "file_name": "LOBBYIST_FIRM_LOBBYIST1_CD",
+        "download_records_count": 578,
+        "clean_records_count": 577,
+        "load_records_count": 0,
+        "download_columns_count": 6,
+        "clean_columns_count": 6,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-30_11-20-31/LOBBYIST_FIRM_LOBBYIST1_CD.TSV",
+        "clean_file_archive": "2016-6-30_11-20-31/lobbyist_firm_lobbyist1_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 310,
+    "fields": {
+        "version": 4,
+        "file_name": "CVR_E530_CD",
+        "download_records_count": 191,
+        "clean_records_count": 190,
+        "load_records_count": 0,
+        "download_columns_count": 32,
+        "clean_columns_count": 32,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-30_11-20-31/CVR_E530_CD.TSV",
+        "clean_file_archive": "2016-6-30_11-20-31/cvr_e530_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 311,
+    "fields": {
+        "version": 4,
+        "file_name": "CVR_SO_CD",
+        "download_records_count": 15227,
+        "clean_records_count": 15226,
+        "load_records_count": 0,
+        "download_columns_count": 54,
+        "clean_columns_count": 54,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-30_11-20-31/CVR_SO_CD.TSV",
+        "clean_file_archive": "2016-6-30_11-20-31/cvr_so_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 312,
+    "fields": {
+        "version": 4,
+        "file_name": "LOBBYIST_EMPLOYER3_CD",
+        "download_records_count": 1731,
+        "clean_records_count": 1730,
+        "load_records_count": 0,
+        "download_columns_count": 20,
+        "clean_columns_count": 20,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-30_11-20-31/LOBBYIST_EMPLOYER3_CD.TSV",
+        "clean_file_archive": "2016-6-30_11-20-31/lobbyist_employer3_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 313,
+    "fields": {
+        "version": 4,
+        "file_name": "LOBBYIST_EMPLOYER_FIRMS1_CD",
+        "download_records_count": 525,
+        "clean_records_count": 524,
+        "load_records_count": 0,
+        "download_columns_count": 5,
+        "clean_columns_count": 5,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-30_11-20-31/LOBBYIST_EMPLOYER_FIRMS1_CD.TSV",
+        "clean_file_archive": "2016-6-30_11-20-31/lobbyist_employer_firms1_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 314,
+    "fields": {
+        "version": 4,
+        "file_name": "F690P2_CD",
+        "download_records_count": 18903,
+        "clean_records_count": 18902,
+        "load_records_count": 0,
+        "download_columns_count": 11,
+        "clean_columns_count": 11,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-30_11-20-31/F690P2_CD.TSV",
+        "clean_file_archive": "2016-6-30_11-20-31/f690p2_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 315,
+    "fields": {
+        "version": 4,
+        "file_name": "LATT_CD",
+        "download_records_count": 74846,
+        "clean_records_count": 74845,
+        "load_records_count": 0,
+        "download_columns_count": 20,
+        "clean_columns_count": 20,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-30_11-20-31/LATT_CD.TSV",
+        "clean_file_archive": "2016-6-30_11-20-31/latt_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 316,
+    "fields": {
+        "version": 4,
+        "file_name": "ADDRESS_CD",
+        "download_records_count": 331703,
+        "clean_records_count": 331702,
+        "load_records_count": 0,
+        "download_columns_count": 7,
+        "clean_columns_count": 7,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-30_11-20-31/ADDRESS_CD.TSV",
+        "clean_file_archive": "2016-6-30_11-20-31/address_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 317,
+    "fields": {
+        "version": 4,
+        "file_name": "DEBT_CD",
+        "download_records_count": 418997,
+        "clean_records_count": 419376,
+        "load_records_count": 0,
+        "download_columns_count": 33,
+        "clean_columns_count": 33,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-30_11-20-31/DEBT_CD.TSV",
+        "clean_file_archive": "2016-6-30_11-20-31/debt_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 318,
+    "fields": {
+        "version": 4,
+        "file_name": "LOBBYIST_FIRM_EMPLOYER2_CD",
+        "download_records_count": 171,
+        "clean_records_count": 170,
+        "load_records_count": 0,
+        "download_columns_count": 11,
+        "clean_columns_count": 11,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-30_11-20-31/LOBBYIST_FIRM_EMPLOYER2_CD.TSV",
+        "clean_file_archive": "2016-6-30_11-20-31/lobbyist_firm_employer2_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 319,
+    "fields": {
+        "version": 4,
+        "file_name": "LEXP_CD",
+        "download_records_count": 184337,
+        "clean_records_count": 184336,
+        "load_records_count": 0,
+        "download_columns_count": 25,
+        "clean_columns_count": 25,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-30_11-20-31/LEXP_CD.TSV",
+        "clean_file_archive": "2016-6-30_11-20-31/lexp_cd.csv"
+    }
+},
+{
+    "model": "calaccess_raw.rawdatafile",
+    "pk": 320,
+    "fields": {
+        "version": 4,
+        "file_name": "EXPN_CD",
+        "download_records_count": 4996603,
+        "clean_records_count": 4998701,
+        "load_records_count": 0,
+        "download_columns_count": 53,
+        "clean_columns_count": 53,
+        "load_columns_count": 0,
+        "download_file_archive": "2016-6-30_11-20-31/EXPN_CD.TSV",
+        "clean_file_archive": "2016-6-30_11-20-31/expn_cd.csv"
+    }
+}
+]
