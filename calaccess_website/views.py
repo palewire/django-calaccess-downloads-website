@@ -1,6 +1,4 @@
-from django.views.generic import (
-    RedirectView,
-)
+import os
 from django.http import Http404
 from calaccess_raw import get_model_list
 from django.core.urlresolvers import reverse
@@ -10,6 +8,7 @@ from bakery.views import (
     BuildableYearArchiveView,
     BuildableDetailView,
     BuildableListView,
+    BuildableRedirectView,
 )
 from calaccess_raw.models.tracking import RawDataVersion, RawDataFile
 
@@ -49,11 +48,11 @@ class VersionDetail(BuildableDetailView):
         return reverse('version_detail', kwargs=dict(pk=obj.pk))
 
 
-class LatestVersion(RedirectView):
+class LatestVersion(BuildableRedirectView):
     """
     Redirect to the detail page of the latest CAL-ACCESS version
     """
-    permanent = False
+    build_path = "versions/latest/index.html"
     pattern_name = 'version_detail'
 
     def get_redirect_url(self, *args, **kwargs):
