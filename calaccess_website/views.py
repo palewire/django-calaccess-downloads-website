@@ -1,15 +1,16 @@
 from django.views.generic import (
     ListView,
     DetailView,
-    ArchiveIndexView,
-    YearArchiveView,
     RedirectView,
 )
 from django.http import Http404
 from calaccess_raw import get_model_list
 from django.core.urlresolvers import reverse
 from django.template.defaultfilters import slugify
-from bakery.views import  BuildableArchiveIndexView
+from bakery.views import (
+    BuildableArchiveIndexView,
+    BuildableYearArchiveView,
+)
 from calaccess_raw.models.tracking import RawDataVersion, RawDataFile
 
 
@@ -27,7 +28,7 @@ class VersionArchiveIndex(BuildableArchiveIndexView):
     build_path = "index.html"
 
 
-class VersionYearArchiveList(YearArchiveView):
+class VersionYearArchiveList(BuildableYearArchiveView):
     """
     A list of all versions of CAL-ACCESS in a given year
     """

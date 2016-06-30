@@ -27,6 +27,7 @@ INSTALLED_APPS = [
 BUILD_DIR = os.path.join(BASE_DIR, '.build')
 BAKERY_VIEWS = (
     'calaccess_website.views.VersionArchiveIndex',
+    'calaccess_website.views.VersionYearArchiveList',
 )
 
 #
