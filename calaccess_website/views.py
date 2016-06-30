@@ -8,6 +8,7 @@ from bakery.views import (
     BuildableDetailView,
     BuildableListView,
     BuildableRedirectView,
+    Buildable404View,
 )
 from calaccess_raw.models.tracking import RawDataVersion, RawDataFile
 
@@ -119,3 +120,11 @@ class RawDataFileDetail(BuildableDetailView):
 
     def build_queryset(self):
         [self.build_object(o) for o in self.get_queryset()]
+
+#
+# Extra stuff
+#
+
+class CalAccess404View(Buildable404View):
+    build_path = "404.html"
+    template_name = "calaccess_website/404.html"
