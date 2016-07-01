@@ -63,17 +63,17 @@ def createconfig():
     config['AWS_SECRET_ACCESS_KEY'] = prompt('Your AWS secret key:')
     config['AWS_REGION_NAME'] = prompt('Your AWS region name:', default='us-west-2')
     config['KEY_NAME'] = prompt('Your AWS key name:', default='my-key-pair')
-    config['AWS_STORAGE_BUCKET_NAME'] = prompt(
-        'S3 bucket name:',
-        default='django-calaccess',
-    )
     config['DB_NAME'] = prompt('Database name:', default='calaccess_website')
     config['DB_USER'] = prompt('Database user:', default=env.app_user)
     config['DB_PASSWORD'] = prompt('Database user password:')
     config['RDS_HOST'] = prompt('RDS host:')
     config['EC2_HOST'] = prompt('EC2 host:')
+    config['S3_ARCHIVED_DATA_BUCKET'] = prompt(
+        'Name of the S3 bucket for archived data:',
+        default='django-calaccess',
+    )
     config['S3_BAKED_CONTENT_BUCKET'] = prompt(
-        'Name of the S3 bucket for baked content',
+        'Name of the S3 bucket for baked content:',
         default='calaccess.californiacivicdata.org',
     )
 
