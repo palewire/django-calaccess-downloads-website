@@ -71,6 +71,7 @@ class RawDataFileList(BuildableListView):
     queryset = get_model_list()
     template_name = 'calaccess_website/raw_data_files_list.html'
     context_object_name = 'raw data files'
+    build_path = "raw-data-files/index.html"
 
 
 class RawDataFileDetail(BuildableDetailView):
