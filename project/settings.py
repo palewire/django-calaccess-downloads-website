@@ -60,9 +60,17 @@ TEMPLATES = [
 WSGI_APPLICATION = 'project.wsgi.application'
 
 
+AWS_ACCESS_KEY_ID = os.getenv('aws_access_key_id')
+AWS_SECRET_ACCESS_KEY = os.getenv('aws_secret_access_key')
+AWS_S3_REGION_NAME = os.getenv('aws_region_name')
+
 #
 # Bakery
 #
+
+AWS_S3_CALLING_FORMAT = 'boto.s3.connection.OrdinaryCallingFormat'
+AWS_S3_HOST = 's3-%s.amazonaws.com' % AWS_S3_REGION_NAME
+AWS_BUCKET_NAME = os.getenv('s3_baked_content_bucket')
 
 BUILD_DIR = os.path.join(BASE_DIR, '.build')
 BAKERY_VIEWS = (
@@ -82,13 +90,10 @@ BAKERY_VIEWS = (
 CALACCESS_DAT_SOURCE = ''
 CALACCESS_STORE_ARCHIVE = True
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-AWS_STORAGE_BUCKET_NAME = os.getenv('aws_storage_bucket_name')
+AWS_STORAGE_BUCKET_NAME = os.getenv('aws_storage_bucket_name') 
 S3_URL = 'https://{}.s3-accelerate.amazonaws.com/'.format(
     AWS_STORAGE_BUCKET_NAME
 )
-AWS_ACCESS_KEY_ID = os.getenv('aws_access_key_id')
-AWS_SECRET_ACCESS_KEY = os.getenv('aws_secret_access_key')
-AWS_S3_REGION_NAME = os.getenv('aws_region_name')
 
 DATABASES = {
     'default': {

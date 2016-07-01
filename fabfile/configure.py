@@ -72,6 +72,10 @@ def createconfig():
     config['DB_PASSWORD'] = prompt('Database user password:')
     config['RDS_HOST'] = prompt('RDS host:')
     config['EC2_HOST'] = prompt('EC2 host:')
+    config['S3_BAKED_CONTENT_BUCKET'] = prompt(
+        'Name of the S3 bucket for baked content',
+        default='calaccess.californiacivicdata.org',
+    )
 
     # Save it to the configuration file
     [setconfig(k, v) for k, v in config.items()]
