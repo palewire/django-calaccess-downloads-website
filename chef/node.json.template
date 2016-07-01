@@ -21,7 +21,7 @@
     },
     "crons": {
         "update": {
-            "command": "source %(app_dir)sbin/activate && %(app_dir)sbin/python %(repo_dir)smanage.py updatecalaccessrawdata --noinput --verbosity=3 2>&1 > output.log",
+            "command": "source %(app_dir)sbin/activate && %(app_dir)sbin/python %(repo_dir)smanage.py updatecalaccessrawdata --noinput --verbosity=3 2>&1 > output.log && %(app_dir)sbin/python %(repo_dir)smanage.py build && %(app_dir)sbin/python %(repo_dir)smanage.py publish",
             "hour": "5,11,17,23",
             "minute": "25"
         }
