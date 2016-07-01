@@ -1,3 +1,7 @@
+{% extends 'calaccess_website/base.html' %}
+
+{% block content %}
+
 <h2>CAL-ACCESS Raw Data Files</h2>
 
 <ul>
@@ -5,3 +9,5 @@
     <li><a href="{{ file.db_table|slugify }}">{{ file.db_table }}</a></li>
 {% endfor %}
 </ul>
+
+{% endblock %}

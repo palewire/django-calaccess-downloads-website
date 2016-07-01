@@ -1,29 +1,33 @@
+{% extends 'calaccess_website/base.html' %}
+
 {% load calaccess_website_tags %}
 
-<h2>CAL-ACCESS Releases</h2>
+{% block content %}
+  <h2>CAL-ACCESS Releases</h2>
 
-<ul>
-{% for obj in latest %}
-    <li>{{ obj.release_datetime|date:"l, N d, Y, (P)" }}
-        <ul>
-            <li><a href="{% archive_url obj.zip_file_archive.name %}">zip file</a></li>
-            <li><a href="{% url 'version_detail' pk=obj.id %}">details</a></li>
-        </ul>   
-    </li>
-{% endfor %}
-</ul>
+  <ul>
+  {% for obj in latest %}
+      <li>{{ obj.release_datetime|date:"l, N d, Y, (P)" }}
+          <ul>
+              <li><a href="{% archive_url obj.zip_file_archive.name %}">zip file</a></li>
+              <li><a href="{% url 'version_detail' pk=obj.id %}">details</a></li>
+          </ul>
+      </li>
+  {% endfor %}
+  </ul>
 
-{% for year in date_list %}
-<h4>Browse archive</h4>
+  {% for year in date_list %}
+  <h4>Browse archive</h4>
 
-<h5><a href="{% url 'version_latest_redirect' %}">Latest version</a></h5>
+  <h5><a href="{% url 'version_latest_redirect' %}">Latest version</a></h5>
 
-<h5>By year</h5>
-<ul>
-    <li>
-        <a href="{% url 'version_year_archive' year=year.year %}">
-            {{ year.year }}
-        </a>
-    </li>
-</ul>
-{% endfor %}
+  <h5>By year</h5>
+  <ul>
+      <li>
+          <a href="{% url 'version_year_archive' year=year.year %}">
+              {{ year.year }}
+          </a>
+      </li>
+  </ul>
+  {% endfor %}
+{% endblock %}

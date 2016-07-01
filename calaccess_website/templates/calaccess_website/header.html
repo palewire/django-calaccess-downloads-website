@@ -1,0 +1,28 @@
+{% load staticfiles %}
+
+<header class="container">
+  <div class="row">
+      <ul class="nav nav-pills red-border col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <li>
+            <a class="logo" href="{% url 'version_index' %}"><img height='38px' src="{% static "calaccess_website/images/bear-no-red-line.png" %}" alt=""></a>
+        </li>
+        <li><a href="{% url 'version_latest_redirect' %}"><i class="fa fa-newspaper-o"></i> Latest</a></li>
+        <li><a href=""><i class="fa fa-user"></i> Filers</a></li>
+        <li><a href=""><i class="fa fa-search"></i> Search</a></li>
+        <li>
+            <a href="https://github.com/california-civic-data-coalition/django-calaccess-downloads-website/"
+                target="_blank"><i class="fa fa-github"></i> Github</a>
+        </li>
+      </ul>
+  </div>
+</header>
+
+<script type="text/javascript">
+    var url = window.location;
+    // Will only work if string in href matches with location
+    $('ul.nav a[href="' + url + '"]').parent().addClass('active');
+    // Will also work for relative and absolute hrefs
+    $('ul.nav a').filter(function() {
+        return this.href == url;
+    }).parent().addClass('active');
+</script>
