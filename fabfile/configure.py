@@ -61,7 +61,10 @@ def createconfig():
     config = {}
     config['AWS_ACCESS_KEY_ID'] = prompt('Your AWS access key:')
     config['AWS_SECRET_ACCESS_KEY'] = prompt('Your AWS secret key:')
-    config['AWS_REGION_NAME'] = prompt('Your AWS region name:', default='us-west-2')
+    config['AWS_REGION_NAME'] = prompt(
+        'Your AWS region name:',
+        default='us-west-2',
+    )
     config['KEY_NAME'] = prompt('Your AWS key name:', default='my-key-pair')
     config['DB_NAME'] = prompt('Database name:', default='calaccess_website')
     config['DB_USER'] = prompt('Database user:', default=env.app_user)

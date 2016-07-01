@@ -90,7 +90,7 @@ BAKERY_VIEWS = (
 CALACCESS_DAT_SOURCE = ''
 CALACCESS_STORE_ARCHIVE = True
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-AWS_STORAGE_BUCKET_NAME = os.getenv('s3_archived_data_bucket') 
+AWS_STORAGE_BUCKET_NAME = os.getenv('s3_archived_data_bucket')
 AWS_S3_ENDPOINT_URL = 'https://{0}.s3-accelerate.amazonaws.com'.format(
     AWS_STORAGE_BUCKET_NAME
 )
