@@ -9,3 +9,4 @@ node.json
 .coverage
 .build
 .static
+django.log
