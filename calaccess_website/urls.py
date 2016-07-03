@@ -12,7 +12,7 @@ urlpatterns = [
 
     # Version archive views
     url(
-        r'^versions/archive/(?P<year>[0-9]{4})/$',
+        r'^archive/(?P<year>[0-9]{4})/$',
         views.VersionYearArchiveList.as_view(),
         name="version_year_archive"
     ),
