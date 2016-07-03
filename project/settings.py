@@ -168,7 +168,7 @@ LOGGING = {
     },
     'loggers': {
         'calaccess_raw.management': {
-            'handlers': ['logfile',],
+            'handlers': ['logfile', ],
             'level': 'DEBUG',
             'propagate': True,
         },
