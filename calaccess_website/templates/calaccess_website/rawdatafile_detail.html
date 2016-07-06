@@ -8,22 +8,22 @@
   <p>{{ object.doc.strip|safe }}</p>
 
   {% if version_list %}
-  <table border=1 cellpadding=8>
+  <table class="table">
   <thead>
       <tr>
           <th>Version</th>
-          <th>Records</th>
-          <th>Raw TSV</th>
-          <th>Clean CSV</th>
+          <th class="right">Records</th>
+          <th class="right">Raw TSV</th>
+          <th class="right">Clean CSV</th>
       </tr>
   </thead>
   <tbody>
   {% for file in version_list %}
       <tr>
           <td><a href="{% url 'version_detail' pk=file.version.pk %}">{{ file.version.release_datetime|date:"Y-m-d" }}</a></td>
-          <td>{{ file.clean_records_count|intcomma }}</td>
-          <td>{% if file.download_file_archive %}<a href="{% archive_url file.download_file_archive.name %}">.TSV</a>{% endif %}</td>
-          <td>{% if file.clean_file_archive %}<a href="{% archive_url file.clean_file_archive.name %}">.CSV</a>{% endif %}</td>
+          <td class="right">{{ file.clean_records_count|intcomma }}</td>
+          <td class="right">{% if file.download_file_archive %}<a href="{% archive_url file.download_file_archive.name %}">.TSV</a>{% endif %}</td>
+          <td class="right">{% if file.clean_file_archive %}<a href="{% archive_url file.clean_file_archive.name %}">.CSV</a>{% endif %}</td>
       </tr>
   {% endfor %}
   </tbody>

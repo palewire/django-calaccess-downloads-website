@@ -2,12 +2,13 @@
 {% load humanize calaccess_website_tags %}
 
 {% block content %}
-  <h2>CAL-ACCESS Release: {{ object.release_datetime|date:"l, N d, Y, (P)" }}</h2>
+  <h3>CAL-ACCESS Release <br />
+  {{ object.release_datetime|date:"l, N j, Y (P)" }}</h3>
 
-  <h3><a href="{% archive_url object.zip_file_archive.name %}">original zip file</a></h3>
+  <h4><a href="{% archive_url object.zip_file_archive.name %}">original zip file</a> ({{ object.pretty_size }})</h4>
 
   {% if object.files.all %}
-  <table border=1 cellpadding=8>
+  <table class="table table-striped">
   <thead>
       <tr>
           <th>File name</th>
@@ -30,4 +31,5 @@
   {% else %}
       <p>No files.</p>
   {% endif %}
+
 {% endblock %}
