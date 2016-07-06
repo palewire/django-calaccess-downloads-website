@@ -3,31 +3,41 @@
 {% load calaccess_website_tags %}
 
 {% block content %}
-  <h2>CAL-ACCESS Releases</h2>
+  <br />
+  <div class="jumbotron">
+    <h1>Welcome to the CAL-ACCESS downloads site!</h1>
+    <p>The CAL-ACCESS database tracks campaign finance and lobbying activity in California politics. <br />
+    Here, you can browse, learn about and download that data.</p>
+    <p><a class="btn btn-calaccess-red btn-lg" href="{% url 'version_latest_redirect' %}" role="button"><i class="fa fa-newspaper-o"></i> See the latest release</a></p>
+  </div>
 
-  <ul>
-  {% for obj in latest %}
-      <li>{{ obj.release_datetime|date:"l, N d, Y, (P)" }}
-          <ul>
-              <li><a href="{% archive_url obj.zip_file_archive.name %}">zip file</a></li>
-              <li><a href="{% url 'version_detail' pk=obj.id %}">details</a></li>
-          </ul>
-      </li>
-  {% endfor %}
-  </ul>
+  <div class="home-col col-md-6">
+    <h3>Latest releases</h3>
 
-  {% for year in date_list %}
-  <h4>Browse archive</h4>
+    <table class="table table-striped">
+      {% for obj in latest %}
+      <tr>
+        <th>{{ obj.release_datetime|date:"l, N j, Y" }}</th>
+        <td><a href="{% archive_url obj.zip_file_archive.name %}">zip file</a> ({{ obj.pretty_size }})</td>
+        <td><a href="{% url 'version_detail' pk=obj.id %}">details</a></td>
+      </tr>
+      {% endfor %}
+    </table>
 
-  <h5><a href="{% url 'version_latest_redirect' %}">Latest version</a></h5>
+  </div>
 
-  <h5>By year</h5>
-  <ul>
-      <li>
-          <a href="{% url 'version_year_archive' year=year.year %}">
-              {{ year.year }}
-          </a>
-      </li>
-  </ul>
-  {% endfor %}
+  <div class="home-col col-md-6">
+    <h3>By year</h3>
+    <ul>
+    {% for year in date_list %}
+        <li>
+            <a href="{% url 'version_year_archive' year=year.year %}">
+                {{ year.year }}
+            </a>
+        </li>
+    {% endfor %}
+    </ul>
+
+  </div>
+
 {% endblock %}

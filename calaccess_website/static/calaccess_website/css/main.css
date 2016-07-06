@@ -1,3 +1,7 @@
+.container {
+  max-width: 900px;
+}
+
 .red-border {
     border-bottom: solid 7px #ba0a35;
     height: 45px;
@@ -321,6 +325,31 @@ p.party-label{
 }
 .False{
   color: #333;
+}
+
+.btn-calaccess-red {
+  color: #fefdfb;
+  background-color: #ba0a35;
+}
+.btn-calaccess-red:hover, .btn-calaccess-red:focus {
+  color: #ccc8c0;
+}
+
+.jumbotron {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.jumbotron h1 {
+  font-size: 53px;
+}
+.jumbotron p {
+  margin-bottom: 20px;
+}
+
+.home-col h3 {
+  margin-top: 10px;
+  margin-bottom: 20px;
 }
 
 @media only screen
