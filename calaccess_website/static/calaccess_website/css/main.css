@@ -352,6 +352,11 @@ p.party-label{
   margin-bottom: 20px;
 }
 
+.table-type {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
 @media only screen
 and (max-width : 992px) {
     .align-right{

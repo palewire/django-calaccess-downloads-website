@@ -4,13 +4,46 @@
 
 <h2>CAL-ACCESS Raw Data Files</h2>
 
-<table class="table table-striped">
-{% for file in object_list %}
-    <tr>
-      <th><a href="{{ file.db_table|slugify }}">{{ file.db_table }}</th>
-      <td>{{ file.doc }}</td>
-    </tr>
-{% endfor %}
-</table>
+<section class="table-type">
+  <h3>Campaign tables</h3>
+  <table class="table table-striped">
+  {% for file in object_list  %}
+    {% if file.klass_group == 'campaign' %}
+      <tr>
+        <th><a href="{{ file.db_table|slugify }}">{{ file.db_table }}</th>
+        <td width="70%">{{ file.doc.strip|safe  }}</td>
+      </tr>
+    {% endif %}
+  {% endfor %}
+  </table>
+</section>
+
+<section class="table-type">
+  <h3>Lobbying tables</h3>
+  <table class="table table-striped">
+  {% for file in object_list  %}
+    {% if file.klass_group == 'lobbying' %}
+      <tr>
+        <th><a href="{{ file.db_table|slugify }}">{{ file.db_table }}</th>
+        <td width="70%">{{ file.doc.strip|safe  }}</td>
+      </tr>
+    {% endif %}
+  {% endfor %}
+  </table>
+</section>
+
+<section class="table-type">
+  <h3>Common tables</h3>
+  <table class="table table-striped">
+  {% for file in object_list  %}
+    {% if file.klass_group == 'common' %}
+      <tr>
+        <th><a href="{{ file.db_table|slugify }}">{{ file.db_table }}</th>
+        <td width="70%">{{ file.doc.strip|safe  }}</td>
+      </tr>
+    {% endif %}
+  {% endfor %}
+  </table>
+</section>
 
 {% endblock %}
