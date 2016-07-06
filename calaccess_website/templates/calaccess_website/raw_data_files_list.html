@@ -4,10 +4,13 @@
 
 <h2>CAL-ACCESS Raw Data Files</h2>
 
-<ul>
+<table class="table table-striped">
 {% for file in object_list %}
-    <li><a href="{{ file.db_table|slugify }}">{{ file.db_table }}</a></li>
+    <tr>
+      <th><a href="{{ file.db_table|slugify }}">{{ file.db_table }}</th>
+      <td>{{ file.doc }}</td>
+    </tr>
 {% endfor %}
-</ul>
+</table>
 
 {% endblock %}
