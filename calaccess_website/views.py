@@ -44,6 +44,19 @@ class VersionDetail(BuildableDetailView):
     model = RawDataVersion
     template_name = 'calaccess_website/version_detail.html'
 
+    def get_context_data(self, **kwargs):
+        """
+        Add some extra bits to the template's context
+        """
+        context = super(VersionDetail, self).get_context_data(**kwargs)
+        # Add the file's raw data model klass_group to the context
+        context['files'] = []
+        for file_ in self.object.files.all():
+            values = file_.__dict__
+            values['klass_group'] = file_.model().klass_group
+            context['files'].append(values)
+        return context
+
     def get_url(self, obj):
         return reverse('version_detail', kwargs=dict(pk=obj.pk))
 

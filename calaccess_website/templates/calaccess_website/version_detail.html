@@ -9,29 +9,32 @@
 
   {% if object.files.all %}
 
-
-  <table class="table table-striped">
-  <thead>
-      <tr>
-          <th>File name</th>
-          <th class="right">Records</th>
-          <th class="right">Raw TSV</th>
-          <th class="right">Clean CSV</th>
-          <th class="right">Errors</th>
-      </tr>
-  </thead>
-  <tbody>
-  {% for file in object.files.all %}
-      <tr>
-          <td><a href="{% url 'rawdatafile_detail' file.file_name|slugify %}">{{ file.file_name }}</a></td>
-          <td class="right">{{ file.clean_records_count|intcomma }}</td>
-          <td class="right">{% if file.download_file_archive %}<a href="{% archive_url file.download_file_archive.name %}">.TSV</a>{% endif %}</td>
-          <td class="right">{% if file.clean_file_archive %}<a href="{% archive_url file.clean_file_archive.name %}">.CSV</a>{% endif %}</td>
-          <td class="right">{% if file.error_log_archive %}<a href="{% archive_url file.error_log_archive.name %}">{{ file.error_count|intcomma }}</a>{% else %}No errors{% endif %}</td>
-      </tr>
+  {% regroup files|dictsort:"klass_group" by klass_group as model_groups %}
+  {% for group in model_groups %}
+    <h3>{{ group.grouper|capfirst }}</h3>
+    <table class="table table-striped">
+    <thead>
+        <tr>
+            <th>File name</th>
+            <th class="right">Records</th>
+            <th class="right">Raw TSV</th>
+            <th class="right">Clean CSV</th>
+            <th class="right">Errors</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for file in group.list %}
+        <tr>
+            <td><a href="{% url 'rawdatafile_detail' file.file_name|slugify %}">{{ file.file_name }}</a></td>
+            <td class="right">{{ file.clean_records_count|intcomma }}</td>
+            <td class="right">{% if file.download_file_archive %}<a href="{% archive_url file.download_file_archive.name %}">.TSV</a>{% endif %}</td>
+            <td class="right">{% if file.clean_file_archive %}<a href="{% archive_url file.clean_file_archive.name %}">.CSV</a>{% endif %}</td>
+            <td class="right">{% if file.error_log_archive %}<a href="{% archive_url file.error_log_archive.name %}">{{ file.error_count|intcomma }}</a>{% else %}No errors{% endif %}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+    </table>
   {% endfor %}
-  </tbody>
-  </table>
   {% else %}
       <p>No files.</p>
   {% endif %}
