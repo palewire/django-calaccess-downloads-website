@@ -1,21 +1,20 @@
 {% extends 'calaccess_website/base.html' %}
 
 {% block content %}
+    <h2>CAL-ACCESS Raw Data Files</h2>
 
-<h2>CAL-ACCESS Raw Data Files</h2>
-
-{% regroup object_list by klass_group as model_groups %}
-{% for group in  model_groups %}
-<section class="table-type">
-  <h3>{{ group.grouper|capfirst }}</h3>
-  <table class="table table-striped">
-  {% for file in group.list  %}
-      <tr>
-        <th><a href="{{ file.db_table|slugify }}">{{ file.db_table }}</th>
-        <td width="70%">{{ file.doc.strip|safe  }}</td>
-      </tr>
-  {% endfor %}
-  </table>
-</section>
-{% endfor %}
+    {% regroup object_list by klass_group as model_groups %}
+    {% for group in  model_groups %}
+    <section class="table-type">
+      <h3>{{ group.grouper|capfirst }}</h3>
+      <table class="table table-striped">
+      {% for file in group.list  %}
+          <tr>
+            <th><a href="{{ file.db_table|slugify }}">{{ file.db_table }}</th>
+            <td width="70%">{{ file.doc.strip|safe  }}</td>
+          </tr>
+      {% endfor %}
+      </table>
+    </section>
+    {% endfor %}
 {% endblock %}
