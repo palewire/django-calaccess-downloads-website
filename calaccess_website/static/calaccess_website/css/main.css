@@ -1,13 +1,15 @@
 .container {
   max-width: 900px;
 }
-
 .red-border {
     border-bottom: solid 7px #ba0a35;
     height: 45px;
 }
 table {
     font-size: 13px;
+}
+p {
+    font-size: 17px;
 }
 
 .bold { font-weight: bold; }
