@@ -3,14 +3,14 @@
 
 {% block breadcrumbs %}
 <ol class="breadcrumb">
+  <li><a href="{% url 'home' %}">Home</a></li>
   <li><a href="{% url 'version_index' %}">Version archive</a></li>
   <li class="active">{{ object.release_datetime|date:"N j, Y" }}</li>
 </ol>
 {% endblock %}
 
 {% block content %}
-  <h3>CAL-ACCESS Release <br />
-  {{ object.release_datetime|date:"l, N j, Y (P)" }}</h3>
+  <h2>Release: {{ object.release_datetime|date:"l, N j, Y (P)" }}</h2>
 
   <h4><a href="{% archive_url object.zip_file_archive.name %}">original zip file</a> ({{ object.pretty_size }})</h4>
 

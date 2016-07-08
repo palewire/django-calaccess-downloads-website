@@ -6,8 +6,8 @@ urlpatterns = [
     # The homepage
     url(
         r'^$',
-        views.VersionArchiveIndex.as_view(),
-        name="version_index",
+        views.Home.as_view(),
+        name="home",
     ),
 
     # Version archive views
@@ -15,6 +15,11 @@ urlpatterns = [
         r'^archive/(?P<year>[0-9]{4})/$',
         views.VersionYearArchiveList.as_view(),
         name="version_year_archive"
+    ),
+    url(
+        r'^versions/$',
+        views.VersionArchiveIndex.as_view(),
+        name="version_index",
     ),
     url(
         r'^versions/(?P<pk>[0-9]{1,})/$',

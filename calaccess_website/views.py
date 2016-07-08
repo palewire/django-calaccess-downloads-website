@@ -17,6 +17,16 @@ from calaccess_raw.models.tracking import RawDataVersion, RawDataFile
 # Version based archives
 #
 
+class Home(BuildableArchiveIndexView):
+    """
+    A list of the latest versions of CAL-ACCESS in our archive
+    """
+    model = RawDataVersion
+    date_field = "release_datetime"
+    template_name = "calaccess_website/home.html"
+    build_path = "index.html"
+
+
 class VersionArchiveIndex(BuildableArchiveIndexView):
     """
     A list of the latest versions of CAL-ACCESS in our archive
@@ -24,7 +34,7 @@ class VersionArchiveIndex(BuildableArchiveIndexView):
     model = RawDataVersion
     date_field = "release_datetime"
     template_name = "calaccess_website/version_archive.html"
-    build_path = "index.html"
+    build_path = "versions/index.html"
 
 
 class VersionYearArchiveList(BuildableYearArchiveView):
