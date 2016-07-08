@@ -23,9 +23,9 @@
     <thead>
         <tr>
             <th>File name</th>
-            <th class="right">Raw TSV</th>
-            <th class="right">Clean CSV</th>
-            <th class="right">Errors</th>
+            <th width = "12%" class="right">Raw TSV</th>
+            <th width = "12%" class="right">Clean CSV</th>
+            <th width = "12%" class="right">Errors</th>
         </tr>
     </thead>
     <tbody>
@@ -33,8 +33,8 @@
         <tr>
             <td><a href="{% url 'rawdatafile_detail' file.file_name|slugify %}">{{ file.file_name }}</a></td>
             <td class="right">{{ file.download_records_count|intcomma }}  {% if file.download_file_archive %}<a href="{% archive_url file.download_file_archive.name %}"><i class="fa fa-download"></i></a>{% endif %}</td>
-            <td class="right">{% if file.clean_file_archive %}{{ file.clean_records_count|intcomma }}  <a href="{% archive_url file.clean_file_archive.name %}"><i class="fa fa-download"></i></a>{% else %}No file{% endif %}</td>
-            <td class="right">{% if file.error_log_archive %}{{ file.error_count|intcomma }}  <a href="{% archive_url file.error_log_archive.name %}"><i class="fa fa-download"></i></a>{% else%}No errors{% endif %}</td>
+            <td class="right">{% if file.clean_file_archive %}{{ file.clean_records_count|intcomma }}  <a href="{% archive_url file.clean_file_archive.name %}"><i class="fa fa-download"></i></a>{% else %} -- {% endif %}</td>
+            <td class="right">{% if file.error_log_archive %}{{ file.error_count|intcomma }}  <a href="{% archive_url file.error_log_archive.name %}"><i class="fa fa-download"></i></a>{% else%} -- {% endif %}</td>
         </tr>
     {% endfor %}
     </tbody>
