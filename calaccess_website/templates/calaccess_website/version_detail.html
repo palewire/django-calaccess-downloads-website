@@ -1,6 +1,13 @@
 {% extends 'calaccess_website/base.html' %}
 {% load humanize calaccess_website_tags %}
 
+{% block breadcrumbs %}
+<ol class="breadcrumb">
+  <li><a href="{% url 'version_index' %}">Version archive</a></li>
+  <li class="active">{{ object.release_datetime|date:"N j, Y" }}</li>
+</ol>
+{% endblock %}
+
 {% block content %}
   <h3>CAL-ACCESS Release <br />
   {{ object.release_datetime|date:"l, N j, Y (P)" }}</h3>
@@ -16,10 +23,10 @@
     <thead>
         <tr>
             <th>File name</th>
-            <th class="right">Records</th>
-            <th class="right">Raw TSV</th>
-            <th class="right">Clean CSV</th>
-            <th class="right">Errors</th>
+            <th width="12%" class="right">Records</th>
+            <th width="12%" class="right">Raw TSV</th>
+            <th width="12%" class="right">Clean CSV</th>
+            <th width="12%" class="right">Errors</th>
         </tr>
     </thead>
     <tbody>

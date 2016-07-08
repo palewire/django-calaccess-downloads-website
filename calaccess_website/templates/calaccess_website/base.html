@@ -20,14 +20,16 @@
 
     {% block container %}
         <div class="container">
+
+        {% block breadcrumbs %}
+        {% endblock %}
+
         {% block content %}
         {% endblock %}
 
         <ul class="nav nav-pills red-border col-lg-12 col-md-12 col-sm-12 col-xs-12"></ul>
         </div>
     {% endblock %}
-
-
 
     <script src="{% static "calaccess_website/js/bootstrap.js" %}"></script>
     <script src="{% static "calaccess_website/js/underscore-min.js" %}"></script>

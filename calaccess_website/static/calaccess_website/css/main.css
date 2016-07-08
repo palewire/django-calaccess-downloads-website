@@ -51,12 +51,12 @@ header {
     border-color: #fff;
 }
 .breadcrumb {
-    padding: 10px 10px 10px 0;
-    margin-bottom: 0px;
-    border-color: #fff;
+    padding: 10px;
+    margin: 10px auto;
+    border-bottom: 1px solid #ba0a35;
+    border-radius: 0;
     background-color: #fff;
     list-style: none;
-    border-radius: 4px;
 }
 .breadcrumb>li>a {
     background-color: #ba0a35;
