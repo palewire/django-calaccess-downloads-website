@@ -10,6 +10,7 @@ from bakery.views import (
     BuildableRedirectView,
     Buildable404View,
 )
+from django.views.generic import YearArchiveView
 from calaccess_raw.models.tracking import RawDataVersion, RawDataFile
 
 
@@ -41,7 +42,7 @@ class VersionYearArchiveList(BuildableYearArchiveView):
     """
     A list of all versions of CAL-ACCESS in a given year
     """
-    queryset = RawDataVersion.objects.exclude(release_datetime__isnull=True)
+    model = RawDataVersion
     date_field = "release_datetime"
     make_object_list = True
     template_name = "calaccess_website/version_archive_year.html"

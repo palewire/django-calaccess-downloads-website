@@ -11,12 +11,23 @@
 {% block content %}
 <h3>Last {{ latest|length|apnumber }} version{{ latest|length|pluralize }}</h3>
 <table class="table table-striped">
-  {% for obj in latest %}
-  <tr>
-    <td>{{ obj.release_datetime|date:"l, N j, Y (P)" }}</td>
-    <td><a href="{% archive_url obj.zip_file_archive.name %}">zip file</a> ({{ obj.pretty_size }})</td>
-    <td><a href="{% url 'version_detail' pk=obj.id %}">details</a></td>
-  </tr>
-  {% endfor %}
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th class="right">Size</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for obj in latest %}
+    <tr>
+        <td>
+            <a href="{% url 'version_detail' pk=obj.id %}">{{ obj.release_datetime|date:"l, N j, Y" }}</a>
+        </td>
+        <td class="right">
+            {{ obj.pretty_size }}
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
 </table>
 {% endblock %}
