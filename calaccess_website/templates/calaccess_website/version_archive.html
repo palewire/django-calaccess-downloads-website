@@ -29,5 +29,11 @@
     </tr>
     {% endfor %}
     </tbody>
+    <tfoot>
+    <tr>
+        <td colspan=2>
+            Browse all by year: {% for date in date_list %}<a href="{% url 'version_year_archive' date.year %}">{{ date.year }}</a>{% if not forloop.last %},{% endif %}{% endfor %}
+        </td>
+    </tfoot>
 </table>
 {% endblock %}
