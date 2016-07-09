@@ -10,7 +10,6 @@ from bakery.views import (
     BuildableRedirectView,
     Buildable404View,
 )
-from django.views.generic import YearArchiveView
 from calaccess_raw.models.tracking import RawDataVersion, RawDataFile
 
 
