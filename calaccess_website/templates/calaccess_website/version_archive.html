@@ -1,16 +1,15 @@
 {% extends 'calaccess_website/base.html' %}
-
-{% load calaccess_website_tags %}
+{% load calaccess_website_tags humanize %}
 
 {% block breadcrumbs %}
 <ol class="breadcrumb">
-  <li><a href="{% url 'home' %}">CAL-ACCESS</a></li>
-  <li class="active">Version archive</li>
+  <li><a href="{% url 'home' %}">Archive</a></li>
+  <li class="active">Versions</li>
 </ol>
 {% endblock %}
 
 {% block content %}
-<h3>Archived releases</h3>
+<h3>Last {{ latest|length|apnumber }} version{{ latest|length|pluralize }}</h3>
 <table class="table table-striped">
   {% for obj in latest %}
   <tr>

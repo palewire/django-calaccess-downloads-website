@@ -41,7 +41,7 @@ class VersionYearArchiveList(BuildableYearArchiveView):
     """
     A list of all versions of CAL-ACCESS in a given year
     """
-    model = RawDataVersion
+    queryset = RawDataVersion.objects.exclude(release_datetime__isnull=True)
     date_field = "release_datetime"
     make_object_list = True
     template_name = "calaccess_website/version_archive_year.html"
