@@ -79,6 +79,8 @@ def createconfig():
         'Name of the S3 bucket for baked content:',
         default='calaccess.californiacivicdata.org',
     )
+    config['EMAIL_USER'] = prompt('E-mail user:')
+    config['EMAIL_PASSWORD'] = prompt('E-mail password:')
 
     # Save it to the configuration file
     [setconfig(k, v) for k, v in config.items()]

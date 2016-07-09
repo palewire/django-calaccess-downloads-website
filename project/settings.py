@@ -5,6 +5,9 @@ SECRET_KEY = '8++yeqnsqgtb8=%oa0&*oa8$2o*6gh0j-+5o+0kq-uq-ycoo3@'
 DEBUG = True
 
 ALLOWED_HOSTS = []
+ADMINS = (
+    ('California Civic Data Coalition', 'cacivicdata@gmail.com'),
+)
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -59,6 +62,19 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'project.wsgi.application'
 
+#
+# Email
+#
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = os.getenv('email_user', 'cacivicdata@gmail.com')
+EMAIL_HOST_PASSWORD = os.getenv('email_password')
+EMAIL_USE_TLS = True
+
+#
+# Amazon S3
+#
 
 AWS_ACCESS_KEY_ID = os.getenv('aws_access_key_id')
 AWS_SECRET_ACCESS_KEY = os.getenv('aws_secret_access_key')
@@ -96,6 +112,10 @@ AWS_S3_ENDPOINT_URL = 'https://{0}.s3-accelerate.amazonaws.com'.format(
     AWS_STORAGE_BUCKET_NAME
 )
 
+#
+# Databases
+#
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -107,9 +127,9 @@ DATABASES = {
     },
 }
 
-
+#
 # Password validation
-# https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
+#
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -130,6 +150,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+#
+# Logging
+#
 
 LOGGING = {
     'version': 1,
@@ -157,6 +180,11 @@ LOGGING = {
             'backupCount': 0,
             'formatter': 'verbose',
         },
+        'mail_admins': {
+            'level': 'INFO',
+            'class': 'django.utils.log.AdminEmailHandler',
+            'filters': []
+        }
     },
     'formatters': {
         'verbose': {
@@ -169,7 +197,7 @@ LOGGING = {
     },
     'loggers': {
         'calaccess_raw.management': {
-            'handlers': ['logfile', ],
+            'handlers': ['logfile', 'mail_admins'],
             'level': 'DEBUG',
             'propagate': True,
         },
