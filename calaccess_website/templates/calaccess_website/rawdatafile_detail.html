@@ -4,8 +4,8 @@
 
 {% block breadcrumbs %}
 <ol class="breadcrumb">
-  <li><a href="{% url 'home' %}">CAL-ACCESS</a></li>
-  <li><a href="{% url 'rawdatafiles_list' %}">Raw data</a></li>
+  <li><a href="{% url 'home' %}">Archive</a></li>
+  <li><a href="{% url 'rawdatafiles_list' %}">Files</a></li>
   <li class="active">{{ object.db_table }}</li>
 </ol>
 {% endblock %}
