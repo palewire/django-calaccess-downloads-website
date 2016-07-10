@@ -195,3 +195,8 @@ class FileDetail(BuildableDetailView):
 class CalAccess404View(Buildable404View):
     build_path = "404.html"
     template_name = "calaccess_website/404.html"
+
+
+class CalAccessRobotsTxtView(Buildable404View):
+    build_path = "robots.txt"
+    template_name = "calaccess_website/robots.txt"
