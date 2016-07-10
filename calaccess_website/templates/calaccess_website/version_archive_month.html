@@ -5,29 +5,30 @@
 <ol class="breadcrumb">
   <li><a href="{% url 'home' %}">Archive</a></li>
   <li><a href="{% url 'version_archive_index' %}">Versions</a></li>
-  <li class="active">2016</li>
+  <li><a href="{% url 'version_archive_year' month.year %}">{{ month.year }}</a></li>
+  <li class="active">{{ month|date:"N" }}</li>
 </ol>
 {% endblock %}
 
 
 {% block content %}
-  <h1>Versions from {{ year|date:"Y" }}</h1>
+  <h1>Versions from {{ month|date:"F" }} {{ month|date:"Y" }}</h1>
 
 <table class="table table-striped">
   <thead>
     <tr>
-      <th>Month</th>
+      <th>Version</th>
     </tr>
   </thead>
   <tbody>
-  {% for date in date_list %}
-      <tr>
-          <td>
-              <a href="{% url 'version_archive_month' year=date.year month=date.month %}">
-                  {{ date|date:"F" }}
-              </a>
-          </td>
-      </tr>
+  {% for obj in object_list %}
+  <tr>
+      <td>
+          <a href="{% url 'version_detail' pk=obj.pk %}">
+              {{ obj.release_datetime|date:"l, N j" }}
+          </a>
+      </td>
+  </tr>
   {% endfor %}
   </tbody>
   </table>

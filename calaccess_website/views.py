@@ -5,6 +5,7 @@ from django.template.defaultfilters import slugify
 from bakery.views import (
     BuildableArchiveIndexView,
     BuildableYearArchiveView,
+    BuildableMonthArchiveView,
     BuildableDetailView,
     BuildableListView,
     BuildableRedirectView,
@@ -43,8 +44,18 @@ class VersionYearArchiveList(BuildableYearArchiveView):
     """
     model = RawDataVersion
     date_field = "release_datetime"
-    make_object_list = True
+    make_object_list = False
     template_name = "calaccess_website/version_archive_year.html"
+
+
+class VersionMonthArchiveList(BuildableMonthArchiveView):
+    """
+    A list of all versions of CAL-ACCESS in a given year
+    """
+    model = RawDataVersion
+    date_field = "release_datetime"
+    make_object_list = True
+    template_name = "calaccess_website/version_archive_month.html"
 
 
 class VersionDetail(BuildableDetailView):

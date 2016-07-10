@@ -14,12 +14,17 @@ urlpatterns = [
     url(
         r'^versions/$',
         views.VersionArchiveIndex.as_view(),
-        name="version_index",
+        name="version_archive_index",
     ),
     url(
         r'^versions/(?P<year>[0-9]{4})/$',
         views.VersionYearArchiveList.as_view(),
-        name="version_year_archive"
+        name="version_archive_year"
+    ),
+    url(
+        r'^versions/(?P<year>[0-9]{4})/(?P<month>[0-9]+)/$',
+        views.VersionMonthArchiveList.as_view(),
+        name="version_archive_month"
     ),
     url(
         r'^versions/latest/$',
