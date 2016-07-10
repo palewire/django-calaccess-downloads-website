@@ -56,6 +56,11 @@ urlpatterns = [
         name='robots_txt'
     ),
     url(
+        r'^file-sitemap.xml$',
+        sitemaps.FileSitemapView.as_view(),
+        name='file_sitemap'
+    ),
+    url(
         r'^version-sitemap.xml$',
         sitemaps.VersionSitemapView.as_view(),
         name='version_sitemap'

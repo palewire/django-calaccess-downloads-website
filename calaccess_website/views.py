@@ -129,13 +129,12 @@ class LatestVersion(BuildableRedirectView):
 
 
 #
-# Raw data file based archives
+# File-based archives
 #
 
 class FileList(BuildableListView):
     queryset = get_model_list()
     template_name = 'calaccess_website/file_list.html'
-    context_object_name = 'raw data files'
     build_path = "files/index.html"
 
 
