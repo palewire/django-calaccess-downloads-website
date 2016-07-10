@@ -1,3 +1,4 @@
+import time
 from django.http import Http404
 from calaccess_raw import get_model_list
 from django.core.urlresolvers import reverse
@@ -64,6 +65,14 @@ class VersionDetail(BuildableDetailView):
     """
     model = RawDataVersion
     template_name = 'calaccess_website/version_detail.html'
+
+    def get_object(self, **kwargs):
+        dt = time.localtime(float(self.kwargs['release_epochtime']))
+        dt = time.strftime('%Y-%m-%d %H:%M:%S', dt)
+        try:
+            return self.model.objects.get(release_datetime=dt)
+        except self.model.DoesNotExist:
+            raise Http404
 
     def get_context_data(self, **kwargs):
         """

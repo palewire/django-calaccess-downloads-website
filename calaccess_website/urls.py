@@ -32,7 +32,7 @@ urlpatterns = [
         name='version_latest_redirect'
     ),
     url(
-        r'^version/(?P<pk>[0-9]{1,})/$',
+        r'^versions/(?P<year>[0-9]{4})/(?P<month>[0-9]+)/(?P<release_epochtime>[0-9]+)/$',
         views.VersionDetail.as_view(),
         name="version_detail"
     ),

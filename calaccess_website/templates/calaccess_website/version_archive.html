@@ -21,7 +21,9 @@
     {% for obj in latest %}
     <tr>
         <td>
-            <a href="{% url 'version_detail' pk=obj.id %}">{{ obj.release_datetime|date:"l, N j, Y" }}</a>
+            <a href="{% url 'version_detail' year=obj.release_datetime.year month=obj.release_datetime.month release_epochtime=obj.release_datetime|date:'U' %}">
+                {{ obj.release_datetime|date:"l, N j, Y" }}
+            </a>
         </td>
         <td class="right">
             {{ obj.pretty_size }}
@@ -32,7 +34,7 @@
     <tfoot>
     <tr>
         <td colspan=2>
-            Browse all by year: {% for date in date_list %}<a href="{% url 'version_year_archive' date.year %}">{{ date.year }}</a>{% if not forloop.last %},{% endif %}{% endfor %}
+            Browse all by year: {% for date in date_list %}<a href="{% url 'version_archive_year' date.year %}">{{ date.year }}</a>{% if not forloop.last %},{% endif %}{% endfor %}
         </td>
     </tfoot>
 </table>

@@ -3,9 +3,9 @@
 
 {% block breadcrumbs %}
 <ol class="breadcrumb">
-  <li><a href="{% url 'home' %}">CAL-ACCESS</a></li>
-  <li><a href="{% url 'version_index' %}">Version archive</a></li>
-  <li class="active">{{ object.release_datetime|date:"N j, Y" }}</li>
+  <li><a href="{% url 'home' %}">Archive</a></li>
+  <li><a href="{% url 'version_archive_index' %}">Versions</a></li>
+  <li class="active">{{ object.release_datetime|date:"l N y, Y (P)" }}</li>
 </ol>
 {% endblock %}
 
