@@ -66,7 +66,6 @@ class VersionDetail(BuildableDetailView):
     model = RawDataVersion
     template_name = 'calaccess_website/version_detail.html'
 
-
     def set_kwargs(self, obj):
         super(VersionDetail, self).set_kwargs(obj)
         self.kwargs.update({
