@@ -1,5 +1,5 @@
 from django.conf.urls import url
-from calaccess_website import views
+from calaccess_website import views, sitemaps
 
 
 urlpatterns = [
@@ -53,6 +53,11 @@ urlpatterns = [
     url(
         r'^robots.txt$',
         views.CalAccessRobotsTxtView.as_view(),
-        name='robots-txt'
+        name='robots_txt'
+    ),
+    url(
+        r'^version-sitemap.xml$',
+        sitemaps.VersionSitemapView.as_view(),
+        name='version_sitemap'
     ),
 ]

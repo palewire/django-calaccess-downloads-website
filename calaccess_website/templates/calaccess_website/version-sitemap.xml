@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+{% for obj in object_list %}
+  <url> 
+    <loc>http://calaccess.californiacivicdata.org{% url 'version_detail' year=obj.release_datetime.year month=obj.release_datetime.month release_epochtime=obj.release_datetime|date:'U' %}</loc> 
+  </url>
+{% endfor %}
+</urlset>

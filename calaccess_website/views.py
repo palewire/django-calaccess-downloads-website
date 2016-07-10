@@ -200,3 +200,9 @@ class CalAccess404View(Buildable404View):
 class CalAccessRobotsTxtView(Buildable404View):
     build_path = "robots.txt"
     template_name = "calaccess_website/robots.txt"
+
+    def render_to_response(self, context):
+        return super(CalAccessRobotsTxtView, self).render_to_response(
+            context,
+            content_type='text'
+        )
