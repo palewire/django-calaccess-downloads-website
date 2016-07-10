@@ -8,8 +8,7 @@
 {% endblock %}
 
 {% block content %}
-    <h2>CAL-ACCESS Raw Data Files</h2>
-
+    <h1>Files</h1>
     {% regroup object_list by klass_group as model_groups %}
     {% for group in model_groups %}
     <section class="table-type">

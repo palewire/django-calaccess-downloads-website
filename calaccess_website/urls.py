@@ -37,15 +37,15 @@ urlpatterns = [
         name="version_detail"
     ),
 
-    # Raw data file archive views
+    # File views
     url(
-        r'^raw-data-files/$',
-        views.RawDataFileList.as_view(),
-        name='rawdatafiles_list'
+        r'^files/$',
+        views.FileList.as_view(),
+        name='file_list'
     ),
     url(
-        r'^raw-data-files/(?P<file_name>\w+)/$',
-        views.RawDataFileDetail.as_view(),
-        name='rawdatafile_detail',
+        r'^files/(?P<file_name>\w+)/$',
+        views.FileDetail.as_view(),
+        name='file_detail',
     ),
 ]

@@ -95,8 +95,8 @@ BAKERY_VIEWS = (
     'calaccess_website.views.VersionYearArchiveList',
     'calaccess_website.views.VersionDetail',
     'calaccess_website.views.LatestVersion',
-    'calaccess_website.views.RawDataFileList',
-    'calaccess_website.views.RawDataFileDetail',
+    'calaccess_website.views.FileList',
+    'calaccess_website.views.FileDetail',
     'calaccess_website.views.CalAccess404View',
 )
 

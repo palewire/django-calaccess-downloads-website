@@ -132,18 +132,18 @@ class LatestVersion(BuildableRedirectView):
 # Raw data file based archives
 #
 
-class RawDataFileList(BuildableListView):
+class FileList(BuildableListView):
     queryset = get_model_list()
-    template_name = 'calaccess_website/raw_data_files_list.html'
+    template_name = 'calaccess_website/file_list.html'
     context_object_name = 'raw data files'
-    build_path = "raw-data-files/index.html"
+    build_path = "files/index.html"
 
 
-class RawDataFileDetail(BuildableDetailView):
+class FileDetail(BuildableDetailView):
     """
     A detail page with everything we know about the provided raw data file.
     """
-    template_name = 'calaccess_website/rawdatafile_detail.html'
+    template_name = 'calaccess_website/file_detail.html'
 
     def get_queryset(self):
         """
@@ -171,13 +171,13 @@ class RawDataFileDetail(BuildableDetailView):
             raise Http404
 
     def get_url(self, obj):
-        return reverse('rawdatafile_detail', kwargs=dict(file_name=obj))
+        return reverse('file_detail', kwargs=dict(file_name=obj))
 
     def get_context_data(self, **kwargs):
         """
         Add some extra bits to the template's context
         """
-        context = super(RawDataFileDetail, self).get_context_data(**kwargs)
+        context = super(FileDetail, self).get_context_data(**kwargs)
         # Pull all previous versions of the provided file
         context['version_list'] = RawDataFile.objects.filter(
             file_name=self.kwargs['file_name'].upper()

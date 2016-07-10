@@ -5,13 +5,13 @@
 {% block breadcrumbs %}
 <ol class="breadcrumb">
   <li><a href="{% url 'home' %}">Archive</a></li>
-  <li><a href="{% url 'rawdatafiles_list' %}">Files</a></li>
+  <li><a href="{% url 'file_list' %}">Files</a></li>
   <li class="active">{{ object.db_table }}</li>
 </ol>
 {% endblock %}
 
 {% block content %}
-  <h2>{{ object.db_table }}</h2>
+  <h1>{{ object.db_table }}</h1>
 
   <p>{{ object.doc.strip|safe }}</p>
 
