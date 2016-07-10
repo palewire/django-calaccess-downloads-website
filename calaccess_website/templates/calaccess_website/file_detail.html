@@ -3,11 +3,8 @@
 {% load humanize calaccess_website_tags %}
 
 {% block breadcrumbs %}
-<ol class="breadcrumb">
-  <li><a href="{% url 'home' %}">Archive</a></li>
   <li><a href="{% url 'file_list' %}">Files</a></li>
   <li class="active">{{ object.db_table }}</li>
-</ol>
 {% endblock %}
 
 {% block content %}

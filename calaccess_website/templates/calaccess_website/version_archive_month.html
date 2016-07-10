@@ -2,12 +2,9 @@
 {% load calaccess_website_tags %}
 
 {% block breadcrumbs %}
-<ol class="breadcrumb">
-  <li><a href="{% url 'home' %}">Archive</a></li>
   <li><a href="{% url 'version_archive_index' %}">Versions</a></li>
   <li><a href="{% url 'version_archive_year' month.year %}">{{ month.year }}</a></li>
   <li class="active">{{ month|date:"N" }}</li>
-</ol>
 {% endblock %}
 
 

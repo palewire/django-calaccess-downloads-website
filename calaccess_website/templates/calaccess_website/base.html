@@ -21,7 +21,11 @@
     {% block container %}
         <div class="container">
 
-        {% block breadcrumbs %}
+        {% block breadcrumbs-container %}
+        <ol class="breadcrumb">
+          <li><a href="{% url 'home' %}">Archive</a></li>
+          {% block breadcrumbs %}{% endblock %}
+        </ol>
         {% endblock %}
 
         {% block content %}
