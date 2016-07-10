@@ -2,7 +2,7 @@ import time
 from django.http import Http404
 from calaccess_raw import get_model_list
 from django.core.urlresolvers import reverse
-from django.template.defaultfilters import slugify
+from django.template.defaultfilters import slugify, date as dateformat
 from bakery.views import (
     BuildableArchiveIndexView,
     BuildableYearArchiveView,
@@ -66,6 +66,15 @@ class VersionDetail(BuildableDetailView):
     model = RawDataVersion
     template_name = 'calaccess_website/version_detail.html'
 
+
+    def set_kwargs(self, obj):
+        super(VersionDetail, self).set_kwargs(obj)
+        self.kwargs.update({
+            'year': obj.release_datetime.year,
+            'month': obj.release_datetime.month,
+            'release_epochtime': dateformat(obj.release_datetime, 'U'),
+        })
+
     def get_object(self, **kwargs):
         dt = time.localtime(float(self.kwargs['release_epochtime']))
         dt = time.strftime('%Y-%m-%d %H:%M:%S', dt)
@@ -88,7 +97,14 @@ class VersionDetail(BuildableDetailView):
         return context
 
     def get_url(self, obj):
-        return reverse('version_detail', kwargs=dict(pk=obj.pk))
+        return reverse(
+            'version_detail',
+            kwargs=dict(
+                year=obj.release_datetime.year,
+                month=obj.release_datetime.month,
+                release_epochtime=dateformat(obj.release_datetime, 'U'),
+            )
+        )
 
 
 class LatestVersion(BuildableRedirectView):
@@ -103,7 +119,14 @@ class LatestVersion(BuildableRedirectView):
             obj = RawDataVersion.objects.latest('release_datetime')
         except RawDataVersion.DoesNotExist:
             raise Http404
-        return reverse("version_detail", kwargs=dict(pk=obj.pk))
+        return reverse(
+            'version_detail',
+            kwargs=dict(
+                year=obj.release_datetime.year,
+                month=obj.release_datetime.month,
+                release_epochtime=dateformat(obj.release_datetime, 'U'),
+            )
+        )
 
 
 #
