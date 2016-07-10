@@ -48,4 +48,11 @@ urlpatterns = [
         views.FileDetail.as_view(),
         name='file_detail',
     ),
+
+    # Machine-readable stuff
+    url(
+        r'^robots.txt$',
+        views.CalAccessRobotsTxtView.as_view(),
+        name='robots-txt'
+    ),
 ]
