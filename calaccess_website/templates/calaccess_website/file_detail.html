@@ -30,8 +30,8 @@
                   {{ file.version.release_datetime|date:"l N j, Y" }}
               </a>
           </td>
-          <td class="right">{{ file.file.pretty_download_file_size  }}  {% if file.download_file_archive %}<a href="{% archive_url file.download_file_archive.name %}"><i class="fa fa-download"></i></a>{% endif %}</td>
-          <td class="right">{% if file.clean_file_archive %}{{ file.file.pretty_clean_file_size  }}  <a href="{% archive_url file.clean_file_archive.name %}"><i class="fa fa-download"></i></a>{% else %} -- {% endif %}</td>
+          <td class="right">{{ file.pretty_download_file_size  }}  {% if file.download_file_archive %}<a href="{% archive_url file.download_file_archive.name %}"><i class="fa fa-download"></i></a>{% endif %}</td>
+          <td class="right">{% if file.clean_file_archive %}{{ file.pretty_clean_file_size  }}  <a href="{% archive_url file.clean_file_archive.name %}"><i class="fa fa-download"></i></a>{% else %} -- {% endif %}</td>
           <td class="right">{% if file.error_log_archive %}{{ file.error_count|intcomma }}  <a href="{% archive_url file.error_log_archive.name %}"><i class="fa fa-download"></i></a>{% else%} -- {% endif %}</td>
       </tr>
   {% endfor %}
