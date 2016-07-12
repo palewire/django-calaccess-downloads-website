@@ -204,6 +204,7 @@ ul.legend li {
 .btn-calaccess-red {
   color: #fefdfb;
   background-color: #ba0a35;
+  border-radius: 0;
 }
 .btn-calaccess-red:hover, .btn-calaccess-red:focus {
   color: #ccc8c0;
@@ -212,6 +213,8 @@ ul.legend li {
 .jumbotron {
   padding-top: 30px;
   padding-bottom: 30px;
+  border-radius: 0 !important;
+  background-color: rgba(9,113,178,0.2);
 }
 
 .jumbotron h1 {
