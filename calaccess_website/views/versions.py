@@ -75,6 +75,8 @@ class VersionDetail(BuildableDetailView):
         for file_ in self.object.files.all():
             values = file_.__dict__
             values['klass_group'] = file_.model().klass_group
+            values['pretty_download_file_size'] = file_.pretty_download_file_size()
+            values['pretty_clean_file_size'] = file_.pretty_clean_file_size()
             context['files'].append(values)
         return context
 
