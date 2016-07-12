@@ -65,4 +65,9 @@ urlpatterns = [
         sitemaps.VersionSitemapView.as_view(),
         name='version_sitemap'
     ),
+    url(
+        r'^other-sitemap.xml$',
+        sitemaps.OtherSitemapView.as_view(),
+        name='other_sitemap'
+    ),
 ]
