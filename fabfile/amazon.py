@@ -2,9 +2,10 @@
 # -*- coding: utf-8 -*-
 import os
 import stat
+from time import sleep
 import boto3
 from fabric.colors import green
-from fabric.api import task, env
+from fabric.api import task, env, local
 from botocore.exceptions import ClientError
 from configure import loadconfig, setconfig, ConfigTask
 
@@ -152,3 +153,109 @@ def createkey(name):
 
     print(green("Success!"))
     print("Key created at {}".format(env.key_filename[0]))
+
+
+@task
+def copydb(src_db_instance_id, dest_db_instance_id):
+    """
+    Copy the most recent snapshot on the source AWS RDS instance to the
+    destination RDS instance.
+    """
+    # Connect to boto
+    loadconfig()
+    session = boto3.Session(
+        aws_access_key_id=env.AWS_ACCESS_KEY_ID,
+        aws_secret_access_key=env.AWS_SECRET_ACCESS_KEY,
+        region_name=env.AWS_REGION_NAME
+    )
+    client = session.client('rds')
+
+    # get all the snapshots
+    snapshots = client.describe_db_snapshots(
+        # is there a way to not hard-code this?
+        DBInstanceIdentifier=src_db_instance_id
+    )['DBSnapshots']
+
+    # get the most recent completed snapshot
+    last_snapshot = sorted(
+        [s for s in snapshots if s['PercentProgress'] == 100],
+        key=lambda k: k['SnapshotCreateTime'],
+        reverse=True,
+    )[0]
+
+    # delete the current rds instance with the destination id (if it exists)
+    try:
+        client.delete_db_instance(
+            DBInstanceIdentifier=dest_db_instance_id,
+            SkipFinalSnapshot=True,
+        )
+    except ClientError as e:
+        if 'DBInstanceNotFound' in e.message:
+            pass
+        # if some other ClientError, just raise it
+        else:
+            raise
+    else:
+        print('- Deleting current {0} instance'.format(dest_db_instance_id))
+        # wait until existing destination instance is deleted
+        waiter = client.get_waiter('db_instance_deleted')
+        waiter.wait(DBInstanceIdentifier=dest_db_instance_id)
+
+    # restore destination instance from last snapshot of source
+    client.restore_db_instance_from_db_snapshot(
+        DBInstanceIdentifier=dest_db_instance_id,
+        DBSnapshotIdentifier=last_snapshot['DBSnapshotIdentifier']
+    )
+
+    print('- Restoring {0} from last snapshot of {1}'.format(
+            dest_db_instance_id,
+            src_db_instance_id,
+        ))
+    # wait until restored destination instance becomes available
+    waiter = client.get_waiter('db_instance_available')
+    waiter.wait(DBInstanceIdentifier=dest_db_instance_id)
+
+    print(green("Success!"))
+
+
+@task
+def copys3(src_bucket, dest_bucket):
+    """
+    Copy objects in the source AWS S3 bucket to the destination S3 bucket.
+
+    Ignores source bucket objects with the same name as objects already in the
+    destination bucket.
+    """
+    loadconfig()
+    session = boto3.Session(
+        aws_access_key_id=env.AWS_ACCESS_KEY_ID,
+        aws_secret_access_key=env.AWS_SECRET_ACCESS_KEY,
+        region_name=env.AWS_REGION_NAME
+    )
+    client = session.client('s3')
+
+    src_objects = [
+        obj['Key'] for obj 
+        in client.list_objects_v2(Bucket=src_bucket)['Contents']
+    ]
+    dest_objects = [
+        obj['Key'] for obj 
+        in client.list_objects_v2(Bucket=dest_bucket)['Contents']
+    ]
+    objs_to_copy = [obj for obj in src_objects if obj not in dest_objects]
+
+    for obj in objs_to_copy:
+        print('- Copying {0} from {1} to {2}'.format(
+                obj,
+                src_bucket,
+                dest_bucket,
+            )
+        )
+        client.copy_object(
+            Bucket=dest_bucket,
+            Key=obj, 
+            CopySource={'Bucket': src_bucket, 'Key': obj},
+        )
+
+    print(green("Success!"))
+

@@ -3,7 +3,7 @@
 import os
 from fabric.api import env
 
-from amazon import createrds, createec2, createkey
+from amazon import createrds, createec2, createkey, copydb, copys3
 from app import (
     deploy,
     pipinstall,
@@ -52,6 +52,8 @@ __all__ = (
     'createrds',
     'createec2',
     'createkey',
+    'copydb',
+    'copys3',
     'ec2bootstrap',
     'installchef',
     'pipinstall',
