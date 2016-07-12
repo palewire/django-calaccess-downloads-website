@@ -3,15 +3,12 @@ from bakery.views import BuildableListView
 from calaccess_raw.models import RawDataVersion
 
 
-
 class AbstractSitemapClass(BuildableListView):
-
     def render_to_response(self, context):
         return super(AbstractSitemapClass, self).render_to_response(
             context,
             content_type='text/xml'
         )
-
 
 
 class OtherSitemapView(AbstractSitemapClass):
