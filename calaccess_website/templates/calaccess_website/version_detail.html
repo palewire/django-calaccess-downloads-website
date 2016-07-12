@@ -1,6 +1,8 @@
 {% extends 'calaccess_website/base.html' %}
 {% load humanize calaccess_website_tags %}
 
+{% block title %}{{ object.release_datetime|date:"l, N j, Y (P)" }} - Versions - {{ block.super }}{% endblock%}
+
 {% block breadcrumbs %}
   <li><a href="{% url 'version_archive_index' %}">Versions</a></li>
   <li class="active">{{ object.release_datetime|date:"l N y, Y (P)" }}</li>

@@ -1,6 +1,7 @@
 {% extends 'calaccess_website/base.html' %}
-
 {% load humanize calaccess_website_tags %}
+
+{% block title %}{{ object.db_table }} - Files - {{ block.super }}{% endblock%}
 
 {% block breadcrumbs %}
   <li><a href="{% url 'file_list' %}">Files</a></li>

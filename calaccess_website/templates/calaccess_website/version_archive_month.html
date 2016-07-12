@@ -1,6 +1,8 @@
 {% extends 'calaccess_website/base.html' %}
 {% load calaccess_website_tags %}
 
+{% block title %}{{ month|date:"F Y" }} - Versions - {{ block.super }}{% endblock%}
+
 {% block breadcrumbs %}
   <li><a href="{% url 'version_archive_index' %}">Versions</a></li>
   <li><a href="{% url 'version_archive_year' month.year %}">{{ month.year }}</a></li>
@@ -9,7 +11,7 @@
 
 
 {% block content %}
-  <h1>Versions from {{ month|date:"F" }} {{ month|date:"Y" }}</h1>
+  <h1>Versions from {{ month|date:"F Y" }}</h1>
 
 <table class="table table-striped">
   <thead>
