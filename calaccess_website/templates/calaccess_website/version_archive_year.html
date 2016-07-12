@@ -1,6 +1,8 @@
 {% extends 'calaccess_website/base.html' %}
 {% load calaccess_website_tags %}
 
+{% block title %}{{ year.year }} - Versions - {{ block.super }}{% endblock%}
+
 {% block breadcrumbs %}
   <li><a href="{% url 'version_archive_index' %}">Versions</a></li>
   <li class="active">{{ year.year }}</li>

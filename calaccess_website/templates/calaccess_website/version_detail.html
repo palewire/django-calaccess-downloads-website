@@ -1,6 +1,8 @@
 {% extends 'calaccess_website/base.html' %}
 {% load humanize calaccess_website_tags %}
 
+{% block title %}{{ object.release_datetime|date:"l, N j, Y (P)" }} - Versions - {{ block.super }}{% endblock%}
+
 {% block breadcrumbs %}
   <li><a href="{% url 'version_archive_index' %}">Versions</a></li>
   <li class="active">{{ object.release_datetime|date:"l N y, Y (P)" }}</li>
@@ -13,32 +15,78 @@
 
   {% if object.files.all %}
 
-  {% regroup files|dictsort:"klass_group" by klass_group as model_groups %}
-  {% for group in model_groups %}
-    <h3>{{ group.grouper|capfirst }}</h3>
-    <table class="table table-striped">
-    <thead>
-        <tr>
-            <th>File name</th>
-            <th width = "12%" class="right">Raw TSV</th>
-            <th width = "12%" class="right">Clean CSV</th>
-            <th width = "12%" class="right">Errors</th>
-        </tr>
-    </thead>
-    <tbody>
-    {% for file in group.list %}
-        <tr>
-            <td><a href="{% url 'file_detail' file.file_name|slugify %}">{{ file.file_name }}</a></td>
-            <td class="right">{{ file.pretty_download_file_size }}  {% if file.download_file_archive %}<a href="{% archive_url file.download_file_archive %}"><i class="fa fa-download"></i></a>{% endif %}</td>
-            <td class="right">{% if file.clean_file_archive %}{{ file.pretty_clean_file_size }}  <a href="{% archive_url file.clean_file_archive %}"><i class="fa fa-download"></i></a>{% else %} -- {% endif %}</td>
-            <td class="right">{% if file.error_log_archive %}{{ file.error_count|intcomma }}  <a href="{% archive_url file.error_log_archive %}"><i class="fa fa-download"></i></a>{% else%} -- {% endif %}</td>
-        </tr>
+  <div>
+
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation"><a href="#details" aria-controls="details" role="tab" data-toggle="tab">More details</a></li>
+    <li role="presentation" class="active"><a href="#basic" aria-controls="basic" role="tab" data-toggle="tab">Fewer details</a></li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="basic">
+    {% regroup files|dictsort:"klass_group" by klass_group as model_groups %}
+    {% for group in model_groups %}
+      <h3>{{ group.grouper|capfirst }}</h3>
+      <table class="table table-striped">
+      <thead>
+          <tr>
+              <th>File name</th>
+              <th class="right"> CSV</th>
+              <th class="right" width="14%">Information</th>
+          </tr>
+      </thead>
+      <tbody>
+      {% for file in group.list %}
+          <tr>
+              <td>{{ file.file_name }}</td>
+              <td class="right">{% if file.clean_file_archive %}{{ file.pretty_clean_file_size }} &middot; <a href="{% archive_url file.clean_file_archive %}"><i class="fa fa-download"></i></a>{% else %} -- {% endif %}</td>
+              <td class="right"><a href="{% url 'file_detail' file.file_name|slugify %}"><i class="fa fa-info-circle"></i></a></td>
+          </tr>
+      {% endfor %}
+      </tbody>
+      </table>
     {% endfor %}
-    </tbody>
-    </table>
-  {% endfor %}
+    </div>
+    <div role="tabpanel" class="tab-pane" id="details">
+    {% regroup files|dictsort:"klass_group" by klass_group as model_groups %}
+    {% for group in model_groups %}
+      <h3>{{ group.grouper|capfirst }}</h3>
+      <table class="table table-striped">
+      <thead>
+          <tr>
+              <th>File name</th>
+              <th class="right" width="22%">Raw TSV</th>
+              <th class="right" width="22%">Clean CSV</th>
+              <th class="right" width="8%">Errors</th>
+              <th class="right" width="12%">Information</th>
+          </tr>
+      </thead>
+      <tbody>
+      {% for file in group.list %}
+          <tr>
+              <td>{{ file.file_name }}</td>
+              <td class="right">{{ file.download_records_count|intcomma }} records &middot; {{ file.pretty_download_file_size }} &middot; {% if file.download_file_archive %}<a href="{% archive_url file.download_file_archive %}"><i class="fa fa-download"></i></a>{% endif %}</td>
+              <td class="right">{{ file.clean_records_count|intcomma }} records &middot; {% if file.clean_file_archive %}{{ file.pretty_clean_file_size }} &middot; <a href="{% archive_url file.clean_file_archive %}"><i class="fa fa-download"></i></a>{% else %} -- {% endif %}</td>
+              <td class="right">{% if file.error_log_archive %}{{ file.error_count|intcomma }} &middot; <a href="{% archive_url file.error_log_archive %}"><i class="fa fa-download"></i></a>{% else%} -- {% endif %}</td>
+              <td class="right"><a href="{% url 'file_detail' file.file_name|slugify %}"><i style="font-size: 16px;" class="fa fa-info-circle"></i></a></td>
+          </tr>
+      {% endfor %}
+      </tbody>
+      </table>
+    {% endfor %}
+    </div>
+
+  </div>
+
   {% else %}
-      <p>No files.</p>
+        <p>No files.</p>
+
   {% endif %}
+
+</div>
+
+  
 
 {% endblock %}

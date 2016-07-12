@@ -2,3 +2,4 @@ User-agent: *
 Disallow:
 Sitemap: http://calaccess.californiacivicdata.org/file-sitemap.xml
 Sitemap: http://calaccess.californiacivicdata.org/version-sitemap.xml
+Sitemap: http://calaccess.californiacivicdata.org/other-sitemap.xml
