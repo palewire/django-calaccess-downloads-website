@@ -231,6 +231,14 @@ ul.legend li {
   margin-bottom: 30px;
 }
 
+.nav-tabs > li {
+    float: right;
+}
+
+.tab-content i {
+    font-size: 16px;
+}
+
 @media only screen
 and (max-width : 992px) {
     .align-right{
