@@ -2,10 +2,9 @@
 # -*- coding: utf-8 -*-
 import os
 import stat
-from time import sleep
 import boto3
 from fabric.colors import green
-from fabric.api import task, env, local
+from fabric.api import task, env
 from botocore.exceptions import ClientError
 from configure import loadconfig, setconfig, ConfigTask
 
@@ -235,11 +234,11 @@ def copys3(src_bucket, dest_bucket):
     client = session.client('s3')
 
     src_objects = [
-        obj['Key'] for obj 
+        obj['Key'] for obj
         in client.list_objects_v2(Bucket=src_bucket)['Contents']
     ]
     dest_objects = [
-        obj['Key'] for obj 
+        obj['Key'] for obj
         in client.list_objects_v2(Bucket=dest_bucket)['Contents']
     ]
     objs_to_copy = [obj for obj in src_objects if obj not in dest_objects]
@@ -253,9 +252,8 @@ def copys3(src_bucket, dest_bucket):
         )
         client.copy_object(
             Bucket=dest_bucket,
-            Key=obj, 
+            Key=obj,
             CopySource={'Bucket': src_bucket, 'Key': obj},
         )
 
     print(green("Success!"))
-
