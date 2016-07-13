@@ -10,19 +10,14 @@
 
 {% block content %}
   <h2>Release: {{ object.release_datetime|date:"l, N j, Y (P)" }}</h2>
-
   <h4><a href="{% archive_url object.zip_file_archive.name %}">original zip file</a> ({{ object.pretty_size }})</h4>
-
   {% if object.files.all %}
-
   <div>
-
   <!-- Nav tabs -->
   <ul class="nav nav-tabs" role="tablist">
-    <li role="presentation"><a href="#details" aria-controls="details" role="tab" data-toggle="tab">More details</a></li>
-    <li role="presentation" class="active"><a href="#basic" aria-controls="basic" role="tab" data-toggle="tab">Fewer details</a></li>
+    <li role="presentation"><a href="#details" aria-controls="details" role="tab" data-toggle="tab">Details</a></li>
+    <li role="presentation" class="active"><a href="#basic" aria-controls="basic" role="tab" data-toggle="tab">Basic</a></li>
   </ul>
-
   <!-- Tab panes -->
   <div class="tab-content">
     <div role="tabpanel" class="tab-pane active" id="basic">
@@ -77,16 +72,9 @@
       </table>
     {% endfor %}
     </div>
-
   </div>
-
   {% else %}
         <p>No files.</p>
-
   {% endif %}
-
 </div>
-
-  
-
 {% endblock %}
