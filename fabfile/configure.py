@@ -69,8 +69,6 @@ def createconfig():
     config['DB_NAME'] = prompt('Database name:', default='calaccess_website')
     config['DB_USER'] = prompt('Database user:', default=env.app_user)
     config['DB_PASSWORD'] = prompt('Database user password:')
-    config['RDS_HOST'] = prompt('RDS host:')
-    config['EC2_HOST'] = prompt('EC2 host:')
     config['S3_ARCHIVED_DATA_BUCKET'] = prompt(
         'Name of the S3 bucket for archived data:',
         default='django-calaccess',
@@ -81,6 +79,8 @@ def createconfig():
     )
     config['EMAIL_USER'] = prompt('E-mail user:')
     config['EMAIL_PASSWORD'] = prompt('E-mail password:')
+    config['RDS_HOST'] = prompt('RDS host:')
+    config['EC2_HOST'] = prompt('EC2 host:')
 
     # Save it to the configuration file
     [setconfig(k, v) for k, v in config.items()]
