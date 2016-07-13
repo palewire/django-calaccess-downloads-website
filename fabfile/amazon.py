@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import os
+from datetime import datetime
 import stat
 import boto3
 from fabric.colors import green
@@ -155,7 +156,7 @@ def createkey(name):
 
 
 @task
-def copydb(src_db_instance_id, dest_db_instance_id):
+def copydb(src_db_instance_id, dest_db_instance_id, make_snapshot=False):
     """
     Copy the most recent snapshot on the source AWS RDS instance to the
     destination RDS instance.
@@ -169,9 +170,21 @@ def copydb(src_db_instance_id, dest_db_instance_id):
     )
     client = session.client('rds')
 
+    if make_snapshot:
+        client.create_db_snapshot(
+            DBSnapshotIdentifier='{0}-{1}'.format(
+                src_db_instance_id,
+                datetime.now().strftime('%Y-%m-%d-%H-%M'),
+            ),
+            DBInstanceIdentifier=src_db_instance_id,
+        )
+        print('- Creating snapshot of {0}'.format(src_db_instance_id))
+        # wait until snapshot completes
+        waiter = client.get_waiter('db_snapshot_completed')
+        waiter.wait(DBInstanceIdentifier=src_db_instance_id)
+
     # get all the snapshots
     snapshots = client.describe_db_snapshots(
-        # is there a way to not hard-code this?
         DBInstanceIdentifier=src_db_instance_id
     )['DBSnapshots']
 
