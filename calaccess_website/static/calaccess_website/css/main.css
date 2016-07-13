@@ -213,7 +213,8 @@ ul.legend li {
   padding-top: 30px;
   padding-bottom: 30px;
   border-radius: 0 !important;
-  background-color: rgba(9,113,178,0.2);
+  border: 3px solid rgba(186,10,3,1);
+  background: none;
 }
 
 .jumbotron h1 {
