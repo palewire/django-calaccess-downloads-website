@@ -1,4 +1,5 @@
 from .files import FileList, FileDetail
+from .base import CalAccessModelListMixin
 from .other import Home, CalAccess404View, CalAccessRobotsTxtView
 from .versions import (
     VersionArchiveIndex,
@@ -12,6 +13,7 @@ from .versions import (
 __all__ = (
     'Home',
     'CalAccess404View',
+    'CalAccessModelListMixin',
     'CalAccessRobotsTxtView',
     'FileList',
     'FileDetail',

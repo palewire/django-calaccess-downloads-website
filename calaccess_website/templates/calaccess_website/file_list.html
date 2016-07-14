@@ -8,8 +8,7 @@
 
 {% block content %}
     <h1>Files</h1>
-    {% regroup object_list by klass_group as model_groups %}
-    {% for group in model_groups|dictsort:"grouper" %}
+    {% for group in object_list %}
     <section class="table-type">
       <h3>{{ group.grouper|capfirst }}</h3>
       <table class="table table-striped">

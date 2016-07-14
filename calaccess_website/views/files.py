@@ -1,15 +1,21 @@
 from django.http import Http404
 from calaccess_raw import get_model_list
+from .base import CalAccessModelListMixin
 from django.core.urlresolvers import reverse
 from django.template.defaultfilters import slugify
 from calaccess_raw.models.tracking import RawDataFile
 from bakery.views import BuildableDetailView, BuildableListView
 
 
-class FileList(BuildableListView):
-    queryset = get_model_list()
+class FileList(BuildableListView, CalAccessModelListMixin):
     template_name = 'calaccess_website/file_list.html'
     build_path = "files/index.html"
+
+    def get_queryset(self):
+        """
+        Returns the CAL-ACCESS model list with grouped by type.
+        """
+        return self.regroup_by_klass_group(get_model_list())
 
 
 class FileDetail(BuildableDetailView):

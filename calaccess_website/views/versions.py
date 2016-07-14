@@ -1,5 +1,6 @@
 import time
 from django.http import Http404
+from .base import CalAccessModelListMixin
 from django.core.urlresolvers import reverse
 from calaccess_raw.models.tracking import RawDataVersion
 from django.template.defaultfilters import date as dateformat
@@ -42,7 +43,7 @@ class VersionMonthArchiveList(BuildableMonthArchiveView):
     template_name = "calaccess_website/version_archive_month.html"
 
 
-class VersionDetail(BuildableDetailView):
+class VersionDetail(BuildableDetailView, CalAccessModelListMixin):
     """
     A detail page with everything about an individual CAL-ACCESS version
     """
@@ -71,13 +72,8 @@ class VersionDetail(BuildableDetailView):
         """
         context = super(VersionDetail, self).get_context_data(**kwargs)
         # Add the file's raw data model klass_group to the context
-        context['files'] = []
-        for file_ in self.object.files.all():
-            values = file_.__dict__
-            values['klass_group'] = file_.model().klass_group
-            values['pretty_download_file_size'] = file_.pretty_download_file_size()
-            values['pretty_clean_file_size'] = file_.pretty_clean_file_size()
-            context['files'].append(values)
+        file_list = self.object.files.all()
+        context['file_list'] = self.regroup_by_klass_group(file_list)
         return context
 
     def get_url(self, obj):
