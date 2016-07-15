@@ -61,7 +61,52 @@ class FileDetail(BuildableDetailView):
         context['version_list'] = RawDataFile.objects.filter(
             file_name=self.kwargs['file_name'].upper()
         ).order_by('-version__release_datetime')
+        # Add list of choice fields to context
+        context['choice_fields'] = self.get_choice_fields()
+        # Add dict of docs to context
+        context['docs'] = self.get_docs()
         return context
 
     def build_queryset(self):
         [self.build_object(o) for o in self.get_queryset()]
+
+    def get_choice_fields(self):
+        """
+        Returns list of fields with choices and docs.
+        """
+        choice_fields = []
+        for field in self.object._meta.fields:
+            if len(field.choices) > 0:
+                # add doc title, page_url list to each choice field
+                field.docs = {}
+                for doc in sorted(
+                    field.documentcloud_pages,
+                    key=lambda x: x.start_page
+                ):
+                    """if self.refresh_dc_cache and doc.id not in self.docs_cached:
+                        doc._cache_metadata()
+                        self.docs_cached.append(doc.id)"""
+                    try:
+                        field.docs[doc.title].append(doc)
+                    except KeyError:
+                        field.docs[doc.title] = [doc]
+                choice_fields.append(field)
+        return choice_fields
+
+    def get_docs(self):
+        """
+        Returns dict of { doc_title: list of documentcloud objects }.
+        """
+        docs = {}
+        for doc in sorted(
+            self.object.DOCUMENTCLOUD_PAGES,
+            key=lambda x: x.start_page
+        ):
+            """if self.refresh_dc_cache and doc.id not in self.docs_cached:
+                doc._cache_metadata()
+                self.docs_cached.append(doc.id)"""
+            try:
+                docs[doc.title].append(doc)
+            except KeyError:
+                docs[doc.title] = [doc]
+        return docs

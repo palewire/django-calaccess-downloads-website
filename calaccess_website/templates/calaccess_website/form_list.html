@@ -1,0 +1,19 @@
+{% extends 'calaccess_website/base.html' %}
+
+{% block title %}Forms - {{ block.super }}{% endblock%}
+
+{% block breadcrumbs %}
+  <li class="active">Forms</li>
+{% endblock %}
+
+{% block content %}
+    <h1>Forms</h1>
+      <table class="table table-striped">
+      {% for form in object_list %}
+          <tr>
+            <th><a href="{% url 'form_detail' id=form.id %}">{{ form.type_and_num|safe }}</th>
+            <td width="70%">{{ form.description|safe  }}</td>
+          </tr>
+      {% endfor %}
+      </table>
+{% endblock %}

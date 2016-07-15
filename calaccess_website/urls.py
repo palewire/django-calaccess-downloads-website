@@ -49,6 +49,18 @@ urlpatterns = [
         name='file_detail',
     ),
 
+    # Form views
+    url(
+        r'^forms/$',
+        views.FormList.as_view(),
+        name='form_list'
+    ),
+    url(
+        r'^forms/(?P<id>\w+)/$',
+        views.FormDetail.as_view(),
+        name='form_detail',
+    ),
+
     # Machine-readable stuff
     url(
         r'^robots.txt$',
