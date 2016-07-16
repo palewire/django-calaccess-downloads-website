@@ -97,8 +97,8 @@ BAKERY_VIEWS = (
     'calaccess_website.views.LatestVersion',
     'calaccess_website.views.FileList',
     'calaccess_website.views.FileDetail',
-    #'calaccess_website.views.FormList',
-    #'calaccess_website.views.FormDetail',
+    'calaccess_website.views.FormList',
+    'calaccess_website.views.FormDetail',
     'calaccess_website.views.CalAccess404View',
     'calaccess_website.views.CalAccessRobotsTxtView',
     'calaccess_website.sitemaps.VersionSitemapView',
@@ -204,6 +204,11 @@ LOGGING = {
     'loggers': {
         'calaccess_raw.management': {
             'handlers': ['logfile', 'mail_admins'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+        'calaccess_website.management': {
+            'handlers': ['console', 'logfile'],
             'level': 'DEBUG',
             'propagate': True,
         },
