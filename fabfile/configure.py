@@ -62,11 +62,11 @@ def createconfig():
     config['DB_PASSWORD'] = prompt('Database user password:')
     config['S3_ARCHIVED_DATA_BUCKET'] = prompt(
         'Name of the S3 bucket for archived data:',
-        default='django-calaccess',
+        default='django-calaccess-dev-data-archive',
     )
     config['S3_BAKED_CONTENT_BUCKET'] = prompt(
         'Name of the S3 bucket for baked content:',
-        default='calaccess.californiacivicdata.org',
+        default='django-calaccess-dev-baked-content',
     )
     config['EMAIL_USER'] = prompt('E-mail user:')
     config['EMAIL_PASSWORD'] = prompt('E-mail password:')
