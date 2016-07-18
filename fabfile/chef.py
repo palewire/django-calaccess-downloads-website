@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+import os
 import json
 import collections
 from app import migrate, collectstatic
@@ -27,6 +28,9 @@ def bootstrap():
     # Fire up the Django project
     migrate()
     collectstatic()
+
+    sudo("echo 'export CALACCESS_WEBSITE_ENV=%s' >> "
+        "/apps/calaccess/bin/activate" % os.getenv('CALACCESS_WEBSITE_ENV'))
 
     # Done deal
     print(green("Success!"))
