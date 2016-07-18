@@ -1,12 +1,15 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import os
-import StringIO
 import ConfigParser
 from fabric.tasks import Task
 from fabric.colors import green
 from fabric.api import task, env, sudo
 from fabric.operations import put, prompt
+
+# default to configuring DEV environment
+os.environ.setdefault("CALACCESS_WEBSITE_ENV", "DEV")
+cp_sect = os.getenv('CALACCESS_WEBSITE_ENV').upper()
 
 #
 # Tasks
@@ -19,31 +22,19 @@ def setconfig(key, value):
     Add or edit a key-value pair in the .env configuration file.
     """
     # Get the existing config
-    config = getconfig()
+    cp = ConfigParser.SafeConfigParser()
+    cp.read(env.config_file)
+
+    # if the config file section is not there, add it
+    if not cp.has_section(cp_sect):
+        cp.add_section(cp_sect)
 
     # Set the value provided by the user
-    config[key] = value
+    cp.set(cp_sect, key, value)
 
-    # Create a configure a parser object
-    cp = ConfigParser.ConfigParser()
-    cp.add_section('fabric')
-    for k, v in config.items():
-        cp.set("fabric", k, v)
-
-    # Write the object to a virtual file object
-    io = StringIO.StringIO()
-    cp.write(io)
-    s = io.getvalue()
-
-    # Remove the section name from the first line because we don't want it
-    s = '\n'.join(io.getvalue().split('\n')[1:-1])
-
-    # Write out the real file
+    # Write to the .env file
     with open(env.config_file, 'wb') as f:
-        f.write(s)
-
-    # Close the virtual file
-    io.close()
+        cp.write(f)
 
 
 @task
@@ -139,20 +130,11 @@ def getconfig():
     """
     Return a dict of the vars currently in the config_file
     """
-    # Hack to get around the fact that our .env file lacks a section header,
-    # which is a silly requirement of ConfigParser.
-    config = StringIO.StringIO()
-    config.write('[fabric]\n')
-    if os.path.isfile(env.config_file):
-        config.write(open(env.config_file).read())
-    config.seek(0, os.SEEK_SET)
-
-    # Parse the configuration
-    cp = ConfigParser.ConfigParser()
-    cp.readfp(config)
+    cp = ConfigParser.SafeConfigParser()
+    cp.read(env.config_file)
 
     # Uppercase the settings
-    d = dict((k.upper(), v) for k, v in cp.items("fabric"))
+    d = dict((k.upper(), v) for k, v in cp.items(cp_sect))
 
     # Pass it out
     return d
