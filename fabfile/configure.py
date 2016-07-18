@@ -8,8 +8,6 @@ from fabric.colors import green
 from fabric.api import task, env, sudo
 from fabric.operations import put, prompt
 
-# default to configuring DEV environment
-os.environ.setdefault("CALACCESS_WEBSITE_ENV", "DEV")
 cp_sect = os.getenv('CALACCESS_WEBSITE_ENV').upper()
 
 #

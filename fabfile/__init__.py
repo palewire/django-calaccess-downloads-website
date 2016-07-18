@@ -41,6 +41,8 @@ env.activate = 'source {}bin/activate'.format(env.app_dir)
 # Extras
 env.chef = '/usr/bin/chef-solo -c solo.rb -j node.json'
 env.connection_attempts = 15
+# default to configuring DEV environment
+os.environ.setdefault("CALACCESS_WEBSITE_ENV", "DEV")
 
 __all__ = (
     'bootstrap',
