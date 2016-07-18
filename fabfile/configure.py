@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import os
+from collections import OrderedDict
 import ConfigParser
 from fabric.tasks import Task
 from fabric.colors import green
@@ -49,7 +50,7 @@ def createconfig():
     print('')
 
     # Request data from the user
-    config = {}
+    config = OrderedDict()
     config['AWS_ACCESS_KEY_ID'] = prompt('Your AWS access key:')
     config['AWS_SECRET_ACCESS_KEY'] = prompt('Your AWS secret key:')
     config['AWS_REGION_NAME'] = prompt(
