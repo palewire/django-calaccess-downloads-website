@@ -1,5 +1,6 @@
 from itertools import groupby
 from calaccess_raw.models import RawDataFile
+from calaccess_raw.annotations import FilingForm
 
 
 class CalAccessModelListMixin(object):
@@ -10,6 +11,9 @@ class CalAccessModelListMixin(object):
         # If it's a RawDataFile do our trick
         if isinstance(model_or_obj, RawDataFile):
             return model_or_obj.model().klass_group
+        # If it's a FilingForm also do our trick
+        elif isinstance(model_or_obj, FilingForm):
+            return model_or_obj.group
         # If it's an object go ahead
         elif isinstance(model_or_obj.klass_group, str):
             return model_or_obj.klass_group
@@ -33,6 +37,9 @@ class CalAccessModelListMixin(object):
 
         # Sort the inactive models to the end
         l = sorted(l, key=lambda d: d['grouper'].replace("inactive", "z"))
+
+        # Sort deprecated forms to the end
+        l = sorted(l, key=lambda d: d['grouper'].replace("Deprecated", "z"))
 
         # Return the list
         return l

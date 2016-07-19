@@ -8,12 +8,17 @@
 
 {% block content %}
     <h1>Forms</h1>
+    {% for group in object_list %}
+    <section class="table-type">
+      <h3>{{ group.grouper|lower|capfirst }}</h3>
       <table class="table table-striped">
-      {% for form in object_list %}
+      {% for form in group.list  %}
           <tr>
             <th><a href="{% url 'form_detail' id=form.id %}">{{ form.type_and_num|safe }}</th>
             <td width="70%">{{ form.description|safe  }}</td>
           </tr>
       {% endfor %}
       </table>
+    </section>
+    {% endfor %}
 {% endblock %}
