@@ -14,6 +14,7 @@ def archive_url(file_path):
     base_url = "https://s3-us-west-2.amazonaws.com/django-calaccess/"
     return urlparse.urljoin(base_url, file_path)
 
+
 @register.filter
 @stringfilter
 def format_page_anchor(value):

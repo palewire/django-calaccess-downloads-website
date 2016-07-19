@@ -18,7 +18,7 @@ class OfficialDocumentationView(BuildableTemplateView):
     """
     build_path = "official-documentation/index.html"
     template_name = "calaccess_website/official_documentation.html"
-    
+
 
 class CalAccess404View(Buildable404View):
     """

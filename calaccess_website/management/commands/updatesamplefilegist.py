@@ -1,7 +1,6 @@
 import os
 from github import Github
 from github.InputFileContent import InputFileContent
-from calaccess_raw import get_model_list
 from django.core.management.base import BaseCommand
 
 

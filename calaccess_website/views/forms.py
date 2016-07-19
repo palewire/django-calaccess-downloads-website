@@ -5,6 +5,7 @@ from django.template.defaultfilters import slugify
 from calaccess_raw.annotations.filing_forms import all_filing_forms
 from bakery.views import BuildableDetailView, BuildableListView
 
+
 class FormList(BuildableListView, CalAccessModelListMixin):
     template_name = 'calaccess_website/form_list.html'
     build_path = "forms/index.html"
@@ -15,6 +16,7 @@ class FormList(BuildableListView, CalAccessModelListMixin):
         """
         print(all_filing_forms)
         return self.regroup_by_klass_group(all_filing_forms)
+
 
 class FormDetail(BuildableDetailView):
     """

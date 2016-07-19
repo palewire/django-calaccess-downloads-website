@@ -20,7 +20,7 @@ class CalAccessModelListMixin(object):
         # If not you will need to call it first with ()
         else:
             return model_or_obj().klass_group
-    
+
     def regroup_by_klass_group(self, model_list):
         """
         Accepts a model list and returns them regrouped by klass_group

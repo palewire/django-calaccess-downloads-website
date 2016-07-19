@@ -27,5 +27,8 @@ __all__ = (
     'VersionYearArchiveList',
     'VersionMonthArchiveList',
     'VersionDetail',
-    'LatestVersion'
+    'LatestVersion',
+    'FormDetail',
+    'FormList',
+    'OfficialDocumentationView',
 )
