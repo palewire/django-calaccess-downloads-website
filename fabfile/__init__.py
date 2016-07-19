@@ -27,7 +27,6 @@ from configure import (
 # Server credentials
 env.user = 'ubuntu'
 env.key_file_dir = os.path.expanduser('~/.ec2/')
-env.config_file = '.env'
 
 # Application data
 env.app_user = 'ccdc'
@@ -41,6 +40,8 @@ env.activate = 'source {}bin/activate'.format(env.app_dir)
 # Extras
 env.chef = '/usr/bin/chef-solo -c solo.rb -j node.json'
 env.connection_attempts = 15
+repo_dir = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
+env.config_file = os.path.join(repo_dir, ".env")
 # default to configuring DEV environment
 os.environ.setdefault("CALACCESS_WEBSITE_ENV", "DEV")
 env.cp_sect = os.getenv('CALACCESS_WEBSITE_ENV').upper()
