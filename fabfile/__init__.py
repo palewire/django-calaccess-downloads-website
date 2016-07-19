@@ -43,6 +43,7 @@ env.chef = '/usr/bin/chef-solo -c solo.rb -j node.json'
 env.connection_attempts = 15
 # default to configuring DEV environment
 os.environ.setdefault("CALACCESS_WEBSITE_ENV", "DEV")
+env.cp_sect = os.getenv('CALACCESS_WEBSITE_ENV').upper()
 
 __all__ = (
     'bootstrap',

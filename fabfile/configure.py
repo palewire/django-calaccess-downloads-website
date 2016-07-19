@@ -8,8 +8,6 @@ from fabric.colors import green
 from fabric.api import task, env, sudo
 from fabric.operations import put, prompt
 
-cp_sect = os.getenv('CALACCESS_WEBSITE_ENV').upper()
-
 #
 # Tasks
 #
@@ -25,11 +23,11 @@ def setconfig(key, value):
     cp.read(env.config_file)
 
     # if the config file section is not there, add it
-    if not cp.has_section(cp_sect):
-        cp.add_section(cp_sect)
+    if not cp.has_section(env.cp_sect):
+        cp.add_section(env.cp_sect)
 
     # Set the value provided by the user
-    cp.set(cp_sect, key, value)
+    cp.set(env.cp_sect, key, value)
 
     # Write to the .env file
     with open(env.config_file, 'wb') as f:
@@ -133,7 +131,7 @@ def getconfig():
     cp.read(env.config_file)
 
     # Uppercase the settings
-    d = dict((k.upper(), v) for k, v in cp.items(cp_sect))
+    d = dict((k.upper(), v) for k, v in cp.items(env.cp_sect))
 
     # Pass it out
     return d
