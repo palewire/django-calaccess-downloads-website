@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 import os
 import sys
-import ConfigParser
+from backports import configparser
 
 if __name__ == "__main__":
     # allow invoking manage.py from any directory
     repo_dir = os.path.dirname(os.path.realpath(__file__))
     # load env variables from .env config file
-    cp = ConfigParser.SafeConfigParser()
+    cp = configparser.SafeConfigParser()
     cp.read(os.path.join(repo_dir, ".env"))
     # default to DEV env
     os.environ.setdefault("CALACCESS_WEBSITE_ENV", "DEV")

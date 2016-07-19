@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 import os
 from collections import OrderedDict
-import ConfigParser
+from backports import configparser
 from fabric.tasks import Task
 from fabric.colors import green
 from fabric.api import task, env, sudo
@@ -19,7 +19,7 @@ def setconfig(key, value):
     Add or edit a key-value pair in the .env configuration file.
     """
     # Get the existing config
-    cp = ConfigParser.SafeConfigParser()
+    cp = configparser.SafeConfigParser()
     cp.read(env.config_file)
 
     # if the config file section is not there, add it
@@ -127,7 +127,7 @@ def getconfig():
     """
     Return a dict of the vars currently in the config_file
     """
-    cp = ConfigParser.SafeConfigParser()
+    cp = configparser.SafeConfigParser()
     cp.read(env.config_file)
 
     # Uppercase the settings
