@@ -1,7 +1,12 @@
 from .files import FileList, FileDetail
 from .forms import FormList, FormDetail
 from .base import CalAccessModelListMixin
-from .other import Home, CalAccess404View, CalAccessRobotsTxtView
+from .other import (
+    Home,
+    OfficialDocumentationView,
+    CalAccess404View,
+    CalAccessRobotsTxtView
+)
 from .versions import (
     VersionArchiveIndex,
     VersionYearArchiveList,

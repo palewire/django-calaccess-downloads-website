@@ -61,6 +61,13 @@ urlpatterns = [
         name='form_detail',
     ),
 
+    # Official documentation
+    url(
+        r'^official-documentation/$',
+        views.OfficialDocumentationView.as_view(),
+        name='official_documentation'
+    ),
+
     # Machine-readable stuff
     url(
         r'^robots.txt$',
