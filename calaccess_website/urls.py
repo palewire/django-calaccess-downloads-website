@@ -80,6 +80,11 @@ urlpatterns = [
         name='file_sitemap'
     ),
     url(
+        r'^form-sitemap.xml$',
+        sitemaps.FormSitemapView.as_view(),
+        name='form_sitemap'
+    ),
+    url(
         r'^version-sitemap.xml$',
         sitemaps.VersionSitemapView.as_view(),
         name='version_sitemap'

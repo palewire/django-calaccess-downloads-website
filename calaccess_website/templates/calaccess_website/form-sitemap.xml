@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 {% for obj in object_list %}
   <url>
-    <loc>http://calaccess.californiacivicdata.org{% url 'file_detail' obj.db_table|slugify %}</loc> 
+    <loc>http://calaccess.californiacivicdata.org{% url 'file_detail' obj.id %}</loc>
   </url>
 {% endfor %}
 </urlset>

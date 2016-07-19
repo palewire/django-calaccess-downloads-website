@@ -1,6 +1,7 @@
 from calaccess_raw import get_model_list
 from bakery.views import BuildableListView
 from calaccess_raw.models import RawDataVersion
+from calaccess_raw.annotations.filing_forms import all_filing_forms
 
 
 class AbstractSitemapClass(BuildableListView):
@@ -16,6 +17,7 @@ class OtherSitemapView(AbstractSitemapClass):
     template_name = "calaccess_website/other-sitemap.xml"
     queryset = [
         {"url": "/"},
+        {"url": "/forms/"},
         {"url": "/files/"},
         {"url": "/versions/"},
         {"url": "/versions/latest/"},
@@ -24,7 +26,7 @@ class OtherSitemapView(AbstractSitemapClass):
 
 class VersionSitemapView(AbstractSitemapClass):
     """
-    A list of all graphics in a Sitemap ready for Google.
+    A machine-readable list of all version detali pages.
     """
     build_path = 'version-sitemap.xml'
     template_name = 'calaccess_website/version-sitemap.xml'
@@ -33,8 +35,17 @@ class VersionSitemapView(AbstractSitemapClass):
 
 class FileSitemapView(AbstractSitemapClass):
     """
-    A list of all graphics in a Sitemap ready for Google.
+    A machine-readable list of all file detail pages.
     """
     build_path = 'file-sitemap.xml'
     template_name = 'calaccess_website/file-sitemap.xml'
     queryset = get_model_list()
+
+
+class FormSitemapView(AbstractSitemapClass):
+    """
+    A machine-readable list of all form detail pages.
+    """
+    build_path = 'file-sitemap.xml'
+    template_name = 'calaccess_website/form-sitemap.xml'
+    queryset = all_filing_forms
