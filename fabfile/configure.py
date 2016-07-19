@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 import os
 from collections import OrderedDict
-from backports import configparser
+import configparser
 from fabric.tasks import Task
 from fabric.colors import green
 from fabric.api import task, env, sudo

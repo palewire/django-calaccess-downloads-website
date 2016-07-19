@@ -8,4 +8,4 @@ six
 Fabric
 flake8
 coveralls
-backports-abc
+configparser

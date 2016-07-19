@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import os
 import sys
-from backports import configparser
+import configparser
 
 if __name__ == "__main__":
     # allow invoking manage.py from any directory
