@@ -20,18 +20,20 @@ install:
 
 before_script:
   - psql -c 'create database calaccess_website;' -U postgres
-  - fab setconfig:aws_access_key_id,''
-  - fab setconfig:aws_secret_access_key,''
-  - fab setconfig:aws_region_name,''
-  - fab setconfig:key_name,''
-  - fab setconfig:db_name,''
-  - fab setconfig:db_user,''
-  - fab setconfig:db_password,''
-  - fab setconfig:s3_archived_data_bucket,''
-  - fab setconfig:s3_baked_content_bucket,''
-  - fab setconfig:email_user,''
-  - fab setconfig:email_password,''
-  - fab setconfig:rds_host,''
+  - cat > .env
+  - [DEV]
+  - aws_access_key_id = 
+  - aws_secret_access_key = 
+  - aws_region_name = 
+  - key_name = 
+  - db_name = 
+  - db_user = 
+  - db_password = 
+  - s3_archived_data_bucket = 
+  - s3_baked_content_bucket = 
+  - email_user = 
+  - email_password = 
+  - rds_host = 
 
 script:
   - make test
