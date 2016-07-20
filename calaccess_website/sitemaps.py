@@ -21,6 +21,7 @@ class OtherSitemapView(AbstractSitemapClass):
         {"url": "/files/"},
         {"url": "/versions/"},
         {"url": "/versions/latest/"},
+        {"url": "/government-documentation/"},
     ]
 
 

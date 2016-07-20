@@ -63,9 +63,9 @@ urlpatterns = [
 
     # Official documentation
     url(
-        r'^official-documentation/$',
-        views.OfficialDocumentationView.as_view(),
-        name='official_documentation'
+        r'^government-documentation/$',
+        views.GovernmentDocumentationView.as_view(),
+        name='government_documentation'
     ),
 
     # Machine-readable stuff

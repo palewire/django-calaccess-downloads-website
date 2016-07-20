@@ -12,12 +12,12 @@ class Home(BuildableArchiveIndexView):
     template_name = "calaccess_website/home.html"
 
 
-class OfficialDocumentationView(BuildableTemplateView):
+class GovernmentDocumentationView(BuildableTemplateView):
     """
     Explanation of official CAL-ACCESS documentation.
     """
-    build_path = "official-documentation/index.html"
-    template_name = "calaccess_website/official_documentation.html"
+    build_path = "government-documentation/index.html"
+    template_name = "calaccess_website/government_documentation.html"
 
 
 class CalAccess404View(Buildable404View):

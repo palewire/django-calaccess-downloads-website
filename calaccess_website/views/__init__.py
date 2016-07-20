@@ -3,7 +3,7 @@ from .forms import FormList, FormDetail
 from .base import CalAccessModelListMixin
 from .other import (
     Home,
-    OfficialDocumentationView,
+    GovernmentDocumentationView,
     CalAccess404View,
     CalAccessRobotsTxtView
 )
@@ -30,5 +30,5 @@ __all__ = (
     'LatestVersion',
     'FormDetail',
     'FormList',
-    'OfficialDocumentationView',
+    'GovernmentDocumentationView',
 )
