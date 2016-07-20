@@ -11,10 +11,14 @@ header, footer {
 table {
     font-size: 13px;
 }
+h1, h2, h3, h4 {
+    font-family: Source Sans Pro;
+}
 p {
     font-size: 17px;
+    font-family: Georgia;
+    color: #7e7e7e;
 }
-
 .bold { font-weight: bold; }
 th, td {
   padding: 2px;
@@ -254,6 +258,44 @@ footer .navbar .nav>li>a:hover {
 }
 footer .navbar .nav>li>a:focus {
     background-color: #ba0a35;
+}
+
+.home h1 {
+    font-size: 50px;
+}
+
+.home .row {
+    max-width: 900px;
+    text-align: center;
+}
+
+.home .home-card {
+    height: 300px;
+    background-color: #ba0a35;
+    padding: 20px;
+    margin: 0 auto;
+    width: 85%;
+}
+.home .card-container {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.home .home-card i {
+    font-size: 70px;
+    margin-bottom: 20px;
+}
+.home .home-card p {
+    color: #fff;
+}
+
+.home .row-text {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.home .row-text section {
+    margin: 60px auto;
 }
 
 @media only screen

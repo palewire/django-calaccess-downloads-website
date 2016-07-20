@@ -4,50 +4,65 @@
 {% block breadcrumbs-container %}{% endblock %}
 
 {% block content %}
-<br />
+<div class="home">
+    <br />
+    <div class="row">
+        <h1>CAL-ACCESS archive</h1>
+        <p class="lead">Daily snapshots of campaign finance and lobbying disclosure data from California</p>
+    </div>
 
-<div class="jumbotron">
-    <h1>The CAL-ACCESS archive</h1>
-    <p>Welcome to the open-source archive of campaign finance and lobbying disclosure data from the California Secretary of State’s CAL-ACCESS database.</p>
-    <p><a class="btn btn-calaccess-red btn-lg" href="{% url 'version_latest_redirect' %}" role="button"><i class="fa fa-newspaper-o"></i> Get the latest data</a></p>
-</div>
-<div class="row">
-<div class="home-col col-md-4">
-    <h3><i class="fa fa-newspaper-o"></i> &nbsp; Latest versions</h3>
-    <table class="table table-striped">
-        <tbody>
-            {% for obj in latest|slice:":5" %}
-            <tr>
-                <td>
-                    <a href="{% url 'version_detail' year=obj.release_datetime.year month=obj.release_datetime.month release_epochtime=obj.release_datetime|date:'U' %}">
-                        {{ obj.release_datetime|date:"l, N j, Y" }}
-                    </a>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-        <tfoot>
-            <tr>
-                <td class="right" colspan=3>
-                    <a style="font-size: 16px;" href="{% url 'version_archive_index' %}">Full archive &raquo;</a>
-                </td>
-            </tr>
-        </tfoot>
-    </table>
-</div>
-<div class="home-col col-md-4">
-    <h3><i class="fa fa-info-circle"></i> &nbsp; About</h3>
-    <p>
-        This site is maintained by the California Civic Data Coalition, an open-source team of journalists and computer programmers from news organizations across America. <br \>
-        <a href="http://www.californiacivicdata.org/about/">Learn more &raquo;</a>
-    </p>
-</div>
-<div class="home-col col-md-4">
-    <h3><i class="fa fa-exclamation-triangle"></i> &nbsp; Coming next</h3>
-    <p>
-        We're working on “processed data” downloads that will refine the CAL-ACCESS data and format it in simpler models that are easier to analyze.
-    </p>
-</div>
+    <br>
 
+    <div class="row">
+        <div class="col-sm-4">
+            <a href="{% url 'version_latest_redirect' %}">
+            <div class="home-card">
+                <div class="card-container">
+                    <p><i class="fa fa-database" aria-hidden="true"></i></p>
+                    <p>Download the latest data processed from our servers and ready for analysis.</p>
+                </div>
+            </div>
+            </a>
+        </div>
+        <div class="col-sm-4">
+            <a href="{% url 'file_list' %}">
+            <div class="home-card">
+                <div class="card-container">
+                    <p><i class="fa fa-files-o" aria-hidden="true"></i></p>
+                    <p>Browse individual tables and look at snapshots of CAL-ACCESS.</p>
+                </div>
+            </div>
+            </a>
+        </div>
+        <div class="col-sm-4">
+            <a href="https://github.com/california-civic-data-coalition/">
+            <div class="home-card">
+                <div class="card-container">
+                    <p><i class="fa fa-github" aria-hidden="true"></i></p>
+                    <p>All our code is open source. Take a look and learn how you can contribute.</p>
+                </div>
+            </div>
+            </a>
+        </div>
+    </div>
+
+    <div class="row row-text">
+        <section>
+            <h2>What is this?</h2>
+            <p>Welcome to the open-source archive of campaign finance and lobbying disclosure data from the California Secretary of State's CAL-ACCESS database.</p>
+            <p>This site is maintained by the California Civic Data Coalition, an open-source team of journalists and computer programmers from news organizations across America.</p>
+        </section>
+        <hr>
+        <section>
+            <h2>What's next?</h2>
+            <p>We're working on "processed data" downloads that will refine the CAL-ACCESS data and format it in simpler models that are easier to analyze.</p>
+        </section>
+        <hr>
+        <section>
+            <h2>How can I reach out?</h2>
+            <p>You can reach us on <a href="https://twitter.com/cacivicdata">Twitter</a> or email us at <a href="mailto:californiacivicdata@gmail.com">californiacivicdata@gmail.com.</a></p>
+        </section>
+
+    </div>
 </div>
 {% endblock %}
