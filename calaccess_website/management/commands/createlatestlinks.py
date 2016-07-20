@@ -26,7 +26,7 @@ class Command(BaseCommand):
         for f in obj.files.all():
 
             # Copy over the raw TSV to latest
-            latest_tsv =  self.get_latest_path(f.download_file_archive.name)
+            latest_tsv = self.get_latest_path(f.download_file_archive.name)
             print "Copying {} to {}".format(
                 f.download_file_archive.name,
                 latest_tsv
@@ -35,7 +35,7 @@ class Command(BaseCommand):
 
             # If it has a clean csv do the same
             if f.clean_file_archive:
-                latest_csv =  self.get_latest_path(f.clean_file_archive.name)
+                latest_csv = self.get_latest_path(f.clean_file_archive.name)
                 print "Copying {} to {}".format(
                     f.clean_file_archive.name,
                     latest_csv
@@ -44,7 +44,7 @@ class Command(BaseCommand):
 
             # If it has an error log, do that too
             if f.error_log_archive:
-                latest_error =  self.get_latest_path(f.error_log_archive.name)
+                latest_error = self.get_latest_path(f.error_log_archive.name)
                 print "Copying {} to {}".format(
                     f.error_log_archive.name,
                     latest_error
