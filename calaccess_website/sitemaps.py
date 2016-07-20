@@ -27,11 +27,35 @@ class OtherSitemapView(AbstractSitemapClass):
 
 class VersionSitemapView(AbstractSitemapClass):
     """
-    A machine-readable list of all version detali pages.
+    A machine-readable list of all version detail pages.
     """
     build_path = 'version-sitemap.xml'
     template_name = 'calaccess_website/version-sitemap.xml'
     model = RawDataVersion
+
+
+class VersionYearSitemapView(AbstractSitemapClass):
+    """
+    A machine-readable list of the version year archive pages.
+    """
+    build_path = "version-archive-year.xml"
+    template_name = "calaccess_website/version-archive-year.xml"
+    model = RawDataVersion
+
+    def get_queryset(self):
+        return self.model.objects.datetimes("release_datetime", "year")
+
+
+class VersionMonthSitemapView(AbstractSitemapClass):
+    """
+    A machine-readable list of the version month archive pages.
+    """
+    build_path = "version-archive-month.xml"
+    template_name = "calaccess_website/version-archive-month.xml"
+    model = RawDataVersion
+
+    def get_queryset(self):
+        return self.model.objects.datetimes("release_datetime", "month")
 
 
 class FileSitemapView(AbstractSitemapClass):

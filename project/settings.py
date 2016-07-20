@@ -103,6 +103,8 @@ BAKERY_VIEWS = (
     'calaccess_website.views.CalAccess404View',
     'calaccess_website.views.CalAccessRobotsTxtView',
     'calaccess_website.sitemaps.VersionSitemapView',
+    'calaccess_website.sitemaps.VersionYearSitemapView',
+    'calaccess_website.sitemaps.VersionMonthSitemapView',
     'calaccess_website.sitemaps.FileSitemapView',
     'calaccess_website.sitemaps.FormSitemapView',
     'calaccess_website.sitemaps.OtherSitemapView',

@@ -90,6 +90,16 @@ urlpatterns = [
         name='version_sitemap'
     ),
     url(
+        r'^version-year-sitemap.xml$',
+        sitemaps.VersionYearSitemapView.as_view(),
+        name='version_archive_year_sitemap'
+    ),
+    url(
+        r'^version-month-sitemap.xml$',
+        sitemaps.VersionMonthSitemapView.as_view(),
+        name='version_archive_month_sitemap'
+    ),
+    url(
         r'^other-sitemap.xml$',
         sitemaps.OtherSitemapView.as_view(),
         name='other_sitemap'
