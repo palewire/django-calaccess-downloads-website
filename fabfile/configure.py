@@ -37,7 +37,7 @@ def setconfig(key, value):
 @task
 def createconfig():
     """
-    Prompt users for settings to be stored in the config_file.
+    Prompt users for settings to be stored in .env file
     """
     # Kick it off
     print('')
@@ -107,7 +107,7 @@ def printenv():
 @task
 def copyconfig():
     """
-    Copy configurations in local dev environment to current ec2 instance.
+    Copy current configurations in local .env file to the ec2 instance.
     """
     # Load settings from the config file
     loadconfig()
