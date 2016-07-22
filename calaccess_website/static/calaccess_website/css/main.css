@@ -1,4 +1,7 @@
-
+body {
+    font-family: Source Sans Pro;
+    font-weight: 300;
+}
 header, footer {
     padding: 5px 0 0 0 !important;
 }
@@ -8,12 +11,9 @@ header, footer {
 table {
     font-size: 13px;
 }
-.container {
-    font-family: Source Sans Pro;
-}
 p {
     font-size: 17px;
-    color: #7e7e7e;
+    color: #a6a6a6;
 }
 .bold { font-weight: bold; }
 th, td {
@@ -79,15 +79,18 @@ header {
     font-weight: 600;
 }
 .nav>li {
-    width: 100px;
+    width: 80px;
     text-align: center;
-    margin: 10px 10px 8px 10px;
+    margin: 10px 15px 8px 15px;
+
 }
 .nav>li>a {
     position: relative;
     display: block;
     border-radius:0px;
     color:#000;
+    padding-left: 0;
+    padding-right: 0;
 }
 .nav>li>a:hover {
     border-bottom: 3px solid #ba0a35;
@@ -223,7 +226,6 @@ ul.legend li {
     background-color: #ba0a35;
     padding: 20px;
     margin: 0 auto;
-    width: 85%;
 }
 .home .card-container {
     position: relative;
@@ -242,28 +244,42 @@ ul.legend li {
 }
 
 /* Footer */
-.row-footer h3 {
-    font-weight: 600;
-}
-.row-footer {
+footer {
+    text-align: center;
     background-color: #ba0a35;
-    padding: 20px 80px;
     color: #fdfdfd;
 }
-.row-footer img {
+footer .row {
+    padding: 20px 0;
+}
+footer img {
     width: 150px;
 }
-.row-footer ul {
+footer h3 {
+    font-weight: 600;
+    text-align: left;
+}
+footer ul {
+    text-align: left;
     list-style: none;
     margin: 20px 0;
     padding: 0;
+    font-size: 16px;
 }
-.row-footer ul > li {
+footer ul > li {
     margin: 10px auto;
 }
-.row-footer ul a {
+footer a,
+footer a:hover {
     color: #fdfdfd;
-    font-weight: 300;
+}
+footer p {
+    color: #fdfdfd;
+    font-size: 14px;
+    font-weight: 200;
+}
+footer p a {
+    font-weight: 600;
 }
 
 @media only screen

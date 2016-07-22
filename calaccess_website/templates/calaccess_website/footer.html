@@ -1,40 +1,44 @@
 {% load staticfiles %}
-
-<footer class="container">
-	<div style="text-align: center;" class="row row-footer">
-		<a href="http://www.californiacivicdata.org/"><img src="{% static "calaccess_website/images/bear.gif" %}" alt=""></a>
-	</div>
-	<div class="row row-footer">
-		<div class="col-md-3">
-			<h3>Data</h3>
-			<ul>
-				<li><a href="{% url 'version_archive_index' %}">Version archive</a></li>
-				<li><a href="{% url 'file_list' %}">Raw data files</a></li>
-				<li><a href="{% url 'form_list' %}">Forms</a></li>
-			</ul>
+<footer>
+	<div class="container">
+		<div class="row">
+			<a href="http://www.californiacivicdata.org/"><img src="{% static "calaccess_website/images/bear.gif" %}" alt=""></a>
 		</div>
-		<div class="col-md-4">
-			<h3>Projects</h3>
-			<ul>
-				<li><a href="http://django-calaccess.californiacivicdata.org/en/latest/apps/calaccess_raw.html">django-calaccess-raw-data</a></li>
-				<li><a href="http://django-calaccess.californiacivicdata.org/en/latest/apps/calaccess_processed.html">django-calaccess-processed-data</a></li>
-				<li><a href="http://django-postgres-copy.californiacivicdata.org/en/latest/">django-postgres-copy</a></li>
-			</ul>
+		<div class="row">
+			<div class="col-md-3">
+				<h3>Data</h3>
+				<ul>
+					<li><a href="{% url 'version_archive_index' %}">Version archive</a></li>
+					<li><a href="{% url 'file_list' %}">Raw data files</a></li>
+					<li><a href="{% url 'form_list' %}">Forms</a></li>
+				</ul>
+			</div>
+			<div class="col-md-4">
+				<h3>Projects</h3>
+				<ul>
+					<li><a href="http://django-calaccess.californiacivicdata.org/en/latest/apps/calaccess_raw.html">django-calaccess-raw-data</a></li>
+					<li><a href="http://django-calaccess.californiacivicdata.org/en/latest/apps/calaccess_processed.html">django-calaccess-processed-data</a></li>
+					<li><a href="http://django-postgres-copy.californiacivicdata.org/en/latest/">django-postgres-copy</a></li>
+				</ul>
+			</div>
+			<div class="col-md-3">
+				<h3>About</h3>
+				<ul>
+					<li><a href="http://www.californiacivicdata.org/archive/">Blog</a></li>
+					<li><a href="http://www.californiacivicdata.org/about/">Team</a></li>
+					<li><a href="http://www.californiacivicdata.org/2015/07/22/knight-news-challenge/">Knight grant</a></li>
+				</ul>
+			</div>
+			<div class="col-md-2">
+				<h3>Contact</h3>
+				<ul>
+					<li><a href="mailto:cacivicdata@gmail.com">Email</a></li>
+					<li><a href="https://twitter.com/cacivicdata">Twitter</a></li>
+				</ul>
+			</div>
 		</div>
-		<div class="col-md-3">
-			<h3>About</h3>
-			<ul>
-				<li><a href="http://www.californiacivicdata.org/archive/">Blog</a></li>
-				<li><a href="http://www.californiacivicdata.org/about/">Team</a></li>
-				<li><a href="http://www.californiacivicdata.org/2015/07/22/knight-news-challenge/">Knight grant</a></li>
-			</ul>
-		</div>
-		<div class="col-md-2">
-			<h3>Contact</h3>
-			<ul>
-				<li><a href="mailto:cacivicdata@gmail.com">Email</a></li>
-				<li><a href="https://twitter.com/cacivicdata">Twitter</a></li>
-			</ul>
+		<div class="row">
+			<p><a href="http://www.californiacivicdata.org/">California Civic Data Coalition</a>. From 2016 'til infinity. Website source on <a href="https://github.com/california-civic-data-coalition/django-calaccess-downloads-website">Github</a>. West coast right on time.</p>
 		</div>
 	</div>
 </footer>
