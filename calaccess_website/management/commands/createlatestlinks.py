@@ -55,7 +55,7 @@ in a latest directory in the Django project's default file storage."
                 logger.debug('Saving copy of {0}.csv'.format(
                     f.file_name.lower()
                 ))
-                default_storage.save(latest_cl_path, f.cl_file_archive)
+                default_storage.save(latest_cl_path, f.clean_file_archive)
 
             if f.error_log_archive:
                 # convert the error log file's path to the latest path
@@ -64,7 +64,7 @@ in a latest directory in the Django project's default file storage."
                 logger.debug('Saving copy of {0}.errors.csv'.format(
                     f.file_name.lower()
                 ))
-                default_storage.save(latest_el_path, f.el_file_archive)
+                default_storage.save(latest_el_path, f.error_log_archive)
 
     def get_latest_path(self, old_path):
         """
