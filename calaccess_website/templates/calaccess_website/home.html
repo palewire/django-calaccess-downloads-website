@@ -7,14 +7,12 @@
 <div class="home">
     <br />
     <div class="row">
-        <h1>CAL-ACCESS archive</h1>
+        <h1>CAL-ACCESS Archive</h1>
         <p class="lead">Daily snapshots of campaign finance and lobbying disclosure data from California</p>
     </div>
 
-    <br>
-
     <div class="row">
-        <div class="col-sm-4">
+        <div class="col-sm-3">
             <a href="{% url 'version_latest_redirect' %}">
             <div class="home-card">
                 <div class="card-container">
@@ -24,7 +22,7 @@
             </div>
             </a>
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-3">
             <a href="{% url 'file_list' %}">
             <div class="home-card">
                 <div class="card-container">
@@ -34,7 +32,17 @@
             </div>
             </a>
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-3">
+            <a href="{% url 'file_list' %}">
+            <div class="home-card">
+                <div class="card-container">
+                    <p><i class="fa fa-files-o" aria-hidden="true"></i></p>
+                    <p>Browse individual tables and look at snapshots of CAL-ACCESS.</p>
+                </div>
+            </div>
+            </a>
+        </div>
+        <div class="col-sm-3">
             <a href="https://github.com/california-civic-data-coalition/">
             <div class="home-card">
                 <div class="card-container">
@@ -46,7 +54,8 @@
         </div>
     </div>
 
-    <div class="row row-text">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3"
         <section>
             <h2>What is this?</h2>
             <p>Welcome to the open-source archive of campaign finance and lobbying disclosure data from the California Secretary of State's CAL-ACCESS database.</p>
@@ -62,7 +71,7 @@
             <h2>How can I reach out?</h2>
             <p>You can reach us on <a href="https://twitter.com/cacivicdata">Twitter</a> or email us at <a href="mailto:californiacivicdata@gmail.com">californiacivicdata@gmail.com.</a></p>
         </section>
-
+        </div>
     </div>
 </div>
 {% endblock %}

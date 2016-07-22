@@ -1,7 +1,4 @@
-.container {
-  max-width: 900px;
-  padding: 0;
-}
+
 header, footer {
     padding: 5px 0 0 0 !important;
 }
@@ -11,12 +8,11 @@ header, footer {
 table {
     font-size: 13px;
 }
-h1, h2, h3, h4 {
+.container {
     font-family: Source Sans Pro;
 }
 p {
     font-size: 17px;
-    font-family: Georgia;
     color: #7e7e7e;
 }
 .bold { font-weight: bold; }
@@ -50,10 +46,7 @@ td.center, th.center{
     top:0px;
     width:100%;
 }
-.navbar-default {
-    background-color: #fff;
-    border-color: #fff;
-}
+
 .breadcrumb {
     padding: 10px;
     margin: 10px auto;
@@ -72,35 +65,33 @@ td.center, th.center{
     border-radius: 4px;
     margin-right: -30px;
 }
-}
-.navbar-header{
-    margin-left:-25px !important;
-}
-.navbar-nav>li>a {
-    padding-top: 10px;
-    padding-bottom: 10px;
-    line-height: 1;
-}
-.navbar {
-    position: relative;
-    min-height: 20px;
-    margin-bottom:0px;
-}
-ol {
-    line-height:1;
+
+/* Navbar */
+header {
+    box-shadow: 0 1px 10px #D0D0D0 ;
 }
 .nav-pills>li.active>a,
 .nav-pills>li.active>a:hover,
 .nav-pills>li.active>a:focus {
-    color: #ba0a35;
+    border-bottom: 3px solid #ba0a35;
     background-color: #fff;
+    color: #ba0a35;
+    font-weight: 600;
+}
+.nav>li {
+    width: 100px;
+    text-align: center;
+    margin: 10px 10px 8px 10px;
 }
 .nav>li>a {
     position: relative;
     display: block;
-    padding: 10px 15px 8px 15px;
     border-radius:0px;
     color:#000;
+}
+.nav>li>a:hover {
+    border-bottom: 3px solid #ba0a35;
+    background-color:#fff;
 }
 .nav .logo {
 	display:inline;
@@ -108,11 +99,9 @@ ol {
 }
 .nav .logo:hover, .nav .logo:active, .nav .logo:focus {
 	background:#fff;
+    border-bottom: none;
 }
-.nav>li>a:hover {
-    color:#fff;
-    background-color:#ba0a35;
-}
+
 .btn-default, .btn-default:hover{
     border-color: #ba0a35;
 }
@@ -204,35 +193,6 @@ ul.legend li {
 .False{
   color: #333;
 }
-.btn-calaccess-red {
-  color: #fefdfb;
-  background-color: #ba0a35;
-  border-radius: 0;
-}
-.btn-calaccess-red:hover, .btn-calaccess-red:focus {
-  color: #ccc8c0;
-}
-
-.jumbotron {
-  padding-top: 30px;
-  padding-bottom: 30px;
-  border-radius: 0 !important;
-  border: 3px solid rgba(186,10,3,1);
-  background: none;
-}
-
-.jumbotron h1 {
-  font-size: 53px;
-}
-.jumbotron p {
-  margin-bottom: 20px;
-}
-
-.home-col h3 {
-  margin-top: 10px;
-  margin-bottom: 20px;
-}
-
 .table-type {
   margin-top: 30px;
   margin-bottom: 30px;
@@ -246,29 +206,18 @@ ul.legend li {
     font-size: 16px;
 }
 
-footer .navbar {
-    background-color: #ba0a35;
-}
-footer .navbar .nav>li>a {
-    color: white;
-    font-size: 12px;
-}
-footer .navbar .nav>li>a:hover {
-    text-decoration: underline;
-}
-footer .navbar .nav>li>a:focus {
-    background-color: #ba0a35;
-}
-
+/* Homepage */
 .home h1 {
-    font-size: 50px;
+    font-size: 45px;
+    font-weight: 600;
 }
-
+.home h2 {
+    font-weight: 600;
+}
 .home .row {
-    max-width: 900px;
     text-align: center;
+    margin-bottom: 50px;
 }
-
 .home .home-card {
     height: 300px;
     background-color: #ba0a35;
@@ -286,16 +235,35 @@ footer .navbar .nav>li>a:focus {
     margin-bottom: 20px;
 }
 .home .home-card p {
-    color: #fff;
+    color: #fdfdfd;
 }
-
-.home .row-text {
-    max-width: 500px;
-    margin: 0 auto;
-}
-
-.home .row-text section {
+.home section {
     margin: 60px auto;
+}
+
+/* Footer */
+.row-footer h3 {
+    font-weight: 600;
+}
+.row-footer {
+    background-color: #ba0a35;
+    padding: 20px 80px;
+    color: #fdfdfd;
+}
+.row-footer img {
+    width: 150px;
+}
+.row-footer ul {
+    list-style: none;
+    margin: 20px 0;
+    padding: 0;
+}
+.row-footer ul > li {
+    margin: 10px auto;
+}
+.row-footer ul a {
+    color: #fdfdfd;
+    font-weight: 300;
 }
 
 @media only screen
