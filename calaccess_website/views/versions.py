@@ -87,23 +87,21 @@ class VersionDetail(BuildableDetailView, CalAccessModelListMixin):
         )
 
 
-class LatestVersion(BuildableRedirectView):
+class LatestVersion(VersionDetail):
     """
     Redirect to the detail page of the latest CAL-ACCESS version
     """
-    build_path = "versions/latest/index.html"
-    pattern_name = 'version_detail'
-
-    def get_redirect_url(self, *args, **kwargs):
+    def get_object(self, **kwargs):
         try:
-            obj = RawDataVersion.objects.latest('release_datetime')
-        except RawDataVersion.DoesNotExist:
+            return self.model.objects.latest("release_datetime")
+        except self.model.DoesNotExist:
             raise Http404
-        return reverse(
-            'version_detail',
-            kwargs=dict(
-                year=obj.release_datetime.year,
-                month=obj.release_datetime.month,
-                release_epochtime=dateformat(obj.release_datetime, 'U'),
-            )
-        )
+
+    def get_context_data(self, **kwargs):
+        """
+        Add little extra bits for the latest page that the standard detail page won't have.
+        """
+        context = super(LatestVersion, self).get_context_data(**kwargs)
+        # A hint we can use in the template as a switch
+        context['is_latest'] = True
+        return context
