@@ -73,7 +73,8 @@ class VersionDetail(BuildableDetailView, CalAccessModelListMixin):
         context = super(VersionDetail, self).get_context_data(**kwargs)
         # Add the file's raw data model klass_group to the context
         file_list = self.object.files.all()
-        context['file_list'] = self.regroup_by_klass_group(file_list)
+        #context['file_list'] = self.regroup_by_klass_group(file_list)
+        context['file_list'] = file_list
         return context
 
     def get_url(self, obj):

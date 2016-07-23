@@ -8,6 +8,28 @@ header, footer {
 .red-border {
     border-bottom: solid 7px #ba0a35;
 }
+.bg-red {
+    background-color: #ba0a35;
+    color:  #fdfdfd;
+}
+.bg-red p {
+    color:  #fdfdfd;
+}
+.btn-calaccess {
+    color: #ba0a35;
+    border: 1px solid #ba0a35;
+    border-radius: 0;
+    font-size: 18px;
+}
+.btn-calaccess:hover {
+    background-color: #ba0a35;
+    color: #fdfdfd;
+}
+kbd {
+    padding: 10px;
+    border-radius: 0;
+}
+
 table {
     font-size: 13px;
 }
@@ -241,6 +263,28 @@ ul.legend li {
 }
 .home section {
     margin: 60px auto;
+}
+
+.file-card {
+    border: 1px solid #a6a6a6;
+    padding: 10px;
+    margin: 10px auto 40px auto;
+}
+
+.file-card h4 {
+    margin-bottom: 0;
+    font-weight: 600;
+}
+
+.stats {
+    margin: 10px 15px 10px 0;
+    display: inline-block;
+}
+
+.stats h4, .stats p {
+    color: #000;
+    font-size: 14px;
+    margin: 0;
 }
 
 /* Footer */
