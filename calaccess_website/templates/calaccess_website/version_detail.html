@@ -18,11 +18,11 @@
     <div class="col-md-12">
       <h3>Release: {{ object.release_datetime|date:"l, N j, Y (P)" }}</h3>
       <p>
-      <a href="{% archive_url object.zip_file_archive.name %}" class="btn btn-calaccess">Download archive</a>
+      <a href="{% archive_url object.zip_file_archive.name is_latest=is_latest %}" class="btn btn-calaccess">Download</a>
       &nbsp; <span>{{ object.pretty_size }} zip archive</span>
       </p>
       <p>Or use <code>wget</code> or <code>curl</code> to download this snapshot directly.</p>
-      <kbd>$ curl {% archive_url object.zip_file_archive.name %}</kbd>
+      <kbd>$ curl {% archive_url object.zip_file_archive.name is_latest=is_latest %}</kbd>
     </div>
   </div>
 
