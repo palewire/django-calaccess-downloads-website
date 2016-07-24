@@ -265,26 +265,39 @@ ul.legend li {
     margin: 60px auto;
 }
 
+/* Version detail */
 .file-card {
     border: 1px solid #a6a6a6;
     padding: 10px;
     margin: 10px auto 40px auto;
 }
-
+.file-card hr {
+    margin: 5px 0;
+}
 .file-card h4 {
+    margin-top: 5px;
     margin-bottom: 0;
     font-weight: 600;
+}
+.file-card mark {
+    margin-top: 10px;
+    margin-bottom: 0;
+    color: #000;
+    font-weight: 600;
+    padding: 5px 10px;
 }
 
 .stats {
     margin: 10px 15px 10px 0;
     display: inline-block;
 }
-
 .stats h4, .stats p {
     color: #000;
     font-size: 14px;
     margin: 0;
+}
+.file-card .btn-download {
+    margin-top: -10px;
 }
 
 /* Footer */
@@ -294,10 +307,10 @@ footer {
     color: #fdfdfd;
 }
 footer .row {
-    padding: 20px 0;
+    padding: 10px;
 }
 footer img {
-    width: 150px;
+    width: 180px;
 }
 footer h3 {
     font-weight: 600;

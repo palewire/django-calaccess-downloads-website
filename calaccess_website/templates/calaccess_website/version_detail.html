@@ -21,7 +21,7 @@
       <a href="{% archive_url object.zip_file_archive.name %}" class="btn btn-calaccess">Download archive</a>
       &nbsp; <span>{{ object.pretty_size }} zip archive</span>
       </p>
-      <p>Alternatively, use <code>wget</code> or <code>curl</code> to download this snapshot directly.</p>
+      <p>Or use <code>wget</code> or <code>curl</code> to download this snapshot directly.</p>
       <kbd>$ curl {% archive_url object.zip_file_archive.name %}</kbd>
     </div>
   </div>
@@ -33,8 +33,11 @@
 
   <div class="row file-card">
     <div class="row">
-      <div class="col-md-12">
-        <h4>{{ file.file_name }}</h4>
+      <div class="col-md-6">
+        <h4><a href="{% url 'file_detail' file.file_name|slugify %}">{{ file.file_name }}</a></h4>
+      </div>
+      <div style="text-align: right;" class="col-md-6">
+        <p><mark>{{ file.model.klass_group|upper }}</mark></p>
       </div>
     </div>
 
@@ -44,7 +47,7 @@
       <div class="col-md-6">
         <p>{{ file.model.doc.strip|safe }}</p>
       </div>
-      <div class="col-md-2 col-md-offset-4">
+      <div style="text-align: right;" class="col-md-4 col-md-offset-2">
         {% if file.clean_file_archive %}
         <span class="stats">
           <h4>Records</h4>
@@ -54,20 +57,14 @@
           <h4>Filesize</h4>
           <p> {{ file.pretty_clean_file_size }}</p>
         </span>
-        <div>
-          <a href="{% archive_url file.clean_file_archive.name %}" class="btn btn-calaccess">Download</a>
-        </div>
+        <span class="stats">
+          <h4>Errors</h4>
+          <p>{{ file.error_count|intcomma }} </p>
+        </span>
+        <span>
+          <a href="{% archive_url file.clean_file_archive.name %}" class="btn btn-calaccess btn-download">Download</a>
+        </span>
          {% else %} {% endif %}
-      </div>
-    </div>
-
-    <hr>
-
-    <div class="row">
-      <div class="col-md-9">
-        <mark>{{ file.error_count|intcomma }} errors</mark>
-      </div>
-      <div class="col-md-3">
       </div>
     </div>
   </div>
