@@ -1,5 +1,6 @@
-import time
+from datetime import datetime
 from django.http import Http404
+from django.utils import timezone
 from .base import CalAccessModelListMixin
 from django.core.urlresolvers import reverse
 from calaccess_raw.models.tracking import RawDataVersion
@@ -8,8 +9,7 @@ from bakery.views import (
     BuildableArchiveIndexView,
     BuildableYearArchiveView,
     BuildableMonthArchiveView,
-    BuildableDetailView,
-    BuildableRedirectView
+    BuildableDetailView
 )
 
 
@@ -32,6 +32,12 @@ class VersionYearArchiveList(BuildableYearArchiveView):
     make_object_list = False
     template_name = "calaccess_website/version_archive_year.html"
 
+    def get_url(self):
+        return reverse(
+            'version_archive_year',
+            kwargs=dict(year=self.get_year())
+        )
+
 
 class VersionMonthArchiveList(BuildableMonthArchiveView):
     """
@@ -39,8 +45,18 @@ class VersionMonthArchiveList(BuildableMonthArchiveView):
     """
     model = RawDataVersion
     date_field = "release_datetime"
+    month_format = "%m"
     make_object_list = True
     template_name = "calaccess_website/version_archive_month.html"
+
+    def get_url(self):
+        return reverse(
+            'version_archive_month',
+            kwargs=dict(
+                year=self.get_year(),
+                month=self.get_month()
+            )
+        )
 
 
 class VersionDetail(BuildableDetailView, CalAccessModelListMixin):
@@ -54,13 +70,22 @@ class VersionDetail(BuildableDetailView, CalAccessModelListMixin):
         super(VersionDetail, self).set_kwargs(obj)
         self.kwargs.update({
             'year': obj.release_datetime.year,
-            'month': obj.release_datetime.month,
-            'release_epochtime': dateformat(obj.release_datetime, 'U'),
+            'month': dateformat(obj.release_datetime, 'm'),
+            'day': dateformat(obj.release_datetime, 'd'),
+            'time': dateformat(obj.release_datetime, 'His'),
         })
 
     def get_object(self, **kwargs):
-        dt = time.localtime(float(self.kwargs['release_epochtime']))
-        dt = time.strftime('%Y-%m-%d %H:%M:%S', dt)
+        date_parts = map(int, [
+            self.kwargs['year'],
+            self.kwargs['month'],
+            self.kwargs['day'],
+            self.kwargs['time'][:2],
+            self.kwargs['time'][2:4],
+            self.kwargs['time'][-2:]
+        ])
+        dt = datetime(*date_parts)
+        dt = timezone.utc.localize(dt)
         try:
             return self.model.objects.get(release_datetime=dt)
         except self.model.DoesNotExist:
@@ -71,10 +96,7 @@ class VersionDetail(BuildableDetailView, CalAccessModelListMixin):
         Add some extra bits to the template's context
         """
         context = super(VersionDetail, self).get_context_data(**kwargs)
-        # Add the file's raw data model klass_group to the context
-        file_list = self.object.files.all()
-        #context['file_list'] = self.regroup_by_klass_group(file_list)
-        context['file_list'] = file_list
+        context['file_list'] = self.object.files.all()
         return context
 
     def get_url(self, obj):
@@ -82,8 +104,9 @@ class VersionDetail(BuildableDetailView, CalAccessModelListMixin):
             'version_detail',
             kwargs=dict(
                 year=obj.release_datetime.year,
-                month=obj.release_datetime.month,
-                release_epochtime=dateformat(obj.release_datetime, 'U'),
+                month=dateformat(obj.release_datetime, 'm'),
+                day=dateformat(obj.release_datetime, 'd'),
+                time=dateformat(obj.release_datetime, 'His'),
             )
         )
 

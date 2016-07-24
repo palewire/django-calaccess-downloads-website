@@ -22,7 +22,7 @@ urlpatterns = [
         name="version_archive_year"
     ),
     url(
-        r'^versions/(?P<year>[0-9]{4})/(?P<month>[0-9]+)/$',
+        r'^versions/(?P<year>[0-9]{4})/(?P<month>[0-9]{2})/$',
         views.VersionMonthArchiveList.as_view(),
         name="version_archive_month"
     ),
@@ -32,7 +32,7 @@ urlpatterns = [
         name='version_latest_redirect'
     ),
     url(
-        r'^versions/(?P<year>[0-9]{4})/(?P<month>[0-9]+)/(?P<release_epochtime>[0-9]+)/$',
+        r'^versions/(?P<year>[0-9]{4})/(?P<month>[0-9]{2})/(?P<day>[0-9]{2})/(?P<time>[0-9]{6})/$',
         views.VersionDetail.as_view(),
         name="version_detail"
     ),

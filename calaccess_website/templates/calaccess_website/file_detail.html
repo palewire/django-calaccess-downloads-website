@@ -27,7 +27,7 @@
   {% for file in version_list %}
       <tr>
           <td>
-              <a href="{% url 'version_detail' year=file.version.release_datetime.year month=file.version.release_datetime.month release_epochtime=file.version.release_datetime|date:'U' %}">
+              <a href="{% url 'version_detail' year=file.version.release_datetime.year month=file.version.release_datetime|date:'m' day=file.version.release_datetime|date:'d' time=file.version.release_datetime|date:'His' %}">
                   {{ file.version.release_datetime|date:"l N j, Y" }}
               </a>
           </td>

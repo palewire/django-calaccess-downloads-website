@@ -22,7 +22,7 @@
   {% for date in date_list %}
       <tr>
           <td>
-              <a href="{% url 'version_archive_month' year=date.year month=date.month %}">
+              <a href="{% url 'version_archive_month' year=date.year month=date|date:'m' %}">
                   {{ date|date:"F" }}
               </a>
           </td>

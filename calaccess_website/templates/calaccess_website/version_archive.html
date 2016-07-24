@@ -20,7 +20,7 @@
     {% for obj in latest %}
     <tr>
         <td>
-            <a href="{% url 'version_detail' year=obj.release_datetime.year month=obj.release_datetime.month release_epochtime=obj.release_datetime|date:'U' %}">
+            <a href="{% url 'version_detail' year=obj.release_datetime.year month=obj.release_datetime|date:'m' day=obj.release_datetime|date:'d' time=obj.release_datetime|date:'His' %}">
                 {{ obj.release_datetime|date:"l, N j, Y" }}
             </a>
         </td>

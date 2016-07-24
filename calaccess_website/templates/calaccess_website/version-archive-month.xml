@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 {% for obj in object_list %}
   <url>
-    <loc>http://calaccess.californiacivicdata.org{% url 'version_archive_month' year=obj.year month=obj.month %}</loc>
+    <loc>http://calaccess.californiacivicdata.org{% url 'version_archive_month' year=obj.year month=obj|date:'m' %}</loc>
   </url>
 {% endfor %}
 </urlset>
