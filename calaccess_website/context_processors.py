@@ -6,4 +6,5 @@ def calaccess_website(request):
         'CALACCESS_WEBSITE_TITLE': 'The CAL-ACCESS archive',
         'CALACCESS_WEBSITE_DESCRIPTION': "Daily snapshots of campaign finance \
 and lobbying disclosure data from California",
+        'CALACCESS_WEBSITE_DOMAIN': 'calaccess.californiacivicdata.org'
     }
