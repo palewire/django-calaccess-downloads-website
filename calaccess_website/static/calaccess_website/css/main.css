@@ -21,7 +21,8 @@ header, footer {
     border-radius: 0;
     font-size: 18px;
 }
-.btn-calaccess:hover {
+.btn-calaccess:hover,
+.btn-calaccess.active {
     background-color: #ba0a35;
     color: #fdfdfd;
 }
@@ -266,6 +267,13 @@ ul.legend li {
 }
 
 /* Version detail */
+.filters {
+    margin-top: 40px;
+    margin-bottom: 30px;
+}
+.filters a {
+    margin-right: 20px;
+}
 .file-card {
     border: 1px solid #a6a6a6;
     padding: 10px;
@@ -285,6 +293,10 @@ ul.legend li {
     color: #000;
     font-weight: 600;
     padding: 5px 10px;
+    font-size: 14px;
+}
+.file-card .btn-download {
+    margin-left: 15px;
 }
 
 .stats {

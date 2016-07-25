@@ -96,7 +96,7 @@ class VersionDetail(BuildableDetailView, CalAccessModelListMixin):
         Add some extra bits to the template's context
         """
         context = super(VersionDetail, self).get_context_data(**kwargs)
-        context['file_list'] = self.object.files.all()
+        context['file_list'] = self.regroup_by_klass_group(self.object.files.all())
         return context
 
     def get_url(self, obj):

@@ -4,11 +4,13 @@
 {% block title %}{{ object.release_datetime|date:"l, N j, Y (P)" }} - Versions - {{ block.super }}{% endblock%}
 
 {% block container %}
-<div class="row bg-red">
+<div class="bg-red">
   <div class="container">
+    <div class="row">
     <div class="col-md-9">
       <h2>Version archive</h2>
-      <p>Explanation about the version archive goes here.</p>
+      <p>Download snapshots of CAL-ACCESS releases. Clean data is available in bulk or as individual files.</p>
+    </div>
     </div>
   </div>
 </div>
@@ -17,27 +19,35 @@
   <div class="row">
     <div class="col-md-12">
       <h3>Release: {{ object.release_datetime|date:"l, N j, Y (P)" }}</h3>
-      <p>
-      <a href="{% archive_url object.zip_file_archive.name is_latest=is_latest %}" class="btn btn-calaccess">Download</a>
-      &nbsp; <span>{{ object.pretty_size }} zip archive</span>
-      </p>
-      <p>Or use <code>wget</code> or <code>curl</code> to download this snapshot directly.</p>
-      <kbd>$ curl {% archive_url object.zip_file_archive.name is_latest=is_latest %}</kbd>
+      <p><a href="{% archive_url object.zip_file_archive.name is_latest=is_latest %}" class="btn btn-calaccess">Download full archive</a>
+      &nbsp; <span>{{ object.pretty_size }} zip</span></p>
+      <p>Alternatively, use <code>wget</code> or <code>curl</code> to download this snapshot directly.</p>
+      <br />
+      <kbd style="padding: 15px">$ curl {% archive_url object.zip_file_archive.name is_latest=is_latest %}</kbd>
     </div>
   </div>
 
-  <br>
   {% if object.files.all %}
+  <div class="row filters">
+    <div class="col-md-12">
+    <h3>Individual files</h3>
+    <p>Filter by file type</p>
+      {% for group in file_list %}
+      <a class="btn btn-calaccess" data-group="{{ group.grouper|slugify }}">{{ group.grouper|capfirst }}</a>
+      {% endfor %}
+    </div>
+  </div>
+  
 
-  {% for file in file_list %}
-
-  <div class="row file-card">
+  {% for group in file_list %}
+  {% for file in group.list %}
+  <div class="row file-card {{ group.grouper|slugify }}">
     <div class="row">
       <div class="col-md-6">
         <h4><a href="{% url 'file_detail' file.file_name|slugify %}">{{ file.file_name }}</a></h4>
       </div>
       <div style="text-align: right;" class="col-md-6">
-        <p><mark>{{ file.model.klass_group|upper }}</mark></p>
+        <p><mark>{{ group.grouper|upper }}</mark></p>
       </div>
     </div>
 
@@ -70,10 +80,28 @@
   </div>
 
   {% endfor %}
+  {% endfor %}
 
 {% else %}
       <p>No files.</p>
 {% endif %}
 </div>
 </div> <!-- container -->
+
+<script type="text/javascript">
+// Filter logic
+$('.filters .btn').click(function() {
+  if ($(this).hasClass('active')) {
+    $(this).removeClass('active');
+    $('.file-card').removeClass('hidden');
+  } else {
+    $('.filters .btn').removeClass('active');
+    $('.file-card').removeClass('hidden');
+    $(this).addClass('active');
+    var group = $(this).data('group');
+    $('.file-card:not(.' + group + ')').addClass('hidden');
+  }
+});
+</script>
+
 {% endblock %}
