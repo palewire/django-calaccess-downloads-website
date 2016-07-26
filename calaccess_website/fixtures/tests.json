@@ -5,7 +5,8 @@
     "fields": {
         "release_datetime": "2016-06-27T11:20:29Z",
         "size": 754726807,
-        "zip_file_archive": "2016-6-27_11-20-29/dbwebexport.zip"
+        "download_file_archive": "2016-6-27_11-20-29/dbwebexport.zip",
+        "clean_file_archive": "2016-6-30_11-20-31/cleaned.zip"
     }
 },
 {
@@ -14,7 +15,8 @@
     "fields": {
         "release_datetime": "2016-06-28T11:20:28Z",
         "size": 754835538,
-        "zip_file_archive": "2016-6-28_11-20-28/dbwebexport.zip"
+        "download_file_archive": "2016-6-28_11-20-28/dbwebexport.zip",
+        "clean_file_archive": "2016-6-30_11-20-31/cleaned.zip"
     }
 },
 {
@@ -23,7 +25,8 @@
     "fields": {
         "release_datetime": "2016-06-29T11:20:31Z",
         "size": 754867444,
-        "zip_file_archive": "2016-6-29_11-20-31/dbwebexport.zip"
+        "download_file_archive": "2016-6-29_11-20-31/dbwebexport.zip",
+        "clean_file_archive": "2016-6-30_11-20-31/cleaned.zip"
     }
 },
 {
@@ -32,7 +35,8 @@
     "fields": {
         "release_datetime": "2016-06-30T11:20:31Z",
         "size": 754913499,
-        "zip_file_archive": "2016-6-30_11-20-31/dbwebexport.zip"
+        "download_file_archive": "2016-6-30_11-20-31/dbwebexport.zip",
+        "clean_file_archive": "2016-6-30_11-20-31/cleaned.zip"
     }
 },
 {
