@@ -19,11 +19,11 @@
   <div class="row">
     <div class="col-md-12">
       <h3>Bulk data</h3>
-      <p><a href="{% archive_url object.zip_file_archive.name is_latest=is_latest %}" class="btn btn-calaccess">Download</a>
+      <p><a href="{% archive_url object.download_zip_archive.name is_latest=is_latest %}" class="btn btn-calaccess">Download</a>
       &nbsp; <span>{{ object.pretty_size }} zip</span></p>
       <p>Alternatively, use <code>wget</code> or <code>curl</code> to download this snapshot directly.</p>
       <br />
-      <kbd style="padding: 15px">$ curl {% archive_url object.zip_file_archive.name is_latest=is_latest %}</kbd>
+      <kbd style="padding: 15px">$ curl {% archive_url object.download_zip_archive.name is_latest=is_latest %}</kbd>
     </div>
   </div>
 

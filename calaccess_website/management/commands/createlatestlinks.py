@@ -35,11 +35,11 @@ in a latest directory in the Django project's default file storage."
         )
 
         # convert the zip files path to the latest path
-        latest_zip_path = self.get_latest_path(v.zip_file_archive.name)
+        latest_zip_path = self.get_latest_path(v.download_zip_archive.name)
 
         # save zip to the latest directory
         logger.debug('Saving copy of zip file')
-        self.copy_key(latest_zip_path, v.zip_file_archive.name)
+        self.copy_key(latest_zip_path, v.download_zip_archive.name)
 
         # loop through all of the raw data files
         for f in v.files.all():
