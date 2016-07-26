@@ -3,151 +3,177 @@
 
 {% block title %}{{ object.db_table }} - Files - {{ block.super }}{% endblock%}
 
-{% block breadcrumbs %}
-  <li><a href="{% url 'file_list' %}">Files</a></li>
-  <li class="active">{{ object.db_table }}</li>
-{% endblock %}
+{% block container %}
+<div class="bg-red">
+  <div class="container">
+    <div class="row">
+    <div class="col-md-9">
+      <h2>{{ object.db_table }}</h2>
+      <p>{{ object.doc.strip|safe }}</p>
+    </div>
+    </div>
+  </div>
+</div>
 
-{% block content %}
-  <h1>{{ object.db_table }}</h1>
-
-  <p>{{ object.doc.strip|safe }}</p>
-
-  {% if version_list %}
-  <table class="table table-striped">
-  <thead>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <h3>Latest downloads</h3>
+      {% if version_list %}
+      <table class="table">
+      <thead>
       <tr>
-          <th>Version</th>
-          <th class="right">Raw TSV</th>
-          <th class="right">Clean CSV</th>
-          <th class="right">Errors</th>
+        <th></th>
+        <th class="right">Records</th>
+        <th class="right">Filesize</th>
+        <th class="right">Errors</th>
+        <th class="right"></th>
       </tr>
-  </thead>
-  <tbody>
-  {% for file in version_list %}
+      </thead>
+      <tbody>
+      {% for file in version_list|slice:":5" %}
       <tr>
-          <td>
-              <a href="{% url 'version_detail' year=file.version.release_datetime.year month=file.version.release_datetime|date:'m' day=file.version.release_datetime|date:'d' time=file.version.release_datetime|date:'His' %}">
-                  {{ file.version.release_datetime|date:"l N j, Y" }}
-              </a>
+          <td style="vertical-align:middle;">
+              <p style="margin-bottom:0px;"><a href="{% url 'version_detail' year=file.version.release_datetime.year month=file.version.release_datetime|date:'m' day=file.version.release_datetime|date:'d' time=file.version.release_datetime|date:'His' %}">
+                  {{ file.version.release_datetime|date:"l, N j, Y" }}
+              </a></p>
           </td>
-          <td class="right">{{ file.pretty_download_file_size  }}  {% if file.download_file_archive %}<a href="{% archive_url file.download_file_archive.name %}"><i class="fa fa-download"></i></a>{% endif %}</td>
-          <td class="right">{% if file.clean_file_archive %}{{ file.pretty_clean_file_size  }}  <a href="{% archive_url file.clean_file_archive.name %}"><i class="fa fa-download"></i></a>{% else %} -- {% endif %}</td>
-          <td class="right">{% if file.error_log_archive %}{{ file.error_count|intcomma }}  <a href="{% archive_url file.error_log_archive.name %}"><i class="fa fa-download"></i></a>{% else%} -- {% endif %}</td>
-      </tr>
-  {% endfor %}
-  </tbody>
-  </table>
-  {% else %}
-      <p>No files.</p>
-  {% endif %}
-
-  <h3>Sample</h3>
-
-  <script src="https://gist.github.com/palewire/66bed097ddca855c36506da4b7c0d349.js?file={{ object.db_table }}.TSV"></script>
-
-  {% if object.FILING_FORMS|length > 0 %}
-  <h3>Forms</h3>
-  <table class="table table-striped">
-  <tbody valign="top">
-      {% for form, sections in object.get_filing_forms_w_sections %}
-      <tr>
-          <td>
-              <a href="{% url 'form_detail' id=form.id %}">{{ form.type_and_num|safe }}</a>:
-              {{ form.title|safe }}
+          {% if file.clean_file_archive %}
+          <td style="vertical-align:middle;" class="right">
+            {{ file.clean_records_count|intcomma }}
+          <td style="vertical-align:middle;" class="right">
+            {{ file.pretty_clean_file_size }}
           </td>
-      </tr>
-      {% for section in sections %}
-      <tr>
-          <td>- {{ section.title|safe }}</td>
+          <td style="vertical-align:middle;" class="right">
+            {{ file.error_count|intcomma }} 
+          <td style="vertical-align:middle;" class="right">
+            <span>
+              <a href="{% archive_url file.clean_file_archive.name %}" class="btn btn-sm btn-calaccess">Download</a>
+            </span>
+          </td>
+          {% endif %}
       </tr>
       {% endfor %}
-      {% endfor %}
-  </tbody>
-  </table>
-  {% endif %}
+      </tbody>
+      </table>
+      {% else %}
+          <p>No files.</p>
+      {% endif %}
+    </div>
+  </div>
 
-  {% if object.get_unique_key_list|length > 0 %}
-  <h3>Unique key</h3>
-  <table class="table">
-  <tbody valign="top">
-      <tr>
-      {% for field in object.get_unique_key_list %}
-          <td><code>{{ field }}</code></td>
-      {% endfor %}
-      </tr>
-  </tbody>
-  </table>
-  {% endif %}
+  <section>
+    <h3>Sample</h3>
+    <script src="https://gist.github.com/palewire/66bed097ddca855c36506da4b7c0d349.js?file={{ object.db_table }}.TSV"></script>
+    {% if object.FILING_FORMS|length > 0 %}
+  </section>
+  <section>
+    <h3>Forms</h3>
+    <table class="table table-striped">
+    <tbody valign="top">
+        {% for form, sections in object.get_filing_forms_w_sections %}
+        <tr>
+            <td>
+                <a href="{% url 'form_detail' id=form.id %}">{{ form.type_and_num|safe }}</a>:
+                {{ form.title|safe }}
+            </td>
+        </tr>
+        {% for section in sections %}
+        <tr>
+            <td>- {{ section.title|safe }}</td>
+        </tr>
+        {% endfor %}
+        {% endfor %}
+    </tbody>
+    </table>
+    {% endif %}
+  </section>
+  <section>
+    {% if object.get_unique_key_list|length > 0 %}
+    <h3>Unique key</h3>
+    <table class="table">
+    <tbody valign="top">
+        <tr>
+        {% for field in object.get_unique_key_list %}
+            <td><code>{{ field }}</code></td>
+        {% endfor %}
+        </tr>
+    </tbody>
+    </table>
+    {% endif %}
+  </section>
+  <section>
+    <h3>Fields</h3>
+    <table class="table table-striped">
+    <thead valign="bottom">
+        <tr>
+            <th class="head">Name</th>
+            <th class="head">Type</th>
+            <th class="head">Unique key</th>
+            <th width="50%" class="head">Definition</th>
+        </tr>
+    </thead>
+    <tbody valign="top">
+    {% for field in object.get_field_list %}
+    {% if field.name != "id" %}
+        <tr>
+            <td><code>{{ field.db_column }}</code></td>
+            <td>{{ field.description }}</td>
+            <td>{% if field.is_unique_key %}Yes{% else %}No{% endif %}</td>
+            <td>{{ field.definition|capfirst }}</td>
+        </tr>
+    {% endif %}
+    {% endfor %}
+    </tbody>
+    </table>
+  </section>
+  <section>
+    {% if choice_fields|length > 0 %}
+    <h3>Lookup codes</h3>
+    {% for field in choice_fields %}
 
-  <h3>Fields</h3>
-  <table class="table table-striped">
-  <thead valign="bottom">
-      <tr>
-          <th class="head">Name</th>
-          <th class="head">Type</th>
-          <th class="head">Unique key</th>
-          <th width="50%" class="head">Definition</th>
-      </tr>
-  </thead>
-  <tbody valign="top">
-  {% for field in object.get_field_list %}
-  {% if field.name != "id" %}
-      <tr>
-          <td><code>{{ field.db_column }}</code></td>
-          <td>{{ field.description }}</td>
-          <td>{% if field.is_unique_key %}Yes{% else %}No{% endif %}</td>
-          <td>{{ field.definition|capfirst }}</td>
-      </tr>
-  {% endif %}
-  {% endfor %}
-  </tbody>
-  </table>
+    <h4><code>{{ field.name }}</code></h4>
 
-  {% if choice_fields|length > 0 %}
-  <h3>Lookup codes</h3>
-  {% for field in choice_fields %}
-
-  <h4><code>{{ field.name }}</code></h4>
-
-  <table class="table table-striped">
-  <thead valign="bottom">
-      <tr>
-          <th width="20%" class="head">Code</th>
-          <th class="head">Definition</th>
-      </tr>
-  </thead>
-  <tbody valign="top">
-  {% for choice in field.choices %}
-      <tr>
-          <td><code>{{ choice.0 }}</code></td>
-          <td>{{ choice.1 }}</td>
-      </tr>
-  {% endfor %}
-  </tbody>
-  {% if field.documentcloud_pages|length > 0%}
-  <tfoot class="footnote">
-  <tr>
-  <td colspan=2>
-     <small>
-      Sources:
-          {% for doc, objects in field.docs.items %} {{ doc }} ({% for object in objects %}<a class="reference external image-reference" href="{{ object.canonical_url }}">{{ object.formatted_page_nums }}</a>{% if not forloop.last %}, {% endif %}{% endfor %}){% if not forloop.last %}, {% endif %}{% endfor %}
-      </small>
-  </td>
-  </tr>
-  </tfoot>
-  {% endif %}
-  </table>
-  {% endfor %}
-  {% endif %}
-
-  {% if object.DOCUMENTCLOUD_PAGES|length > 0 %}
-  <h3>References</h3>
-  <ul>
-  {% for doc, objects in docs.items %}
-  <li> {{ doc }} ({% for object in objects %}<a href="{{ object.canonical_url }}">{{ object.formatted_page_nums }}</a>{% if not forloop.last %}, {% endif %}{% endfor %})</li>
-  {% endfor %}
-  </ul>
-  {% endif %}
-
+    <table class="table table-striped">
+    <thead valign="bottom">
+        <tr>
+            <th width="20%" class="head">Code</th>
+            <th class="head">Definition</th>
+        </tr>
+    </thead>
+    <tbody valign="top">
+    {% for choice in field.choices %}
+        <tr>
+            <td><code>{{ choice.0 }}</code></td>
+            <td>{{ choice.1 }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+    {% if field.documentcloud_pages|length > 0%}
+    <tfoot class="footnote">
+    <tr>
+    <td colspan=2>
+       <small>
+        Sources:
+            {% for doc, objects in field.docs.items %} {{ doc }} ({% for object in objects %}<a class="reference external image-reference" href="{{ object.canonical_url }}">{{ object.formatted_page_nums }}</a>{% if not forloop.last %}, {% endif %}{% endfor %}){% if not forloop.last %}, {% endif %}{% endfor %}
+        </small>
+    </td>
+    </tr>
+    </tfoot>
+    {% endif %}
+    </table>
+    {% endfor %}
+    {% endif %}
+  </section>
+  <section>
+    {% if object.DOCUMENTCLOUD_PAGES|length > 0 %}
+    <h3>References</h3>
+    <ul>
+    {% for doc, objects in docs.items %}
+    <li> {{ doc }} ({% for object in objects %}<a href="{{ object.canonical_url }}">{{ object.formatted_page_nums }}</a>{% if not forloop.last %}, {% endif %}{% endfor %})</li>
+    {% endfor %}
+    </ul>
+    {% endif %}
+  </section>
+</div>
 {% endblock %}

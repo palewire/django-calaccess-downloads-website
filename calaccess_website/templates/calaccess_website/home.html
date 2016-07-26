@@ -10,11 +10,12 @@
         <div class="col-sm-6 col-sm-offset-3">
             <h1>{{ CALACCESS_WEBSITE_TITLE }}</h1>
             <p class="lead">{{ CALACCESS_WEBSITE_DESCRIPTION }}</p>
+            <a href="{% url 'version_latest_redirect' %}" class="btn btn-calaccess btn-lg">Get the latest data</a>
         </div>
     </div>
     <div class="row">
         <div class="col-sm-3">
-            <a href="{% url 'version_latest_redirect' %}">
+            <a ">
             <div class="home-card">
                 <div class="card-container">
                     <p><i class="fa fa-database" aria-hidden="true"></i></p>
@@ -59,7 +60,12 @@
         <section>
             <h2>What is this?</h2>
             <p>Welcome to the open-source archive of campaign finance and lobbying disclosure data from the California Secretary of State's CAL-ACCESS database.</p>
+        </section>
+        <hr>
+        <section>
+            <h2>Who are we?</h2>
             <p>This site is maintained by the California Civic Data Coalition, an open-source team of journalists and computer programmers from news organizations across America.</p>
+            <p>Read more <a href="">about us</a> or go to our <a href="">blog</a>.</p>
         </section>
         <hr>
         <section>

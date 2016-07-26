@@ -8,6 +8,9 @@ header, footer {
 .red-border {
     border-bottom: solid 7px #ba0a35;
 }
+.btn-lg {
+    font-size: 20px !important;
+}
 .bg-red {
     background-color: #ba0a35;
     color:  #fdfdfd;
@@ -274,7 +277,7 @@ ul.legend li {
 .home .home-card p {
     color: #fdfdfd;
 }
-.home section {
+section {
     margin: 60px auto;
 }
 
