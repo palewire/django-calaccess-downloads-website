@@ -8,8 +8,8 @@
   <div class="container">
     <div class="row">
     <div class="col-md-9">
-      <h2>Version archive</h2>
-      <p>Download snapshots of CAL-ACCESS releases. Clean data is available in bulk or as individual files.</p>
+      <h2>Snapshot on <b>{{ object.release_datetime|date:"l, N j, Y" }}</b> at <b>{{ object.release_datetime|date:"P" }}</b></h2>
+      <p>Clean data is available in bulk or as individual files.</p>
     </div>
     </div>
   </div>
@@ -18,8 +18,8 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <h3>Release: {{ object.release_datetime|date:"l, N j, Y (P)" }}</h3>
-      <p><a href="{% archive_url object.zip_file_archive.name is_latest=is_latest %}" class="btn btn-calaccess">Download full archive</a>
+      <h3>Bulk data</h3>
+      <p><a href="{% archive_url object.zip_file_archive.name is_latest=is_latest %}" class="btn btn-calaccess">Download</a>
       &nbsp; <span>{{ object.pretty_size }} zip</span></p>
       <p>Alternatively, use <code>wget</code> or <code>curl</code> to download this snapshot directly.</p>
       <br />
@@ -32,10 +32,21 @@
     <div class="col-md-12">
     <h3>Individual files</h3>
     <p>Filter by file type</p>
-      {% for group in file_list %}
-      <a class="btn btn-calaccess" data-group="{{ group.grouper|slugify }}">{{ group.grouper|capfirst }}</a>
-      {% endfor %}
+      <div class="dropdown">
+        <button class="btn btn-calaccess dropdown-toggle" type="button" id="filterDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+          All files
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="filterDropdown">
+          <li><a data-group="all">All files</a></li>
+          {% for group in file_list %}
+          <li><a data-group="{{ group.grouper|slugify }}">{{ group.grouper|capfirst }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+
     </div>
+
   </div>
   
 
@@ -46,7 +57,7 @@
       <div class="col-md-6">
         <h4><a href="{% url 'file_detail' file.file_name|slugify %}">{{ file.file_name }}</a></h4>
       </div>
-      <div style="text-align: right;" class="col-md-6">
+      <div class="col-md-6 align-right">
         <p><mark>{{ group.grouper|upper }}</mark></p>
       </div>
     </div>
@@ -57,7 +68,7 @@
       <div class="col-md-6">
         <p>{{ file.model.doc.strip|safe }}</p>
       </div>
-      <div style="text-align: right;" class="col-md-4 col-md-offset-2">
+      <div class="col-md-4 col-md-offset-2 align-right">
         {% if file.clean_file_archive %}
         <span class="stats">
           <h4>Records</h4>
@@ -90,17 +101,13 @@
 
 <script type="text/javascript">
 // Filter logic
-$('.filters .btn').click(function() {
-  if ($(this).hasClass('active')) {
-    $(this).removeClass('active');
+$('.dropdown-menu a').click(function() {
+    $('#filterDropdown').html($(this).html() + ' <span class="caret"></span>');
     $('.file-card').removeClass('hidden');
-  } else {
-    $('.filters .btn').removeClass('active');
-    $('.file-card').removeClass('hidden');
-    $(this).addClass('active');
     var group = $(this).data('group');
-    $('.file-card:not(.' + group + ')').addClass('hidden');
-  }
+    if (group != 'all') {
+      $('.file-card:not(.' + group + ')').addClass('hidden');
+    }
 });
 </script>
 
