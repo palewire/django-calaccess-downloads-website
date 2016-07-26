@@ -6,7 +6,8 @@ directory in the Django project's default file storage.
 """
 import os
 import logging
-from django.core.files.storage import default_storage
+from django.conf import settings
+from boto.s3.connection import S3Connection, OrdinaryCallingFormat
 from calaccess_raw.models import RawDataCommand
 from django.core.management.base import BaseCommand
 logger = logging.getLogger(__name__)
@@ -38,7 +39,7 @@ in a latest directory in the Django project's default file storage."
 
         # save zip to the latest directory
         logger.debug('Saving copy of zip file')
-        default_storage.save(latest_zip_path, v.zip_file_archive)
+        self.copy_key(latest_zip_path, v.zip_file_archive.name)
 
         # loop through all of the raw data files
         for f in v.files.all():
@@ -46,7 +47,7 @@ in a latest directory in the Django project's default file storage."
             latest_dl_path = self.get_latest_path(f.download_file_archive.name)
             # save downloaded file to the latest directory
             logger.debug('Saving copy of {0}.TSV'.format(f.file_name))
-            default_storage.save(latest_dl_path, f.download_file_archive)
+            self.copy_key(latest_dl_path, f.download_file_archive.name)
 
             if f.clean_file_archive:
                 # convert the cleaned file's path to the latest path
@@ -55,7 +56,7 @@ in a latest directory in the Django project's default file storage."
                 logger.debug('Saving copy of {0}.csv'.format(
                     f.file_name.lower()
                 ))
-                default_storage.save(latest_cl_path, f.clean_file_archive)
+                self.copy_key(latest_cl_path, f.clean_file_archive.name)
 
             if f.error_log_archive:
                 # convert the error log file's path to the latest path
@@ -64,7 +65,7 @@ in a latest directory in the Django project's default file storage."
                 logger.debug('Saving copy of {0}.errors.csv'.format(
                     f.file_name.lower()
                 ))
-                default_storage.save(latest_el_path, f.error_log_archive)
+                self.copy_key(latest_el_path, f.error_log_archive.name)
 
     def get_latest_path(self, old_path):
         """
@@ -72,3 +73,27 @@ in a latest directory in the Django project's default file storage."
         """
         base_name = os.path.basename(old_path)
         return os.path.join("latest", base_name)
+
+    def get_bucket(self):
+        """
+        Returns an S3 bucket ready to rock.
+        """
+        conn = S3Connection(
+            settings.AWS_ACCESS_KEY_ID,
+            settings.AWS_SECRET_ACCESS_KEY,
+            calling_format=OrdinaryCallingFormat(),
+            host=settings.AWS_S3_HOST,
+        )
+        return conn.get_bucket(settings.AWS_STORAGE_BUCKET_NAME)
+
+    def copy_key(self, target, source):
+        """
+        Copies the provided source key to the provided target key
+        """
+        bucket = self.get_bucket()
+        bucket.copy_key(
+            target,
+            settings.AWS_STORAGE_BUCKET_NAME,
+            source,
+            preserve_acl=True,
+        )
