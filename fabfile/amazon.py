@@ -13,7 +13,7 @@ from configure import loadconfig, setconfig, ConfigTask
 @task(task_class=ConfigTask)
 def createrds(
     instance_name,
-    database_port=5432,
+    port=5432,
     block_gb_size=100,
     instance_type='db.t2.large'
 ):
@@ -34,18 +34,18 @@ def createrds(
         DBInstanceIdentifier=instance_name,
         AllocatedStorage=int(block_gb_size),
         DBInstanceClass=instance_type,
-        Engine='postgres',
+        Engine='MySQL',
         MasterUsername=env.DB_USER,
         MasterUserPassword=env.DB_PASSWORD,
         BackupRetentionPeriod=14,
         PreferredBackupWindow='22:30-23:00',
-        Port=database_port,
+        Port=int(port),
         MultiAZ=False,
-        EngineVersion='9.4.5',
+        # EngineVersion='9.4.5',
         PubliclyAccessible=True,
         StorageType='gp2',
         StorageEncrypted=False,
-        DBParameterGroupName='fewer-checkpoints',
+        # DBParameterGroupName='fewer-checkpoints',
     )
 
     # Check up on its status every so often
