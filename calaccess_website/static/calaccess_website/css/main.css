@@ -18,7 +18,8 @@ header, footer {
 .bg-red p {
     color:  #fdfdfd;
 }
-.btn-calaccess {
+.btn-calaccess,
+.btn-calaccess:focus {
     color: #ba0a35;
     background-color: #fff;
     border: 1px solid #ba0a35;
@@ -283,13 +284,16 @@ section {
 
 /* Version detail */
 .filters {
-    margin-top: 40px;
+    margin-top: 20px;
     margin-bottom: 30px;
 }
 .file-card {
     border: 1px solid #a6a6a6;
     padding: 10px;
     margin: 10px auto 40px auto;
+}
+.dropdown-menu {
+    cursor: pointer;
 }
 .file-card hr {
     margin: 5px 0;
@@ -299,12 +303,11 @@ section {
     margin-bottom: 0;
     font-weight: 600;
 }
-.file-card mark {
-    margin-top: 10px;
+.file-card .lbl-group {
+    margin-top: 5px;
     margin-bottom: 0;
     color: #000;
     font-weight: 600;
-    padding: 5px 10px;
     font-size: 14px;
 }
 .file-card .btn-download {

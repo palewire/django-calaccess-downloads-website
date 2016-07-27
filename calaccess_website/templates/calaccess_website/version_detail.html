@@ -21,9 +21,11 @@
       <h3>Bulk data</h3>
       <p><a href="{% archive_url object.download_zip_archive.name is_latest=is_latest %}" class="btn btn-calaccess">Download</a>
       &nbsp; <span>{{ object.pretty_size }} zip</span></p>
-      <p>Alternatively, use <code>wget</code> or <code>curl</code> to download this snapshot directly.</p>
-      <br />
-      <kbd style="padding: 15px">$ curl {% archive_url object.download_zip_archive.name is_latest=is_latest %}</kbd>
+      <div class="visible-md visible-lg">
+        <p>Alternatively, use <code>wget</code> or <code>curl</code> to download this snapshot directly.</p>
+        <br />
+        <kbd style="padding: 15px">$ curl {% archive_url object.download_zip_archive.name is_latest=is_latest %}</kbd>
+      </div>
     </div>
   </div>
 
@@ -58,7 +60,7 @@
         <h4><a href="{% url 'file_detail' file.file_name|slugify %}">{{ file.file_name }}</a></h4>
       </div>
       <div class="col-md-6 align-right">
-        <p><mark>{{ group.grouper|upper }}</mark></p>
+        <p class="lbl-group"><mark>{{ group.grouper|upper }}</mark></p>
       </div>
     </div>
 
