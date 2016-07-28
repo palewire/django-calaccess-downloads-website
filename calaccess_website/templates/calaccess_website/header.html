@@ -1,14 +1,18 @@
 {% load staticfiles %}
 <header>
   <div class="container">
+    <div class="row">
+    <div class="col-md-12">
       <ul class="nav nav-pills">
-        <li>
-            <a class="logo" href="http://www.californiacivicdata.org/"><img height='38px' src="{% static "calaccess_website/images/bear-no-red-line.png" %}" alt=""></a>
+        <li style="margin-left:0;">
+            <a class="logo" href="http://www.californiacivicdata.org/"><img src="{% static "calaccess_website/images/bear-no-red-line.png" %}" alt=""></a>
         </li>
         <li class="active"><a href="{% url 'home' %}">HOME</a></li>
-        <li><a href="{% url 'version_archive_index' %}">DATA</a></li>
+        <li><a href="{% url 'version_latest_redirect' %}">DATA</a></li>
         <li><a href="http://www.californiacivicdata.org/archive/">BLOG</a></li>
         <li><a href="http://www.californiacivicdata.org/about/">ABOUT</a></li>
       </ul>
+    </div>
+    </div>
   </div>
 </header>

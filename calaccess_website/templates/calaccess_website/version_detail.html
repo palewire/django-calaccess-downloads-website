@@ -16,6 +16,7 @@
 </div>
 
 <div class="container">
+  <section>
   <div class="row">
     <div class="col-md-12">
       <h3>Bulk data</h3>
@@ -28,7 +29,9 @@
       </div>
     </div>
   </div>
+  </section>
 
+  <section>
   {% if object.files.all %}
   <div class="row filters">
     <div class="col-md-12">
@@ -95,9 +98,10 @@
   {% endfor %}
   {% endfor %}
 
-{% else %}
-      <p>No files.</p>
-{% endif %}
+  {% else %}
+        <p>No files.</p>
+  {% endif %}
+  </section>
 </div>
 </div> <!-- container -->
 
