@@ -66,23 +66,11 @@ in a latest directory in the Django project's default file storage."
         base_name = os.path.basename(old_path)
         return os.path.join("latest", base_name)
 
-    def get_bucket(self):
-        """
-        Returns an S3 bucket ready to rock.
-        """
-        conn = S3Connection(
-            settings.AWS_ACCESS_KEY_ID,
-            settings.AWS_SECRET_ACCESS_KEY,
-            calling_format=OrdinaryCallingFormat(),
-            host=settings.AWS_S3_HOST,
-        )
-        return conn.get_bucket(settings.AWS_STORAGE_BUCKET_NAME)
-
     def copy_to_latest(self, source):
         """
         Copies the provided source key to the provided target key
         """
-        logger.debug('Saving copy of %s' %os.path.basename(source))
+        logger.debug('Saving copy of %s' % os.path.basename(source))
         self.client.copy_object(
             Bucket=settings.AWS_STORAGE_BUCKET_NAME,
             Key=self.get_latest_path(source),
