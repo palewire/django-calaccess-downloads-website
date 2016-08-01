@@ -39,7 +39,7 @@ class Command(updatecommand):
         self.header('Baking downloads-website content')
         call_command('build')
         if options['publish']:
-            self.header('Publishing backed content to S3 bucket.')
+            self.header('Publishing baked content to S3 bucket.')
             call_command('publish')
 
         self.success("Done!")
