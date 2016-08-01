@@ -1,13 +1,12 @@
 body {
-    font-family: Source Sans Pro;
+    font-family: Source Sans Pro, monospace, sans;
     font-weight: 300;
+    line-height: 1.5;
 }
 header, footer {
     padding: 5px 0 0 0 !important;
 }
-section {
-    margin-bottom: 60px;
-}
+
 p {
     font-size: 20px;
     color: #454545;
@@ -76,7 +75,6 @@ td.center, th.center{
 }
 
 /* Breadcrumbs */
-
 .breadcrumb {
     padding: 10px;
     margin: 10px auto;
@@ -96,7 +94,7 @@ td.center, th.center{
 
 /* Navbar */
 header {
-    box-shadow: 0 1px 10px #D0D0D0 ;
+    box-shadow: 0 1px 10px #D0D0D0;
 }
 .nav-pills>li.active>a,
 .nav-pills>li.active>a:hover,
@@ -109,7 +107,7 @@ header {
 .nav>li {
     width: 80px;
     text-align: center;
-    margin: 10px 15px 8px 15px;
+    margin: 1px 15px 12px 15px;
 }
 .nav>li>a {
     position: relative;
@@ -118,23 +116,24 @@ header {
     color:#000;
     padding-left: 0;
     padding-right: 0;
+    padding-bottom: 6px;
 }
 .nav>li>a:hover {
     border-bottom: 3px solid #ba0a35;
     background-color:#fff;
 }
 .nav .logo {
-	display:inline;
-	padding-top:0;
+    display:inline;
+    padding-top:0;
+    border-bottom: none !important;
 }
 .nav .logo:hover, .nav .logo:active, .nav .logo:focus {
-	background:#fff;
+    background:#fff;
     border-bottom: none;
 }
 .nav .logo img {
     margin-top: 5px;
 }
-
 
 .navbar-default .navbar-nav>li>a {
     color: #ba0a35;
@@ -188,6 +187,9 @@ header {
 .home .home-card p {
     color: #fdfdfd;
 }
+.home section {
+    margin: 40px auto;
+}
 
 /* Version detail */
 .filters {
@@ -205,7 +207,7 @@ header {
 .file-card {
     border: 1px solid #a6a6a6;
     padding: 10px;
-    margin: 10px auto 40px auto;
+    margin: 10px auto 20px auto;
 }
 .file-card hr {
     margin: 5px 0;
@@ -296,7 +298,7 @@ and (max-width : 992px) {
         text-align: left;
     }
     section {
-        margin-bottom: 30px;
+        margin: 15px auto;
     }
     h2 {
         font-size: 28px;
@@ -308,5 +310,12 @@ and (max-width : 992px) {
     .nav .logo img {
         width: 45px;
         margin-top: 10px;
+    }
+}
+
+@media only screen
+and (max-width : 490px) {
+    .nav>li>a {
+        padding-bottom: 2px;
     }
 }
