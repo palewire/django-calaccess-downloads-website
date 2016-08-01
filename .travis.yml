@@ -9,8 +9,8 @@ python:
  - "2.7"
 
 env:
- - DJANGO_VERSION=1.9.8 db_name=calaccess_website db_user=postgres db_password='' rds_host=localhost
- - DJANGO_VERSION=1.10rc1 db_name=calaccess_website db_user=postgres db_password='' rds_host=localhost
+ - DJANGO_VERSION=1.9.9 db_name=calaccess_website db_user=postgres db_password='' rds_host=localhost
+ - DJANGO_VERSION=1.10 db_name=calaccess_website db_user=postgres db_password='' rds_host=localhost
 
 install:
  - pip install -r requirements.txt
@@ -31,7 +31,7 @@ before_script:
   - fab setconfig:email_user,''
   - fab setconfig:email_password,''
   - fab setconfig:rds_host,''
-  
+
 script:
   - make test
 
