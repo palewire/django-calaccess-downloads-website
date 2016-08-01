@@ -42,7 +42,6 @@ class Command(CalAccessCommand):
 
         if versions:
             for version in versions:
-                print version.release_datetime
                 logger.debug(
                     'Creating zip file for {:%Y-%m-%d_%H-%M-%S} version'.format(
                         version.release_datetime
