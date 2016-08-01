@@ -9,8 +9,9 @@ section {
     margin-bottom: 60px;
 }
 p {
-    font-size: 17px;
-    color: #a6a6a6;
+    font-size: 20px;
+    color: #454545;
+    margin: 12px 0;
 }
 a, a.btn-default{
     color:#ba0a35;
@@ -246,9 +247,14 @@ footer {
     text-align: center;
     background-color: #ba0a35;
     color: #fdfdfd;
+    margin-top: 20px;
 }
 footer .row {
     padding: 10px;
+}
+footer .icon {
+    padding-top: 30px;
+    padding-bottom: 20px;
 }
 footer img {
     width: 180px;
@@ -278,6 +284,9 @@ footer p {
 }
 footer p a {
     font-weight: 600;
+}
+footer .easteregg a {
+    font-weight: 200;
 }
 
 @media only screen
