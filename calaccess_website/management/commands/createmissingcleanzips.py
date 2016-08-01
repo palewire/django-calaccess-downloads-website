@@ -4,10 +4,11 @@
 Zip up cleaned raw data files (and error logs) and archive zip files.
 """
 import os
+import boto3
 import logging
 import shutil
-from sys import exit
 from zipfile import ZIP_DEFLATED, ZIP_STORED, ZipFile
+from django.conf import settings
 from django.core.files import File
 from calaccess_raw import get_download_directory
 from calaccess_raw.management.commands import CalAccessCommand
@@ -30,7 +31,7 @@ class Command(CalAccessCommand):
             get_download_directory(),
             'calaccess_cleaned.zip'
         )
-        
+
         self.data_dir = get_download_directory()
 
         if os.path.exists(self.data_dir):
@@ -53,6 +54,15 @@ class Command(CalAccessCommand):
                 self.archive_zip_file(version)
 
     def download_clean_files(self, version):
+        # set up boto session
+        boto_session = boto3.Session(
+            aws_access_key_id=settings.AWS_ACCESS_KEY_ID,
+            aws_secret_access_key=settings.AWS_SECRET_ACCESS_KEY,
+            region_name=settings.AWS_S3_REGION_NAME
+        )
+        # and client
+        s3_client = boto_session.client('s3')
+
         for raw_file in version.files.all():
             if raw_file.clean_file_archive:
                 logger.debug(
@@ -61,13 +71,17 @@ class Command(CalAccessCommand):
                         )
                     )
                 )
+                # set up local file path
                 local_clean_file_path = os.path.join(
                     self.data_dir,
                     os.path.basename(raw_file.clean_file_archive.name),
                 )
-                local_clean_file = open(local_clean_file_path, 'wb')
-                local_clean_file.write(raw_file.clean_file_archive.read())
-                local_clean_file.close()
+                # download
+                s3_client.download_file(
+                    settings.AWS_STORAGE_BUCKET_NAME,
+                    raw_file.clean_file_archive.name,
+                    local_clean_file_path,
+                )
             if raw_file.error_log_archive:
                 logger.debug(
                     'Downloading {0}'.format(os.path.basename(
@@ -75,13 +89,17 @@ class Command(CalAccessCommand):
                         )
                     )
                 )
+                # set up local file path
                 local_error_file_path = os.path.join(
                     self.data_dir,
                     os.path.basename(raw_file.error_log_archive.name),
                 )
-                local_error_file = open(local_error_file_path, 'wb')
-                local_error_file.write(raw_file.error_log_archive.read())
-                local_error_file.close()
+                # download
+                s3_client.download_file(
+                    settings.AWS_STORAGE_BUCKET_NAME,
+                    raw_file.error_log_archive.name,
+                    local_error_file_path,
+                )
 
     def create_zip_file(self, version):
         logger.debug('Creating zip file')
