@@ -239,21 +239,27 @@ def copys3(src_bucket, dest_bucket):
     destination bucket.
     """
     loadconfig()
+
     session = boto3.Session(
         aws_access_key_id=env.AWS_ACCESS_KEY_ID,
         aws_secret_access_key=env.AWS_SECRET_ACCESS_KEY,
         region_name=env.AWS_REGION_NAME
     )
     client = session.client('s3')
+    s3 = boto3.resource('s3')
+    src = s3.Bucket(src_bucket)
+    dest = s3.Bucket(dest_bucket)
 
     src_objects = [
-        obj['Key'] for obj
-        in client.list_objects_v2(Bucket=src_bucket)['Contents']
+        obj.key for obj
+        in src.objects.all()
     ]
+
     dest_objects = [
-        obj['Key'] for obj
-        in client.list_objects_v2(Bucket=dest_bucket)['Contents']
+        obj.key for obj
+        in dest.objects.all()
     ]
+
     objs_to_copy = [obj for obj in src_objects if obj not in dest_objects]
 
     for obj in objs_to_copy:
