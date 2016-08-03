@@ -26,7 +26,7 @@
       <div class="visible-md visible-lg">
         <p>Alternatively, use <code>wget</code> or <code>curl</code> to download this snapshot directly.</p>
         <br />
-        <kbd style="padding: 15px;">$ curl {% archive_url object.download_zip_archive.name is_latest=is_latest %}</kbd>
+        <kbd style="padding: 15px;">$ curl {% archive_url object.clean_zip_archive.name is_latest=is_latest %}</kbd>
       </div>
       {% else %}
       <p><a class="btn btn-inactive">Download unavailable</a>
