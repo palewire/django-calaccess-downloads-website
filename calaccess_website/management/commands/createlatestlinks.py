@@ -8,7 +8,7 @@ import os
 import logging
 from django.conf import settings
 import boto3
-from calaccess_raw.models import RawDataCommand
+from calaccess_raw.models import RawDataVersion
 from django.core.management.base import BaseCommand
 logger = logging.getLogger(__name__)
 
@@ -32,10 +32,7 @@ in a latest directory in the Django project's default file storage."
         self.client = self.session.client('s3')
 
         # get the version of last update that finished
-        v = RawDataCommand.objects.filter(
-            command__contains='update',
-            finish_datetime__isnull=False
-        ).latest('version__release_datetime').version
+        v = RawDataVersion.objects.latest('update_finish_datetime')
 
         logger.debug(
             'Copying files for {:%m-%d-%Y %H:%M:%S} version to latest/'.format(
@@ -43,9 +40,11 @@ in a latest directory in the Django project's default file storage."
             )
         )
 
-        # save zip to the latest directory
-        self.copy_to_latest(v.download_zip_archive.name)
-        self.copy_to_latest(v.clean_zip_archive.name)
+        # save zips to the latest directory
+        if v.download_zip_archive:
+            self.copy_to_latest(v.download_zip_archive.name)
+        if v.clean_zip_archive:
+            self.copy_to_latest(v.clean_zip_archive.name)
 
         # loop through all of the raw data files
         for f in v.files.all():
