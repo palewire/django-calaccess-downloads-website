@@ -10,7 +10,6 @@ header, footer {
 p {
     font-size: 20px;
     color: #454545;
-    margin: 12px 0;
 }
 a, a.btn-default{
     color:#ba0a35;
@@ -49,6 +48,10 @@ td.center, th.center{
 .bg-red p {
     color:  #fdfdfd;
 }
+.bg-red a {
+    color:  #fdfdfd;
+    font-weight: 600;
+}
 .red-border {
     border-bottom: solid 7px #ba0a35;
 }
@@ -72,6 +75,19 @@ td.center, th.center{
 }
 .btn-calaccess:hover i {
     color: #ba0a35;
+}
+
+.btn-inactive {
+    color: grey;
+    background-color: #fff;
+    border: 1px solid grey;
+    border-radius: 0;
+    font-size: 18px;
+    cursor: not-allowed;
+}
+.btn-inactive:hover {
+    color: grey;
+    background-color: #fff;
 }
 
 /* Breadcrumbs */
@@ -224,19 +240,19 @@ header {
     font-weight: 600;
     font-size: 14px;
 }
-.file-card .btn-download {
-    margin-left: 15px;
-}
+
 .right-desktop {
     text-align: right;
 }
-.file-card .btn-download {
-    margin-top: -10px;
-}
-
 .stats {
-    margin: 10px 15px 10px 0;
+    margin-top: 10px;
+}
+.stats div {
+    padding: 0 0 10px 0;
+}
+.stats span {
     display: inline-block;
+    margin-right: 15px;
 }
 .stats h4, .stats p {
     color: #000;
@@ -298,10 +314,19 @@ and (max-width : 992px) {
         text-align: left;
     }
     section {
-        margin: 15px auto;
+        margin: 10px auto;
     }
     h2 {
         font-size: 28px;
+    }
+    h3 {
+        margin-top: 10px;
+    }
+    p {
+        font-size: 16px;
+    }
+    .filters {
+        margin-top: 10px;
     }
 
     .nav>li {
