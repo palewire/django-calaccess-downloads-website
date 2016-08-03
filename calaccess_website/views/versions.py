@@ -64,7 +64,7 @@ class VersionDetail(BuildableDetailView, CalAccessModelListMixin):
     A detail page with everything about an individual CAL-ACCESS version
     """
     model = RawDataVersion
-    template_name = 'calaccess_website/version_detail.html'
+    template_name = 'calaccess_website/archived_version_detail.html'
 
     def set_kwargs(self, obj):
         super(VersionDetail, self).set_kwargs(obj)
@@ -115,6 +115,9 @@ class LatestVersion(VersionDetail):
     """
     Redirect to the detail page of the latest CAL-ACCESS version
     """
+
+    template_name = 'calaccess_website/latest_version_detail.html'
+
     def get_object(self, **kwargs):
         try:
             return self.model.objects.latest("release_datetime")

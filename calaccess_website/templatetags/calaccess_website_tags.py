@@ -35,3 +35,8 @@ def archive_url(file_path, is_latest=False):
 @stringfilter
 def format_page_anchor(value):
     return value.lower().replace('_', '-')
+
+@register.filter
+@stringfilter
+def first_line(text):
+    return text.split('\n')[0]

@@ -1,15 +1,12 @@
 {% extends 'calaccess_website/base.html' %}
 {% load humanize calaccess_website_tags %}
 
-{% block title %}{{ object.release_datetime|date:"l, N j, Y (P)" }} - Versions - {{ block.super }}{% endblock%}
-
 {% block container %}
 <div class="bg-red">
   <div class="container">
     <div class="row">
-    <div class="col-md-9">
-      <h2>Snapshot on {{ object.release_datetime|date:"l, N j, Y" }} at {{ object.release_datetime|date:"P" }}</h2>
-      <p>Clean data is available in bulk or as individual files. <a href="{% url 'version_archive_index' %}">See all versions &raquo;</a></p>
+    <div class="col-md-12">
+      {% block top %} {% endblock %}
     </div>
     </div>
   </div>
@@ -19,10 +16,10 @@
   <section>
   <div class="row">
     <div class="col-md-12">
-      <h3>Bulk data</h3>
+      <h3>Full archive</h3>
       {% if object.clean_zip_archive %}
       <p><a href="{% archive_url object.clean_zip_archive.name is_latest=is_latest %}" class="btn btn-calaccess">Download</a>
-      &nbsp; <span>{{ object.pretty_size }} zip</span></p>
+      &nbsp; <span>{{ object.pretty_clean_size }} zip</span></p>
       <p>Alternatively, use <code>wget</code> or <code>curl</code> to download this snapshot directly.</p>
       <input type="text" class="download-link input-monospace" value="$ curl {% archive_url object.clean_zip_archive.name is_latest=is_latest %}" readonly></input>
       {% else %}
@@ -36,23 +33,21 @@
   {% if object.files.all %}
   <div class="row filters">
     <div class="col-md-12">
-    <h3>Individual files</h3>
-    <p>Filter by file type</p>
+      <h3>Individual tables</h3>
+      <p>Filter by type</p>
       <div class="dropdown">
         <button class="btn btn-calaccess dropdown-toggle" type="button" id="filterDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-          All files
+          All tables
           <span class="caret"></span>
         </button>
         <ul class="dropdown-menu" aria-labelledby="filterDropdown">
-          <li><a data-group="all">All files</a></li>
+          <li><a data-group="all">All tables</a></li>
           {% for group in file_list %}
           <li><a data-group="{{ group.grouper|slugify }}">{{ group.grouper|capfirst }}</a></li>
           {% endfor %}
         </ul>
       </div>
-
     </div>
-
   </div>
   
 
@@ -72,7 +67,7 @@
 
     <div class="row">
       <div class="col-md-6">
-        <p>{{ file.model.doc.strip|safe }}</p>
+        <p>{{ file.model.doc|first_line|safe }}</p>
       </div>
       <div class="col-md-4 col-md-offset-2 align-right stats">
         {% if file.clean_file_archive %}
