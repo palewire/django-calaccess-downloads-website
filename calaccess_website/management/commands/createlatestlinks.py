@@ -45,6 +45,7 @@ in a latest directory in the Django project's default file storage."
 
         # save zip to the latest directory
         self.copy_to_latest(v.download_zip_archive.name)
+        self.copy_to_latest(v.clean_zip_archive.name)
 
         # loop through all of the raw data files
         for f in v.files.all():
