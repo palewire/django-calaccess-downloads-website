@@ -54,6 +54,16 @@ td.center, th.center{
 .red-border {
     border-bottom: solid 7px #ba0a35;
 }
+.download-link {
+    width: 100%;
+}
+.input-monospace {
+    padding: 10px;
+    border: none;
+    background: black;
+    color: white;
+    font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+}
 
 /* Buttons */
 .btn-lg {

@@ -23,11 +23,8 @@
       {% if object.clean_zip_archive %}
       <p><a href="{% archive_url object.clean_zip_archive.name is_latest=is_latest %}" class="btn btn-calaccess">Download</a>
       &nbsp; <span>{{ object.pretty_size }} zip</span></p>
-      <div class="visible-md visible-lg">
-        <p>Alternatively, use <code>wget</code> or <code>curl</code> to download this snapshot directly.</p>
-        <br />
-        <kbd style="padding: 15px;">$ curl {% archive_url object.clean_zip_archive.name is_latest=is_latest %}</kbd>
-      </div>
+      <p>Alternatively, use <code>wget</code> or <code>curl</code> to download this snapshot directly.</p>
+      <input type="text" class="download-link input-monospace" value="$ curl {% archive_url object.clean_zip_archive.name is_latest=is_latest %}" readonly></input>
       {% else %}
       <p><a class="btn btn-inactive">Download unavailable</a>
       {% endif %}
