@@ -29,7 +29,7 @@ urlpatterns = [
     url(
         r'^versions/latest/$',
         views.LatestVersion.as_view(),
-        name='version_latest_redirect'
+        name='version_latest'
     ),
     url(
         r'^versions/(?P<year>[0-9]{4})/(?P<month>[0-9]{2})/(?P<day>[0-9]{2})/(?P<time>[0-9]{6})/$',

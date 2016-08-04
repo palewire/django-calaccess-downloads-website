@@ -115,6 +115,13 @@ class LatestVersion(VersionDetail):
     """
     Redirect to the detail page of the latest CAL-ACCESS version
     """
+    def build_queryset(self):
+        obj = RawDataVersion.objects.latest('release_datetime')
+        return self.build_object(obj)
+
+    def get_url(self, obj):
+        return reverse('version_latest')
+
     def get_object(self, **kwargs):
         try:
             return self.model.objects.latest("release_datetime")
