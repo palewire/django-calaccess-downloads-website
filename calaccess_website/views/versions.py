@@ -115,7 +115,6 @@ class LatestVersion(VersionDetail):
     """
     Redirect to the detail page of the latest CAL-ACCESS version
     """
-
     template_name = 'calaccess_website/latest_version_detail.html'
 
     def get_object(self, **kwargs):
