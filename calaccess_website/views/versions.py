@@ -115,12 +115,6 @@ class LatestVersion(VersionDetail):
     """
     Redirect to the detail page of the latest CAL-ACCESS version
     """
-    def build_queryset(self):
-        return self.build_object(self.get_object())
-
-    def get_url(self, obj):
-        return reverse('version_latest')
-
     def get_object(self, **kwargs):
         try:
             return self.model.objects.latest("release_datetime")
@@ -135,3 +129,9 @@ class LatestVersion(VersionDetail):
         # A hint we can use in the template as a switch
         context['is_latest'] = True
         return context
+
+    def get_url(self, obj):
+        return reverse('version_latest')
+
+    def build_queryset(self):
+        return self.build_object(self.get_object())
