@@ -118,6 +118,9 @@ class LatestVersion(VersionDetail):
     template_name = 'calaccess_website/latest_version_detail.html'
 
     def get_object(self, **kwargs):
+        """
+        Return the latest object from the queryset every time.
+        """
         try:
             return self.model.objects.latest("release_datetime")
         except self.model.DoesNotExist:
@@ -125,7 +128,7 @@ class LatestVersion(VersionDetail):
 
     def get_context_data(self, **kwargs):
         """
-        Add little extra bits for the latest page that the standard detail page won't have.
+        Add little extra bits that the standard detail page won't have.
         """
         context = super(LatestVersion, self).get_context_data(**kwargs)
         # A hint we can use in the template as a switch
@@ -133,7 +136,13 @@ class LatestVersion(VersionDetail):
         return context
 
     def get_url(self, obj):
+        """
+        The never-changing latest URL.
+        """
         return reverse('version_latest')
 
     def build_queryset(self):
+        """
+        Only build this view for one object, the latest one.
+        """
         return self.build_object(self.get_object())
