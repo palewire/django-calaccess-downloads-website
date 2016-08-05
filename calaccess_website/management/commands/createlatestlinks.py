@@ -47,7 +47,7 @@ in a latest directory in the Django project's default file storage."
             zip_name = self.strip_datetime(
                 os.path.basename(v.download_zip_archive.name),
             )
-            self.copy_to_latest(
+            self.copy(
                 v.download_zip_archive.name,
                 self.get_latest_path(zip_name),
             )
@@ -57,7 +57,7 @@ in a latest directory in the Django project's default file storage."
             zip_name = self.strip_datetime(
                 os.path.basename(v.clean_zip_archive.name),
             )
-            self.copy_to_latest(
+            self.copy(
                 v.clean_zip_archive.name,
                 self.get_latest_path(zip_name),
             )
@@ -65,21 +65,21 @@ in a latest directory in the Django project's default file storage."
         # loop through all of the raw data files
         for f in v.files.all():
             # save downloaded file to the latest directory
-            self.copy_to_latest(
+            self.copy(
                 f.download_file_archive.name,
                 self.get_latest_path(f.download_file_archive.name)
             )
 
             if f.clean_file_archive:
                 # save cleaned file to the latest directory
-                self.copy_to_latest(
+                self.copy(
                     f.clean_file_archive.name,
                     self.get_latest_path(f.clean_file_archive.name)
                 )
 
             if f.error_log_archive:
                 # save error log file to the latest directory
-                self.copy_to_latest(
+                self.copy(
                     f.error_log_archive.name,
                     self.get_latest_path(f.error_log_archive.name)
                 )
@@ -91,7 +91,7 @@ in a latest directory in the Django project's default file storage."
         base_name = os.path.basename(old_path)
         return os.path.join("latest", base_name)
 
-    def copy_to_latest(self, source, target):
+    def copy(self, source, target):
         """
         Copies the provided source key to the provided target key
         """
