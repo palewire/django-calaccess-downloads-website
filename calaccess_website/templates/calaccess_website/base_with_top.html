@@ -1,0 +1,21 @@
+{% extends 'calaccess_website/base.html' %}
+
+{% block container %}
+<div class="bg-red">
+  <div class="container">
+    <div class="row">
+    <div class="col-md-12">
+      {% block top %} {% endblock %}
+    </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+	<div class="row">
+    	<div class="col-md-12">
+			{% block content %} {% endblock %}
+		</div>
+	</div>
+</div>
+{% endblock %}

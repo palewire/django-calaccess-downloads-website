@@ -5,6 +5,6 @@
 
 {% block top %}
 <h2>Latest data</h2>
-<p>This is the latest snapshot of the CAL-ACCESS database. It was taken on {{ object.release_datetime|date:"l, N j, Y" }} at {{ object.release_datetime|date:"P" }} <br>
-<a href="{% url 'version_archive_index' %}">See previous snapshots</a>.</p>
+<p>This is the latest download of the CAL-ACCESS database. It was released on {{ object.release_datetime|date:"l, N j, Y" }} at {{ object.release_datetime|date:"P" }} <br>
+<a href="{% url 'version_archive_index' %}">See older downloads</a>.</p>
 {% endblock %}

@@ -1,18 +1,7 @@
-{% extends 'calaccess_website/base.html' %}
+{% extends 'calaccess_website/base_with_top.html' %}
 {% load humanize calaccess_website_tags %}
 
-{% block container %}
-<div class="bg-red">
-  <div class="container">
-    <div class="row">
-    <div class="col-md-12">
-      {% block top %} {% endblock %}
-    </div>
-    </div>
-  </div>
-</div>
-
-<div class="container">
+{% block content %}
   <section>
   <div class="row">
     <div class="col-md-12">
@@ -20,7 +9,7 @@
       {% if object.clean_zip_archive %}
       <p><a href="{% archive_url object.clean_zip_archive.name is_latest=is_latest %}" class="btn btn-calaccess">Download</a>
       &nbsp; <span>{{ object.pretty_clean_size }} zip</span></p>
-      <p>Alternatively, use <code>wget</code> or <code>curl</code> to download this snapshot directly.</p>
+      <p>Alternatively, download directly with <code>wget</code> or <code>curl</code>.</p>
       <input type="text" class="download-link input-monospace" value="$ curl {% archive_url object.clean_zip_archive.name is_latest=is_latest %}" readonly></input>
       {% else %}
       <p><a class="btn btn-inactive">Download unavailable</a>
@@ -33,7 +22,7 @@
   {% if object.files.all %}
   <div class="row filters">
     <div class="col-md-12">
-      <h3>Individual tables</h3>
+      <h3>Individual files</h3>
       <p>Filter by type</p>
       <div class="dropdown">
         <button class="btn btn-calaccess dropdown-toggle" type="button" id="filterDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">

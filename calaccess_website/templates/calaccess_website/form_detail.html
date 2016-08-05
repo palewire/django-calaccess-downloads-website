@@ -1,18 +1,20 @@
-{% extends 'calaccess_website/base.html' %}
+{% extends 'calaccess_website/base_with_top.html' %}
 {% load humanize calaccess_website_tags %}
 
 {% block title %}{{ form.type_and_num|safe }} - Forms - {{ block.super }}{% endblock%}
 
-{% block breadcrumbs %}
-  <li><a href="{% url 'form_list' %}">Forms</a></li>
-  <li class="active">{{ form.type_and_num|safe  }}</li>
+{% block top %}
+<h2>Form details</h2>
+<p>Documentation for {{ form.type_and_num|safe }}.<br>
+<a href="{% url 'form_list' %}">See all forms.</a></p>
 {% endblock %}
 
 {% block content %}
-  <h1>{{ form.type_and_num|safe }}</h1>
-  {{ form.title|safe }}
+  <h3>{{ form.title|safe }}</h3>
+  {% if form.description %}<p>{{ form.description|safe }}</p>{% endif %}
 
-  {{ form.description|safe }}
+  <hr>
+
   {% if form.sections|length > 0 %}
   <h3>Sections</h3>
   <ul>
@@ -26,24 +28,19 @@
   {% if form.get_models|length > 0 %}
   <h3>Database tables</h3>
 
-      <table class="table table-striped">
-      <thead valign="bottom">
-          <tr>
-              <th class="head">Name</th>
-          </tr>
-      </thead>
-      <tbody valign="top">
-      {% for model in form.get_models %}
-          <tr>
-              <td>
-                  <a href="{% url 'file_detail' file_name=model.db_table|slugify %}">
-                      {{ model.db_table }}
-                  </a>
-              </td>
-          </tr>
-      {% endfor %}
-      </tbody>
-      </table>
+  <table class="table table-striped">
+  <tbody valign="top">
+  {% for model in form.get_models %}
+      <tr>
+          <td>
+              <a href="{% url 'file_detail' file_name=model.db_table|slugify %}">
+                  {{ model.db_table }}
+              </a>
+          </td>
+      </tr>
+  {% endfor %}
+  </tbody>
+  </table>
 
   {% endif %}
 
