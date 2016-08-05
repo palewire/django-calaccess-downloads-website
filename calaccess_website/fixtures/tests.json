@@ -4,7 +4,8 @@
     "pk": 1,
     "fields": {
         "release_datetime": "2016-06-27T11:20:29Z",
-        "size": 754726807,
+        "expected_size": 754726807,
+        "clean_zip_size": 789325433,
         "download_zip_archive": "2016-6-27_11-20-29/dbwebexport.zip",
         "clean_zip_archive": "2016-6-30_11-20-31/calaccess_cleaned.zip"
     }
@@ -14,7 +15,8 @@
     "pk": 2,
     "fields": {
         "release_datetime": "2016-06-28T11:20:28Z",
-        "size": 754835538,
+        "expected_size": 754726807,
+        "clean_zip_size": 789325433,
         "download_zip_archive": "2016-6-28_11-20-28/dbwebexport.zip",
         "clean_zip_archive": "2016-6-30_11-20-31/calaccess_cleaned.zip"
     }
@@ -24,7 +26,8 @@
     "pk": 3,
     "fields": {
         "release_datetime": "2016-06-29T11:20:31Z",
-        "size": 754867444,
+        "expected_size": 754726807,
+        "clean_zip_size": 789325433,
         "download_zip_archive": "2016-6-29_11-20-31/dbwebexport.zip",
         "clean_zip_archive": "2016-6-30_11-20-31/calaccess_cleaned.zip"
     }
@@ -34,7 +37,8 @@
     "pk": 4,
     "fields": {
         "release_datetime": "2016-06-30T11:20:31Z",
-        "size": 754913499,
+        "expected_size": 754726807,
+        "clean_zip_size": 789325433,
         "download_zip_archive": "2016-6-30_11-20-31/dbwebexport.zip",
         "clean_zip_archive": "2016-6-30_11-20-31/calaccess_cleaned.zip"
     }
