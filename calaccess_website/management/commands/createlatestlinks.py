@@ -32,6 +32,8 @@ in a latest directory in the Django project's default file storage."
         # and client
         self.client = self.session.client('s3')
 
+        self.delete_latest_objs()
+
         # get the version of last update that finished
         v = RawDataVersion.objects.latest('update_finish_datetime')
 
@@ -84,6 +86,16 @@ in a latest directory in the Django project's default file storage."
                     self.get_latest_path(f.error_log_archive.name)
                 )
 
+    def strip_datetime(self, filename):
+        """
+        Removes the datetime portion from filename.
+        """
+        return re.sub(
+            r'\d{4}-\d{2}-\d{2}_\d{2}-\d{2}-\d{2}',
+            '',
+            filename,
+        )
+
     def get_latest_path(self, old_path):
         """
         Convert the file path to a latest file path
@@ -105,12 +117,27 @@ in a latest directory in the Django project's default file storage."
             },
         )
 
-    def strip_datetime(self, filename):
+    def delete_latest_objs(self):
         """
-        Removes the datetime portion from filename.
+        Delete all objects currently under latest/
         """
-        return re.sub(
-            r'\d{2}-\d{2}-\d{2}_\d{2}-\d{2}-\d{2}',
-            '',
-            filename,
+        # get list of current objects
+        list_objects = self.client.list_objects_v2(
+            Bucket=settings.AWS_STORAGE_BUCKET_NAME,
+            Prefix='latest/',
         )
+        # if there are any
+        if list_objects['KeyCount'] > 0:
+            # log
+            logger.debug(
+                'Deleting %s objects currently under latest/' % list_objects['KeyCount']
+            )
+            # format
+            objects = [{'Key': o['Key']} for o in list_objects['Contents']]
+            # delete
+            self.client.delete_objects(
+                Bucket=settings.AWS_STORAGE_BUCKET_NAME,
+                Delete={
+                    'Objects': objects,
+                }
+            )
