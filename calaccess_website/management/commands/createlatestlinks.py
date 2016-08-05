@@ -48,7 +48,7 @@ in a latest directory in the Django project's default file storage."
                 os.path.basename(v.download_zip_archive.name),
             )
             self.copy_to_latest(
-                v.clean_zip_archive.name,
+                v.download_zip_archive.name,
                 self.get_latest_path(zip_name),
             )
         # save cleaned zip to the latest dir
