@@ -6,5 +6,5 @@
 {% block top %}
 <h2>Archived data</h2>
 <p>This is a snapshot of the CAL-ACCESS database taken on {{ object.release_datetime|date:"l, N j, Y" }} at {{ object.release_datetime|date:"P" }} <br>
-<a href="{% url 'version_latest_redirect' %}">Go to the latest data</a> or <a href="{% url 'version_archive_index' %}">see all snapshots</a>.</p>
+<a href="{% url 'version_latest' %}">Go to the latest data</a> or <a href="{% url 'version_archive_index' %}">see all snapshots</a>.</p>
 {% endblock %}
