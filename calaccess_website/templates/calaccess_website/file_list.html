@@ -1,24 +1,24 @@
-{% extends 'calaccess_website/base.html' %}
+{% extends 'calaccess_website/base_with_top.html' %}
 
 {% block title %}Files - {{ block.super }}{% endblock%}
 
-{% block breadcrumbs %}
-  <li class="active">Files</li>
+{% block top %}
+<h2>File list</h2>
+<p>Every file in the CAL-ACCESS database.</p>
 {% endblock %}
 
 {% block content %}
-    <h1>Files</h1>
-    {% for group in object_list %}
-    <section class="table-type">
-      <h3>{{ group.grouper|capfirst }}</h3>
-      <table class="table table-striped">
-      {% for file in group.list  %}
-          <tr>
-            <th><a href="{{ file.db_table|slugify }}">{{ file.db_table }}</th>
-            <td width="70%">{{ file.doc.strip|safe  }}</td>
-          </tr>
-      {% endfor %}
-      </table>
-    </section>
+  {% for group in object_list %}
+  <section>
+    <h3>{{ group.grouper|capfirst }}</h3>
+    <table class="table table-striped">
+    {% for file in group.list  %}
+      <tr>
+        <td><a href="{{ file.db_table|slugify }}">{{ file.db_table }}</td>
+        <td width="70%">{{ file.doc.strip|safe  }}</td>
+      </tr>
     {% endfor %}
+    </table>
+  </section>
+  {% endfor %}
 {% endblock %}

@@ -1,14 +1,16 @@
-{% extends 'calaccess_website/base.html' %}
+{% extends 'calaccess_website/base_with_top.html' %}
 {% load calaccess_website_tags humanize %}
 
 {% block title %}Versions - {{ block.super }}{% endblock%}
 
-{% block breadcrumbs %}
-  <li class="active">Versions</li>
+{% block top %}
+    <h2>Archived data</h2>
+    <p>Here are the last {{ latest|length|apnumber }} download{{ latest|length|pluralize }} of the CAL-ACCESS database. <br>
+    <a href="{% url 'version_latest' %}">Go to the latest data</a>.</p>
 {% endblock %}
 
 {% block content %}
-<h1>Last {{ latest|length|apnumber }} version{{ latest|length|pluralize }}</h1>
+<br>
 <table class="table table-striped">
     <thead>
         <tr>

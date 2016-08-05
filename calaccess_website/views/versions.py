@@ -64,7 +64,7 @@ class VersionDetail(BuildableDetailView, CalAccessModelListMixin):
     A detail page with everything about an individual CAL-ACCESS version
     """
     model = RawDataVersion
-    template_name = 'calaccess_website/version_detail.html'
+    template_name = 'calaccess_website/archived_version_detail.html'
 
     def set_kwargs(self, obj):
         super(VersionDetail, self).set_kwargs(obj)
@@ -115,7 +115,12 @@ class LatestVersion(VersionDetail):
     """
     Redirect to the detail page of the latest CAL-ACCESS version
     """
+    template_name = 'calaccess_website/latest_version_detail.html'
+
     def get_object(self, **kwargs):
+        """
+        Return the latest object from the queryset every time.
+        """
         try:
             return self.model.objects.latest("release_datetime")
         except self.model.DoesNotExist:
@@ -123,9 +128,21 @@ class LatestVersion(VersionDetail):
 
     def get_context_data(self, **kwargs):
         """
-        Add little extra bits for the latest page that the standard detail page won't have.
+        Add little extra bits that the standard detail page won't have.
         """
         context = super(LatestVersion, self).get_context_data(**kwargs)
         # A hint we can use in the template as a switch
         context['is_latest'] = True
         return context
+
+    def get_url(self, obj):
+        """
+        The never-changing latest URL.
+        """
+        return reverse('version_latest')
+
+    def build_queryset(self):
+        """
+        Only build this view for one object, the latest one.
+        """
+        return self.build_object(self.get_object())
