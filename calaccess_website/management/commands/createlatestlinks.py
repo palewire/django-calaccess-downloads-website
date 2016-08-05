@@ -91,7 +91,7 @@ in a latest directory in the Django project's default file storage."
         Removes the datetime portion from filename.
         """
         return re.sub(
-            r'\d{4}-\d{2}-\d{2}_\d{2}-\d{2}-\d{2}',
+            r'_\d{4}-\d{2}-\d{2}_\d{2}-\d{2}-\d{2}',
             '',
             filename,
         )
