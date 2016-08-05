@@ -33,7 +33,7 @@ class Command(CalAccessCommand):
         self.client = self.session.client('s3')
 
         # loop over all the versions
-        for v in RawDataVersion.objects.exclude(id=34).exclude(id=33):
+        for v in RawDataVersion.objects.all():
             # if there's a download zip
             if v.download_zip_archive:
                 # set the initial path
