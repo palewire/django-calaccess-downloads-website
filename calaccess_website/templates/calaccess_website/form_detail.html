@@ -5,15 +5,11 @@
 
 {% block top %}
 <h2>Form details</h2>
-<p>Documentation for {{ form.type_and_num|safe }}.<br>
-<a href="{% url 'form_list' %}">See all forms.</a></p>
+<p><b>{{ form.title|safe }}</b>: {% if form.description %}{{ form.description|safe }}{% endif %}</p>
+<p><a href="{% url 'form_list' %}">See all forms.</a></p>
 {% endblock %}
 
 {% block content %}
-  <h3>{{ form.title|safe }}</h3>
-  {% if form.description %}<p>{{ form.description|safe }}</p>{% endif %}
-
-  <hr>
 
   {% if form.sections|length > 0 %}
   <h3>Sections</h3>

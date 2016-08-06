@@ -5,18 +5,13 @@
 
 {% block top %}
   <h2>File details</h2>
-  <p>Downloads and documentation for the {{ object.db_table }} table. <br>
-  <a href="{% url 'file_list' %}">See all files</a>.</p>
+  <p><b>{{ object.db_table }}</b>: {{ object.doc.strip|safe }}</p>
+  <p><a href="{% url 'file_list' %}">See all files</a>.</p>
 {% endblock %}
 
 {% block content %}
   <div class="row">
     <div class="col-md-12">
-      <h3>{{ object.db_table }}</h3>
-      <p>{{ object.doc.strip|safe }}</p>
-
-      <hr>
-
       <h2>Latest download</h2>
         {% if version_list.0 %}
         {% with version_list.0 as latest_file %}  
@@ -31,6 +26,11 @@
       <hr>
 
       <h2>Documentation</h2>
+
+      <section>
+        <h3>Sample</h3>
+        <script src="https://gist.github.com/palewire/66bed097ddca855c36506da4b7c0d349.js?file={{ object.db_table }}.TSV"></script>
+      </section>
 
       <section>
         <h3>Fields</h3>
@@ -110,11 +110,6 @@
         </table>
         {% endfor %}
         {% endif %}
-      </section>
-
-      <section>
-        <h3>Sample</h3>
-        <script src="https://gist.github.com/palewire/66bed097ddca855c36506da4b7c0d349.js?file={{ object.db_table }}.TSV"></script>
       </section>
 
       <section>

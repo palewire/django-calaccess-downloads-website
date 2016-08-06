@@ -46,10 +46,14 @@ td.center, th.center{
 }
 .bg-red p {
     color:  #fdfdfd;
+    font-weight: 200;
+}
+.bg-red b {
+    font-weight: 600;
 }
 .bg-red a {
     color:  #fdfdfd;
-    font-weight: 600;
+    font-weight: 400;
 }
 .red-border {
     border-bottom: solid 7px #ba0a35;
@@ -270,6 +274,14 @@ header {
     color: #000;
     font-size: 14px;
     margin: 0;
+}
+
+/* File detail */
+.gist .markdown-body {
+    font-size: 10px !important;
+}
+.gist .blob-interaction-bar {
+    display: none;
 }
 
 /* Footer */
