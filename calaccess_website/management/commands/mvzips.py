@@ -64,7 +64,7 @@ class Command(CalAccessCommand):
                 )
                 # reset file name
                 v.download_zip_archive.name = new_download_path
-                
+
             # repeat for clean zips
             if v.clean_zip_archive:
                 # set the initial path
