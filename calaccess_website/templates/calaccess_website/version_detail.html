@@ -75,7 +75,7 @@
         </span>
         </div>
         <div class="col-md-4">
-          <a href="{% archive_url file.clean_file_archive.name %}" class="btn btn-calaccess">Download</a>
+          <a href="{% archive_url file.clean_file_archive.name is_latest=is_latest %}" class="btn btn-calaccess">Download</a>
         </div>
         {% else %}
           <a class="btn btn-inactive">Download unavailable</a>

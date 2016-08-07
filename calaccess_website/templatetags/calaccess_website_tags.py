@@ -18,10 +18,16 @@ def archive_url(file_path, is_latest=False):
 
     # If this is the 'latest' version of the file the path will need to be hacked
     if is_latest:
+        # Split off the file name
+        filepath = os.path.basename(file_path)
+        # Special hack for the clean biggie zip
+        if filepath.startswith("clean_"):
+            filepath = "clean.zip"
+        # Concoct the latest URL
         path = os.path.join(
             settings.AWS_STORAGE_BUCKET_NAME,
             'latest',
-            os.path.basename(file_path)
+            filepath
         )
     # If not we can just join it to the subject name
     else:
