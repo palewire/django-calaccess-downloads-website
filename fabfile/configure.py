@@ -54,6 +54,7 @@ def createconfig():
         default='us-west-2',
     )
     config['KEY_NAME'] = prompt('Your AWS key name:', default='my-key-pair')
+    config['DB_HOST'] = prompt('Database host:', default="localhost")
     config['DB_NAME'] = prompt('Database name:', default='calaccess_website')
     config['DB_USER'] = prompt('Database user:', default=env.app_user)
     config['DB_PASSWORD'] = prompt('Database user password:')
@@ -67,7 +68,6 @@ def createconfig():
     )
     config['EMAIL_USER'] = prompt('E-mail user:')
     config['EMAIL_PASSWORD'] = prompt('E-mail password:')
-    config['RDS_HOST'] = prompt('RDS host:')
     config['EC2_HOST'] = prompt('EC2 host:')
 
     # Save it to the configuration file

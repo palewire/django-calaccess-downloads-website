@@ -58,7 +58,7 @@ def createrds(
     host = db['DBInstances'][0]['Endpoint']['Address']
 
     # Add the new server's host to the configuration file
-    setconfig('RDS_HOST', host)
+    setconfig('DB_HOST', host)
     print(green("Success!"))
 
 
