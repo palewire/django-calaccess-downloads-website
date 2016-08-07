@@ -3,31 +3,6 @@
 from configure import ConfigTask
 from fabric.api import sudo, env, cd, task, settings
 
-#
-# System commands
-#
-
-
-@task(task_class=ConfigTask)
-def rmpyc():
-    """
-    Erases pyc files from the app's code directory.
-    """
-    with cd(env.repo_dir):
-        sudo("find . -name '*.pyc' -print0|xargs -0 rm", pty=True)
-
-#
-# Python commands
-#
-
-
-@task(task_class=ConfigTask)
-def pipinstall():
-    """
-    Install the Python requirements inside the virtualenv
-    """
-    _venv("pip install -r requirements.txt --log-file=/tmp/pip.log")
-
 
 def _venv(cmd):
     """
@@ -38,6 +13,23 @@ def _venv(cmd):
             "{} && {}".format(env.activate, cmd),
             user=env.app_user
         )
+
+
+@task(task_class=ConfigTask)
+def rmpyc():
+    """
+    Erases pyc files from the app's code directory.
+    """
+    with cd(env.repo_dir):
+        sudo("find . -name '*.pyc' -print0|xargs -0 rm", pty=True)
+
+
+@task(task_class=ConfigTask)
+def pipinstall():
+    """
+    Install the Python requirements inside the virtualenv
+    """
+    _venv("pip install -r requirements.txt --log-file=/tmp/pip.log")
 
 
 @task(task_class=ConfigTask)
