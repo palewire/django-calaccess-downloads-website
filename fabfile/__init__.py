@@ -1,10 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-import os
-from fabric.api import env
-
-from amazon import createrds, createec2, createkey, copydb, copys3
-from app import (
+from .amazon import createrds, createec2, createkey, copydb, copys3
+from .app import (
     deploy,
     pipinstall,
     manage,
@@ -13,9 +10,10 @@ from app import (
     rmpyc,
     pull
 )
-from dev import rs, ssh
-from chef import bootstrap, installchef, rendernodejson, cook
-from configure import (
+from .dev import rs, ssh
+from .env import dev, prod, env
+from .chef import bootstrap, installchef, rendernodejson, cook
+from .configure import (
     setconfig,
     copyconfig,
     createconfig,
@@ -24,32 +22,11 @@ from configure import (
     printenv
 )
 
-# Server credentials
-env.user = 'ubuntu'
-env.key_file_dir = os.path.expanduser('~/.ec2/')
-
-# Application data
-env.app_user = 'ccdc'
-env.app_group = 'ccdc'
-env.repo = "california-civic-data-coalition/django-calaccess-downloads-website"
-env.branch = 'master'
-env.app_dir = '/apps/calaccess/'
-env.repo_dir = os.path.join(env.app_dir, 'repo/')
-env.activate = 'source {}bin/activate'.format(env.app_dir)
-
-# Extras
-env.chef = '/usr/bin/chef-solo -c solo.rb -j node.json'
-env.connection_attempts = 15
-repo_dir = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
-env.config_file = os.path.join(repo_dir, ".env")
-# default to configuring DEV environment
-os.environ.setdefault("CALACCESS_WEBSITE_ENV", "DEV")
-env.cp_sect = os.getenv('CALACCESS_WEBSITE_ENV').upper()
-
 __all__ = (
     'bootstrap',
     'copyconfig',
     'deploy',
+    'dev',
     'setconfig',
     'createconfig',
     'loadconfig',
@@ -59,9 +36,11 @@ __all__ = (
     'copydb',
     'copys3',
     'ec2bootstrap',
+    'env',
     'installchef',
     'pipinstall',
     'printconfig',
+    'prod',
     'rendernodejson',
     'cook',
     'manage',

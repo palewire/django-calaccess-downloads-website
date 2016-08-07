@@ -4,7 +4,7 @@ import os
 from collections import OrderedDict
 import configparser
 from fabric.tasks import Task
-from fabric.colors import green
+from fabric.colors import green, cyan
 from fabric.api import task, env, sudo
 from fabric.operations import put, prompt
 
@@ -23,11 +23,11 @@ def setconfig(key, value):
     cp.read(env.config_file)
 
     # if the config file section is not there, add it
-    if not cp.has_section(env.cp_sect):
-        cp.add_section(env.cp_sect)
+    if not cp.has_section(env.config_section):
+        cp.add_section(env.config_section)
 
     # Set the value provided by the user
-    cp.set(env.cp_sect, key, value)
+    cp.set(env.config_section, key, value)
 
     # Write to the .env file
     with open(env.config_file, 'wb') as f:
@@ -88,7 +88,7 @@ def printconfig():
     # Loop through the current configuration
     for k, v in getconfig().items():
         # Print out each setting
-        print("{}:{}".format(k, v))
+        print("{}:{}".format(cyan(k), v))
 
 
 @task
@@ -98,6 +98,7 @@ def printenv():
     """
     # Load settings from the config file
     loadconfig()
+
     # Loop through the Fabric env
     for k, v in sorted(env.items()):
         # Print out each setting
@@ -111,7 +112,11 @@ def copyconfig():
     """
     # Load settings from the config file
     loadconfig()
+
+    # Push it to the remote environment
     put(env.config_file, env.repo_dir, use_sudo=True)
+
+    # Set the proper file permissions
     sudo('chown {}:{} {}'.format(
         env.app_user,
         env.app_group,
@@ -127,11 +132,17 @@ def getconfig():
     """
     Return a dict of the vars currently in the config_file
     """
+    print "Loading {} configuration settings from {}".format(
+        cyan(env.config_section),
+        cyan(env.config_file)
+    )
+
+    # Open the configuration file
     cp = configparser.SafeConfigParser()
     cp.read(env.config_file)
 
-    # Uppercase the settings
-    d = dict((k.upper(), v) for k, v in cp.items(env.cp_sect))
+    # Grad the section we're seeking and uppercase the settings
+    d = dict((k.upper(), v) for k, v in cp.items(env.config_section))
 
     # Pass it out
     return d

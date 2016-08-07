@@ -74,4 +74,4 @@ def cook():
     sudo('mkdir -p /etc/chef')
     sudo('chown ubuntu -R /etc/chef')
     rsync_project("/etc/chef/", "./chef/")
-    sudo('cd /etc/chef && %s' % env.chef, pty=True)
+    sudo('cd /etc/chef && /usr/bin/chef-solo -c solo.rb -j node.json', pty=True)
