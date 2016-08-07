@@ -12,27 +12,27 @@ urlpatterns = [
 
     # Version archive views
     url(
-        r'^versions/$',
+        r'^downloads/$',
         views.VersionArchiveIndex.as_view(),
         name="version_archive_index",
     ),
     url(
-        r'^versions/(?P<year>[0-9]{4})/$',
+        r'^downloads/(?P<year>[0-9]{4})/$',
         views.VersionYearArchiveList.as_view(),
         name="version_archive_year"
     ),
     url(
-        r'^versions/(?P<year>[0-9]{4})/(?P<month>[0-9]{2})/$',
+        r'^downloads/(?P<year>[0-9]{4})/(?P<month>[0-9]{2})/$',
         views.VersionMonthArchiveList.as_view(),
         name="version_archive_month"
     ),
     url(
-        r'^versions/latest/$',
+        r'^downloads/latest/$',
         views.LatestVersion.as_view(),
         name='version_latest'
     ),
     url(
-        r'^versions/(?P<year>[0-9]{4})/(?P<month>[0-9]{2})/(?P<day>[0-9]{2})/(?P<time>[0-9]{6})/$',
+        r'^downloads/(?P<year>[0-9]{4})/(?P<month>[0-9]{2})/(?P<day>[0-9]{2})/(?P<time>[0-9]{6})/$',
         views.VersionDetail.as_view(),
         name="version_detail"
     ),
@@ -85,17 +85,17 @@ urlpatterns = [
         name='form_sitemap'
     ),
     url(
-        r'^version-sitemap.xml$',
+        r'^downloads-sitemap.xml$',
         sitemaps.VersionSitemapView.as_view(),
         name='version_sitemap'
     ),
     url(
-        r'^version-year-sitemap.xml$',
+        r'^downloads-year-sitemap.xml$',
         sitemaps.VersionYearSitemapView.as_view(),
         name='version_archive_year_sitemap'
     ),
     url(
-        r'^version-month-sitemap.xml$',
+        r'^downloads-month-sitemap.xml$',
         sitemaps.VersionMonthSitemapView.as_view(),
         name='version_archive_month_sitemap'
     ),

@@ -2,7 +2,7 @@ User-agent: *
 Disallow:
 Sitemap: http://calaccess.californiacivicdata.org/file-sitemap.xml
 Sitemap: http://calaccess.californiacivicdata.org/form-sitemap.xml
-Sitemap: http://calaccess.californiacivicdata.org/version-sitemap.xml
-Sitemap: http://calaccess.californiacivicdata.org/version-year-sitemap.xml
-Sitemap: http://calaccess.californiacivicdata.org/version-month-sitemap.xml
+Sitemap: http://calaccess.californiacivicdata.org/downloads-sitemap.xml
+Sitemap: http://calaccess.californiacivicdata.org/downloads-year-sitemap.xml
+Sitemap: http://calaccess.californiacivicdata.org/downloads-month-sitemap.xml
 Sitemap: http://calaccess.californiacivicdata.org/other-sitemap.xml
