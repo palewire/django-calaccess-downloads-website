@@ -8,7 +8,7 @@ from fabric.api import env, task
 env.user = 'ubuntu'
 env.key_file_dir = os.path.expanduser('~/.ec2/')
 
-# Applications user 
+# Applications user
 env.app_user = 'ccdc'
 env.app_group = 'ccdc'
 env.app_dir = '/apps/calaccess/'
