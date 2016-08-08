@@ -141,7 +141,7 @@ def getconfig():
     cp = configparser.SafeConfigParser()
     cp.read(env.config_file)
 
-    # Grad the section we're seeking and uppercase the settings
+    # Grab the section we're seeking and uppercase the settings
     d = dict((k.upper(), v) for k, v in cp.items(env.config_section))
 
     # Pass it out
