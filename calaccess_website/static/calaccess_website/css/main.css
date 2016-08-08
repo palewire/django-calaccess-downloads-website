@@ -151,7 +151,8 @@ header {
     padding-right: 0;
     padding-bottom: 6px;
 }
-.nav>li>a:hover {
+.nav>li>a:hover,
+.nav>li>a:focus {
     border-bottom: 3px solid #ba0a35;
     background-color:#fff;
 }
