@@ -20,10 +20,8 @@ class FileList(BuildableListView, CalAccessModelListMixin):
 
 class FileDetail(BuildableDetailView):
     """
-    A detail page with everything we know about the provided raw data file.
+    Base class for views providing information about a raw data file.
     """
-    template_name = 'calaccess_website/file_detail.html'
-
     def get_queryset(self):
         """
         Returns a list of the raw data files as a key dictionary
@@ -48,10 +46,7 @@ class FileDetail(BuildableDetailView):
             return self.get_queryset()[key.lower()]
         except KeyError:
             raise Http404
-
-    def get_url(self, obj):
-        return reverse('file_detail', kwargs=dict(file_name=obj))
-
+    
     def get_context_data(self, **kwargs):
         """
         Add some extra bits to the template's context
@@ -61,14 +56,31 @@ class FileDetail(BuildableDetailView):
         context['version_list'] = RawDataFile.objects.filter(
             file_name=self.kwargs['file_name'].upper()
         ).order_by('-version__release_datetime')
+        return context
+
+    def build_queryset(self):
+        [self.build_object(o) for o in self.get_queryset()]
+
+
+class FileDocumentation(FileDetail):
+    """
+    A detail page with all documentation for the provided raw data file.
+    """
+    template_name = 'calaccess_website/file_detail.html'
+
+    def get_url(self, obj):
+        return reverse('file_detail', kwargs=dict(file_name=obj))
+
+    def get_context_data(self, **kwargs):
+        """
+        Add some extra bits to the template's context
+        """
+        context = super(FileDocumentation, self).get_context_data(**kwargs)
         # Add list of choice fields to context
         context['choice_fields'] = self.get_choice_fields()
         # Add dict of docs to context
         context['docs'] = self.get_docs()
         return context
-
-    def build_queryset(self):
-        [self.build_object(o) for o in self.get_queryset()]
 
     def get_choice_fields(self):
         """
@@ -110,3 +122,13 @@ class FileDetail(BuildableDetailView):
             except KeyError:
                 docs[doc.title] = [doc]
         return docs
+
+
+class FileDownloadsList(FileDetail):
+    """
+    A detail page with links to all downloads for the provided raw data file.
+    """
+    template_name = 'calaccess_website/file_downloads_list.html'
+
+    def get_url(self, obj):
+        return reverse('file_downloads_list', kwargs=dict(file_name=obj))
