@@ -20,7 +20,7 @@ class VersionArchiveIndex(BuildableArchiveIndexView):
     model = RawDataVersion
     date_field = "release_datetime"
     template_name = "calaccess_website/version_archive.html"
-    build_path = "versions/index.html"
+    build_path = "downloads/index.html"
 
 
 class VersionYearArchiveList(BuildableYearArchiveView):
