@@ -21,6 +21,7 @@ INSTALLED_APPS = [
     'calaccess_raw',
     'calaccess_website',
     'storages',
+    'toolbox',
 ]
 
 LANGUAGE_CODE = 'en-us'
