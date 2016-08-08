@@ -46,7 +46,7 @@ td.center, th.center{
 }
 .bg-red p {
     color:  #fdfdfd;
-    font-weight: 200;
+    font-weight: 300;
 }
 .bg-red b {
     font-weight: 600;
@@ -235,6 +235,10 @@ header {
     cursor: pointer;
     font-size: 16px;
     border-radius: 0;
+}
+.filters li>a:hover {
+    background: #ba0a35;
+    color: #fdfdfd;
 }
 .file-card {
     border: 1px solid #a6a6a6;
