@@ -23,7 +23,7 @@ class Command(updatecommand):
         parser.add_argument(
             "--publish",
             action="store_true",
-            dest="keep_files",
+            dest="publish",
             default=False,
             help="Publish baked content"
         )
