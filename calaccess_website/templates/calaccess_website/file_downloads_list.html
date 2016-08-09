@@ -1,10 +1,10 @@
 {% extends 'calaccess_website/base_with_top.html' %}
 {% load humanize calaccess_website_tags %}
 
-{% block title %}{{ object.db_table }} - Files - {{ block.super }}{% endblock%}
+{% block title %}{{ object.db_table }} downloads - Files - {{ block.super }}{% endblock%}
 
 {% block extra-meta %}
-<link rel="canonical" href="{% url 'file_detail' object.db_table|slugify %}" />
+<link rel="canonical" href="http://{{ CALACCESS_WEBSITE_DOMAIN }}{% url 'file_detail' object.db_table|slugify %}" />
 {% endblock %}
 
 {% block top %}
