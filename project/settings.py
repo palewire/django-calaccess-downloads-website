@@ -7,6 +7,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 ADMINS = (
     ('California Civic Data Coalition', 'cacivicdata@gmail.com'),
+    ('Los Angeles Times Data Desk', 'datadesk@latimes.com'),
 )
 
 INSTALLED_APPS = [
