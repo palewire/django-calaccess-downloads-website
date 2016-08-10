@@ -5,8 +5,8 @@
 
 {% block top %}
     <h2>Archived data</h2>
-    <p>Here are the last {{ latest|length|apnumber }} download{{ latest|length|pluralize }} of the CAL-ACCESS database. <br>
-    <a href="{% url 'version_latest' %}">Go to the latest data</a>.</p>
+    <p>Here are the last {{ latest|length|apnumber }} download{{ latest|length|pluralize }} of the CAL-ACCESS database.</p>
+    <p><a href="{% url 'version_latest' %}">Go to the latest data</a>.</p>
 {% endblock %}
 
 {% block content %}
@@ -27,7 +27,7 @@
             </a>
         </td>
         <td class="right">
-
+            {{ obj.pretty_clean_size }}
         </td>
     </tr>
     {% endfor %}

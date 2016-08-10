@@ -1,10 +1,10 @@
 {% extends 'calaccess_website/version_detail.html' %}
 {% load calaccess_website_tags %}
 
-{% block title %}Download — {{ object.release_datetime|date:"N j, Y" }} - {{ block.super }}{% endblock%}
+{% block title %}Downloads - {{ object.release_datetime|date:"N j, Y" }} - {{ block.super }}{% endblock%}
 
 {% block top %}
-<h2>Archived data</h2>
+<h2>Archived download</h2>
 <p>This is a download of the CAL-ACCESS database released on {{ object.release_datetime|date:"l, N j, Y" }} at {{ object.release_datetime|date:"P" }}</p>
 <p><a href="{% url 'version_latest' %}">Go to the latest data</a> or <a href="{% url 'version_archive_index' %}">see all downloads</a>.</p>
 {% endblock %}

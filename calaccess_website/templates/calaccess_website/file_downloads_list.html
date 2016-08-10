@@ -1,0 +1,54 @@
+{% extends 'calaccess_website/base_with_top.html' %}
+{% load humanize calaccess_website_tags %}
+
+{% block title %}{{ object.db_table }} downloads - Files - {{ block.super }}{% endblock%}
+
+{% block extra-meta %}
+<link rel="canonical" href="http://{{ CALACCESS_WEBSITE_DOMAIN }}{% url 'file_detail' object.db_table|slugify %}" />
+{% endblock %}
+
+{% block top %}
+  <h2>File details</h2>
+  <p>All downloads for <b>{{ object.db_table }}</b>.</p>
+  <p><a href="{% url 'file_detail' object.db_table|slugify %}">View documentation for this file</a>.</p>
+{% endblock %}
+
+{% block content %}
+  <div class="row">
+    <div class="col-md-12">
+      {% if version_list %}
+      <h2>Last {{ version_list|length }} downloads</h2>
+      <table class="table">
+        <thead>
+        <tr>
+          <th></th>
+          <th style="width: 10%" class="right">Records</th>
+          <th style="width: 10%" class="right">Filesize</th>
+          <th style="width: 10%" class="right">Errors</th>
+          <th style="width: 15%" class="right"></th>
+        </tr>
+        </thead>
+        <tbody valign="bottom">
+        {% for file in version_list %}
+        <tr>
+            <td style="font-size: 18px;">
+                <a href="{% url 'version_detail' year=file.version.release_datetime.year month=file.version.release_datetime|date:'m' day=file.version.release_datetime|date:'d' time=file.version.release_datetime|date:'His' %}">{{ file.version.release_datetime|date:"l, N j, Y" }}</a>
+            </td>
+            {% if file.clean_file_archive %}
+            <td class="right">{{ file.clean_records_count|intcomma }}</td>
+            <td class="right">{{ file.pretty_clean_file_size }}</td>
+            <td class="right">{{ file.error_count|intcomma }}</td>
+            <td class="right">
+                <a href="{% archive_url file.clean_file_archive.name %}" class="btn btn-sm btn-calaccess">Download</a>
+            </td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+      {% else %}
+          <p>No files.</p>
+      {% endif %}
+</div>
+</div>
+{% endblock %}

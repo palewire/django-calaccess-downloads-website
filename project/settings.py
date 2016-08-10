@@ -7,6 +7,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 ADMINS = (
     ('California Civic Data Coalition', 'cacivicdata@gmail.com'),
+    ('Los Angeles Times Data Desk', 'datadesk@latimes.com'),
 )
 
 INSTALLED_APPS = [
@@ -21,12 +22,13 @@ INSTALLED_APPS = [
     'calaccess_raw',
     'calaccess_website',
     'storages',
+    'toolbox',
 ]
 
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
 USE_I18N = True
-USE_L10N = True
+USE_L10N = False
 USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, ".static")
@@ -98,7 +100,8 @@ BAKERY_VIEWS = (
     'calaccess_website.views.VersionDetail',
     'calaccess_website.views.LatestVersion',
     'calaccess_website.views.FileList',
-    'calaccess_website.views.FileDetail',
+    'calaccess_website.views.FileDocumentation',
+    'calaccess_website.views.FileDownloadsList',
     'calaccess_website.views.FormList',
     'calaccess_website.views.FormDetail',
     'calaccess_website.views.GovernmentDocumentationView',

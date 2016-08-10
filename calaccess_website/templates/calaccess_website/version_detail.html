@@ -9,8 +9,8 @@
       {% if object.clean_zip_archive %}
       <p><a href="{% archive_url object.clean_zip_archive.name is_latest=is_latest %}" class="btn btn-calaccess">Download</a>
       &nbsp; <span>{{ object.pretty_clean_size }} zip</span></p>
-      <p>Alternatively, download directly with <code>wget</code> or <code>curl</code>.</p>
-      <input type="text" class="download-link input-monospace" value="$ curl {% archive_url object.clean_zip_archive.name is_latest=is_latest %}" readonly></input>
+      <p>Alternatively, download directly with <code>curl</code> or <code>wget</code>.</p>
+      <input type="text" class="download-link input-monospace" value="$ curl -O {% archive_url object.clean_zip_archive.name is_latest=is_latest %}" readonly></input>
       {% else %}
       <p><a class="btn btn-inactive">Download unavailable</a>
       {% endif %}
@@ -38,7 +38,7 @@
       </div>
     </div>
   </div>
-  
+
 
   {% for group in file_list %}
   {% for file in group.list %}

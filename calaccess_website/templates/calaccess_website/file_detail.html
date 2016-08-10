@@ -12,17 +12,19 @@
 {% block content %}
   <div class="row">
     <div class="col-md-12">
-      <h2>Latest download</h2>
+      <h2>Download</h2>
         {% if version_list.0 %}
-        {% with version_list.0 as latest_file %}  
+        {% with version_list.0 as latest_file %}
         <p><a href="{% archive_url latest_file.clean_file_archive.name is_latest=True %}" class="btn btn-calaccess">Download</a>
         &nbsp; <span>{{ latest_file.pretty_clean_file_size }} csv</span></p>
-        <p>Alternatively, download directly with <code>wget</code> or <code>curl</code>.</p>
-        <input type="text" class="download-link input-monospace" value="$ curl {% archive_url latest_file.clean_file_archive.name is_latest=True %}" readonly></input>
+        <p>Alternatively, download directly with <code>curl</code> or <code>wget</code>.</p>
+        <input type="text" class="download-link input-monospace" value="$ curl -O {% archive_url latest_file.clean_file_archive.name is_latest=True %}" readonly></input>
         {% endwith %}
         {% else %}
         <p><a class="btn btn-inactive">Download unavailable</a>
         {% endif %}
+
+        <p>Or, <a href="{% url 'file_downloads_list' object.db_table|slugify %}">see all downloads for this file</a>.</p>
       <hr>
 
       <h2>Documentation</h2>
@@ -72,7 +74,7 @@
         </table>
         {% endif %}
       </section>
-      
+
       <section>
         {% if choice_fields|length > 0 %}
         <h3>Lookup codes</h3>
@@ -135,7 +137,7 @@
         {% endif %}
       </section>
 
-  
+
       <section>
         {% if object.DOCUMENTCLOUD_PAGES|length > 0 %}
         <h3>References</h3>
@@ -150,7 +152,7 @@
       <hr>
 
       {% if version_list %}
-      <h2>Last {{ version_list|length }} downloads</h2>
+      <h2>Last 10 downloads</h2>
       <table class="table">
         <thead>
         <tr>
@@ -162,7 +164,7 @@
         </tr>
         </thead>
         <tbody valign="bottom">
-        {% for file in version_list %}
+        {% for file in version_list|slice:":10" %}
         <tr>
             <td style="font-size: 18px;">
                 <a href="{% url 'version_detail' year=file.version.release_datetime.year month=file.version.release_datetime|date:'m' day=file.version.release_datetime|date:'d' time=file.version.release_datetime|date:'His' %}">{{ file.version.release_datetime|date:"l, N j, Y" }}</a>
