@@ -1,7 +1,6 @@
 import os
 from django import template
 from django.conf import settings
-from six.moves.urllib import parse as urlparse
 from django.template.defaultfilters import stringfilter
 register = template.Library()
 
