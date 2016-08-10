@@ -227,6 +227,11 @@ LOGGING = {
             'level': 'DEBUG',
             'propagate': True,
         },
+        'management_commands': {
+            'handlers': ['mail_admins', 'logfile'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
     }
 }
 
