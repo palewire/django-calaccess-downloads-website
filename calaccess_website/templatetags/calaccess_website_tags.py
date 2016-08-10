@@ -31,7 +31,7 @@ def archive_url(file_path, is_latest=False):
         path = os.path.join(settings.AWS_STORAGE_BUCKET_NAME, file_path)
 
     # Either way, join it to the base and pass it back
-    return "https://{}".format(path)
+    return "http://{}".format(path)
 
 
 @register.filter
