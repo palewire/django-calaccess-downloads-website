@@ -69,6 +69,7 @@ def createconfig():
     config['EMAIL_USER'] = prompt('E-mail user:')
     config['EMAIL_PASSWORD'] = prompt('E-mail password:')
     config['EC2_HOST'] = prompt('EC2 host:')
+    config['NEW_RELIC_LICENSE_KEY'] = prompt("New Relic license key:")
 
     # Save it to the configuration file
     [setconfig(k, v) for k, v in config.items()]

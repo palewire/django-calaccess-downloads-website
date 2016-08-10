@@ -3,6 +3,7 @@
         "ccdc::system",
         "ccdc::app",
         "ccdc::cron",
+        "ccdc::newrelic",
         "ccdc::motd"
     ],
     "dependencies": [
@@ -17,7 +18,8 @@
         "user": "%(app_user)s",
         "group": "%(app_group)s",
         "repo": "https://github.com/%(repo)s.git",
-        "branch": "%(branch)s"
+        "branch": "%(branch)s",
+        "new_relic_license_key": "%(NEW_RELIC_LICENSE_KEY)s"
     },
     "crons": {
         "update": {
