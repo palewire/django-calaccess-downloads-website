@@ -13,9 +13,6 @@ def archive_url(file_path, is_latest=False):
 
     Returns a fully-qualified absolute URL where it can be downloaded.
     """
-    # Set the base for the URL
-    base = "https://s3-{}.amazonaws.com/".format(settings.AWS_S3_REGION_NAME)
-
     # If this is the 'latest' version of the file the path will need to be hacked
     if is_latest:
         # Split off the file name
@@ -34,7 +31,7 @@ def archive_url(file_path, is_latest=False):
         path = os.path.join(settings.AWS_STORAGE_BUCKET_NAME, file_path)
 
     # Either way, join it to the base and pass it back
-    return urlparse.urljoin(base, path)
+    return "https://{}".format(path)
 
 
 @register.filter
