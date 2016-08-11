@@ -126,7 +126,6 @@ AWS_STORAGE_BUCKET_NAME = os.getenv('s3_archived_data_bucket')
 AWS_S3_ENDPOINT_URL = 'https://{0}.s3-accelerate.amazonaws.com'.format(
     AWS_STORAGE_BUCKET_NAME
 )
-AWS_S3_ADDRESSING_STYLE = 'path'
 
 #
 # Databases
