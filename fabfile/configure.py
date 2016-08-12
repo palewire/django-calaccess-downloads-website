@@ -66,6 +66,9 @@ def createconfig():
         'Name of the S3 bucket for baked content:',
         default='django-calaccess-dev-baked-content',
     )
+    config['CLOUDFRONT_ARCHIVED_DATA_DISTRIBUTION'] = prompt(
+        'Name of the Cloudfront distribution for archived data',
+    )
     config['EMAIL_USER'] = prompt('E-mail user:')
     config['EMAIL_PASSWORD'] = prompt('E-mail password:')
     config['EC2_HOST'] = prompt('EC2 host:')

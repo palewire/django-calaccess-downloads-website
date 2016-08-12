@@ -6,9 +6,10 @@ directory in the Django project's default file storage.
 """
 import os
 import re
+import boto3
+import random
 import logging
 from django.conf import settings
-import boto3
 from calaccess_raw.models import RawDataVersion
 from django.core.management.base import BaseCommand
 logger = logging.getLogger(__name__)
@@ -29,10 +30,18 @@ in a latest directory in the Django project's default file storage."
             aws_secret_access_key=settings.AWS_SECRET_ACCESS_KEY,
             region_name=settings.AWS_S3_REGION_NAME
         )
-        # and client
-        self.client = self.session.client('s3')
 
-        self.delete_latest_objs()
+        # and clients
+        self.s3 = self.session.client('s3')
+        self.cloudfront = self.session.client('cloudfront')
+
+        # Delete existing latest files
+        latest_key_list = self.s3.list_objects_v2(
+            Bucket=settings.AWS_STORAGE_BUCKET_NAME,
+            Prefix='latest/',
+        )
+        if latest_key_list['KeyCount'] > 0:
+            self.delete_keys(latest_key_list)
 
         # get the version of last update that finished
         v = RawDataVersion.objects.latest('update_finish_datetime')
@@ -86,6 +95,11 @@ in a latest directory in the Django project's default file storage."
                     self.get_latest_path(f.error_log_archive.name)
                 )
 
+        # Clear the cloudfront cache by sending an invalidation request
+        if latest_key_list['KeyCount'] > 0:
+            self.invalidate_keys(latest_key_list)
+
+
     def strip_datetime(self, filename):
         """
         Removes the datetime portion from filename.
@@ -108,7 +122,7 @@ in a latest directory in the Django project's default file storage."
         Copies the provided source key to the provided target key
         """
         logger.debug('Saving copy of %s' % os.path.basename(source))
-        self.client.copy_object(
+        self.s3.copy_object(
             Bucket=settings.AWS_STORAGE_BUCKET_NAME,
             Key=target,
             CopySource={
@@ -117,27 +131,40 @@ in a latest directory in the Django project's default file storage."
             },
         )
 
-    def delete_latest_objs(self):
+    def delete_keys(self, key_list):
         """
-        Delete all objects currently under latest/
+        Delete all the provided s3 keys
         """
-        # get list of current objects
-        list_objects = self.client.list_objects_v2(
-            Bucket=settings.AWS_STORAGE_BUCKET_NAME,
-            Prefix='latest/',
+        logger.debug(
+            'Deleting %s keys currently under latest/' % key_list['KeyCount']
         )
-        # if there are any
-        if list_objects['KeyCount'] > 0:
-            # log
-            logger.debug(
-                'Deleting %s objects currently under latest/' % list_objects['KeyCount']
-            )
-            # format
-            objects = [{'Key': o['Key']} for o in list_objects['Contents']]
-            # delete
-            self.client.delete_objects(
-                Bucket=settings.AWS_STORAGE_BUCKET_NAME,
-                Delete={
-                    'Objects': objects,
-                }
-            )
+        # format
+        objects = [{'Key': o['Key']} for o in key_list['Contents']]
+        # delete
+        self.s3.delete_objects(
+            Bucket=settings.AWS_STORAGE_BUCKET_NAME,
+            Delete={
+                'Objects': objects,
+            }
+        )
+    
+    def invalidate_keys(self, key_list):
+        """
+        Send CloudFront an invalidation request to clear 
+        """
+        logger.debug(
+            "Sending invalidation request for %s keys under latest/" % key_list['KeyCount']
+        )
+        items = ["/{}".format(o['Key']) for o in key_list['Contents']]
+        self.cloudfront.create_invalidation(
+            DistributionId=settings.CLOUDFRONT_ARCHIVED_DATA_DISTRIBUTION,
+            InvalidationBatch={
+                # What to invalidate
+                'Paths': {
+                    'Quantity': key_list['KeyCount'],
+                    'Items': items
+                },
+                # A random name for the request
+                'CallerReference': str(random.getrandbits(128))
+            }
+        )
