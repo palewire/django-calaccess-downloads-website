@@ -99,7 +99,6 @@ in a latest directory in the Django project's default file storage."
         if latest_key_list['KeyCount'] > 0:
             self.invalidate_keys(latest_key_list)
 
-
     def strip_datetime(self, filename):
         """
         Removes the datetime portion from filename.
@@ -133,7 +132,7 @@ in a latest directory in the Django project's default file storage."
 
     def delete_keys(self, key_list):
         """
-        Delete all the provided s3 keys
+        Delete all the provided s3 keys.
         """
         logger.debug(
             'Deleting %s keys currently under latest/' % key_list['KeyCount']
@@ -147,10 +146,10 @@ in a latest directory in the Django project's default file storage."
                 'Objects': objects,
             }
         )
-    
+
     def invalidate_keys(self, key_list):
         """
-        Send CloudFront an invalidation request to clear 
+        Send CloudFront an invalidation request to clear.
         """
         logger.debug(
             "Sending invalidation request for %s keys under latest/" % key_list['KeyCount']
