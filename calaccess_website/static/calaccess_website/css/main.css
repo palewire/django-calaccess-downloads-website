@@ -113,20 +113,20 @@ kbd {
 header {
     box-shadow: 0 1px 10px #D0D0D0;
 }
-.nav-pills>li.active>a,
-.nav-pills>li.active>a:hover,
-.nav-pills>li.active>a:focus {
+header .nav-pills>li.active>a,
+header .nav-pills>li.active>a:hover,
+header .nav-pills>li.active>a:focus {
     border-bottom: 3px solid #ba0a35;
     background-color: #fff;
     color: #ba0a35;
     font-weight: 600;
 }
-.nav>li {
+header .nav>li {
     width: 80px;
     text-align: center;
     margin: 1px 15px 12px 15px;
 }
-.nav>li>a {
+header .nav>li>a {
     position: relative;
     display: block;
     border-radius:0px;
@@ -135,25 +135,24 @@ header {
     padding-right: 0;
     padding-bottom: 6px;
 }
-.nav>li>a:hover,
-.nav>li>a:focus {
+header .nav>li>a:hover,
+header .nav>li>a:focus {
     border-bottom: 3px solid #ba0a35;
     background-color:#fff;
 }
-.nav .logo {
+header .nav .logo {
     display:inline;
     padding-top:0;
     border-bottom: none !important;
 }
-.nav .logo:hover, .nav .logo:active, .nav .logo:focus {
+header .nav .logo:hover, header .nav .logo:active, header .nav .logo:focus {
     background:#fff;
     border-bottom: none;
 }
-.nav .logo img {
+header .nav .logo img {
     margin-top: 5px;
 }
-
-.navbar-default .navbar-nav>li>a {
+header .navbar-default .navbar-nav>li>a {
     color: #ba0a35;
 }
 
