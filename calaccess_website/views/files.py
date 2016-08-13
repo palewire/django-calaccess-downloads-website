@@ -102,7 +102,7 @@ class FileDocumentation(FileDetail):
                         field.docs[doc.title].append(doc)
                     except KeyError:
                         field.docs[doc.title] = [doc]
-                choice_fields.append(field)
+            choice_fields.append(field)
         return choice_fields
 
     def get_docs(self):
