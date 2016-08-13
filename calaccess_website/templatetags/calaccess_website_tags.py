@@ -21,13 +21,13 @@ def archive_url(file_path, is_latest=False):
             filepath = "clean.zip"
         # Concoct the latest URL
         path = os.path.join(
-            settings.AWS_STORAGE_BUCKET_NAME,
+            "calaccess.download",
             'latest',
             filepath
         )
     # If not we can just join it to the subject name
     else:
-        path = os.path.join(settings.AWS_STORAGE_BUCKET_NAME, file_path)
+        path = os.path.join("calaccess.download", file_path)
 
     # Either way, join it to the base and pass it back
     return "http://{}".format(path)
