@@ -4,7 +4,13 @@
 {% block title %}Latest downloads - {{ block.super }}{% endblock%}
 
 {% block top %}
-<h2>Latest downloads</h2>
-<p>This is the latest download of the CAL-ACCESS database. It was released on {{ object.release_datetime|date:"l, N j, Y" }} at {{ object.release_datetime|date:"P" }}</p>
-<p><a href="{% url 'version_archive_index' %}">See older downloads</a>.</p>
+    <h2>Latest downloads</h2>
+    <p>
+        This is the latest download of the CAL-ACCESS database. It was
+        released on {{ object.release_datetime|date:"l, N j, Y" }} at
+        {{ object.release_datetime|date:"P" }}
+    </p>
+    <p>
+        <a href="{% url 'version_archive_index' %}">See older downloads</a>.
+    </p>
 {% endblock %}

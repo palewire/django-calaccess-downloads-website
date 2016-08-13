@@ -31,7 +31,7 @@
 
     <script type="text/javascript" src="{% static "calaccess_website/js/jquery.min.js" %}"></script>
   </head>
-  <body>
+  <body {% block extra-body %}{% endblock %}>
     {% include 'calaccess_website/header.html' %}
 
     {% block container %}

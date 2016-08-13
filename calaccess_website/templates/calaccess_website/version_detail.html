@@ -1,25 +1,46 @@
 {% extends 'calaccess_website/base_with_top.html' %}
 {% load humanize calaccess_website_tags %}
 
+{% block javascript %}
+<script type="text/javascript">
+// Filter logic
+$('.dropdown-menu a').click(function() {
+    $('#filterDropdown').html($(this).html() + ' <span class="caret"></span>');
+    $('.file-card').removeClass('hidden');
+    var group = $(this).data('group');
+    if (group != 'all') {
+      $('.file-card:not(.' + group + ')').addClass('hidden');
+    }
+});
+</script>
+{% endblock %}
+
+{% block affix-nav %}
+<ul class="nav nav-pills nav-stacked" data-spy="affix" data-offset-top="0">
+    <li><a href="#section1">Section 1</a></li>
+    <li><a href="#section2">Section 2</a></li>
+    <li><a href="#section3">Section 3</a></li>
+</ul>
+{% endblock %}
+
 {% block content %}
   <section>
-  <div class="row">
-    <div class="col-md-12">
-      <h3>Full archive</h3>
-      {% if object.clean_zip_archive %}
-      <p><a href="{% archive_url object.clean_zip_archive.name is_latest=is_latest %}" class="btn btn-calaccess">Download</a>
-      &nbsp; <span>{{ object.pretty_clean_size }} zip</span></p>
-      <p>Alternatively, download directly with <code>curl</code> or <code>wget</code>.</p>
-      <input type="text" class="download-link input-monospace" value="$ curl -O {% archive_url object.clean_zip_archive.name is_latest=is_latest %}" readonly></input>
-      {% else %}
-      <p><a class="btn btn-inactive">Download unavailable</a>
-      {% endif %}
-    </div>
-  </div>
+      <div class="row">
+        <div class="col-md-12">
+          <h3>Full archive</h3>
+          {% if object.clean_zip_archive %}
+          <p><a href="{% archive_url object.clean_zip_archive.name is_latest=is_latest %}" class="btn btn-calaccess">Download</a>
+          &nbsp; <span>{{ object.pretty_clean_size }} zip</span></p>
+          <p>Alternatively, download directly with <code>curl</code> or <code>wget</code>.</p>
+          <input type="text" class="download-link input-monospace" value="$ curl -O {% archive_url object.clean_zip_archive.name is_latest=is_latest %}" readonly></input>
+          {% else %}
+          <p><a class="btn btn-inactive">Download unavailable</a>
+          {% endif %}
+        </div>
+      </div>
   </section>
 
-  <section>
-  {% if object.files.all %}
+<section>
   <div class="row filters">
     <div class="col-md-12">
       <h3>Individual files</h3>
@@ -39,71 +60,54 @@
     </div>
   </div>
 
-
   {% for group in file_list %}
   {% for file in group.list %}
-  <div class="row file-card {{ group.grouper|slugify }}">
-    <div class="row">
-      <div class="col-md-6">
-        <h4><a href="{% url 'file_detail' file.file_name|slugify %}">{{ file.file_name }}</a></h4>
-      </div>
-      <div class="col-md-6 align-right">
-        <p class="lbl-group"><mark>{{ group.grouper|upper }}</mark></p>
-      </div>
-    </div>
-
-    <hr>
-
-    <div class="row">
-      <div class="col-md-6">
-        <p>{{ file.model.doc|first_line|safe }}</p>
-      </div>
-      <div class="col-md-4 col-md-offset-2 align-right stats">
-        {% if file.clean_file_archive %}
-        <div class="col-md-8">
-        <span>
-          <h4>Records</h4>
-          <p>{{ file.clean_records_count|intcomma }}</p>
-        </span>
-        <span>
-          <h4>Size</h4>
-          <p> {{ file.pretty_clean_file_size }}</p>
-        </span>
-        <span>
-          <h4>Errors</h4>
-          <p>{{ file.error_count|intcomma }} </p>
-        </span>
+    <section class="row file-card {{ group.grouper|slugify }}">
+        <hgroup class="row">
+            <div class="col-md-6">
+                <h4>
+                    <a href="{% url 'file_detail' file.file_name|slugify %}">
+                        {{ file.file_name }}
+                    </a>
+                </h4>
+            </div>
+            <div class="col-md-6 align-right">
+                <p class="lbl-group">
+                    <mark>{{ group.grouper|upper }}</mark>
+                </p>
+            </div>
+        </hgroup>
+        <hr>
+        <div class="row">
+            <div class="col-md-6">
+                <p>{{ file.model.doc|first_line|safe }}</p>
+            </div>
+            <div class="col-md-5 col-md-offset-1 align-right stats">
+                {% if file.clean_file_archive %}
+                <div class="col-md-8">
+                    <span>
+                      <h4>Records</h4>
+                      <p>{{ file.clean_records_count|intcomma }}</p>
+                    </span>
+                    <span>
+                      <h4>Size</h4>
+                      <p> {{ file.pretty_clean_file_size }}</p>
+                    </span>
+                    <span>
+                      <h4>Errors</h4>
+                      <p>{{ file.error_count|intcomma }} </p>
+                    </span>
+                </div>
+                <div class="col-md-4">
+                  <a href="{% archive_url file.clean_file_archive.name is_latest=is_latest %}" class="btn btn-calaccess">Download</a>
+                </div>
+                {% else %}
+                  <a class="btn btn-inactive">Download unavailable</a>
+                {% endif %}
+            </div>
         </div>
-        <div class="col-md-4">
-          <a href="{% archive_url file.clean_file_archive.name is_latest=is_latest %}" class="btn btn-calaccess">Download</a>
-        </div>
-        {% else %}
-          <a class="btn btn-inactive">Download unavailable</a>
-         {% endif %}
-      </div>
-    </div>
-  </div>
-
-  {% endfor %}
-  {% endfor %}
-
-  {% else %}
-        <p>No files.</p>
-  {% endif %}
   </section>
-</div>
-</div> <!-- container -->
-
-<script type="text/javascript">
-// Filter logic
-$('.dropdown-menu a').click(function() {
-    $('#filterDropdown').html($(this).html() + ' <span class="caret"></span>');
-    $('.file-card').removeClass('hidden');
-    var group = $(this).data('group');
-    if (group != 'all') {
-      $('.file-card:not(.' + group + ')').addClass('hidden');
-    }
-});
-</script>
-
+  {% endfor %}
+  {% endfor %}
+</section>
 {% endblock %}

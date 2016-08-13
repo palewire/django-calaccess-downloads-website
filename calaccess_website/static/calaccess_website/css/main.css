@@ -264,21 +264,20 @@ td.center, th.center{
     font-weight: 600;
     font-size: 14px;
 }
-
 .right-desktop {
     text-align: right;
 }
-.stats {
+.file-card .stats {
     margin-top: 10px;
 }
-.stats div {
+.file-card .stats div {
     padding: 0 0 10px 0;
 }
-.stats span {
+.file-card .stats span {
     display: inline-block;
     margin-right: 15px;
 }
-.stats h4, .stats p {
+.file-card .stats h4, .file-card .stats p {
     color: #000;
     font-size: 14px;
     margin: 0;
