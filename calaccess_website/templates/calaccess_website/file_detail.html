@@ -3,20 +3,26 @@
 
 {% block title %}{{ object.db_table }} - Files - {{ block.super }}{% endblock%}
 
+{% block breadcrumbs %}
+{{ block.super }}
+<li><a href="{% url 'file_list' %}">Files</a></li>
+<li>{{ object.db_table }}</li>
+{% endblock %}
+
 {% block top %}
-  <h2>File details</h2>
-  <p><b>{{ object.db_table }}</b>: {{ object.doc.strip|safe }}</p>
-  <p><a href="{% url 'file_list' %}">See all files</a>.</p>
+  <h2>{{ object.db_table }}</h2>
+  <p>{{ object.doc.strip|safe }}</p>
 {% endblock %}
 
 {% block content %}
   <div class="row">
     <div class="col-md-12">
-      <h2>Download</h2>
+      <h2>Latest release</h2>
         {% if version_list.0 %}
         {% with version_list.0 as latest_file %}
-        <p><a href="{% archive_url latest_file.clean_file_archive.name is_latest=True %}" class="btn btn-calaccess">Download</a>
-        &nbsp; <span>{{ latest_file.pretty_clean_file_size }} csv</span></p>
+        <p>The latest version of this file was released on <b>{{ latest_file.version.release_datetime|date:"l, N j, Y" }}</b> at <b>{{ latest_file.version.release_datetime|date:"P" }}</b>.</p>
+        <p><a href="{% archive_url latest_file.clean_file_archive.name is_latest=True %}" class="btn btn-calaccess">Download latest</a>
+        &nbsp; <span class="filesize">{{ latest_file.pretty_clean_file_size }} CSV</span></p>
         <p>Alternatively, download directly with <code>curl</code> or <code>wget</code>.</p>
         <input type="text" class="download-link input-monospace" value="$ curl -O {% archive_url latest_file.clean_file_archive.name is_latest=True %}" readonly></input>
         {% endwith %}
@@ -25,9 +31,6 @@
         {% endif %}
 
         <p>Or, <a href="{% url 'file_downloads_list' object.db_table|slugify %}">see all downloads for this file</a>.</p>
-      <hr>
-
-      <h2>Documentation</h2>
 
       <section>
         <h3>Sample</h3>

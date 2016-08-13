@@ -2,6 +2,11 @@
 
 {% block title %}Files - {{ block.super }}{% endblock%}
 
+{% block breadcrumbs %}
+{{ block.super }}
+<li>Files</li>
+{% endblock %}
+
 {% block top %}
 <h2>File list</h2>
 <p>Every file in the CAL-ACCESS database.</p>

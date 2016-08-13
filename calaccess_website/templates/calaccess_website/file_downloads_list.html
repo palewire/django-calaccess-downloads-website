@@ -7,10 +7,16 @@
 <link rel="canonical" href="http://{{ CALACCESS_WEBSITE_DOMAIN }}{% url 'file_detail' object.db_table|slugify %}" />
 {% endblock %}
 
+{% block breadcrumbs %}
+{{ block.super }}
+<li><a href="{% url 'file_list' %}">Files</a></li>
+<li><a href="{% url 'file_detail' object.db_table|slugify %}">{{ object.db_table }}</a></li>
+<li>Downloads</li>
+{% endblock %}
+
 {% block top %}
-  <h2>File details</h2>
-  <p>All downloads for <b>{{ object.db_table }}</b>.</p>
-  <p><a href="{% url 'file_detail' object.db_table|slugify %}">View documentation for this file</a>.</p>
+  <h2>{{ object.db_table }}</h2>
+  <p>All downloads for this file. <a href="{% url 'file_detail' object.db_table|slugify %}">See documentation</a>.</p>
 {% endblock %}
 
 {% block content %}

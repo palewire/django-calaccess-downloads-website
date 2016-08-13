@@ -8,6 +8,11 @@
         <div class="container">
             <div class="row">
                 <hgroup class="col-md-8">
+                    <ol class="breadcrumb">
+                    {% block breadcrumbs %}
+                        <li><a href="{% url 'home' %}">Home</a></li>
+                    {% endblock %}
+                    </ol>
                   {% block top %}{% endblock %}
                 </hgroup>
             </div>

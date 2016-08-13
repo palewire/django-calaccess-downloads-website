@@ -7,7 +7,7 @@ header, footer {
     padding: 5px 0 0 0 !important;
 }
 section {
-    margin-bottom: 20px;
+    margin: 50px auto;
 }
 p {
     font-size: 20px;
@@ -30,6 +30,10 @@ code {
 .bg-red {
     background-color: #ba0a35;
     color:  #fdfdfd;
+    padding: 15px;
+}
+.bg-red h2 {
+    margin-top: 5px;
 }
 .bg-red p {
     color:  #fdfdfd;
@@ -55,6 +59,9 @@ code {
     border: none;
     background: black;
     color: white;
+}
+.filesize {
+    font-size: 16px;
 }
 
 /* Buttons */
@@ -97,17 +104,26 @@ code {
 
 /* Breadcrumbs */
 .breadcrumb {
-    padding: 10px;
-    margin: 10px auto;
+    padding: 0;
+    margin: 10px auto 20px auto;
     border-radius: 0;
-    background-color: #fff;
     list-style: none;
-}
-.breadcrumb>li>a {
-    background-color: #ba0a35;
+    background: none;
     color: #fff;
+}
+
+.breadcrumb>li>a {
     padding: 2px 4px;
 }
+.breadcrumb>li>a:hover {
+    text-decoration: underline;
+}
+.breadcrumb>li+li:before {
+    content: "\203A";
+    margin-left: -4px;
+}
+
+
 .align-right {
     float: right;
     text-align: right;
