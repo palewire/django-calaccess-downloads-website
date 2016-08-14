@@ -1,13 +1,17 @@
 {% extends 'calaccess_website/version_detail.html' %}
 {% load calaccess_website_tags %}
 
-{% block title %}Latest downloads - {{ block.super }}{% endblock%}
+{% block title %}Latest download - {{ block.super }}{% endblock%}
+
+{% block breadcrumbs %}
+{{ block.super }}
+<li>Latest</li>
+{% endblock %}
 
 {% block top %}
-    <h2>Latest downloads</h2>
+    <h2>Latest download</h2>
     <p>
-        This is the latest download of the CAL-ACCESS database. It was
-        released on {{ object.release_datetime|date:"l, N j, Y" }} at
+        This is the latest download of the CAL-ACCESS database, released on {{ object.release_datetime|date:"l, N j, Y" }} at
         {{ object.release_datetime|date:"P" }}
     </p>
     <p>

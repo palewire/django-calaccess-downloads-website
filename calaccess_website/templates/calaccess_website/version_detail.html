@@ -15,34 +15,27 @@ $('.dropdown-menu a').click(function() {
 </script>
 {% endblock %}
 
-{% block affix-nav %}
-<ul class="nav nav-pills nav-stacked" data-spy="affix" data-offset-top="0">
-    <li><a href="#section1">Section 1</a></li>
-    <li><a href="#section2">Section 2</a></li>
-    <li><a href="#section3">Section 3</a></li>
-</ul>
+
+{% block breadcrumbs %}
+{{ block.super }}
+<li><a href="{% url 'version_archive_index' %}">Downloads</a></li>
 {% endblock %}
 
 {% block content %}
   <section>
-      <div class="row">
-        <div class="col-md-12">
-          <h3>Full archive</h3>
-          {% if object.clean_zip_archive %}
-          <p><a href="{% archive_url object.clean_zip_archive.name is_latest=is_latest %}" class="btn btn-calaccess">Download</a>
-          &nbsp; <span>{{ object.pretty_clean_size }} zip</span></p>
-          <p>Alternatively, download directly with <code>curl</code> or <code>wget</code>.</p>
-          <input type="text" class="download-link input-monospace" value="$ curl -O {% archive_url object.clean_zip_archive.name is_latest=is_latest %}" readonly></input>
-          {% else %}
-          <p><a class="btn btn-inactive">Download unavailable</a>
-          {% endif %}
-        </div>
-      </div>
+    <h3>Full archive</h3>
+    {% if object.clean_zip_archive %}
+    <p><a href="{% archive_url object.clean_zip_archive.name is_latest=is_latest %}" class="btn btn-calaccess">Download</a>
+    &nbsp; <span>{{ object.pretty_clean_size }} zip</span></p>
+    <p>Alternatively, download directly with <code>curl</code> or <code>wget</code>.</p>
+    <input type="text" class="download-link input-monospace" value="$ curl -O {% archive_url object.clean_zip_archive.name is_latest=is_latest %}" readonly></input>
+    {% else %}
+    <p><a class="btn btn-inactive">Download unavailable</a>
+    {% endif %}
   </section>
 
 <section>
-  <div class="row filters">
-    <div class="col-md-12">
+  <div class="filters">
       <h3>Individual files</h3>
       <p>Filter by type</p>
       <div class="dropdown">
@@ -57,7 +50,6 @@ $('.dropdown-menu a').click(function() {
           {% endfor %}
         </ul>
       </div>
-    </div>
   </div>
 
   {% for group in file_list %}

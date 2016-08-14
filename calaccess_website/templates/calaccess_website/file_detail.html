@@ -3,6 +3,17 @@
 
 {% block title %}{{ object.db_table }} - Files - {{ block.super }}{% endblock%}
 
+{% block affix-nav %}
+<ul class="nav nav-stacked" data-spy="affix" data-offset-top="0" data-offset-bottom="500">
+  <li><a href="#latest">Latest</a></li>
+  <li><a href="#sample">Sample</a></li>
+  <li><a href="#fields">Fields</a></li>
+  <li><a href="#forms">Forms</a></li>
+  <li><a href="#references">References</a></li>
+  <li><a href="#archive">Archive</a></li>
+</ul>
+{% endblock %}
+
 {% block breadcrumbs %}
 {{ block.super }}
 <li><a href="{% url 'file_list' %}">Files</a></li>
@@ -15,121 +26,118 @@
 {% endblock %}
 
 {% block content %}
-  <div class="row">
-    <div class="col-md-12">
-      <h2>Latest release</h2>
-        {% if version_list.0 %}
-        {% with version_list.0 as latest_file %}
-        <p>The latest version of this file was released on <b>{{ latest_file.version.release_datetime|date:"l, N j, Y" }}</b> at <b>{{ latest_file.version.release_datetime|date:"P" }}</b>.</p>
-        <p><a href="{% archive_url latest_file.clean_file_archive.name is_latest=True %}" class="btn btn-calaccess">Download latest</a>
-        &nbsp; <span class="filesize">{{ latest_file.pretty_clean_file_size }} CSV</span></p>
-        <p>Alternatively, download directly with <code>curl</code> or <code>wget</code>.</p>
-        <input type="text" class="download-link input-monospace" value="$ curl -O {% archive_url latest_file.clean_file_archive.name is_latest=True %}" readonly></input>
-        {% endwith %}
-        {% else %}
-        <p><a class="btn btn-inactive">Download unavailable</a>
-        {% endif %}
+  <section id="latest">
+    <h2>Latest release</h2>
+      {% if version_list.0 %}
+      {% with version_list.0 as latest_file %}
+      <p>The latest version of this file was released on <b>{{ latest_file.version.release_datetime|date:"l, N j, Y" }}</b> at <b>{{ latest_file.version.release_datetime|date:"P" }}</b>.</p>
+      <p><a href="{% archive_url latest_file.clean_file_archive.name is_latest=True %}" class="btn btn-calaccess">Download latest</a>
+      &nbsp; <span class="filesize">{{ latest_file.pretty_clean_file_size }} CSV</span></p>
+      <p>Alternatively, download directly with <code>curl</code> or <code>wget</code>.</p>
+      <input type="text" class="download-link input-monospace" value="$ curl -O {% archive_url latest_file.clean_file_archive.name is_latest=True %}" readonly></input>
+      {% endwith %}
+      {% else %}
+      <p><a class="btn btn-inactive">Download unavailable</a>
+      {% endif %}
+      <p>Or, <a href="{% url 'file_downloads_list' object.db_table|slugify %}">see all downloads for this file</a>.</p>
+  </section>
 
-        <p>Or, <a href="{% url 'file_downloads_list' object.db_table|slugify %}">see all downloads for this file</a>.</p>
+  <section id="sample">
+    <h3>Sample</h3>
+    <script src="https://gist.github.com/palewire/66bed097ddca855c36506da4b7c0d349.js?file={{ object.db_table }}.TSV"></script>
+  </section>
 
-      <section>
-        <h3>Sample</h3>
-        <script src="https://gist.github.com/palewire/66bed097ddca855c36506da4b7c0d349.js?file={{ object.db_table }}.TSV"></script>
-      </section>
+  <section id="fields">
+    <h3>Fields</h3>
+    {% for field in choice_fields %}
 
-      <section>
-        <h3>Fields</h3>
-        {% for field in choice_fields %}
+    {% if field.name != "id" %}
+    <div class="field-row">
+        <span class="field-title">{{ field.db_column }}</span>
+        <span>{{ field.description }} {% if field.is_unique_key %}&middot; <mark>Unique</mark>{% endif %}</span>
+        <p>{{ field.definition|capfirst }}</p>
+    </div>
 
-        {% if field.name != "id" %}
-        <div class="field-row">
-            <span class="field-title">{{ field.db_column }}</span>
-            <span>{{ field.description }} {% if field.is_unique_key %}&middot; <mark>Unique</mark>{% endif %}</span>
-            <p>{{ field.definition|capfirst }}</p>
-        </div>
-
-        {% if field.choices|length > 0 %}
-          <button class="btn btn-sm btn-calaccess" type="button" data-toggle="collapse" data-target="#collapse-{{ field.db_column }}">
-            See lookup codes
-          </button>
-          <div class="collapse" id="collapse-{{ field.db_column }}">
-            <table class="table table-striped">
-            <thead valign="bottom">
-                <tr>
-                    <th width="20%" class="head">Code</th>
-                    <th class="head">Definition</th>
-                </tr>
-            </thead>
-            <tbody valign="top">
-            {% for choice in field.choices %}
-                <tr>
-                    <td><code>{{ choice.0 }}</code></td>
-                    <td>{{ choice.1 }}</td>
-                </tr>
-            {% endfor %}
-            </tbody>
-            {% if field.documentcloud_pages|length > 0%}
-            <tfoot class="footnote">
+    {% if field.choices|length > 0 %}
+      <button class="btn btn-sm btn-calaccess" type="button" data-toggle="collapse" data-target="#collapse-{{ field.db_column }}">
+        See lookup codes
+      </button>
+      <div class="collapse" id="collapse-{{ field.db_column }}">
+        <table class="table table-striped">
+        <thead valign="bottom">
             <tr>
-            <td colspan=2>
-               <small>
-                Sources:
-                    {% for doc, objects in field.docs.items %} {{ doc }} ({% for object in objects %}<a class="reference external image-reference" href="{{ object.canonical_url }}">{{ object.formatted_page_nums }}</a>{% if not forloop.last %}, {% endif %}{% endfor %}){% if not forloop.last %}, {% endif %}{% endfor %}
-                </small>
-            </td>
+                <th width="20%" class="head">Code</th>
+                <th class="head">Definition</th>
             </tr>
-            </tfoot>
-            {% endif %}
-            </table>
-          </div>
-          
-        {% endif %}
-
-        <hr>
-        {% endif %}
-        
-        {% endfor %}
-      </section>
-
-      <section>
-        {% if object.FILING_FORMS|length > 0 %}
-        <h3>Forms</h3>
-        <table class="table">
+        </thead>
         <tbody valign="top">
-            {% for form, sections in object.get_filing_forms_w_sections %}
+        {% for choice in field.choices %}
             <tr>
-                <td>
-                    <h4><a href="{% url 'form_detail' id=form.id %}">{{ form.type_and_num|safe }}</a>:
-                    {{ form.title|safe }}</h4>
-                    <ul>
-                    {% for section in sections %}
-                      <li>{{ section.title|safe }}</li>
-                    {% endfor %}
-                    </ul>
-                </td>
+                <td><code>{{ choice.0 }}</code></td>
+                <td>{{ choice.1 }}</td>
             </tr>
-            {% endfor %}
-        </tbody>
-        </table>
-        {% endif %}
-      </section>
-
-
-      <section>
-        {% if object.DOCUMENTCLOUD_PAGES|length > 0 %}
-        <h3>References</h3>
-        <ul>
-        {% for doc, objects in docs.items %}
-        <li> {{ doc }} ({% for object in objects %}<a href="{{ object.canonical_url }}">{{ object.formatted_page_nums }}</a>{% if not forloop.last %}, {% endif %}{% endfor %})</li>
         {% endfor %}
-        </ul>
+        </tbody>
+        {% if field.documentcloud_pages|length > 0%}
+        <tfoot class="footnote">
+        <tr>
+        <td colspan=2>
+           <small>
+            Sources:
+                {% for doc, objects in field.docs.items %} {{ doc }} ({% for object in objects %}<a class="reference external image-reference" href="{{ object.canonical_url }}">{{ object.formatted_page_nums }}</a>{% if not forloop.last %}, {% endif %}{% endfor %}){% if not forloop.last %}, {% endif %}{% endfor %}
+            </small>
+        </td>
+        </tr>
+        </tfoot>
         {% endif %}
-      </section>
+        </table>
+      </div>
+      
+    {% endif %}
+    <hr>
+    {% endif %}
+    {% endfor %}
+  </section>
 
-      <hr>
+  <section id="forms">
+    {% if object.FILING_FORMS|length > 0 %}
+    <h3>Forms</h3>
+    <table class="table">
+    <tbody valign="top">
+        {% for form, sections in object.get_filing_forms_w_sections %}
+        <tr>
+            <td>
+                <h4><a href="{% url 'form_detail' id=form.id %}">{{ form.type_and_num|safe }}</a>:
+                {{ form.title|safe }}</h4>
+                <ul>
+                {% for section in sections %}
+                  <li>{{ section.title|safe }}</li>
+                {% endfor %}
+                </ul>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+    {% endif %}
+  </section>
 
+  <section id="references">
+    {% if object.DOCUMENTCLOUD_PAGES|length > 0 %}
+    <h3>References</h3>
+    <ul>
+    {% for doc, objects in docs.items %}
+    <li> {{ doc }} ({% for object in objects %}<a href="{{ object.canonical_url }}">{{ object.formatted_page_nums }}</a>{% if not forloop.last %}, {% endif %}{% endfor %})</li>
+    {% endfor %}
+    </ul>
+    {% endif %}
+  </section>
+
+  <section id="archive">
       {% if version_list %}
-      <h2>Last 10 downloads</h2>
+      <h3>Archive</h3>
+      <p><a href="{% url 'file_downloads_list' object.db_table|slugify %}">See all downloads for this file</a>.</p>
+      <h4>Last 10 downloads</h4>
       <table class="table">
         <thead>
         <tr>
@@ -161,8 +169,5 @@
       {% else %}
           <p>No files.</p>
       {% endif %}
-
-</div>
-</div>
-</div>
+  </section>
 {% endblock %}
