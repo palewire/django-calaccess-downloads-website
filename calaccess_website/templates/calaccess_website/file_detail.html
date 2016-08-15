@@ -5,10 +5,10 @@
 
 {% block affix-nav %}
 <ul class="nav nav-stacked" data-spy="affix" data-offset-top="0" data-offset-bottom="500">
-  <li><a href="#latest">Latest</a></li>
+  <li><a href="#latest">Latest release</a></li>
   <li><a href="#sample">Sample</a></li>
   <li><a href="#fields">Fields</a></li>
-  <li><a href="#forms">Forms</a></li>
+  {% if object.FILING_FORMS|length > 0 %}<li><a href="#forms">Forms</a></li>{% endif %}
   <li><a href="#references">References</a></li>
   <li><a href="#archive">Archive</a></li>
 </ul>
@@ -22,7 +22,7 @@
 
 {% block top %}
   <h2>{{ object.db_table }}</h2>
-  <p>{{ object.doc.strip|safe }}</p>
+  <p>{{ object.doc.strip|first_line|safe }}</p>
 {% endblock %}
 
 {% block content %}
@@ -43,12 +43,12 @@
   </section>
 
   <section id="sample">
-    <h3>Sample</h3>
+    <h2>Sample</h2>
     <script src="https://gist.github.com/palewire/66bed097ddca855c36506da4b7c0d349.js?file={{ object.db_table }}.TSV"></script>
   </section>
 
   <section id="fields">
-    <h3>Fields</h3>
+    <h2>Fields</h2>
     {% for field in choice_fields %}
 
     {% if field.name != "id" %}
@@ -101,7 +101,7 @@
 
   <section id="forms">
     {% if object.FILING_FORMS|length > 0 %}
-    <h3>Forms</h3>
+    <h2>Forms</h2>
     <table class="table">
     <tbody valign="top">
         {% for form, sections in object.get_filing_forms_w_sections %}
@@ -124,7 +124,7 @@
 
   <section id="references">
     {% if object.DOCUMENTCLOUD_PAGES|length > 0 %}
-    <h3>References</h3>
+    <h2>References</h2>
     <ul>
     {% for doc, objects in docs.items %}
     <li> {{ doc }} ({% for object in objects %}<a href="{{ object.canonical_url }}">{{ object.formatted_page_nums }}</a>{% if not forloop.last %}, {% endif %}{% endfor %})</li>
@@ -135,37 +135,43 @@
 
   <section id="archive">
       {% if version_list %}
-      <h3>Archive</h3>
+      <h2>Archive</h2>
       <p><a href="{% url 'file_downloads_list' object.db_table|slugify %}">See all downloads for this file</a>.</p>
+      <br>
+
       <h4>Last 10 downloads</h4>
-      <table class="table">
-        <thead>
-        <tr>
-          <th></th>
-          <th style="width: 10%" class="right">Records</th>
-          <th style="width: 10%" class="right">Filesize</th>
-          <th style="width: 10%" class="right">Errors</th>
-          <th style="width: 15%" class="right"></th>
-        </tr>
-        </thead>
-        <tbody valign="bottom">
-        {% for file in version_list|slice:":10" %}
-        <tr>
-            <td style="font-size: 18px;">
-                <a href="{% url 'version_detail' year=file.version.release_datetime.year month=file.version.release_datetime|date:'m' day=file.version.release_datetime|date:'d' time=file.version.release_datetime|date:'His' %}">{{ file.version.release_datetime|date:"l, N j, Y" }}</a>
-            </td>
-            {% if file.clean_file_archive %}
-            <td class="right">{{ file.clean_records_count|intcomma }}</td>
-            <td class="right">{{ file.pretty_clean_file_size }}</td>
-            <td class="right">{{ file.error_count|intcomma }}</td>
-            <td class="right">
-                <a href="{% archive_url file.clean_file_archive.name %}" class="btn btn-sm btn-calaccess">Download</a>
-            </td>
-            {% endif %}
-        </tr>
-        {% endfor %}
-        </tbody>
-      </table>
+
+      {% for file in version_list|slice:":10" %}
+      <div class="row">
+      <div class="col-md-4">
+        <h4><a href="{% url 'version_detail' year=file.version.release_datetime.year month=file.version.release_datetime|date:'m' day=file.version.release_datetime|date:'d' time=file.version.release_datetime|date:'His' %}">{{ file.version.release_datetime|date:"l, N j, Y" }}</a></h4>
+      </div>
+      <div style="text-align: right;" class="col-md-5 right stats">
+          {% if file.clean_file_archive %}
+          <div class="col-md-8">
+              <span>
+                <h4>Records</h4>
+                <p>{{ file.clean_records_count|intcomma }}</p>
+              </span>
+              <span>
+                <h4>Size</h4>
+                <p> {{ file.pretty_clean_file_size }}</p>
+              </span>
+              <span>
+                <h4>Errors</h4>
+                <p>{{ file.error_count|intcomma }} </p>
+              </span>
+          </div>
+          <div class="col-md-4">
+            <a href="{% archive_url file.clean_file_archive.name %}" class="btn btn-calaccess">Download</a>
+          </div>
+          {% else %}
+            <a class="btn btn-inactive">Download unavailable</a>
+          {% endif %}
+      </div>
+      </div>
+      {% endfor %}
+
       {% else %}
           <p>No files.</p>
       {% endif %}

@@ -8,7 +8,7 @@ header, footer {
     padding: 5px 0 0 0 !important;
 }
 section {
-    margin-bottom: 50px auto;
+    margin-bottom: 50px;
 }
 p {
     font-size: 20px;
@@ -234,6 +234,10 @@ td.center, th.center{
     text-align:center;
 }
 
+.table>tbody>tr>td {
+    border-top: none;
+}
+
 /* Homepage */
 .home h1 {
     font-size: 45px;
@@ -307,17 +311,19 @@ td.center, th.center{
 .right-desktop {
     text-align: right;
 }
-.file-card .stats {
+
+/* Stats */
+.stats {
     margin-top: 10px;
 }
-.file-card .stats div {
+.stats div {
     padding: 0 0 10px 0;
 }
-.file-card .stats span {
+.stats span {
     display: inline-block;
     margin-right: 15px;
 }
-.file-card .stats h4, .file-card .stats p {
+.stats h4, .stats p {
     color: #000;
     font-size: 14px;
     margin: 0;
