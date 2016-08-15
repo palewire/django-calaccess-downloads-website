@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-Save copies of data files from the most recently completed update in a latest/
-directory in the Django project's default file storage.
+Save copies of data files from the most recently completed update in a latest
+directory in the default file storage of the Django project.
 """
 import os
 import re
@@ -17,11 +17,11 @@ logger = logging.getLogger(__name__)
 
 class Command(BaseCommand):
     """
-    Save copies of data files from the most recently completed update in a latest/
-    directory in the Django project's default file storage.
+    Save copies of data files from the most recently completed update in a latest
+    directory in the default file storage of the Django project.
     """
-    help = "Save copies of data files from the most recently completed update\
-in a latest directory in the Django project's default file storage."
+    help = "Save copies of data files from the most recently completed update in \
+a latest directory in the default file storage of the Django project"
 
     def handle(self, *args, **options):
         # set up boto session
