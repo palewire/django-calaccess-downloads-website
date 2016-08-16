@@ -1,6 +1,6 @@
 {% extends 'calaccess_website/base.html' %}
 
-{% block extra-body %}data-spy="scroll" data-target="#affix-nav" data-offset="20"{% endblock %}
+{% block extra-body %}{% endblock %}
 
 {% block container %}
 <article>
@@ -23,9 +23,11 @@
             <div class="col-md-9">
                 {% block content %}{% endblock %}
             </div>
-            <nav class="col-md-2 col-md-offset-1" id="affix-nav">
-                {% block affix-nav %}{% endblock %}
-            </nav>
+            <div class="col-md-2 col-md-offset-1">
+                <nav id="affix-nav">
+                    {% block affix-nav %}{% endblock %}
+                </nav>
+            </div>
         </div>
     </div>
 </article>

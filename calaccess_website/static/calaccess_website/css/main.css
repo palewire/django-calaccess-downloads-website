@@ -198,6 +198,9 @@ header .navbar-default .navbar-nav>li>a {
     font-weight: 600;
     border-bottom: 1px solid #ba0a35;
 }
+.affix-bottom {
+    position: relative;
+}
 
 /* Pagination */
 .pagination>li>a, .pagination>li>span {
