@@ -269,10 +269,14 @@ def copys3(src_bucket, dest_bucket):
                 dest_bucket,
             )
         )
-        client.copy_object(
-            Bucket=dest_bucket,
-            Key=obj,
-            CopySource={'Bucket': src_bucket, 'Key': obj},
+        copy_source = {
+            'Bucket': src_bucket,
+            'Key': obj
+        } 
+        client.copy(
+            copy_source,
+            dest_bucket,
+            obj,
         )
 
     print(green("Success!"))
