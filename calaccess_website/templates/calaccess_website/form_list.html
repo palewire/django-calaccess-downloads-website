@@ -2,6 +2,11 @@
 
 {% block title %}Forms - {{ block.super }}{% endblock%}
 
+{% block breadcrumbs %}
+{{ block.super }}
+<li>Forms</li>
+{% endblock %}
+
 {% block top %}
 <h2>Form list</h2>
 <p>Every form with data stored in the CAL-ACCESS database.</p>
@@ -10,7 +15,7 @@
 {% block content %}
   {% for group in object_list %}
   <section>
-    <h3>{{ group.grouper|lower|capfirst }}</h3>
+    <h2>{{ group.grouper|lower|capfirst }}</h2>
     <table class="table table-striped">
     {% for form in group.list  %}
         <tr>

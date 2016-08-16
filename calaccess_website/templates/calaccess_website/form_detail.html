@@ -4,15 +4,20 @@
 {% block title %}{{ form.type_and_num|safe }} - Forms - {{ block.super }}{% endblock%}
 
 {% block top %}
-<h2>Form details</h2>
-<p><b>{{ form.title|safe }}</b>: {% if form.description %}{{ form.description|safe }}{% endif %}</p>
-<p><a href="{% url 'form_list' %}">See all forms.</a></p>
+<h2>{{ form.title|safe }}</h2>
+<p>{% if form.description %}{{ form.description|safe }}{% endif %}</p>
+{% endblock %}
+
+{% block breadcrumbs %}
+{{ block.super }}
+<li><a href="{% url 'form_list' %}">Forms</a></li>
+<li>{{ form.type_and_num }}</li>
 {% endblock %}
 
 {% block content %}
 
   {% if form.sections|length > 0 %}
-  <h3>Sections</h3>
+  <h2>Sections</h2>
   <ul>
   {% for section in form.sections %}
   <li>{{ section.title|safe }} {% if section.documentcloud.start_page %}(<a href="{{ section.documentcloud.canonical_url }}">p. {{ section.documentcloud.start_page }}{% if section.documentcloud.end_page %}-{{ section.documentcloud.end_page }}{% endif%}</a>){% endif %}
@@ -22,27 +27,25 @@
   {% endif %}
 
   {% if form.get_models|length > 0 %}
-  <h3>Database tables</h3>
+  <h2>Database tables</h2>
 
   <table class="table table-striped">
-  <tbody valign="top">
+  <tbody>
+  <tr>
   {% for model in form.get_models %}
-      <tr>
-          <td>
-              <a href="{% url 'file_detail' file_name=model.db_table|slugify %}">
-                  {{ model.db_table }}
-              </a>
-          </td>
-      </tr>
+    <tr>
+      <td><a href="{% url 'file_detail' file_name=model.db_table|slugify %}">{{ model.db_table }}</a></td>
+      <td>{{ model.doc.strip|first_line|safe }}</td>
+    </tr>
   {% endfor %}
+  </tr>
   </tbody>
   </table>
-
   {% endif %}
 
 
   {% if form.documentcloud_id %}
-  <h3>Sample</h3>
+  <h2>Sample</h2>
 
       <div style="margin-bottom:35px;" id="DV-viewer-{{ form.documentcloud.id }}" class="DV-container"></div>
       <script src="//s3.amazonaws.com/s3.documentcloud.org/viewer/loader.js"></script>
