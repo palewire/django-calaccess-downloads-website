@@ -272,7 +272,7 @@ def copys3(src_bucket, dest_bucket):
         copy_source = {
             'Bucket': src_bucket,
             'Key': obj
-        } 
+        }
         client.copy(
             copy_source,
             dest_bucket,
