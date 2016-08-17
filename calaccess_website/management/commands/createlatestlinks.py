@@ -121,13 +121,14 @@ a latest directory in the default file storage of the Django project"
         Copies the provided source key to the provided target key
         """
         logger.debug('Saving copy of %s' % os.path.basename(source))
-        self.s3.copy_object(
-            Bucket=settings.AWS_STORAGE_BUCKET_NAME,
-            Key=target,
-            CopySource={
-                'Bucket': settings.AWS_STORAGE_BUCKET_NAME,
-                'Key': source,
-            },
+        copy_source = {
+            'Bucket': settings.AWS_STORAGE_BUCKET_NAME,
+            'Key': source
+        }
+        self.s3.copy(
+            copy_source,
+            settings.AWS_STORAGE_BUCKET_NAME,
+            target,
         )
 
     def delete_keys(self, key_list):
