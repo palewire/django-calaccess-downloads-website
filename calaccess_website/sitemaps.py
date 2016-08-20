@@ -5,6 +5,9 @@ from calaccess_raw.annotations.filing_forms import all_filing_forms
 
 
 class AbstractSitemapClass(BuildableListView):
+    """
+    Abstract base class that will render a generic ListView as XML.
+    """
     def render_to_response(self, context):
         return super(AbstractSitemapClass, self).render_to_response(
             context,
@@ -13,6 +16,9 @@ class AbstractSitemapClass(BuildableListView):
 
 
 class OtherSitemapView(AbstractSitemapClass):
+    """
+    Hodge podge of links we need to add manually to the sitemap.
+    """
     build_path = "other-sitemap.xml"
     template_name = "calaccess_website/other-sitemap.xml"
     queryset = [
