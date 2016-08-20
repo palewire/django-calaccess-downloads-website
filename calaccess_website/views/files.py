@@ -73,7 +73,7 @@ class FileDownloadsList(BaseFileDetailView):
         return reverse('file_downloads_list', kwargs=dict(slug=obj))
 
 
-class FileDocumentation(BaseFileDetailView):
+class FileDetail(BaseFileDetailView):
     """
     A detail page with all documentation for the provided raw data file.
     """

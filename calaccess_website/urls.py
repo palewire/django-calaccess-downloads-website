@@ -45,7 +45,7 @@ urlpatterns = [
     ),
     url(
         r'^files/(?P<slug>[-\w]+)/$',
-        views.FileDocumentation.as_view(),
+        views.FileDetail.as_view(),
         name='file_detail',
     ),
     url(

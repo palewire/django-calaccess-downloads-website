@@ -100,7 +100,7 @@ BAKERY_VIEWS = (
     'calaccess_website.views.VersionDetail',
     'calaccess_website.views.LatestVersion',
     'calaccess_website.views.FileList',
-    'calaccess_website.views.FileDocumentation',
+    'calaccess_website.views.FileDetail',
     'calaccess_website.views.FileDownloadsList',
     'calaccess_website.views.FormList',
     'calaccess_website.views.FormDetail',
