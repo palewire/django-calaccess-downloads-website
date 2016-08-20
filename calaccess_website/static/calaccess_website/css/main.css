@@ -369,6 +369,10 @@ td.center, th.center{
 .gist .markdown-body {
     font-size: 10px !important;
 }
+.gist .markdown-body table {
+    table-layout: auto;
+    white-space: nowrap;
+}
 .gist .blob-interaction-bar {
     display: none;
 }
