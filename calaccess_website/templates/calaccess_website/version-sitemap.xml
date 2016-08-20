@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 {% for obj in object_list %}
   <url>
-    <loc>http://calaccess.californiacivicdata.org{% url 'version_detail' year=obj.release_datetime.year month=obj.release_datetime|date:'m' day=obj.release_datetime|date:'d' time=obj.release_datetime|date:'His' %}</loc> 
+    <loc>http://{{ CALACCESS_WEBSITE_DOMAIN }}{% url 'version_detail' year=obj.release_datetime.year month=obj.release_datetime|date:'m' day=obj.release_datetime|date:'d' time=obj.release_datetime|date:'His' %}</loc> 
   </url>
 {% endfor %}
 </urlset>
