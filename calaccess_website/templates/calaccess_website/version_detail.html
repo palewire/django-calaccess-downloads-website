@@ -59,7 +59,7 @@ $('.dropdown-menu a').click(function() {
         <hgroup class="row">
             <div class="col-md-6">
                 <h4>
-                    <a href="{% url 'file_detail' file.file_name|slugify %}">
+                    <a href="{% url 'file_detail' slug=file.file_name|slugify %}">
                         {{ file.file_name }}
                     </a>
                 </h4>

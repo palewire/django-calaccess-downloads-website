@@ -34,7 +34,7 @@
   <tr>
   {% for model in form.get_models %}
     <tr>
-      <td><a href="{% url 'file_detail' file_name=model.db_table|slugify %}">{{ model.db_table }}</a></td>
+      <td><a href="{% url 'file_detail' slug=model.db_table|slugify %}">{{ model.db_table }}</a></td>
       <td>{{ model.doc.strip|first_line|safe }}</td>
     </tr>
   {% endfor %}
