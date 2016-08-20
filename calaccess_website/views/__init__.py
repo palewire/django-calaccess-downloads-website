@@ -1,4 +1,4 @@
-from .files import FileList, FileDocumentation, FileDownloadsList
+from .files import FileList, FileDetail, FileDownloadsList
 from .forms import FormList, FormDetail
 from .base import CalAccessModelListMixin
 from .other import (
@@ -22,7 +22,7 @@ __all__ = (
     'CalAccessModelListMixin',
     'CalAccessRobotsTxtView',
     'FileList',
-    'FileDocumentation',
+    'FileDetail',
     'FileDownloadsList',
     'VersionArchiveIndex',
     'VersionYearArchiveList',
