@@ -271,9 +271,11 @@ td.center, th.center{
 .home .home-card p {
     color: #fdfdfd;
 }
-.home hgroup[name='headline'],
-.home section[name='boxes'] {
+.home hgroup[name='headline'] {
     margin: 40px auto;
+}
+.home section[name='boxes'] {
+    margin: 40px 0 20px 0;
 }
 .home section[name='questions'] {
     margin: 0;
