@@ -17,7 +17,7 @@ class VersionArchiveIndex(BuildableArchiveIndexView):
     """
     A list of the latest versions of CAL-ACCESS in our archive
     """
-    model = RawDataVersion
+    queryset = RawDataVersion.objects.complete()
     date_field = "release_datetime"
     template_name = "calaccess_website/version_archive.html"
     build_path = "downloads/index.html"
@@ -27,7 +27,7 @@ class VersionYearArchiveList(BuildableYearArchiveView):
     """
     A list of all versions of CAL-ACCESS in a given year
     """
-    model = RawDataVersion
+    queryset = RawDataVersion.objects.complete()
     date_field = "release_datetime"
     make_object_list = False
     template_name = "calaccess_website/version_archive_year.html"
@@ -43,7 +43,7 @@ class VersionMonthArchiveList(BuildableMonthArchiveView):
     """
     A list of all versions of CAL-ACCESS in a given year
     """
-    model = RawDataVersion
+    queryset = RawDataVersion.objects.complete()
     date_field = "release_datetime"
     month_format = "%m"
     make_object_list = True
@@ -63,7 +63,7 @@ class VersionDetail(BuildableDetailView, CalAccessModelListMixin):
     """
     A detail page with everything about an individual CAL-ACCESS version
     """
-    model = RawDataVersion
+    queryset = RawDataVersion.objects.complete()
     template_name = 'calaccess_website/version_detail_archived.html'
 
     def set_kwargs(self, obj):
@@ -87,8 +87,8 @@ class VersionDetail(BuildableDetailView, CalAccessModelListMixin):
         dt = datetime(*date_parts)
         dt = timezone.utc.localize(dt)
         try:
-            return self.model.objects.get(release_datetime=dt)
-        except self.model.DoesNotExist:
+            return self.get_queryset().get(release_datetime=dt)
+        except self.get_queryset().model.DoesNotExist:
             raise Http404
 
     def get_context_data(self, **kwargs):
@@ -122,7 +122,7 @@ class LatestVersion(VersionDetail):
         Return the latest object from the queryset every time.
         """
         try:
-            return self.model.objects.latest("release_datetime")
+            return self.get_queryset().latest("release_datetime")
         except self.model.DoesNotExist:
             raise Http404
 

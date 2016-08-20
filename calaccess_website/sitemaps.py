@@ -31,7 +31,7 @@ class VersionSitemapView(AbstractSitemapClass):
     """
     build_path = 'version-sitemap.xml'
     template_name = 'calaccess_website/version-sitemap.xml'
-    model = RawDataVersion
+    queryset = RawDataVersion.objects.complete()
 
 
 class VersionYearSitemapView(AbstractSitemapClass):
@@ -43,7 +43,7 @@ class VersionYearSitemapView(AbstractSitemapClass):
     model = RawDataVersion
 
     def get_queryset(self):
-        return self.model.objects.datetimes("release_datetime", "year")
+        return self.model.objects.complete().datetimes("release_datetime", "year")
 
 
 class VersionMonthSitemapView(AbstractSitemapClass):
@@ -55,7 +55,7 @@ class VersionMonthSitemapView(AbstractSitemapClass):
     model = RawDataVersion
 
     def get_queryset(self):
-        return self.model.objects.datetimes("release_datetime", "month")
+        return self.model.objects.complete().datetimes("release_datetime", "month")
 
 
 class FileSitemapView(AbstractSitemapClass):
