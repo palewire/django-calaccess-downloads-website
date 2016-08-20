@@ -73,6 +73,15 @@ class FileSitemapView(AbstractSitemapClass):
     queryset = get_model_list()
 
 
+class FileDownloadsSitemapView(AbstractSitemapClass):
+    """
+    A machine-readable list of all file archive download pages.
+    """
+    build_path = 'file-downloads-sitemap.xml'
+    template_name = 'calaccess_website/file-downloads-sitemap.xml'
+    queryset = get_model_list()
+
+
 class FormSitemapView(AbstractSitemapClass):
     """
     A machine-readable list of all form detail pages.
