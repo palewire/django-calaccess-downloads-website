@@ -250,10 +250,11 @@ td.center, th.center{
 }
 .home h2 {
     font-weight: 600;
+    margin-top: 0;
 }
-.home .row {
+.home section, .home .row {
     text-align: center;
-    margin-bottom: 50px;
+    margin-bottom: 25px;
 }
 .home .home-card {
     height: 300px;
@@ -276,10 +277,15 @@ td.center, th.center{
 .home section {
     margin: 40px auto;
 }
-section[name="sponsors"] img {
+section[name="sponsors"] .funders img {
     width: 90%;
     padding: 0 5%;
-    margin-top: 15px;
+    margin: 20px 0;
+}
+section[name="sponsors"] .leaders img {
+    width: 85%;
+    padding: 0 12.5%;
+    margin: 20px 0;
 }
 
 /* Version detail */
@@ -420,11 +426,10 @@ and (max-width : 992px) {
     .filters {
         margin-top: 10px;
     }
-
-    .nav>li {
+    header .nav>li {
         width: 40px;
     }
-    .nav .logo img {
+    header .nav .logo img {
         width: 45px;
         margin-top: 10px;
     }
@@ -432,7 +437,23 @@ and (max-width : 992px) {
 
 @media only screen
 and (max-width : 490px) {
-    .nav>li>a {
+    header .nav>li>a {
         padding-bottom: 2px;
+    }
+    .home .questions h2,
+    .home .questions p {
+        text-align: left;
+    }
+    section[name="sponsors"] .funders img {
+        width: 90%;
+        padding: 0 10% 0 0;
+        margin: 20px 0;
+        float: left;
+    }
+    section[name="sponsors"] .leaders img {
+        width: 85%;
+        padding: 0 15% 0 0;
+        margin: 20px 0;
+        float: left;
     }
 }

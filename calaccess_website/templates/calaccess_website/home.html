@@ -55,52 +55,80 @@
             </a>
         </div>
     </div>
-    <div class="row">
+    <div class="row questions">
         <div class="col-md-6 col-md-offset-3">
-        <section>
-            <h2>Who are we?</h2>
-            <p>
-                 The California Civic Data Coalition is an open-source team of journalists and computer programmers from news organizations across America.
-                 <a href="http://www.californiacivicdata.org/about/">Read more &raquo;</a></p>
-        </section>
-        <hr>
-        <section>
-            <h2>What do we do?</h2>
-            <p>
-                 We create software that makes California's public data easier to analyze.
-                 Our current focus is CAL-ACCESS, the database tracking money in state politics.
-                 <a href="{% url 'version_latest' %}">Download the data &raquo;</a>
-            </p>
-        </section>
-        <hr>
-        <section>
-            <h2>How can I get involved out?</h2>
-            <p>
-                Our work is the product of hundreds of contributions from developers and journalists at dozens of different news organizations.
-                We want you to be the next on board.
-            </p>
-            <p>
-                Fork our code on <a href="https://github.com/california-civic-data-coalition">GitHub</a>, 
-                reach out by <a href="mailto:californiacivicdata@gmail.com">e-mail</a> or 
-                chime in on <a href="https://newsnerdery.slack.com/messages/california-civic-data/">Slack</a>.
-            </p>
-        </section>
-        <hr>
+            <section>
+                <h2>Who are we?</h2>
+                <p>
+                     The California Civic Data Coalition is an open-source team of journalists and computer programmers from news organizations across America.
+                     <a href="http://www.californiacivicdata.org/about/">Read more &raquo;</a></p>
+            </section>
+            <hr>
+            <section>
+                <h2>What do we do?</h2>
+                <p>
+                     We create software that makes California's public data easier to analyze.
+                     Our current focus is CAL-ACCESS, the database tracking money in state politics.
+                     <a href="{% url 'version_latest' %}">Download the data &raquo;</a>
+                </p>
+            </section>
+            <hr>
+            <section>
+                <h2>How can I get involved?</h2>
+                <p>
+                    Our work is the result of collobration between hundreds of developers and journalists at dozens of different news organizations.
+                    We want you to be the next to contribute.
+                </p>
+                <p>
+                    Fork our code on <a href="https://github.com/california-civic-data-coalition">GitHub</a>, 
+                    reach out by <a href="mailto:californiacivicdata@gmail.com">e-mail</a> or 
+                    chime in on <a href="https://newsnerdery.slack.com/messages/california-civic-data/">Slack</a>.
+                </p>
+            </section>
+            <hr>
         </div>
-        <div class="col-md-10 col-md-offset-1">
         <section name="sponsors">
-            <h2>Who are your sponsors?</h2>
-            <div class="col-sm-4">
-                <img src="{% static 'calaccess_website/images/knight-logo-300px-black.jpg' %}">
+            <div class="funders col-md-10 col-md-offset-1 col-xs-12">
+                <h2>Who are your sponsors?</h2>
+                <div class="col-sm-4 col-xs-12">
+                    <a href="http://www.knightfoundation.org/">
+                        <img src="{% static 'calaccess_website/images/knight-logo-3000px-black.jpg' %}">
+                    </a>
+                </div>
+                <div class="col-sm-4 col-xs-12">
+                    <a href="http://www.ire.org/">
+                        <img src="{% static 'calaccess_website/images/ire.png' %}">
+                    </a>
+                </div>
+                <div class="col-sm-4 col-xs-12">
+                    <a href="https://opennews.org/">
+                        <img src="{% static 'calaccess_website/images/opennews.png' %}">
+                    </a>
+                </div>
             </div>
-            <div class="col-sm-4">
-                <img src="{% static 'calaccess_website/images/ire.png' %}">
-            </div>
-            <div class="col-sm-4">
-                <img src="{% static 'calaccess_website/images/opennews.png' %}">
+            <div class="leaders col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12">
+                <div class="col-sm-3 col-xs-6">
+                    <a href="http://www.latimes.com/">
+                        <img src="{% static 'calaccess_website/images/latimes.png' %}">
+                    </a>
+                </div>
+                <div class="col-sm-3 col-xs-6">
+                    <a href="http://www.washingtonpost.com/">
+                        <img src="{% static 'calaccess_website/images/washingtonpost.png' %}">
+                    </a>
+                </div>
+                <div class="col-sm-3 col-xs-6">
+                    <a href="http://cjlab.stanford.edu/">
+                        <img src="{% static 'calaccess_website/images/stanford.png' %}">
+                    </a>
+                </div>
+                <div class="col-sm-3 col-xs-6">
+                    <a href="https://www.revealnews.org/">
+                        <img src="{% static 'calaccess_website/images/reveal.jpg' %}">
+                    </a>
+                </div>
             </div>
         </section>
-        </div>
     </div>
 </div>
 {% endblock %}
