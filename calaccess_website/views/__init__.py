@@ -3,9 +3,9 @@ from .forms import FormList, FormDetail
 from .base import CalAccessModelListMixin
 from .other import (
     Home,
-    GovernmentDocumentationView,
+    GovernmentDocumentation,
     CalAccess404View,
-    CalAccessRobotsTxtView
+    CalAccessRobotsTxt
 )
 from .versions import (
     VersionArchiveIndex,
@@ -20,7 +20,7 @@ __all__ = (
     'Home',
     'CalAccess404View',
     'CalAccessModelListMixin',
-    'CalAccessRobotsTxtView',
+    'CalAccessRobotsTxt',
     'FileList',
     'FileDetail',
     'FileDownloadsList',
@@ -31,5 +31,5 @@ __all__ = (
     'LatestVersion',
     'FormDetail',
     'FormList',
-    'GovernmentDocumentationView',
+    'GovernmentDocumentation',
 )

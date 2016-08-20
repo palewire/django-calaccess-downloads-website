@@ -4,7 +4,7 @@ from calaccess_raw.models import RawDataVersion
 from calaccess_raw.annotations.filing_forms import all_filing_forms
 
 
-class AbstractSitemapClass(BuildableListView):
+class AbstractSitemapView(BuildableListView):
     """
     Abstract base class that will render a generic ListView as XML.
     """
@@ -15,7 +15,7 @@ class AbstractSitemapClass(BuildableListView):
         )
 
 
-class OtherSitemapView(AbstractSitemapClass):
+class OtherSitemap(AbstractSitemapView):
     """
     Hodge podge of links we need to add manually to the sitemap.
     """
@@ -31,7 +31,7 @@ class OtherSitemapView(AbstractSitemapClass):
     ]
 
 
-class VersionSitemapView(AbstractSitemapClass):
+class VersionSitemap(AbstractSitemapView):
     """
     A machine-readable list of all version detail pages.
     """
@@ -40,7 +40,7 @@ class VersionSitemapView(AbstractSitemapClass):
     queryset = RawDataVersion.objects.complete()
 
 
-class VersionYearSitemapView(AbstractSitemapClass):
+class VersionYearSitemap(AbstractSitemapView):
     """
     A machine-readable list of the version year archive pages.
     """
@@ -52,7 +52,7 @@ class VersionYearSitemapView(AbstractSitemapClass):
         return self.model.objects.complete().datetimes("release_datetime", "year")
 
 
-class VersionMonthSitemapView(AbstractSitemapClass):
+class VersionMonthSitemap(AbstractSitemapView):
     """
     A machine-readable list of the version month archive pages.
     """
@@ -64,7 +64,7 @@ class VersionMonthSitemapView(AbstractSitemapClass):
         return self.model.objects.complete().datetimes("release_datetime", "month")
 
 
-class FileSitemapView(AbstractSitemapClass):
+class FileSitemap(AbstractSitemapView):
     """
     A machine-readable list of all file detail pages.
     """
@@ -73,7 +73,7 @@ class FileSitemapView(AbstractSitemapClass):
     queryset = get_model_list()
 
 
-class FileDownloadsSitemapView(AbstractSitemapClass):
+class FileDownloadsSitemap(AbstractSitemapView):
     """
     A machine-readable list of all file archive download pages.
     """
@@ -82,7 +82,7 @@ class FileDownloadsSitemapView(AbstractSitemapClass):
     queryset = get_model_list()
 
 
-class FormSitemapView(AbstractSitemapClass):
+class FormSitemap(AbstractSitemapView):
     """
     A machine-readable list of all form detail pages.
     """

@@ -69,49 +69,49 @@ urlpatterns = [
     # Official documentation
     url(
         r'^government-documentation/$',
-        views.GovernmentDocumentationView.as_view(),
+        views.GovernmentDocumentation.as_view(),
         name='government_documentation'
     ),
 
     # Machine-readable stuff
     url(
         r'^robots.txt$',
-        views.CalAccessRobotsTxtView.as_view(),
+        views.CalAccessRobotsTxt.as_view(),
         name='robots_txt'
     ),
     url(
         r'^file-sitemap.xml$',
-        sitemaps.FileSitemapView.as_view(),
+        sitemaps.FileSitemap.as_view(),
         name='file_sitemap'
     ),
     url(
         r'^file-downloads-sitemap.xml$',
-        sitemaps.FileDownloadsSitemapView.as_view(),
+        sitemaps.FileDownloadsSitemap.as_view(),
         name='file_downloads_sitemap'
     ),
     url(
         r'^form-sitemap.xml$',
-        sitemaps.FormSitemapView.as_view(),
+        sitemaps.FormSitemap.as_view(),
         name='form_sitemap'
     ),
     url(
         r'^downloads-sitemap.xml$',
-        sitemaps.VersionSitemapView.as_view(),
+        sitemaps.VersionSitemap.as_view(),
         name='version_sitemap'
     ),
     url(
         r'^downloads-year-sitemap.xml$',
-        sitemaps.VersionYearSitemapView.as_view(),
+        sitemaps.VersionYearSitemap.as_view(),
         name='version_archive_year_sitemap'
     ),
     url(
         r'^downloads-month-sitemap.xml$',
-        sitemaps.VersionMonthSitemapView.as_view(),
+        sitemaps.VersionMonthSitemap.as_view(),
         name='version_archive_month_sitemap'
     ),
     url(
         r'^other-sitemap.xml$',
-        sitemaps.OtherSitemapView.as_view(),
+        sitemaps.OtherSitemap.as_view(),
         name='other_sitemap'
     ),
 ]

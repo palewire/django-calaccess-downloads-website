@@ -12,7 +12,7 @@ class Home(BuildableArchiveIndexView):
     template_name = "calaccess_website/home.html"
 
 
-class GovernmentDocumentationView(BuildableTemplateView):
+class GovernmentDocumentation(BuildableTemplateView):
     """
     Explanation of official CAL-ACCESS documentation.
     """
@@ -28,7 +28,7 @@ class CalAccess404View(Buildable404View):
     template_name = "calaccess_website/404.html"
 
 
-class CalAccessRobotsTxtView(Buildable404View):
+class CalAccessRobotsTxt(Buildable404View):
     """
     The robots.txt file.
     """
