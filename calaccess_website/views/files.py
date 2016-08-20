@@ -18,7 +18,7 @@ class FileList(BuildableListView, CalAccessModelListMixin):
         return self.regroup_by_klass_group(get_model_list())
 
 
-class FileDetail(BuildableDetailView):
+class BaseFileDetailView(BuildableDetailView):
     """
     Base class for views providing information about a raw data file.
     """
@@ -63,7 +63,7 @@ class FileDetail(BuildableDetailView):
 
 
 
-class FileDownloadsList(FileDetail):
+class FileDownloadsList(BaseFileDetailView):
     """
     A detail page with links to all downloads for the provided raw data file.
     """
@@ -73,7 +73,7 @@ class FileDownloadsList(FileDetail):
         return reverse('file_downloads_list', kwargs=dict(slug=obj))
 
 
-class FileDocumentation(FileDetail):
+class FileDocumentation(BaseFileDetailView):
     """
     A detail page with all documentation for the provided raw data file.
     """
