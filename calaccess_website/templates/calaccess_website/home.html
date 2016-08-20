@@ -1,5 +1,5 @@
 {% extends 'calaccess_website/base.html' %}
-{% load calaccess_website_tags %}
+{% load calaccess_website_tags static %}
 
 {% block breadcrumbs-container %}{% endblock %}
 
@@ -86,8 +86,19 @@
             </p>
         </section>
         <hr>
-        <section>
-            <h2>Sponsors</h2>
+        </div>
+        <div class="col-md-10 col-md-offset-1">
+        <section name="sponsors">
+            <h2>Who are your sponsors?</h2>
+            <div class="col-sm-4">
+                <img src="{% static 'calaccess_website/images/knight-logo-300px-black.jpg' %}">
+            </div>
+            <div class="col-sm-4">
+                <img src="{% static 'calaccess_website/images/ire.png' %}">
+            </div>
+            <div class="col-sm-4">
+                <img src="{% static 'calaccess_website/images/opennews.png' %}">
+            </div>
         </section>
         </div>
     </div>

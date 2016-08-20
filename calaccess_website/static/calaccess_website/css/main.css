@@ -276,6 +276,11 @@ td.center, th.center{
 .home section {
     margin: 40px auto;
 }
+section[name="sponsors"] img {
+    width: 90%;
+    padding: 0 5%;
+    margin-top: 15px;
+}
 
 /* Version detail */
 .filters {
