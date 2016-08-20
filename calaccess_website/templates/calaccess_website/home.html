@@ -4,131 +4,144 @@
 {% block breadcrumbs-container %}{% endblock %}
 
 {% block content %}
-<div class="home">
-    <br />
-    <div class="row">
-        <div class="col-sm-10 col-sm-offset-1">
+<article name="homepage" class="home">
+
+    <hgroup name="headline" class="row">
+        <div class="col-sm-10 col-sm-offset-1 md-center">
             <h1>{{ CALACCESS_WEBSITE_TITLE }}</h1>
             <p class="lead">{{ CALACCESS_WEBSITE_DESCRIPTION }}</p>
-            <a href="{% url 'version_latest' %}" class="btn btn-calaccess btn-lg">Get the latest data</a>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-3">
-            <a ">
-            <div class="home-card">
-                <div class="card-container">
-                    <p><i class="fa fa-database" aria-hidden="true"></i></p>
-                    <p>Download the latest data processed from our servers and ready for analysis.</p>
-                </div>
-            </div>
+            <a href="{% url 'version_latest' %}" class="btn btn-calaccess btn-lg">
+                Get the latest data
             </a>
         </div>
-        <div class="col-sm-3">
-            <a href="{% url 'file_list' %}">
-            <div class="home-card">
-                <div class="card-container">
-                    <p><i class="fa fa-archive" aria-hidden="true"></i></p>
-                    <p>Look at historical snapshots of CAL-ACCESS and browse individual tables.</p>
-                </div>
+    </hgroup>
+
+    <section name="boxes" class="row">
+        <div class="col-md-10 col-md-offset-1 md-center">
+            <div class="row">
+                <section class="col-sm-4">
+                    <a href="{% url 'version_latest' %}">
+                        <div class="home-card">
+                            <div class="card-container">
+                                <p><i class="fa fa-database" aria-hidden="true"></i></p>
+                                <p>Download the latest data processed from our servers and ready for analysis.</p>
+                            </div>
+                        </div>
+                    </a>
+                </section>
+                <section class="col-sm-4">
+                    <a href="{% url 'file_list' %}">
+                        <div class="home-card">
+                            <div class="card-container">
+                                <p><i class="fa fa-files-o" aria-hidden="true"></i></p>
+                                <p>Explore our extensive documentation of CAL-ACCESS tables and forms.</p>
+                            </div>
+                        </div>
+                    </a>
+                </section>
+                <section class="col-sm-4">
+                    <a href="https://github.com/california-civic-data-coalition/">
+                        <div class="home-card">
+                            <div class="card-container">
+                                <p><i class="fa fa-code" aria-hidden="true"></i></p>
+                                <p>All our code is open source. Take a look and learn how you can contribute.</p>
+                            </div>
+                        </div>
+                    </a>
+                </section>
             </div>
-            </a>
         </div>
-        <div class="col-sm-3">
-            <a href="{% url 'file_list' %}">
-            <div class="home-card">
-                <div class="card-container">
-                    <p><i class="fa fa-files-o" aria-hidden="true"></i></p>
-                    <p>Explore our extensive documentation of CAL-ACCESS tables and forms.</p>
+    </section>
+
+    <section name="questions" class="row questions">
+        <div class="col-md-6 col-md-offset-3 xs-left md-center">
+            <section name="who-are-we" class="row question">
+                <div class="col-md-12">
+                    <h2>Who are we?</h2>
+                    <p>
+                         The California Civic Data Coalition is an open-source team of journalists and computer programmers from news organizations across America.
+                         <a href="http://www.californiacivicdata.org/about/">Read more &raquo;</a>
+                    </p>
                 </div>
-            </div>
-            </a>
-        </div>
-        <div class="col-sm-3">
-            <a href="https://github.com/california-civic-data-coalition/">
-            <div class="home-card">
-                <div class="card-container">
-                    <p><i class="fa fa-code" aria-hidden="true"></i></p>
-                    <p>All our code is open source. Take a look and learn how you can contribute.</p>
-                </div>
-            </div>
-            </a>
-        </div>
-    </div>
-    <div class="row questions">
-        <div class="col-md-6 col-md-offset-3">
-            <section>
-                <h2>Who are we?</h2>
-                <p>
-                     The California Civic Data Coalition is an open-source team of journalists and computer programmers from news organizations across America.
-                     <a href="http://www.californiacivicdata.org/about/">Read more &raquo;</a></p>
             </section>
-            <hr>
-            <section>
-                <h2>What do we do?</h2>
-                <p>
-                     We create software that makes California's public data easier to analyze.
-                     Our current focus is CAL-ACCESS, the database tracking money in state politics.
-                     <a href="{% url 'version_latest' %}">Download the data &raquo;</a>
-                </p>
+            <section name="what-do-we-do" class="row question">
+                <div class="col-md-12">
+                    <h2>What do we do?</h2>
+                    <p>
+                         We create software that makes California's public data easier to analyze.
+                         Our current focus is CAL-ACCESS, the database tracking money in state politics.
+                         <a href="{% url 'version_latest' %}">Download and get started &raquo;</a>
+                    </p>
+                </div>
             </section>
-            <hr>
-            <section>
-                <h2>How can you get involved?</h2>
-                <p>
-                    Our work is the result of collobration between hundreds of developers and journalists at dozens of different news organizations.
-                    We want you to be the next to contribute.
-                </p>
-                <p>
-                    Fork our code on <a href="https://github.com/california-civic-data-coalition">GitHub</a>, 
-                    reach out by <a href="mailto:californiacivicdata@gmail.com">e-mail</a> or 
-                    chime in on <a href="https://newsnerdery.slack.com/messages/california-civic-data/">Slack</a>.
-                </p>
+            <section name="how-can-you-get-involved" class="row question">
+                <div class="col-md-12">
+                    <h2>How can you get involved?</h2>
+                    <p>
+                        Hundreds of journalists at dozens of news outlets have joined our effort.
+                        We want you to be next.
+                    </p>
+                    <p>
+                        Fork us on <a href="https://github.com/california-civic-data-coalition">GitHub</a>, 
+                        send an <a href="mailto:californiacivicdata@gmail.com">e-mail</a> or 
+                        join our <a href="https://newsnerdery.slack.com/messages/california-civic-data/">Slack</a>.
+                    </p>
+                </div>
             </section>
-            <hr>
         </div>
-        <section name="sponsors">
-            <div class="funders col-md-10 col-md-offset-1 col-xs-12">
-                <h2>Who are our sponsors?</h2>
-                <div class="col-sm-4 col-xs-12">
-                    <a href="http://www.knightfoundation.org/">
-                        <img src="{% static 'calaccess_website/images/knight-logo-3000px-black.jpg' %}">
-                    </a>
-                </div>
-                <div class="col-sm-4 col-xs-12">
-                    <a href="http://www.ire.org/">
-                        <img src="{% static 'calaccess_website/images/ire.png' %}">
-                    </a>
-                </div>
-                <div class="col-sm-4 col-xs-12">
-                    <a href="https://opennews.org/">
-                        <img src="{% static 'calaccess_website/images/opennews.png' %}">
-                    </a>
+
+        <section name="sponsors" class="col-md-12 xs-left md-center question no-border">
+            <div class="funders row">
+                <div class="col-md-10 col-md-offset-1">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2>Who are our sponsors?</h2>
+                        </div>
+                        <div class="col-sm-4 col-xs-12">
+                            <a href="http://www.knightfoundation.org/">
+                                <img src="{% static 'calaccess_website/images/knight-logo-3000px-black.jpg' %}">
+                            </a>
+                        </div>
+                        <div class="col-sm-4 col-xs-12">
+                            <a href="http://www.ire.org/">
+                                <img src="{% static 'calaccess_website/images/ire.png' %}">
+                            </a>
+                        </div>
+                        <div class="col-sm-4 col-xs-12">
+                            <a href="https://opennews.org/">
+                                <img src="{% static 'calaccess_website/images/opennews.png' %}">
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="leaders col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12">
-                <div class="col-sm-3 col-xs-6">
-                    <a href="http://www.latimes.com/">
-                        <img src="{% static 'calaccess_website/images/latimes.png' %}">
-                    </a>
-                </div>
-                <div class="col-sm-3 col-xs-6">
-                    <a href="http://www.washingtonpost.com/">
-                        <img src="{% static 'calaccess_website/images/washingtonpost.png' %}">
-                    </a>
-                </div>
-                <div class="col-sm-3 col-xs-6">
-                    <a href="http://cjlab.stanford.edu/">
-                        <img src="{% static 'calaccess_website/images/stanford.png' %}">
-                    </a>
-                </div>
-                <div class="col-sm-3 col-xs-6">
-                    <a href="https://www.revealnews.org/">
-                        <img src="{% static 'calaccess_website/images/reveal.jpg' %}">
-                    </a>
+            <div class="leaders row">
+                <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12">
+                    <div class="row">
+                        <div class="col-sm-3 col-xs-6">
+                            <a href="http://www.latimes.com/">
+                                <img src="{% static 'calaccess_website/images/latimes.png' %}">
+                            </a>
+                        </div>
+                        <div class="col-sm-3 col-xs-6">
+                            <a href="http://www.washingtonpost.com/">
+                                <img src="{% static 'calaccess_website/images/washingtonpost.png' %}">
+                            </a>
+                        </div>
+                        <div class="col-sm-3 col-xs-6">
+                            <a href="http://cjlab.stanford.edu/">
+                                <img src="{% static 'calaccess_website/images/stanford.png' %}">
+                            </a>
+                        </div>
+                        <div class="col-sm-3 col-xs-6">
+                            <a href="https://www.revealnews.org/">
+                                <img src="{% static 'calaccess_website/images/reveal.jpg' %}">
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
-    </div>
-</div>
+    </section>
+</article>
 {% endblock %}

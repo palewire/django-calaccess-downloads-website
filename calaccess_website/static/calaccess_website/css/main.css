@@ -7,9 +7,6 @@ body {
 header, footer {
     padding: 5px 0 0 0 !important;
 }
-section {
-    margin-bottom: 50px;
-}
 p {
     font-size: 20px;
     color: #454545;
@@ -252,9 +249,9 @@ td.center, th.center{
     font-weight: 600;
     margin-top: 0;
 }
-.home section, .home .row {
+
+.md-center {
     text-align: center;
-    margin-bottom: 25px;
 }
 .home .home-card {
     height: 300px;
@@ -274,15 +271,34 @@ td.center, th.center{
 .home .home-card p {
     color: #fdfdfd;
 }
-.home section {
+.home hgroup[name='headline'],
+.home section[name='boxes'] {
     margin: 40px auto;
 }
-section[name="sponsors"] .funders img {
+.home section[name='questions'] {
+    margin: 0;
+}
+.home .question {
+    margin-top: 40px;
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-color: -moz-use-text-color -moz-use-text-color #eee -moz-use-text-color;
+    border-image: none;
+    border-style: none none solid none;
+    border-width: 0 0 1px 0;
+}
+.no-border {
+    border: none !important;
+}
+.home section[name="sponsors"] {
+    margin-top: 0px;
+}
+.home section[name="sponsors"] .funders img {
     width: 90%;
     padding: 0 5%;
     margin: 20px 0;
 }
-section[name="sponsors"] .leaders img {
+.home section[name="sponsors"] .leaders img {
     width: 85%;
     padding: 0 12.5%;
     margin: 20px 0;
@@ -436,13 +452,15 @@ and (max-width : 992px) {
 }
 
 @media only screen
+and (max-width : 768px) {
+    .xs-left {
+        text-align:left; 
+    }
+}
+@media only screen
 and (max-width : 490px) {
     header .nav>li>a {
         padding-bottom: 2px;
-    }
-    .home .questions h2,
-    .home .questions p {
-        text-align: left;
     }
     section[name="sponsors"] .funders img {
         width: 90%;
