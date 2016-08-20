@@ -49,6 +49,22 @@ def manage(cmd):
 
 
 @task(task_class=ConfigTask)
+def build():
+    """
+    Run django-bakery's build command
+    """
+    _venv("python manage.py build")
+
+
+@task(task_class=ConfigTask)
+def publish():
+    """
+    Run django-bakery's publish command
+    """
+    _venv("python manage.py publish")
+
+
+@task(task_class=ConfigTask)
 def migrate():
     """
     Run Django's `migrate` command
@@ -76,3 +92,5 @@ def deploy():
     pipinstall()
     migrate()
     collectstatic()
+    build()
+    publish()

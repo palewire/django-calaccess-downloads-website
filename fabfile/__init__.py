@@ -5,6 +5,8 @@ from .app import (
     deploy,
     pipinstall,
     manage,
+    build,
+    publish,
     migrate,
     collectstatic,
     rmpyc,
@@ -23,6 +25,7 @@ from .configure import (
 )
 
 __all__ = (
+    'build',
     'bootstrap',
     'copyconfig',
     'deploy',
@@ -41,6 +44,7 @@ __all__ = (
     'pipinstall',
     'printconfig',
     'prod',
+    'publish',
     'rendernodejson',
     'cook',
     'manage',
