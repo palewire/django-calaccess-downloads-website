@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+{% load calaccess_website_tags %}<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 {% for obj in object_list %}
   <url>
-    <loc>http://{{ CALACCESS_WEBSITE_DOMAIN }}{% url 'file_detail' obj.db_table|slugify %}</loc> 
+    <loc>http://{{ CALACCESS_WEBSITE_DOMAIN }}{% url 'file_detail' slug=obj.db_table|slugify %}</loc> 
   </url>
 {% endfor %}
 </urlset>

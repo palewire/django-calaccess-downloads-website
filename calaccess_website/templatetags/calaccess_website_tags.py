@@ -1,6 +1,6 @@
 import os
 from django import template
-from django.template.defaultfilters import stringfilter
+from django.template import defaultfilters
 register = template.Library()
 
 
@@ -33,12 +33,18 @@ def archive_url(file_path, is_latest=False):
 
 
 @register.filter
-@stringfilter
-def format_page_anchor(value):
-    return value.lower().replace('_', '-')
+@defaultfilters.stringfilter
+def slugify(value):
+    """
+    Extend the default slugify filter to replace underscores with hyphens.
+    """
+    return defaultfilters.slugify(value).replace('_', '-')
 
 
 @register.filter
-@stringfilter
+@defaultfilters.stringfilter
 def first_line(text):
+    """
+    Return only the first line of a text block.
+    """
     return text.split('\n')[0]

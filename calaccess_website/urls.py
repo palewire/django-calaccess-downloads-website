@@ -44,12 +44,12 @@ urlpatterns = [
         name='file_list'
     ),
     url(
-        r'^files/(?P<file_name>\w+)/$',
+        r'^files/(?P<slug>[-\w]+)/$',
         views.FileDocumentation.as_view(),
         name='file_detail',
     ),
     url(
-        r'^files/(?P<file_name>\w+)/downloads/$',
+        r'^files/(?P<slug>[-\w]+)/downloads/$',
         views.FileDownloadsList.as_view(),
         name='file_downloads_list',
     ),

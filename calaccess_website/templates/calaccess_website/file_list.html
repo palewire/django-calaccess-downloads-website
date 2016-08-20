@@ -1,5 +1,5 @@
 {% extends 'calaccess_website/base_with_top.html' %}
-{% load humanize calaccess_website_tags %}
+{% load calaccess_website_tags %}
 
 {% block title %}Files - {{ block.super }}{% endblock%}
 
@@ -20,8 +20,14 @@
     <table class="table table-striped">
     {% for file in group.list  %}
       <tr>
-        <td><a href="{{ file.db_table|slugify }}">{{ file.db_table }}</td>
-        <td width="70%">{{ file.doc.strip|first_line|safe  }}</td>
+        <td>
+            <a href="{% url 'file_detail' slug=file.db_table|slugify %}">
+                {{ file.db_table }}
+            </a>
+        </td>
+        <td width="70%">
+            {{ file.doc.strip|first_line|safe  }}
+        </td>
       </tr>
     {% endfor %}
     </table>

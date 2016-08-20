@@ -2,9 +2,9 @@ from django.http import Http404
 from calaccess_raw import get_model_list
 from .base import CalAccessModelListMixin
 from django.core.urlresolvers import reverse
-from django.template.defaultfilters import slugify
 from calaccess_raw.models.tracking import RawDataFile
 from bakery.views import BuildableDetailView, BuildableListView
+from calaccess_website.templatetags.calaccess_website_tags import slugify
 
 
 class FileList(BuildableListView, CalAccessModelListMixin):
@@ -31,7 +31,7 @@ class FileDetail(BuildableDetailView):
 
     def set_kwargs(self, obj):
         self.kwargs = {
-            'file_name': obj
+            'slug': obj
         }
 
     def get_object(self):
@@ -41,7 +41,7 @@ class FileDetail(BuildableDetailView):
 
         Raises a 404 error if one is not found
         """
-        key = self.kwargs['file_name']
+        key = self.kwargs['slug']
         try:
             return self.get_queryset()[key.lower()]
         except KeyError:
@@ -54,12 +54,23 @@ class FileDetail(BuildableDetailView):
         context = super(FileDetail, self).get_context_data(**kwargs)
         # Pull all previous versions of the provided file
         context['version_list'] = RawDataFile.objects.filter(
-            file_name=self.kwargs['file_name'].upper()
+            file_name=self.kwargs['slug'].upper().replace("-", "_")
         ).order_by('-version__release_datetime')
         return context
 
     def build_queryset(self):
         [self.build_object(o) for o in self.get_queryset()]
+
+
+
+class FileDownloadsList(FileDetail):
+    """
+    A detail page with links to all downloads for the provided raw data file.
+    """
+    template_name = 'calaccess_website/file_downloads_list.html'
+
+    def get_url(self, obj):
+        return reverse('file_downloads_list', kwargs=dict(slug=obj))
 
 
 class FileDocumentation(FileDetail):
@@ -122,13 +133,3 @@ class FileDocumentation(FileDetail):
             except KeyError:
                 docs[doc.title] = [doc]
         return docs
-
-
-class FileDownloadsList(FileDetail):
-    """
-    A detail page with links to all downloads for the provided raw data file.
-    """
-    template_name = 'calaccess_website/file_downloads_list.html'
-
-    def get_url(self, obj):
-        return reverse('file_downloads_list', kwargs=dict(file_name=obj))
