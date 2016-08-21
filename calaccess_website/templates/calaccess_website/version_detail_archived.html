@@ -5,11 +5,16 @@
 
 {% block breadcrumbs %}
 {{ block.super }}
-<li>{{ object.release_datetime|date:"N j, Y" }}</li>
+<li>{{ object.release_datetime|date:"N j, Y" }}, {{ object.release_datetime|date:"P" }}</li>
 {% endblock %}
 
 {% block top %}
-<h2>Archived download</h2>
-<p>This is a download of the CAL-ACCESS database released on {{ object.release_datetime|date:"l, N j, Y" }} at {{ object.release_datetime|date:"P" }}</p>
-<p><a href="{% url 'version_latest' %}">Go to the latest data</a> or <a href="{% url 'version_archive_index' %}">see all downloads</a>.</p>
+    <h2>Archived download</h2>
+    <p>
+        Download records from {{ object.release_datetime|date:"l, N j, Y" }} release
+        of the CAL-ACCESS database, published by state officials
+        at {{ object.release_datetime|date:"P" }}
+        <a href="{% url 'version_latest' %}">Latest release &raquo;</a>&nbsp;
+        <a href="{% url 'version_archive_index' %}">Other past releases &raquo;</a>
+    </p>
 {% endblock %}
