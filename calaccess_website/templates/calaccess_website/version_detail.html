@@ -22,22 +22,41 @@ $('.dropdown-menu a').click(function() {
 {% endblock %}
 
 {% block content %}
-  <section>
+<section name="full-archive">
     <h3>Full archive</h3>
+    <p>
+        The complete package of {{ object.download_file_count }} database tables released by the
+        California Secretary of State, which we have cleaned up and converted
+        into flat files with {{ object.clean_record_count|intword }} comma-separated values.
+    </p>
     {% if object.clean_zip_archive %}
-    <p><a href="{% archive_url object.clean_zip_archive.name is_latest=is_latest %}" class="btn btn-calaccess">Download</a>
-    &nbsp; <span>{{ object.pretty_clean_size }} zip</span></p>
-    <p>Alternatively, download directly with <code>curl</code> or <code>wget</code>.</p>
-    <input type="text" class="download-link input-monospace" value="$ curl -O {% archive_url object.clean_zip_archive.name is_latest=is_latest %}" readonly></input>
+        <p>
+            <a href="{% archive_url object.clean_zip_archive.name is_latest=is_latest %}"
+               class="btn btn-calaccess">
+                Download
+            </a>
+            &nbsp; <span>{{ object.pretty_clean_size }} zip</span>
+        </p>
+        <p>
+            Alternatively, retrieve with <code>curl</code> or <code>wget</code>.
+        </p>
+        <input type="text" class="download-link input-monospace"
+            value="$ curl -O {% archive_url object.clean_zip_archive.name is_latest=is_latest %}"
+            readonly>
+        </input>
     {% else %}
     <p><a class="btn btn-inactive">Download unavailable</a>
-    {% endif %}
-  </section>
+        {% endif %}
+</section>
 
 {% if file_list %}
-<section>
+<section name="archived-files">
   <div class="filters">
-      <h3>Individual files</h3>
+      <h3>Archived files</h3>
+      <p>
+          Our cleaned-up version of each of the {{ object.download_file_count }} 
+          database tables released by state officials, grouped by type. 
+      </p>
       <p>Filter by type</p>
       <div class="dropdown">
         <button class="btn btn-calaccess dropdown-toggle" type="button" id="filterDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -73,7 +92,7 @@ $('.dropdown-menu a').click(function() {
         <hr>
         <div class="row">
             <div class="col-md-6">
-                <p>{{ file.model.doc|first_line|safe }}</p>
+                <p>{{ file.model.doc|first_line|safe }} <a href="{% url 'file_detail' slug=file.file_name|slugify %}">Learn more &raquo;</a></p>
             </div>
             <div class="col-md-5 col-md-offset-1 align-right stats">
                 {% if file.clean_file_archive %}
