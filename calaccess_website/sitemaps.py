@@ -9,7 +9,7 @@ class AbstractSitemapView(BuildableListView):
     Abstract base class that will render a generic ListView as XML.
     """
     def render_to_response(self, context):
-        return super(AbstractSitemapClass, self).render_to_response(
+        return super(AbstractSitemapView, self).render_to_response(
             context,
             content_type='text/xml'
         )
