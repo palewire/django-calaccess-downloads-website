@@ -44,10 +44,24 @@
     {% if version_list.0 %}
     {% with version_list.0 as latest_file %}
     <p>The latest version of this file was released on <b>{{ latest_file.version.release_datetime|date:"l, N j, Y" }}</b> at <b>{{ latest_file.version.release_datetime|date:"P" }}</b>.</p>
-    <p><a href="{% archive_url latest_file.clean_file_archive.name is_latest=True %}" class="btn btn-calaccess">Download latest</a>
-    &nbsp; <span class="filesize">{{ latest_file.pretty_clean_file_size }} CSV</span></p>
-    <p>Alternatively, download directly with <code>curl</code> or <code>wget</code>.</p>
-    <input type="text" class="download-link input-monospace" value="$ curl -O {% archive_url latest_file.clean_file_archive.name is_latest=True %}" readonly></input>
+    {% if latest_file.clean_file_archive %}
+        <p>
+            <a href="{% archive_url latest_file.clean_zip_archive.name is_latest=is_latest %}"
+               class="btn btn-calaccess">
+                Download latest
+            </a>
+            &nbsp; <span>{{ latest_file.pretty_clean_size }} CSV</span>
+        </p>
+        <p>
+            Alternatively, retrieve with <code>curl</code> or <code>wget</code>.
+        </p>
+        <input type="text" class="download-link input-monospace"
+            value="$ curl -O {% archive_url latest.clean_file_archive.name is_latest=is_latest %}"
+            readonly>
+        </input>
+    {% else %}
+    <p><a class="btn btn-inactive">Download unavailable</a>
+        {% endif %}
     {% endwith %}
     {% else %}
     <p><a class="btn btn-inactive">Download unavailable</a>
