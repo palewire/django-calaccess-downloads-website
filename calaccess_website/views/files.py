@@ -51,7 +51,7 @@ class BaseFileDetailView(BuildableDetailView):
         """
         Add some extra bits to the template's context
         """
-        context = super(FileDetail, self).get_context_data(**kwargs)
+        context = super(BaseFileDetailView, self).get_context_data(**kwargs)
         # Pull all previous versions of the provided file
         context['version_list'] = RawDataFile.objects.filter(
             file_name=self.kwargs['slug'].upper().replace("-", "_")
@@ -86,7 +86,7 @@ class FileDetail(BaseFileDetailView):
         """
         Add some extra bits to the template's context
         """
-        context = super(FileDocumentation, self).get_context_data(**kwargs)
+        context = super(FileDetail, self).get_context_data(**kwargs)
         # Add list of choice fields to context
         context['choice_fields'] = self.get_choice_fields()
         # Add dict of docs to context
