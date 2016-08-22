@@ -36,7 +36,7 @@ class CalAccessRobotsTxt(Buildable404View):
     template_name = "calaccess_website/robots.txt"
 
     def render_to_response(self, context):
-        return super(CalAccessRobotsTxtView, self).render_to_response(
+        return super(CalAccessRobotsTxt, self).render_to_response(
             context,
             content_type='text'
         )
