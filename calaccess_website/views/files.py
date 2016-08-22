@@ -62,7 +62,6 @@ class BaseFileDetailView(BuildableDetailView):
         [self.build_object(o) for o in self.get_queryset()]
 
 
-
 class FileDownloadsList(BaseFileDetailView):
     """
     A detail page with links to all downloads for the provided raw data file.
