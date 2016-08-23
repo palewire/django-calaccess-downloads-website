@@ -25,6 +25,10 @@ code {
     color: #000;
     background: none;
 }
+sup {
+    font-size: default;
+    top: -.2em;
+}
 .bg-red {
     background-color: #ba0a35;
     color:  #fdfdfd;
