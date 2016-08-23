@@ -27,7 +27,7 @@ $('.dropdown-menu a').click(function() {
     <p>
         The complete package of {{ object.download_file_count }} database tables released by the
         California Secretary of State, which we have cleaned up and converted
-        into flat files with {{ object.clean_record_count|intword }} comma-separated values <sup><a href="#footnotes">*</a></sup>.
+        into flat files with {{ object.clean_record_count|intword }} comma-separated values<sup><a href="#footnotes">*</a></sup>.
     </p>
     {% if object.clean_zip_archive %}
         <p>
@@ -99,7 +99,7 @@ $('.dropdown-menu a').click(function() {
                 <div class="col-md-8">
                     <span>
                       <h4>Records</h4>
-                      <p>{{ file.clean_records_count|intcomma }} {% if file.error_count > 0 %}<sup><a href="#footnote-{{ file.file_name|slugify }}">*</a></sup>{% endif %}</p>
+                      <p>{{ file.clean_records_count|intcomma }}{% if file.error_count > 0 %}<sup><a href="#footnote-{{ file.file_name|slugify }}">*</a></sup>{% endif %}</p>
                     </span>
                     <span>
                       <h4>Size</h4>
@@ -125,13 +125,26 @@ $('.dropdown-menu a').click(function() {
 <p>However, those {{ object.error_count|intcomma }} records represent only {{ error_pct|floatformat:"5" }}% of the downloaded source data.</p>
 <p>Error logs are included in the <a href="#full-archive">full archive download</a>. Or, download individual error logs below.</p>
 
-<ul>
+<table class="table table-striped">
+<thead>
+  <th>File</th>
+  <th class="right">Errors</th>
+  <th class="right">Log</th>
+</thead>
+<tbody>
 {% for group in file_list %}
 {% for file in group.list %}
-{% if file.error_count > 0 %}<li id="footnote-{{ file.file_name|slugify }}"><a href="{% url 'file_detail' slug=file.file_name|slugify %}">{{ file.file_name }}</a>: {{ file.error_count }} error{{ file.error_count|pluralize }}. <a href="{% archive_url file.error_log_archive.name is_latest=is_latest %}">Error log &raquo;</a></li>{% endif %}
+{% if file.error_count > 0 %}
+<tr id="footnote-{{ file.file_name|slugify }}">
+  <td><a href="{% url 'file_detail' slug=file.file_name|slugify %}">{{ file.file_name }}</a></td>
+  <td class="right">{{ file.error_count }}</td>
+  <td class="right"><a href="{% archive_url file.error_log_archive.name is_latest=is_latest %}">Download &raquo;</a></td>
+</tr>
+{% endif %}
 {% endfor %}
 {% endfor %}
-</ul>
-</ul>
+</tbody>
+</table>
+
 </section>
 {% endblock %}

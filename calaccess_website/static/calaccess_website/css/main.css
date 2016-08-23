@@ -29,6 +29,9 @@ sup {
     font-size: default;
     top: -.2em;
 }
+section {
+    margin-bottom: 40px;
+}
 .bg-red {
     background-color: #ba0a35;
     color:  #fdfdfd;
