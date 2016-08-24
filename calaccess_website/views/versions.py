@@ -97,7 +97,10 @@ class VersionDetail(BuildableDetailView, CalAccessModelListMixin):
         """
         context = super(VersionDetail, self).get_context_data(**kwargs)
         context['file_list'] = self.regroup_by_klass_group(self.object.files.all())
-        context['error_pct'] = 100 * self.object.error_count / float(self.object.download_record_count)
+        if self.object.error_count:
+            context['error_pct'] = 100 * self.object.error_count / float(self.object.download_record_count)
+        else:
+            context['error_pct'] = 0
         return context
 
     def get_url(self, obj):
