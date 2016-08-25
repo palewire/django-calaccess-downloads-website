@@ -135,7 +135,7 @@
       {% for form, sections in object.get_filing_forms_w_sections %}
       <tr>
           <td>
-              <h4><a href="{% url 'form_detail' id=form.id %}">{{ form.type_and_num|safe }}</a>:
+              <h4><a href="{% url 'form_detail' id=form.id|lower %}">{{ form.type_and_num|safe }}</a>:
               {{ form.title|safe }}</h4>
               <ul>
               {% for section in sections %}
