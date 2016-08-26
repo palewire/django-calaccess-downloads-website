@@ -1,6 +1,20 @@
 {% extends 'calaccess_website/base_with_top.html' %}
 {% load humanize calaccess_website_tags %}
 
+{% block affix-nav %}
+<ul class="nav nav-stacked">
+  <li class="active"><a href="#full-archive">Full archive</a></li>
+  <li><a href="#archived-files">Archived files</a></li>
+  <li><a href="#errata">Errata</a></li>
+</ul>
+{% endblock %}
+
+{% block breadcrumbs %}
+{{ block.super }}
+<li><a href="{% url 'version_archive_index' %}">Downloads</a></li>
+{% endblock %}
+
+
 {% block javascript %}
 <script type="text/javascript">
 // Filter logic
@@ -13,12 +27,17 @@ $('.dropdown-menu a').click(function() {
     }
 });
 </script>
-{% endblock %}
 
-
-{% block breadcrumbs %}
-{{ block.super }}
-<li><a href="{% url 'version_archive_index' %}">Downloads</a></li>
+<script type="text/javascript">
+  $('body').scrollspy({target: '#affix-nav'});
+  $('#affix-nav').affix({
+    offset: {
+      bottom: function () {
+        return (this.bottom = $('.footer').outerHeight(true))
+      }
+    }
+  });
+</script>
 {% endblock %}
 
 {% block content %}
@@ -50,7 +69,7 @@ $('.dropdown-menu a').click(function() {
 </section>
 
 {% if file_list %}
-<section name="archived-files" class="chapter">
+<section id="archived-files" name="archived-files" class="chapter">
   <div class="filters">
       <h3>Archived files</h3>
       <p>
@@ -120,8 +139,8 @@ $('.dropdown-menu a').click(function() {
 </section>
 {% endif %}
 
-<section name="footnotes" id="footnotes" class="chapter">
-    <h3>Footnotes</h3>
+<section name="errata" id="errata" class="chapter">
+    <h3>Errata</h3>
     <p>The raw data provided by the state contains some errors in how values are escaped, quoted and delimited. The result is that there are a small number of records we cannot yet automatically parse that are lost during the loading process.</p>
     <p>However, those {{ object.error_count|intcomma }} records represent only {{ error_pct|floatformat:"5" }}% of the downloaded source data.</p>
     <p>Error logs are included in the <a href="#full-archive">full archive download</a>. Or, download individual error logs below.</p>
