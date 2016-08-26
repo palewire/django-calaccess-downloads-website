@@ -1,6 +1,20 @@
 {% extends 'calaccess_website/base_with_top.html' %}
 {% load humanize calaccess_website_tags %}
 
+{% block affix-nav %}
+<ul class="nav nav-stacked">
+  <li class="active"><a href="#full-archive">Full archive</a></li>
+  <li><a href="#archived-files">Archived files</a></li>
+  <li><a href="#errata">Errata</a></li>
+</ul>
+{% endblock %}
+
+{% block breadcrumbs %}
+{{ block.super }}
+<li><a href="{% url 'version_archive_index' %}">Downloads</a></li>
+{% endblock %}
+
+
 {% block javascript %}
 <script type="text/javascript">
 // Filter logic
@@ -13,21 +27,26 @@ $('.dropdown-menu a').click(function() {
     }
 });
 </script>
-{% endblock %}
 
-
-{% block breadcrumbs %}
-{{ block.super }}
-<li><a href="{% url 'version_archive_index' %}">Downloads</a></li>
+<script type="text/javascript">
+  $('body').scrollspy({target: '#affix-nav'});
+  $('#affix-nav').affix({
+    offset: {
+      bottom: function () {
+        return (this.bottom = $('.footer').outerHeight(true))
+      }
+    }
+  });
+</script>
 {% endblock %}
 
 {% block content %}
-<section name="full-archive">
+<section name="full-archive" id="full-archive" class="chapter">
     <h3>Full archive</h3>
     <p>
         The complete package of {{ object.download_file_count }} database tables released by the
         California Secretary of State, which we have cleaned up and converted
-        into flat files with {{ object.clean_record_count|intword }} comma-separated values.
+        into flat files with {{ object.clean_record_count|intword }} comma-separated values<sup><a href="#footnotes">*</a></sup>.
     </p>
     {% if object.clean_zip_archive %}
         <p>
@@ -38,24 +57,24 @@ $('.dropdown-menu a').click(function() {
             &nbsp; <span>{{ object.pretty_clean_size }} zip</span>
         </p>
         <p>
-            Alternatively, retrieve with <code>curl</code> or <code>wget</code>.
+            Alternatively, retrieve with <code>curl</code>.
         </p>
         <input type="text" class="download-link input-monospace"
             value="$ curl -O {% archive_url object.clean_zip_archive.name is_latest=is_latest %}"
             readonly>
         </input>
     {% else %}
-    <p><a class="btn btn-inactive">Download unavailable</a>
+    <p><a class="btn btn-inactive">Unavailable</a>
         {% endif %}
 </section>
 
 {% if file_list %}
-<section name="archived-files">
+<section id="archived-files" name="archived-files" class="chapter">
   <div class="filters">
       <h3>Archived files</h3>
       <p>
-          Our cleaned-up version of each of the {{ object.download_file_count }} 
-          database tables released by state officials, grouped by type. 
+          Our cleaned-up version of each of the {{ object.download_file_count }}
+          database tables released by state officials, grouped by type.
       </p>
       <p>Filter by type</p>
       <div class="dropdown">
@@ -99,22 +118,18 @@ $('.dropdown-menu a').click(function() {
                 <div class="col-md-8">
                     <span>
                       <h4>Records</h4>
-                      <p>{{ file.clean_records_count|intcomma }}</p>
+                      <p>{{ file.clean_records_count|intcomma }}{% if file.error_count > 0 %}<sup><a href="#footnote-{{ file.file_name|slugify }}">*</a></sup>{% endif %}</p>
                     </span>
                     <span>
                       <h4>Size</h4>
                       <p> {{ file.pretty_clean_file_size }}</p>
-                    </span>
-                    <span>
-                      <h4>Errors</h4>
-                      <p>{{ file.error_count|intcomma }} </p>
                     </span>
                 </div>
                 <div class="col-md-4">
                   <a href="{% archive_url file.clean_file_archive.name is_latest=is_latest %}" class="btn btn-calaccess">Download</a>
                 </div>
                 {% else %}
-                  <a class="btn btn-inactive">Download unavailable</a>
+                  <a class="btn btn-inactive">Unavailable</a>
                 {% endif %}
             </div>
         </div>
@@ -123,4 +138,30 @@ $('.dropdown-menu a').click(function() {
   {% endfor %}
 </section>
 {% endif %}
+
+<section name="errata" id="errata" class="chapter">
+    <h3>Errata</h3>
+    <p>The raw data provided by the state contains some errors in how values are escaped, quoted and delimited. The result is that there are a small number of records we cannot yet automatically parse that are lost during the loading process.</p>
+    <p>However, those {{ object.error_count|intcomma }} records represent only {{ error_pct|floatformat:"5" }}% of the downloaded source data.</p>
+    <p>Error logs are included in the <a href="#full-archive">full archive download</a>. Or, download individual error logs below.</p>
+    <div class="row">
+    <div class="col-md-8">
+      <table class="table table-striped">
+      <tbody>
+      {% for group in file_list %}
+      {% for file in group.list %}
+      {% if file.error_count > 0 %}
+      <tr id="footnote-{{ file.file_name|slugify }}">
+        <td><a href="{% url 'file_detail' slug=file.file_name|slugify %}">{{ file.file_name }}</a></td>
+        <td class="right">{{ file.error_count }} errors</td>
+        <td class="right"><a href="{% archive_url file.error_log_archive.name is_latest=is_latest %}">Download log &raquo;</a></td>
+      </tr>
+      {% endif %}
+      {% endfor %}
+      {% endfor %}
+      </tbody>
+      </table>
+    </div>
+    </div>
+</section>
 {% endblock %}

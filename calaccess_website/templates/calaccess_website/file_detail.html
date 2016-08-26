@@ -5,12 +5,12 @@
 
 {% block affix-nav %}
 <ul class="nav nav-stacked">
-  <li class="active"><a href="#latest">Latest release</a></li>
+  <li class="active"><a href="#latest-download">Latest download</a></li>
   <li><a href="#sample">Sample</a></li>
   <li><a href="#fields">Fields</a></li>
   {% if object.FILING_FORMS|length > 0 %}<li><a href="#forms">Forms</a></li>{% endif %}
-  <li><a href="#references">References</a></li>
   <li><a href="#archive">Archive</a></li>
+  <li><a href="#references">References</a></li>
 </ul>
 {% endblock %}
 
@@ -39,31 +39,47 @@
 {% endblock %}
 
 {% block content %}
-<section id="latest">
+<section id="latest-download" name="latest-download" class="chapter">
   <h2>Latest release</h2>
     {% if version_list.0 %}
     {% with version_list.0 as latest_file %}
-    <p>The latest version of this file was released on <b>{{ latest_file.version.release_datetime|date:"l, N j, Y" }}</b> at <b>{{ latest_file.version.release_datetime|date:"P" }}</b>.</p>
-    <p><a href="{% archive_url latest_file.clean_file_archive.name is_latest=True %}" class="btn btn-calaccess">Download latest</a>
-    &nbsp; <span class="filesize">{{ latest_file.pretty_clean_file_size }} CSV</span></p>
-    <p>Alternatively, download directly with <code>curl</code> or <code>wget</code>.</p>
-    <input type="text" class="download-link input-monospace" value="$ curl -O {% archive_url latest_file.clean_file_archive.name is_latest=True %}" readonly></input>
+    <p>The latest version of this file was released on <b>{{ latest_file.version.release_datetime|date:"l, N j, Y" }}</b> at <b>{{ latest_file.version.release_datetime|date:"P" }}</b></p>
+    {% if latest_file.clean_file_archive %}
+        <p>
+            <a href="{% archive_url latest_file.clean_file_archive.name is_latest=True %}"
+               class="btn btn-calaccess">
+                Download latest
+            </a>
+            &nbsp; <span>{{ latest_file.pretty_clean_file_size }} CSV</span>
+        </p>
+        <p>
+            Alternatively, retrieve with <code>curl</code>.
+        </p>
+        <input type="text" class="download-link input-monospace"
+            value="$ curl -O {% archive_url latest_file.clean_file_archive.name is_latest=True %}"
+            readonly>
+        </input>
+    {% else %}
+    <p><a class="btn btn-inactive">Download unavailable</a>
+        {% endif %}
     {% endwith %}
     {% else %}
     <p><a class="btn btn-inactive">Download unavailable</a>
     {% endif %}
-    <p>Or, <a href="{% url 'file_downloads_list' object.db_table|slugify %}">see all downloads for this file</a>.</p>
+    <p>Or, <a href="{% url 'file_downloads_list' object.db_table|slugify %}">explore past downloads of this file</a>.</p>
 </section>
 
-<section id="sample">
+<section id="sample" class="chapter">
   <h2>Sample</h2>
+  <p>A few sample rows.</p>
   <script src="https://gist.github.com/palewire/66bed097ddca855c36506da4b7c0d349.js?file={{ object.db_table }}.TSV"></script>
 </section>
 
-<section id="fields">
+<section id="fields" class="chapter">
   <h2>Fields</h2>
-  {% for field in choice_fields %}
+  <p>Information about the {{ choice_fields|length }} fields and definitions of any abbreviated values.</p>
 
+  {% for field in choice_fields %}
   {% if field.name != "id" %}
   <div class="field-row">
       <span class="field-title">{{ field.db_column }}</span>
@@ -110,15 +126,16 @@
   {% endfor %}
 </section>
 
-<section id="forms">
+<section id="forms" class="chapter">
   {% if object.FILING_FORMS|length > 0 %}
   <h2>Forms</h2>
+  <p>The forms the state uses to collect the information that populates this file.</p>
   <table class="table">
   <tbody valign="top">
       {% for form, sections in object.get_filing_forms_w_sections %}
       <tr>
           <td>
-              <h4><a href="{% url 'form_detail' id=form.id %}">{{ form.type_and_num|safe }}</a>:
+              <h4><a href="{% url 'form_detail' id=form.id|lower %}">{{ form.type_and_num|safe }}</a>:
               {{ form.title|safe }}</h4>
               <ul>
               {% for section in sections %}
@@ -133,58 +150,57 @@
   {% endif %}
 </section>
 
-<section id="references">
+<section id="archive" class="chapter">
+    {% if version_list %}
+    <h2>Archive</h2>
+    <p>Download previous versions of this file from our archive.</p>
+    <br>
+
+    <h4>Last 10 downloads</h4>
+    <table class="table table-striped">
+    <thead>
+      <th>Date</th>
+      <th width=8% class="right">Records</th>
+      <th width=8% class="right">Size</th>
+      <th width=15% class="right"></th>
+    </thead>
+    <tbody>
+      {% for file in version_list|slice:":10" %}
+      <tr>
+        <td><a href="{% url 'version_detail' year=file.version.release_datetime.year month=file.version.release_datetime|date:'m' day=file.version.release_datetime|date:'d' time=file.version.release_datetime|date:'His' %}">{{ file.version.release_datetime|date:"l, N j, Y" }}</a></td>
+        {% if file.clean_file_archive %}
+        <td class="right">{{ file.clean_records_count|intcomma }}</td>
+        <td class="right">{{ file.pretty_clean_file_size }}</td>
+        <td class="right"><a href="{% archive_url file.clean_file_archive.name %}">Download &raquo;</a></td>
+        {% else %}
+        <td colspan=2></td>
+        <td class="right">Unavailable</td>
+        {% endif %}
+      {% endfor %}
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan=4>
+                <a href="{% url 'file_downloads_list' object.db_table|slugify %}">More past downloads &raquo;</a>
+            </td>
+        </tr>
+    </tfoot>
+    </table>
+
+    {% else %}
+        <p>No files.</p>
+    {% endif %}
+</section>
+
+<section id="references" class="chapter">
   {% if object.DOCUMENTCLOUD_PAGES|length > 0 %}
   <h2>References</h2>
+  <p>The documents that provided the information on this page.</p>
   <ul>
   {% for doc, objects in docs.items %}
   <li> {{ doc }} ({% for object in objects %}<a href="{{ object.canonical_url }}">{{ object.formatted_page_nums }}</a>{% if not forloop.last %}, {% endif %}{% endfor %})</li>
   {% endfor %}
   </ul>
   {% endif %}
-</section>
-
-<section id="archive">
-    {% if version_list %}
-    <h2>Archive</h2>
-    <p><a href="{% url 'file_downloads_list' object.db_table|slugify %}">See all downloads for this file</a>.</p>
-    <br>
-
-    <h4>Last 10 downloads</h4>
-
-    {% for file in version_list|slice:":10" %}
-    <div class="row">
-      <div class="col-md-4">
-        <h4><a href="{% url 'version_detail' year=file.version.release_datetime.year month=file.version.release_datetime|date:'m' day=file.version.release_datetime|date:'d' time=file.version.release_datetime|date:'His' %}">{{ file.version.release_datetime|date:"l, N j, Y" }}</a></h4>
-      </div>
-      <div style="text-align: right;" class="col-md-5 right stats">
-          {% if file.clean_file_archive %}
-          <div class="col-md-8">
-              <span>
-                <h4>Records</h4>
-                <p>{{ file.clean_records_count|intcomma }}</p>
-              </span>
-              <span>
-                <h4>Size</h4>
-                <p> {{ file.pretty_clean_file_size }}</p>
-              </span>
-              <span>
-                <h4>Errors</h4>
-                <p>{{ file.error_count|intcomma }} </p>
-              </span>
-          </div>
-          <div class="col-md-4">
-            <a href="{% archive_url file.clean_file_archive.name %}" class="btn btn-calaccess">Download</a>
-          </div>
-          {% else %}
-            <a class="btn btn-inactive">Download unavailable</a>
-          {% endif %}
-      </div>
-    </div>
-    {% endfor %}
-
-    {% else %}
-        <p>No files.</p>
-    {% endif %}
 </section>
 {% endblock %}

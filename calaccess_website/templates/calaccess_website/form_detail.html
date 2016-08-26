@@ -16,19 +16,23 @@
 
 {% block content %}
 
-  {% if form.sections|length > 0 %}
-  <h2>Sections</h2>
-  <ul>
-  {% for section in form.sections %}
-  <li>{{ section.title|safe }} {% if section.documentcloud.start_page %}(<a href="{{ section.documentcloud.canonical_url }}">p. {{ section.documentcloud.start_page }}{% if section.documentcloud.end_page %}-{{ section.documentcloud.end_page }}{% endif%}</a>){% endif %}
-  </li>
-  {% endfor %}
-  </ul>
-  {% endif %}
+  <section class="chapter">
+      {% if form.sections|length > 0 %}
+      <h2>Sections</h2>
+      <p>{{ form.type_and_num }} has {{ form.sections|length }} section{{ form.sections|pluralize }}.</p>
+      <ul>
+      {% for section in form.sections %}
+      <li>{{ section.title|safe }} {% if section.documentcloud.start_page %}(<a href="{{ section.documentcloud.canonical_url }}">p. {{ section.documentcloud.start_page }}{% if section.documentcloud.end_page %}-{{ section.documentcloud.end_page }}{% endif%}</a>){% endif %}
+      </li>
+      {% endfor %}
+      </ul>
+      {% endif %}
+  </section>
 
+  <section class="chapter">
   {% if form.get_models|length > 0 %}
-  <h2>Database tables</h2>
-
+  <h2>Files</h2>
+  <p>This form populates the following {{ form.get_models|length }} file{{ form.get_models|pluralize }}.</p>
   <table class="table table-striped">
   <tbody>
   <tr>
@@ -42,10 +46,12 @@
   </tbody>
   </table>
   {% endif %}
+  </section>
 
-
+  <section class="chapter">
   {% if form.documentcloud_id %}
   <h2>Sample</h2>
+  <p>An example of {{ form.type_and_num }}.</p>
 
       <div style="margin-bottom:35px;" id="DV-viewer-{{ form.documentcloud.id }}" class="DV-container"></div>
       <script src="//s3.amazonaws.com/s3.documentcloud.org/viewer/loader.js"></script>
@@ -63,7 +69,7 @@
         <br />
         <a href={{ form.documentcloud.text_url }}>{{ form.documentcloud.title }} (Text)</a>
       </noscript>
-
   {% endif %}
+  </section>
 
 {% endblock %}

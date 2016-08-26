@@ -24,34 +24,31 @@
     <div class="col-md-12">
       {% if version_list %}
       <h2>Last {{ version_list|length }} downloads</h2>
-      <table class="table">
-        <thead>
-        <tr>
-          <th></th>
-          <th style="width: 10%" class="right">Records</th>
-          <th style="width: 10%" class="right">Filesize</th>
-          <th style="width: 10%" class="right">Errors</th>
-          <th style="width: 15%" class="right"></th>
-        </tr>
-        </thead>
-        <tbody valign="bottom">
+      <table class="table table-striped">
+      <thead>
+        <th>Date</th>
+        <th width=8% class="right">Records</th>
+        <th width=8% class="right">Size</th>
+        <th width=8% class="right">Errors</th>
+        <th width=15% class="right"></th>
+      </thead>
+      <tbody>
         {% for file in version_list %}
         <tr>
-            <td style="font-size: 18px;">
-                <a href="{% url 'version_detail' year=file.version.release_datetime.year month=file.version.release_datetime|date:'m' day=file.version.release_datetime|date:'d' time=file.version.release_datetime|date:'His' %}">{{ file.version.release_datetime|date:"l, N j, Y" }}</a>
-            </td>
-            {% if file.clean_file_archive %}
-            <td class="right">{{ file.clean_records_count|intcomma }}</td>
-            <td class="right">{{ file.pretty_clean_file_size }}</td>
-            <td class="right">{{ file.error_count|intcomma }}</td>
-            <td class="right">
-                <a href="{% archive_url file.clean_file_archive.name %}" class="btn btn-sm btn-calaccess">Download</a>
-            </td>
-            {% endif %}
-        </tr>
+          <td><a href="{% url 'version_detail' year=file.version.release_datetime.year month=file.version.release_datetime|date:'m' day=file.version.release_datetime|date:'d' time=file.version.release_datetime|date:'His' %}">{{ file.version.release_datetime|date:"l, N j, Y" }}</a></td>
+          {% if file.clean_file_archive %}
+          <td class="right">{{ file.clean_records_count|intcomma }}</td>
+          <td class="right">{{ file.pretty_clean_file_size }}</td>
+          <td class="right">{{ file.error_count|intcomma }}</td>
+          <td class="right"><a href="{% archive_url file.clean_file_archive.name %}">Download &raquo;</a></td>
+          {% else %}
+          <td colspan=3></td>
+          <td class="right">Unavailable</td>
+          {% endif %}
         {% endfor %}
-        </tbody>
+      </tbody>
       </table>
+
       {% else %}
           <p>No files.</p>
       {% endif %}
