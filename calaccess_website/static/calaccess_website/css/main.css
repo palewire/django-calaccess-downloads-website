@@ -29,7 +29,7 @@ sup {
     font-size: default;
     top: -.2em;
 }
-section {
+section.chapter {
     margin-bottom: 40px;
 }
 .bg-red {
@@ -440,7 +440,7 @@ and (max-width : 992px) {
         float: left;
         text-align: left;
     }
-    section {
+    section.chapter {
         margin: 10px auto;
     }
     h2 {
@@ -467,7 +467,7 @@ and (max-width : 992px) {
 @media only screen
 and (max-width : 768px) {
     .xs-left {
-        text-align:left; 
+        text-align:left;
     }
 }
 @media only screen

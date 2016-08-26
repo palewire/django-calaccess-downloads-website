@@ -39,7 +39,7 @@
 {% endblock %}
 
 {% block content %}
-<section id="latest">
+<section id="latest" class="chapter">
   <h2>Latest release</h2>
     {% if version_list.0 %}
     {% with version_list.0 as latest_file %}
@@ -69,13 +69,13 @@
     <p>Or, <a href="{% url 'file_downloads_list' object.db_table|slugify %}">see all downloads for this file</a>.</p>
 </section>
 
-<section id="sample">
+<section id="sample" class="chapter">
   <h2>Sample</h2>
   <p>A few rows from an example of this file.</p>
   <script src="https://gist.github.com/palewire/66bed097ddca855c36506da4b7c0d349.js?file={{ object.db_table }}.TSV"></script>
 </section>
 
-<section id="fields">
+<section id="fields" class="chapter">
   <h2>Fields</h2>
   <p>Information about the {{ choice_fields|length }} fields in this file and their lookup codes, where applicable.</p>
   {% for field in choice_fields %}
@@ -126,7 +126,7 @@
   {% endfor %}
 </section>
 
-<section id="forms">
+<section id="forms" class="chapter">
   {% if object.FILING_FORMS|length > 0 %}
   <h2>Forms</h2>
   <p>The forms that populate the information in this file.</p>
@@ -150,7 +150,7 @@
   {% endif %}
 </section>
 
-<section id="references">
+<section id="references" class="chapter">
   {% if object.DOCUMENTCLOUD_PAGES|length > 0 %}
   <h2>References</h2>
   <p>The documents that provided the information on this page.</p>
@@ -162,7 +162,7 @@
   {% endif %}
 </section>
 
-<section id="archive">
+<section id="archive" class="chapter">
     {% if version_list %}
     <h2>Archive</h2>
     <p>Examine previous versions of this file. <a href="{% url 'file_downloads_list' object.db_table|slugify %}">See all downloads &raquo;</a></p>

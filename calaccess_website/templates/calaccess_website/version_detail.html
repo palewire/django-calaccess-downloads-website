@@ -22,7 +22,7 @@ $('.dropdown-menu a').click(function() {
 {% endblock %}
 
 {% block content %}
-<section name="full-archive" id="full-archive">
+<section name="full-archive" id="full-archive" class="chapter">
     <h3>Full archive</h3>
     <p>
         The complete package of {{ object.download_file_count }} database tables released by the
@@ -50,12 +50,12 @@ $('.dropdown-menu a').click(function() {
 </section>
 
 {% if file_list %}
-<section name="archived-files">
+<section name="archived-files" class="chapter">
   <div class="filters">
       <h3>Archived files</h3>
       <p>
-          Our cleaned-up version of each of the {{ object.download_file_count }} 
-          database tables released by state officials, grouped by type. 
+          Our cleaned-up version of each of the {{ object.download_file_count }}
+          database tables released by state officials, grouped by type.
       </p>
       <p>Filter by type</p>
       <div class="dropdown">
@@ -119,30 +119,30 @@ $('.dropdown-menu a').click(function() {
   {% endfor %}
 </section>
 {% endif %}
-<section name="footnotes" id="footnotes">
-<h3>Footnotes</h3>
-<p>The raw data provided by the state contains some errors in how values are escaped, quoted and delimited. The result is that there are a small number of records we cannot yet automatically parse that are lost during the loading process.</p>
-<p>However, those {{ object.error_count|intcomma }} records represent only {{ error_pct|floatformat:"5" }}% of the downloaded source data.</p>
-<p>Error logs are included in the <a href="#full-archive">full archive download</a>. Or, download individual error logs below.</p>
-<div class="row">
-<div class="col-md-8">
-  <table class="table table-striped">
-  <tbody>
-  {% for group in file_list %}
-  {% for file in group.list %}
-  {% if file.error_count > 0 %}
-  <tr id="footnote-{{ file.file_name|slugify }}">
-    <td><a href="{% url 'file_detail' slug=file.file_name|slugify %}">{{ file.file_name }}</a></td>
-    <td class="right">{{ file.error_count }} errors</td>
-    <td class="right"><a href="{% archive_url file.error_log_archive.name is_latest=is_latest %}">Download log &raquo;</a></td>
-  </tr>
-  {% endif %}
-  {% endfor %}
-  {% endfor %}
-  </tbody>
-  </table>
-</div>
-</div>
 
+<section name="footnotes" id="footnotes" class="chapter">
+    <h3>Footnotes</h3>
+    <p>The raw data provided by the state contains some errors in how values are escaped, quoted and delimited. The result is that there are a small number of records we cannot yet automatically parse that are lost during the loading process.</p>
+    <p>However, those {{ object.error_count|intcomma }} records represent only {{ error_pct|floatformat:"5" }}% of the downloaded source data.</p>
+    <p>Error logs are included in the <a href="#full-archive">full archive download</a>. Or, download individual error logs below.</p>
+    <div class="row">
+    <div class="col-md-8">
+      <table class="table table-striped">
+      <tbody>
+      {% for group in file_list %}
+      {% for file in group.list %}
+      {% if file.error_count > 0 %}
+      <tr id="footnote-{{ file.file_name|slugify }}">
+        <td><a href="{% url 'file_detail' slug=file.file_name|slugify %}">{{ file.file_name }}</a></td>
+        <td class="right">{{ file.error_count }} errors</td>
+        <td class="right"><a href="{% archive_url file.error_log_archive.name is_latest=is_latest %}">Download log &raquo;</a></td>
+      </tr>
+      {% endif %}
+      {% endfor %}
+      {% endfor %}
+      </tbody>
+      </table>
+    </div>
+    </div>
 </section>
 {% endblock %}
