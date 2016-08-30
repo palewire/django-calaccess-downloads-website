@@ -29,7 +29,7 @@ def pipinstall():
     """
     Install the Python requirements inside the virtualenv
     """
-    _venv("pip install -r requirements.txt --log-file=/tmp/pip.log")
+    _venv("pip install -r requirements.txt --upgrade --log-file=/tmp/pip.log")
 
 
 @task(task_class=ConfigTask)

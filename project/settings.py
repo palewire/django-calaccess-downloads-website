@@ -19,6 +19,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.humanize',
     'bakery',
+    'compressor',
     'calaccess_raw',
     'calaccess_website',
     'calaccess_processed',
@@ -33,6 +34,13 @@ USE_L10N = False
 USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, ".static")
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    # 'django.contrib.staticfiles.finders.DefaultStorageFinder',
+    'compressor.finders.CompressorFinder',
+)
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
@@ -127,6 +135,13 @@ DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 AWS_STORAGE_BUCKET_NAME = os.getenv('s3_archived_data_bucket')
 CLOUDFRONT_ARCHIVED_DATA_DISTRIBUTION = os.getenv('cloudfront_archived_data_distribution')
 AWS_S3_USE_SSL = False
+
+#
+# Compressor
+#
+
+COMPRESS_ENABLED = False
+COMPRESS_OFFLINE = False
 
 #
 # Databases
