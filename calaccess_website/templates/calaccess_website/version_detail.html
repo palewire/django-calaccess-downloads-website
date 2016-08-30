@@ -5,7 +5,9 @@
 <ul class="nav nav-stacked">
   <li class="active"><a href="#full-archive">Full archive</a></li>
   <li><a href="#archived-files">Archived files</a></li>
+  {% if object.error_count %}
   <li><a href="#errata">Errata</a></li>
+  {% endif %}
 </ul>
 {% endblock %}
 
@@ -139,22 +141,40 @@ $('.dropdown-menu a').click(function() {
 </section>
 {% endif %}
 
+{% if object.error_count %}
 <section name="errata" id="errata" class="chapter">
     <h3>Errata</h3>
-    <p>The raw data provided by the state contains some errors in how values are escaped, quoted and delimited. The result is that there are a small number of records we cannot yet automatically parse that are lost during the loading process.</p>
-    <p>However, those {{ object.error_count|intcomma }} records represent only {{ error_pct|floatformat:"5" }}% of the downloaded source data.</p>
-    <p>Error logs are included in the <a href="#full-archive">full archive download</a>. Or, download individual error logs below.</p>
+    <p>
+       The raw data provided by the state contains errors in how some values are
+       escaped, quoted and delimited. The result is a small number of
+       records lost when we prepare files for download.
+    </p>
+    <p>
+        However, those {{ object.error_count|intcomma }} lost records represent
+        only {{ error_pct|floatformat:"5" }}% of the source data.
+    </p>
+    <p>
+        Error logs are included in the <a href="#full-archive">full archive download</a> above.
+        You can also download individual logs below.
+    </p>
     <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-12">
       <table class="table table-striped">
+      <thead>
+        <tr>
+            <th>Name</th>
+            <th class="right">Errors</th>
+            <th class="right">CSV</th>
+        </tr>
+      </thead>
       <tbody>
       {% for group in file_list %}
       {% for file in group.list %}
       {% if file.error_count > 0 %}
       <tr id="footnote-{{ file.file_name|slugify }}">
         <td><a href="{% url 'file_detail' slug=file.file_name|slugify %}">{{ file.file_name }}</a></td>
-        <td class="right">{{ file.error_count }} errors</td>
-        <td class="right"><a href="{% archive_url file.error_log_archive.name is_latest=is_latest %}">Download log &raquo;</a></td>
+        <td class="right">{{ file.error_count }}</td>
+        <td class="right"><a href="{% archive_url file.error_log_archive.name is_latest=is_latest %}">Download &raquo;</a></td>
       </tr>
       {% endif %}
       {% endfor %}
@@ -164,4 +184,5 @@ $('.dropdown-menu a').click(function() {
     </div>
     </div>
 </section>
+{% endif %}
 {% endblock %}
