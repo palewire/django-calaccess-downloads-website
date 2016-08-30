@@ -113,7 +113,11 @@ $('.dropdown-menu a').click(function() {
         <hr>
         <div class="row">
             <div class="col-md-6">
-                <p>{{ file.model.doc|first_line|safe }} <a href="{% url 'file_detail' slug=file.file_name|slugify %}">Learn more &raquo;</a></p>
+                <p>
+                    {{ file.model.doc|first_line|safe }}
+                    {% if file.download_records_count == 0 %}The source file published by the state is empty.{% endif %}
+                    <a href="{% url 'file_detail' slug=file.file_name|slugify %}">Learn more &raquo;</a>
+                </p>
             </div>
             <div class="col-md-5 col-md-offset-1 align-right stats">
                 {% if file.clean_file_archive %}
