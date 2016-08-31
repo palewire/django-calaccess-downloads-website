@@ -51,11 +51,14 @@ class BaseFileDetailView(BuildableDetailView):
         """
         Add some extra bits to the template's context
         """
+        file_name = self.kwargs['slug'].upper().replace("-", "_")
         context = super(BaseFileDetailView, self).get_context_data(**kwargs)
         # Pull all previous versions of the provided file
         context['version_list'] = RawDataFile.objects.filter(
-            file_name=self.kwargs['slug'].upper().replace("-", "_")
+            file_name=file_name
         ).order_by('-version__release_datetime')
+        # note if the most recent version of the file is empty
+        context['empty'] = context['version_list'][0].download_records_count == 0
         return context
 
     def build_queryset(self):

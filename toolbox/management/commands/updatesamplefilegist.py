@@ -20,7 +20,7 @@ class Command(BaseCommand):
         for file in sample_data_dir:
             lines = file.decoded_content.splitlines()
 
-            # can't add empty files to gist, so skip
+            # only modify files with records in them
             if len(lines) > 0:
                 # we want the header + the first five lines without illegal chars
                 top_lines = []
@@ -33,8 +33,11 @@ class Command(BaseCommand):
 
                 # recombine the split lines into a single string
                 joined_lines = '\r\n'.join(top_lines)
-
-            files[file.name] = InputFileContent(content=joined_lines)
+                # add to dict
+                files[file.name] = InputFileContent(content=joined_lines)
+            else:
+                # add null file
+                files[file.name] = None
 
         # now save
         self.gist.edit(
