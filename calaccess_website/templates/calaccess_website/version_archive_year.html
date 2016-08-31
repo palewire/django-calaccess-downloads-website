@@ -1,17 +1,19 @@
-{% extends 'calaccess_website/base.html' %}
+{% extends 'calaccess_website/base_with_top.html' %}
 {% load calaccess_website_tags %}
 
 {% block title %}{{ year.year }} - Versions - {{ block.super }}{% endblock%}
 
 {% block breadcrumbs %}
   <li><a href="{% url 'version_archive_index' %}">Versions</a></li>
-  <li class="active">{{ year.year }}</li>
+  <li>{{ year.year }}</li>
 {% endblock %}
 
+{% block top %}
+    <h2>Archived data from {{ year|date:"Y" }}</h2>
+    <p><a href="{% url 'version_latest' %}">Go to the latest data</a>.</p>
+{% endblock %}
 
 {% block content %}
-  <h1>Versions from {{ year|date:"Y" }}</h1>
-
 <table class="table table-striped">
   <thead>
     <tr>
