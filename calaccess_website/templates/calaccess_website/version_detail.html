@@ -28,17 +28,18 @@ $('.dropdown-menu a').click(function() {
       $('.file-card:not(.' + group + ')').addClass('hidden');
     }
 });
-</script>
-
-<script type="text/javascript">
-  $('body').scrollspy({target: '#affix-nav'});
-  $('#affix-nav').affix({
-    offset: {
-      bottom: function () {
-        return (this.bottom = $('.footer').outerHeight(true))
-      }
+// Affix nav
+$('body').scrollspy({target: '#affix-nav'});
+$('#affix-nav').affix({
+  offset: {
+    top: function () {
+      return (this.bottom = $('.affix-container').position()['top'])
+    },
+    bottom: function() {
+      return (this.top = $('.footer').outerHeight(true))
     }
-  });
+  }
+});
 </script>
 {% endblock %}
 

@@ -205,6 +205,9 @@ header .navbar-default .navbar-nav>li>a {
 .affix-bottom {
     position: relative;
 }
+.affix {
+    top: 0;
+}
 
 /* Pagination */
 .pagination>li>a, .pagination>li>span {
