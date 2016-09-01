@@ -10,6 +10,10 @@ urlpatterns = [
         name="home",
     ),
 
+    #
+    # Downloads
+    #
+
     # Version archive views
     url(
         r'^downloads/$',
@@ -35,6 +39,17 @@ urlpatterns = [
         r'^downloads/(?P<year>[0-9]{4})/(?P<month>[0-9]{2})/(?P<day>[0-9]{2})/(?P<time>[0-9]{6})/$',
         views.VersionDetail.as_view(),
         name="version_detail"
+    ),
+
+    #
+    # Documentation
+    #
+
+    # Index
+    url(
+        r'^documentation/$',
+        views.DocumentationIndex.as_view(),
+        name='docs_index'
     ),
 
     # File views
@@ -73,7 +88,10 @@ urlpatterns = [
         name='government_documentation'
     ),
 
+    #
     # Machine-readable stuff
+    #
+
     url(
         r'^robots.txt$',
         views.CalAccessRobotsTxt.as_view(),

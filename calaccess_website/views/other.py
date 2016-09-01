@@ -12,6 +12,35 @@ class Home(BuildableArchiveIndexView):
     template_name = "calaccess_website/home.html"
 
 
+class DocumentationIndex(BuildableTemplateView):
+    """
+    An index page for linking to all of our documentation sections
+    """
+    build_path = "documentation/index.html"
+    template_name = "calaccess_website/documentation_index.html"
+
+    def get_context_data(self):
+        return {
+            'object_list': [
+                dict(
+                    name='Raw CAL-ACCESS files',
+                    description="",
+                    url=""
+                ),
+                dict(
+                    name='Technical documentation',
+                    description="",
+                    url=""
+                ),
+                dict(
+                    name='References',
+                    description="",
+                    url=""
+                ),
+            ]
+        }
+
+
 class GovernmentDocumentation(BuildableTemplateView):
     """
     Explanation of official CAL-ACCESS documentation.

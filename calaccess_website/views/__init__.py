@@ -3,6 +3,7 @@ from .forms import FormList, FormDetail
 from .base import CalAccessModelListMixin
 from .other import (
     Home,
+    DocumentationIndex,
     GovernmentDocumentation,
     CalAccess404View,
     CalAccessRobotsTxt
@@ -21,6 +22,7 @@ __all__ = (
     'CalAccess404View',
     'CalAccessModelListMixin',
     'CalAccessRobotsTxt',
+    'DocumentationIndex',
     'FileList',
     'FileDetail',
     'FileDownloadsList',
