@@ -58,7 +58,10 @@ class BaseFileDetailView(BuildableDetailView):
             file_name=file_name
         ).order_by('-version__release_datetime')
         # note if the most recent version of the file is empty
-        context['empty'] = context['version_list'][0].download_records_count == 0
+        try:
+            context['empty'] = context['version_list'][0].download_records_count == 0
+        except IndexError:
+            context['empty'] = True
         return context
 
     def build_queryset(self):
