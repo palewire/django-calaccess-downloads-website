@@ -5,14 +5,19 @@
 
 {% block affix-nav %}
 <ul class="nav nav-stacked">
-  <li class="active"><a href="#latest-download">Latest download</a></li>
-  {% if not empty %}
-  <li><a href="#sample">Sample</a></li>
-  {% endif %}
-  <li><a href="#fields">Fields</a></li>
-  {% if object.FILING_FORMS|length > 0 %}<li><a href="#forms">Forms</a></li>{% endif %}
-  <li><a href="#archive">Archive</a></li>
-  <li><a href="#references">References</a></li>
+    <li class="active"><a href="#latest-download">Latest download</a></li>
+    
+    {% if not empty %}
+    <li><a href="#sample">Sample</a></li>
+    {% endif %}
+    <li><a href="#fields">Fields</a></li>
+    
+    {% if object.FILING_FORMS|length > 0 %}
+    <li><a href="#forms">Forms</a></li>
+    {% endif %}
+    
+    <li><a href="#archive">Archive</a></li>
+    <li><a href="#references">References</a></li>
 </ul>
 {% endblock %}
 
@@ -45,7 +50,7 @@
 
 {% block content %}
 <section id="latest-download" name="latest-download" class="chapter">
-  <h2>Latest release</h2>
+  <h2>Latest download</h2>
     {% if version_list.0 %}
     {% with version_list.0 as latest_file %}
     <p>The latest version of this file was released on <b>{{ latest_file.version.release_datetime|date:"l, N j, Y" }}</b> at <b>{{ latest_file.version.release_datetime|date:"P" }}</b></p>
