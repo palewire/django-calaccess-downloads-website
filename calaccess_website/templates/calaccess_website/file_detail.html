@@ -17,7 +17,10 @@
     {% endif %}
     
     <li><a href="#archive">Archive</a></li>
+
+    {% if object.DOCUMENTCLOUD_PAGES|length > 0 %}
     <li><a href="#references">References</a></li>
+    {% endif %}
 </ul>
 {% endblock %}
 
@@ -204,8 +207,8 @@
     {% endif %}
 </section>
 
+{% if object.DOCUMENTCLOUD_PAGES|length > 0 %}
 <section id="references" class="chapter">
-  {% if object.DOCUMENTCLOUD_PAGES|length > 0 %}
   <h2>References</h2>
   <p>The documents that provided the information on this page.</p>
   <ul>
@@ -213,6 +216,6 @@
   <li> {{ doc }} ({% for object in objects %}<a href="{{ object.canonical_url }}">{{ object.formatted_page_nums }}</a>{% if not forloop.last %}, {% endif %}{% endfor %})</li>
   {% endfor %}
   </ul>
-  {% endif %}
 </section>
+{% endif %}
 {% endblock %}
