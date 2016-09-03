@@ -3,7 +3,7 @@ django-calaccess-raw-data==1.4.4
 psycopg2==2.6.1
 boto3==1.4
 django-storages
-django-bakery==0.8.9
+django-bakery==0.8.11
 six
 Fabric
 flake8
