@@ -1,9 +1,9 @@
 from .files import FileList, FileDetail, FileDownloadsList
 from .forms import FormList, FormDetail
 from .base import CalAccessModelListMixin
+from .docs import DocumentationIndex
 from .other import (
     Home,
-    DocumentationIndex,
     GovernmentDocumentation,
     CalAccess404View,
     CalAccessRobotsTxt
