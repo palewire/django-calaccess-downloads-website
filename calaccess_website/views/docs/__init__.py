@@ -1,4 +1,4 @@
-from .files import FileList, FileDetail, FileDownloadsList
+from .calaccess_files import FileList, FileDetail, FileDownloadsList
 
 import calaccess_raw
 from django.urls import reverse
