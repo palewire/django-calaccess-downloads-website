@@ -48,20 +48,28 @@
 {% block content %}
   {% for group in object_list %}
   <section id="{{ group.grouper|slugify }}" name="{{ group.grouper|slugify }}">
-    <h2>{{ group.grouper|capfirst }}</h2>
+    <h2>{{ group.grouper|capfirst }} files</h2>
     <table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
     {% for file in group.list  %}
-      <tr>
-        <td>
-            <a href="{% url 'file_detail' slug=file.db_table|slugify %}">
-                {{ file.db_table }}
-            </a>
-        </td>
-        <td width="70%">
-            {{ file.doc.strip|first_line|safe  }}
-        </td>
-      </tr>
+        <tr>
+            <td>
+                <a href="{% url 'file_detail' slug=file.db_table|slugify %}">
+                    {{ file.db_table }}
+                </a>
+            </td>
+            <td width="70%">
+                {{ file.doc.strip|first_line|safe  }}
+            </td>
+        </tr>
     {% endfor %}
+    </tbody>
     </table>
   </section>
   {% endfor %}

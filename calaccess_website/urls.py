@@ -54,7 +54,7 @@ urlpatterns = [
 
     # File views
     url(
-        r'^files/$',
+        r'^documentation/files/$',
         views.FileList.as_view(),
         name='file_list'
     ),
