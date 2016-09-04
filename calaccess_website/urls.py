@@ -52,19 +52,19 @@ urlpatterns = [
         name='docs_index'
     ),
 
-    # File views
+    # CAL-ACCESS file views
     url(
-        r'^documentation/files/$',
+        r'^documentation/calaccess-files/$',
         views.FileList.as_view(),
         name='file_list'
     ),
     url(
-        r'^files/(?P<slug>[-\w]+)/$',
+        r'^documentation/calaccess-files/(?P<slug>[-\w]+)/$',
         views.FileDetail.as_view(),
         name='file_detail',
     ),
     url(
-        r'^files/(?P<slug>[-\w]+)/downloads/$',
+        r'^documentation/calaccess-files/(?P<slug>[-\w]+)/downloads/$',
         views.FileDownloadsList.as_view(),
         name='file_downloads_list',
     ),

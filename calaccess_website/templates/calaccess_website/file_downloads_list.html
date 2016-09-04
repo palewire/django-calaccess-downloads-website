@@ -1,7 +1,7 @@
 {% extends 'calaccess_website/base_with_top.html' %}
 {% load humanize calaccess_website_tags %}
 
-{% block title %}{{ object.db_table }} downloads - Files - {{ block.super }}{% endblock%}
+{% block title %}{{ object.db_table }} downloads - CAL-ACCESS files - Documentation - {{ block.super }}{% endblock%}
 
 {% block extra-meta %}
 <link rel="canonical" href="http://{{ CALACCESS_WEBSITE_DOMAIN }}{% url 'file_detail' object.db_table|slugify %}" />
@@ -9,7 +9,8 @@
 
 {% block breadcrumbs %}
 {{ block.super }}
-<li><a href="{% url 'file_list' %}">Files</a></li>
+<li><a href="{% url 'docs_index' %}">Documentation</a></li>
+<li><a href="{% url 'file_list' %}">CAL-ACCESS files</a></li>
 <li><a href="{% url 'file_detail' object.db_table|slugify %}">{{ object.db_table }}</a></li>
 <li>Downloads</li>
 {% endblock %}

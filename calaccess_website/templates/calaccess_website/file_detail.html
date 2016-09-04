@@ -1,7 +1,14 @@
 {% extends 'calaccess_website/base_with_top.html' %}
 {% load humanize calaccess_website_tags %}
 
-{% block title %}{{ object.db_table }} - Files - {{ block.super }}{% endblock%}
+{% block title %}{{ object.db_table }} - CAL-ACCESS files - Documentation - {{ block.super }}{% endblock%}
+
+{% block breadcrumbs %}
+{{ block.super }}
+<li><a href="{% url 'docs_index' %}">Documentation</a></li>
+<li><a href="{% url 'file_list' %}">CAL-ACCESS files</a></li>
+<li>{{ object.db_table }}</li>
+{% endblock %}
 
 {% block affix-nav %}
 <ul class="nav nav-stacked">
@@ -38,12 +45,6 @@
     }
   });
 </script>
-{% endblock %}
-
-{% block breadcrumbs %}
-{{ block.super }}
-<li><a href="{% url 'file_list' %}">Files</a></li>
-<li>{{ object.db_table }}</li>
 {% endblock %}
 
 {% block top %}
