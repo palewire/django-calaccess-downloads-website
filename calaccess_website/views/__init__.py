@@ -1,7 +1,11 @@
-from .files import FileList, FileDetail, FileDownloadsList
 from .forms import FormList, FormDetail
 from .base import CalAccessModelListMixin
-from .docs import DocumentationIndex
+from .docs import (
+    DocumentationIndex,
+    FileList,
+    FileDetail,
+    FileDownloadsList
+)
 from .other import (
     Home,
     GovernmentDocumentation,

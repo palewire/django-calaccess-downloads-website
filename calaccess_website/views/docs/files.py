@@ -1,8 +1,8 @@
 from django.http import Http404
 from calaccess_raw import get_model_list
-from .base import CalAccessModelListMixin
 from django.core.urlresolvers import reverse
 from calaccess_raw.models.tracking import RawDataFile
+from calaccess_website.views import CalAccessModelListMixin
 from bakery.views import BuildableDetailView, BuildableListView
 from calaccess_website.templatetags.calaccess_website_tags import slugify
 
@@ -16,6 +16,11 @@ class FileList(BuildableListView, CalAccessModelListMixin):
         Returns the CAL-ACCESS model list with grouped by type.
         """
         return self.regroup_by_klass_group(get_model_list())
+
+    def get_context_data(self, **kwargs):
+        context = super(FileList, self).get_context_data(**kwargs)
+        context['model_list'] = get_model_list()
+        return context
 
 
 class BaseFileDetailView(BuildableDetailView):
