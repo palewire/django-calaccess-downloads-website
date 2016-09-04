@@ -1,8 +1,9 @@
+from .calaccess_forms import FormList, FormDetail
 from .calaccess_files import FileList, FileDetail, FileDownloadsList
-
 import calaccess_raw
 from django.urls import reverse
 from bakery.views import BuildableTemplateView
+from calaccess_raw.annotations.filing_forms import all_filing_forms
 
 
 class DocumentationIndex(BuildableTemplateView):
@@ -14,6 +15,7 @@ class DocumentationIndex(BuildableTemplateView):
 
     def get_context_data(self):
         model_list = calaccess_raw.get_model_list()
+        form_list = all_filing_forms
         object_list = [
             dict(
                 name='CAL-ACCESS files',
@@ -24,8 +26,10 @@ tracking campaign finance and lobbying activity in state politics.".format(len(m
             ),
             dict(
                 name='CAL-ACCESS forms',
-                description="",
-                url=""
+                description="Descriptions, samples and other documentation for \
+the {} forms that campaigns and lobbyists can use to disclose activity to California's \
+Secretary of State.".format(len(form_list)),
+                url=reverse("form_list"),
             ),
             dict(
                 name='Technical documentation',

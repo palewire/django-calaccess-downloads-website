@@ -1,28 +1,68 @@
 {% extends 'calaccess_website/base_with_top.html' %}
 
-{% block title %}Forms - {{ block.super }}{% endblock%}
+{% block title %}CAL-ACCESS forms - Documentation - {{ block.super }}{% endblock%}
 
 {% block breadcrumbs %}
 {{ block.super }}
-<li>Forms</li>
+<li><a href="{% url 'docs_index' %}">Documentation</a></li>
+<li>CAL-ACCESS forms</li>
+{% endblock %}
+
+{% block affix-nav %}
+<ul class="nav nav-stacked">
+  <li class="active">
+    <a href="#campaign">Campaign</a>
+  </li>
+  <li><a href="#financial-disclosure">Financial disclosure</a></li>
+  <li><a href="#lobbyist">Lobbyist</a></li>
+  <li><a href="#deprecated">Deprecated</a></li>
+</ul>
+{% endblock %}
+
+{% block javascript %}
+<script type="text/javascript">
+  $('body').scrollspy({ target: '#affix-nav'});
+  $('#affix-nav').affix({
+    offset: {
+      top: function () {
+        return (this.bottom = $('.affix-container').position()['top'])
+      },
+      bottom: function () {
+        return (this.bottom = $('.footer').outerHeight(true))
+      }
+    }
+  });
+</script>
 {% endblock %}
 
 {% block top %}
-<h2>Form list</h2>
-<p>Every form with data stored in the CAL-ACCESS database.</p>
+<h2>CAL-ACCESS forms</h2>
+<p>
+    Descriptions, samples and other documentation for
+    the {{ form_list|length }} forms that campaigns and lobbyists can use to disclose activity to California's
+    Secretary of State.
+</p>
 {% endblock %}
 
 {% block content %}
   {% for group in object_list %}
-  <section>
-    <h2>{{ group.grouper|lower|capfirst }}</h2>
+  <section id="{{ group.grouper|slugify }}" name="{{ group.grouper|slugify }}">
+    <h2>{{ group.grouper|lower|capfirst }} forms</h2>
     <table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
     {% for form in group.list  %}
         <tr>
           <td><a href="{% url 'form_detail' id=form.id|lower %}">{{ form.type_and_num|safe }}</td>
           <td width="70%">{{ form.description|safe  }}</td>
         </tr>
     {% endfor %}
+    </tbody>
     </table>
   </section>
   {% endfor %}

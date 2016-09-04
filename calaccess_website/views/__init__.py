@@ -1,10 +1,11 @@
-from .forms import FormList, FormDetail
 from .base import CalAccessModelListMixin
 from .docs import (
     DocumentationIndex,
     FileList,
     FileDetail,
-    FileDownloadsList
+    FileDownloadsList,
+    FormList,
+    FormDetail,
 )
 from .other import (
     Home,

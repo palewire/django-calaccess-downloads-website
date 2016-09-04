@@ -71,12 +71,12 @@ urlpatterns = [
 
     # Form views
     url(
-        r'^forms/$',
+        r'^documentation/calaccess-forms/$',
         views.FormList.as_view(),
         name='form_list'
     ),
     url(
-        r'^forms/(?P<id>\w+)/$',
+        r'^documentation/calaccess-forms/(?P<id>\w+)/$',
         views.FormDetail.as_view(),
         name='form_detail',
     ),
