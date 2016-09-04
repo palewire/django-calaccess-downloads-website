@@ -20,6 +20,22 @@
 </ul>
 {% endblock %}
 
+{% block javascript %}
+<script type="text/javascript">
+  $('body').scrollspy({ target: '#affix-nav'});
+  $('#affix-nav').affix({
+    offset: {
+      top: function () {
+        return (this.bottom = $('.affix-container').position()['top'])
+      },
+      bottom: function () {
+        return (this.bottom = $('.footer').outerHeight(true))
+      }
+    }
+  });
+</script>
+{% endblock %}
+
 {% block top %}
 <h2>CAL-ACCESS files</h2>
 <p>
