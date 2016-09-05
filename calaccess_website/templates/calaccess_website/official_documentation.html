@@ -1,4 +1,4 @@
-{% extends 'calaccess_website/base.html' %}
+{% extends 'calaccess_website/base_with_top.html' %}
 {% load humanize calaccess_website_tags %}
 
 {% block title %}Government documentation - {{ block.super }}{% endblock%}
@@ -7,17 +7,16 @@
   <li class="active">Government documentation</li>
 {% endblock %}
 
+{% block top %}
+<h2>CAL-ACCESS official documentation</h2>
+<p>
+    The jumbled, fragmentary and unreliable documentation
+    for the CAL-ACCESS database provided by California's Secretary of State. For more authoritative
+    information, refer to our more comprehensive documentation of the system's <a href="{% url 'form_list' %}">forms</a> and <a href="{% url 'file_list' %}">files</a>.
+</p>
+{% endblock %}
+
 {% block content %}
-
-<h1>Government documentation</h1>
-
-<p>The California Secretary of State <a href="http://www.sos.ca.gov/prd/cal-access/">has published</a> the following documents related to CAL-ACCESS. You'll also find these .PDF files in various sub-directories of the database export .ZIP file.</p>
-
-<p>Generally speaking, much of this documentation is incomplete, inconsistent and outdated. While it won't serve as an authoritative guide to CAL-ACCESS data, it does provide helpful details for parsing and piecing together the data.</p>
-
-<p>Our team has compiled more comprehensive documentation of the system's <a href="{% url 'form_list' %}">forms</a> and <a href="{% url 'file_list' %}">database tables</a>.</p>
-
-<p>Much of what ends up in CAL-ACCESS is submitted in an electronic file format known as .CAL, which is specifically designed to interface with CAL-ACCESS. These .CAL specifications, along with the required campaign and lobbyist disclosure forms, are also helpful in understanding the lifecycle of information flowing into CAL-ACCESS.</p>
 
 <h2>Overview</h2>
 
@@ -144,6 +143,8 @@
 
 <h2>.CAL file format</h2>
 
+<p>Much of what ends up in CAL-ACCESS is submitted in an electronic file format known as .CAL, which is specifically designed to interface with CAL-ACCESS. These .CAL specifications, along with the required campaign and lobbyist disclosure forms, are also helpful in understanding the lifecycle of information flowing into CAL-ACCESS.</p>
+
 <p>.CAL is a non-proprietary electronic file format used by third-party software vendors to submit electronic disclosure filings on behalf of their clients, California campaigns and lobbyists.</p>
 
 <p>This file format was "the basis for the design of the CAL-ACCESS system", according to the documentation provided by the Political Reform Divison of the Secretary of State.</p>
@@ -252,5 +253,4 @@
   <br />
   <a href="http://s3.documentcloud.org/documents/2712033/Cal-Format-1-05-02.txt">CAL-ACCESS: .CAL Format 1.05.02 (Text)</a>
 </noscript>
-
 {% endblock %}

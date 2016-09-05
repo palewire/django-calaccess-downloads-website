@@ -13,16 +13,17 @@
 {% block affix-nav %}
 <ul class="nav nav-stacked">
     <li class="active"><a href="#latest-download">Latest download</a></li>
-    
+
     {% if not empty %}
     <li><a href="#sample">Sample</a></li>
     {% endif %}
+
     <li><a href="#fields">Fields</a></li>
-    
+
     {% if object.FILING_FORMS|length > 0 %}
     <li><a href="#forms">Forms</a></li>
     {% endif %}
-    
+
     <li><a href="#archive">Archive</a></li>
 
     {% if object.DOCUMENTCLOUD_PAGES|length > 0 %}

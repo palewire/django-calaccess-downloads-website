@@ -1,4 +1,5 @@
 from .calaccess_forms import FormList, FormDetail
+from .calaccess_official import OfficialDocumentation
 from .calaccess_files import FileList, FileDetail, FileDownloadsList
 import calaccess_raw
 from django.urls import reverse
@@ -32,12 +33,14 @@ Secretary of State.".format(len(form_list)),
                 url=reverse("form_list"),
             ),
             dict(
-                name='Technical documentation',
-                description="",
-                url=""
+                name='CAL-ACCESS official documentation',
+                description="The jumbled, fragmentary and unreliable documentation \
+for the CAL-ACCESS database provided by California's Secretary of State. For more authoritative \
+information, refer to our materials.",
+                url=reverse("official_documentation"),
             ),
             dict(
-                name='References',
+                name='Technical documentation',
                 description="",
                 url=""
             ),

@@ -6,10 +6,10 @@ from .docs import (
     FileDownloadsList,
     FormList,
     FormDetail,
+    OfficialDocumentation,
 )
 from .other import (
     Home,
-    GovernmentDocumentation,
     CalAccess404View,
     CalAccessRobotsTxt
 )
@@ -38,5 +38,5 @@ __all__ = (
     'LatestVersion',
     'FormDetail',
     'FormList',
-    'GovernmentDocumentation',
+    'OfficialDocumentation',
 )

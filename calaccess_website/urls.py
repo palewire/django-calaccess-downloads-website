@@ -83,9 +83,9 @@ urlpatterns = [
 
     # Official documentation
     url(
-        r'^government-documentation/$',
-        views.GovernmentDocumentation.as_view(),
-        name='government_documentation'
+        r'^documentation/calaccess-official-documentation/$',
+        views.OfficialDocumentation.as_view(),
+        name='official_documentation'
     ),
 
     #
