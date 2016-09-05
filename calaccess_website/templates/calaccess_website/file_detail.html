@@ -177,15 +177,16 @@ h{% endblock %}
 <section id="archive" class="chapter">
     <h2>Archive</h2>
     <p>Download previous versions of this file from our archive.</p>
-    <br>
 
     <h4>Last 10 downloads</h4>
     <table class="table table-striped">
     <thead>
-      <th>Date</th>
-      <th width=8% class="right">Records</th>
-      <th width=8% class="right">Size</th>
-      <th width=15% class="right"></th>
+      <tr>
+        <th>Date</th>
+        <th width=8% class="right">Records</th>
+        <th width=8% class="right">Size</th>
+        <th width=15% class="right"></th>
+      </tr>
     </thead>
     <tbody>
       {% for file in version_list|slice:":10" %}
