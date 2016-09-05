@@ -4,13 +4,18 @@
 {% block title %}{{ year.year }} - Versions - {{ block.super }}{% endblock%}
 
 {% block breadcrumbs %}
-  <li><a href="{% url 'version_archive_index' %}">Versions</a></li>
+  {{ block.super }}
+  <li><a href="{% url 'version_archive_index' %}">Downloads</a></li>
   <li>{{ year.year }}</li>
 {% endblock %}
 
 {% block top %}
     <h2>Archived data from {{ year|date:"Y" }}</h2>
-    <p><a href="{% url 'version_latest' %}">Go to the latest data</a>.</p>
+    <p>
+        All {{ year|date:"Y" }} release{{ latest|length|pluralize }} of CAL-ACCESS,
+        the government database that tracks campaign finance and lobbying activity in California politics.
+        <a href="{% url 'version_latest' %}">Latest release &raquo;</a>
+    </p>
 {% endblock %}
 
 {% block content %}

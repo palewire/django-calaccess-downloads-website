@@ -4,21 +4,27 @@
 {% block title %}{{ month|date:"F Y" }} - Versions - {{ block.super }}{% endblock%}
 
 {% block breadcrumbs %}
-  <li><a href="{% url 'version_archive_index' %}">Versions</a></li>
+  {{ block.super }}
+  <li><a href="{% url 'version_archive_index' %}">Downloads</a></li>
   <li><a href="{% url 'version_archive_year' month.year %}">{{ month.year }}</a></li>
   <li>{{ month|date:"N" }}</li>
 {% endblock %}
 
 {% block top %}
     <h2>Archived data from {{ month|date:"F Y" }}</h2>
-    <p><a href="{% url 'version_latest' %}">Go to the latest data</a>.</p>
+    <p>
+        All {{ month|date:"F Y" }} release{{ latest|length|pluralize }} of CAL-ACCESS,
+        the government database that tracks campaign finance and lobbying activity in California politics.
+        <a href="{% url 'version_latest' %}">Latest release &raquo;</a>
+    </p>
 {% endblock %}
 
 {% block content %}
 <table class="table table-striped">
   <thead>
     <tr>
-      <th>Version</th>
+      <th>Date</th>
+      <th class="right">Size</th>
     </tr>
   </thead>
   <tbody>
@@ -28,6 +34,9 @@
           <a href="{% url 'version_detail' year=obj.release_datetime.year month=obj.release_datetime|date:'m' day=obj.release_datetime|date:'d' time=obj.release_datetime|date:'His' %}">
               {{ obj.release_datetime|date:"l, N j" }}
           </a>
+      </td>
+      <td class="right">
+            {{ obj.pretty_clean_size }}
       </td>
   </tr>
   {% endfor %}

@@ -9,8 +9,11 @@
 {% endblock %}
 
 {% block top %}
-    <h2>Data archive</h2>
-    <p>The last {{ latest|length|apnumber }} download{{ latest|length|pluralize }} of our cleaned-up version of CAL-ACCESS, the government database that tracks campaign finance and lobbying activity in California politics. <a href="{% url 'version_latest' %}">Go to the latest data &raquo;</a></p>
+    <h2>Downloads</h2>
+    <p>
+        The last {{ latest|length|apnumber }} release{{ latest|length|pluralize }} of CAL-ACCESS,
+        the government database that tracks campaign finance and lobbying activity in California politics.
+    </p>
 {% endblock %}
 
 {% block content %}
