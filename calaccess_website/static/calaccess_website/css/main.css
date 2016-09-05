@@ -30,7 +30,7 @@ sup {
     top: -.2em;
 }
 section.chapter {
-    margin-bottom: 40px;
+    margin-bottom: 50px;
 }
 .bg-red {
     background-color: #ba0a35;
@@ -374,10 +374,9 @@ td.center, th.center{
 }
 
 /* File detail */
-.field-title {
+.list-title {
     font-size: 20px;
     font-weight: 600;
-    margin-right: 10px;
 }
 .gist .markdown-body {
     font-size: 10px !important;

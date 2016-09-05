@@ -50,7 +50,8 @@
 
 {% block top %}
   <h2>{{ object.db_table }}</h2>
-  <p>{{ object.doc.strip|first_line|safe }}</p>
+  <p>Information and downloads for the {{ object.db_table }} data file: <br>
+  {{ object.doc.strip|first_line|safe }}</p>
 {% endblock %}
 
 {% block content %}
@@ -95,11 +96,12 @@
 <section id="fields" class="chapter">
   <h2>Fields</h2>
   <p>Information about the {{ choice_fields|length }} fields and the definitions of any abbreviated values.</p>
+  <hr>
 
   {% for field in choice_fields %}
   {% if field.name != "id" %}
-  <div class="field-row">
-      <span class="field-title">{{ field.db_column }}</span>
+  <div class="list-row">
+      <span class="list-title">{{ field.db_column }}</span> &nbsp;
       <span>{{ field.description }} {% if field.is_unique_key %}&middot; <mark>Unique</mark>{% endif %}</span>
       <p>{{ field.definition|capfirst }}</p>
   </div>
@@ -146,24 +148,21 @@
 <section id="forms" class="chapter">
   {% if object.FILING_FORMS|length > 0 %}
   <h2>Forms</h2>
-  <p>The forms the state uses to collect the information that populates this file.</p>
-  <table class="table">
-  <tbody valign="top">
-      {% for form, sections in object.get_filing_forms_w_sections %}
-      <tr>
-          <td>
-              <h4><a href="{% url 'form_detail' id=form.id|lower %}">{{ form.type_and_num|safe }}</a>:
-              {{ form.title|safe }}</h4>
-              <ul>
-              {% for section in sections %}
-                <li>{{ section.title|safe }}</li>
-              {% endfor %}
-              </ul>
-          </td>
-      </tr>
-      {% endfor %}
-  </tbody>
-  </table>
+  <p>The forms that the state uses to collect the information that populates this file.</p>
+  <hr>
+
+  {% for form, sections in object.get_filing_forms_w_sections %}
+  <div class="list-row">
+  <p class="list-title"><a href="{% url 'form_detail' id=form.id|lower %}">{{ form.type_and_num|safe }}</a> &nbsp;
+              {{ form.title|safe }} <br>
+  {% for section in sections %}
+  <p>{{ section.title|safe }}</p>
+  {% endfor %}
+  </ul>
+  </div>
+  <hr>
+  {% endfor %}
+  
   {% endif %}
 </section>
 
@@ -215,7 +214,7 @@
   <p>The documents that provided the information on this page.</p>
   <ul>
   {% for doc, objects in docs.items %}
-  <li> {{ doc }} ({% for object in objects %}<a href="{{ object.canonical_url }}">{{ object.formatted_page_nums }}</a>{% if not forloop.last %}, {% endif %}{% endfor %})</li>
+  <li><p>{{ doc }} (p. {% for object in objects %}<a href="{{ object.canonical_url }}">{{ object.formatted_page_nums }}</a>{% if not forloop.last %}, {% endif %}{% endfor %})</p></li>
   {% endfor %}
   </ul>
 </section>
