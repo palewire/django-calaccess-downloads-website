@@ -43,7 +43,7 @@ $('#affix-nav').affix({
 {% endblock %}
 
 {% block content %}
-<section name="full-archive" id="full-archive" class="chapter">
+<section id="full-archive" class="chapter">
     <h2>Full archive</h2>
     <p>
         The complete package of {{ object.download_file_count }} database tables released by
@@ -70,7 +70,7 @@ $('#affix-nav').affix({
 </section>
 
 {% if file_list %}
-<section id="archived-files" name="archived-files" class="chapter">
+<section id="archived-files" class="chapter">
   <div class="filters">
       <h2>Archived files</h2>
       <p>
@@ -145,7 +145,7 @@ $('#affix-nav').affix({
 {% endif %}
 
 {% if object.error_count %}
-<section name="errata" id="errata" class="chapter">
+<section id="errata" class="chapter">
     <h2>Errata</h2>
     <p>
        The raw data provided by the state contains errors in how some values are

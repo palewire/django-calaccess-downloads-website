@@ -52,7 +52,7 @@
 {% block content %}
 
 {% if form.sections|length > 0 %}
-<section id="sections" name="sections" class="chapter">
+<section id="sections" class="chapter">
     <h2>Sections</h2>
     <p>
         {{ form.type_and_num }} has {{ form.sections|length }} section{{ form.sections|pluralize }}.
@@ -68,7 +68,7 @@
 
 
 {% if form.get_models|length > 0 %}
- <section id="calaccess-files" name="calaccess-files" class="chapter">
+ <section id="calaccess-files" class="chapter">
     <h2>CAL-ACCESS files</h2>
     <p>
         This form populates the following {{ form.get_models|length|apnumber }}
@@ -92,7 +92,7 @@
 {% endif %}
 
 {% if form.documentcloud_id %}
-<section id="sample" name="sample" class="chapter">
+<section id="sample" class="chapter">
     <h2>Sample</h2>
     <p>An example of {{ form.type_and_num }}.</p>
     {% documentcloud_embed form.documentcloud.id %}

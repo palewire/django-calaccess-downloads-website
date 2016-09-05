@@ -288,13 +288,13 @@ td.center, th.center{
 .home .home-card p {
     color: #fdfdfd;
 }
-.home div[name='headline'] {
+.home div.headline {
     margin: 40px auto;
 }
-.home section[name='boxes'] {
+.home section.boxes {
     margin: 40px 0 20px 0;
 }
-.home section[name='questions'] {
+.home section.questions {
     margin: 0;
 }
 .home .question {
@@ -306,15 +306,15 @@ td.center, th.center{
 .no-border {
     border: none !important;
 }
-.home section[name="sponsors"] {
+.home section.sponsors {
     margin-top: 0px;
 }
-.home section[name="sponsors"] .funders img {
+.home section.sponsors .funders img {
     width: 90%;
     padding: 0 5%;
     margin: 20px 0;
 }
-.home section[name="sponsors"] .leaders img {
+.home section.sponsors .leaders img {
     width: 85%;
     padding: 0 12.5%;
     margin: 20px 0;
@@ -486,13 +486,13 @@ and (max-width : 490px) {
     header .nav>li>a {
         padding-bottom: 2px;
     }
-    section[name="sponsors"] .funders img {
+    section.sponsors .funders img {
         width: 90%;
         padding: 0 10% 0 0;
         margin: 20px 0;
         float: left;
     }
-    section[name="sponsors"] .leaders img {
+    section.sponsors .leaders img {
         width: 85%;
         padding: 0 15% 0 0;
         margin: 20px 0;
