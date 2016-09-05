@@ -21,15 +21,13 @@ class DocumentationIndex(BuildableTemplateView):
             dict(
                 name='CAL-ACCESS files',
                 description="Definitions, record layouts and data dictionaries for the {} \
-files released from CAL-ACCESS, the California Secretary of State's database \
-tracking campaign finance and lobbying activity in state politics.".format(len(model_list)),
+CAL-ACCESS files released by the state.".format(len(model_list)),
                 url=reverse("file_list"),
             ),
             dict(
                 name='CAL-ACCESS forms',
                 description="Descriptions, samples and other documentation for \
-the {} forms that campaigns and lobbyists can use to disclose activity to California's \
-Secretary of State.".format(len(form_list)),
+the {} forms that campaigns and lobbyists use to disclose activity to the state.".format(len(form_list)),
                 url=reverse("form_list"),
             ),
             dict(
@@ -40,9 +38,10 @@ information, refer to our materials.",
                 url=reverse("official_documentation"),
             ),
             dict(
-                name='Technical documentation',
-                description="",
-                url=""
+                name='CCDC technical documentation',
+                description="Technical documentation for the collection of \
+California Civic Data Coalition applications that power this site.",
+                url="http://django-calaccess.californiacivicdata.org"
             ),
         ]
         return {
