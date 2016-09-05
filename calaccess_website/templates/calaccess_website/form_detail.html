@@ -95,22 +95,7 @@
 <section id="sample" name="sample" class="chapter">
     <h2>Sample</h2>
     <p>An example of {{ form.type_and_num }}.</p>
-    <div id="DV-viewer-{{ form.documentcloud.id }}" class="DV-container"></div>
-    <script src="//s3.amazonaws.com/s3.documentcloud.org/viewer/loader.js"></script>
-    <script>
-        DV.load("//www.documentcloud.org/documents/{{ form.documentcloud.id }}.js", {
-        container: "#DV-viewer-{{ form.documentcloud.id }}",
-        width: 680,
-        height: 850,
-        sidebar: false,
-        zoom: 550
-        });
-    </script>
-    <noscript>
-        <a href={{ form.documentcloud.pdf_url }}>{{ form.documentcloud.title }} (PDF)</a>
-        <br />
-        <a href={{ form.documentcloud.text_url }}>{{ form.documentcloud.title }} (Text)</a>
-      </noscript>
+    {% documentcloud_embed form.documentcloud.id %}
   </section>
 {% endif %}
 
