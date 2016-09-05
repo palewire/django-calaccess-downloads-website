@@ -8,7 +8,7 @@
 <li><a href="{% url 'docs_index' %}">Documentation</a></li>
 <li><a href="{% url 'file_list' %}">CAL-ACCESS files</a></li>
 <li>{{ object.db_table }}</li>
-{% endblock %}
+h{% endblock %}
 
 {% block top %}
   <h1>{{ object.db_table }}</h1>
@@ -29,7 +29,9 @@
     <li><a href="#forms">Forms</a></li>
     {% endif %}
 
+    {% if version_list %}
     <li><a href="#archive">Archive</a></li>
+    {% endif %}
 
     {% if object.DOCUMENTCLOUD_PAGES|length > 0 %}
     <li><a href="#references">References</a></li>
@@ -149,32 +151,30 @@
   {% endfor %}
 </section>
 
+{% if object.FILING_FORMS|length > 0 %}
 <section id="forms" class="chapter">
-  {% if object.FILING_FORMS|length > 0 %}
   <h2>Forms</h2>
   <p>The forms that the state uses to collect the information that populates this file.</p>
   <hr>
 
   {% for form, sections in object.get_filing_forms_w_sections %}
   <div class="list-row">
-  <p class="list-title">
-    <a href="{% url 'form_detail' id=form.id|lower %}">
-        {{ form.type_and_num|safe }}: {{ form.title|safe }}
-    </a>
-    <br>
-  {% for section in sections %}
-  <p>{{ section.title|safe }}</p>
-  {% endfor %}
-  </ul>
+      <p class="list-title">
+        <a href="{% url 'form_detail' id=form.id|lower %}">
+            {{ form.type_and_num|safe }}: {{ form.title|safe }}
+        </a>
+      </p>
+      {% for section in sections %}
+          <p>{{ section.title|safe }}</p>
+      {% endfor %}
   </div>
   <hr>
   {% endfor %}
-  
-  {% endif %}
 </section>
+{% endif %}
 
+{% if version_list %}
 <section id="archive" class="chapter">
-    {% if version_list %}
     <h2>Archive</h2>
     <p>Download previous versions of this file from our archive.</p>
     <br>
@@ -209,11 +209,8 @@
         </tr>
     </tfoot>
     </table>
-
-    {% else %}
-        <p>No files.</p>
-    {% endif %}
 </section>
+{% endif %}
 
 {% if object.DOCUMENTCLOUD_PAGES|length > 0 %}
 <section id="references" class="chapter">
