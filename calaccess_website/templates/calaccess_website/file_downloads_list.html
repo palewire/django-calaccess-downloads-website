@@ -17,14 +17,13 @@
 
 {% block top %}
   <h2>{{ object.db_table }}</h2>
-  <p>All downloads for this file. <a href="{% url 'file_detail' object.db_table|slugify %}">See documentation</a>.</p>
+  <p>The last {{ version_list|length }} downloads for this file. <a href="{% url 'file_detail' object.db_table|slugify %}">See documentation &raquo;</a></p>
 {% endblock %}
 
 {% block content %}
   <div class="row">
     <div class="col-md-12">
       {% if version_list %}
-      <h2>Last {{ version_list|length }} downloads</h2>
       <table class="table table-striped">
       <thead>
         <th>Date</th>
