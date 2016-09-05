@@ -95,7 +95,7 @@
 <section id="sample" name="sample" class="chapter">
     <h2>Sample</h2>
     <p>An example of {{ form.type_and_num }}.</p>
-    <div style="margin-bottom:35px;" id="DV-viewer-{{ form.documentcloud.id }}" class="DV-container"></div>
+    <div id="DV-viewer-{{ form.documentcloud.id }}" class="DV-container"></div>
     <script src="//s3.amazonaws.com/s3.documentcloud.org/viewer/loader.js"></script>
     <script>
         DV.load("//www.documentcloud.org/documents/{{ form.documentcloud.id }}.js", {

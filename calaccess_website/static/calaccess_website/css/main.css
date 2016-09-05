@@ -437,6 +437,11 @@ footer .easteregg a {
     font-weight: 200;
 }
 
+/* DocumentCloud embeds */
+.DV-container {
+    margin-bottom:35px;
+}
+
 @media only screen
 and (max-width : 992px) {
     .align-right{
