@@ -16,7 +16,7 @@
 {% endblock %}
 
 {% block top %}
-  <h2>{{ object.db_table }}</h2>
+  <h1 class="h2">{{ object.db_table }}</h1>
   <p>The last {{ version_list|length }} downloads for this file. <a href="{% url 'file_detail' object.db_table|slugify %}">See documentation &raquo;</a></p>
 {% endblock %}
 

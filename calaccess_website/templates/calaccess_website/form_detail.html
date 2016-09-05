@@ -4,7 +4,7 @@
 {% block title %}{{ form.type_and_num|safe }}: {{ form.title|safe }} - CAL-ACCESS forms - Documentation {{ block.super }}{% endblock%}
 
 {% block top %}
-<h2>{{ form.type_and_num }}: {{ form.title|safe }}</h2>
+<h1 class="h2">{{ form.type_and_num }}: {{ form.title|safe }}</h1>
 <p>{% if form.description %}{{ form.description|safe }}{% endif %}</p>
 {% endblock %}
 

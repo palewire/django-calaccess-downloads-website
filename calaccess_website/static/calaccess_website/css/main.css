@@ -40,6 +40,7 @@ section.chapter {
     color:  #fdfdfd;
     padding: 15px;
 }
+.bg-red h1,
 .bg-red h2 {
     margin-top: 5px;
 }
@@ -453,7 +454,7 @@ and (max-width : 992px) {
     section.chapter {
         margin: 10px auto;
     }
-    h2 {
+    h1, h2 {
         font-size: 28px;
     }
     h3 {
