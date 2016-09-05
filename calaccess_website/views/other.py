@@ -1,5 +1,5 @@
 from calaccess_raw.models.tracking import RawDataVersion
-from bakery.views import BuildableTemplateView, BuildableArchiveIndexView, Buildable404View
+from bakery.views import BuildableArchiveIndexView, Buildable404View
 
 
 class Home(BuildableArchiveIndexView):

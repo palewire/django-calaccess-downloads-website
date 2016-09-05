@@ -48,3 +48,14 @@ information, refer to our materials.",
         return {
             'object_list': object_list
         }
+
+
+__all__ = (
+    'DocumentationIndex',
+    'FormList',
+    'FormDetail',
+    'FileList',
+    'FileDetail',
+    'FileDownloadsList',
+    'OfficialDocumentation',
+)
