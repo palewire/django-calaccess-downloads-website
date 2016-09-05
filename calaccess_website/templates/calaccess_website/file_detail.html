@@ -59,7 +59,10 @@
   <h2>Latest download</h2>
     {% if version_list.0 %}
     {% with version_list.0 as latest_file %}
-    <p>The latest version of this file was released on <b>{{ latest_file.version.release_datetime|date:"l, N j, Y" }}</b> at <b>{{ latest_file.version.release_datetime|date:"P" }}</b></p>
+    <p>
+        The latest version of this file was released on {{ latest_file.version.release_datetime|date:"l, N j, Y" }}
+        at {{ latest_file.version.release_datetime|date:"P" }}
+    </p>
     {% if latest_file.clean_file_archive %}
         <p>
             <a href="{% archive_url latest_file.clean_file_archive.name is_latest=True %}"

@@ -17,6 +17,9 @@ a, a.btn-default{
 a:hover{
     color:#d87d85;
 }
+b, strong {
+    font-weight: 600;
+}
 kbd {
     padding: 10px;
     border-radius: 0;
