@@ -96,7 +96,7 @@ $('#affix-nav').affix({
   {% for group in file_list %}
   {% for file in group.list %}
     <section class="row file-card {{ group.grouper|slugify }}">
-        <hgroup class="row">
+        <div class="row">
             <div class="col-md-6">
                 <h4>
                     <a href="{% url 'file_detail' slug=file.file_name|slugify %}">
@@ -109,7 +109,7 @@ $('#affix-nav').affix({
                     <mark>{{ group.grouper|upper }}</mark>
                 </p>
             </div>
-        </hgroup>
+        </div>
         <hr>
         <div class="row">
             <div class="col-md-6">

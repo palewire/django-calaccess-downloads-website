@@ -21,7 +21,7 @@
     <h2>Sections</h2>
     {% for obj in object_list %}
     <section class="row file-card {{ obj.name|slugify }}">
-        <hgroup class="row">
+        <div class="row">
             <div class="col-md-6">
                 <h4>
                     <a href="{{ obj.url }}">
@@ -29,7 +29,7 @@
                     </a>
                 </h4>
             </div>
-        </hgroup>
+        </div>
         <hr>
         <div class="row">
             <div class="col-md-10">
