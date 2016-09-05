@@ -8,7 +8,7 @@
 <li><a href="{% url 'docs_index' %}">Documentation</a></li>
 <li><a href="{% url 'file_list' %}">CAL-ACCESS files</a></li>
 <li>{{ object.db_table }}</li>
-h{% endblock %}
+{% endblock %}
 
 {% block top %}
   <h1>{{ object.db_table }}</h1>
