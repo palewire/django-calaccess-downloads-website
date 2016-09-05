@@ -153,8 +153,11 @@
 
   {% for form, sections in object.get_filing_forms_w_sections %}
   <div class="list-row">
-  <p class="list-title"><a href="{% url 'form_detail' id=form.id|lower %}">{{ form.type_and_num|safe }}</a> &nbsp;
-              {{ form.title|safe }} <br>
+  <p class="list-title">
+    <a href="{% url 'form_detail' id=form.id|lower %}">
+        {{ form.type_and_num|safe }}: {{ form.title|safe }}
+    </a>
+    <br>
   {% for section in sections %}
   <p>{{ section.title|safe }}</p>
   {% endfor %}
