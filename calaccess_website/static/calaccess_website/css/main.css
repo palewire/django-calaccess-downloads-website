@@ -454,9 +454,6 @@ and (max-width : 992px) {
         float: left;
         text-align: left;
     }
-    section.chapter {
-        margin: 10px auto;
-    }
     h3 {
         margin-top: 10px;
     }
