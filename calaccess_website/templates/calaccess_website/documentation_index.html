@@ -3,17 +3,17 @@
 
 {% block title %}Documentation - {{ block.super }}{% endblock%}
 
+{% block breadcrumbs %}
+{{ block.super }}
+<li>Documentation</li>
+{% endblock %}
+
 {% block top %}
-    <h1 class="h2">Documentation</h1>
+    <h1>Documentation</h1>
     <p>
         How to work with data from CAL-ACCESS, the California Secretary of State's
         database tracking campaign finance and lobbying activity in state politics.
     </p>
-{% endblock %}
-
-{% block breadcrumbs %}
-{{ block.super }}
-<li>Documentation</li>
 {% endblock %}
 
 {% block content %}

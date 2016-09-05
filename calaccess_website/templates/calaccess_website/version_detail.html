@@ -44,7 +44,7 @@ $('#affix-nav').affix({
 
 {% block content %}
 <section name="full-archive" id="full-archive" class="chapter">
-    <h3>Full archive</h3>
+    <h2>Full archive</h2>
     <p>
         The complete package of {{ object.download_file_count }} database tables released by
         California's Secretary of State, which we have cleaned up and converted
@@ -73,7 +73,7 @@ $('#affix-nav').affix({
 {% if file_list %}
 <section id="archived-files" name="archived-files" class="chapter">
   <div class="filters">
-      <h3>Archived files</h3>
+      <h2>Archived files</h2>
       <p>
           Our cleaned-up version of each of the {{ object.download_file_count }}
           database tables released by state officials, grouped by type.
@@ -147,7 +147,7 @@ $('#affix-nav').affix({
 
 {% if object.error_count %}
 <section name="errata" id="errata" class="chapter">
-    <h3>Errata</h3>
+    <h2>Errata</h2>
     <p>
        The raw data provided by the state contains errors in how some values are
        escaped, quoted and delimited. The result is a small number of

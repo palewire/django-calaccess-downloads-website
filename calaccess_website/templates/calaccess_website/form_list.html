@@ -8,6 +8,15 @@
 <li>CAL-ACCESS forms</li>
 {% endblock %}
 
+{% block top %}
+<h1>CAL-ACCESS forms</h1>
+<p>
+    Descriptions, samples and other documentation for
+    the {{ form_list|length }} forms that campaigns and lobbyists can use to disclose activity to California's
+    Secretary of State.
+</p>
+{% endblock %}
+
 {% block affix-nav %}
 <ul class="nav nav-stacked">
   <li class="active">
@@ -33,15 +42,6 @@
     }
   });
 </script>
-{% endblock %}
-
-{% block top %}
-<h1 class="h2">CAL-ACCESS forms</h1>
-<p>
-    Descriptions, samples and other documentation for
-    the {{ form_list|length }} forms that campaigns and lobbyists can use to disclose activity to California's
-    Secretary of State.
-</p>
 {% endblock %}
 
 {% block content %}

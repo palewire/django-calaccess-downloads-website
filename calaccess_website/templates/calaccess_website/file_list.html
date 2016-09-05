@@ -9,6 +9,15 @@
 <li>CAL-ACCESS files</li>
 {% endblock %}
 
+{% block top %}
+<h1>CAL-ACCESS files</h1>
+<p>
+    Definitions, record layouts and data dictionaries for the {{ model_list|length }}
+    files released from CAL-ACCESS, the California Secretary of State's database
+    tracking campaign finance and lobbying activity in state politics.
+</p>
+{% endblock %}
+
 {% block affix-nav %}
 <ul class="nav nav-stacked">
   <li class="active">
@@ -34,15 +43,6 @@
     }
   });
 </script>
-{% endblock %}
-
-{% block top %}
-<h1 class="h2">CAL-ACCESS files</h1>
-<p>
-    Definitions, record layouts and data dictionaries for the {{ model_list|length }}
-    files released from CAL-ACCESS, the California Secretary of State's database
-    tracking campaign finance and lobbying activity in state politics.
-</p>
 {% endblock %}
 
 {% block content %}
