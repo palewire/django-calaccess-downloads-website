@@ -50,8 +50,7 @@
 
 {% block top %}
   <h2>{{ object.db_table }}</h2>
-  <p>Information and downloads for this part of CAL-ACCESS, the database that tracks campaign finance and lobbying activity in California politics. This file's description:<br>
-  {{ object.doc.strip|first_line|safe }}</p>
+  <p>{{ object.doc.strip|first_line|safe }}</p>
 {% endblock %}
 
 {% block content %}
@@ -60,11 +59,11 @@
     {% if version_list.0 %}
     {% with version_list.0 as latest_file %}
     <p>
-        The latest version of this file was released by
-        California's Secretary of State on {{ latest_file.version.release_datetime|date:"l, N j, Y" }}
+        The latest release of this file from CAL-ACCESS, the database that tracks campaign
+        finance and lobbying activity in California politics.
+        It was published by California's Secretary of State on {{ latest_file.version.release_datetime|date:"l, N j, Y" }}
         at {{ latest_file.version.release_datetime|date:"P" }} We have cleaned it up and converted
         into a flat file with {{ latest_file.clean_records_count|intword|intcomma }} rows of comma-separated values.
-
     </p>
     {% if latest_file.clean_file_archive %}
         <p>
