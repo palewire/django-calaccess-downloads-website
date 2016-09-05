@@ -21,10 +21,14 @@
 
 {% block affix-nav %}
 <ul class="nav nav-stacked">
-    <li class="active"><a href="#overview">Overview</a></li>
-    <li><a href="#readme">README</a></li>
-    <li><a href="#faq">FAQ</a></li>
-    <li><a href="#tables-columns-indexes">Tables, columns, indexes</a></li>
+    <li class="active"><a href="#overview">CAL-ACCESS overview</a></li>
+    <li><a href="#readme">CAL-ACCESS README</a></li>
+    <li><a href="#faq">CAL-ACCESS FAQ</a></li>
+    <li><a href="#tables-columns-indexes">CAL-ACCESS tables, columns, indexes</a></li>
+    <li><a href="#cal-readme">.CAL README</a></li>
+    <li><a href="#cal-format-mapping">.CAL to CAL-ACCESS mapping</a></li>
+    <li><a href="#cal-v201">.CAL v2.01 release notes</a></li>
+    <li><a href="#cal-v10502">.CAL v1.05.02 release notes</a></li>
 </ul>
 {% endblock %}
 
@@ -47,7 +51,7 @@
 
 {% block content %}
 <section id="overview" name="overview" class="chapter">
-    <h2>Overview</h2>
+    <h2>CAL-ACCESS overview</h2>
     <p>
         Includes explanations of the flow of information into the CAL-ACCESS
         database and an appendix of campaign and lobbyist disclosure forms. Last updated Sept. 27, 2010.
@@ -57,7 +61,7 @@
 
 
 <section id="readme" name="readme" class="chapter">
-    <h2>README</h2>
+    <h2>CAL-ACCESS README</h2>
     <p>
         An incomplete list of data files included in the nightly export of CAL-ACCESS files.
         Careful readers will note that the expected format of the data files is wrong. The state provides
@@ -66,8 +70,9 @@
     {% documentcloud_embed "2711617-ReadMe-Zip" %}
 </section>
 
+
 <section id="faq" name="faq" class="chapter">
-    <h2>FAQ</h2>
+    <h2>CAL-ACCESS FAQ</h2>
     <p>
         A list of answers to frequently asked questions about the CAL-ACCESS database.
         Last updated Sept. 27, 2010.
@@ -75,8 +80,9 @@
     {% documentcloud_embed "2711615-FAQ" %}
 </section>
 
+
 <section id="tables-columns-indexes" name="tables-columns-indexes" class="chapter">
-    <h2>Tables, columns, indexes</h2>
+    <h2>CAL-ACCESS tables, columns, indexes</h2>
 
     <p>
         The closest thing to a comprehensive record layout for CAL-ACCESS, this
@@ -102,52 +108,56 @@
     {% documentcloud_embed "2711614-CalAccessTablesWeb" %}
 </section>
 
-<h3>Map from .CAL Format to Database Table and Fields</h3>
 
-<p><b>Updated on 04/25/2002</b></p>
+<section id="cal-readme" name="cal-readme" class="chapter">
+    <h2>.CAL README</h2>
+    <p>
+        Much of what ends up in CAL-ACCESS is submitted in an electronic file format known as .CAL,
+        which is specifically designed to interface with CAL-ACCESS. 
+    </p>
+    <p>
+        The non-proprietary electronic file format used by third-party software
+        vendors to submit electronic disclosure filings on behalf of their clients,
+        California campaigns and lobbyists.
+    </p>
+    <p>
+        These .CAL specifications,
+        along with the required campaign and lobbyist disclosure forms, are also helpful in understanding
+        the lifecycle of information flowing into CAL-ACCESS. Last updated April 25, 2002.
+    </p>
+    {% documentcloud_embed "2712035-Cal-Readme" %}
+</section>
 
-<p>Includes a mapping of .CAL file format fields to the CAL-ACCESS database fields. According to the .CAL ReadMe document, the field names in the CAL-ACCESS raw data export are from the tables, rather than the .CAL format.</p>
 
-<div style="margin-bottom:35px;" id="DV-viewer-2711616-MapCalFormat2Fields" class="DV-container"></div>
+<section id="cal-format-mapping" name="cal-format-mapping" class="chapter">
+    <h2>.CAL to CAL-ACCESS mapping</h2>
+    <p>
+        A mapping of the .CAL file format fields to CAL-ACCESS database fields.
+        Last updated April 25, 2002.
+    </p>
+    {% documentcloud_embed "2711616-MapCalFormat2Fields" %}
+</section>
 
-{% documentcloud_embed "2711616-MapCalFormat2Fields" %}
 
-<h2>.CAL file format</h2>
+<section id="cal-v201" name="cal-v201" class="chapter">
+    <h2>.CAL v2.01 release notes</h2>
+    <p>
+        Describes changes to the .CAL file format, including changes to look-up code values,
+        that came about in version 2.01, which we believe to be the current version.
+        Last updated November 5, 2001.
+    </p>
+    {% documentcloud_embed "2712032-Cal-Errata-201" %}
+    {% documentcloud_embed "2712034-Cal-Format-201" %}
+</section>
 
-<p>Much of what ends up in CAL-ACCESS is submitted in an electronic file format known as .CAL, which is specifically designed to interface with CAL-ACCESS. These .CAL specifications, along with the required campaign and lobbyist disclosure forms, are also helpful in understanding the lifecycle of information flowing into CAL-ACCESS.</p>
 
-<p>.CAL is a non-proprietary electronic file format used by third-party software vendors to submit electronic disclosure filings on behalf of their clients, California campaigns and lobbyists.</p>
-
-<p>This file format was "the basis for the design of the CAL-ACCESS system", according to the documentation provided by the Political Reform Divison of the Secretary of State.</p>
-
-<p>The following documents can also be found in the CalFormat directory inside either the CAL-ACCESS documentation and database export ZIP files.</p>
-
-<h2>.CAL Format Readme</h2>
-
-<p><b>Updated on 04/25/2002</b><p>
-
-<p>A brief explanation of the purpose of the .CAL format and its relationship to the CAL-ACCESS system.</p>
-
-{% documentcloud_embed "2712035-Cal-Readme" %}
-
-<h3>v2.01 Errata and Format</h3>
-
-<p><b>Updated on 11/05/2001</b></p>
-
-<p>Describes changes to the .CAL file format, including changes to look-up code values, that came about in version 2.01 (current version).</p>
-
-{% documentcloud_embed "2712032-Cal-Errata-201" %}
-
-{% documentcloud_embed "2712034-Cal-Format-201" %}
-
-<h3>v1.05.02 Errata and Format</h3>
-
-<p><b>Updated on 05/10/2000</b></p>
-
-<p>Describes changes to the .CAL file format, including changes to look-up code values, that came about in version 1.05.02.</p>
-
-{% documentcloud_embed "2712031-Cal-Errata-1-05-02" %}
-
-{% documentcloud_embed "2712033-Cal-Format-1-05-02" %}
-
+<section id="cal-v10502" name="cal-v10502" class="chapter">
+    <h2>.CAL v1.05.02 release notes</h2>
+    <p>
+        Describes changes to the .CAL file format, including changes to look-up code values,
+        that came about in version 1.05.02. Last updated May 10, 2000.
+    </p>
+    {% documentcloud_embed "2712031-Cal-Errata-1-05-02" %}
+    {% documentcloud_embed "2712033-Cal-Format-1-05-02" %}
+</section>
 {% endblock %}
