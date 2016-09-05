@@ -60,8 +60,8 @@
     {% if version_list.0 %}
     {% with version_list.0 as latest_file %}
     <p>
-        The latest version of this file was released by the
-        California Secretary of State on {{ latest_file.version.release_datetime|date:"l, N j, Y" }}
+        The latest version of this file was released by
+        California's Secretary of State on {{ latest_file.version.release_datetime|date:"l, N j, Y" }}
         at {{ latest_file.version.release_datetime|date:"P" }}, which we have cleaned up and converted
         into a flat file with {{ latest_file.clean_records_count|intword|intcomma }} rows of comma-separated values.
 
