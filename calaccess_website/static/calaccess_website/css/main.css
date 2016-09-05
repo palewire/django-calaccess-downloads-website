@@ -212,6 +212,9 @@ header .navbar-default .navbar-nav>li>a {
 .affix {
     top: 0;
 }
+#affix-nav {
+    width: 140px;
+}
 
 /* Pagination */
 .pagination>li>a, .pagination>li>span {

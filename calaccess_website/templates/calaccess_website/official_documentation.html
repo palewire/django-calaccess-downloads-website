@@ -22,7 +22,7 @@
 {% block affix-nav %}
 <ul class="nav nav-stacked">
     <li class="active"><a href="#overview">CAL-ACCESS overview</a></li>
-    <li><a href="#readme">CAL-ACCESS README</a></li>
+    <li><a href="#readme">CAL-ACCESS <br> README</a></li>
     <li><a href="#faq">CAL-ACCESS FAQ</a></li>
     <li><a href="#tables-columns-indexes">CAL-ACCESS tables, columns, indexes</a></li>
     <li><a href="#cal-readme">.CAL README</a></li>
@@ -38,7 +38,7 @@
   $('#affix-nav').affix({
     offset: {
       top: function () {
-        return (this.bottom = $('.affix-container').position()['top'])
+        return (this.top = $('.affix-container').position()['top'])
       },
       bottom: function () {
         return (this.bottom = $('.footer').outerHeight(true))

@@ -45,7 +45,7 @@
   $('#affix-nav').affix({
     offset: {
       top: function () {
-        return (this.bottom = $('.affix-container').position()['top'])
+        return (this.top = $('.affix-container').position()['top'])
       },
       bottom: function () {
         return (this.bottom = $('.footer').outerHeight(true))
