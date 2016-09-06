@@ -5,11 +5,14 @@
 
 {% block content %}
 <article class="home homepage">
-
     <div class="row headline">
-        <div class="col-sm-10 col-sm-offset-1 md-center">
-            <h1>{{ CALACCESS_WEBSITE_TITLE }}</h1>
+        <div class="col-md-6">
+            <h1>{{ CALACCESS_WEBSITE_TITLE|upper }}</h1>
             <p class="lead">{{ CALACCESS_WEBSITE_DESCRIPTION }}</p>
+            <a href="{% url 'version_latest' %}"><button class="btn btn-lg btn-calaccess">Download latest</button></a>
+        </div>
+        <div class="col-md-6" style="text-align: right;">
+            <img src="{% static 'calaccess_website/images/geobear-cropped.png' %}">
         </div>
     </div>
 

@@ -292,7 +292,10 @@ td.center, th.center{
     color: #fdfdfd;
 }
 .home div.headline {
-    margin: 40px auto;
+    margin: 40px auto 60px auto;
+}
+.home div.headline img {
+    height: 450px;
 }
 .home section.boxes {
     margin: 40px 0 20px 0;
