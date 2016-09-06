@@ -7,14 +7,14 @@
     <div class="bg-red">
         <div class="container">
             <div class="row">
-                <hgroup class="col-md-9">
+                <nav class="col-md-9">
                     <ol class="breadcrumb">
                     {% block breadcrumbs %}
                         <li><a href="{% url 'home' %}">Home</a></li>
                     {% endblock %}
                     </ol>
                   {% block top %}{% endblock %}
-                </hgroup>
+                </nav>
             </div>
         </div>
     </div>
@@ -23,7 +23,7 @@
             <div class="col-md-9">
                 {% block content %}{% endblock %}
             </div>
-            <div class="col-md-2 col-md-offset-1">
+            <nav class="col-md-2 col-md-offset-1 affix-container visible-md visible-lg">
                 <nav id="affix-nav">
                     {% block affix-nav %}{% endblock %}
                 </nav>

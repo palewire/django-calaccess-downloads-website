@@ -1,6 +1,11 @@
 {% extends 'calaccess_website/base_with_top.html' %}
 {% load humanize calaccess_website_tags %}
 
+{% block breadcrumbs %}
+{{ block.super }}
+<li><a href="{% url 'version_archive_index' %}">Downloads</a></li>
+{% endblock %}
+
 {% block affix-nav %}
 <ul class="nav nav-stacked">
   <li class="active"><a href="#full-archive">Full archive</a></li>
@@ -10,12 +15,6 @@
   {% endif %}
 </ul>
 {% endblock %}
-
-{% block breadcrumbs %}
-{{ block.super }}
-<li><a href="{% url 'version_archive_index' %}">Downloads</a></li>
-{% endblock %}
-
 
 {% block javascript %}
 <script type="text/javascript">
@@ -28,27 +27,28 @@ $('.dropdown-menu a').click(function() {
       $('.file-card:not(.' + group + ')').addClass('hidden');
     }
 });
-</script>
-
-<script type="text/javascript">
-  $('body').scrollspy({target: '#affix-nav'});
-  $('#affix-nav').affix({
-    offset: {
-      bottom: function () {
-        return (this.bottom = $('.footer').outerHeight(true))
-      }
+// Affix nav
+$('body').scrollspy({target: '#affix-nav'});
+$('#affix-nav').affix({
+  offset: {
+    top: function () {
+      return (this.top = $('.affix-container').position()['top'])
+    },
+    bottom: function() {
+      return (this.bottom = $('.footer').outerHeight(true))
     }
-  });
+  }
+});
 </script>
 {% endblock %}
 
 {% block content %}
-<section name="full-archive" id="full-archive" class="chapter">
-    <h3>Full archive</h3>
+<section id="full-archive" class="chapter">
+    <h2>Full archive</h2>
     <p>
-        The complete package of {{ object.download_file_count }} database tables released by the
-        California Secretary of State, which we have cleaned up and converted
-        into flat files with {{ object.clean_record_count|intword }} comma-separated values<sup><a href="#footnotes">*</a></sup>.
+        The complete package of {{ object.download_file_count }} database tables released by
+        California's Secretary of State, which we have cleaned up and converted
+        into flat files with {{ object.clean_record_count|intword }} rows of comma-separated values<sup><a href="#errata">*</a></sup>.
     </p>
     {% if object.clean_zip_archive %}
         <p>
@@ -64,16 +64,15 @@ $('.dropdown-menu a').click(function() {
         <input type="text" class="download-link input-monospace"
             value="$ curl -O {% archive_url object.clean_zip_archive.name is_latest=is_latest %}"
             readonly>
-        </input>
     {% else %}
     <p><a class="btn btn-inactive">Unavailable</a>
         {% endif %}
 </section>
 
 {% if file_list %}
-<section id="archived-files" name="archived-files" class="chapter">
+<section id="archived-files" class="chapter">
   <div class="filters">
-      <h3>Archived files</h3>
+      <h2>Archived files</h2>
       <p>
           Our cleaned-up version of each of the {{ object.download_file_count }}
           database tables released by state officials, grouped by type.
@@ -96,7 +95,7 @@ $('.dropdown-menu a').click(function() {
   {% for group in file_list %}
   {% for file in group.list %}
     <section class="row file-card {{ group.grouper|slugify }}">
-        <hgroup class="row">
+        <div class="row">
             <div class="col-md-6">
                 <h4>
                     <a href="{% url 'file_detail' slug=file.file_name|slugify %}">
@@ -109,7 +108,7 @@ $('.dropdown-menu a').click(function() {
                     <mark>{{ group.grouper|upper }}</mark>
                 </p>
             </div>
-        </hgroup>
+        </div>
         <hr>
         <div class="row">
             <div class="col-md-6">
@@ -146,8 +145,8 @@ $('.dropdown-menu a').click(function() {
 {% endif %}
 
 {% if object.error_count %}
-<section name="errata" id="errata" class="chapter">
-    <h3>Errata</h3>
+<section id="errata" class="chapter">
+    <h2>Errata</h2>
     <p>
        The raw data provided by the state contains errors in how some values are
        escaped, quoted and delimited. The result is a small number of

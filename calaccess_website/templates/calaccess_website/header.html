@@ -1,11 +1,16 @@
 {% load staticfiles %}
 <header>
-  <div class="container">
+  <nav class="container">
     <div class="row">
     <div class="col-md-12">
       <ul class="nav nav-pills">
         <li style="margin-left:0;">
-            <a class="logo" href="http://www.californiacivicdata.org/"><img src="{% static "calaccess_website/images/bear-no-red-line.png" %}" alt=""></a>
+            <a class="logo" href="http://www.californiacivicdata.org/">
+                <img
+                    src="{% static "calaccess_website/images/geobear-70x35.png" %}"
+                    alt="California Civic Data Coalition logo"
+                >
+            </a>
         </li>
         <li id="home"><a href="{% url 'home' %}">HOME</a></li>
         <li id="data"><a href="{% url 'version_latest' %}">DATA</a></li>
@@ -14,7 +19,7 @@
       </ul>
     </div>
     </div>
-  </div>
+  </nav>
 </header>
 
 <script type="text/javascript">

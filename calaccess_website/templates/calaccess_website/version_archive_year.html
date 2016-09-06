@@ -1,17 +1,24 @@
-{% extends 'calaccess_website/base.html' %}
+{% extends 'calaccess_website/base_with_top.html' %}
 {% load calaccess_website_tags %}
 
-{% block title %}{{ year.year }} - Versions - {{ block.super }}{% endblock%}
+{% block title %}{{ year.year }} - Downloads - {{ block.super }}{% endblock%}
 
 {% block breadcrumbs %}
-  <li><a href="{% url 'version_archive_index' %}">Versions</a></li>
-  <li class="active">{{ year.year }}</li>
+  {{ block.super }}
+  <li><a href="{% url 'version_archive_index' %}">Downloads</a></li>
+  <li>{{ year.year }}</li>
 {% endblock %}
 
+{% block top %}
+    <h1>Archived data from {{ year|date:"Y" }}</h1>
+    <p>
+        All {{ year|date:"Y" }} release{{ latest|length|pluralize }} of CAL-ACCESS,
+        the government database that tracks campaign finance and lobbying activity in California politics.
+        <a href="{% url 'version_latest' %}">Latest release &raquo;</a>
+    </p>
+{% endblock %}
 
 {% block content %}
-  <h1>Versions from {{ year|date:"Y" }}</h1>
-
 <table class="table table-striped">
   <thead>
     <tr>

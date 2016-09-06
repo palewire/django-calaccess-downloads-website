@@ -1,0 +1,45 @@
+{% extends 'calaccess_website/base_with_top.html' %}
+{% load humanize calaccess_website_tags %}
+
+{% block title %}Documentation - {{ block.super }}{% endblock%}
+
+{% block breadcrumbs %}
+{{ block.super }}
+<li>Documentation</li>
+{% endblock %}
+
+{% block top %}
+    <h1>Documentation</h1>
+    <p>
+        How to work with data from CAL-ACCESS, the California Secretary of State's
+        database tracking campaign finance and lobbying activity in state politics.
+    </p>
+{% endblock %}
+
+{% block content %}
+<section class="chapter">
+    <h2>Sections</h2>
+    {% for obj in object_list %}
+    <section class="row file-card {{ obj.name|slugify }}">
+        <div class="row">
+            <div class="col-md-6">
+                <h4>
+                    <a href="{{ obj.url }}">
+                        {{ obj.name }}
+                    </a>
+                </h4>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-10">
+                <p>
+                    {{ obj.description }}
+                    <a href="{{ obj.url }}">Explore &raquo;</a>
+                </p>
+            </div>
+        </div>
+    </section>
+    {% endfor %}
+</section>
+{% endblock %}

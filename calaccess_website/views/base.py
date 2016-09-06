@@ -21,6 +21,15 @@ class CalAccessModelListMixin(object):
         else:
             return model_or_obj().klass_group
 
+    def sort_klass_group(self, group):
+        """
+        Accepts a klass group name and prepares it for sorting.
+        """
+        # Sort inactive and deprecated groups to the end.
+        group = group.replace("inactive", "z")
+        group = group.replace("Deprecated", "z")
+        return group
+
     def regroup_by_klass_group(self, model_list):
         """
         Accepts a model list and returns them regrouped by klass_group
@@ -35,11 +44,8 @@ class CalAccessModelListMixin(object):
             groupby(l, lambda obj: self.get_klass_group(obj))
         ]
 
-        # Sort the inactive models to the end
-        l = sorted(l, key=lambda d: d['grouper'].replace("inactive", "z"))
-
-        # Sort deprecated forms to the end
-        l = sorted(l, key=lambda d: d['grouper'].replace("Deprecated", "z"))
+        # Sort the inactive and deprecated models to the end
+        l = sorted(l, key=lambda d: self.sort_klass_group(d['grouper']))
 
         # Return the list
         return l

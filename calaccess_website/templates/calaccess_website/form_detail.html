@@ -1,75 +1,102 @@
 {% extends 'calaccess_website/base_with_top.html' %}
 {% load humanize calaccess_website_tags %}
 
-{% block title %}{{ form.type_and_num|safe }} - Forms - {{ block.super }}{% endblock%}
-
-{% block top %}
-<h2>{{ form.title|safe }}</h2>
-<p>{% if form.description %}{{ form.description|safe }}{% endif %}</p>
-{% endblock %}
+{% block title %}{{ form.type_and_num|safe }}: {{ form.title|safe }} - CAL-ACCESS forms - Documentation {{ block.super }}{% endblock%}
 
 {% block breadcrumbs %}
 {{ block.super }}
-<li><a href="{% url 'form_list' %}">Forms</a></li>
+<li><a href="{% url 'docs_index' %}">Documentation</a></li>
+<li><a href="{% url 'form_list' %}">CAL-ACCESS forms</a></li>
 <li>{{ form.type_and_num }}</li>
+{% endblock %}
+
+{% block top %}
+    <h1>{{ form.type_and_num }}: {{ form.title|safe }}</h1>
+    <p>{% if form.description %}{{ form.description|safe }}{% endif %}</p>
+{% endblock %}
+
+{% block affix-nav %}
+<ul class="nav nav-stacked">
+
+    {% if form.sections|length > 0 %}
+        <li class="active"><a href="#sections">Sections</a></li>
+    {% endif %}
+
+    {% if form.get_models|length > 0 %}
+        <li><a href="#calaccess-files">CAL-ACCESS files</a></li>
+    {% endif %}
+
+    {% if form.documentcloud_id %}
+        <li><a href="#sample">Sample</a></li>
+    {% endif %}
+
+</ul>
+{% endblock %}
+
+{% block javascript %}
+<script type="text/javascript">
+  $('body').scrollspy({ target: '#affix-nav'});
+  $('#affix-nav').affix({
+    offset: {
+      top: function () {
+        return (this.top = $('.affix-container').position()['top'])
+      },
+      bottom: function () {
+        return (this.bottom = $('.footer').outerHeight(true))
+      }
+    }
+  });
+</script>
 {% endblock %}
 
 {% block content %}
 
-  <section class="chapter">
-      {% if form.sections|length > 0 %}
-      <h2>Sections</h2>
-      <p>{{ form.type_and_num }} has {{ form.sections|length }} section{{ form.sections|pluralize }}.</p>
-      <ul>
-      {% for section in form.sections %}
+{% if form.sections|length > 0 %}
+<section id="sections" class="chapter">
+    <h2>Sections</h2>
+    <p>
+        {{ form.type_and_num }} has {{ form.sections|length }} section{{ form.sections|pluralize }}.
+    </p>
+    <ul>
+  {% for section in form.sections %}
       <li>{{ section.title|safe }} {% if section.documentcloud.start_page %}(<a href="{{ section.documentcloud.canonical_url }}">p. {{ section.documentcloud.start_page }}{% if section.documentcloud.end_page %}-{{ section.documentcloud.end_page }}{% endif%}</a>){% endif %}
       </li>
-      {% endfor %}
-      </ul>
-      {% endif %}
-  </section>
-
-  <section class="chapter">
-  {% if form.get_models|length > 0 %}
-  <h2>Files</h2>
-  <p>This form populates the following {{ form.get_models|length }} file{{ form.get_models|pluralize }}.</p>
-  <table class="table table-striped">
-  <tbody>
-  <tr>
-  {% for model in form.get_models %}
-    <tr>
-      <td><a href="{% url 'file_detail' slug=model.db_table|slugify %}">{{ model.db_table }}</a></td>
-      <td>{{ model.doc.strip|first_line|safe }}</td>
-    </tr>
   {% endfor %}
-  </tr>
-  </tbody>
-  </table>
-  {% endif %}
-  </section>
+  </ul>
+</section>
+{% endif %}
 
-  <section class="chapter">
-  {% if form.documentcloud_id %}
-  <h2>Sample</h2>
-  <p>An example of {{ form.type_and_num }}.</p>
 
-      <div style="margin-bottom:35px;" id="DV-viewer-{{ form.documentcloud.id }}" class="DV-container"></div>
-      <script src="//s3.amazonaws.com/s3.documentcloud.org/viewer/loader.js"></script>
-      <script>
-        DV.load("//www.documentcloud.org/documents/{{ form.documentcloud.id }}.js", {
-        container: "#DV-viewer-{{ form.documentcloud.id }}",
-        width: 680,
-        height: 850,
-        sidebar: false,
-        zoom: 550
-        });
-      </script>
-        <noscript>
-        <a href={{ form.documentcloud.pdf_url }}>{{ form.documentcloud.title }} (PDF)</a>
-        <br />
-        <a href={{ form.documentcloud.text_url }}>{{ form.documentcloud.title }} (Text)</a>
-      </noscript>
-  {% endif %}
+{% if form.get_models|length > 0 %}
+ <section id="calaccess-files" class="chapter">
+    <h2>CAL-ACCESS files</h2>
+    <p>
+        This form populates the following {{ form.get_models|length|apnumber }}
+        CAL-ACCESS file{{ form.get_models|pluralize }}.
+    </p>
+    <table class="table table-striped">
+    <tbody>
+    {% for model in form.get_models %}
+        <tr>
+            <td>
+                <a href="{% url 'file_detail' slug=model.db_table|slugify %}">
+                    {{ model.db_table }}
+                </a>
+            </td>
+            <td>{{ model.doc.strip|first_line|safe }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+    </table>
+</section>
+{% endif %}
+
+{% if form.documentcloud_id %}
+<section id="sample" class="chapter">
+    <h2>Sample</h2>
+    <p>An example of {{ form.type_and_num }}.</p>
+    {% documentcloud_embed form.documentcloud.id %}
   </section>
+{% endif %}
 
 {% endblock %}

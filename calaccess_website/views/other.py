@@ -1,5 +1,5 @@
 from calaccess_raw.models.tracking import RawDataVersion
-from bakery.views import BuildableTemplateView, BuildableArchiveIndexView, Buildable404View
+from bakery.views import BuildableArchiveIndexView, Buildable404View
 
 
 class Home(BuildableArchiveIndexView):
@@ -10,14 +10,6 @@ class Home(BuildableArchiveIndexView):
     date_field = "release_datetime"
     build_path = "index.html"
     template_name = "calaccess_website/home.html"
-
-
-class GovernmentDocumentation(BuildableTemplateView):
-    """
-    Explanation of official CAL-ACCESS documentation.
-    """
-    build_path = "government-documentation/index.html"
-    template_name = "calaccess_website/government_documentation.html"
 
 
 class CalAccess404View(Buildable404View):

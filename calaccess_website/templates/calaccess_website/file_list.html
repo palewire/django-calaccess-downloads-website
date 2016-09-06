@@ -1,35 +1,75 @@
 {% extends 'calaccess_website/base_with_top.html' %}
 {% load calaccess_website_tags %}
 
-{% block title %}Files - {{ block.super }}{% endblock%}
+{% block title %}CAL-ACCESS files - Documentation - {{ block.super }}{% endblock%}
 
 {% block breadcrumbs %}
 {{ block.super }}
-<li>Files</li>
+<li><a href="{% url 'docs_index' %}">Documentation</a></li>
+<li>CAL-ACCESS files</li>
 {% endblock %}
 
 {% block top %}
-<h2>File list</h2>
-<p>Every file in the CAL-ACCESS database.</p>
+<h1>CAL-ACCESS files</h1>
+<p>
+    Definitions, record layouts and data dictionaries for the {{ model_list|length }}
+    files released from CAL-ACCESS, the California Secretary of State's database
+    tracking campaign finance and lobbying activity in state politics.
+</p>
+{% endblock %}
+
+{% block affix-nav %}
+<ul class="nav nav-stacked">
+  <li class="active">
+    <a href="#campaign">Campaign</a>
+  </li>
+  <li><a href="#common">Common</a></li>
+  <li><a href="#lobbying">Lobbying</a></li>
+  <li><a href="#inactive">Inactive</a></li>
+</ul>
+{% endblock %}
+
+{% block javascript %}
+<script type="text/javascript">
+  $('body').scrollspy({ target: '#affix-nav'});
+  $('#affix-nav').affix({
+    offset: {
+      top: function () {
+        return (this.top = $('.affix-container').position()['top'])
+      },
+      bottom: function () {
+        return (this.bottom = $('.footer').outerHeight(true))
+      }
+    }
+  });
+</script>
 {% endblock %}
 
 {% block content %}
   {% for group in object_list %}
-  <section>
-    <h2>{{ group.grouper|capfirst }}</h2>
+  <section id="{{ group.grouper|slugify }}">
+    <h2>{{ group.grouper|capfirst }} files</h2>
     <table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
     {% for file in group.list  %}
-      <tr>
-        <td>
-            <a href="{% url 'file_detail' slug=file.db_table|slugify %}">
-                {{ file.db_table }}
-            </a>
-        </td>
-        <td width="70%">
-            {{ file.doc.strip|first_line|safe  }}
-        </td>
-      </tr>
+        <tr>
+            <td>
+                <a href="{% url 'file_detail' slug=file.db_table|slugify %}">
+                    {{ file.db_table }}
+                </a>
+            </td>
+            <td width="70%">
+                {{ file.doc.strip|first_line|safe  }}
+            </td>
+        </tr>
     {% endfor %}
+    </tbody>
     </table>
   </section>
   {% endfor %}
