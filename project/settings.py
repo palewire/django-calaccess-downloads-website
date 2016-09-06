@@ -140,8 +140,7 @@ AWS_S3_USE_SSL = False
 # Compressor
 #
 
-COMPRESS_ENABLED = False
-COMPRESS_OFFLINE = False
+COMPRESS_ENABLED = True
 
 #
 # Databases
