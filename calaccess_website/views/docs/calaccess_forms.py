@@ -1,20 +1,25 @@
 from django.http import Http404
-from .base import CalAccessModelListMixin
 from django.core.urlresolvers import reverse
 from django.template.defaultfilters import slugify
+from calaccess_website.views.base import CalAccessModelListMixin
 from calaccess_raw.annotations.filing_forms import all_filing_forms
 from bakery.views import BuildableDetailView, BuildableListView
 
 
 class FormList(BuildableListView, CalAccessModelListMixin):
     template_name = 'calaccess_website/form_list.html'
-    build_path = "forms/index.html"
+    build_path = "documentation/calaccess-forms/index.html"
 
     def get_queryset(self):
         """
         Returns a list of all forms.
         """
         return self.regroup_by_klass_group(all_filing_forms)
+
+    def get_context_data(self, **kwargs):
+        context = super(FormList, self).get_context_data(**kwargs)
+        context['form_list'] = all_filing_forms
+        return context
 
 
 class FormDetail(BuildableDetailView):

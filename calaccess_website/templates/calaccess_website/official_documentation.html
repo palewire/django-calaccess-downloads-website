@@ -1,0 +1,151 @@
+{% extends 'calaccess_website/base_with_top.html' %}
+{% load humanize calaccess_website_tags %}
+
+{% block title %}CAL-ACCESS official documentation - Documentation - {{ block.super }}{% endblock%}
+
+{% block breadcrumbs %}
+{{ block.super }}
+<li><a href="{% url 'docs_index' %}">Documentation</a></li>
+<li>CAL-ACCESS official documentation</li>
+{% endblock %}
+
+{% block top %}
+<h1>CAL-ACCESS official documentation</h1>
+<p>
+    The jumbled, fragmentary and unreliable documentation
+    for the CAL-ACCESS database provided by California's Secretary of State. For more authoritative
+    information, refer to our documentation of the system's <a href="{% url 'form_list' %}">forms</a> and <a href="{% url 'file_list' %}">files</a>.
+</p>
+{% endblock %}
+
+
+{% block affix-nav %}
+<ul class="nav nav-stacked">
+    <li class="active"><a href="#overview">CAL-ACCESS overview</a></li>
+    <li><a href="#readme">CAL-ACCESS <br> README</a></li>
+    <li><a href="#faq">CAL-ACCESS FAQ</a></li>
+    <li><a href="#tables-columns-indexes">CAL-ACCESS tables, columns, indexes</a></li>
+    <li><a href="#cal-readme">.CAL README</a></li>
+    <li><a href="#cal-format-mapping">.CAL to CAL-ACCESS mapping</a></li>
+    <li><a href="#cal-v201">.CAL v2.01 release notes</a></li>
+    <li><a href="#cal-v10502">.CAL v1.05.02 release notes</a></li>
+</ul>
+{% endblock %}
+
+{% block javascript %}
+  {% include 'calaccess_website/affix_nav_logic.html' %}
+{% endblock %}
+
+
+{% block content %}
+<section id="overview" class="chapter">
+    <h2>CAL-ACCESS overview</h2>
+    <p>
+        Includes explanations of the flow of information into the CAL-ACCESS
+        database and an appendix of campaign and lobbyist disclosure forms. Last updated Sept. 27, 2010.
+    </p>
+    {% documentcloud_embed "2711624-Overview" %}
+</section>
+
+
+<section id="readme" class="chapter">
+    <h2>CAL-ACCESS README</h2>
+    <p>
+        An incomplete list of data files included in the nightly export of CAL-ACCESS files.
+        Careful readers will note that the expected format of the data files is wrong. The state provides
+        files in TSV format, not CSV. Last updated Sept. 27, 2010.
+    </p>
+    {% documentcloud_embed "2711617-ReadMe-Zip" %}
+</section>
+
+
+<section id="faq" class="chapter">
+    <h2>CAL-ACCESS FAQ</h2>
+    <p>
+        A list of answers to frequently asked questions about the CAL-ACCESS database.
+        Last updated Sept. 27, 2010.
+    </p>
+    {% documentcloud_embed "2711615-FAQ" %}
+</section>
+
+
+<section id="tables-columns-indexes" class="chapter">
+    <h2>CAL-ACCESS tables, columns, indexes</h2>
+
+    <p>
+        The closest thing to a comprehensive record layout for CAL-ACCESS, this
+        document includes a list of tables as well as column and index lists for each table.
+        Last updated on April 18 2002.
+    </p>
+
+    <p>
+        This document was apparently produced using <a href="https://en.wikipedia.org/wiki/PowerDesigner">PowerDesigner</a>,
+        an enterprise modeling and metadata management tool developed by SyBase, a subsidary of SAP since 2010.
+    </p>
+
+    <p>
+        This is a good starting point for researching specific tables and fields.
+        But beware. Since this is one of the older available documents, some of its content is outdated.
+    </p>
+    
+    <p>
+        More complete documentation can be found in our independent <a href="{% url 'file_list' %}">documentation
+        of CAL-ACCESS files</a>.
+    </p>
+
+    {% documentcloud_embed "2711614-CalAccessTablesWeb" %}
+</section>
+
+
+<section id="cal-readme" class="chapter">
+    <h2>.CAL README</h2>
+    <p>
+        Much of what ends up in CAL-ACCESS is submitted in an electronic file format known as .CAL,
+        which is specifically designed to interface with CAL-ACCESS. 
+    </p>
+    <p>
+        The non-proprietary electronic file format used by third-party software
+        vendors to submit electronic disclosure filings on behalf of their clients,
+        California campaigns and lobbyists.
+    </p>
+    <p>
+        These .CAL specifications,
+        along with the required campaign and lobbyist disclosure forms, are also helpful in understanding
+        the lifecycle of information flowing into CAL-ACCESS. Last updated April 25, 2002.
+    </p>
+    {% documentcloud_embed "2712035-Cal-Readme" %}
+</section>
+
+
+<section id="cal-format-mapping" class="chapter">
+    <h2>.CAL to CAL-ACCESS mapping</h2>
+    <p>
+        A mapping of the .CAL file format fields to CAL-ACCESS database fields.
+        Last updated April 25, 2002.
+    </p>
+    {% documentcloud_embed "2711616-MapCalFormat2Fields" %}
+</section>
+
+
+<section id="cal-v201" class="chapter">
+    <h2>.CAL v2.01 release notes</h2>
+    <p>
+        Describes changes to the .CAL file format, including changes to look-up code values,
+        that came about in version 2.01, which we believe to be the current version.
+        Last updated November 5, 2001.
+    </p>
+    {% documentcloud_embed "2712032-Cal-Errata-201" %}
+    {% documentcloud_embed "2712034-Cal-Format-201" %}
+</section>
+
+
+<section id="cal-v10502" class="chapter">
+    <h2>.CAL v1.05.02 release notes</h2>
+    <p>
+        Describes changes to the .CAL file format, including changes to look-up code values,
+        that came about in version 1.05.02. Last updated May 10, 2000.
+    </p>
+    {% documentcloud_embed "2712031-Cal-Errata-1-05-02" %}
+    {% documentcloud_embed "2712033-Cal-Format-1-05-02" %}
+</section>
+{% endblock %}

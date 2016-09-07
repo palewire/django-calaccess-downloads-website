@@ -9,10 +9,12 @@
 {% endblock %}
 
 {% block top %}
-    <h2>Latest download</h2>
+    <h1>Latest download</h1>
     <p>
-        Download records from the most recent release of the CAL-ACCESS database,
-        published by state officials on {{ object.release_datetime|date:"l, N j, Y" }} at
+        The most recent release of CAL-ACCESS, the government database
+        that tracks campaign finance and lobbying activity in California politics. 
+        
+        It was published by state officials on {{ object.release_datetime|date:"l, N j, Y" }} at
         {{ object.release_datetime|date:"P" }}
         <a href="{% url 'version_archive_index' %}">Past releases &raquo;</a>
     </p>

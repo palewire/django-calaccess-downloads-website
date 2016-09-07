@@ -17,6 +17,9 @@ a, a.btn-default{
 a:hover{
     color:#d87d85;
 }
+b, strong {
+    font-weight: 600;
+}
 kbd {
     padding: 10px;
     border-radius: 0;
@@ -30,13 +33,14 @@ sup {
     top: -.2em;
 }
 section.chapter {
-    margin-bottom: 40px;
+    margin-bottom: 50px;
 }
 .bg-red {
     background-color: #ba0a35;
     color:  #fdfdfd;
     padding: 15px 0;
 }
+.bg-red h1,
 .bg-red h2 {
     margin-top: 5px;
 }
@@ -110,7 +114,7 @@ section.chapter {
 /* Breadcrumbs */
 .breadcrumb {
     padding: 0;
-    margin: 10px auto 20px auto;
+    margin: 10px auto 10px auto;
     border-radius: 0;
     list-style: none;
     background: none;
@@ -205,6 +209,12 @@ header .navbar-default .navbar-nav>li>a {
 .affix-bottom {
     position: relative;
 }
+.affix {
+    top: 0;
+}
+#affix-nav {
+    width: 140px;
+}
 
 /* Pagination */
 .pagination>li>a, .pagination>li>span {
@@ -281,13 +291,16 @@ td.center, th.center{
 .home .home-card p {
     color: #fdfdfd;
 }
-.home hgroup[name='headline'] {
-    margin: 40px auto;
+.home div.headline {
+    margin: 40px auto 60px auto;
 }
-.home section[name='boxes'] {
+.home div.headline img {
+    height: 450px;
+}
+.home section.boxes {
     margin: 40px 0 20px 0;
 }
-.home section[name='questions'] {
+.home section.questions {
     margin: 0;
 }
 .home .question {
@@ -299,15 +312,15 @@ td.center, th.center{
 .no-border {
     border: none !important;
 }
-.home section[name="sponsors"] {
+.home section.sponsors {
     margin-top: 0px;
 }
-.home section[name="sponsors"] .funders img {
+.home section.sponsors .funders img {
     width: 90%;
     padding: 0 5%;
     margin: 20px 0;
 }
-.home section[name="sponsors"] .leaders img {
+.home section.sponsors .leaders img {
     width: 85%;
     padding: 0 12.5%;
     margin: 20px 0;
@@ -371,10 +384,9 @@ td.center, th.center{
 }
 
 /* File detail */
-.field-title {
+.list-title {
     font-size: 20px;
     font-weight: 600;
-    margin-right: 10px;
 }
 .gist .markdown-body {
     font-size: 10px !important;
@@ -434,23 +446,19 @@ footer .easteregg a {
     font-weight: 200;
 }
 
+/* DocumentCloud embeds */
+.DV-container {
+    margin-bottom:35px;
+}
+
 @media only screen
 and (max-width : 992px) {
     .align-right{
         float: left;
         text-align: left;
     }
-    section.chapter {
-        margin: 10px auto;
-    }
-    h2 {
-        font-size: 28px;
-    }
     h3 {
         margin-top: 10px;
-    }
-    p {
-        font-size: 16px;
     }
     .filters {
         margin-top: 10px;
@@ -475,13 +483,13 @@ and (max-width : 490px) {
     header .nav>li>a {
         padding-bottom: 2px;
     }
-    section[name="sponsors"] .funders img {
+    section.sponsors .funders img {
         width: 90%;
         padding: 0 10% 0 0;
         margin: 20px 0;
         float: left;
     }
-    section[name="sponsors"] .leaders img {
+    section.sponsors .leaders img {
         width: 85%;
         padding: 0 15% 0 0;
         margin: 20px 0;

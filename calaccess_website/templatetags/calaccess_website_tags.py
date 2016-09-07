@@ -1,7 +1,27 @@
 import os
 from django import template
 from django.template import defaultfilters
+from django.utils.safestring import mark_safe
 register = template.Library()
+
+
+@register.simple_tag
+def documentcloud_embed(slug):
+    """
+    Returns a DocumentCloud embed ready to serve.
+    """
+    template = """<div id="DV-viewer-{slug}" class="DV-container"></div>
+<script src="//s3.amazonaws.com/s3.documentcloud.org/viewer/loader.js"></script>
+<script>
+  DV.load("//www.documentcloud.org/documents/{slug}.js", {{
+  container: "#DV-viewer-{slug}",
+  width: 680,
+  height: 850,
+  sidebar: false,
+  zoom: 550
+  }});
+</script>"""
+    return mark_safe(template.format(slug=slug))
 
 
 @register.simple_tag

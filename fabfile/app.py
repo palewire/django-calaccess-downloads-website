@@ -29,7 +29,7 @@ def pipinstall():
     """
     Install the Python requirements inside the virtualenv
     """
-    _venv("pip install -r requirements.txt --log-file=/tmp/pip.log")
+    _venv("pip install -r requirements.txt --upgrade --log-file=/tmp/pip.log")
 
 
 @task(task_class=ConfigTask)
@@ -51,7 +51,7 @@ def manage(cmd):
 @task(task_class=ConfigTask)
 def build():
     """
-    Run django-bakery's build command
+    Run django-bakery's `build` command
     """
     _venv("python manage.py build")
 
@@ -59,7 +59,7 @@ def build():
 @task(task_class=ConfigTask)
 def publish():
     """
-    Run django-bakery's publish command
+    Run django-bakery's `publish` command
     """
     _venv("python manage.py publish")
 
@@ -82,6 +82,14 @@ def collectstatic():
 
 
 @task(task_class=ConfigTask)
+def compress():
+    """
+    Run django-compressor's `compress` command
+    """
+    _venv("python manage.py compress --force")
+
+
+@task(task_class=ConfigTask)
 def deploy():
     """
     Run a full deployment of code to the remote server
@@ -91,6 +99,7 @@ def deploy():
         rmpyc()
     pipinstall()
     migrate()
+    compress()
     collectstatic()
     build()
     publish()

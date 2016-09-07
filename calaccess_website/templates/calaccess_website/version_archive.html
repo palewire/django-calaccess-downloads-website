@@ -1,7 +1,7 @@
 {% extends 'calaccess_website/base_with_top.html' %}
 {% load calaccess_website_tags humanize %}
 
-{% block title %}Versions - {{ block.super }}{% endblock%}
+{% block title %}Downloads - {{ block.super }}{% endblock%}
 
 {% block breadcrumbs %}
 {{ block.super }}
@@ -9,9 +9,11 @@
 {% endblock %}
 
 {% block top %}
-    <h2>Archived data</h2>
-    <p>Here are the last {{ latest|length|apnumber }} download{{ latest|length|pluralize }} of the CAL-ACCESS database.</p>
-    <p><a href="{% url 'version_latest' %}">Go to the latest data</a>.</p>
+    <h1>Downloads</h1>
+    <p>
+        The last {{ latest|length|apnumber }} release{{ latest|length|pluralize }} of CAL-ACCESS,
+        the government database that tracks campaign finance and lobbying activity in California politics.
+    </p>
 {% endblock %}
 
 {% block content %}

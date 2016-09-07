@@ -10,6 +10,10 @@ urlpatterns = [
         name="home",
     ),
 
+    #
+    # Downloads
+    #
+
     # Version archive views
     url(
         r'^downloads/$',
@@ -37,43 +41,57 @@ urlpatterns = [
         name="version_detail"
     ),
 
-    # File views
+    #
+    # Documentation
+    #
+
+    # Index
     url(
-        r'^files/$',
+        r'^documentation/$',
+        views.DocumentationIndex.as_view(),
+        name='docs_index'
+    ),
+
+    # CAL-ACCESS file views
+    url(
+        r'^documentation/calaccess-files/$',
         views.FileList.as_view(),
         name='file_list'
     ),
     url(
-        r'^files/(?P<slug>[-\w]+)/$',
+        r'^documentation/calaccess-files/(?P<slug>[-\w]+)/$',
         views.FileDetail.as_view(),
         name='file_detail',
     ),
     url(
-        r'^files/(?P<slug>[-\w]+)/downloads/$',
+        r'^documentation/calaccess-files/(?P<slug>[-\w]+)/downloads/$',
         views.FileDownloadsList.as_view(),
         name='file_downloads_list',
     ),
 
     # Form views
     url(
-        r'^forms/$',
+        r'^documentation/calaccess-forms/$',
         views.FormList.as_view(),
         name='form_list'
     ),
     url(
-        r'^forms/(?P<id>\w+)/$',
+        r'^documentation/calaccess-forms/(?P<id>\w+)/$',
         views.FormDetail.as_view(),
         name='form_detail',
     ),
 
     # Official documentation
     url(
-        r'^government-documentation/$',
-        views.GovernmentDocumentation.as_view(),
-        name='government_documentation'
+        r'^documentation/calaccess-official-documentation/$',
+        views.OfficialDocumentation.as_view(),
+        name='official_documentation'
     ),
 
+    #
     # Machine-readable stuff
+    #
+
     url(
         r'^robots.txt$',
         views.CalAccessRobotsTxt.as_view(),

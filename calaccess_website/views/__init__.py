@@ -1,9 +1,15 @@
-from .files import FileList, FileDetail, FileDownloadsList
-from .forms import FormList, FormDetail
 from .base import CalAccessModelListMixin
+from .docs import (
+    DocumentationIndex,
+    FileList,
+    FileDetail,
+    FileDownloadsList,
+    FormList,
+    FormDetail,
+    OfficialDocumentation,
+)
 from .other import (
     Home,
-    GovernmentDocumentation,
     CalAccess404View,
     CalAccessRobotsTxt
 )
@@ -21,6 +27,7 @@ __all__ = (
     'CalAccess404View',
     'CalAccessModelListMixin',
     'CalAccessRobotsTxt',
+    'DocumentationIndex',
     'FileList',
     'FileDetail',
     'FileDownloadsList',
@@ -31,5 +38,5 @@ __all__ = (
     'LatestVersion',
     'FormDetail',
     'FormList',
-    'GovernmentDocumentation',
+    'OfficialDocumentation',
 )
