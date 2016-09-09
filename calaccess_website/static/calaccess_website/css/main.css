@@ -175,6 +175,9 @@ header .nav .logo {
     padding-top:0;
     border-bottom: none !important;
 }
+header .nav .logo img {
+    width: 65px;
+}
 header .nav .logo:hover, header .nav .logo:active, header .nav .logo:focus {
     background:#fff;
     border-bottom: none;
@@ -482,6 +485,9 @@ and (max-width : 768px) {
 and (max-width : 490px) {
     header .nav>li>a {
         padding-bottom: 2px;
+    }
+    header .nav>li:first-of-type {
+        margin-right: 20px;
     }
     section.sponsors .funders img {
         width: 90%;
