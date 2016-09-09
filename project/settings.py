@@ -140,7 +140,15 @@ AWS_S3_USE_SSL = False
 # Compressor
 #
 
-COMPRESS_ENABLED = False
+COMPRESS_ENABLED = os.getenv("compress_enabled", False)
+COMPRESS_OFFLINE = True
+COMPRESS_OUTPUT_DIR = 'compressor'
+COMPRESS_CSS_FILTERS = [
+    'compressor.filters.css_default.CssAbsoluteFilter',
+    'compressor.filters.cssmin.rCSSMinFilter',
+]
+COMPRESS_CACHEABLE_PRECOMPILERS = ()
+COMPRESS_REBUILD_TIMEOUT = 0
 
 #
 # Databases
