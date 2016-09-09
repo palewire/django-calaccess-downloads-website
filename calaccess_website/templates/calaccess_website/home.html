@@ -3,19 +3,21 @@
 
 {% block breadcrumbs-container %}{% endblock %}
 
-{% block content %}
+{% block container %}
 <article class="home homepage">
-    <div class="row headline">
-        <div class="col-md-6">
-            <h1>{{ CALACCESS_WEBSITE_TITLE|upper }}</h1>
-            <p class="lead">{{ CALACCESS_WEBSITE_DESCRIPTION }}</p>
-            <a href="{% url 'version_latest' %}"><button class="btn btn-lg btn-calaccess">Download latest</button></a>
-        </div>
-        <div class="col-md-6" style="text-align: right;">
-            <img src="{% static 'calaccess_website/images/geobear-cropped.png' %}">
-        </div>
-    </div>
 
+<div class="row headline">
+    <div class="col-md-6">
+        <h1>{{ CALACCESS_WEBSITE_TITLE|upper }}</h1>
+        <p class="lead">{{ CALACCESS_WEBSITE_DESCRIPTION }}</p>
+        <a href="{% url 'version_latest' %}"><button class="btn btn-lg btn-calaccess">Download latest</button></a>
+    </div>
+    <div class="col-md-6" style="text-align: right; padding-right: 0;">
+        <img src="{% static 'calaccess_website/images/geobear-cropped.png' %}">
+    </div>
+</div>
+
+<div class="container">
     <section class="row boxes">
         <div class="col-md-10 col-md-offset-1 md-center">
             <div class="row">
@@ -136,5 +138,6 @@
             </div>
         </section>
     </section>
+</div>
 </article>
 {% endblock %}
