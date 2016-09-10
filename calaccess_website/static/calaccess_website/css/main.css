@@ -276,16 +276,25 @@ td.center, th.center{
 .md-center {
     text-align: center;
 }
+
 .home .home-card {
-    height: 300px;
+    height: 285px;
     background-color: #ba0a35;
     padding: 20px;
     margin: 0 auto;
+    color: white;
+}
+.home .boxes a:hover {
+    text-decoration: none !important;
 }
 .home .card-container {
     position: relative;
+    text-align: center;
     top: 50%;
     transform: translateY(-50%);
+}
+.home .home-card h2 {
+    margin-bottom: 20px;
 }
 .home .home-card i {
     font-size: 70px;
@@ -293,6 +302,7 @@ td.center, th.center{
 }
 .home .home-card p {
     color: #fdfdfd;
+    margin-top: 0;
 }
 .home div.headline {
     margin: 40px auto 60px auto;
