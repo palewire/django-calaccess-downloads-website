@@ -10,3 +10,4 @@ flake8
 coveralls
 configparser
 django-compressor
+greeking
