@@ -124,6 +124,7 @@ BAKERY_VIEWS = (
     'calaccess_website.sitemaps.FormSitemap',
     'calaccess_website.sitemaps.OtherSitemap',
 )
+BAKERY_GZIP = True
 
 #
 # Archiving
