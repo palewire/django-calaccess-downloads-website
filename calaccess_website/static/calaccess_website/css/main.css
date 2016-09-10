@@ -139,7 +139,8 @@ section.chapter {
 
 /* Navbar */
 header {
-    box-shadow: 0 1px 15px #696969;
+    /*box-shadow: 0 1px 15px #696969;*/
+    border-bottom: 2px solid #eee;
     position: relative;
     z-index: 2;
 }
@@ -164,6 +165,7 @@ header .nav>li>a {
     padding-left: 0;
     padding-right: 0;
     padding-bottom: 6px;
+    transition: all 0.15s ease-in-out;
 }
 header .nav>li>a:hover,
 header .nav>li>a:focus {
