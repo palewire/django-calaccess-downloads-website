@@ -9,10 +9,11 @@
     </div>
     <div class="row">
       <section class="col-md-2 col-md-offset-1 col-sm-5 col-sm-offset-1 col-xs-5 col-xs-offset-1">
-        <h3>Projects</h3>
+        <h3>CAL-ACCESS</h3>
         <ul>
-          <li><a href="http://django-calaccess.californiacivicdata.org/">django-calaccess</a></li>
-          <li><a href="http://django-postgres-copy.californiacivicdata.org/">django-postgres-copy</a></li>
+          <li><a href="{% url 'version_latest' %}">Latest downloads</a></li>
+          <li><a href="{% url 'version_archive_index' %}">Downloads archive</a></li>
+          <li><a href="{% url 'docs_index' %}">Documentation</a></li>
         </ul>
       </section>
       <section class="col-md-2 col-md-offset-1 col-sm-5 col-sm-offset-1 col-xs-4 col-xs-offset-2">
