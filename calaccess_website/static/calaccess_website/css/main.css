@@ -296,6 +296,13 @@ td.center, th.center{
 }
 .home div.headline {
     margin: 40px auto 60px auto;
+    height: 400px;
+    background-image: url('/static/calaccess_website/images/brown-geobear.svg');
+    background-repeat: no-repeat;
+    background-position: 110% 100%;
+}
+.home div.headline h1 {
+    text-transform: uppercase;
 }
 .home div.headline img {
     height: 450px;

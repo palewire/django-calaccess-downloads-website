@@ -142,7 +142,7 @@ AWS_S3_USE_SSL = False
 # Compressor
 #
 
-COMPRESS_ENABLED = os.getenv("compress_enabled", False)
+COMPRESS_ENABLED = os.getenv("compress_enabled", "False") == "True"
 COMPRESS_OFFLINE = True
 COMPRESS_OUTPUT_DIR = 'compressor'
 COMPRESS_CSS_FILTERS = [
