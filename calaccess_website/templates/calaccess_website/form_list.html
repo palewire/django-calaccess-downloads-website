@@ -12,7 +12,7 @@
 <h1>CAL-ACCESS forms</h1>
 <p>
     Descriptions, samples and other documentation for
-    the {{ form_list|length }} forms that campaigns and lobbyists can use to disclose activity to California's
+    the {{ form_list|length }} forms that campaigns and lobbyists use to disclose activity to California's
     Secretary of State.
 </p>
 {% endblock %}
@@ -39,15 +39,15 @@
     <table class="table table-striped">
     <thead>
         <tr>
-            <th>Name</th>
-            <th>Description</th>
+            <th>Number</th>
+            <th>Title</th>
         </tr>
     </thead>
     <tbody>
     {% for form in group.list  %}
         <tr>
           <td><a href="{% url 'form_detail' id=form.id|lower %}">{{ form.type_and_num|safe }}</td>
-          <td width="70%">{{ form.description|safe  }}</td>
+          <td>{{ form.title }}</td>
         </tr>
     {% endfor %}
     </tbody>
