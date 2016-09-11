@@ -306,13 +306,27 @@ td.center, th.center{
     color: #fdfdfd;
     margin-top: 0;
 }
-.home div.headline {
-    margin: 40px auto 60px auto;
-    height: 400px;
-    background-image: url('/static/calaccess_website/images/brown-geobear.svg');
-    background-repeat: no-repeat;
-    background-position: 110% 100%;
+.hero {
+  min-height: 600px;
+  background-image: url('/static/calaccess_website/images/bg.svg');
+  background-size: cover;
+  background-repeat: no-repeat;
 }
+.hero h1 {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 600;
+}
+
+.hero .lead-container {
+  margin-top: 125px;
+  background-image: url('/static/calaccess_website/images/brown-geobear.svg');
+  background-repeat: no-repeat;
+  background-position-x: 100%;
+}
+.hero .lead-container div {
+  width: 400px;
+}
+
 .home div.headline h1 {
     text-transform: uppercase;
 }
