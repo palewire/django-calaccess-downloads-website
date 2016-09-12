@@ -296,6 +296,16 @@ td.center, th.center{
     padding-top: 15px;
 }
 
+.home div.headline h1 {
+    text-transform: uppercase;
+}
+.home div.headline img {
+    height: 450px;
+}
+
+.home section.boxes {
+    margin: 40px 0 20px 0;
+}
 .home .home-card {
     height: 285px;
     padding: 20px;
@@ -304,6 +314,13 @@ td.center, th.center{
 }
 .home .boxes a:hover {
     text-decoration: none !important;
+}
+.home .boxes a:hover .home-card {
+    background-color: #ba0a35;
+    color: white;
+}
+.home .boxes a:hover .home-card p {
+    color: white;
 }
 .home .card-container {
     position: relative;
@@ -322,15 +339,7 @@ td.center, th.center{
     color: #ba0a35;
     margin-top: 0;
 }
-.home div.headline h1 {
-    text-transform: uppercase;
-}
-.home div.headline img {
-    height: 450px;
-}
-.home section.boxes {
-    margin: 40px 0 20px 0;
-}
+
 .home section.questions {
     margin: 0;
 }
