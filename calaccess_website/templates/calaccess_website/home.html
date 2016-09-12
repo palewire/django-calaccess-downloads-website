@@ -6,20 +6,20 @@
 {% block container %}
 
 <section class="hero">
-
   <div class="container">
-    <div class="lead-container">
-      <div>
-        <h1>Download California campaign finance data with ease</h1>
-        <p class="lead">
-            An open-source archive serving up daily dumps from
-            CAL-ACCESS, the government database tracking money in California politics. <a href="">Learn more &raquo;</a>
-        </p>
-        <a href="{% url 'version_latest' %}"><button class="btn btn-lg btn-calaccess">Download latest data</button></a>
+      <div class="lead-container row">
+        <div class="col-md-4">
+            <h1>Download California campaign finance data with ease</h1>
+            <p class="lead">
+                An open-source archive serving up daily downloads from
+                CAL-ACCESS, California's database tracking money in state politics. <a href="">Learn more &raquo;</a>
+            </p>
+            <a href="{% url 'version_latest' %}"><button class="btn btn-lg btn-calaccess">Download latest data</button></a>
+        </div>
+        <div class="col-md-8" class="logo">
+        </div>
       </div>
-    </div>
   </div>
-
 </section>
 
 <article class="home homepage">

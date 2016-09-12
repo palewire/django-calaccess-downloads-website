@@ -274,9 +274,28 @@ td.center, th.center{
     font-weight: 600;
     margin-top: 0;
 }
-
 .md-center {
     text-align: center;
+}
+
+.hero {
+  min-height: 525px;
+  background-image: url('/static/calaccess_website/images/bg.svg');
+  /*background-size: cover;*/
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position-x: 100%;
+}
+.hero h1 {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 600;
+}
+.hero .lead-container {
+  margin-top: 75px;
+  background-image: url('/static/calaccess_website/images/brown-geobear.svg');
+  background-repeat: no-repeat;
+  background-position-x: 100%;
+  background-size: contain;
 }
 
 .home .home-card {
@@ -305,27 +324,6 @@ td.center, th.center{
     color: #ba0a35;
     margin-top: 0;
 }
-.hero {
-  min-height: 525px;
-  background-image: url('/static/calaccess_website/images/bg.svg');
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-.hero h1 {
-  font-family: 'Raleway', sans-serif;
-  font-weight: 600;
-}
-
-.hero .lead-container {
-  margin-top: 75px;
-  background-image: url('/static/calaccess_website/images/brown-geobear.svg');
-  background-repeat: no-repeat;
-  background-position-x: 100%;
-}
-.hero .lead-container div {
-  width: 400px;
-}
-
 .home div.headline h1 {
     text-transform: uppercase;
 }
