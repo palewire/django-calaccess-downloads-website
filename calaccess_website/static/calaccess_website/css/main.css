@@ -413,11 +413,11 @@ td.center, th.center{
 .stats div {
     padding: 0 0 10px 0;
 }
-.stats span {
+.stats section {
     display: inline-block;
     margin-right: 15px;
 }
-.stats h4, .stats p {
+.stats h5, .stats p {
     color: #000;
     font-size: 14px;
     margin: 0;
