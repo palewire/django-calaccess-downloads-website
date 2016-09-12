@@ -493,7 +493,21 @@ footer .easteregg a {
 
 @media only screen
 and (max-width : 992px) {
-    .align-right{
+    .hero {
+        background: none;
+      /*min-height: 525px;
+      background-image: url('/static/calaccess_website/images/bg.svg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position-x: 100%;*/
+    }
+    .hero .row {
+        margin-top: 10px;
+    }
+    .hero img {
+        margin: 20px 0 0 0;
+    }
+    .align-right {
         float: left;
         text-align: left;
     }
