@@ -281,7 +281,6 @@ td.center, th.center{
 .hero {
   min-height: 525px;
   background-image: url('/static/calaccess_website/images/bg.svg');
-  /*background-size: cover;*/
   background-size: cover;
   background-repeat: no-repeat;
   background-position-x: 100%;
@@ -291,7 +290,7 @@ td.center, th.center{
   font-weight: 600;
 }
 .hero .lead-container {
-  margin-top: 75px;
+  margin-top: 25px;
   background-image: url('/static/calaccess_website/images/brown-geobear.svg');
   background-repeat: no-repeat;
   background-position-x: 100%;
