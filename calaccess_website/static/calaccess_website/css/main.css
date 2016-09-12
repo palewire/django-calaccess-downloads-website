@@ -281,10 +281,9 @@ td.center, th.center{
 
 .home .home-card {
     height: 285px;
-    background-color: #ba0a35;
     padding: 20px;
     margin: 0 auto;
-    color: white;
+    color: #ba0a35;
 }
 .home .boxes a:hover {
     text-decoration: none !important;
@@ -303,7 +302,7 @@ td.center, th.center{
     margin-bottom: 20px;
 }
 .home .home-card p {
-    color: #fdfdfd;
+    color: #ba0a35;
     margin-top: 0;
 }
 .hero {
