@@ -1,6 +1,7 @@
 from .base import CalAccessModelListMixin
 from .docs import (
     DocumentationIndex,
+    FAQ,
     FileList,
     FileDetail,
     FileDownloadsList,
@@ -28,6 +29,7 @@ __all__ = (
     'CalAccessModelListMixin',
     'CalAccessRobotsTxt',
     'DocumentationIndex',
+    'FAQ',
     'FileList',
     'FileDetail',
     'FileDownloadsList',

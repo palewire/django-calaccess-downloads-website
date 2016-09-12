@@ -1,0 +1,282 @@
+{% extends 'calaccess_website/base_with_top.html' %}
+{% load humanize calaccess_website_tags %}
+
+{% block title %}Frequently asked questions - Documentation - {{ block.super }}{% endblock%}
+
+{% block breadcrumbs %}
+{{ block.super }}
+<li><a href="{% url 'docs_index' %}">Documentation</a></li>
+<li>Frequently asked questions</li>
+{% endblock %}
+
+{% block top %}
+<h1>Frequently asked questions</h1>
+<p>
+    Questions and answers about this project and the underlying the CAL-ACCESS database.
+</p>
+{% endblock %}
+
+
+{% block affix-nav %}
+<ul class="nav nav-stacked">
+    <li class="active"><a href="#why-is-all-this-necessary">Why is all this necessary?</a></li>
+    <li><a href="#what-is-the-ccdc">What is the California Civic Data Coalition?</a></li>
+    <li><a href="#how-far-back-does-calaccess-go">How far back does the CAL-ACCESS database go?</a></li>
+    <li><a href="#do-you-offer-all-tables">Do you offer all tables in the CAL-ACCESS database?</a></li>
+    <li><a href="#do-you-offer-all-data">Do you offer all of the available data?</a></li>
+    <li><a href="#do-you-modify-data">Do you modify the source data?</a></li>
+</ul>
+{% endblock %}
+
+{% block javascript %}
+  {% include 'calaccess_website/affix_nav_logic.html' %}
+{% endblock %}
+
+
+{% block content %}
+<section id="why-is-all-this-necessary" class="chapter">
+    <h2>Why is all this necessary?</h2>
+    <p>
+        California’s jumbled, dirty and difficult campaign-finance database, known as CAL-ACCESS, sprawls across
+        80 database tables and weighs in at more than 650 megabytes.
+    </p>
+    <p>
+        A significant effort is required to understand its esoteric structure and prepare the records for meaningful analysis.
+    </p>
+    <p>
+        That barrier blocks anyone seeking to interpret the information. The challenge of untangling the database
+        requires weeks of study and significant guesswork, discouraging most analysts from daring—and raising the risk
+        that those who do will make a critical error.
+    </p>
+    <p>
+        That is the problem we aim to solve by leading an open-source effort to perfect the numerous transformations, filters and computer operations necessary to refine the raw data into an easy-to-use product.
+    </p>
+</section>
+
+
+<section id="what-is-the-ccdc" class="chapter">
+    <h2>What is the California Civic Data Coalition?</h2>
+
+    <p>
+        The California Civic Data Coalition is an open-source team of journalists and computer programmers from news organizations across America.
+    </p>
+
+    <p>
+        The coalition was formed in 2014 by <a href="http://palewi.re/who-is-ben-welsh/">Ben Welsh</a> and Agustin Armendariz to lead the development of open-source software
+        that makes California’s public data easier to access and analyze. The effort has drawn hundreds of contributions
+        from developers and journalists at dozens of competing news outlets.
+    </p>
+
+    <p>
+        Learn more on <a href="http://www.californiacivicdata.org/about/">our about page</a>.
+    </p>
+
+</section>
+
+<section id="how-far-back-does-calaccess-go" class="chapter">
+    <h2>How far back does the CAL-ACCESS database go?</h2>
+    <p>
+        <a href="https://www.documentcloud.org/documents/2711615-FAQ/pages/1.html">According to the California Secretary of State</a>,
+        electronic disclosure
+        documents started being filed in CAL-ACCESS on Jan. 1, 2000. Historical analysis of the database
+        should start from that date, the documentation says.
+    </p>
+</section>
+
+<section id="do-you-offer-all-tables" class="chapter">
+    <h2>Do you offer all tables in the CAL-ACCESS database?</h2>
+    <p>
+        No. We’ve compared the list of tables in the daily database dump that powers this project to what’s described
+        in the <a href="{% url 'official_documentation' %}">official CAL-ACCESS documentation</a>. There are as many 73 tables excluded.
+    </p>
+
+    <p>
+        Some of these missing tables have names or descriptions suggesting they could contain sensitive information,
+        such as user credentials and bank account numbers. It’s understandable that these tables would not be released.
+    </p>
+
+    <p>
+        However, many of these tables contain information that we believe should be publicly available.
+    </p>
+
+    <p>
+        For instance, there is a series of tables that describe elections, races and candidates that are not included in
+        the daily exports, even though the list of candidates for the current election is
+        <a href="http://cal-access.ss.ca.gov/Campaign/Candidates/#assembly">published</a> on the CAL-ACCESS website.
+    </p>
+
+    <p>
+        When we <a href="https://github.com/california-civic-data-coalition/django-calaccess-raw-data/issues/62#issuecomment-58655390">reached out</a>
+        to the California Secretary of State, asking that they include any elections-related tables in the daily dumps, we were told that “[g]iven our current resource constraints, staff cannot modify the database export to include that other data.”
+    </p>
+
+    <p>
+        Here’s a sampling of missing tables we think should be made public:
+    </p>
+
+    <table class="table table-striped">
+    <thead>
+        <tr>
+            <th class="head">Name</th>
+            <th class="head">Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>CASH_RECON_REPORT_WRK</td>
+            <td>Table description contains this mysterious comment: "J M needs to describe this table. Cox - 4/28/2000"</td>
+        </tr>
+        <tr>
+            <td>CODE_LIST</td>
+            <td>This table contains a list of CAL file codes. Examples include entity codes, office codes and expense codes</td>
+        </tr>
+        <tr>
+            <td>CORRESPONDENCE</td>
+            <td>Table description contains this mysterious comment: "J M needs to describe this table. Cox - 4/28/2000"</td>
+        </tr>
+        <tr>
+            <td>DISCLOSURE_PROCEDURES</td>
+            <td>Table description contains this mysterious comment: "J M needs to describe this table."</td>
+        </tr>
+        <tr>
+            <td>ELECTION_CANDIDATES</td>
+            <td>This table indicates if a candidate for a given race is an incumbent.</td>
+        </tr>
+        <tr>
+            <td>ELECTION_LINKS</td>
+            <td>No description</td>
+        </tr>
+        <tr>
+            <td>ELECTION_RACES</td>
+            <td>No description</td>
+        </tr>
+        <tr>
+            <td>ELECTION_TYPES</td>
+            <td>This table links election types and their descriptions.</td>
+        </tr>
+        <tr>
+            <td>ELECTIONS</td>
+            <td>No description</td>
+        </tr>
+        <tr>
+            <td>ERRORS_AND_OMISSIONS</td>
+            <td>This table contains results of audit checks and the validation process.</td>
+        </tr>
+        <tr>
+            <td>FEDERAL_FORMS</td>
+            <td>Table used to log reciept of federal filings.</td>
+        </tr>
+        <tr>
+            <td>FEES</td>
+            <td>Fees, descriptions and their value</td>
+        </tr>
+        <tr>
+            <td>FILER_CORRESPONDENCE_BUILD2</td>
+            <td>Table description contains this mysterious comment: "J M needs to describe this table."</td>
+        </tr>
+        <tr>
+            <td>FILER_ELECTIONS</td>
+            <td>Table description contains this mysterious comment: "J M needs to describe this table. He indicates it is for future use."</td>
+        </tr>
+        <tr>
+            <td>FILER_NOTICE_GENERATION_DEF</td>
+            <td>"J M needs to describe this table. He indicates it is for future use."</td>
+        </tr>
+        <tr>
+            <td>FILER_OBLIGATIONS</td>
+            <td>Table description contains this mysterious comment: "J M needs to describe this table. He indicates it is for future use."</td>
+        </tr>
+        <tr>
+            <td>FILER_TYPES_TO_FORMS</td>
+            <td>Table description contains this mysterious comment: "J M needs to describe this table. It is in his list of tables designed for future releases."</td>
+        </tr>
+        <tr>
+            <td>FILING_ERROR_TYPES</td>
+            <td>This lookup table provides a cross reference for errors and their and messages.</td>
+        </tr>
+        <tr>
+            <td>FILING_ERRORS</td>
+            <td>This table contains the errors assocated with a given filing and each of it's amendments.</td>
+        </tr>
+        <tr>
+            <td>FILING_ID_TEMP</td>
+            <td>No description</td>
+        </tr>
+        <tr>
+            <td>FORM_CODES</td>
+            <td>This lookup table assocates record types to forms.</td>
+        </tr>
+        <tr>
+            <td>FORMS</td>
+            <td>This table describes the form set.</td>
+        </tr>
+        <tr>
+            <td>LATE_CONT_IND_EXP_REPORT</td>
+            <td>Table description contains this mysterious comment: "J M needs to describe this table."</td>
+        </tr>
+        <tr>
+            <td>LOCAL_FORMS</td>
+            <td>This table is used to log reciept of local paper filings.</td>
+        </tr>
+        <tr>
+            <td>PRD_DATA_AUDIT</td>
+            <td>No description</td>
+        </tr>
+        <tr>
+            <td>PRD_FINE_DETAIL</td>
+            <td>Detail information on how a fine was calculated.</td>
+        </tr>
+        <tr>
+            <td>PRD_FINES</td>
+            <td>Fine summary data table.</td>
+        </tr>
+        <tr>
+            <td>PRD_LIMITS</td>
+            <td>Table description contains this mysterious comment: "J M needs to describe this table."</td>
+        </tr>
+        <tr>
+            <td>PRD_WAIVERS</td>
+            <td>Table description contains this mysterious comment: "J Mo needs to describe this table."</td>
+        </tr>
+        <tr>
+            <td>TVIEW_CONTRIBUTIONS3</td>
+            <td>Campaign Disclosure reporting tables. "Need to get DH's Documentation to describe."</td>
+        </tr>
+    </tbody>
+    </table>
+
+</section>
+
+
+<section id="do-you-offer-all-data" class="chapter">
+    <h2>Do you offer all of the available data?</h2>
+    <p>
+        Almost. The raw data provided by the state contains some errors in how values are escaped, quoted and delimited.
+        The result is that there are a small number of records we cannot yet automatically parse that are lost during
+        our process.
+    </p>
+    <p>
+        However, according to our tracking, 99.9998% of records in the downloaded source files are offered here for download.
+    </p>
+</section>
+
+
+<section id="do-you-modify-data" class="chapter">
+    <h2>Do you modify the source data?</h2>
+
+    <p>
+        We make every effort to carefully parse and load the bulk CAL-ACCESS data from the state “as is.” Therefore,
+        any undocumented modification of the data made during this process is considered a bug in our software.
+    </p>
+
+    <p>
+        There is one exception: We strip the time from any date field in the raw data. We consider this modification
+        to be of little consequence since, for the most part, there is a time part of 12:00:00 AM for every value.
+    </p>
+
+    <p>
+        Based on <a href="https://github.com/california-civic-data-coalition/django-calaccess-raw-data/issues/1457">our inspection of the raw data</a>,
+        very little information is being lost and whatever is lost has questionable utility.
+    </p>
+</section>
+{% endblock %}
