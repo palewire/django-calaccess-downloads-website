@@ -285,16 +285,15 @@ td.center, th.center{
   background-repeat: no-repeat;
   background-position-x: 100%;
 }
+.hero .row {
+    margin-top: 40px;
+}
 .hero h1 {
   font-family: 'Raleway', sans-serif;
   font-weight: 600;
 }
-.hero .lead-container {
-  margin-top: 25px;
-  background-image: url('/static/calaccess_website/images/brown-geobear.svg');
-  background-repeat: no-repeat;
-  background-position-x: 100%;
-  background-size: contain;
+.hero img {
+    padding-top: 15px;
 }
 
 .home .home-card {
