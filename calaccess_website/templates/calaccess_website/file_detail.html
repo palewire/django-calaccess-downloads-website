@@ -49,11 +49,9 @@
     {% if version_list.0 %}
     {% with version_list.0 as latest_file %}
     <p>
-        The most recent release of this file from CAL-ACCESS, the database that tracks campaign
+        The most recent release from CAL-ACCESS, the database that tracks campaign
         finance and lobbying activity in California politics.
-        It was published by California's Secretary of State on {{ latest_file.version.release_datetime|date:"l, N j, Y" }}
-        at {{ latest_file.version.release_datetime|date:"P" }} We have cleaned it up and converted
-        into a flat file with {{ latest_file.clean_records_count|intword|intcomma }} rows of comma-separated values.
+        It contains {{ latest_file.clean_records_count|intword|intcomma }} rows of data published on {{ latest_file.version.release_datetime|date:"l, N j, Y" }}.
     </p>
     {% if latest_file.clean_file_archive %}
         <p>
