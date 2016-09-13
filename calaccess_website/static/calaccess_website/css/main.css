@@ -85,6 +85,7 @@ section.chapter {
 .btn-calaccess:focus {
     color: #ba0a35;
     border: 1px solid #ba0a35;
+    background-color: transparent;
     border-radius: 0;
     font-size: 18px;
 }
