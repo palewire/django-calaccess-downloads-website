@@ -3,6 +3,21 @@
 
 {% block title %}Downloads - {{ object.release_datetime|date:"N j, Y" }} - {{ block.super }}{% endblock%}
 
+{% block meta %}
+<meta property="og:site_name" content="{{ CALACCESS_WEBSITE_DOMAIN }}"/>
+<meta property="og:title" content="Downloads - {{ object.release_datetime|date:"N j, Y" }} - {{ CALACCESS_WEBSITE_TITLE }}"/>
+<meta property="og:description" content="The {{ object.release_datetime|date:"l, N j, Y" }} release of CAL-ACCESS database, the government database that tracks campaign finance and lobbying activity in California politics."/>
+<meta property="og:url" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}{{ request.path }}" />
+<meta property="og:image" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}/static/calaccess_website/images/red-bear-share.png"/>
+
+<meta property="twitter:site" content="@cacivicdata">
+<meta property="twitter:title" content="Latest download - {{ CALACCESS_WEBSITE_TITLE }}">
+<meta property="twitter:description" content="The {{ object.release_datetime|date:"l, N j, Y" }} release of CAL-ACCESS database, the government database that tracks campaign finance and lobbying activity in California politics."/>
+<meta property="twitter:url" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}{{ request.path }}" />
+<meta property="twitter:image:src" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}/static/calaccess_website/images/red-bear-share.png">
+<meta property="twitter:card" content="summary_large_image">
+{% endblock %}
+
 {% block breadcrumbs %}
 {{ block.super }}
 <li>{{ object.release_datetime|date:"N j, Y" }}, {{ object.release_datetime|date:"P" }}</li>
@@ -13,8 +28,8 @@
     <p>
         The {{ object.release_datetime|date:"l, N j, Y" }} release
         of CAL-ACCESS database, the government database
-        that tracks campaign finance and lobbying activity in California politics. 
-        
+        that tracks campaign finance and lobbying activity in California politics.
+
         It was published by state officials
         at {{ object.release_datetime|date:"P" }}
         <a href="{% url 'version_latest' %}">Latest release &raquo;</a>&nbsp;

@@ -3,6 +3,21 @@
 
 {% block title %}Latest download - {{ block.super }}{% endblock%}
 
+{% block meta %}
+<meta property="og:site_name" content="{{ CALACCESS_WEBSITE_DOMAIN }}"/>
+<meta property="og:title" content="Latest download - {{ CALACCESS_WEBSITE_TITLE }}"/>
+<meta property="og:description" content="The most recent release of CAL-ACCESS, the government database that tracks campaign finance and lobbying activity in California politics."/>
+<meta property="og:url" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}{{ request.path }}" />
+<meta property="og:image" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}/static/calaccess_website/images/red-bear-share.png"/>
+
+<meta property="twitter:site" content="@cacivicdata">
+<meta property="twitter:title" content="Latest download - {{ CALACCESS_WEBSITE_TITLE }}">
+<meta property="twitter:description" content="The most recent release of CAL-ACCESS, the government database that tracks campaign finance and lobbying activity in California politics."/>
+<meta property="twitter:url" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}{{ request.path }}" />
+<meta property="twitter:image:src" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}/static/calaccess_website/images/red-bear-share.png">
+<meta property="twitter:card" content="summary_large_image">
+{% endblock %}
+
 {% block breadcrumbs %}
 {{ block.super }}
 <li>Latest</li>
@@ -12,8 +27,8 @@
     <h1>Latest download</h1>
     <p>
         The most recent release of CAL-ACCESS, the government database
-        that tracks campaign finance and lobbying activity in California politics. 
-        
+        that tracks campaign finance and lobbying activity in California politics.
+
         It was published by state officials on {{ object.release_datetime|date:"l, N j, Y" }} at
         {{ object.release_datetime|date:"P" }}
         <a href="{% url 'version_archive_index' %}">Past releases &raquo;</a>
