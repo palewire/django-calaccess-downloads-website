@@ -4,7 +4,7 @@
     <div class="row">
     <div class="col-md-12">
       <ul class="nav nav-pills">
-        <li style="margin-left:0;">
+        <li class="visible-lg-inline visible-md-inline visible-sm-inline invisible-xs-inline" style="margin-left:0;">
             <a class="logo" href="http://www.californiacivicdata.org/">
                 <img
                     src="{% static "calaccess_website/images/brown-geobear.svg" %}"
@@ -15,6 +15,7 @@
         </li>
         <li id="home"><a href="{% url 'home' %}">HOME</a></li>
         <li id="data"><a href="{% url 'version_latest' %}">DATA</a></li>
+        <li id="data"><a href="{% url 'docs_index' %}">DOCS</a></li>
         <li><a href="http://www.californiacivicdata.org/archive/">BLOG</a></li>
         <li><a href="http://www.californiacivicdata.org/about/">ABOUT</a></li>
       </ul>
