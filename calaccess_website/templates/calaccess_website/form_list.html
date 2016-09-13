@@ -46,8 +46,8 @@
     <tbody>
     {% for form in group.list  %}
         <tr>
-          <td><a href="{% url 'form_detail' id=form.id|lower %}">{{ form.type_and_num|safe }}</td>
-          <td width="80%">{{ form.title }}</td>
+          <td><a href="{% url 'form_detail' id=form.id|lower %}">{{ form.type_and_num|safe }}</a></td>
+          <td style="width:80;%">{{ form.title }}</td>
         </tr>
     {% endfor %}
     </tbody>
