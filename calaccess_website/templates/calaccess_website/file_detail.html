@@ -112,13 +112,13 @@
     </button>
     <div class="collapse" id="collapse-{{ field.db_column }}">
       <table class="table table-striped">
-      <thead valign="bottom">
+      <thead>
           <tr>
-              <th width="20%" class="head">Code</th>
+              <th style="width:20%;" class="head">Code</th>
               <th class="head">Definition</th>
           </tr>
       </thead>
-      <tbody valign="top">
+      <tbody>
       {% for choice in field.choices %}
           <tr>
               <td><code>{{ choice.0 }}</code></td>
@@ -195,9 +195,9 @@
         <thead>
           <tr>
             <th>Date</th>
-            <th width=8% class="right">Records</th>
-            <th width=8% class="right">Size</th>
-            <th width=15% class="right"></th>
+            <th style="width:8%;" class="right">Records</th>
+            <th style="width:8%;" class="right">Size</th>
+            <th style="widt:15%;" class="right"></th>
           </tr>
         </thead>
         <tbody>
