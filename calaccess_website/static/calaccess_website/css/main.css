@@ -260,13 +260,15 @@ td.right, th.right {
 td.center, th.center{
     text-align:center;
 }
-
 .table>tbody>tr>td {
     border-top: none;
 }
 
 .break {
     word-wrap: break-word;
+}
+.nobreak {
+    white-space: nowrap;
 }
 
 /* Homepage */
@@ -493,12 +495,16 @@ footer .easteregg a {
 @media only screen
 and (max-width : 992px) {
     .hero {
-        background: none;
+        background: #f8f8f8;
+        padding: 10px;
       /*min-height: 525px;
       background-image: url('/static/calaccess_website/images/bg.svg');
       background-size: cover;
       background-repeat: no-repeat;
       background-position-x: 100%;*/
+    }
+    .hero h1 {
+        margin-top: 0;
     }
     .hero .row {
         margin-top: 10px;

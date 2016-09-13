@@ -11,7 +11,7 @@
 {% endblock %}
 
 {% block top %}
-  <h1>{{ object.db_table }}</h1>
+  <h1 class="break">{{ object.db_table }}</h1>
   <p>{{ object.doc.strip|first_line|safe }}</p>
 {% endblock %}
 
@@ -196,18 +196,18 @@
           <tr>
             <th>Date</th>
             <th style="width:8%;" class="right">Records</th>
-            <th style="width:8%;" class="right">Size</th>
+            <th style="width:8%;" class="right hidden-xs">Size</th>
             <th style="width:15%;" class="right"></th>
           </tr>
         </thead>
         <tbody>
           {% for file in version_list|slice:":10" %}
           <tr>
-            <td><a href="{% url 'version_detail' year=file.version.release_datetime.year month=file.version.release_datetime|date:'m' day=file.version.release_datetime|date:'d' time=file.version.release_datetime|date:'His' %}">{{ file.version.release_datetime|date:"l, N j, Y" }}</a></td>
+            <td><a href="{% url 'version_detail' year=file.version.release_datetime.year month=file.version.release_datetime|date:'m' day=file.version.release_datetime|date:'d' time=file.version.release_datetime|date:'His' %}">{{ file.version.release_datetime|date:"N j, Y" }}</a></td>
             {% if file.clean_file_archive %}
             <td class="right">{{ file.clean_records_count|intcomma }}</td>
-            <td class="right">{{ file.pretty_clean_file_size }}</td>
-            <td class="right"><a href="{% archive_url file.clean_file_archive.name %}">Download &raquo;</a></td>
+            <td class="right hidden-xs">{{ file.pretty_clean_file_size }}</td>
+            <td class="nobreak right"><a href="{% archive_url file.clean_file_archive.name %}">Download &raquo;</a></td>
             {% else %}
             <td colspan=2></td>
             <td class="right">Unavailable</td>
