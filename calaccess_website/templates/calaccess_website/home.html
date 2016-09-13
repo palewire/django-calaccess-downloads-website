@@ -6,33 +6,32 @@
 {% block container %}
 
 <section class="hero">
-  <div class="container">
-      <div class=" row">
-        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-            <h1>Download California campaign finance data with ease</h1>
-            <p class="lead">
-                An open-source archive serving up daily downloads from
-                CAL-ACCESS, California's database tracking money in state politics. <a href="">Learn more &raquo;</a>
-            </p>
-            <a href="{% url 'version_latest' %}" class="btn btn-calaccess btn-lg" role="button">
-                Download latest data
-            </a>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                <h1>Download California campaign finance data with ease</h1>
+                <p class="lead">
+                    An open-source archive serving up daily downloads from
+                    CAL-ACCESS, California's database tracking money in state politics. <a href="">Learn more &raquo;</a>
+                </p>
+                <a href="{% url 'version_latest' %}" class="btn btn-calaccess btn-lg" role="button">
+                    Download latest data
+                </a>
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                <img src="/static/calaccess_website/images/brown-geobear.svg"
+                     alt="California Civic Data Coalition logo"
+                     title="California Civic Data Coalition logo">
+            </div>
         </div>
-        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-            <img src="/static/calaccess_website/images/brown-geobear.svg"
-                 alt="California Civic Data Coalition logo"
-                 title="California Civic Data Coalition logo">
-        </div>
-      </div>
-  </div>
+    </div>
 </section>
-
 <article class="home homepage">
 <div class="container">
     <section class="row boxes">
         <div class="col-md-10 col-md-offset-1 md-center">
             <div class="row">
-                <section class="col-lg-4 col-md-4 col-sm-4 col-sm-offset-0 col-xs-8 col-xs-offset-2">
+                <section class="col-lg-4 col-md-4 col-sm-4 col-sm-offset-0 col-xs-10 col-xs-offset-1">
                     <a class="home-card-link" href="{% url 'version_latest' %}">
                         <div class="home-card">
                             <div class="card-container">
@@ -45,7 +44,7 @@
                         </div>
                     </a>
                 </section>
-                <section class="col-lg-4 col-md-4 col-sm-4 col-sm-offset-0 col-xs-8 col-xs-offset-2">
+                <section class="col-lg-4 col-md-4 col-sm-4 col-sm-offset-0 col-xs-10 col-xs-offset-1">
                     <a href="{% url 'docs_index' %}">
                         <div class="home-card">
                             <div class="card-container">
@@ -56,7 +55,7 @@
                         </div>
                     </a>
                 </section>
-                <section class="col-lg-4 col-md-4 col-sm-4 col-sm-offset-0 col-xs-8 col-xs-offset-2">
+                <section class="col-lg-4 col-md-4 col-sm-4 col-sm-offset-0 col-xs-10 col-xs-offset-1">
                     <a href="https://github.com/california-civic-data-coalition/">
                         <div class="home-card">
                             <div class="card-container">

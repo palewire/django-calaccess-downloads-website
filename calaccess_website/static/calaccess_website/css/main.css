@@ -259,9 +259,15 @@ td.right, th.right {
 td.center, th.center{
     text-align:center;
 }
-
 .table>tbody>tr>td {
     border-top: none;
+}
+
+.break {
+    word-wrap: break-word;
+}
+.nobreak {
+    white-space: nowrap;
 }
 
 /* Homepage */
@@ -321,14 +327,9 @@ td.center, th.center{
 .home .boxes a:hover .home-card p {
     color: white;
 }
-.home .card-container {
-    position: relative;
-    text-align: center;
-    top: 50%;
-    transform: translateY(-50%);
-}
 .home .home-card h2 {
     margin-bottom: 20px;
+    font-size: 26px;
 }
 .home .home-card i {
     font-size: 70px;
@@ -498,6 +499,9 @@ and (max-width : 992px) {
         background-size: initial;
         padding-bottom: 20px;
     }
+    .hero h1 {
+        margin-top: 0;
+    }
     .hero .row {
         margin-top: 10px;
     }
@@ -559,5 +563,8 @@ and (max-width : 490px) {
         padding: 0 15% 0 0;
         margin: 20px 0;
         float: left;
+    }
+    .home .home-card h2 {
+        font-size: 24px;
     }
 }

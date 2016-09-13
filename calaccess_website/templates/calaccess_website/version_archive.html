@@ -30,7 +30,7 @@
     <tr>
         <td>
             <a href="{% url 'version_detail' year=obj.release_datetime.year month=obj.release_datetime|date:'m' day=obj.release_datetime|date:'d' time=obj.release_datetime|date:'His' %}">
-                {{ obj.release_datetime|date:"l, N j, Y" }}
+                {{ obj.release_datetime|date:"N j, Y" }}
             </a>
         </td>
         <td class="right">
