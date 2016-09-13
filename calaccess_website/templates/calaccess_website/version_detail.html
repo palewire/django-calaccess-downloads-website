@@ -1,5 +1,5 @@
 {% extends 'calaccess_website/base_with_top.html' %}
-{% load humanize calaccess_website_tags %}
+{% load humanize calaccess_website_tags staticfiles %}
 
 {% block breadcrumbs %}
 {{ block.super }}
@@ -64,73 +64,87 @@ $('.dropdown-menu a').click(function() {
       <h2>Archived files</h2>
       <p>
           Our cleaned-up version of each of the {{ object.download_file_count }}
-          database tables released by state officials, grouped by type.
+          CAL-ACCESS database tables released by state officials, grouped by type.
       </p>
-      <p>Filter by type</p>
-      <div class="dropdown">
-        <button class="btn btn-calaccess dropdown-toggle" type="button" id="filterDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-          All tables
-          <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="filterDropdown">
-          <li><a data-group="all">All tables</a></li>
-          {% for group in file_list %}
-          <li><a data-group="{{ group.grouper|slugify }}">{{ group.grouper|capfirst }}</a></li>
-          {% endfor %}
-        </ul>
-      </div>
+      <form class="form-inline">
+          <input class="search form-control" placeholder="Filter files" />
+          <div class="dropdown">
+            <button class="btn btn-calaccess dropdown-toggle" type="button" id="filterDropdown"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+              All files
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="filterDropdown">
+              <li><a data-group="all">All files</a></li>
+              {% for group in file_list %}
+              <li><a data-group="{{ group.grouper|slugify }}">{{ group.grouper|capfirst }}</a></li>
+              {% endfor %}
+            </ul>
+          </div>
+      </form>
   </div>
 
+  <ul class="list">
   {% for group in file_list %}
   {% for file in group.list %}
-    <section class="row file-card {{ group.grouper|slugify }}">
-        <div class="row">
-            <div class="col-md-6">
-                <h4>
-                    <a href="{% url 'file_detail' slug=file.file_name|slugify %}">
-                        {{ file.file_name }}
-                    </a>
-                </h4>
-            </div>
-            <div class="col-md-6 align-right">
-                <p class="lbl-group">
-                    <mark>{{ group.grouper|upper }}</mark>
-                </p>
-            </div>
-        </div>
-        <hr>
-        <div class="row">
-            <div class="col-md-6">
-                <p>
-                    {{ file.model.doc|first_line|safe }}
-                    {% if file.download_records_count == 0 %}The source file published by the state is empty.{% endif %}
-                    <a href="{% url 'file_detail' slug=file.file_name|slugify %}">Learn more &raquo;</a>
-                </p>
-            </div>
-            <div class="col-md-5 col-md-offset-1 align-right stats">
-                {% if file.clean_file_archive %}
-                <div class="col-md-8 col-sm-8 col-xs-8">
-                    <section>
-                      <h5>Records</h5>
-                      <p>{{ file.clean_records_count|intcomma }}{% if file.error_count > 0 %}<sup><a href="#footnote-{{ file.file_name|slugify }}">*</a></sup>{% endif %}</p>
-                    </section>
-                    <section>
-                      <h5>Size</h5>
-                      <p>{{ file.pretty_clean_file_size }}</p>
-                    </section>
+    <li data-name="{{ file.file_name }}" data-type="{{ group.grouper }}" data-description="{{ file.model.doc|first_line|striptags }}">
+        <section class="row file-card {{ group.grouper|slugify }}">
+            <div class="row">
+                <div class="col-md-6">
+                    <h4>
+                        <a href="{% url 'file_detail' slug=file.file_name|slugify %}">
+                            {{ file.file_name }}
+                        </a>
+                    </h4>
                 </div>
-                <div class="col-md-4 col-sm-4 col-xs-4">
-                  <a href="{% archive_url file.clean_file_archive.name is_latest=is_latest %}" class="btn btn-calaccess">Download</a>
+                <div class="col-md-6 align-right">
+                    <p class="lbl-group">
+                        <mark>{{ group.grouper|upper }}</mark>
+                    </p>
                 </div>
-                {% else %}
-                  <a class="btn btn-inactive">Unavailable</a>
-                {% endif %}
             </div>
-        </div>
-  </section>
+            <hr>
+            <div class="row">
+                <div class="col-md-6">
+                    <p>
+                        {{ file.model.doc|first_line|safe }}
+                        {% if file.download_records_count == 0 %}The source file published by the state is empty.{% endif %}
+                        <a href="{% url 'file_detail' slug=file.file_name|slugify %}">Learn more &raquo;</a>
+                    </p>
+                </div>
+                <div class="col-md-5 col-md-offset-1 align-right stats">
+                    {% if file.clean_file_archive %}
+                    <div class="col-md-8 col-sm-8 col-xs-8">
+                        <section>
+                          <h5>Records</h5>
+                          <p>{{ file.clean_records_count|intcomma }}{% if file.error_count > 0 %}<sup><a href="#footnote-{{ file.file_name|slugify }}">*</a></sup>{% endif %}</p>
+                        </section>
+                        <section>
+                          <h5>Size</h5>
+                          <p>{{ file.pretty_clean_file_size }}</p>
+                        </section>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-4">
+                      <a href="{% archive_url file.clean_file_archive.name is_latest=is_latest %}" class="btn btn-calaccess">Download</a>
+                    </div>
+                    {% else %}
+                      <a class="btn btn-inactive">Unavailable</a>
+                    {% endif %}
+                </div>
+            </div>
+        </section>
+    </li>
   {% endfor %}
   {% endfor %}
+  </ul>
 </section>
+<script src="{% static 'calaccess_website/js/list.min.js' %}"></script>
+<script>
+var options = {
+  valueNames: [ { data: ['name', 'type', 'description'] }, ]
+};
+var fileList = new List('archived-files', options);
+</script>
 {% endif %}
 
 {% if object.error_count %}

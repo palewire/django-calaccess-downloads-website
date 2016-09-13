@@ -371,8 +371,23 @@ td.center, th.center{
 .filters {
     margin-bottom: 30px;
 }
+.filters input {
+    display: inline-block;
+    border: 1px solid #ba0a35;
+    background-color: transparent;
+    border-radius: 0;
+    font-size: 18px;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    line-height: 1.42857143;
+    height: 39px;
+}
+.filters .dropdown {
+    display: inline-block;
+}
 .filters .btn {
     width: 120px;
+    display: inline-block;
 }
 .filters .dropdown-menu {
     cursor: pointer;
@@ -382,6 +397,15 @@ td.center, th.center{
 .filters li>a:hover {
     background: #ba0a35;
     color: #fdfdfd;
+}
+ul.list {
+    list-style-type:none;
+    margin: 0;
+    padding: 0
+}
+ul.list li {
+    margin: 0;
+    padding: 0;
 }
 .file-card {
     border: 1px solid #a6a6a6;
@@ -542,6 +566,9 @@ and (max-width : 768px) {
         margin: 20px auto 0 auto;
         color: #ba0a35;
         border: 1px solid #ba0a35;
+    }
+    .filters input {
+        margin-bottom: 10px;
     }
 }
 
