@@ -15,7 +15,7 @@
         </li>
         <li id="home"><a href="{% url 'home' %}">HOME</a></li>
         <li id="data"><a href="{% url 'version_latest' %}">DATA</a></li>
-        <li id="data"><a href="{% url 'docs_index' %}">DOCS</a></li>
+        <li id="docs"><a href="{% url 'docs_index' %}">DOCS</a></li>
         <li><a href="http://www.californiacivicdata.org/archive/">BLOG</a></li>
         <li><a href="http://www.californiacivicdata.org/about/">ABOUT</a></li>
       </ul>
@@ -25,10 +25,18 @@
 </header>
 
 <script type="text/javascript">
-  var url = window.location;
-  if (url.pathname == '/') {
-    $('#home').addClass('active');
-  } else {
-    $('#data').addClass('active');
-  }
+    if (!String.prototype.startsWith) {
+        String.prototype.startsWith = function(searchString, position){
+          position = position || 0;
+          return this.substr(position, searchString.length) === searchString;
+      };
+    }
+    var url = window.location;
+    if (url.pathname == '/') {
+        $('#home').addClass('active');
+    } else if (url.pathname.startsWith("/documentation")) {
+        $("#docs").addClass('active');
+    } else {
+        $('#data').addClass('active');
+    }
 </script>
