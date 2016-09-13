@@ -84,7 +84,6 @@ section.chapter {
 .btn-calaccess,
 .btn-calaccess:focus {
     color: #ba0a35;
-    background-color: #fff;
     border: 1px solid #ba0a35;
     border-radius: 0;
     font-size: 18px;
@@ -494,12 +493,10 @@ footer .easteregg a {
 @media only screen
 and (max-width : 992px) {
     .hero {
-        background: none;
-      /*min-height: 525px;
-      background-image: url('/static/calaccess_website/images/bg.svg');
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position-x: 100%;*/
+        background-color: #f8f8f8;
+        background-image: none;
+        background-size: initial;
+        padding-bottom: 20px;
     }
     .hero .row {
         margin-top: 10px;
