@@ -18,7 +18,8 @@ def documentcloud_embed(slug):
   width: 680,
   height: 850,
   sidebar: false,
-  zoom: 550
+  zoom: 550,
+  responsive: true
   }});
 </script>"""
     return mark_safe(template.format(slug=slug))
