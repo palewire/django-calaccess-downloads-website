@@ -66,8 +66,8 @@ $('.dropdown-menu a').click(function() {
           Our cleaned-up version of each of the {{ object.download_file_count }}
           CAL-ACCESS database tables released by state officials, grouped by type.
       </p>
-      <form class="form-inline">
-          <input class="search form-control" placeholder="Filter files" />
+      <form id="filter-form" class="form-inline">
+          <input class="search form-control" placeholder="Filter files"/>
           <div class="dropdown">
             <button class="btn btn-calaccess dropdown-toggle" type="button" id="filterDropdown"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -140,6 +140,7 @@ $('.dropdown-menu a').click(function() {
 </section>
 <script src="{% static 'calaccess_website/js/list.min.js' %}"></script>
 <script>
+$('#filter-form').submit(false);
 var options = {
   valueNames: [ { data: ['name', 'type', 'description'] }, ]
 };
