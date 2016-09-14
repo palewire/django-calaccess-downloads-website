@@ -516,6 +516,12 @@ footer .easteregg a {
     margin-bottom:35px;
 }
 
+.announcement {
+    border: 1px solid #ba0a35;
+    padding: 0 20px 10px 20px;
+    margin-top: 10px;
+}
+
 @media only screen
 and (max-width : 992px) {
     .hero {
@@ -549,6 +555,9 @@ and (max-width : 992px) {
     header .nav .logo img {
         width: 45px;
         margin-top: 10px;
+    }
+    .announcement {
+        padding: 0 10px 0 10px;
     }
 }
 
