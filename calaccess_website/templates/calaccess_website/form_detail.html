@@ -3,6 +3,21 @@
 
 {% block title %}{{ form.type_and_num|safe }}: {{ form.title|safe }} - CAL-ACCESS forms - Documentation {{ block.super }}{% endblock%}
 
+{% block meta %}
+<meta property="og:site_name" content="{{ CALACCESS_WEBSITE_DOMAIN }}"/>
+<meta property="og:title" content="{{ form.type_and_num|safe }}: {{ form.title|safe }} - CAL-ACCESS forms - Documentation - {{ CALACCESS_WEBSITE_TITLE }}"/>
+<meta property="og:description" content="{{ form.title|safe }}"/>
+<meta property="og:url" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}{{ request.path }}" />
+<meta property="og:image" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}/static/calaccess_website/images/red-bear-share.png"/>
+
+<meta property="twitter:site" content="@cacivicdata">
+<meta property="twitter:title" content="{{ form.type_and_num|safe }}: {{ form.title|safe }} - CAL-ACCESS forms - Documentation - {{ CALACCESS_WEBSITE_TITLE }}">
+<meta property="twitter:description" content="{{ form.title|safe }}"/>
+<meta property="twitter:url" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}{{ request.path }}" />
+<meta property="twitter:image:src" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}/static/calaccess_website/images/red-bear-share.png">
+<meta property="twitter:card" content="summary_large_image">
+{% endblock %}
+
 {% block breadcrumbs %}
 {{ block.super }}
 <li><a href="{% url 'docs_index' %}">Documentation</a></li>

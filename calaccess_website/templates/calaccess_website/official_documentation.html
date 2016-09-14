@@ -3,6 +3,22 @@
 
 {% block title %}CAL-ACCESS official documentation - Documentation - {{ block.super }}{% endblock%}
 
+{% block meta %}
+<meta property="og:site_name" content="{{ CALACCESS_WEBSITE_DOMAIN }}"/>
+<meta property="og:title" content="CAL-ACCESS official documentation - Documentation - {{ CALACCESS_WEBSITE_TITLE }}"/>
+<meta property="og:description" content="The jumbled, fragmentary and unreliable documentation for the CAL-ACCESS database provided by California's Secretary of State."/>
+<meta property="og:url" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}{{ request.path }}" />
+<meta property="og:image" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}/static/calaccess_website/images/red-bear-share.png"/>
+
+<meta property="twitter:site" content="@cacivicdata">
+<meta property="twitter:title" content="CAL-ACCESS official documentation - Documentation - {{ CALACCESS_WEBSITE_TITLE }}">
+<meta property="twitter:description" content="The jumbled, fragmentary and unreliable documentation for the CAL-ACCESS database provided by California's Secretary of State."/>
+<meta property="twitter:url" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}{{ request.path }}" />
+<meta property="twitter:image:src" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}/static/calaccess_website/images/red-bear-share.png">
+<meta property="twitter:card" content="summary_large_image">
+{% endblock %}
+
+
 {% block breadcrumbs %}
 {{ block.super }}
 <li><a href="{% url 'docs_index' %}">Documentation</a></li>
@@ -87,7 +103,7 @@
         This is a good starting point for researching specific tables and fields.
         But beware. Since this is one of the older available documents, some of its content is outdated.
     </p>
-    
+
     <p>
         More complete documentation can be found in our independent <a href="{% url 'file_list' %}">documentation
         of CAL-ACCESS files</a>.
@@ -101,7 +117,7 @@
     <h2>.CAL README</h2>
     <p>
         Much of what ends up in CAL-ACCESS is submitted in an electronic file format known as .CAL,
-        which is specifically designed to interface with CAL-ACCESS. 
+        which is specifically designed to interface with CAL-ACCESS.
     </p>
     <p>
         The non-proprietary electronic file format used by third-party software
