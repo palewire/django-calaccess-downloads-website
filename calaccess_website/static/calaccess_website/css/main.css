@@ -286,7 +286,7 @@ td.center, th.center{
 
 .hero {
   min-height: 525px;
-  background-image: url('/static/calaccess_website/images/bg.svg');
+  background-image: url('http://calaccess.californiacivicdata.org/static/calaccess_website/images/bg.svg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position-x: 100%;
