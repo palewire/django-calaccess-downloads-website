@@ -102,7 +102,7 @@ AWS_BUCKET_NAME = os.getenv('s3_baked_content_bucket')
 
 BUILD_DIR = os.path.join(BASE_DIR, '.build')
 BAKERY_VIEWS = (
-    'calaccess_website.views.Home',
+    'calaccess_website.views.HomeRedirect',
     'calaccess_website.views.VersionArchiveIndex',
     'calaccess_website.views.VersionYearArchiveList',
     'calaccess_website.views.VersionMonthArchiveList',
