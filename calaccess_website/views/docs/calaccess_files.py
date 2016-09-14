@@ -61,7 +61,7 @@ class BaseFileDetailView(BuildableDetailView):
         # Pull all previous versions of the provided file
         context['version_list'] = RawDataFile.objects.filter(
             file_name=file_name
-        ).order_by('-version__release_datetime')
+        ).order_by('-version__release_datetime').exclude(version__release_datetime__lte='2016-07-27')
         # note if the most recent version of the file is empty
         try:
             context['empty'] = context['version_list'][0].download_records_count == 0
