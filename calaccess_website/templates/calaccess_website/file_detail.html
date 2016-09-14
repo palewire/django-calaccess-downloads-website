@@ -195,7 +195,7 @@
         </p>
         <p>
             However, only {{ latest_file.error_count|intcomma }} records
-            out of {{ latest_file.download_records_count|intcomma }} total rows were lost.
+            out of {{ latest_file.download_records_count|intcomma }} total rows were lost (you can download them <a href="{% archive_url latest_file.error_log_archive.name %}">here</a>).
         </p>
     </section>
     {% endif %}
