@@ -22,9 +22,6 @@ class OtherSitemap(AbstractSitemapView):
     build_path = "other-sitemap.xml"
     template_name = "calaccess_website/other-sitemap.xml"
     queryset = [
-        {"url": "http://www.californiacivicdata.org/"},
-        {"url": "http://www.californiacivicdata.org/archive/"},
-        {"url": "http://www.californiacivicdata.org/about/"},
         {"url": "http://calaccess.californiacivicdata.org/downloads/"},
         {"url": "http://calaccess.californiacivicdata.org/downloads/latest/"},
         {"url": "http://calaccess.californiacivicdata.org/documentation/"},
