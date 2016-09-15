@@ -39,7 +39,7 @@ class VersionSitemap(AbstractSitemapView):
     """
     A machine-readable list of all version detail pages.
     """
-    build_path = 'version-sitemap.xml'
+    build_path = 'downloads-sitemap.xml'
     template_name = 'calaccess_website/version-sitemap.xml'
     queryset = RawDataVersion.objects.complete().exclude(release_datetime__lte='2016-07-27')
 
@@ -48,7 +48,7 @@ class VersionYearSitemap(AbstractSitemapView):
     """
     A machine-readable list of the version year archive pages.
     """
-    build_path = "version-archive-year.xml"
+    build_path = "downloads-archive-year.xml"
     template_name = "calaccess_website/version-archive-year.xml"
     model = RawDataVersion
 
@@ -60,7 +60,7 @@ class VersionMonthSitemap(AbstractSitemapView):
     """
     A machine-readable list of the version month archive pages.
     """
-    build_path = "version-archive-month.xml"
+    build_path = "downloads-archive-month.xml"
     template_name = "calaccess_website/version-archive-month.xml"
     model = RawDataVersion
 
