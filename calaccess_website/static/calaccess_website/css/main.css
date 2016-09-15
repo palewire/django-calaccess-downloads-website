@@ -517,8 +517,15 @@ footer .easteregg a {
 }
 
 .announcement {
+    position: relative;
     border: 1px solid #ba0a35;
+    border-bottom: 3px solid #ba0a35;
     padding: 0 20px 10px 20px;
+    margin-top: 10px;
+    color: #ba0a35;
+}
+
+.announcement > .close {
     margin-top: 10px;
 }
 

@@ -57,9 +57,12 @@ $('.dropdown-menu a').click(function() {
     <p><a class="btn btn-inactive">Unavailable</a>
         {% endif %}
 
-    <div class="announcement">
-    <h3>Coming soon</h3>
-    <p>We're working on processed files that shape our cleaned-up data into meaningful models that are easier to understand and use.</p>
+    <div class="announcement fade in">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <h3>Coming soon</h3>
+      <p>We're working on processed files that shape our cleaned-up data into meaningful models that are easier to understand and use.</p>
     </div>
 </section>
 
@@ -120,7 +123,7 @@ $('.dropdown-menu a').click(function() {
                     </p>
                 </div>
                 <div class="col-md-5 col-md-offset-1 align-right stats">
-                    {% if file.clean_file_archive %}  
+                    {% if file.clean_file_archive %}
                     <div class="col-md-7 col-sm-8 col-xs-8">
                         <section>
                           <h5>Records</h5>
