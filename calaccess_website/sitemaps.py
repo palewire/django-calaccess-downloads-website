@@ -90,6 +90,6 @@ class FormSitemap(AbstractSitemapView):
     """
     A machine-readable list of all form detail pages.
     """
-    build_path = 'file-sitemap.xml'
+    build_path = 'form-sitemap.xml'
     template_name = 'calaccess_website/form-sitemap.xml'
     queryset = all_filing_forms
