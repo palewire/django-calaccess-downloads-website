@@ -22,12 +22,16 @@ class OtherSitemap(AbstractSitemapView):
     build_path = "other-sitemap.xml"
     template_name = "calaccess_website/other-sitemap.xml"
     queryset = [
-        {"url": "/"},
-        {"url": "/forms/"},
-        {"url": "/files/"},
-        {"url": "/downloads/"},
-        {"url": "/downloads/latest/"},
-        {"url": "/government-documentation/"},
+        {"url": "http://www.californiacivicdata.org/"},
+        {"url": "http://www.californiacivicdata.org/archive/"},
+        {"url": "http://www.californiacivicdata.org/about/"},
+        {"url": "http://calaccess.californiacivicdata.org/downloads/"},
+        {"url": "http://calaccess.californiacivicdata.org/downloads/latest/"},
+        {"url": "http://calaccess.californiacivicdata.org/documentation/"},
+        {"url": "http://calaccess.californiacivicdata.org/documentation/calaccess-files/"},
+        {"url": "http://calaccess.californiacivicdata.org/documentation/calaccess-forms/"},
+        {"url": "http://calaccess.californiacivicdata.org/documentation/documentation/calaccess-official-documentation/"},
+        {"url": "http://calaccess.californiacivicdata.org/documentation/frequently-asked-questions/"},
     ]
 
 
