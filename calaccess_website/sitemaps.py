@@ -21,15 +21,18 @@ class OtherSitemap(AbstractSitemapView):
     """
     build_path = "other-sitemap.xml"
     template_name = "calaccess_website/other-sitemap.xml"
-    queryset = [
-        {"url": "http://calaccess.californiacivicdata.org/downloads/"},
-        {"url": "http://calaccess.californiacivicdata.org/downloads/latest/"},
-        {"url": "http://calaccess.californiacivicdata.org/documentation/"},
-        {"url": "http://calaccess.californiacivicdata.org/documentation/calaccess-files/"},
-        {"url": "http://calaccess.californiacivicdata.org/documentation/calaccess-forms/"},
-        {"url": "http://calaccess.californiacivicdata.org/documentation/documentation/calaccess-official-documentation/"},
-        {"url": "http://calaccess.californiacivicdata.org/documentation/frequently-asked-questions/"},
+    url_list = [
+        "http://calaccess.californiacivicdata.org/downloads/",
+        "http://calaccess.californiacivicdata.org/downloads/latest/",
+        "http://calaccess.californiacivicdata.org/documentation/",
+        "http://calaccess.californiacivicdata.org/documentation/calaccess-files/",
+        "http://calaccess.californiacivicdata.org/documentation/calaccess-forms/",
+        "http://calaccess.californiacivicdata.org/documentation/documentation/calaccess-official-documentation/",
+        "http://calaccess.californiacivicdata.org/documentation/frequently-asked-questions/",
     ]
+
+    def get_queryset(self):
+        return [dict(url=url) for url in self.url_list]
 
 
 class VersionSitemap(AbstractSitemapView):
@@ -50,7 +53,9 @@ class VersionYearSitemap(AbstractSitemapView):
     model = RawDataVersion
 
     def get_queryset(self):
-        return self.model.objects.complete().exclude(release_datetime__lte='2016-07-27').datetimes("release_datetime", "year")
+        return self.model.objects.complete().exclude(
+            release_datetime__lte='2016-07-27'
+        ).datetimes("release_datetime", "year")
 
 
 class VersionMonthSitemap(AbstractSitemapView):
@@ -62,7 +67,9 @@ class VersionMonthSitemap(AbstractSitemapView):
     model = RawDataVersion
 
     def get_queryset(self):
-        return self.model.objects.complete().exclude(release_datetime__lte='2016-07-27').datetimes("release_datetime", "month")
+        return self.model.objects.complete().exclude(
+            release_datetime__lte='2016-07-27'
+        ).datetimes("release_datetime", "month")
 
 
 class FileSitemap(AbstractSitemapView):
