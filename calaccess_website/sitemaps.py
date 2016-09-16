@@ -21,16 +21,18 @@ class OtherSitemap(AbstractSitemapView):
     """
     build_path = "other-sitemap.xml"
     template_name = "calaccess_website/other-sitemap.xml"
-    queryset = [
-        {"url": "http://calaccess.californiacivicdata.org/downloads/"},
-        {"url": "http://calaccess.californiacivicdata.org/downloads/latest/"},
-        {"url": "http://calaccess.californiacivicdata.org/documentation/"},
-        {"url": "http://calaccess.californiacivicdata.org/documentation/calaccess-files/"},
-        {"url": "http://calaccess.californiacivicdata.org/documentation/calaccess-forms/"},
-        {"url": "http://calaccess.californiacivicdata.org/"
-            "documentation/documentation/calaccess-official-documentation/"},
-        {"url": "http://calaccess.californiacivicdata.org/documentation/frequently-asked-questions/"},
+    url_list = [
+        "http://calaccess.californiacivicdata.org/downloads/",
+        "http://calaccess.californiacivicdata.org/downloads/latest/",
+        "http://calaccess.californiacivicdata.org/documentation/",
+        "http://calaccess.californiacivicdata.org/documentation/calaccess-files/",
+        "http://calaccess.californiacivicdata.org/documentation/calaccess-forms/",
+        "http://calaccess.californiacivicdata.org/documentation/documentation/calaccess-official-documentation/",
+        "http://calaccess.californiacivicdata.org/documentation/frequently-asked-questions/",
     ]
+
+    def get_queryset(self):
+        return [dict(url=url) for url in self.url_list]
 
 
 class VersionSitemap(AbstractSitemapView):
