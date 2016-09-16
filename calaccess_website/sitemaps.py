@@ -27,7 +27,8 @@ class OtherSitemap(AbstractSitemapView):
         {"url": "http://calaccess.californiacivicdata.org/documentation/"},
         {"url": "http://calaccess.californiacivicdata.org/documentation/calaccess-files/"},
         {"url": "http://calaccess.californiacivicdata.org/documentation/calaccess-forms/"},
-        {"url": "http://calaccess.californiacivicdata.org/documentation/documentation/calaccess-official-documentation/"},
+        {"url": "http://calaccess.californiacivicdata.org/"
+            "documentation/documentation/calaccess-official-documentation/"},
         {"url": "http://calaccess.californiacivicdata.org/documentation/frequently-asked-questions/"},
     ]
 
@@ -50,7 +51,9 @@ class VersionYearSitemap(AbstractSitemapView):
     model = RawDataVersion
 
     def get_queryset(self):
-        return self.model.objects.complete().exclude(release_datetime__lte='2016-07-27').datetimes("release_datetime", "year")
+        return self.model.objects.complete().exclude(
+            release_datetime__lte='2016-07-27'
+        ).datetimes("release_datetime", "year")
 
 
 class VersionMonthSitemap(AbstractSitemapView):
@@ -62,7 +65,9 @@ class VersionMonthSitemap(AbstractSitemapView):
     model = RawDataVersion
 
     def get_queryset(self):
-        return self.model.objects.complete().exclude(release_datetime__lte='2016-07-27').datetimes("release_datetime", "month")
+        return self.model.objects.complete().exclude(
+            release_datetime__lte='2016-07-27'
+        ).datetimes("release_datetime", "month")
 
 
 class FileSitemap(AbstractSitemapView):
