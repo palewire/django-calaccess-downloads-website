@@ -1,0 +1,13 @@
+<script type="text/javascript">
+  $('body').scrollspy({ target: '#affix-nav'});
+  $('#affix-nav').affix({
+    offset: {
+      top: function () {
+        return (this.top = $('.affix-container').position()['top'])
+      },
+      bottom: function () {
+        return (this.bottom = $('.footer').outerHeight(true))
+      }
+    }
+  });
+</script>

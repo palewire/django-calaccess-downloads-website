@@ -1,28 +1,30 @@
-{% load compress %}
-
-<!DOCTYPE html>{% load staticfiles %}
+<!DOCTYPE html>{% load compress staticfiles %}
 <!--[if IE 9]><html class="lt-ie10" lang="en" > <![endif]-->
 <html class="no-js" lang="en" >
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="Wrn_UnGhY-K8HHXWOvf1M4QzJzMunfVw3xf53COsRqk" />
+    <link rel="icon" type="image/png" href="http://{{ CALACCESS_WEBSITE_DOMAIN }}/static/calaccess_website/images/favicon.png">
 
     <title>{% block title %}{{ CALACCESS_WEBSITE_TITLE }}{% endblock%}</title>
     <meta name="description" content="{{ CALACCESS_WEBSITE_DESCRIPTION }}">
 
+    {% block meta %}
     <meta property="og:site_name" content="{{ CALACCESS_WEBSITE_DOMAIN }}"/>
     <meta property="og:title" content="{{ CALACCESS_WEBSITE_TITLE }}"/>
     <meta property="og:description" content="{{ CALACCESS_WEBSITE_DESCRIPTION }}"/>
     <meta property="og:url" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}{{ request.path }}" />
-    <meta property="og:image" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}/img/logo.png"/>
+    <meta property="og:image" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}/static/calaccess_website/images/brown-bear-share.png"/>
 
     <meta property="twitter:site" content="@cacivicdata">
     <meta property="twitter:title" content="{{ CALACCESS_WEBSITE_TITLE }}">
     <meta property="twitter:description" content="{{ CALACCESS_WEBSITE_DESCRIPTION }}"/>
     <meta property="twitter:url" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}{{ request.path }}" />
-    <meta property="twitter:image:src" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}/img/logo.png">
+    <meta property="twitter:image:src" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}/static/calaccess_website/images/brown-bear-share.png">
     <meta property="twitter:card" content="summary_large_image">
+    {% endblock %}
 
     {% block extra-meta %}{% endblock %}
 
@@ -32,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="/static/calaccess_website/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/static/calaccess_website/css/main.css">
     {% endcompress %}
-
+    <link href="https://fonts.googleapis.com/css?family=Raleway:400,600" rel="stylesheet">
     <script type="text/javascript" src="{% static "calaccess_website/js/jquery.min.js" %}"></script>
   </head>
   <body {% block extra-body %}{% endblock %}>
@@ -64,7 +66,5 @@
       </script>
       {% endblock %}
     {% endcompress %}
-
-    
   </body>
 </html>

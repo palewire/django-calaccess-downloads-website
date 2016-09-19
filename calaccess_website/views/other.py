@@ -1,5 +1,5 @@
 from calaccess_raw.models.tracking import RawDataVersion
-from bakery.views import BuildableArchiveIndexView, Buildable404View
+from bakery.views import BuildableArchiveIndexView, Buildable404View, BuildableRedirectView
 
 
 class Home(BuildableArchiveIndexView):
@@ -10,6 +10,11 @@ class Home(BuildableArchiveIndexView):
     date_field = "release_datetime"
     build_path = "index.html"
     template_name = "calaccess_website/home.html"
+
+
+class HomeRedirect(BuildableRedirectView):
+    build_path = "index.html"
+    url = "http://www.californiacivicdata.org/"
 
 
 class CalAccess404View(Buildable404View):

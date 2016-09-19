@@ -1,6 +1,7 @@
 from .base import CalAccessModelListMixin
 from .docs import (
     DocumentationIndex,
+    FAQ,
     FileList,
     FileDetail,
     FileDownloadsList,
@@ -10,6 +11,7 @@ from .docs import (
 )
 from .other import (
     Home,
+    HomeRedirect,
     CalAccess404View,
     CalAccessRobotsTxt
 )
@@ -24,10 +26,12 @@ from .versions import (
 
 __all__ = (
     'Home',
+    'HomeRedirect',
     'CalAccess404View',
     'CalAccessModelListMixin',
     'CalAccessRobotsTxt',
     'DocumentationIndex',
+    'FAQ',
     'FileList',
     'FileDetail',
     'FileDownloadsList',

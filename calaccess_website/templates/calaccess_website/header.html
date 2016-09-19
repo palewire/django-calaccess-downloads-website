@@ -4,16 +4,18 @@
     <div class="row">
     <div class="col-md-12">
       <ul class="nav nav-pills">
-        <li style="margin-left:0;">
+        <li class="visible-lg-inline visible-md-inline visible-sm-inline invisible-xs-inline" style="margin-left:0;">
             <a class="logo" href="http://www.californiacivicdata.org/">
                 <img
-                    src="{% static "calaccess_website/images/geobear-70x35.png" %}"
+                    src="{% static "calaccess_website/images/brown-geobear.svg" %}"
                     alt="California Civic Data Coalition logo"
+                    title="Home"
                 >
             </a>
         </li>
         <li id="home"><a href="{% url 'home' %}">HOME</a></li>
         <li id="data"><a href="{% url 'version_latest' %}">DATA</a></li>
+        <li id="docs"><a href="{% url 'docs_index' %}">DOCS</a></li>
         <li><a href="http://www.californiacivicdata.org/archive/">BLOG</a></li>
         <li><a href="http://www.californiacivicdata.org/about/">ABOUT</a></li>
       </ul>
@@ -23,10 +25,18 @@
 </header>
 
 <script type="text/javascript">
-  var url = window.location;
-  if (url.pathname == '/') {
-    $('#home').addClass('active');
-  } else {
-    $('#data').addClass('active');
-  }
+    if (!String.prototype.startsWith) {
+        String.prototype.startsWith = function(searchString, position){
+          position = position || 0;
+          return this.substr(position, searchString.length) === searchString;
+      };
+    }
+    var url = window.location;
+    if (url.pathname == '/') {
+        $('#home').addClass('active');
+    } else if (url.pathname.startsWith("/documentation")) {
+        $("#docs").addClass('active');
+    } else {
+        $('#data').addClass('active');
+    }
 </script>

@@ -17,7 +17,7 @@ class VersionArchiveIndex(BuildableArchiveIndexView):
     """
     A list of the latest versions of CAL-ACCESS in our archive
     """
-    queryset = RawDataVersion.objects.complete()
+    queryset = RawDataVersion.objects.complete().exclude(release_datetime__lte='2016-07-27')
     date_field = "release_datetime"
     template_name = "calaccess_website/version_archive.html"
     build_path = "downloads/index.html"
@@ -27,7 +27,7 @@ class VersionYearArchiveList(BuildableYearArchiveView):
     """
     A list of all versions of CAL-ACCESS in a given year
     """
-    queryset = RawDataVersion.objects.complete()
+    queryset = RawDataVersion.objects.complete().exclude(release_datetime__lte='2016-07-27')
     date_field = "release_datetime"
     make_object_list = False
     template_name = "calaccess_website/version_archive_year.html"
@@ -43,7 +43,7 @@ class VersionMonthArchiveList(BuildableMonthArchiveView):
     """
     A list of all versions of CAL-ACCESS in a given year
     """
-    queryset = RawDataVersion.objects.complete()
+    queryset = RawDataVersion.objects.complete().exclude(release_datetime__lte='2016-07-27')
     date_field = "release_datetime"
     month_format = "%m"
     make_object_list = True
@@ -63,7 +63,7 @@ class VersionDetail(BuildableDetailView, CalAccessModelListMixin):
     """
     A detail page with everything about an individual CAL-ACCESS version
     """
-    queryset = RawDataVersion.objects.complete()
+    queryset = RawDataVersion.objects.complete().exclude(release_datetime__lte='2016-07-27')
     template_name = 'calaccess_website/version_detail_archived.html'
 
     def set_kwargs(self, obj):

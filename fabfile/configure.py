@@ -73,6 +73,7 @@ def createconfig():
     config['EMAIL_PASSWORD'] = prompt('E-mail password:')
     config['EC2_HOST'] = prompt('EC2 host:')
     config['NEW_RELIC_LICENSE_KEY'] = prompt("New Relic license key:")
+    config['COMPRESS_ENABLED'] = prompt('Compression enabled:', default=False)
 
     # Save it to the configuration file
     [setconfig(k, v) for k, v in config.items()]

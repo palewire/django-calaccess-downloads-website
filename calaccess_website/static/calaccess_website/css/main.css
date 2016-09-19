@@ -38,7 +38,7 @@ section.chapter {
 .bg-red {
     background-color: #ba0a35;
     color:  #fdfdfd;
-    padding: 15px;
+    padding: 15px 0;
 }
 .bg-red h1,
 .bg-red h2 {
@@ -84,8 +84,8 @@ section.chapter {
 .btn-calaccess,
 .btn-calaccess:focus {
     color: #ba0a35;
-    background-color: #fff;
     border: 1px solid #ba0a35;
+    background-color: transparent;
     border-radius: 0;
     font-size: 18px;
 }
@@ -139,7 +139,8 @@ section.chapter {
 
 /* Navbar */
 header {
-    box-shadow: 0 1px 15px #696969;
+    /*box-shadow: 0 1px 15px #696969;*/
+    border-bottom: 2px solid #eee;
     position: relative;
     z-index: 2;
 }
@@ -164,6 +165,7 @@ header .nav>li>a {
     padding-left: 0;
     padding-right: 0;
     padding-bottom: 6px;
+    transition: all 0.15s ease-in-out;
 }
 header .nav>li>a:hover,
 header .nav>li>a:focus {
@@ -174,6 +176,9 @@ header .nav .logo {
     display:inline;
     padding-top:0;
     border-bottom: none !important;
+}
+header .nav .logo img {
+    width: 65px;
 }
 header .nav .logo:hover, header .nav .logo:active, header .nav .logo:focus {
     background:#fff;
@@ -255,9 +260,15 @@ td.right, th.right {
 td.center, th.center{
     text-align:center;
 }
-
 .table>tbody>tr>td {
     border-top: none;
+}
+
+.break {
+    word-wrap: break-word;
+}
+.nobreak {
+    white-space: nowrap;
 }
 
 /* Homepage */
@@ -269,41 +280,74 @@ td.center, th.center{
     font-weight: 600;
     margin-top: 0;
 }
-
 .md-center {
     text-align: center;
 }
+
+.hero {
+  min-height: 525px;
+  background-image: url('http://calaccess.californiacivicdata.org/static/calaccess_website/images/bg.svg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position-x: 100%;
+}
+.hero .row {
+    margin-top: 40px;
+}
+.hero h1 {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 600;
+}
+.hero img {
+    padding-top: 15px;
+}
+
+.home div.headline h1 {
+    text-transform: uppercase;
+}
+.home div.headline img {
+    height: 450px;
+}
+
+.home section.boxes {
+    margin: 30px 0 0 0;
+}
 .home .home-card {
-    height: 300px;
-    background-color: #ba0a35;
+    height: 245px;
     padding: 20px;
     margin: 0 auto;
+    color: #ba0a35;
 }
-.home .card-container {
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
+.home .boxes a:hover {
+    text-decoration: none !important;
+}
+.home .boxes a:hover .home-card {
+    background-color: #ba0a35;
+    color: white;
+}
+.home .boxes a:hover .home-card p {
+    color: white;
+}
+.home .home-card h2 {
+    margin-bottom: 20px;
+    font-size: 26px;
 }
 .home .home-card i {
     font-size: 70px;
     margin-bottom: 20px;
 }
 .home .home-card p {
-    color: #fdfdfd;
+    color: #ba0a35;
+    margin-top: 0;
 }
-.home div.headline {
-    margin: 40px auto;
-}
-.home section.boxes {
-    margin: 40px 0 20px 0;
-}
+
 .home section.questions {
     margin: 0;
 }
 .home .question {
-    margin-top: 40px;
-    margin-bottom: 40px;
-    padding-bottom: 20px;
+    margin-top: 60px;
+    margin-bottom: 60px;
+    padding-bottom: 30px;
     border-bottom: 1px solid #EEEEEE;
 }
 .no-border {
@@ -327,8 +371,23 @@ td.center, th.center{
 .filters {
     margin-bottom: 30px;
 }
+.filters input {
+    display: inline-block;
+    border: 1px solid #ba0a35;
+    background-color: transparent;
+    border-radius: 0;
+    font-size: 18px;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    line-height: 1.42857143;
+    height: 39px;
+}
+.filters .dropdown {
+    display: inline-block;
+}
 .filters .btn {
     width: 120px;
+    display: inline-block;
 }
 .filters .dropdown-menu {
     cursor: pointer;
@@ -338,6 +397,15 @@ td.center, th.center{
 .filters li>a:hover {
     background: #ba0a35;
     color: #fdfdfd;
+}
+ul.list {
+    list-style-type:none;
+    margin: 0;
+    padding: 0
+}
+ul.list li {
+    margin: 0;
+    padding: 0;
 }
 .file-card {
     border: 1px solid #a6a6a6;
@@ -370,11 +438,11 @@ td.center, th.center{
 .stats div {
     padding: 0 0 10px 0;
 }
-.stats span {
+.stats section {
     display: inline-block;
     margin-right: 15px;
 }
-.stats h4, .stats p {
+.stats h5, .stats p {
     color: #000;
     font-size: 14px;
     margin: 0;
@@ -411,7 +479,7 @@ footer .icon {
     padding-bottom: 20px;
 }
 footer img {
-    width: 180px;
+    width: 130px;
 }
 footer h3 {
     font-weight: 600;
@@ -448,9 +516,37 @@ footer .easteregg a {
     margin-bottom:35px;
 }
 
+.announcement {
+    position: relative;
+    border: 1px solid #ba0a35;
+    border-bottom: 3px solid #ba0a35;
+    padding: 0 20px 10px 20px;
+    margin-top: 10px;
+    color: #ba0a35;
+}
+
+.announcement > .close {
+    margin-top: 10px;
+}
+
 @media only screen
 and (max-width : 992px) {
-    .align-right{
+    .hero {
+        background-color: #f8f8f8;
+        background-image: none;
+        background-size: initial;
+        padding-bottom: 20px;
+    }
+    .hero h1 {
+        margin-top: 10px;
+    }
+    .hero .row {
+        margin-top: 10px;
+    }
+    .hero img {
+        margin: 20px 0 0 0;
+    }
+    .align-right {
         float: left;
         text-align: left;
     }
@@ -467,6 +563,9 @@ and (max-width : 992px) {
         width: 45px;
         margin-top: 10px;
     }
+    .announcement {
+        padding: 0 10px 0 10px;
+    }
 }
 
 @media only screen
@@ -474,11 +573,28 @@ and (max-width : 768px) {
     .xs-left {
         text-align:left;
     }
+    .home section.boxes {
+        margin: 30px 0 0 0;
+    }
+    .home .home-card {
+        height: auto;
+        padding: 20px;
+        margin: 20px auto 0 auto;
+        color: #ba0a35;
+        border: 1px solid #ba0a35;
+    }
+    .filters input {
+        margin-bottom: 10px;
+    }
 }
+
 @media only screen
 and (max-width : 490px) {
     header .nav>li>a {
         padding-bottom: 2px;
+    }
+    header .nav>li:first-of-type {
+        margin-right: 20px;
     }
     section.sponsors .funders img {
         width: 90%;
@@ -491,5 +607,8 @@ and (max-width : 490px) {
         padding: 0 15% 0 0;
         margin: 20px 0;
         float: left;
+    }
+    .home .home-card h2 {
+        font-size: 24px;
     }
 }

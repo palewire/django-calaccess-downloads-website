@@ -88,6 +88,13 @@ urlpatterns = [
         name='official_documentation'
     ),
 
+    # Frequently asked questions
+    url(
+        r'^documentation/frequently-asked-questions/$',
+        views.FAQ.as_view(),
+        name='faq'
+    ),
+
     #
     # Machine-readable stuff
     #

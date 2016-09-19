@@ -21,47 +21,55 @@ class OtherSitemap(AbstractSitemapView):
     """
     build_path = "other-sitemap.xml"
     template_name = "calaccess_website/other-sitemap.xml"
-    queryset = [
-        {"url": "/"},
-        {"url": "/forms/"},
-        {"url": "/files/"},
-        {"url": "/downloads/"},
-        {"url": "/downloads/latest/"},
-        {"url": "/government-documentation/"},
+    url_list = [
+        "http://calaccess.californiacivicdata.org/downloads/",
+        "http://calaccess.californiacivicdata.org/downloads/latest/",
+        "http://calaccess.californiacivicdata.org/documentation/",
+        "http://calaccess.californiacivicdata.org/documentation/calaccess-files/",
+        "http://calaccess.californiacivicdata.org/documentation/calaccess-forms/",
+        "http://calaccess.californiacivicdata.org/documentation/documentation/calaccess-official-documentation/",
+        "http://calaccess.californiacivicdata.org/documentation/frequently-asked-questions/",
     ]
+
+    def get_queryset(self):
+        return [dict(url=url) for url in self.url_list]
 
 
 class VersionSitemap(AbstractSitemapView):
     """
     A machine-readable list of all version detail pages.
     """
-    build_path = 'version-sitemap.xml'
+    build_path = 'downloads-sitemap.xml'
     template_name = 'calaccess_website/version-sitemap.xml'
-    queryset = RawDataVersion.objects.complete()
+    queryset = RawDataVersion.objects.complete().exclude(release_datetime__lte='2016-07-27')
 
 
 class VersionYearSitemap(AbstractSitemapView):
     """
     A machine-readable list of the version year archive pages.
     """
-    build_path = "version-archive-year.xml"
+    build_path = "downloads-year-sitemap.xml"
     template_name = "calaccess_website/version-archive-year.xml"
     model = RawDataVersion
 
     def get_queryset(self):
-        return self.model.objects.complete().datetimes("release_datetime", "year")
+        return self.model.objects.complete().exclude(
+            release_datetime__lte='2016-07-27'
+        ).datetimes("release_datetime", "year")
 
 
 class VersionMonthSitemap(AbstractSitemapView):
     """
     A machine-readable list of the version month archive pages.
     """
-    build_path = "version-archive-month.xml"
+    build_path = "downloads-month-sitemap.xml"
     template_name = "calaccess_website/version-archive-month.xml"
     model = RawDataVersion
 
     def get_queryset(self):
-        return self.model.objects.complete().datetimes("release_datetime", "month")
+        return self.model.objects.complete().exclude(
+            release_datetime__lte='2016-07-27'
+        ).datetimes("release_datetime", "month")
 
 
 class FileSitemap(AbstractSitemapView):
@@ -86,6 +94,6 @@ class FormSitemap(AbstractSitemapView):
     """
     A machine-readable list of all form detail pages.
     """
-    build_path = 'file-sitemap.xml'
+    build_path = 'form-sitemap.xml'
     template_name = 'calaccess_website/form-sitemap.xml'
     queryset = all_filing_forms

@@ -3,6 +3,21 @@
 
 {% block title %}{{ form.type_and_num|safe }}: {{ form.title|safe }} - CAL-ACCESS forms - Documentation {{ block.super }}{% endblock%}
 
+{% block meta %}
+<meta property="og:site_name" content="{{ CALACCESS_WEBSITE_DOMAIN }}"/>
+<meta property="og:title" content="{{ form.type_and_num|safe }}: {{ form.title|safe }} - CAL-ACCESS forms - Documentation - {{ CALACCESS_WEBSITE_TITLE }}"/>
+<meta property="og:description" content="{{ form.title|safe }}"/>
+<meta property="og:url" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}{{ request.path }}" />
+<meta property="og:image" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}/static/calaccess_website/images/brown-bear-share.png"/>
+
+<meta property="twitter:site" content="@cacivicdata">
+<meta property="twitter:title" content="{{ form.type_and_num|safe }}: {{ form.title|safe }} - CAL-ACCESS forms - Documentation - {{ CALACCESS_WEBSITE_TITLE }}">
+<meta property="twitter:description" content="{{ form.title|safe }}"/>
+<meta property="twitter:url" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}{{ request.path }}" />
+<meta property="twitter:image:src" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}/static/calaccess_website/images/brown-bear-share.png">
+<meta property="twitter:card" content="summary_large_image">
+{% endblock %}
+
 {% block breadcrumbs %}
 {{ block.super }}
 <li><a href="{% url 'docs_index' %}">Documentation</a></li>
@@ -11,15 +26,19 @@
 {% endblock %}
 
 {% block top %}
-    <h1>{{ form.type_and_num }}: {{ form.title|safe }}</h1>
-    <p>{% if form.description %}{{ form.description|safe }}{% endif %}</p>
+    <h1>{{ form.type_and_num }}</h1>
+    {% if form.title %}<p>{{ form.title|safe }}</p>{% endif %}
 {% endblock %}
 
 {% block affix-nav %}
 <ul class="nav nav-stacked">
 
+    {% if form.description %}
+        <li class="active"><a href="#description">Description</a></li>
+    {% endif %}
+
     {% if form.sections|length > 0 %}
-        <li class="active"><a href="#sections">Sections</a></li>
+        <li><a href="#sections">Sections</a></li>
     {% endif %}
 
     {% if form.get_models|length > 0 %}
@@ -34,22 +53,20 @@
 {% endblock %}
 
 {% block javascript %}
-<script type="text/javascript">
-  $('body').scrollspy({ target: '#affix-nav'});
-  $('#affix-nav').affix({
-    offset: {
-      top: function () {
-        return (this.top = $('.affix-container').position()['top'])
-      },
-      bottom: function () {
-        return (this.bottom = $('.footer').outerHeight(true))
-      }
-    }
-  });
-</script>
+  {% include 'calaccess_website/affix_nav_logic.html' %}
 {% endblock %}
 
 {% block content %}
+
+{% if form.description %}
+<section id="description" class="chapter">
+    <h2>Description</h2>
+    <p>
+        {{ form.description|safe }}
+    </p>
+</section>
+{% endif %}
+
 
 {% if form.sections|length > 0 %}
 <section id="sections" class="chapter">
@@ -57,12 +74,27 @@
     <p>
         {{ form.type_and_num }} has {{ form.sections|length }} section{{ form.sections|pluralize }}.
     </p>
-    <ul>
+
+  <table class="table table-striped">
+  <thead>
+      <tr>
+          <th>Name</th>
+      </tr>
+  </thead>
+  <tbody>
   {% for section in form.sections %}
-      <li>{{ section.title|safe }} {% if section.documentcloud.start_page %}(<a href="{{ section.documentcloud.canonical_url }}">p. {{ section.documentcloud.start_page }}{% if section.documentcloud.end_page %}-{{ section.documentcloud.end_page }}{% endif%}</a>){% endif %}
-      </li>
+      <tr>
+          <td>
+            {{ section.title }}
+            {% if section.documentcloud.start_page %}
+                (<a href="{{ section.documentcloud.canonical_url }}">p. {{ section.documentcloud.start_page }}{% if section.documentcloud.end_page %}-{{ section.documentcloud.end_page }}{% endif %}</a>)
+            {% endif %}
+          </td>
+      </tr>
   {% endfor %}
-  </ul>
+  </tbody>
+  </table>
+
 </section>
 {% endif %}
 
@@ -75,10 +107,16 @@
         CAL-ACCESS file{{ form.get_models|pluralize }}.
     </p>
     <table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+        </tr>
+    </thead>
     <tbody>
     {% for model in form.get_models %}
         <tr>
-            <td>
+            <td class="break">
                 <a href="{% url 'file_detail' slug=model.db_table|slugify %}">
                     {{ model.db_table }}
                 </a>

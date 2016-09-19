@@ -3,6 +3,21 @@
 
 {% block title %}{{ year.year }} - Downloads - {{ block.super }}{% endblock%}
 
+{% block meta %}
+<meta property="og:site_name" content="{{ CALACCESS_WEBSITE_DOMAIN }}"/>
+<meta property="og:title" content="{{ year.year }} - Downloads - {{ CALACCESS_WEBSITE_TITLE }}"/>
+<meta property="og:description" content="All {{ year|date:"Y" }} release{{ latest|length|pluralize }} of CAL-ACCESS, the government database that tracks campaign finance and lobbying activity in California politics."/>
+<meta property="og:url" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}{{ request.path }}" />
+<meta property="og:image" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}/static/calaccess_website/images/brown-bear-share.png"/>
+
+<meta property="twitter:site" content="@cacivicdata">
+<meta property="twitter:title" content="{{ year.year }} - Downloads - {{ CALACCESS_WEBSITE_TITLE }}">
+<meta property="twitter:description" content="All {{ year|date:"Y" }} release{{ latest|length|pluralize }} of CAL-ACCESS, the government database that tracks campaign finance and lobbying activity in California politics."/>
+<meta property="twitter:url" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}{{ request.path }}" />
+<meta property="twitter:image:src" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}/static/calaccess_website/images/brown-bear-share.png">
+<meta property="twitter:card" content="summary_large_image">
+{% endblock %}
+
 {% block breadcrumbs %}
   {{ block.super }}
   <li><a href="{% url 'version_archive_index' %}">Downloads</a></li>

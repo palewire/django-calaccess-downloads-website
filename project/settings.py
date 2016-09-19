@@ -25,6 +25,7 @@ INSTALLED_APPS = [
     'calaccess_processed',
     'storages',
     'toolbox',
+    'greeking',
 ]
 
 LANGUAGE_CODE = 'en-us'
@@ -102,13 +103,14 @@ AWS_BUCKET_NAME = os.getenv('s3_baked_content_bucket')
 
 BUILD_DIR = os.path.join(BASE_DIR, '.build')
 BAKERY_VIEWS = (
-    'calaccess_website.views.Home',
+    'calaccess_website.views.HomeRedirect',
     'calaccess_website.views.VersionArchiveIndex',
     'calaccess_website.views.VersionYearArchiveList',
     'calaccess_website.views.VersionMonthArchiveList',
     'calaccess_website.views.VersionDetail',
     'calaccess_website.views.LatestVersion',
     'calaccess_website.views.DocumentationIndex',
+    'calaccess_website.views.FAQ',
     'calaccess_website.views.FileList',
     'calaccess_website.views.FileDetail',
     'calaccess_website.views.FileDownloadsList',
@@ -125,6 +127,7 @@ BAKERY_VIEWS = (
     'calaccess_website.sitemaps.FormSitemap',
     'calaccess_website.sitemaps.OtherSitemap',
 )
+BAKERY_GZIP = True
 
 #
 # Archiving
@@ -141,8 +144,15 @@ AWS_S3_USE_SSL = False
 # Compressor
 #
 
-COMPRESS_ENABLED = False
-COMPRESS_OFFLINE = False
+COMPRESS_ENABLED = os.getenv("compress_enabled", "False") == "True"
+COMPRESS_OFFLINE = True
+COMPRESS_OUTPUT_DIR = 'compressor'
+COMPRESS_CSS_FILTERS = [
+    'compressor.filters.css_default.CssAbsoluteFilter',
+    'compressor.filters.cssmin.rCSSMinFilter',
+]
+COMPRESS_CACHEABLE_PRECOMPILERS = ()
+COMPRESS_REBUILD_TIMEOUT = 0
 
 #
 # Databases

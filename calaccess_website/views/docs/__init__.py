@@ -43,14 +43,28 @@ information, refer to our materials.",
 California Civic Data Coalition applications that power this site.",
                 url="http://django-calaccess.californiacivicdata.org"
             ),
+            dict(
+                name="Frequently asked questions",
+                description="Answers to common questions about this project and the underlying CAL-ACCESS database.",
+                url=reverse("faq"),
+            ),
         ]
         return {
             'object_list': object_list
         }
 
 
+class FAQ(BuildableTemplateView):
+    """
+    Frequently asked questions.
+    """
+    build_path = "documentation/frequently-asked-questions/index.html"
+    template_name = "calaccess_website/faq_detail.html"
+
+
 __all__ = (
     'DocumentationIndex',
+    'FAQ',
     'FormList',
     'FormDetail',
     'FileList',

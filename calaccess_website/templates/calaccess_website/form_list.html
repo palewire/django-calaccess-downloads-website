@@ -2,6 +2,21 @@
 
 {% block title %}CAL-ACCESS forms - Documentation - {{ block.super }}{% endblock%}
 
+{% block meta %}
+<meta property="og:site_name" content="{{ CALACCESS_WEBSITE_DOMAIN }}"/>
+<meta property="og:title" content="CAL-ACCESS forms - Documentation - {{ CALACCESS_WEBSITE_TITLE }}"/>
+<meta property="og:description" content="Descriptions, samples and other documentation for the {{ form_list|length }} forms that campaigns and lobbyists use to disclose activity to CAL-ACCESS, the California Secretary of State's database tracking money in politics."/>
+<meta property="og:url" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}{{ request.path }}" />
+<meta property="og:image" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}/static/calaccess_website/images/brown-bear-share.png"/>
+
+<meta property="twitter:site" content="@cacivicdata">
+<meta property="twitter:title" content="CAL-ACCESS forms - Documentation - {{ CALACCESS_WEBSITE_TITLE }}">
+<meta property="twitter:description" content="Descriptions, samples and other documentation for the {{ form_list|length }} forms that campaigns and lobbyists use to disclose activity to CAL-ACCESS, the California Secretary of State's database tracking money in politics."/>
+<meta property="twitter:url" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}{{ request.path }}" />
+<meta property="twitter:image:src" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}/static/calaccess_website/images/brown-bear-share.png">
+<meta property="twitter:card" content="summary_large_image">
+{% endblock %}
+
 {% block breadcrumbs %}
 {{ block.super }}
 <li><a href="{% url 'docs_index' %}">Documentation</a></li>
@@ -12,8 +27,8 @@
 <h1>CAL-ACCESS forms</h1>
 <p>
     Descriptions, samples and other documentation for
-    the {{ form_list|length }} forms that campaigns and lobbyists can use to disclose activity to California's
-    Secretary of State.
+    the {{ form_list|length }} forms that campaigns and lobbyists use to disclose activity to CAL-ACCESS, the California
+    Secretary of State's database tracking money in politics.
 </p>
 {% endblock %}
 
@@ -29,19 +44,7 @@
 {% endblock %}
 
 {% block javascript %}
-<script type="text/javascript">
-  $('body').scrollspy({ target: '#affix-nav'});
-  $('#affix-nav').affix({
-    offset: {
-      top: function () {
-        return (this.top = $('.affix-container').position()['top'])
-      },
-      bottom: function () {
-        return (this.bottom = $('.footer').outerHeight(true))
-      }
-    }
-  });
-</script>
+  {% include 'calaccess_website/affix_nav_logic.html' %}
 {% endblock %}
 
 {% block content %}
@@ -51,15 +54,15 @@
     <table class="table table-striped">
     <thead>
         <tr>
-            <th>Name</th>
-            <th>Description</th>
+            <th>Number</th>
+            <th>Title</th>
         </tr>
     </thead>
     <tbody>
     {% for form in group.list  %}
         <tr>
-          <td><a href="{% url 'form_detail' id=form.id|lower %}">{{ form.type_and_num|safe }}</td>
-          <td width="70%">{{ form.description|safe  }}</td>
+          <td><a href="{% url 'form_detail' id=form.id|lower %}">{{ form.type_and_num|safe }}</a></td>
+          <td style="width:80;%">{{ form.title }}</td>
         </tr>
     {% endfor %}
     </tbody>

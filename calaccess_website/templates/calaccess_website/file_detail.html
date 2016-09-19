@@ -3,6 +3,21 @@
 
 {% block title %}{{ object.db_table }} - CAL-ACCESS files - Documentation - {{ block.super }}{% endblock%}
 
+{% block meta %}
+<meta property="og:site_name" content="{{ CALACCESS_WEBSITE_DOMAIN }}"/>
+<meta property="og:title" content="{{ object.db_table }} - CAL-ACCESS files - Documentation - {{ CALACCESS_WEBSITE_TITLE }}"/>
+<meta property="og:description" content="{{ object.doc.strip|first_line|striptags }}"/>
+<meta property="og:url" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}{{ request.path }}" />
+<meta property="og:image" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}/static/calaccess_website/images/brown-bear-share.png"/>
+
+<meta property="twitter:site" content="@cacivicdata">
+<meta property="twitter:title" content="{{ object.db_table }} - CAL-ACCESS files - Documentation - {{ CALACCESS_WEBSITE_TITLE }}">
+<meta property="twitter:description" content="{{ object.doc.strip|first_line|striptags }}"/>
+<meta property="twitter:url" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}{{ request.path }}" />
+<meta property="twitter:image:src" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}/static/calaccess_website/images/brown-bear-share.png">
+<meta property="twitter:card" content="summary_large_image">
+{% endblock %}
+
 {% block breadcrumbs %}
 {{ block.super }}
 <li><a href="{% url 'docs_index' %}">Documentation</a></li>
@@ -11,7 +26,7 @@
 {% endblock %}
 
 {% block top %}
-  <h1>{{ object.db_table }}</h1>
+  <h1 class="break">{{ object.db_table }}</h1>
   <p>{{ object.doc.strip|first_line|safe }}</p>
 {% endblock %}
 
@@ -30,7 +45,15 @@
     {% endif %}
 
     {% if version_list %}
-    <li><a href="#archive">Archive</a></li>
+
+        {% with version_list.0 as latest_file %}
+        {% if latest_file.error_count %}
+        <li><a href="#errata">Errata</a></li>
+        {% endif %}
+        {% endwith %}
+
+        <li><a href="#archive">Archive</a></li>
+
     {% endif %}
 
     {% if object.DOCUMENTCLOUD_PAGES|length > 0 %}
@@ -40,19 +63,7 @@
 {% endblock %}
 
 {% block javascript %}
-<script type="text/javascript">
-  $('body').scrollspy({ target: '#affix-nav'});
-  $('#affix-nav').affix({
-    offset: {
-      top: function () {
-        return (this.top = $('.affix-container').position()['top'])
-      },
-      bottom: function () {
-        return (this.bottom = $('.footer').outerHeight(true))
-      }
-    }
-  });
-</script>
+  {% include 'calaccess_website/affix_nav_logic.html' %}
 {% endblock %}
 
 {% block content %}
@@ -61,11 +72,10 @@
     {% if version_list.0 %}
     {% with version_list.0 as latest_file %}
     <p>
-        The most recent release of this file from CAL-ACCESS, the database that tracks campaign
+        The most recent release from CAL-ACCESS, the database that tracks campaign
         finance and lobbying activity in California politics.
-        It was published by California's Secretary of State on {{ latest_file.version.release_datetime|date:"l, N j, Y" }}
-        at {{ latest_file.version.release_datetime|date:"P" }} We have cleaned it up and converted
-        into a flat file with {{ latest_file.clean_records_count|intword|intcomma }} rows of comma-separated values.
+        It contains {{ latest_file.clean_records_count|intword|intcomma }} rows of data published
+        on {{ latest_file.version.release_datetime|date:"l, N j, Y" }}{% if latest_file.error_count %}<sup><a href="#errata">*</a></sup>{% endif %}.
     </p>
     {% if latest_file.clean_file_archive %}
         <p>
@@ -117,13 +127,13 @@
     </button>
     <div class="collapse" id="collapse-{{ field.db_column }}">
       <table class="table table-striped">
-      <thead valign="bottom">
+      <thead>
           <tr>
-              <th width="20%" class="head">Code</th>
+              <th style="width:20%;" class="head">Code</th>
               <th class="head">Definition</th>
           </tr>
       </thead>
-      <tbody valign="top">
+      <tbody>
       {% for choice in field.choices %}
           <tr>
               <td><code>{{ choice.0 }}</code></td>
@@ -174,43 +184,60 @@
 {% endif %}
 
 {% if version_list %}
-<section id="archive" class="chapter">
-    <h2>Archive</h2>
-    <p>Download previous versions of this file from our archive.</p>
+    {% with version_list.0 as latest_file %}
+    {% if latest_file.error_count %}
+    <section id="errata" class="chapter">
+        <h2>Errata</h2>
+        <p>
+           The raw data provided by the state contains errors in how some values are
+           escaped, quoted and delimited. The result is a small number of
+           records in the latest download were lost when we prepared files for download.
+        </p>
+        <p>
+            However, only {{ latest_file.error_count|intcomma }} records
+            out of {{ latest_file.download_records_count|intcomma }} total rows were lost (you can download them <a href="{% archive_url latest_file.error_log_archive.name %}">here</a>).
+        </p>
+    </section>
+    {% endif %}
+    {% endwith %}
 
-    <h4>Last 10 downloads</h4>
-    <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Date</th>
-        <th width=8% class="right">Records</th>
-        <th width=8% class="right">Size</th>
-        <th width=15% class="right"></th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for file in version_list|slice:":10" %}
-      <tr>
-        <td><a href="{% url 'version_detail' year=file.version.release_datetime.year month=file.version.release_datetime|date:'m' day=file.version.release_datetime|date:'d' time=file.version.release_datetime|date:'His' %}">{{ file.version.release_datetime|date:"l, N j, Y" }}</a></td>
-        {% if file.clean_file_archive %}
-        <td class="right">{{ file.clean_records_count|intcomma }}</td>
-        <td class="right">{{ file.pretty_clean_file_size }}</td>
-        <td class="right"><a href="{% archive_url file.clean_file_archive.name %}">Download &raquo;</a></td>
-        {% else %}
-        <td colspan=2></td>
-        <td class="right">Unavailable</td>
-        {% endif %}
-      {% endfor %}
-    </tbody>
-    <tfoot>
-        <tr>
-            <td colspan=4>
-                <a href="{% url 'file_downloads_list' object.db_table|slugify %}">More past downloads &raquo;</a>
-            </td>
-        </tr>
-    </tfoot>
-    </table>
-</section>
+    <section id="archive" class="chapter">
+        <h2>Archive</h2>
+        <p>Download previous versions of this file from our archive.</p>
+
+        <h4>Last 10 downloads</h4>
+        <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th style="width:8%;" class="right">Records</th>
+            <th style="width:8%;" class="right hidden-xs">Size</th>
+            <th style="width:15%;" class="right"></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for file in version_list|slice:":10" %}
+          <tr>
+            <td><a href="{% url 'version_detail' year=file.version.release_datetime.year month=file.version.release_datetime|date:'m' day=file.version.release_datetime|date:'d' time=file.version.release_datetime|date:'His' %}">{{ file.version.release_datetime|date:"N j, Y" }}</a></td>
+            {% if file.clean_file_archive %}
+            <td class="right">{{ file.clean_records_count|intcomma }}</td>
+            <td class="right hidden-xs">{{ file.pretty_clean_file_size }}</td>
+            <td class="nobreak right"><a href="{% archive_url file.clean_file_archive.name %}">Download &raquo;</a></td>
+            {% else %}
+            <td colspan=2></td>
+            <td class="right">Unavailable</td>
+            {% endif %}
+          {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan=4>
+                    <a href="{% url 'file_downloads_list' object.db_table|slugify %}">More past downloads &raquo;</a>
+                </td>
+            </tr>
+        </tfoot>
+        </table>
+    </section>
 {% endif %}
 
 {% if object.DOCUMENTCLOUD_PAGES|length > 0 %}

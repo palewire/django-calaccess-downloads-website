@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="Layer_1"
+   data-name="Layer 1"
+   viewBox="0 0 1170 500"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="bg.svg">
+  <metadata
+     id="metadata4179">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1176"
+     id="namedview4177"
+     showgrid="false"
+     inkscape:zoom="0.61367521"
+     inkscape:cx="-29.331477"
+     inkscape:cy="296.20261"
+     inkscape:window-x="0"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="Layer_1" />
+  <defs
+     id="defs4169">
+    <style
+       id="style4171">.cls-1{fill:#ba0a35;stroke:#ba0a35;stroke-miterlimit:10;}</style>
+  </defs>
+  <title
+     id="title4173">bear-bg</title>
+  <polygon
+     class="cls-1"
+     points="1170.09,500 0,500 734.15,257.74 1170.09,126.41 1170.09,500 "
+     id="polygon4175"
+     style="fill:#f8f8f8;fill-opacity:1;stroke:none;stroke-miterlimit:10"
+     transform="matrix(1.7009196,0,-0.00741907,1.1766531,-818.38657,-88.326526)" />
+</svg>

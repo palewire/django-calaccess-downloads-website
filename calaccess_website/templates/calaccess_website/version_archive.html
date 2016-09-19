@@ -3,6 +3,21 @@
 
 {% block title %}Downloads - {{ block.super }}{% endblock%}
 
+{% block meta %}
+<meta property="og:site_name" content="{{ CALACCESS_WEBSITE_DOMAIN }}"/>
+<meta property="og:title" content="Downloads - {{ CALACCESS_WEBSITE_TITLE }}"/>
+<meta property="og:description" content="The last {{ latest|length|apnumber }} release{{ latest|length|pluralize }} of CAL-ACCESS, the government database that tracks campaign finance and lobbying activity in California politics."/>
+<meta property="og:url" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}{{ request.path }}" />
+<meta property="og:image" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}/static/calaccess_website/images/brown-bear-share.png"/>
+
+<meta property="twitter:site" content="@cacivicdata">
+<meta property="twitter:title" content="Downloads - {{ CALACCESS_WEBSITE_TITLE }}">
+<meta property="twitter:description" content="The last {{ latest|length|apnumber }} release{{ latest|length|pluralize }} of CAL-ACCESS, the government database that tracks campaign finance and lobbying activity in California politics."/>
+<meta property="twitter:url" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}{{ request.path }}" />
+<meta property="twitter:image:src" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}/static/calaccess_website/images/brown-bear-share.png">
+<meta property="twitter:card" content="summary_large_image">
+{% endblock %}
+
 {% block breadcrumbs %}
 {{ block.super }}
 <li>Downloads</li>
@@ -30,7 +45,7 @@
     <tr>
         <td>
             <a href="{% url 'version_detail' year=obj.release_datetime.year month=obj.release_datetime|date:'m' day=obj.release_datetime|date:'d' time=obj.release_datetime|date:'His' %}">
-                {{ obj.release_datetime|date:"l, N j, Y" }}
+                {{ obj.release_datetime|date:"N j, Y" }}
             </a>
         </td>
         <td class="right">
