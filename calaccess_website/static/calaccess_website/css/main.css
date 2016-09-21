@@ -7,6 +7,10 @@ body {
 header, footer {
     padding: 5px 0 0 0 !important;
 }
+h1 {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 600;
+}
 p {
     font-size: 20px;
     color: #454545;
@@ -293,10 +297,6 @@ td.center, th.center{
 }
 .hero .row {
     margin-top: 40px;
-}
-.hero h1 {
-  font-family: 'Raleway', sans-serif;
-  font-weight: 600;
 }
 .hero img {
     padding-top: 15px;
