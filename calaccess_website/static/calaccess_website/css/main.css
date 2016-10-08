@@ -1,5 +1,5 @@
 body {
-    font-family: Source Sans Pro, monospace, sans;
+    font-family: 'Source Sans Pro', sans-serif;
     font-weight: 300;
     line-height: 1.5;
     position: relative;
@@ -8,7 +8,7 @@ header, footer {
     padding: 5px 0 0 0 !important;
 }
 h1 {
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Raleway', 'Source Sans Pro', sans-serif;
   font-weight: 600;
 }
 p {
@@ -16,10 +16,10 @@ p {
     color: #454545;
 }
 a, a.btn-default{
-    color:#ba0a35;
+    color: #ba0a35;
 }
 a:hover{
-    color:#d87d85;
+    color: #d87d85;
 }
 b, strong {
     font-weight: 600;
