@@ -26,6 +26,11 @@
             "command": "source %(app_dir)sbin/activate && %(app_dir)sbin/python %(repo_dir)smanage.py updatedownloadswebsite --noinput --publish --verbosity=3",
             "hour": "5,11,17,23",
             "minute": "45"
+        },  
+        "ntpdate": {
+            "command": "/usr/sbin/ntpdate -s time.nist.gov",
+            "day": "1",   
+            "user": "root"
         }
     }
 }
