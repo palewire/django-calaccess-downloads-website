@@ -1,6 +1,6 @@
 Django==1.10
-django-calaccess-raw-data
 -e git+https://github.com/california-civic-data-coalition/django-calaccess-processed-data.git@HEAD#egg=django_calaccess_processed_data
+django-calaccess-raw-data==1.4.8
 psycopg2==2.6.1
 boto3==1.4
 django-storages
