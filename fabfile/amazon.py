@@ -15,7 +15,8 @@ def createrds(
     instance_name,
     port=5432,
     block_gb_size=100,
-    instance_type='db.t2.large'
+    instance_type='db.t2.large',
+    engine='postgres',
 ):
     """
     Spin up a new database backend with Amazon RDS.
@@ -34,7 +35,7 @@ def createrds(
         DBInstanceIdentifier=instance_name,
         AllocatedStorage=int(block_gb_size),
         DBInstanceClass=instance_type,
-        Engine='MySQL',
+        Engine=engine,
         MasterUsername=env.DB_USER,
         MasterUserPassword=env.DB_PASSWORD,
         BackupRetentionPeriod=14,
