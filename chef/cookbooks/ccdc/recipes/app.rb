@@ -33,7 +33,7 @@ directory "/apps/" do
 end
 
 
-# Make the directory for the app
+# Make the virtualenv
 virtualenv "/apps/#{node[:app][:name]}" do
     owner node[:app][:user]
     group node[:app][:group]
