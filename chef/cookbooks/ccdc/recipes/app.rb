@@ -3,7 +3,7 @@ user node[:app][:user] do
     comment node[:app][:user]
     uid 1001
     shell "/bin/bash"
-    supports :manage_home => true
+    manage_home true
     home "/home/" + node[:app][:user]
 end
 
