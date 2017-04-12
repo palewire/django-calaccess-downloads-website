@@ -11,7 +11,10 @@
         "python-pip",
         "python-dev",
         "python-virtualenv",
-        "libpq-dev"
+        "libpq-dev",
+        "libffi-dev",
+        "build-essential",
+        "libssl-dev"
     ],
     "python_version": {
         "major": 2,
@@ -31,6 +34,13 @@
             "command": "source %(app_dir)sbin/activate && %(app_dir)sbin/python %(repo_dir)smanage.py updatedownloadswebsite --noinput --publish --verbosity=3",
             "hour": "2,5,8,11,14,17,20,23",
             "minute": "50"
+            "hour": "5,11,17,23",
+            "minute": "45"
+        },
+        "ntpdate": {
+            "command": "/usr/sbin/ntpdate -s time.nist.gov",
+            "day": "1",
+            "user": "root"
         }
     }
 }
