@@ -44,7 +44,7 @@ a latest directory in the default file storage of the Django project"
             self.delete_keys(latest_key_list)
 
         # get the version of last update that finished
-        v = RawDataVersion.objects.latest('update_finish_datetime')
+        v = RawDataVersion.objects.exclude(update_finish_datetime=None).latest('update_finish_datetime')
 
         logger.debug(
             'Copying files for {:%m-%d-%Y %H:%M:%S} version to latest/'.format(

@@ -13,6 +13,11 @@
         "python-virtualenv",
         "libpq-dev"
     ],
+    "python_version": {
+        "major": 2,
+        "minor": 7,
+        "micro": 13
+    },
     "app": {
         "name": "calaccess",
         "user": "%(app_user)s",
@@ -24,8 +29,8 @@
     "crons": {
         "update": {
             "command": "source %(app_dir)sbin/activate && %(app_dir)sbin/python %(repo_dir)smanage.py updatedownloadswebsite --noinput --publish --verbosity=3",
-            "hour": "5,11,17,23",
-            "minute": "45"
+            "hour": "2,5,8,11,14,17,20,23",
+            "minute": "50"
         }
     }
 }
