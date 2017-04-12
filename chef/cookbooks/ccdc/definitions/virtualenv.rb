@@ -1,5 +1,7 @@
-define :virtualenv, :action => :create, :owner => "root", :group => "root", :mode => 0755, :packages => {} do
+define :virtualenv, :action => :create, :owner => "ccdc", :group => "ccdc", :mode => 0755, :packages => {} do
     path = params[:path] ? params[:path] : params[:name]
+    py_version_full = "#{node[:python_version][:major]}.#{node[:python_version][:minor]}.#{node[:python_version][:micro]}"
+    py_version_short = "#{node[:python_version][:major]}.#{node[:python_version][:minor]}"
     if params[:action] == :create
         # Manage the directory.
         directory path do
@@ -10,7 +12,7 @@ define :virtualenv, :action => :create, :owner => "root", :group => "root", :mod
         execute "create-virtualenv-#{path}" do
             user params[:owner]
             group params[:group]
-            command "virtualenv --no-site-packages #{path}"
+            command "virtualenv --python=/usr/local/lib/python#{py_version_full}/bin/python#{py_version_short} --no-site-packages #{path}"
             not_if "test -f #{path}/bin/python"
         end
         params[:packages].each_pair do |package, version|

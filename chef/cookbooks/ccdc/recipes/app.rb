@@ -3,7 +3,7 @@ user node[:app][:user] do
     comment node[:app][:user]
     uid 1001
     shell "/bin/bash"
-    supports :manage_home => true
+    manage_home true
     home "/home/" + node[:app][:user]
 end
 
@@ -33,7 +33,7 @@ directory "/apps/" do
 end
 
 
-# Make the directory for the app
+# Make the virtualenv
 virtualenv "/apps/#{node[:app][:name]}" do
     owner node[:app][:user]
     group node[:app][:group]
