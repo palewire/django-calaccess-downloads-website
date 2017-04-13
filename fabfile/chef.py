@@ -30,7 +30,7 @@ def bootstrap():
     collectstatic()
 
     sudo("echo 'export CALACCESS_WEBSITE_ENV=%s' >> "
-         "/apps/calaccess/bin/activate" % os.getenv('CALACCESS_WEBSITE_ENV'))
+         "/apps/calaccess/bin/activate" % env.config_section)
 
     # Done deal
     print(green("Success!"))
