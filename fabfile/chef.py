@@ -44,7 +44,7 @@ def installchef():
     """
     # Install dependencies
     sudo('apt-get update', pty=True)
-    sudo('apt-get install -y git-core ruby2.0 ruby2.0-dev', pty=True)
+    sudo('apt-get install -y ruby2.0 ruby2.0-dev', pty=True)
     # Screw ruby docs.
     sudo("echo 'gem: --no-ri --no-rdoc' > /root/.gemrc")
     sudo("echo 'gem: --no-ri --no-rdoc' > /home/ubuntu/.gemrc")
