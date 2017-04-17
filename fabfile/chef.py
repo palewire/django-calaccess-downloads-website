@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-import os
 import json
 import collections
 from app import migrate, collectstatic
@@ -42,7 +41,7 @@ def installchef():
     """
     Install all the dependencies to run a Chef cookbook
     """
-    # Install dependencies
+    # Update apt-get
     sudo('apt-get update', pty=True)
     sudo('apt-get install -y ruby2.0 ruby2.0-dev', pty=True)
     # Screw ruby docs.
