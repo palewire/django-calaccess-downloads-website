@@ -8,8 +8,6 @@
     ],
     "dependencies": [
         "git",
-        "python-pip",
-        "python-dev",
         "python-virtualenv",
         "libpq-dev",
         "libffi-dev",
