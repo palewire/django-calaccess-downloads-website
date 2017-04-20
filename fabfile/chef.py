@@ -50,7 +50,7 @@ def installchef(version='13.0.118'):
     # Install Chef
     sudo(
         'curl -L https://www.chef.io/chef/install.sh | sudo bash -s -- -v %s' % version,
-         pty=True,
+        pty=True,
     )
 
 
