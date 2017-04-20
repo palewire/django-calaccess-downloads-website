@@ -39,14 +39,19 @@ def bootstrap():
 
 
 @task(task_class=ConfigTask)
-def installchef():
+def installchef(version='13.0.118'):
     """
-    Install all the dependencies to run a Chef cookbook
+    Install Chef, after updating apt-get.
+
+    Defaults to version 13.0.118.
     """
     # Update apt-get
     sudo('apt-get update', pty=True)
     # Install Chef
-    sudo('curl -L https://www.chef.io/chef/install.sh | sudo bash', pty=True)
+    sudo(
+        'curl -L https://www.chef.io/chef/install.sh | sudo bash -s -- -v %s' % version,
+         pty=True,
+    )
 
 
 @task(task_class=ConfigTask)
