@@ -19,7 +19,7 @@ env.activate = 'source {}'.format(
 # Git repository
 env.repo = "california-civic-data-coalition/django-calaccess-downloads-website"
 env.repo_dir = os.path.join(env.app_dir, 'repo/')
-env.branch = 'master'
+env.branch = 'development'
 
 # Extras
 env.connection_attempts = 15
