@@ -21,6 +21,7 @@ INSTALLED_APPS = [
     'bakery',
     'compressor',
     'calaccess_raw',
+    'calaccess_processed',
     'calaccess_website',
     'storages',
     'toolbox',
