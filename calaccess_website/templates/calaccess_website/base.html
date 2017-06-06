@@ -15,13 +15,13 @@
     <meta property="og:site_name" content="{{ CALACCESS_WEBSITE_DOMAIN }}"/>
     <meta property="og:title" content="{{ CALACCESS_WEBSITE_TITLE }}"/>
     <meta property="og:description" content="{{ CALACCESS_WEBSITE_DESCRIPTION }}"/>
-    <meta property="og:url" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}{{ request.path }}" />
-    <meta property="og:image" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}/static/calaccess_website/images/brown-bear-share.png"/>
+    <meta property="og:url" content="https://{{ CALACCESS_WEBSITE_DOMAIN }}{{ request.path }}" />
+    <meta property="og:image" content="//{{ CALACCESS_WEBSITE_DOMAIN }}/static/calaccess_website/images/brown-bear-share.png"/>
 
     <meta property="twitter:site" content="@cacivicdata">
     <meta property="twitter:title" content="{{ CALACCESS_WEBSITE_TITLE }}">
     <meta property="twitter:description" content="{{ CALACCESS_WEBSITE_DESCRIPTION }}"/>
-    <meta property="twitter:url" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}{{ request.path }}" />
+    <meta property="twitter:url" content="https://{{ CALACCESS_WEBSITE_DOMAIN }}{{ request.path }}" />
     <meta property="twitter:image:src" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}/static/calaccess_website/images/brown-bear-share.png">
     <meta property="twitter:card" content="summary_large_image">
     {% endblock %}
@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="/static/calaccess_website/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/static/calaccess_website/css/main.css">
     {% endcompress %}
-    <link href="https://fonts.googleapis.com/css?family=Raleway:400,600" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Raleway:400,600" rel="stylesheet">
     <script type="text/javascript" src="{% static "calaccess_website/js/jquery.min.js" %}"></script>
   </head>
   <body {% block extra-body %}{% endblock %}>
