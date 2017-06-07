@@ -50,7 +50,7 @@ def archive_url(file_path, is_latest=False):
         path = os.path.join("calaccess.download", file_path)
 
     # Either way, join it to the base and pass it back
-    return "http://{}".format(path)
+    return "https://{}".format(path)
 
 
 @register.filter
