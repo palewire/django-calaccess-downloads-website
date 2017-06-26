@@ -21,11 +21,14 @@ INSTALLED_APPS = [
     'bakery',
     'compressor',
     'calaccess_raw',
+    'calaccess_scraped',
     'calaccess_processed',
     'calaccess_website',
     'storages',
     'toolbox',
     'greeking',
+    'opencivicdata.core.apps.BaseConfig',
+    'opencivicdata.elections.apps.BaseConfig',
 ]
 
 LANGUAGE_CODE = 'en-us'
