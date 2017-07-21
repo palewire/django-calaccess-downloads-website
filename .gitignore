@@ -10,3 +10,4 @@ node.json
 .build
 .static
 django.log
+.python-version
