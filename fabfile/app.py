@@ -37,6 +37,10 @@ def pull():
     """
     Pull the lastest changes from the GitHub repo
     """
+    if env.config_section == "DEV":
+        env.branch = 'development'
+    else:
+        env.branch = 'master'
     _venv('git pull origin {}'.format(env.branch))
 
 
