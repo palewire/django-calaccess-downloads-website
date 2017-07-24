@@ -24,6 +24,8 @@ INSTALLED_APPS = [
     'calaccess_scraped',
     'calaccess_processed',
     'calaccess_website',
+    'opencivicdata.core.apps.BaseConfig',
+    'opencivicdata.elections.apps.BaseConfig',
     'storages',
     'toolbox',
     'greeking',
