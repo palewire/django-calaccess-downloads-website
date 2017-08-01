@@ -28,6 +28,11 @@
         "new_relic_license_key": "%(NEW_RELIC_LICENSE_KEY)s"
     },
     "crons": {
+        "scrape": {
+            "command": "source %(app_dir)sbin/activate && %(app_dir)sbin/python %(repo_dir)smanage.py scrapecalaccess --verbosity=2",
+            "hour": "10",
+            "minute": "00"
+        },
         "update": {
             "command": "source %(app_dir)sbin/activate && %(app_dir)sbin/python %(repo_dir)smanage.py updatedownloadswebsite --noinput --publish --verbosity=2",
             "hour": "2,5,8,11,14,17,20,23",
