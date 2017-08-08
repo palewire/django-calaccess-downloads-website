@@ -35,9 +35,7 @@ $('.dropdown-menu a').click(function() {
 <section id="full-archive" class="chapter">
     <h2>Full archive</h2>
     <p>
-        The complete package of {{ object.download_file_count }} database tables released by
-        California's Secretary of State, which we have cleaned up and converted
-        into flat files with {{ object.clean_record_count|intword }} rows of comma-separated values<sup><a href="#errata">*</a></sup>.
+        The complete package of {{ object.download_file_count }} database tables released by California's Secretary of State, which we have cleaned up and converted into flat files with {{ object.clean_record_count|intword }} rows of comma-separated values<sup><a href="#errata">*</a></sup>.
     </p>
     {% if object.clean_zip_archive %}
         <p>
@@ -61,12 +59,10 @@ $('.dropdown-menu a').click(function() {
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
-      <h3>Coming soon</h3>
-      <p>Simplified files that reshape the source data so it's easy to understand and analyze. <a href="http://www.californiacivicdata.org/2016/09/15/website-launch/">Learn more &raquo;</a></p>
+      <h3>New</h3>
+      <p>We're now releasing files of data scraped from the CAL-ACCESS website and formatted to meet the Open Civic Data specification. <a href="http://www.californiacivicdata.org/">Learn more &raquo;</a></p>
     </div>
 </section>
-
-
 
 {% if file_list %}
 <section id="archived-files" class="chapter">
@@ -117,25 +113,42 @@ $('.dropdown-menu a').click(function() {
             <div class="row">
                 <div class="col-md-6">
                     <p>
+                        {% if group.grouper == "OPEN CIVIC DATA" %}
+                        <span style='color:#ba0a35;font-weight:400;'>**NEW**</span>
+                        {{ file.doc|first_line|safe }}
+                        {% else %}
                         {{ file.model.doc|first_line|safe }}
                         {% if file.download_records_count == 0 %}The source file published by the state is empty.{% endif %}
                         <a href="{% url 'file_detail' slug=file.file_name|slugify %}">Learn more &raquo;</a>
+                        {% endif %}
                     </p>
                 </div>
                 <div class="col-md-5 col-md-offset-1 align-right stats">
-                    {% if file.clean_file_archive %}
+                    {% if file.clean_file_archive or file.file_archive %}
                     <div class="col-md-7 col-sm-8 col-xs-8">
                         <section>
                           <h5>Records</h5>
+                          {% if group.grouper == 'OPEN CIVIC DATA' %}
+                          <p>{{ file.records_count|intcomma }}</p>
+                          {% else %}
                           <p>{{ file.clean_records_count|intcomma }}{% if file.error_count > 0 %}<sup><a href="#footnote-{{ file.file_name|slugify }}">*</a></sup>{% endif %}</p>
+                          {% endif %}
                         </section>
                         <section>
                           <h5>Size</h5>
+                          {% if group.grouper == 'OPEN CIVIC DATA' %}
+                          <p>{{ file.pretty_file_size }}</p>
+                          {% else %}
                           <p>{{ file.pretty_clean_file_size }}</p>
+                          {% endif %}
                         </section>
                     </div>
                     <div class="col-md-5 col-sm-4 col-xs-4">
+                      {% if group.grouper == 'OPEN CIVIC DATA' %}
+                      <a href="{% archive_url file.file_archive.name is_latest=is_latest %}" class="btn btn-calaccess">Download</a>
+                      {% else %}
                       <a href="{% archive_url file.clean_file_archive.name is_latest=is_latest %}" class="btn btn-calaccess">Download</a>
+                      {% endif %}
                     </div>
                     {% else %}
                       <a class="btn btn-inactive">Unavailable</a>

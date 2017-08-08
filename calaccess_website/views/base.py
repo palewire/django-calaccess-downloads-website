@@ -1,6 +1,7 @@
 from itertools import groupby
 from calaccess_raw.models import RawDataFile
 from calaccess_raw.annotations import FilingForm
+from calaccess_processed.models import ProcessedDataFile
 
 
 class CalAccessModelListMixin(object):
@@ -14,6 +15,9 @@ class CalAccessModelListMixin(object):
         # If it's a FilingForm also do our trick
         elif isinstance(model_or_obj, FilingForm):
             return model_or_obj.group
+        # If it's a ProcessedDataFile, call it Open Civic Data
+        elif isinstance(model_or_obj, ProcessedDataFile):
+            return u'OPEN CIVIC DATA'
         # If it's an object go ahead
         elif isinstance(model_or_obj.klass_group, str):
             return model_or_obj.klass_group
