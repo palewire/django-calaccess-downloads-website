@@ -94,6 +94,15 @@ a latest directory in the default file storage of the Django project"
                     f.error_log_archive.name,
                     self.get_latest_path(f.error_log_archive.name)
                 )
+        # same for processed files
+        for f in v.processed_version.files.all():
+            # save processed file to the latest directory
+            if f.file_archive:
+                # save cleaned file to the latest directory
+                self.copy(
+                    f.file_archive.name,
+                    self.get_latest_path(f.file_archive.name)
+                )
 
         # Clear the cloudfront cache by sending an invalidation request
         if latest_key_list['KeyCount'] > 0:
