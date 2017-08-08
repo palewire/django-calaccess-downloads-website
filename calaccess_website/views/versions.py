@@ -97,7 +97,7 @@ class VersionDetail(BuildableDetailView, CalAccessModelListMixin):
         """
         context = super(VersionDetail, self).get_context_data(**kwargs)
         file_list = [i for i in self.object.files.all()]
-        
+
         # include processed_files, if available
         try:
             file_list += [
@@ -108,8 +108,6 @@ class VersionDetail(BuildableDetailView, CalAccessModelListMixin):
             pass
 
         context['file_list'] = self.regroup_by_klass_group(file_list)
-        
-        print(context['file_list'])
 
         if self.object.error_count:
             context['error_pct'] = 100 * self.object.error_count / float(self.object.download_record_count)

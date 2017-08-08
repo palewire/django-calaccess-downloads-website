@@ -17,7 +17,7 @@ class CalAccessModelListMixin(object):
             return model_or_obj.group
         # If it's a ProcessedDataFile, call it Open Civic Data
         elif isinstance(model_or_obj, ProcessedDataFile):
-            return u'OPEN CIVIC DATA'
+            return u'Open Civic Data'
         # If it's an object go ahead
         elif isinstance(model_or_obj.klass_group, str):
             return model_or_obj.klass_group

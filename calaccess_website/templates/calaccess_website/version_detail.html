@@ -113,7 +113,7 @@ $('.dropdown-menu a').click(function() {
             <div class="row">
                 <div class="col-md-6">
                     <p>
-                        {% if group.grouper == "OPEN CIVIC DATA" %}
+                        {% if group.grouper == "Open Civic Data" %}
                         <span style='color:#ba0a35;font-weight:400;'>**NEW**</span>
                         {{ file.doc|first_line|safe }}
                         {% else %}
@@ -128,7 +128,7 @@ $('.dropdown-menu a').click(function() {
                     <div class="col-md-7 col-sm-8 col-xs-8">
                         <section>
                           <h5>Records</h5>
-                          {% if group.grouper == 'OPEN CIVIC DATA' %}
+                          {% if group.grouper == 'Open Civic Data' %}
                           <p>{{ file.records_count|intcomma }}</p>
                           {% else %}
                           <p>{{ file.clean_records_count|intcomma }}{% if file.error_count > 0 %}<sup><a href="#footnote-{{ file.file_name|slugify }}">*</a></sup>{% endif %}</p>
@@ -136,7 +136,7 @@ $('.dropdown-menu a').click(function() {
                         </section>
                         <section>
                           <h5>Size</h5>
-                          {% if group.grouper == 'OPEN CIVIC DATA' %}
+                          {% if group.grouper == 'Open Civic Data' %}
                           <p>{{ file.pretty_file_size }}</p>
                           {% else %}
                           <p>{{ file.pretty_clean_file_size }}</p>
@@ -144,7 +144,7 @@ $('.dropdown-menu a').click(function() {
                         </section>
                     </div>
                     <div class="col-md-5 col-sm-4 col-xs-4">
-                      {% if group.grouper == 'OPEN CIVIC DATA' %}
+                      {% if group.grouper == 'Open Civic Data' %}
                       <a href="{% archive_url file.file_archive.name is_latest=is_latest %}" class="btn btn-calaccess">Download</a>
                       {% else %}
                       <a href="{% archive_url file.clean_file_archive.name is_latest=is_latest %}" class="btn btn-calaccess">Download</a>
