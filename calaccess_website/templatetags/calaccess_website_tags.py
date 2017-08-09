@@ -33,6 +33,11 @@ def archive_url(file_path, is_latest=False):
     Returns a fully-qualified absolute URL where it can be downloaded.
     """
     # If this is the 'latest' version of the file the path will need to be hacked
+    if os.getenv("CALACCESS_WEBSITE_ENV").upper() == 'PROD':
+        path = "calaccess.download"
+    else:
+        path = "s3-{aws_region_name}.amazonaws.com/{s3_archived_data_bucket}".format(**os.environ)
+
     if is_latest:
         # Split off the file name
         filepath = os.path.basename(file_path)
@@ -41,7 +46,7 @@ def archive_url(file_path, is_latest=False):
             filepath = "clean.zip"
         # Concoct the latest URL
         path = os.path.join(
-            "calaccess.download",
+            path,
             'latest',
             filepath
         )
