@@ -3,7 +3,8 @@ from django.http import Http404
 from django.utils import timezone
 from .base import CalAccessModelListMixin
 from django.core.urlresolvers import reverse
-from calaccess_raw.models.tracking import RawDataVersion
+from calaccess_raw.models import RawDataVersion
+from calaccess_processed.models import ProcessedDataVersion
 from django.template.defaultfilters import date as dateformat
 from bakery.views import (
     BuildableArchiveIndexView,
@@ -104,7 +105,7 @@ class VersionDetail(BuildableDetailView, CalAccessModelListMixin):
                 i for i in self.object.processed_version.files.all()
                 if 'Form' not in i.file_name
             ]
-        except NameError:
+        except ProcessedDataVersion.DoesNotExist:
             pass
 
         context['file_list'] = self.regroup_by_klass_group(file_list)
