@@ -10,14 +10,14 @@ class CalAccessModelListMixin(object):
     """
     def get_klass_group(self, model_or_obj):
         # If it's a RawDataFile do our trick
-        if isinstance(model_or_obj, RawDataFile):
+        if (
+            isinstance(model_or_obj, RawDataFile)
+            or isinstance(model_or_obj, ProcessedDataFile)
+        ):
             return model_or_obj.model().klass_group
         # If it's a FilingForm also do our trick
         elif isinstance(model_or_obj, FilingForm):
             return model_or_obj.group
-        # If it's a ProcessedDataFile, call it Open Civic Data
-        elif isinstance(model_or_obj, ProcessedDataFile):
-            return u'Open Civic Data'
         # If it's an object go ahead
         elif isinstance(model_or_obj.klass_group, str):
             return model_or_obj.klass_group
