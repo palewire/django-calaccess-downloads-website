@@ -1,7 +1,7 @@
 {% extends 'calaccess_website/base_with_top.html' %}
 {% load humanize calaccess_website_tags %}
 
-{% block title %}{{ object.db_table }} downloads - CAL-ACCESS files - Documentation - {{ block.super }}{% endblock%}
+{% block title %}{{ object.db_table }} downloads - CCDC files - Documentation - {{ block.super }}{% endblock%}
 
 {% block meta %}
 <meta property="og:site_name" content="{{ CALACCESS_WEBSITE_DOMAIN }}"/>
@@ -11,7 +11,7 @@
 <meta property="og:image" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}/static/calaccess_website/images/brown-bear-share.png"/>
 
 <meta property="twitter:site" content="@cacivicdata">
-<meta property="twitter:title" content="{{ object.db_table }} downloads - CAL-ACCESS files - Documentation - {{ CALACCESS_WEBSITE_TITLE }}">
+<meta property="twitter:title" content="{{ object.db_table }} downloads - CCDC files - Documentation - {{ CALACCESS_WEBSITE_TITLE }}">
 <meta property="twitter:description" content="The last {{ version_list|length }} downloads for this file."/>
 <meta property="twitter:url" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}{{ request.path }}" />
 <meta property="twitter:image:src" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}/static/calaccess_website/images/brown-bear-share.png">
@@ -19,20 +19,20 @@
 {% endblock %}
 
 {% block extra-meta %}
-<link rel="canonical" href="http://{{ CALACCESS_WEBSITE_DOMAIN }}{% url 'file_detail' object.db_table|slugify %}" />
+<link rel="canonical" href="http://{{ CALACCESS_WEBSITE_DOMAIN }}{% url 'ccdc_file_detail' object.db_table|slugify %}" />
 {% endblock %}
 
 {% block breadcrumbs %}
 {{ block.super }}
 <li><a href="{% url 'docs_index' %}">Documentation</a></li>
-<li><a href="{% url 'file_list' %}">CAL-ACCESS files</a></li>
-<li><a href="{% url 'file_detail' object.db_table|slugify %}">{{ object.db_table }}</a></li>
+<li><a href="{% url 'ccdc_file_list' %}">CAL-ACCESS files</a></li>
+<li><a href="{% url 'ccdc_file_detail' object.db_table|slugify %}">{{ object.db_table }}</a></li>
 <li>Downloads</li>
 {% endblock %}
 
 {% block top %}
   <h1 class="break">{{ object.db_table }}</h1>
-  <p>The last {{ version_list|length }} downloads for this file. <a href="{% url 'file_detail' object.db_table|slugify %}">See documentation &raquo;</a></p>
+  <p>The last {{ version_list|length }} downloads for this file. <a href="{% url 'ccdc_file_detail' object.db_table|slugify %}">See documentation &raquo;</a></p>
 {% endblock %}
 
 {% block content %}
@@ -44,18 +44,16 @@
         <th>Date</th>
         <th width=8% class="right">Records</th>
         <th width=8% class="right hidden-xs">Size</th>
-        <th width=8% class="right hidden-xs">Errors</th>
         <th width=15% class="right"></th>
       </thead>
       <tbody>
         {% for file in version_list %}
         <tr>
-          <td><a href="{% url 'version_detail' year=file.version.release_datetime.year month=file.version.release_datetime|date:'m' day=file.version.release_datetime|date:'d' time=file.version.release_datetime|date:'His' %}">{{ file.version.release_datetime|date:"N j, Y" }}</a></td>
-          {% if file.clean_file_archive %}
-          <td class="right">{{ file.clean_records_count|intcomma }}</td>
-          <td class="right hidden-xs">{{ file.pretty_clean_file_size }}</td>
-          <td class="right hidden-xs">{{ file.error_count|intcomma }}</td>
-          <td class="nobreak right"><a href="{% archive_url file.clean_file_archive.name %}">Download &raquo;</a></td>
+          <td><a href="{% url 'version_detail' year=file.version.raw_version.release_datetime.year month=file.version.raw_version.release_datetime|date:'m' day=file.version.raw_version.release_datetime|date:'d' time=file.version.raw_version.release_datetime|date:'His' %}">{{ file.version.raw_version.release_datetime|date:"N j, Y" }}</a></td>
+          {% if file.file_archive %}
+          <td class="right">{{ file.records_count|intcomma }}</td>
+          <td class="right hidden-xs">{{ file.pretty_file_size }}</td>
+          <td class="nobreak right"><a href="{% archive_url file.file_archive.name %}">Download &raquo;</a></td>
           {% else %}
           <td colspan=3></td>
           <td class="right">Unavailable</td>

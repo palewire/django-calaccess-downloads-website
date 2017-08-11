@@ -55,18 +55,35 @@ urlpatterns = [
     # CAL-ACCESS file views
     url(
         r'^documentation/calaccess-files/$',
-        views.FileList.as_view(),
-        name='file_list'
+        views.CalAccessFileList.as_view(),
+        name='calaccess_file_list'
     ),
     url(
         r'^documentation/calaccess-files/(?P<slug>[-\w]+)/$',
-        views.FileDetail.as_view(),
-        name='file_detail',
+        views.CalAccessFileDetail.as_view(),
+        name='calaccess_file_detail',
     ),
     url(
         r'^documentation/calaccess-files/(?P<slug>[-\w]+)/downloads/$',
-        views.FileDownloadsList.as_view(),
-        name='file_downloads_list',
+        views.CalAccessFileDownloadsList.as_view(),
+        name='calaccess_file_downloads_list',
+    ),
+
+    # CCDC file views
+    url(
+        r'^documentation/ccdc-files/$',
+        views.CcdcFileList.as_view(),
+        name='ccdc_file_list'
+    ),
+    url(
+        r'^documentation/ccdc-files/(?P<slug>[-\w]+)/$',
+        views.CcdcFileDetail.as_view(),
+        name='ccdc_file_detail',
+    ),
+    url(
+        r'^documentation/ccdc-files/(?P<slug>[-\w]+)/downloads/$',
+        views.CcdcFileDownloadsList.as_view(),
+        name='ccdc_file_downloads_list',
     ),
 
     # Form views

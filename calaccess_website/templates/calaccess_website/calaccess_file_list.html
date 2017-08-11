@@ -75,7 +75,7 @@
     {% for file in group.list  %}
         <tr>
             <td class="break" style="width:30%">
-                <a href="{% url 'file_detail' slug=file.db_table|slugify %}">
+                <a href="{% url 'calaccess_file_detail' slug=file.db_table|slugify %}">
                     {{ file.db_table }}
                 </a>
             </td>

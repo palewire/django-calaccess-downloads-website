@@ -112,7 +112,7 @@ $('.dropdown-menu a').click(function() {
             <div class="row">
                 <div class="col-md-6">
                     <h4>
-                        <a href="{% url 'file_detail' slug=file.file_name|slugify %}">
+                        <a href="{% url 'calaccess_file_detail' slug=file.file_name|slugify %}">
                             {{ file.file_name }}
                         </a>
                     </h4>
@@ -133,7 +133,7 @@ $('.dropdown-menu a').click(function() {
                         {% else %}
                         {{ file.model.doc|first_line|safe }}
                         {% if file.download_records_count == 0 %}The source file published by the state is empty.{% endif %}
-                        <a href="{% url 'file_detail' slug=file.file_name|slugify %}">Learn more &raquo;</a>
+                        <a href="{% url 'calaccess_file_detail' slug=file.file_name|slugify %}">Learn more &raquo;</a>
                         {% endif %}
                     </p>
                 </div>
@@ -216,7 +216,7 @@ var fileList = new List('archived-files', options);
       {% for file in group.list %}
       {% if file.error_count > 0 %}
       <tr id="footnote-{{ file.file_name|slugify }}">
-        <td class="break"><a href="{% url 'file_detail' slug=file.file_name|slugify %}">{{ file.file_name }}</a></td>
+        <td class="break"><a href="{% url 'calaccess_file_detail' slug=file.file_name|slugify %}">{{ file.file_name }}</a></td>
         <td class="right">{{ file.error_count }}</td>
         <td class="right"><a href="{% archive_url file.error_log_archive.name is_latest=is_latest %}">Download &raquo;</a></td>
       </tr>
