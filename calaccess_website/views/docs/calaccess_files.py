@@ -90,7 +90,7 @@ class CalAccessFileDetail(BaseFileDetailView):
     template_name = 'calaccess_website/calaccess_file_detail.html'
 
     def get_url(self, obj):
-        return reverse('raw_file_detail', kwargs=dict(slug=obj))
+        return reverse('calaccess_file_detail', kwargs=dict(slug=obj))
 
     def get_context_data(self, **kwargs):
         """
