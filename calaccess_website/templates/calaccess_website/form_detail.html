@@ -117,7 +117,7 @@
     {% for model in form.get_models %}
         <tr>
             <td class="break">
-                <a href="{% url 'file_detail' slug=model.db_table|slugify %}">
+                <a href="{% url 'calaccess_file_detail' slug=model.db_table|slugify %}">
                     {{ model.db_table }}
                 </a>
             </td>
