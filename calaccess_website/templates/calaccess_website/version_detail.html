@@ -37,7 +37,21 @@ $('.dropdown-menu a').click(function() {
     <p>
         The complete package of {{ object.download_file_count }} database tables released by California's Secretary of State, which we have cleaned up and converted into flat files with {{ object.clean_record_count|intword }} rows of comma-separated values<sup><a href="#errata">*</a></sup>.
     </p>
-    {% if object.clean_zip_archive %}
+    {% if object.processed_version %}
+        <p>
+            <a href="{% archive_url object.processed_version.zip_archive.name is_latest=is_latest %}"
+               class="btn btn-calaccess">
+                Download
+            </a>
+            &nbsp; <span>{{ object.processed_version.pretty_zip_size }} zip</span>
+        </p>
+        <p>
+            Alternatively, retrieve with <code>curl</code>.
+        </p>
+        <input type="text" class="download-link input-monospace"
+            value="$ curl -O {% archive_url object.processed_version.zip_archive.name is_latest=is_latest %}"
+            readonly>
+    {% elif object.clean_zip_archive %}
         <p>
             <a href="{% archive_url object.clean_zip_archive.name is_latest=is_latest %}"
                class="btn btn-calaccess">
@@ -53,7 +67,7 @@ $('.dropdown-menu a').click(function() {
             readonly>
     {% else %}
     <p><a class="btn btn-inactive">Unavailable</a>
-        {% endif %}
+    {% endif %}
 
     <div class="announcement fade in">
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
