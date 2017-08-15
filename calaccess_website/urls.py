@@ -122,14 +122,24 @@ urlpatterns = [
         name='robots_txt'
     ),
     url(
-        r'^file-sitemap.xml$',
-        sitemaps.FileSitemap.as_view(),
-        name='file_sitemap'
+        r'^calaccess-file-sitemap.xml$',
+        sitemaps.CalAccessFileSitemap.as_view(),
+        name='calaccess_file_sitemap'
     ),
     url(
-        r'^file-downloads-sitemap.xml$',
-        sitemaps.FileDownloadsSitemap.as_view(),
-        name='file_downloads_sitemap'
+        r'^calaccess-file-downloads-sitemap.xml$',
+        sitemaps.CalAccessFileDownloadsSitemap.as_view(),
+        name='calaccess_file_downloads_sitemap'
+    ),
+    url(
+        r'^ccdc-file-sitemap.xml$',
+        sitemaps.CcdcFileSitemap.as_view(),
+        name='ccdc_file_sitemap'
+    ),
+    url(
+        r'^ccdc-file-downloads-sitemap.xml$',
+        sitemaps.CcdcFileDownloadsSitemap.as_view(),
+        name='ccdc_file_downloads_sitemap'
     ),
     url(
         r'^form-sitemap.xml$',

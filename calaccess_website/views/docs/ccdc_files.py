@@ -1,9 +1,46 @@
 from django.core.urlresolvers import reverse
 from django.http import Http404
-from calaccess_processed.models.tracking import ProcessedDataFile
+from calaccess_processed.models import ProcessedDataFile
 from calaccess_website.views import CalAccessModelListMixin
 from calaccess_website.templatetags.calaccess_website_tags import slugify
 from bakery.views import BuildableDetailView, BuildableListView
+
+
+def get_ccdc_model_list():
+    """
+    Return a list of models classes for the data files published
+    """
+    file_list = [
+        'Division',
+        'Membership',
+        'Organization',
+        'OrganizationIdentifier',
+        'OrganizationName',
+        'Person',
+        'PersonIdentifier',
+        'PersonName',
+        'Post',
+        'BallotMeasureContest',
+        'BallotMeasureContestIdentifier',
+        'BallotMeasureContestOption',
+        'BallotMeasureContestSource',
+        'Candidacy',
+        'CandidacySource',
+        'CandidateContest',
+        'CandidateContestPost',
+        'CandidateContestSource',
+        'Election',
+        'ElectionIdentifier',
+        'ElectionSource',
+        'RetentionContest',
+        'RetentionContestIdentifier',
+        'RetentionContestOption',
+        'RetentionContestSource',
+    ]
+
+    return [
+        ProcessedDataFile(file_name=f).model for f in file_list
+    ]
 
 
 class CcdcFileList(BuildableListView, CalAccessModelListMixin):
@@ -14,11 +51,11 @@ class CcdcFileList(BuildableListView, CalAccessModelListMixin):
         """
         Returns the CCDC model list with grouped by type.
         """
-        return self.regroup_by_klass_group(get_model_list())
+        return self.regroup_by_klass_group(get_ccdc_model_list())
 
     def get_context_data(self, **kwargs):
         context = super(CcdcFileList, self).get_context_data(**kwargs)
-        context['model_list'] = get_model_list()
+        context['file_num'] = len(get_ccdc_model_list())
         return context
 
 
@@ -28,10 +65,12 @@ class BaseFileDetailView(BuildableDetailView):
     """
     def get_queryset(self):
         """
-        Returns a list of the raw data files as a key dictionary
+        Returns a list of the ccdc data files as a key dictionary
         with the URL slug as the keys.
         """
-        return dict((slugify(m().db_table), m) for m in get_model_list())
+        return dict(
+            (slugify(str(m().model._meta.object_name)), m) for m in get_ccdc_model_list()
+        )
 
     def set_kwargs(self, obj):
         self.kwargs = {
@@ -55,11 +94,11 @@ class BaseFileDetailView(BuildableDetailView):
         """
         Add some extra bits to the template's context
         """
-        file_name = self.kwargs['slug'].upper().replace("-", "_")
+        file_name = self.kwargs['slug'].replace("-", "")
         context = super(BaseFileDetailView, self).get_context_data(**kwargs)
         # Pull all previous versions of the provided file
         context['version_list'] = ProcessedDataFile.objects.filter(
-            file_name=file_name
+            file_name__icontains=file_name
         ).order_by(
             '-version__raw_version__release_datetime'
         ).exclude(
@@ -101,14 +140,19 @@ class CcdcFileDetail(BaseFileDetailView):
         """
         context = super(CcdcFileDetail, self).get_context_data(**kwargs)
         # Add list of choice fields to context
-        context['choice_fields'] = self.get_choice_fields()
-        return context
+        context['fields'] = []
 
-    def get_choice_fields(self):
-        """
-        Returns list of fields with choices and docs.
-        """
-        choice_fields = []
-        for field in self.object._meta.fields:
-            choice_fields.append(field)
-        return choice_fields
+        for field in self.object().get_field_list():
+            field_data = {
+                'column': field.column,
+                'description': field.description % field.__dict__,
+                'help_text': field.help_text,
+            }
+            if len(field.choices) > 0:
+                field_data['choices'] = [c for c in field.choices]
+            else:
+                field_data['choices'] = None
+
+            context['fields'].append(field_data)
+
+        return context

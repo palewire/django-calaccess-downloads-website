@@ -31,16 +31,14 @@
 </p>
 {% endblock %}
 
-{% block affix-nav %}
+{# {% block affix-nav %}
 <ul class="nav nav-stacked">
   <li class="active">
-    <a href="#campaign">Campaign</a>
+    <a href="#core">Campaign</a>
   </li>
-  <li><a href="#common">Common</a></li>
-  <li><a href="#lobbying">Lobbying</a></li>
-  <li><a href="#inactive">Inactive</a></li>
+  <li><a href="#elections">Common</a></li>
 </ul>
-{% endblock %}
+{% endblock %} #}
 
 {% block javascript %}
 <script type="text/javascript">
@@ -73,8 +71,8 @@
     {% for file in group.list  %}
         <tr>
             <td class="break" style="width:30%">
-                <a href="{% url 'ccdc_file_detail' slug=file.db_table|slugify %}">
-                    {{ file.db_table }}
+                <a href="{% url 'ccdc_file_detail' slug=file.object_name|slugify %}">
+                    {{ file.object_name }}
                 </a>
             </td>
             <td style="width:70%">

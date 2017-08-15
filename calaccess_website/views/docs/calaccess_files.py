@@ -32,7 +32,9 @@ class BaseFileDetailView(BuildableDetailView):
         Returns a list of the raw data files as a key dictionary
         with the URL slug as the keys.
         """
-        return dict((slugify(m().db_table), m) for m in get_model_list())
+        return dict(
+            (slugify(m().db_table), m) for m in get_model_list()
+        )
 
     def set_kwargs(self, obj):
         self.kwargs = {

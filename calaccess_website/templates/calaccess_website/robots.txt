@@ -4,6 +4,8 @@ Sitemap: http://calaccess.californiacivicdata.org/downloads-sitemap.xml
 Sitemap: http://calaccess.californiacivicdata.org/downloads-year-sitemap.xml
 Sitemap: http://calaccess.californiacivicdata.org/downloads-month-sitemap.xml
 Sitemap: http://calaccess.californiacivicdata.org/other-sitemap.xml
-Sitemap: http://calaccess.californiacivicdata.org/file-sitemap.xml
-Sitemap: http://calaccess.californiacivicdata.org/file-downloads-sitemap.xml
+Sitemap: http://calaccess.californiacivicdata.org/calaccess-file-sitemap.xml
+Sitemap: http://calaccess.californiacivicdata.org/calaccess-file-downloads-sitemap.xml
+Sitemap: http://calaccess.californiacivicdata.org/ccdc-file-sitemap.xml
+Sitemap: http://calaccess.californiacivicdata.org/ccdc-file-downloads-sitemap.xml
 Sitemap: http://calaccess.californiacivicdata.org/form-sitemap.xml

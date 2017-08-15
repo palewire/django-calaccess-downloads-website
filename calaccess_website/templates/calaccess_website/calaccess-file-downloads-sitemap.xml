@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 {% for obj in object_list %}
   <url>
-    <loc>http://{{ CALACCESS_WEBSITE_DOMAIN }}{% url 'file_detail' slug=obj.db_table|slugify %}</loc> 
+    <loc>http://{{ CALACCESS_WEBSITE_DOMAIN }}{% url 'calaccess_file_downloads_list' slug=obj.db_table|slugify %}</loc> 
   </url>
 {% endfor %}
 </urlset>

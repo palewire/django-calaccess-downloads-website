@@ -60,8 +60,6 @@ def archive_url(file_path, is_latest=False):
     else:
         path = os.path.join(stub, file_path)
 
-    print(path)
-    
     # Either way, join it to the base and pass it back
     return "https://{}".format(path)
 
@@ -72,7 +70,9 @@ def slugify(value):
     """
     Extend the default slugify filter to replace underscores with hyphens.
     """
-    return defaultfilters.slugify(value).replace('_', '-')
+    s1 = re.sub('(.)([A-Z][a-z]+)', r'\1_\2', value)
+    s2 = re.sub('([a-z0-9])([A-Z])', r'\1_\2', s1)
+    return defaultfilters.slugify(s2).replace('_', '-')
 
 
 @register.filter
