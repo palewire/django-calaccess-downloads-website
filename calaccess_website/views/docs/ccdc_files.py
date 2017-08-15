@@ -139,8 +139,16 @@ class CcdcFileDetail(BaseFileDetailView):
         Add some extra bits to the template's context
         """
         context = super(CcdcFileDetail, self).get_context_data(**kwargs)
-        # Add list of choice fields to context
-        context['fields'] = []
+        # Add list of fields to context
+        context['fields'] = self.get_sorted_fields()
+
+        return context
+    
+    def get_sorted_fields(self):
+        """
+        Return a list of fields (dicts) sorted by name.
+        """
+        field_list = []
 
         for field in self.object().get_field_list():
             field_data = {
@@ -153,6 +161,6 @@ class CcdcFileDetail(BaseFileDetailView):
             else:
                 field_data['choices'] = None
 
-            context['fields'].append(field_data)
+            field_list.append(field_data) 
 
-        return context
+        return sorted(field_list, key=lambda k: k['column'])
