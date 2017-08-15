@@ -143,7 +143,7 @@ class CcdcFileDetail(BaseFileDetailView):
         context['fields'] = self.get_sorted_fields()
 
         return context
-    
+
     def get_sorted_fields(self):
         """
         Return a list of fields (dicts) sorted by name.
@@ -161,6 +161,6 @@ class CcdcFileDetail(BaseFileDetailView):
             else:
                 field_data['choices'] = None
 
-            field_list.append(field_data) 
+            field_list.append(field_data)
 
         return sorted(field_list, key=lambda k: k['column'])
