@@ -96,7 +96,7 @@ a latest directory in the default file storage of the Django project"
                     f.error_log_archive.name,
                     self.get_latest_path(f.error_log_archive.name)
                 )
-        
+
         # save processed zip to the latest dir
         if v.processed_version:
             if v.processed_version.zip_archive:
