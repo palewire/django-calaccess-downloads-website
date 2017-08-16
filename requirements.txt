@@ -16,3 +16,4 @@ coveralls
 configparser
 django-compressor
 greeking
+PyGithub
