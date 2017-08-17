@@ -38,10 +38,10 @@ def get_ccdc_model_list():
         'RetentionContestSource',
     ]
 
-    return [
+    model_list = [
         ProcessedDataFile(file_name=f).model for f in file_list
     ]
-
+    return sorted(model_list, key=lambda m: m().object_name)
 
 class CcdcFileList(BuildableListView, CalAccessModelListMixin):
     template_name = 'calaccess_website/ccdc_file_list.html'
@@ -69,7 +69,7 @@ class BaseFileDetailView(BuildableDetailView):
         with the URL slug as the keys.
         """
         return dict(
-            (slugify(str(m().model._meta.object_name)), m) for m in get_ccdc_model_list()
+            (slugify(str(m().object_name)), m) for m in get_ccdc_model_list()
         )
 
     def set_kwargs(self, obj):
