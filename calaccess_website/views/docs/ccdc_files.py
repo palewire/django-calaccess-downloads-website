@@ -43,6 +43,7 @@ def get_ccdc_model_list():
     ]
     return sorted(model_list, key=lambda m: m().object_name)
 
+
 class CcdcFileList(BuildableListView, CalAccessModelListMixin):
     template_name = 'calaccess_website/ccdc_file_list.html'
     build_path = "documentation/calaccess-files/index.html"
