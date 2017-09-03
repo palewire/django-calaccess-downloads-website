@@ -1,5 +1,5 @@
 Django==1.10
-django-calaccess-raw-data==1.6.1rc0
+django-calaccess-raw-data==1.6.1
 django-calaccess-scraped-data==0.1.0rc0
 django-calaccess-processed-data==0.1.0rc37
 # this requirement can be removed after next release of ocd package
