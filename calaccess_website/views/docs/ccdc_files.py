@@ -46,7 +46,7 @@ def get_ccdc_model_list():
 
 class CcdcFileList(BuildableListView, CalAccessModelListMixin):
     template_name = 'calaccess_website/ccdc_file_list.html'
-    build_path = "documentation/calaccess-files/index.html"
+    build_path = "documentation/ccdc-files/index.html"
 
     def get_queryset(self):
         """
