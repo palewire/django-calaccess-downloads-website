@@ -70,8 +70,8 @@ def slugify(value):
     """
     Extend the default slugify filter to replace underscores with hyphens.
     """
-    s1 = re.sub('(.)([A-Z][a-z]+)', r'\1_\2', value)
-    s2 = re.sub('([a-z0-9])([A-Z])', r'\1_\2', s1)
+    s1 = re.sub(r'(.)([A-Z][a-z]+)', r'\1_\2', value)
+    s2 = re.sub(r'([a-z0-9])([A-Z])', r'\1_\2', s1)
     return defaultfilters.slugify(s2).replace('_', '-')
 
 
