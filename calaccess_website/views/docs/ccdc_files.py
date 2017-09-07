@@ -12,6 +12,9 @@ def get_ccdc_model_list():
     """
     file_list = [
         'Division',
+        'FlatBallotMeasureContest',
+        'FlatCandidacy',
+        'FlatRetentionContest',
         'Membership',
         'Organization',
         'OrganizationIdentifier',
