@@ -156,7 +156,7 @@ class CcdcFileDetail(BaseFileDetailView):
 
         for field in self.object().get_field_list():
             field_data = {
-                'column': field.column,
+                'column': field.name,
                 'description': field.description % field.__dict__,
                 'help_text': field.help_text,
             }
