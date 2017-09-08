@@ -157,7 +157,7 @@ class CcdcFileDetail(BaseFileDetailView):
         for field in self.object().get_field_list():
             field_data = {
                 'column': field.name,
-                'description': field.description % field.__dict__,
+                'description': field.description,
                 'help_text': field.help_text,
             }
             if len(field.choices) > 0:
