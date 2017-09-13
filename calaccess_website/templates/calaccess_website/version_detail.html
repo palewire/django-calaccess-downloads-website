@@ -112,7 +112,7 @@ $('.dropdown-menu a').click(function() {
             <div class="row">
                 <div class="col-md-6">
                     <h4>
-                      {% if group.grouper == "CCDC" %}
+                      {% if group.grouper == "Flat" or group.grouper == "Relational" %}
                         <a href="{% url 'ccdc_file_detail' slug=file.file_name|slugify %}">
                             {{ file.file_name }}
                       {% else %}
