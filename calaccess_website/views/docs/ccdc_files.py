@@ -63,7 +63,7 @@ class BaseFileDetailView(BuildableDetailView):
         with the URL slug as the keys.
         """
         return dict(
-            (slugify(str(f.file_name) ), f) for f in get_processed_data_files()
+            (slugify(f.file_name), f) for f in get_processed_data_files()
         )
 
     def set_kwargs(self, obj):
