@@ -16,13 +16,13 @@ class DocumentationIndex(BuildableTemplateView):
         form_list = all_filing_forms
         object_list = [
             dict(
-                name='CCDC files',
+                name='Processed Civic Data files',
                 description="Definitions, record layouts and data dictionaries for the \
 simplified data files released by the California Civic Data Coalition.",
                 url=reverse("ccdc_file_list"),
             ),
             dict(
-                name='CAL-ACCESS files',
+                name='Raw CAL-ACCESS files',
                 description="Definitions, record layouts and data dictionaries for the {} \
 CAL-ACCESS files released by the state.".format(len(model_list)),
                 url=reverse("calaccess_file_list"),

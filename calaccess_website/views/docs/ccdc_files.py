@@ -1,65 +1,55 @@
+from django.apps import apps
 from django.core.urlresolvers import reverse
 from django.http import Http404
 from calaccess_processed.models import ProcessedDataFile
+from calaccess_processed.models.proxies import opencivicdata
 from calaccess_website.views import CalAccessModelListMixin
 from calaccess_website.templatetags.calaccess_website_tags import slugify
 from bakery.views import BuildableDetailView, BuildableListView
 
 
-def get_ccdc_model_list():
+def get_ocd_proxy_models():
     """
-    Return a list of models classes for the data files published
+    Return an iterable of OCD proxy models, defined in the processed_data app.
     """
-    file_list = [
-        'Division',
-        'FlatBallotMeasureContest',
-        'FlatCandidacy',
-        'FlatRetentionContest',
-        'Membership',
-        'Organization',
-        'OrganizationIdentifier',
-        'OrganizationName',
-        'Person',
-        'PersonIdentifier',
-        'PersonName',
-        'Post',
-        'BallotMeasureContest',
-        'BallotMeasureContestIdentifier',
-        'BallotMeasureContestOption',
-        'BallotMeasureContestSource',
-        'Candidacy',
-        'CandidacySource',
-        'CandidateContest',
-        'CandidateContestPost',
-        'CandidateContestSource',
-        'Election',
-        'ElectionIdentifier',
-        'ElectionSource',
-        'RetentionContest',
-        'RetentionContestIdentifier',
-        'RetentionContestOption',
-        'RetentionContestSource',
-    ]
+    models = []
 
-    model_list = [
-        ProcessedDataFile(file_name=f).model for f in file_list
+    for i in opencivicdata.__all__:
+        try:
+            model = apps.get_model('calaccess_processed', i)
+        except LookupError:
+            pass
+        else:
+            if hasattr(model.objects, 'to_csv'):
+                models.append(model)
+
+    return tuple(m for m in models)
+
+
+def get_processed_data_files():
+    """
+    Return a tuple of ProcessedDataFile instances for published files.
+    """
+
+    file_list = [
+        ProcessedDataFile(file_name=m().file_name) for m in get_ocd_proxy_models()
     ]
-    return sorted(model_list, key=lambda m: m().object_name)
+    return sorted(file_list, key=lambda f: f.file_name)
 
 
 class CcdcFileList(BuildableListView, CalAccessModelListMixin):
     template_name = 'calaccess_website/ccdc_file_list.html'
-    build_path = "documentation/ccdc-files/index.html"
+    build_path = "documentation/processed-files/index.html"
 
     def get_queryset(self):
         """
         Returns the CCDC model list with grouped by type.
         """
-        return self.regroup_by_klass_group(get_ccdc_model_list())
+        return self.regroup_by_klass_group(get_processed_data_files())
 
     def get_context_data(self, **kwargs):
         context = super(CcdcFileList, self).get_context_data(**kwargs)
-        context['file_num'] = len(get_ccdc_model_list())
+        context['file_num'] = len(get_processed_data_files())
         return context
 
 
@@ -73,7 +63,7 @@ class BaseFileDetailView(BuildableDetailView):
         with the URL slug as the keys.
         """
         return dict(
-            (slugify(str(m().object_name)), m) for m in get_ccdc_model_list()
+            (slugify(str(f.file_name) ), f) for f in get_processed_data_files()
         )
 
     def set_kwargs(self, obj):
@@ -154,7 +144,7 @@ class CcdcFileDetail(BaseFileDetailView):
         """
         field_list = []
 
-        for field in self.object().get_field_list():
+        for field in self.object.model().get_field_list():
             field_data = {
                 'column': field.name,
                 'description': field.description,

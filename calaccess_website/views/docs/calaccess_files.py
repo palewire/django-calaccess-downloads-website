@@ -9,7 +9,7 @@ from calaccess_website.templatetags.calaccess_website_tags import slugify
 
 class CalAccessFileList(BuildableListView, CalAccessModelListMixin):
     template_name = 'calaccess_website/calaccess_file_list.html'
-    build_path = "documentation/calaccess-files/index.html"
+    build_path = "documentation/raw-files/index.html"
 
     def get_queryset(self):
         """

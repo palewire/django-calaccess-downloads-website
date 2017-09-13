@@ -5,13 +5,13 @@
 
 {% block meta %}
 <meta property="og:site_name" content="{{ CALACCESS_WEBSITE_DOMAIN }}"/>
-<meta property="og:title" content="CCDC files - Documentation - {{ CALACCESS_WEBSITE_TITLE }}"/>
+<meta property="og:title" content="Processed Civic Data files - Documentation - {{ CALACCESS_WEBSITE_TITLE }}"/>
 <meta property="og:description" content="Definitions, record layouts and data dictionaries for the simplified data files released by the California Civic Data Coalition."/>
 <meta property="og:url" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}{{ request.path }}" />
 <meta property="og:image" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}/static/calaccess_website/images/brown-bear-share.png"/>
 
 <meta property="twitter:site" content="@cacivicdata">
-<meta property="twitter:title" content="CCDC files - Documentation - {{ CALACCESS_WEBSITE_TITLE }}">
+<meta property="twitter:title" content="Processed Civic Data files - Documentation - {{ CALACCESS_WEBSITE_TITLE }}">
 <meta property="twitter:description" content="Definitions, record layouts and data dictionaries for the simplified data files released by the California Civic Data Coalition."/>
 <meta property="twitter:url" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}{{ request.path }}" />
 <meta property="twitter:image:src" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}/static/calaccess_website/images/brown-bear-share.png">
@@ -21,11 +21,11 @@
 {% block breadcrumbs %}
 {{ block.super }}
 <li><a href="{% url 'docs_index' %}">Documentation</a></li>
-<li>CCDC files</li>
+<li>Processed files</li>
 {% endblock %}
 
 {% block top %}
-<h1>CCDC files</h1>
+<h1>Processed Civic Data files</h1>
 <p>
   Definitions, record layouts and data dictionaries for the simplified data files released by the California Civic Data Coalition.
 </p>
@@ -62,12 +62,12 @@
     {% for file in group.list  %}
         <tr>
             <td class="break" style="width:30%">
-                <a href="{% url 'ccdc_file_detail' slug=file.object_name|slugify %}">
-                    {{ file.object_name }}
+                <a href="{% url 'ccdc_file_detail' slug=file.file_name|slugify %}">
+                    {{ file.file_name }}
                 </a>
             </td>
             <td style="width:70%">
-                {{ file.doc.strip|first_line|safe  }}
+                {{ file.model.doc.strip|first_line|safe  }}
             </td>
         </tr>
     {% endfor %}

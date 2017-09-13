@@ -2,7 +2,7 @@ from bakery.views import BuildableListView
 from calaccess_raw import get_model_list
 from calaccess_raw.models import RawDataVersion
 from calaccess_raw.annotations.filing_forms import all_filing_forms
-from calaccess_website.views.docs.ccdc_files import get_ccdc_model_list
+from calaccess_website.views.docs.ccdc_files import get_processed_data_files
 
 
 class AbstractSitemapView(BuildableListView):
@@ -89,7 +89,7 @@ class CcdcFileSitemap(AbstractSitemapView):
     """
     build_path = 'calaccess-file-sitemap.xml'
     template_name = 'calaccess_website/ccdc-file-sitemap.xml'
-    queryset = get_ccdc_model_list()
+    queryset = get_processed_data_files()
 
 
 class CalAccessFileDownloadsSitemap(AbstractSitemapView):
@@ -107,7 +107,7 @@ class CcdcFileDownloadsSitemap(AbstractSitemapView):
     """
     build_path = 'ccdc-file-downloads-sitemap.xml'
     template_name = 'calaccess_website/ccdc-file-downloads-sitemap.xml'
-    queryset = get_ccdc_model_list()
+    queryset = get_processed_data_files()
 
 
 class FormSitemap(AbstractSitemapView):

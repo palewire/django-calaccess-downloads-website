@@ -9,7 +9,7 @@ class CalAccessModelListMixin(object):
     Processes lists of CAL-ACCESS models to be better organized.
     """
     def get_klass_group(self, model_or_obj):
-        # If it's a RawDataFile do our trick
+        # If it's a RawDataFile or ProcessedDataFile do our trick
         if (
             isinstance(model_or_obj, RawDataFile)
             or isinstance(model_or_obj, ProcessedDataFile)
