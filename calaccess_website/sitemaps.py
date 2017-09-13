@@ -26,8 +26,8 @@ class OtherSitemap(AbstractSitemapView):
         "http://calaccess.californiacivicdata.org/downloads/",
         "http://calaccess.californiacivicdata.org/downloads/latest/",
         "http://calaccess.californiacivicdata.org/documentation/",
-        "http://calaccess.californiacivicdata.org/documentation/calaccess-files/",
-        "http://calaccess.californiacivicdata.org/documentation/ccdc-files/",
+        "http://calaccess.californiacivicdata.org/documentation/raw-files/",
+        "http://calaccess.californiacivicdata.org/documentation/processed-files/",
         "http://calaccess.californiacivicdata.org/documentation/calaccess-forms/",
         "http://calaccess.californiacivicdata.org/documentation/documentation/calaccess-official-documentation/",
         "http://calaccess.californiacivicdata.org/documentation/frequently-asked-questions/",
@@ -78,7 +78,7 @@ class CalAccessFileSitemap(AbstractSitemapView):
     """
     A machine-readable list of all CalAccess file detail pages.
     """
-    build_path = 'calaccess-file-sitemap.xml'
+    build_path = 'raw-file-sitemap.xml'
     template_name = 'calaccess_website/calaccess-file-sitemap.xml'
     queryset = get_model_list()
 
@@ -87,7 +87,7 @@ class CcdcFileSitemap(AbstractSitemapView):
     """
     A machine-readable list of all CCDC file detail pages.
     """
-    build_path = 'calaccess-file-sitemap.xml'
+    build_path = 'processed-file-sitemap.xml'
     template_name = 'calaccess_website/ccdc-file-sitemap.xml'
     queryset = get_processed_data_files()
 
@@ -96,7 +96,7 @@ class CalAccessFileDownloadsSitemap(AbstractSitemapView):
     """
     A machine-readable list of all CalAccess file archive download pages.
     """
-    build_path = 'calaccess-file-downloads-sitemap.xml'
+    build_path = 'raw-file-downloads-sitemap.xml'
     template_name = 'calaccess_website/calaccess-file-downloads-sitemap.xml'
     queryset = get_model_list()
 
@@ -105,7 +105,7 @@ class CcdcFileDownloadsSitemap(AbstractSitemapView):
     """
     A machine-readable list of all CCDC file archive download pages.
     """
-    build_path = 'ccdc-file-downloads-sitemap.xml'
+    build_path = 'processed-file-downloads-sitemap.xml'
     template_name = 'calaccess_website/ccdc-file-downloads-sitemap.xml'
     queryset = get_processed_data_files()
 

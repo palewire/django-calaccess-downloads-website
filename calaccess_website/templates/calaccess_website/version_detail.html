@@ -78,10 +78,10 @@ $('.dropdown-menu a').click(function() {
     </div>
 </section>
 
-{% if file_list %}
+{% if processed_file_list %}
 <section id="archived-files" class="chapter">
   <div class="filters">
-      <h2>Archived files</h2>
+      <h2>Processed files</h2>
       <p>
           Our cleaned-up version of each of the {{ object.download_file_count }}
           CAL-ACCESS database tables released by state officials, grouped by type.
