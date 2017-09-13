@@ -1,17 +1,17 @@
 {% extends 'calaccess_website/base_with_top.html' %}
 {% load humanize calaccess_website_tags %}
 
-{% block title %}{{ object.object_name }} downloads - CCDC files - Documentation - {{ block.super }}{% endblock%}
+{% block title %}{{ object.file_name }} downloads - Processed files - Documentation - {{ block.super }}{% endblock%}
 
 {% block meta %}
 <meta property="og:site_name" content="{{ CALACCESS_WEBSITE_DOMAIN }}"/>
-<meta property="og:title" content="{{ object.object_name }} downloads - CAL-ACCESS files - Documentation - {{ CALACCESS_WEBSITE_TITLE }}"/>
+<meta property="og:title" content="{{ object.file_name }} downloads - CAL-ACCESS files - Documentation - {{ CALACCESS_WEBSITE_TITLE }}"/>
 <meta property="og:description" content="The last {{ version_list|length }} downloads for this file."/>
 <meta property="og:url" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}{{ request.path }}" />
 <meta property="og:image" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}/static/calaccess_website/images/brown-bear-share.png"/>
 
 <meta property="twitter:site" content="@cacivicdata">
-<meta property="twitter:title" content="{{ object.object_name }} downloads - CCDC files - Documentation - {{ CALACCESS_WEBSITE_TITLE }}">
+<meta property="twitter:title" content="{{ object.file_name }} downloads - Processed files - Documentation - {{ CALACCESS_WEBSITE_TITLE }}">
 <meta property="twitter:description" content="The last {{ version_list|length }} downloads for this file."/>
 <meta property="twitter:url" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}{{ request.path }}" />
 <meta property="twitter:image:src" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}/static/calaccess_website/images/brown-bear-share.png">
@@ -19,20 +19,20 @@
 {% endblock %}
 
 {% block extra-meta %}
-<link rel="canonical" href="http://{{ CALACCESS_WEBSITE_DOMAIN }}{% url 'ccdc_file_detail' object.object_name|slugify %}" />
+<link rel="canonical" href="http://{{ CALACCESS_WEBSITE_DOMAIN }}{% url 'ccdc_file_detail' object.file_name|slugify %}" />
 {% endblock %}
 
 {% block breadcrumbs %}
 {{ block.super }}
 <li><a href="{% url 'docs_index' %}">Documentation</a></li>
-<li><a href="{% url 'ccdc_file_list' %}">CAL-ACCESS files</a></li>
-<li><a href="{% url 'ccdc_file_detail' object.object_name|slugify %}">{{ object.object_name }}</a></li>
+<li><a href="{% url 'ccdc_file_list' %}">Processed files</a></li>
+<li><a href="{% url 'ccdc_file_detail' object.file_name|slugify %}">{{ object.file_name }}</a></li>
 <li>Downloads</li>
 {% endblock %}
 
 {% block top %}
-  <h1 class="break">{{ object.object_name }}</h1>
-  <p>The last {{ version_list|length }} downloads for this file. <a href="{% url 'ccdc_file_detail' object.object_name|slugify %}">See documentation &raquo;</a></p>
+  <h1 class="break">{{ object.file_name }}</h1>
+  <p>The last {{ version_list|length }} downloads for this file. <a href="{% url 'ccdc_file_detail' object.file_name|slugify %}">See documentation &raquo;</a></p>
 {% endblock %}
 
 {% block content %}

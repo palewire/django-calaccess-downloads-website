@@ -5,13 +5,13 @@
 
 {% block meta %}
 <meta property="og:site_name" content="{{ CALACCESS_WEBSITE_DOMAIN }}"/>
-<meta property="og:title" content="{{ object.db_table }} downloads - CAL-ACCESS files - Documentation - {{ CALACCESS_WEBSITE_TITLE }}"/>
+<meta property="og:title" content="{{ object.db_table }} downloads - Raw files - Documentation - {{ CALACCESS_WEBSITE_TITLE }}"/>
 <meta property="og:description" content="The last {{ version_list|length }} downloads for this file."/>
 <meta property="og:url" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}{{ request.path }}" />
 <meta property="og:image" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}/static/calaccess_website/images/brown-bear-share.png"/>
 
 <meta property="twitter:site" content="@cacivicdata">
-<meta property="twitter:title" content="{{ object.db_table }} downloads - CAL-ACCESS files - Documentation - {{ CALACCESS_WEBSITE_TITLE }}">
+<meta property="twitter:title" content="{{ object.db_table }} downloads - Raw files - Documentation - {{ CALACCESS_WEBSITE_TITLE }}">
 <meta property="twitter:description" content="The last {{ version_list|length }} downloads for this file."/>
 <meta property="twitter:url" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}{{ request.path }}" />
 <meta property="twitter:image:src" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}/static/calaccess_website/images/brown-bear-share.png">
@@ -25,7 +25,7 @@
 {% block breadcrumbs %}
 {{ block.super }}
 <li><a href="{% url 'docs_index' %}">Documentation</a></li>
-<li><a href="{% url 'calaccess_file_list' %}">CAL-ACCESS files</a></li>
+<li><a href="{% url 'calaccess_file_list' %}">Raw files</a></li>
 <li><a href="{% url 'calaccess_file_detail' object.db_table|slugify %}">{{ object.db_table }}</a></li>
 <li>Downloads</li>
 {% endblock %}
