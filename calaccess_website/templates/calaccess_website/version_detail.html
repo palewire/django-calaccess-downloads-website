@@ -9,7 +9,10 @@
 {% block affix-nav %}
 <ul class="nav nav-stacked">
   <li class="active"><a href="#full-archive">Full archive</a></li>
-  <li><a href="#archived-files">Archived files</a></li>
+  {% if object.processed_version %}
+  <li><a href="#processed-files">Processed files</a></li>
+  {% endif %}
+  <li><a href="#raw-files">Raw files</a></li>
   {% if object.error_count %}
   <li><a href="#errata">Errata</a></li>
   {% endif %}
@@ -34,9 +37,15 @@ $('.dropdown-menu a').click(function() {
 {% block content %}
 <section id="full-archive" class="chapter">
     <h2>Full archive</h2>
+    {% if object.processed_version %}
     <p>
-        The complete package of {{ object.download_file_count }} database tables released by California's Secretary of State, which we have cleaned up and converted into flat files with {{ object.clean_record_count|intword }} rows of comma-separated values<sup><a href="#errata">*</a></sup>.
+        Our complete package of {{ processed_file_count }} tables refined from data extracted and scraped from CAL-ACCESS.
     </p>
+    {% else %}
+    <p>
+        The complete package of {{ object.download_file_count }} database tables released by California's Secretary of State, which we have cleaned up with {{ object.clean_record_count|intword }} rows of comma-separated values<sup><a href="#errata">*</a></sup>.
+    </p>
+    {% endif %}
     {% if object.processed_version %}
         <p>
             <a href="{% archive_url object.processed_version.zip_archive.name is_latest=is_latest %}"
@@ -78,10 +87,74 @@ $('.dropdown-menu a').click(function() {
     </div>
 </section>
 
-{% if file_list %}
-<section id="archived-files" class="chapter">
+{% if processed_files %}
+<section id="processed-files" class="chapter">
   <div class="filters">
-      <h2>Processed files</h2>
+    <h2>Processed Civic Data files</h2>
+    <p>
+      Our re-formatted files in flat or relational formats.
+    </p>
+  </div>
+  <ul class="list">
+  {% for group in processed_files %}
+  {% for file in group.list %}
+    <li data-name="{{ file.file_name }}" data-type="{{ group.grouper }}" data-description="{{ file.model.doc|first_line|striptags }}">
+        <section class="file-card {{ group.grouper|slugify }}">
+            <div class="row">
+                <div class="col-md-6">
+                    <h4>
+                        <a href="{% url 'ccdc_file_detail' slug=file.file_name|slugify %}">
+                            {{ file.file_name }}
+                        </a>
+                    </h4>
+                </div>
+                <div class="col-md-6 align-right">
+                    <p class="lbl-group">
+                        <mark>{{ group.grouper|upper }}</mark>
+                    </p>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-md-6">
+                    <p>
+                        <span style='color:#ba0a35;font-weight:400;'>**NEW**</span>
+                        {{ file.model.doc|first_line|safe }}
+                        <a href="{% url 'ccdc_file_detail' slug=file.file_name|slugify %}">Learn more &raquo;</a>
+                    </p>
+                </div>
+                <div class="col-md-5 col-md-offset-1 align-right stats">
+                    {% if file.file_archive %}
+                    <div class="col-md-7 col-sm-8 col-xs-8">
+                        <section>
+                          <h5>Records</h5>
+                          <p>{{ file.records_count|intcomma }}</p>
+                        </section>
+                        <section>
+                          <h5>Size</h5>
+                          <p>{{ file.pretty_file_size }}</p>
+                          <p>{{ file.pretty_clean_file_size }}</p>
+                        </section>
+                    </div>
+                    <div class="col-md-5 col-sm-4 col-xs-4">
+                      <a href="{% archive_url file.file_archive.name is_latest=is_latest %}" class="btn btn-calaccess">Download</a>
+                    </div>
+                    {% else %}
+                      <a class="btn btn-inactive">Unavailable</a>
+                    {% endif %}
+                </div>
+            </div>
+        </section>
+    </li>
+  {% endfor %}
+  {% endfor %}
+  </ul>
+{% endif %}
+
+{% if raw_files %}
+<section id="raw-files" class="chapter">
+  <div class="filters">
+      <h2>Raw CAL-ACCESS files</h2>
       <p>
           Our cleaned-up version of each of the {{ object.download_file_count }}
           CAL-ACCESS database tables released by state officials, grouped by type.
@@ -96,7 +169,7 @@ $('.dropdown-menu a').click(function() {
             </button>
             <ul class="dropdown-menu" aria-labelledby="filterDropdown">
               <li><a data-group="all">All files</a></li>
-              {% for group in file_list %}
+              {% for group in raw_files %}
               <li><a data-group="{{ group.grouper|slugify }}">{{ group.grouper|capfirst }}</a></li>
               {% endfor %}
             </ul>
@@ -105,20 +178,15 @@ $('.dropdown-menu a').click(function() {
   </div>
 
   <ul class="list">
-  {% for group in file_list %}
+  {% for group in raw_files %}
   {% for file in group.list %}
     <li data-name="{{ file.file_name }}" data-type="{{ group.grouper }}" data-description="{{ file.model.doc|first_line|striptags }}">
         <section class="file-card {{ group.grouper|slugify }}">
             <div class="row">
                 <div class="col-md-6">
                     <h4>
-                      {% if group.grouper == "Flat" or group.grouper == "Relational" %}
-                        <a href="{% url 'ccdc_file_detail' slug=file.file_name|slugify %}">
-                            {{ file.file_name }}
-                      {% else %}
                         <a href="{% url 'calaccess_file_detail' slug=file.file_name|slugify %}">
                             {{ file.file_name }}
-                      {% endif %}
                         </a>
                     </h4>
                 </div>
@@ -132,43 +200,25 @@ $('.dropdown-menu a').click(function() {
             <div class="row">
                 <div class="col-md-6">
                     <p>
-                        {% if group.grouper == "CCDC" %}
-                        <span style='color:#ba0a35;font-weight:400;'>**NEW**</span>
-                        {{ file.model.doc|first_line|safe }}
-                        <a href="{% url 'ccdc_file_detail' slug=file.file_name|slugify %}">Learn more &raquo;</a>
-                        {% else %}
                         {{ file.model.doc|first_line|safe }}
                         {% if file.download_records_count == 0 %}The source file published by the state is empty.{% endif %}
                         <a href="{% url 'calaccess_file_detail' slug=file.file_name|slugify %}">Learn more &raquo;</a>
-                        {% endif %}
                     </p>
                 </div>
                 <div class="col-md-5 col-md-offset-1 align-right stats">
-                    {% if file.clean_file_archive or file.file_archive %}
+                    {% if file.clean_file_archive %}
                     <div class="col-md-7 col-sm-8 col-xs-8">
                         <section>
                           <h5>Records</h5>
-                          {% if group.grouper == 'CCDC' %}
-                          <p>{{ file.records_count|intcomma }}</p>
-                          {% else %}
                           <p>{{ file.clean_records_count|intcomma }}{% if file.error_count > 0 %}<sup><a href="#footnote-{{ file.file_name|slugify }}">*</a></sup>{% endif %}</p>
-                          {% endif %}
                         </section>
                         <section>
                           <h5>Size</h5>
-                          {% if group.grouper == 'CCDC' %}
-                          <p>{{ file.pretty_file_size }}</p>
-                          {% else %}
                           <p>{{ file.pretty_clean_file_size }}</p>
-                          {% endif %}
                         </section>
                     </div>
                     <div class="col-md-5 col-sm-4 col-xs-4">
-                      {% if group.grouper == 'CCDC' %}
-                      <a href="{% archive_url file.file_archive.name is_latest=is_latest %}" class="btn btn-calaccess">Download</a>
-                      {% else %}
                       <a href="{% archive_url file.clean_file_archive.name is_latest=is_latest %}" class="btn btn-calaccess">Download</a>
-                      {% endif %}
                     </div>
                     {% else %}
                       <a class="btn btn-inactive">Unavailable</a>
@@ -187,9 +237,10 @@ $('#filter-form').submit(false);
 var options = {
   valueNames: [ { data: ['name', 'type', 'description'] }, ]
 };
-var fileList = new List('archived-files', options);
+var fileList = new List('raw-files', options);
 </script>
 {% endif %}
+
 
 {% if object.error_count %}
 <section id="errata" class="chapter">
