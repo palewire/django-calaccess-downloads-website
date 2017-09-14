@@ -97,21 +97,17 @@ class VersionDetail(BuildableDetailView, CalAccessModelListMixin):
         Add some extra bits to the template's context
         """
         context = super(VersionDetail, self).get_context_data(**kwargs)
-        context['raw_file_list'] = self.regroup_by_klass_group(
-            self.object.files.all()
-        )
+        file_list = [i for i in self.object.files.all()]
         # include processed_files, if available
         try:
-            processed_file_list = [
+            file_list += [
                 i for i in self.object.processed_version.files.all()
                 if 'Form' not in i.file_name
             ]
         except ProcessedDataVersion.DoesNotExist:
             pass
-        else:
-            context['processed_file_list'] = self.regroup_by_klass_group(
-                processed_file_list
-            )
+
+        context['file_list'] = self.regroup_by_klass_group(file_list)
 
         if self.object.error_count:
             context['error_pct'] = 100 * self.object.error_count / float(self.object.download_record_count)
