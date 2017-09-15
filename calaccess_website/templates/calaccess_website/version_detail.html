@@ -77,14 +77,6 @@ $('.dropdown-menu a').click(function() {
     {% else %}
     <p><a class="btn btn-inactive">Unavailable</a>
     {% endif %}
-
-    <div class="announcement fade in">
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-      <h3>New</h3>
-      <p>We're now releasing files of data scraped from the CAL-ACCESS website and formatted to meet the Open Civic Data specification. <a href="http://www.californiacivicdata.org/">Learn more &raquo;</a></p>
-    </div>
 </section>
 
 {% if processed_files %}
@@ -118,7 +110,6 @@ $('.dropdown-menu a').click(function() {
             <div class="row">
                 <div class="col-md-6">
                     <p>
-                        <span style='color:#ba0a35;font-weight:400;'>**NEW**</span>
                         {{ file.model.doc|first_line|safe }}
                         <a href="{% url 'ccdc_file_detail' slug=file.file_name|slugify %}">Learn more &raquo;</a>
                     </p>
