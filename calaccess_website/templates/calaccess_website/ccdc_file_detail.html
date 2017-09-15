@@ -65,8 +65,8 @@
     {% if version_list.0 %}
     {% with version_list.0 as latest_file %}
     <p>
-        The most recent release of data extracted from CAL-ACCESS, the database that tracks campaign finance and lobbying activity in California politics.
-        It contains {{ latest_file.records_count|intword|intcomma }} rows of data extracted on {{ latest_file.process_finish_datetime|date:"l, N j, Y" }}.
+        Our most recent release of CAL-ACCESS data, transformed to <a href="https://opencivicdata.readthedocs.io/en/latest/">Open Civic Data</a> format.
+        It contains {{ latest_file.records_count|intword|intcomma }} rows of data published on {{ latest_file.process_finish_datetime|date:"l, N j, Y" }}.
     </p>
     {% if latest_file.file_archive %}
         <p>
