@@ -18,7 +18,9 @@ class VersionArchiveIndex(BuildableArchiveIndexView):
     """
     A list of the latest versions of CAL-ACCESS in our archive
     """
-    queryset = RawDataVersion.objects.complete().exclude(release_datetime__lte='2016-07-27')
+    queryset = RawDataVersion.objects.complete().exclude(
+        release_datetime__lte='2016-07-27'
+    ).select_related()
     date_field = "release_datetime"
     template_name = "calaccess_website/version_archive.html"
     build_path = "downloads/index.html"
@@ -44,7 +46,9 @@ class VersionMonthArchiveList(BuildableMonthArchiveView):
     """
     A list of all versions of CAL-ACCESS in a given year
     """
-    queryset = RawDataVersion.objects.complete().exclude(release_datetime__lte='2016-07-27')
+    queryset = RawDataVersion.objects.complete().exclude(
+        release_datetime__lte='2016-07-27'
+    ).select_related()
     date_field = "release_datetime"
     month_format = "%m"
     make_object_list = True

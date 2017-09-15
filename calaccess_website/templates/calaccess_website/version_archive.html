@@ -37,6 +37,7 @@
     <thead>
         <tr>
             <th>Date</th>
+            <th>Status</th>
             <th class="right">Size</th>
         </tr>
     </thead>
@@ -48,8 +49,11 @@
                 {{ obj.release_datetime|date:"N j, Y" }}
             </a>
         </td>
+        <td>
+            {% if obj.processed_version %}Processed{% elif obj.clean_zip_archive %}Cleaned{% else %}Raw{% endif %}
+        </td>
         <td class="right">
-            {{ obj.pretty_clean_size }}
+            {% if obj.processed_version %}{{ obj.processed_version.pretty_zip_size }}{% elif obj.clean_zip_archive %}{{ obj.pretty_clean_size }}{% else %}{{ obj.pretty_download_size }}{% endif %}
         </td>
     </tr>
     {% endfor %}
