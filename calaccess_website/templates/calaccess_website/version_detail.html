@@ -254,10 +254,12 @@ var fileList = new List('raw-files', options);
         However, those {{ object.error_count|intcomma }} lost records represent
         only {{ error_pct|floatformat:"5" }}% of the source data.
     </p>
+    {% if not object.processed_version %}
     <p>
         Error logs are included in the <a href="#full-archive">full archive download</a> above.
         You can also download individual logs below.
     </p>
+    {% endif %}
     <div class="row">
     <div class="col-md-12">
       <table style="table-layout: fixed; width: 100%" class="table table-striped">
@@ -269,7 +271,7 @@ var fileList = new List('raw-files', options);
         </tr>
       </thead>
       <tbody>
-      {% for group in file_list %}
+      {% for group in raw_files %}
       {% for file in group.list %}
       {% if file.error_count > 0 %}
       <tr id="footnote-{{ file.file_name|slugify }}">
