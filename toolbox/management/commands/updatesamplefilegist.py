@@ -1,7 +1,7 @@
 import os
 import requests
 from calaccess_raw import get_model_list
-from calaccess_website.views.docs.ccdc_files import get_ccdc_model_list
+from calaccess_website.views.docs.ccdc_files import get_ocd_proxy_models
 from calaccess_website.templatetags.calaccess_website_tags import archive_url
 from github import Github
 from github.InputFileContent import InputFileContent
@@ -22,8 +22,8 @@ class Command(BaseCommand):
             self.get_file_data(file_name)
 
         print('  getting processed data...')
-        for m in get_ccdc_model_list():
-            file_name = u'%s.csv' % m().object_name
+        for m in get_ocd_proxy_models():
+            file_name = u'%s.csv' % m().file_name
             self.get_file_data(file_name)
 
         # now save
