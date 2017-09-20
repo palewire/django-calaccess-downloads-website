@@ -2,22 +2,12 @@
 {% load humanize calaccess_website_tags %}
 
 {% block title %}{{ title }} - {{ block.super }}{% endblock%}
-
 {% block description %}{{ description }}{% endblock %}
 
-{% block meta %}
-    <meta property="og:site_name" content="{{ CALACCESS_WEBSITE_DOMAIN }}"/>
-    <meta property="og:title" content="{{ title }} - {{ CALACCESS_WEBSITE_TITLE }}"/>
-    <meta property="og:description" content="{{ description }}"/>
-    <meta property="og:url" content="{{ FULL_URL }}" />
-    <meta property="og:image" content="{{ CALACCESS_WEBSITE_SHARE_IMG }}"/>
-    <meta property="twitter:site" content="@cacivicdata">
-    <meta property="twitter:title" content="{{ title }} - {{ CALACCESS_WEBSITE_TITLE }}">
-    <meta property="twitter:description" content="{{ description }}"/>
-    <meta property="twitter:url" content="{{ FULL_URL }}" />
-    <meta property="twitter:image:src" content="{{ CALACCESS_WEBSITE_SHARE_IMG }}">
-    <meta property="twitter:card" content="summary_large_image">
-{% endblock %}
+{% block og-title %}{{ title }} - {{ block.super }}{% endblock %}
+{% block og-description %}{{ description }}{% endblock %}
+{% block twitter-title %}{{ title }} - {{ block.super }}{% endblock %}
+{% block twitter-description %}{{ description }}{% endblock %}
 
 {% block breadcrumbs %}
     {{ block.super }}

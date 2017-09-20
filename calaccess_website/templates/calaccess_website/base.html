@@ -13,16 +13,16 @@
 
     {% block meta %}
     <meta property="og:site_name" content="{{ CALACCESS_WEBSITE_DOMAIN }}"/>
-    <meta property="og:title" content="{{ CALACCESS_WEBSITE_TITLE }}"/>
-    <meta property="og:description" content="{{ CALACCESS_WEBSITE_DESCRIPTION }}"/>
-    <meta property="og:url" content="https://{{ CALACCESS_WEBSITE_DOMAIN }}{{ request.path }}" />
-    <meta property="og:image" content="//{{ CALACCESS_WEBSITE_DOMAIN }}/static/calaccess_website/images/brown-bear-share.png"/>
+    <meta property="og:title" content="{% block og-title %}{{ CALACCESS_WEBSITE_TITLE }}{% endblock %}"/>
+    <meta property="og:description" content="{% block og-description %}{{ CALACCESS_WEBSITE_DESCRIPTION }}{% endblock %}"/>
+    <meta property="og:url" content="{{ FULL_URL }}" />
+    <meta property="og:image" content="{{ CALACCESS_WEBSITE_SHARE_IMG }}"/>
 
     <meta property="twitter:site" content="@cacivicdata">
-    <meta property="twitter:title" content="{{ CALACCESS_WEBSITE_TITLE }}">
-    <meta property="twitter:description" content="{{ CALACCESS_WEBSITE_DESCRIPTION }}"/>
-    <meta property="twitter:url" content="https://{{ CALACCESS_WEBSITE_DOMAIN }}{{ request.path }}" />
-    <meta property="twitter:image:src" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}/static/calaccess_website/images/brown-bear-share.png">
+    <meta property="twitter:title" content="{% block twitter-title %}{{ CALACCESS_WEBSITE_TITLE }}{% endblock %}">
+    <meta property="twitter:description" content="{% block twitter-description %}{{ CALACCESS_WEBSITE_DESCRIPTION }}{% endblock %}"/>
+    <meta property="twitter:url" content="{{ FULL_URL }}" />
+    <meta property="twitter:image:src" content="{{ CALACCESS_WEBSITE_SHARE_IMG }}">
     <meta property="twitter:card" content="summary_large_image">
     {% endblock %}
 
