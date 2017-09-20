@@ -8,13 +8,12 @@
     <meta property="og:title" content="{{ title }} - {{ CALACCESS_WEBSITE_TITLE }}"/>
     <meta property="og:description" content="{{ description }}"/>
     <meta property="og:url" content="//{{ CALACCESS_WEBSITE_DOMAIN }}{{ request.path }}" />
-    <meta property="og:image" content="//{{ CALACCESS_WEBSITE_DOMAIN }}/static/calaccess_website/images/brown-bear-share.png"/>
-
+    <meta property="og:image" content="{{ CALACCESS_WEBSITE_SHARE_IMG }}"/>
     <meta property="twitter:site" content="@cacivicdata">
     <meta property="twitter:title" content="{{ title }} - {{ CALACCESS_WEBSITE_TITLE }}">
     <meta property="twitter:description" content="{{ description }}"/>
     <meta property="twitter:url" content="//{{ CALACCESS_WEBSITE_DOMAIN }}{{ request.path }}" />
-    <meta property="twitter:image:src" content="//{{ CALACCESS_WEBSITE_DOMAIN }}/static/calaccess_website/images/brown-bear-share.png">
+    <meta property="twitter:image:src" content="{{ CALACCESS_WEBSITE_SHARE_IMG }}">
     <meta property="twitter:card" content="summary_large_image">
 {% endblock %}
 
