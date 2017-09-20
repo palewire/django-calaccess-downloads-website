@@ -55,7 +55,7 @@ California Civic Data Coalition applications that power this site. For developer
         return {
             'object_list': object_list,
             'title': "Documentation",
-            'description': "How to work with the data tracking campaign finance and lobbying activity in California politics."
+            'description': "How to work with our data tracking campaign finance and lobbying activity in California politics."
         }
 
 
