@@ -30,7 +30,6 @@ def get_processed_data_files():
     """
     Return a tuple of ProcessedDataFile instances for published files.
     """
-
     file_list = [
         ProcessedDataFile(file_name=m().file_name) for m in get_ocd_proxy_models()
     ]
