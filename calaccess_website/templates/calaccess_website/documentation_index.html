@@ -4,23 +4,23 @@
 {% block title %}Documentation - {{ block.super }}{% endblock%}
 
 {% block meta %}
-<meta property="og:site_name" content="{{ CALACCESS_WEBSITE_DOMAIN }}"/>
-<meta property="og:title" content="Documentation - {{ CALACCESS_WEBSITE_TITLE }}"/>
-<meta property="og:description" content="How to work with data from CAL-ACCESS, the California Secretary of State's database tracking campaign finance and lobbying activity in state politics."/>
-<meta property="og:url" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}{{ request.path }}" />
-<meta property="og:image" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}/static/calaccess_website/images/brown-bear-share.png"/>
+    <meta property="og:site_name" content="{{ CALACCESS_WEBSITE_DOMAIN }}"/>
+    <meta property="og:title" content="Documentation - {{ CALACCESS_WEBSITE_TITLE }}"/>
+    <meta property="og:description" content="How to work with data from CAL-ACCESS, the California Secretary of State's database tracking campaign finance and lobbying activity in state politics."/>
+    <meta property="og:url" content="//{{ CALACCESS_WEBSITE_DOMAIN }}{{ request.path }}" />
+    <meta property="og:image" content="//{{ CALACCESS_WEBSITE_DOMAIN }}/static/calaccess_website/images/brown-bear-share.png"/>
 
-<meta property="twitter:site" content="@cacivicdata">
-<meta property="twitter:title" content="Documentation - {{ CALACCESS_WEBSITE_TITLE }}">
-<meta property="twitter:description" content="How to work with data from CAL-ACCESS, the California Secretary of State's database tracking campaign finance and lobbying activity in state politics."/>
-<meta property="twitter:url" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}{{ request.path }}" />
-<meta property="twitter:image:src" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}/static/calaccess_website/images/brown-bear-share.png">
-<meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:site" content="@cacivicdata">
+    <meta property="twitter:title" content="Documentation - {{ CALACCESS_WEBSITE_TITLE }}">
+    <meta property="twitter:description" content="How to work with data from CAL-ACCESS, the California Secretary of State's database tracking campaign finance and lobbying activity in state politics."/>
+    <meta property="twitter:url" content="//{{ CALACCESS_WEBSITE_DOMAIN }}{{ request.path }}" />
+    <meta property="twitter:image:src" content="//{{ CALACCESS_WEBSITE_DOMAIN }}/static/calaccess_website/images/brown-bear-share.png">
+    <meta property="twitter:card" content="summary_large_image">
 {% endblock %}
 
 {% block breadcrumbs %}
-{{ block.super }}
-<li>Documentation</li>
+    {{ block.super }}
+    <li>Documentation</li>
 {% endblock %}
 
 {% block top %}
