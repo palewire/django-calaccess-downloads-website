@@ -16,21 +16,21 @@ class DocumentationIndex(BuildableTemplateView):
         form_list = all_filing_forms
         object_list = [
             dict(
-                name='Processed Civic Data files',
+                name='Processed civic data files',
                 description="Definitions, record layouts and data dictionaries for the \
-simplified data files released by the California Civic Data Coalition.",
+processed data files released by the California Civic Data Coalition. These files are recommended for beginners and regular use.",
                 url=reverse("ccdc_file_list"),
             ),
             dict(
                 name='Raw CAL-ACCESS files',
-                description="Definitions, record layouts and data dictionaries for the {} \
-CAL-ACCESS files released by the state.".format(len(model_list)),
+                description="Definitions, record layouts and data dictionaries for the {} raw \
+files released from the California Secretary of State's CAL-ACCESS database. These files are only for experts.".format(len(model_list)),
                 url=reverse("calaccess_file_list"),
             ),
             dict(
                 name='CAL-ACCESS forms',
                 description="Descriptions, samples and other documentation for \
-the {} forms that campaigns and lobbyists use to disclose activity to the state.".format(len(form_list)),
+the {} forms that campaigns and lobbyists use to disclose activity to California's Secretary of State.".format(len(form_list)),
                 url=reverse("form_list"),
             ),
             dict(
@@ -41,7 +41,7 @@ information, refer to our materials.",
                 url=reverse("official_documentation"),
             ),
             dict(
-                name='CCDC technical documentation',
+                name='Civic data technical documentation',
                 description="Technical documentation for the collection of \
 California Civic Data Coalition applications that power this site.",
                 url="http://django-calaccess.californiacivicdata.org"
@@ -53,7 +53,9 @@ California Civic Data Coalition applications that power this site.",
             ),
         ]
         return {
-            'object_list': object_list
+            'object_list': object_list,
+            'title': "Documentation",
+            'description': "How to work with the data tracking campaign finance and lobbying activity in California politics."
         }
 
 

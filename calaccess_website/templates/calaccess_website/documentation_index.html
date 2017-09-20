@@ -1,18 +1,18 @@
 {% extends 'calaccess_website/base_with_top.html' %}
 {% load humanize calaccess_website_tags %}
 
-{% block title %}Documentation - {{ block.super }}{% endblock%}
+{% block title %}{{ title }} - {{ block.super }}{% endblock%}
 
 {% block meta %}
     <meta property="og:site_name" content="{{ CALACCESS_WEBSITE_DOMAIN }}"/>
-    <meta property="og:title" content="Documentation - {{ CALACCESS_WEBSITE_TITLE }}"/>
-    <meta property="og:description" content="How to work with data from CAL-ACCESS, the California Secretary of State's database tracking campaign finance and lobbying activity in state politics."/>
+    <meta property="og:title" content="{{ title }} - {{ CALACCESS_WEBSITE_TITLE }}"/>
+    <meta property="og:description" content="{{ description }}"/>
     <meta property="og:url" content="//{{ CALACCESS_WEBSITE_DOMAIN }}{{ request.path }}" />
     <meta property="og:image" content="//{{ CALACCESS_WEBSITE_DOMAIN }}/static/calaccess_website/images/brown-bear-share.png"/>
 
     <meta property="twitter:site" content="@cacivicdata">
-    <meta property="twitter:title" content="Documentation - {{ CALACCESS_WEBSITE_TITLE }}">
-    <meta property="twitter:description" content="How to work with data from CAL-ACCESS, the California Secretary of State's database tracking campaign finance and lobbying activity in state politics."/>
+    <meta property="twitter:title" content="{{ title }} - {{ CALACCESS_WEBSITE_TITLE }}">
+    <meta property="twitter:description" content="{{ description }}"/>
     <meta property="twitter:url" content="//{{ CALACCESS_WEBSITE_DOMAIN }}{{ request.path }}" />
     <meta property="twitter:image:src" content="//{{ CALACCESS_WEBSITE_DOMAIN }}/static/calaccess_website/images/brown-bear-share.png">
     <meta property="twitter:card" content="summary_large_image">
@@ -24,11 +24,8 @@
 {% endblock %}
 
 {% block top %}
-    <h1>Documentation</h1>
-    <p>
-        How to work with data from CAL-ACCESS, the California Secretary of State's
-        database tracking campaign finance and lobbying activity in state politics.
-    </p>
+    <h1>{{ title }}</h1>
+    <p>{{ description }}</p>
 {% endblock %}
 
 {% block content %}
@@ -48,9 +45,7 @@
         <hr>
         <div class="row">
             <div class="col-md-10">
-                <p>
-                    {{ obj.description }}
-                </p>
+                <p>{{ obj.description }}</p>
             </div>
         </div>
     </section>
