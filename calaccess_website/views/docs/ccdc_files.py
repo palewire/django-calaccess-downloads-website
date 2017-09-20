@@ -50,6 +50,9 @@ class CcdcFileList(BuildableListView, CalAccessModelListMixin):
     def get_context_data(self, **kwargs):
         context = super(CcdcFileList, self).get_context_data(**kwargs)
         context['file_num'] = len(get_processed_data_files())
+        context['title'] = 'Processed files'
+        context['description'] = 'Definitions, record layouts and data dictionaries for the \
+processed data files released by the California Civic Data Coalition. Recommended for beginners and regular use.'
         return context
 
 
@@ -90,6 +93,7 @@ class BaseFileDetailView(BuildableDetailView):
         """
         file_name = self.kwargs['slug'].replace("-", "")
         context = super(BaseFileDetailView, self).get_context_data(**kwargs)
+
         # Pull all previous versions of the provided file
         context['version_list'] = ProcessedDataFile.objects.filter(
             file_name__icontains=file_name
@@ -98,6 +102,7 @@ class BaseFileDetailView(BuildableDetailView):
         ).exclude(
             version__raw_version__release_datetime__lte='2016-07-27'
         )
+
         # note if the most recent version of the file is empty
         try:
             context['empty'] = context['version_list'][0].records_count == 0

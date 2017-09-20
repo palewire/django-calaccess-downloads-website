@@ -1,34 +1,23 @@
 {% extends 'calaccess_website/base_with_top.html' %}
 {% load calaccess_website_tags %}
 
-{% block title %}CCDC files - Documentation - {{ block.super }}{% endblock%}
+{% block title %}{{ title }} - Documentation - {{ block.super }}{% endblock%}
+{% block description %}{{ description }}{% endblock %}
 
-{% block meta %}
-<meta property="og:site_name" content="{{ CALACCESS_WEBSITE_DOMAIN }}"/>
-<meta property="og:title" content="Processed Civic Data files - Documentation - {{ CALACCESS_WEBSITE_TITLE }}"/>
-<meta property="og:description" content="Definitions, record layouts and data dictionaries for the simplified data files released by the California Civic Data Coalition."/>
-<meta property="og:url" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}{{ request.path }}" />
-<meta property="og:image" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}/static/calaccess_website/images/brown-bear-share.png"/>
-
-<meta property="twitter:site" content="@cacivicdata">
-<meta property="twitter:title" content="Processed Civic Data files - Documentation - {{ CALACCESS_WEBSITE_TITLE }}">
-<meta property="twitter:description" content="Definitions, record layouts and data dictionaries for the simplified data files released by the California Civic Data Coalition."/>
-<meta property="twitter:url" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}{{ request.path }}" />
-<meta property="twitter:image:src" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}/static/calaccess_website/images/brown-bear-share.png">
-<meta property="twitter:card" content="summary_large_image">
-{% endblock %}
+{% block og-title %}{{ title }} - Documentation - {{ block.super }}{% endblock %}
+{% block og-description %}{{ description }}{% endblock %}
+{% block twitter-title %}{{ title }} - Documentation - {{ block.super }}{% endblock %}
+{% block twitter-description %}{{ description }}{% endblock %}
 
 {% block breadcrumbs %}
-{{ block.super }}
-<li><a href="{% url 'docs_index' %}">Documentation</a></li>
-<li>Processed files</li>
+    {{ block.super }}
+    <li><a href="{% url 'docs_index' %}">Documentation</a></li>
+    <li>Processed files</li>
 {% endblock %}
 
 {% block top %}
-<h1>Processed Civic Data files</h1>
-<p>
-  Definitions, record layouts and data dictionaries for the simplified data files released by the California Civic Data Coalition.
-</p>
+    <h1>{{ title }}</h1>
+    <p>{{ description }}</p>
 {% endblock %}
 
 {% block javascript %}
