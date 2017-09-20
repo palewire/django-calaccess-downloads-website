@@ -24,7 +24,7 @@ processed data files released by the California Civic Data Coalition. These file
             dict(
                 name='Raw CAL-ACCESS files',
                 description="Definitions, record layouts and data dictionaries for the {} raw \
-files released from the California Secretary of State's CAL-ACCESS database. These files are only for experts.".format(len(model_list)),
+files released from the California Secretary of State's CAL-ACCESS database. These files are for experts only.".format(len(model_list)),
                 url=reverse("calaccess_file_list"),
             ),
             dict(
@@ -37,13 +37,13 @@ the {} forms that campaigns and lobbyists use to disclose activity to California
                 name='CAL-ACCESS official documentation',
                 description="The jumbled, fragmentary and unreliable documentation \
 for the CAL-ACCESS database provided by California's Secretary of State. For more authoritative \
-information, refer to our materials.",
+information refer to the materials above.",
                 url=reverse("official_documentation"),
             ),
             dict(
                 name='Civic data technical documentation',
-                description="Technical documentation for the collection of \
-California Civic Data Coalition applications that power this site.",
+                description="User manuals for the collection of \
+California Civic Data Coalition applications that power this site. For developers only.",
                 url="http://django-calaccess.californiacivicdata.org"
             ),
             dict(
