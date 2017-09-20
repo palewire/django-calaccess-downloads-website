@@ -3,6 +3,8 @@
 
 {% block title %}{{ title }} - {{ block.super }}{% endblock%}
 
+{% block description %}{{ description }}{% endblock %}
+
 {% block meta %}
     <meta property="og:site_name" content="{{ CALACCESS_WEBSITE_DOMAIN }}"/>
     <meta property="og:title" content="{{ title }} - {{ CALACCESS_WEBSITE_TITLE }}"/>

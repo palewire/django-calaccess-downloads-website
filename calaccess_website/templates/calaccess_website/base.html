@@ -9,7 +9,7 @@
     <link rel="icon" type="image/png" href="http://{{ CALACCESS_WEBSITE_DOMAIN }}/static/calaccess_website/images/favicon.png">
 
     <title>{% block title %}{{ CALACCESS_WEBSITE_TITLE }}{% endblock%}</title>
-    <meta name="description" content="{{ CALACCESS_WEBSITE_DESCRIPTION }}">
+    <meta name="description" content="{% block description %}{{ CALACCESS_WEBSITE_DESCRIPTION }}{% endblock %}">
 
     {% block meta %}
     <meta property="og:site_name" content="{{ CALACCESS_WEBSITE_DOMAIN }}"/>
