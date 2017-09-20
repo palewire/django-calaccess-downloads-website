@@ -19,7 +19,11 @@ class CalAccessFileList(BuildableListView, CalAccessModelListMixin):
 
     def get_context_data(self, **kwargs):
         context = super(CalAccessFileList, self).get_context_data(**kwargs)
-        context['model_list'] = get_model_list()
+        model_list = get_model_list()
+        context['model_list'] = model_list
+        context['title'] = 'Raw files'
+        context['description'] = "Definitions, record layouts and data dictionaries for the {} raw \
+files released from the California Secretary of State's CAL-ACCESS database. For experts only.".format(len(model_list))
         return context
 
 
