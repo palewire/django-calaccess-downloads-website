@@ -30,7 +30,8 @@ files released from the California Secretary of State's CAL-ACCESS database. For
             dict(
                 name='Official CAL-ACCESS forms',
                 description="Descriptions, samples and other documentation for \
-the {} forms that campaigns and lobbyists use to disclose activity to California's Secretary of State.".format(len(form_list)),
+the {} forms that campaigns and lobbyists use to disclose activity to California's Secretary of \
+State.".format(len(form_list)),
                 url=reverse("form_list"),
             ),
             dict(
@@ -55,7 +56,8 @@ California Civic Data Coalition applications that power this site. For developer
         return {
             'object_list': object_list,
             'title': "Documentation",
-            'description': "How to work with our data tracking campaign finance and lobbying activity in California politics."
+            'description': "How to work with our data tracking campaign finance and lobbying activity in \
+California politics."
         }
 
 
