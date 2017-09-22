@@ -1,39 +1,26 @@
 {% extends 'calaccess_website/base_with_top.html' %}
 {% load humanize calaccess_website_tags %}
 
-{% block title %}CAL-ACCESS official documentation - Documentation - {{ block.super }}{% endblock%}
+{% block title %}{{ title }} - Documentation - {{ block.super }}{% endblock%}
 
-{% block meta %}
-<meta property="og:site_name" content="{{ CALACCESS_WEBSITE_DOMAIN }}"/>
-<meta property="og:title" content="CAL-ACCESS official documentation - Documentation - {{ CALACCESS_WEBSITE_TITLE }}"/>
-<meta property="og:description" content="The jumbled, fragmentary and unreliable documentation for the CAL-ACCESS database provided by California's Secretary of State."/>
-<meta property="og:url" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}{{ request.path }}" />
-<meta property="og:image" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}/static/calaccess_website/images/brown-bear-share.png"/>
-
-<meta property="twitter:site" content="@cacivicdata">
-<meta property="twitter:title" content="CAL-ACCESS official documentation - Documentation - {{ CALACCESS_WEBSITE_TITLE }}">
-<meta property="twitter:description" content="The jumbled, fragmentary and unreliable documentation for the CAL-ACCESS database provided by California's Secretary of State."/>
-<meta property="twitter:url" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}{{ request.path }}" />
-<meta property="twitter:image:src" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}/static/calaccess_website/images/brown-bear-share.png">
-<meta property="twitter:card" content="summary_large_image">
-{% endblock %}
-
+{% block og-title %}{{ title }} - Documentation - {{ block.super }}{% endblock %}
+{% block og-description %}{{ description }}{% endblock %}
+{% block twitter-title %}{{ title }} - Documentation - {{ block.super }}{% endblock %}
+{% block twitter-description %}{{ description }}{% endblock %}
 
 {% block breadcrumbs %}
 {{ block.super }}
 <li><a href="{% url 'docs_index' %}">Documentation</a></li>
-<li>CAL-ACCESS official documentation</li>
+<li>{{ title }}</li>
 {% endblock %}
 
 {% block top %}
-<h1>CAL-ACCESS official documentation</h1>
+<h1>{{ title }}</h1>
 <p>
-    The jumbled, fragmentary and unreliable documentation
-    for the CAL-ACCESS database provided by California's Secretary of State. For more authoritative
+    {{ description }} For more authoritative
     information, refer to our documentation of the system's <a href="{% url 'form_list' %}">forms</a> and <a href="{% url 'calaccess_file_list' %}">files</a>.
 </p>
 {% endblock %}
-
 
 {% block affix-nav %}
 <ul class="nav nav-stacked">
