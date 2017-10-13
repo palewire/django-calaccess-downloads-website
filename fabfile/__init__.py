@@ -22,7 +22,7 @@ from .configure import (
     createconfig,
     loadconfig,
     printconfig,
-    printenv
+    printenv,
 )
 
 __all__ = (
