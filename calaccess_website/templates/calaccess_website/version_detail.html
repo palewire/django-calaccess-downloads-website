@@ -13,67 +13,60 @@
   <li><a href="#advanced">Advanced usage</a></li>
   {% endif %}
   <li><a href="#raw">Raw files</a></li>
-  {% if object.error_count %}
-  <li><a href="#errata">Errata</a></li>
-  {% endif %}
 </ul>
 {% endblock %}
 
 {% block content %}
 <section id="basic" class="chapter">
-    <h2>Getting started</h2>
-    {% if is_processed %}
+  <h2>Getting started</h2>
+  {% if is_processed %}
+  <p>
+      Our complete package of {{ flat_file_count }} tables refined from data extracted and scraped from CAL-ACCESS. This is a great place to start. <a href="{% url 'ccdc_file_list' %}">Learn more &raquo;</a>
+  </p>
+  {% else %}
+  <p>
+      The complete package of {{ object.download_file_count }} database tables released by California's Secretary of State, which we have cleaned up with {{ object.clean_record_count|intword }} rows of comma-separated values<sup><a href="#errata">*</a></sup>.
+  </p>
+  {% endif %}
+  {% if is_processed %}
     <p>
-        Our complete package of {{ flat_file_count }} tables refined from data extracted and scraped from CAL-ACCESS. This is a great place to start. <a href="{% url 'ccdc_file_list' %}">Learn more &raquo;</a>
+        <a href="{% archive_url flat_zip.zip_archive.name is_latest=is_latest %}"
+           class="btn btn-calaccess">
+            Download
+        </a>
+        &nbsp; <span>{{ flat_zip.pretty_zip_size }} zip</span>
     </p>
-    {% else %}
+  {% elif object.clean_zip_archive %}
     <p>
-        The complete package of {{ object.download_file_count }} database tables released by California's Secretary of State, which we have cleaned up with {{ object.clean_record_count|intword }} rows of comma-separated values<sup><a href="#errata">*</a></sup>.
+        <a href="{% archive_url object.clean_zip_archive.name is_latest=is_latest %}"
+           class="btn btn-calaccess">
+            Download
+        </a>
+        &nbsp; <span>{{ object.pretty_clean_size }} zip</span>
     </p>
-    {% endif %}
-    {% if is_processed %}
-      <p>
-          <a href="{% archive_url flat_zip.zip_archive.name is_latest=is_latest %}"
-             class="btn btn-calaccess">
-              Download
-          </a>
-          &nbsp; <span>{{ flat_zip.pretty_zip_size }} zip</span>
-      </p>
-    {% elif object.clean_zip_archive %}
-      <p>
-          <a href="{% archive_url object.clean_zip_archive.name is_latest=is_latest %}"
-             class="btn btn-calaccess">
-              Download
-          </a>
-          &nbsp; <span>{{ object.pretty_clean_size }} zip</span>
-      </p>
-    {% else %}
-      <p><a class="btn btn-inactive">Unavailable</a>
-    {% endif %}
-</section>
+  {% else %}
+    <p><a class="btn btn-inactive">Unavailable</a>
+  {% endif %}
 
-{% if is_processed %}
-<section id="flat-files" class="chapter">
-  <h2>Available data</h2>
-  {% for file in flat_files %}
-    <div class='col-md-6'>
-      <div class="row">
-        <h4>
-            <a href="{% url 'ccdc_file_detail' slug=file.name|slugify %}">
-                {{ file.name }}
-            </a>
-        </h4>
+  {% if is_processed %}
+    <h2>Available data</h2>
+    {% for file in flat_files %}
+      <div class='col-md-6'>
+        <div class="row">
+          <h4>
+              <a href="{% url 'ccdc_file_detail' slug=file.name|slugify %}">
+                  {{ file.name }}
+              </a>
+          </h4>
+          <p>
+            {{ file.doc|first_line|safe }}
+            <a href="{% url 'ccdc_file_detail' slug=file.name|slugify %}">Learn more &raquo;</a>
+          </p>
+        </div>
       </div>
-      <div class="row">
-        <p>
-          {{ file.doc|first_line|safe }}
-          <a href="{% url 'ccdc_file_detail' slug=file.name|slugify %}">Learn more &raquo;</a>
-        </p>
-      </div>
-    </div>
-  {% endfor %}
+    {% endfor %}
+  {% endif %}
 </section>
-{% endif %}
 
 {% if relational_zip %}
 <section id="advanced" class="chapter">
@@ -96,48 +89,42 @@
       readonly>
 </section>
 {% endif %}
+
 <section id="raw" class="chapter">
   <h2>Raw files</h2>
+  <p>
+      The complete package of {{ object.download_file_count }} database tables released by
+      California's Secretary of State, which we have cleaned up and converted
+      into flat files with {{ object.clean_record_count|intword }} rows of comma-separated values<sup><a href="#errata">*</a></sup>.
+  </p>
+  {% if object.clean_zip_archive %}
     <p>
-        The complete package of {{ object.download_file_count }} database tables released by
-        California's Secretary of State, which we have cleaned up and converted
-        into flat files with {{ object.clean_record_count|intword }} rows of comma-separated values<sup><a href="#errata">*</a></sup>.
-    </p>
-    {% if object.clean_zip_archive %}
-      <p>
-          <a href="{% archive_url object.clean_zip_archive.name is_latest=is_latest %}"
-             class="btn btn-calaccess">
-              Download
-          </a>
-          &nbsp; <span>{{ object.pretty_clean_size }} zip</span>
-      </p>
-      <p>
-          Alternatively, retrieve with <code>curl</code>.
-      </p>
-      <input type="text" class="download-link input-monospace"
-          value="$ curl -O {% archive_url object.clean_zip_archive.name is_latest=is_latest %}"
-          readonly>
-    {% else %}
-      <p><a class="btn btn-inactive">Unavailable</a>
-    {% endif %}
-</section>
-
-{% if object.error_count %}
-<section id="errata" class="chapter">
-    <h2>Errata</h2>
-    <p>
-       The raw data provided by the state contains errors in how some values are
-       escaped, quoted and delimited. The result is a small number of
-       records lost when we prepare files for download.
+        <a href="{% archive_url object.clean_zip_archive.name is_latest=is_latest %}"
+           class="btn btn-calaccess">
+            Download
+        </a>
+        &nbsp; <span>{{ object.pretty_clean_size }} zip</span>
     </p>
     <p>
-        However, those {{ object.error_count|intcomma }} lost records represent
-        only {{ error_pct|floatformat:"5" }}% of the source data.
+        Alternatively, retrieve with <code>curl</code>.
+    </p>
+    <input type="text" class="download-link input-monospace"
+        value="$ curl -O {% archive_url object.clean_zip_archive.name is_latest=is_latest %}"
+        readonly>
+  {% else %}
+    <p><a class="btn btn-inactive">Unavailable</a>
+  {% endif %}
+  {% if object.error_count %}
+    <h3>Errata</h4>
+    <p>
+       The raw data provided by the state contains errors in how some values are escaped, quoted and delimited. The result is a small number of records lost when we prepare files for download.
+    </p>
+    <p>
+        However, those {{ object.error_count|intcomma }} lost records represent only {{ error_pct|floatformat:"5" }}% of the source data.
     </p>
     {% if is_processed %}
     <p>
-        Error logs are included in the <a href="#full-archive">full archive download</a> above.
-        You can also download individual logs below.
+        Error logs are included in the <a href="#full-archive">full archive download</a> above. You can also download individual logs below.
     </p>
     {% endif %}
     <div class="row">
@@ -151,21 +138,17 @@
         </tr>
       </thead>
       <tbody>
-      {% for group in raw_files %}
-      {% for file in group.list %}
-      {% if file.error_count > 0 %}
+      {% for file in raw_files_w_errors %}
       <tr id="footnote-{{ file.file_name|slugify }}">
         <td class="break"><a href="{% url 'calaccess_file_detail' slug=file.file_name|slugify %}">{{ file.file_name }}</a></td>
         <td class="right">{{ file.error_count }}</td>
         <td class="right"><a href="{% archive_url file.error_log_archive.name is_latest=is_latest %}">Download &raquo;</a></td>
       </tr>
-      {% endif %}
-      {% endfor %}
       {% endfor %}
       </tbody>
       </table>
     </div>
     </div>
+  {% endif %}
 </section>
-{% endif %}
 {% endblock %}

@@ -108,36 +108,60 @@ class VersionDetail(BuildableDetailView, CalAccessModelListMixin):
         except AttributeError:
             context['is_processed'] = False
         else:
-            context['is_processed'] = True
-            try:
-                context['flat_zip'] = self.object.processed_version.zips.get(
-                    zip_archive__icontains='flat'
-                )
-            except ProcessedDataZip.DoesNotExist:
-                context['flat_zip'] = None
-
-            try:
-                context['relational_zip'] = self.object.processed_version.zips.get(
-                    zip_archive__icontains='relational'
-                )
-            except ProcessedDataZip.DoesNotExist:
-                context['relational_zip'] = None
-
-            context['flat_files'] = [
-                {
-                    'name': m().file_name,
-                    'is_processed': self.object.processed_version.check_processed_model(m),
-                    'doc': m().doc,
-                }
-                for m in apps.get_models()
-                if getattr(m(), 'is_flat', False)
-            ]
+            context['is_processed'] = True 
+            context['flat_zip'] = self.get_processed_zip('flat')
+            context['relational_zip'] = self.get_processed_zip('relational')
+            context['flat_files'] = self.get_flat_files()
 
         if self.object.error_count:
+            context['raw_files_w_errors'] = self.get_raw_files_w_errors()
             context['error_pct'] = 100 * self.object.error_count / float(self.object.download_record_count)
         else:
             context['error_pct'] = 0
         return context
+
+    def get_processed_zip(self, label):
+        """
+        Return a ProcessedDataZip instance with a name that includes label.
+
+        If no instance exists for the version, return None.
+        """
+        if self.processed_version:
+            try:
+                obj = self.processed_version.zips.get(
+                    zip_archive__icontains=label
+                )
+            except (ProcessedDataZip.DoesNotExist, AttributeError):
+                obj = None
+        else:
+            obj = None
+        return obj
+
+    def get_raw_files_w_errors(self):
+        """
+        Return an iterable of RawDataFile instances with logged errors.
+        """
+        return [
+            f for f in self.object.files.all() if f.error_count > 0 
+        ]
+
+    def get_flat_files(self):
+        """
+        Return an iterable of dicts with 
+        """
+        if self.processed_version:
+            flat_files = [
+                {
+                    'name': m().file_name,
+                    'doc': m().doc,
+                    'is_processed': self.processed_version.check_processed_model(m),
+                }
+                for m in apps.get_models()
+                if getattr(m(), 'is_flat', False)
+            ]
+        else:
+            flat_files = []
+        return flat_files
 
     def get_url(self, obj):
         return reverse(
@@ -150,6 +174,16 @@ class VersionDetail(BuildableDetailView, CalAccessModelListMixin):
             )
         )
 
+    @property
+    def processed_version(self):
+        """
+        An ProcessedDataVersion instance, if one exists for the view
+        """
+        try:
+            processed_version = self.object.processed_version
+        except AttributeError:
+            processed_version = None
+        return processed_version
 
 class LatestVersion(VersionDetail):
     """
