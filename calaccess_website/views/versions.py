@@ -1,10 +1,11 @@
 from datetime import datetime
+from django.apps import apps
 from django.http import Http404
 from django.utils import timezone
 from .base import CalAccessModelListMixin
 from django.core.urlresolvers import reverse
 from calaccess_raw.models import RawDataVersion
-from calaccess_processed.models import ProcessedDataVersion
+from calaccess_processed.models import ProcessedDataVersion, ProcessedDataZip
 from django.template.defaultfilters import date as dateformat
 from bakery.views import (
     BuildableArchiveIndexView,
@@ -101,22 +102,36 @@ class VersionDetail(BuildableDetailView, CalAccessModelListMixin):
         Add some extra bits to the template's context
         """
         context = super(VersionDetail, self).get_context_data(**kwargs)
-        context['raw_files'] = self.regroup_by_klass_group(
-            self.object.files.all()
-        )
-        # include processed_files, if available
+
         try:
-            processed_files = [
-                i for i in self.object.processed_version.files.all()
-                if 'Form' not in i.file_name
-            ]
-        except ProcessedDataVersion.DoesNotExist:
-            pass
+            self.object.processed_version
+        except AttributeError:
+            context['is_processed'] = False
         else:
-            context['processed_file_count'] = len(processed_files)
-            context['processed_files'] = self.regroup_by_klass_group(
-                processed_files
-            )
+            context['is_processed'] = True
+            try:
+                context['flat_zip'] = self.object.processed_version.zips.get(
+                    zip_archive__icontains='flat'
+                )
+            except ProcessedDataZip.DoesNotExist:
+                context['flat_zip'] = None
+
+            try:
+                context['relational_zip'] = self.object.processed_version.zips.get(
+                    zip_archive__icontains='relational'
+                )
+            except ProcessedDataZip.DoesNotExist:
+                context['relational_zip'] = None
+
+            context['flat_files'] = [
+                {
+                    'name': m().file_name,
+                    'is_processed': self.object.processed_version.check_processed_model(m),
+                    'doc': m().doc,
+                }
+                for m in apps.get_models()
+                if getattr(m(), 'is_flat', False)
+            ]
 
         if self.object.error_count:
             context['error_pct'] = 100 * self.object.error_count / float(self.object.download_record_count)

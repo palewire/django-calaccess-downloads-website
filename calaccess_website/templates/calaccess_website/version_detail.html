@@ -8,230 +8,119 @@
 
 {% block affix-nav %}
 <ul class="nav nav-stacked">
-  <li class="active"><a href="#full-archive">Full archive</a></li>
-  {% if object.processed_version %}
-  <li><a href="#processed-files">Processed files</a></li>
+  <li class="active"><a href="#basic">Getting started</a></li>
+  {% if is_processed %}
+  <li><a href="#advanced">Advanced usage</a></li>
   {% endif %}
-  <li><a href="#raw-files">Raw files</a></li>
+  <li><a href="#raw">Raw files</a></li>
   {% if object.error_count %}
   <li><a href="#errata">Errata</a></li>
   {% endif %}
 </ul>
 {% endblock %}
 
-{% block javascript %}
-<script type="text/javascript">
-// Filter logic
-$('.dropdown-menu a').click(function() {
-    $('#filterDropdown').html($(this).html() + ' <span class="caret"></span>');
-    $('.file-card').removeClass('hidden');
-    var group = $(this).data('group');
-    if (group != 'all') {
-      $('.file-card:not(.' + group + ')').addClass('hidden');
-    }
-});
-</script>
-{% include 'calaccess_website/affix_nav_logic.html' %}
-{% endblock %}
-
 {% block content %}
-<section id="full-archive" class="chapter">
-    <h2>Full archive</h2>
-    {% if object.processed_version %}
+<section id="basic" class="chapter">
+    <h2>Getting started</h2>
+    {% if is_processed %}
     <p>
-        Our complete package of {{ processed_file_count }} tables refined from data extracted and scraped from CAL-ACCESS.
+        Our complete package of {{ flat_file_count }} tables refined from data extracted and scraped from CAL-ACCESS. This is a great place to start. <a href="{% url 'ccdc_file_list' %}">Learn more &raquo;</a>
     </p>
     {% else %}
     <p>
         The complete package of {{ object.download_file_count }} database tables released by California's Secretary of State, which we have cleaned up with {{ object.clean_record_count|intword }} rows of comma-separated values<sup><a href="#errata">*</a></sup>.
     </p>
     {% endif %}
-    {% if object.processed_version %}
-        <p>
-            <a href="{% archive_url object.processed_version.zip_archive.name is_latest=is_latest %}"
-               class="btn btn-calaccess">
-                Download
-            </a>
-            &nbsp; <span>{{ object.processed_version.pretty_zip_size }} zip</span>
-        </p>
-        <p>
-            Alternatively, retrieve with <code>curl</code>.
-        </p>
-        <input type="text" class="download-link input-monospace"
-            value="$ curl -O {% archive_url object.processed_version.zip_archive.name is_latest=is_latest %}"
-            readonly>
+    {% if is_processed %}
+      <p>
+          <a href="{% archive_url flat_zip.zip_archive.name is_latest=is_latest %}"
+             class="btn btn-calaccess">
+              Download
+          </a>
+          &nbsp; <span>{{ flat_zip.pretty_zip_size }} zip</span>
+      </p>
     {% elif object.clean_zip_archive %}
-        <p>
-            <a href="{% archive_url object.clean_zip_archive.name is_latest=is_latest %}"
-               class="btn btn-calaccess">
-                Download
-            </a>
-            &nbsp; <span>{{ object.pretty_clean_size }} zip</span>
-        </p>
-        <p>
-            Alternatively, retrieve with <code>curl</code>.
-        </p>
-        <input type="text" class="download-link input-monospace"
-            value="$ curl -O {% archive_url object.clean_zip_archive.name is_latest=is_latest %}"
-            readonly>
+      <p>
+          <a href="{% archive_url object.clean_zip_archive.name is_latest=is_latest %}"
+             class="btn btn-calaccess">
+              Download
+          </a>
+          &nbsp; <span>{{ object.pretty_clean_size }} zip</span>
+      </p>
     {% else %}
-    <p><a class="btn btn-inactive">Unavailable</a>
+      <p><a class="btn btn-inactive">Unavailable</a>
     {% endif %}
 </section>
 
-{% if processed_files %}
-<section id="processed-files" class="chapter">
-  <div class="filters">
-    <h2>Processed Civic Data files</h2>
-    <p>
-      Our re-formatted files in flat or relational formats.
-    </p>
-  </div>
-  <ul class="list">
-  {% for group in processed_files %}
-  {% for file in group.list %}
-    <li data-name="{{ file.file_name }}" data-type="{{ group.grouper }}" data-description="{{ file.model.doc|first_line|striptags }}">
-        <section class="file-card {{ group.grouper|slugify }}">
-            <div class="row">
-                <div class="col-md-6">
-                    <h4>
-                        <a href="{% url 'ccdc_file_detail' slug=file.file_name|slugify %}">
-                            {{ file.file_name }}
-                        </a>
-                    </h4>
-                </div>
-                <div class="col-md-6 align-right">
-                    <p class="lbl-group">
-                        <mark>{{ group.grouper|upper }}</mark>
-                    </p>
-                </div>
-            </div>
-            <hr>
-            <div class="row">
-                <div class="col-md-6">
-                    <p>
-                        {{ file.model.doc|first_line|safe }}
-                        <a href="{% url 'ccdc_file_detail' slug=file.file_name|slugify %}">Learn more &raquo;</a>
-                    </p>
-                </div>
-                <div class="col-md-5 col-md-offset-1 align-right stats">
-                    {% if file.file_archive %}
-                    <div class="col-md-7 col-sm-8 col-xs-8">
-                        <section>
-                          <h5>Records</h5>
-                          <p>{{ file.records_count|intcomma }}</p>
-                        </section>
-                        <section>
-                          <h5>Size</h5>
-                          <p>{{ file.pretty_file_size }}</p>
-                          <p>{{ file.pretty_clean_file_size }}</p>
-                        </section>
-                    </div>
-                    <div class="col-md-5 col-sm-4 col-xs-4">
-                      <a href="{% archive_url file.file_archive.name is_latest=is_latest %}" class="btn btn-calaccess">Download</a>
-                    </div>
-                    {% else %}
-                      <a class="btn btn-inactive">Unavailable</a>
-                    {% endif %}
-                </div>
-            </div>
-        </section>
-    </li>
+{% if is_processed %}
+<section id="flat-files" class="chapter">
+  <h2>Available data</h2>
+  {% for file in flat_files %}
+    <div class='col-md-6'>
+      <div class="row">
+        <h4>
+            <a href="{% url 'ccdc_file_detail' slug=file.name|slugify %}">
+                {{ file.name }}
+            </a>
+        </h4>
+      </div>
+      <div class="row">
+        <p>
+          {{ file.doc|first_line|safe }}
+          <a href="{% url 'ccdc_file_detail' slug=file.name|slugify %}">Learn more &raquo;</a>
+        </p>
+      </div>
+    </div>
   {% endfor %}
-  {% endfor %}
-  </ul>
-{% endif %}
-
-{% if raw_files %}
-<section id="raw-files" class="chapter">
-  <div class="filters">
-      <h2>Raw CAL-ACCESS files</h2>
-      <p>
-          Our cleaned-up version of each of the {{ object.download_file_count }}
-          CAL-ACCESS database tables released by state officials, grouped by type.
-      </p>
-      <form id="filter-form" class="form-inline">
-          <input class="search form-control" placeholder="Filter files"/>
-          <div class="dropdown">
-            <button class="btn btn-calaccess dropdown-toggle" type="button" id="filterDropdown"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-              All files
-              <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="filterDropdown">
-              <li><a data-group="all">All files</a></li>
-              {% for group in raw_files %}
-              <li><a data-group="{{ group.grouper|slugify }}">{{ group.grouper|capfirst }}</a></li>
-              {% endfor %}
-            </ul>
-          </div>
-      </form>
-  </div>
-
-  <ul class="list">
-  {% for group in raw_files %}
-  {% for file in group.list %}
-    <li data-name="{{ file.file_name }}" data-type="{{ group.grouper }}" data-description="{{ file.model.doc|first_line|striptags }}">
-        <section class="file-card {{ group.grouper|slugify }}">
-            <div class="row">
-                <div class="col-md-6">
-                    <h4>
-                        <a href="{% url 'calaccess_file_detail' slug=file.file_name|slugify %}">
-                            {{ file.file_name }}
-                        </a>
-                    </h4>
-                </div>
-                <div class="col-md-6 align-right">
-                    <p class="lbl-group">
-                        <mark>{{ group.grouper|upper }}</mark>
-                    </p>
-                </div>
-            </div>
-            <hr>
-            <div class="row">
-                <div class="col-md-6">
-                    <p>
-                        {{ file.model.doc|first_line|safe }}
-                        {% if file.download_records_count == 0 %}The source file published by the state is empty.{% endif %}
-                        <a href="{% url 'calaccess_file_detail' slug=file.file_name|slugify %}">Learn more &raquo;</a>
-                    </p>
-                </div>
-                <div class="col-md-5 col-md-offset-1 align-right stats">
-                    {% if file.clean_file_archive %}
-                    <div class="col-md-7 col-sm-8 col-xs-8">
-                        <section>
-                          <h5>Records</h5>
-                          <p>{{ file.clean_records_count|intcomma }}{% if file.error_count > 0 %}<sup><a href="#footnote-{{ file.file_name|slugify }}">*</a></sup>{% endif %}</p>
-                        </section>
-                        <section>
-                          <h5>Size</h5>
-                          <p>{{ file.pretty_clean_file_size }}</p>
-                        </section>
-                    </div>
-                    <div class="col-md-5 col-sm-4 col-xs-4">
-                      <a href="{% archive_url file.clean_file_archive.name is_latest=is_latest %}" class="btn btn-calaccess">Download</a>
-                    </div>
-                    {% else %}
-                      <a class="btn btn-inactive">Unavailable</a>
-                    {% endif %}
-                </div>
-            </div>
-        </section>
-    </li>
-  {% endfor %}
-  {% endfor %}
-  </ul>
 </section>
-<script src="{% static 'calaccess_website/js/list.min.js' %}"></script>
-<script>
-$('#filter-form').submit(false);
-var options = {
-  valueNames: [ { data: ['name', 'type', 'description'] }, ]
-};
-var fileList = new List('raw-files', options);
-</script>
 {% endif %}
 
+{% if relational_zip %}
+<section id="advanced" class="chapter">
+  <h2>Advanced usage</h2>
+  <p>
+      Prefer databases or want more control? We've refined the raw CAL-ACCESS data into easy-to-use tables you can load into any SQL database.
+  </p>
+  <p>
+      <a href="{% archive_url relational_zip.zip_archive.name is_latest=is_latest %}"
+         class="btn btn-calaccess">
+          Download
+      </a>
+      &nbsp; <span>{{ relational_zip.pretty_zip_size }} zip</span>
+  </p>
+  <p>
+      Alternatively, retrieve with <code>curl</code>.
+  </p>
+  <input type="text" class="download-link input-monospace"
+      value="$ curl -O {% archive_url relational_zip.zip_archive.name is_latest=is_latest %}"
+      readonly>
+</section>
+{% endif %}
+<section id="raw" class="chapter">
+  <h2>Raw files</h2>
+    <p>
+        The complete package of {{ object.download_file_count }} database tables released by
+        California's Secretary of State, which we have cleaned up and converted
+        into flat files with {{ object.clean_record_count|intword }} rows of comma-separated values<sup><a href="#errata">*</a></sup>.
+    </p>
+    {% if object.clean_zip_archive %}
+      <p>
+          <a href="{% archive_url object.clean_zip_archive.name is_latest=is_latest %}"
+             class="btn btn-calaccess">
+              Download
+          </a>
+          &nbsp; <span>{{ object.pretty_clean_size }} zip</span>
+      </p>
+      <p>
+          Alternatively, retrieve with <code>curl</code>.
+      </p>
+      <input type="text" class="download-link input-monospace"
+          value="$ curl -O {% archive_url object.clean_zip_archive.name is_latest=is_latest %}"
+          readonly>
+    {% else %}
+      <p><a class="btn btn-inactive">Unavailable</a>
+    {% endif %}
+</section>
 
 {% if object.error_count %}
 <section id="errata" class="chapter">
@@ -245,7 +134,7 @@ var fileList = new List('raw-files', options);
         However, those {{ object.error_count|intcomma }} lost records represent
         only {{ error_pct|floatformat:"5" }}% of the source data.
     </p>
-    {% if not object.processed_version %}
+    {% if is_processed %}
     <p>
         Error logs are included in the <a href="#full-archive">full archive download</a> above.
         You can also download individual logs below.
