@@ -11,6 +11,7 @@ class OfficialDocumentation(BuildableTemplateView):
     def get_context_data(self):
         context = {
             'title': 'CAL-ACCESS official documentation',
-            'description': "The jumbled, fragmentary and unreliable documentation for the CAL-ACCESS database provided by California's Secretary of State."
+            'description': "The jumbled, fragmentary and unreliable documentation \
+for the CAL-ACCESS database provided by California's Secretary of State."
         }
         return context

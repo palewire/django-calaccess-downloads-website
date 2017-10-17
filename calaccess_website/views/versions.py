@@ -5,7 +5,10 @@ from django.utils import timezone
 from .base import CalAccessModelListMixin
 from django.core.urlresolvers import reverse
 from calaccess_raw.models import RawDataVersion
-from calaccess_processed.models import ProcessedDataVersion, ProcessedDataZip
+from calaccess_processed.models import (
+    ProcessedDataZip,
+    ProcessedDataFile,
+)
 from django.template.defaultfilters import date as dateformat
 from bakery.views import (
     BuildableArchiveIndexView,
@@ -103,12 +106,7 @@ class VersionDetail(BuildableDetailView, CalAccessModelListMixin):
         """
         context = super(VersionDetail, self).get_context_data(**kwargs)
 
-        try:
-            self.object.processed_version
-        except AttributeError:
-            context['is_processed'] = False
-        else:
-            context['is_processed'] = True 
+        if self.processed_version:
             context['flat_zip'] = self.get_processed_zip('flat')
             context['relational_zip'] = self.get_processed_zip('relational')
             context['flat_files'] = self.get_flat_files()
@@ -142,25 +140,32 @@ class VersionDetail(BuildableDetailView, CalAccessModelListMixin):
         Return an iterable of RawDataFile instances with logged errors.
         """
         return [
-            f for f in self.object.files.all() if f.error_count > 0 
+            f for f in self.object.files.all() if f.error_count > 0
         ]
 
     def get_flat_files(self):
         """
-        Return an iterable of dicts with 
+        Return an iterable of dicts with info about the processed flat files.
         """
+        flat_files = []
         if self.processed_version:
-            flat_files = [
-                {
-                    'name': m().file_name,
-                    'doc': m().doc,
-                    'is_processed': self.processed_version.check_processed_model(m),
-                }
-                for m in apps.get_models()
+            flat_models = [
+                m for m in apps.get_models()
                 if getattr(m(), 'is_flat', False)
             ]
-        else:
-            flat_files = []
+            for m in flat_models:
+                flat_file = {'name': m().file_name, 'doc': m().doc}
+                try:
+                    file_obj = self.processed_version.files.get(
+                        file_name=flat_file['name']
+                    )
+                except ProcessedDataFile.DoesNotExist:
+                    flat_file['archive'] = None
+                else:
+                    flat_file['archive'] = file_obj.file_archive.name
+                    if len(flat_file['archive']) == 0:
+                        flat_file['archive'] = None
+                flat_files.append(flat_file)
         return flat_files
 
     def get_url(self, obj):
@@ -184,6 +189,7 @@ class VersionDetail(BuildableDetailView, CalAccessModelListMixin):
         except AttributeError:
             processed_version = None
         return processed_version
+
 
 class LatestVersion(VersionDetail):
     """

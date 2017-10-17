@@ -9,7 +9,7 @@
 {% block affix-nav %}
 <ul class="nav nav-stacked">
   <li class="active"><a href="#basic">Getting started</a></li>
-  {% if is_processed %}
+  {% if object.processed_version %}
   <li><a href="#advanced">Advanced usage</a></li>
   {% endif %}
   <li><a href="#raw">Raw files</a></li>
@@ -23,52 +23,54 @@
 {% block content %}
 <section id="basic" class="chapter">
   <h2>Getting started</h2>
-  {% if is_processed %}
-  <p>
-      Our complete package of {{ flat_file_count }} tables refined from data extracted and scraped from CAL-ACCESS. This is a great place to start. <a href="{% url 'ccdc_file_list' %}">Learn more &raquo;</a>
-  </p>
-  {% else %}
-  <p>
-      The complete package of {{ object.download_file_count }} database tables released by California's Secretary of State, which we have cleaned up with {{ object.clean_record_count|intword }} rows of comma-separated values<sup><a href="#errata">*</a></sup>.
-  </p>
-  {% endif %}
-  {% if is_processed %}
+  {% if object.processed_version %}
     <p>
+      Our complete package of {{ flat_file_count }} tables refined from data extracted and scraped from CAL-ACCESS. This is a great place to start. <a href="{% url 'ccdc_file_list' %}">Learn more &raquo;</a>
+    </p>
+      <p>
         <a href="{% archive_url flat_zip.zip_archive.name is_latest=is_latest %}"
            class="btn btn-calaccess">
             Download
         </a>
         &nbsp; <span>{{ flat_zip.pretty_zip_size }} zip</span>
-    </p>
-  {% elif object.clean_zip_archive %}
-    <p>
-        <a href="{% archive_url object.clean_zip_archive.name is_latest=is_latest %}"
-           class="btn btn-calaccess">
-            Download
-        </a>
-        &nbsp; <span>{{ object.pretty_clean_size }} zip</span>
-    </p>
-  {% else %}
-    <p><a class="btn btn-inactive">Unavailable</a>
-  {% endif %}
-
-  {% if is_processed %}
-    <h2>Available data</h2>
-    {% for file in flat_files %}
-      <div class='col-md-6'>
+      </p>
+    <section class='sub-chapter'>
+      <h3>Available data</h3>
+      <div class="container-fluid">
         <div class="row">
-          <h4>
-              <a href="{% url 'ccdc_file_detail' slug=file.name|slugify %}">
-                  {{ file.name }}
-              </a>
-          </h4>
-          <p>
-            {{ file.doc|first_line|safe }}
-            <a href="{% url 'ccdc_file_detail' slug=file.name|slugify %}">Learn more &raquo;</a>
-          </p>
+        {% for file in flat_files %}
+          <div class='col-md-6'>
+            <h4>
+              {% if file.archive %}
+                <a href="{% archive_url file.archive is_latest=is_latest %}">{{ file.name }}</a>
+              {% else %}
+                {{ file.name }}
+              {% endif %}
+            </h4>
+            <p>
+              {{ file.doc|first_line|safe }}
+              <a href="{% url 'ccdc_file_detail' slug=file.name|slugify %}">Learn more &raquo;</a>
+            </p>
+          </div>
+        {% endfor %}
         </div>
       </div>
-    {% endfor %}
+    </section>
+  {% else %}
+    <p>
+      The complete package of {{ object.download_file_count }} database tables released by California's Secretary of State, which we have cleaned up with {{ object.clean_record_count|intword }} rows of comma-separated values<sup><a href="#errata">*</a></sup>.
+    </p>
+    {% if object.clean_zip_archive %}
+      <p>
+          <a href="{% archive_url object.clean_zip_archive.name is_latest=is_latest %}"
+             class="btn btn-calaccess">
+              Download
+          </a>
+          &nbsp; <span>{{ object.pretty_clean_size }} zip</span>
+      </p>
+    {% else %}
+      <p><a class="btn btn-inactive">Unavailable</a>
+    {% endif %}
   {% endif %}
 </section>
 
@@ -97,9 +99,7 @@
 <section id="raw" class="chapter">
   <h2>Raw files</h2>
   <p>
-      The complete package of {{ object.download_file_count }} database tables released by
-      California's Secretary of State, which we have cleaned up and converted
-      into flat files with {{ object.clean_record_count|intword }} rows of comma-separated values<sup><a href="#errata">*</a></sup>.
+      The complete package of {{ object.download_file_count }} database tables released by California's Secretary of State, which we have cleaned up and converted into flat files with {{ object.clean_record_count|intword }} rows of comma-separated values<sup><a href="#errata">*</a></sup>.
   </p>
   {% if object.clean_zip_archive %}
     <p>
@@ -119,14 +119,14 @@
     <p><a class="btn btn-inactive">Unavailable</a>
   {% endif %}
   {% if object.error_count %}
-    <h3>Errata</h4>
+    <h3>Errata</h3>
     <p>
        The raw data provided by the state contains errors in how some values are escaped, quoted and delimited. The result is a small number of records lost when we prepare files for download.
     </p>
     <p>
         However, those {{ object.error_count|intcomma }} lost records represent only {{ error_pct|floatformat:"5" }}% of the source data.
     </p>
-    {% if is_processed %}
+    {% if object.processed_version %}
     <p>
         Error logs are included in the <a href="#full-archive">full archive download</a> above. You can also download individual logs below.
     </p>
@@ -136,9 +136,9 @@
       <table style="table-layout: fixed; width: 100%" class="table table-striped">
       <thead>
         <tr>
-            <th>Name</th>
-            <th class="right">Errors</th>
-            <th class="right">CSV</th>
+          <th>Name</th>
+          <th class="right">Errors</th>
+          <th class="right">CSV</th>
         </tr>
       </thead>
       <tbody>
