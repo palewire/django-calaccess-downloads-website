@@ -618,6 +618,7 @@ and (max-width : 490px) {
     padding-right: 40px;
     display: inline-block;
     width: auto;
+    min-width: 275px;
 }
 .sub-chapter {
     background-color: rgb(248, 248, 248);
