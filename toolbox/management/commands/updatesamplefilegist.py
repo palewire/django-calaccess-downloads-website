@@ -37,9 +37,8 @@ class Command(BaseCommand):
         Get header and top five lines from the latest version of file_name.
         """
         file_url = archive_url(file_name, is_latest=True)
-            
         top_lines = []
-            
+
         with requests.get(file_url, stream=True) as r:
             try:
                 r.raise_for_status()
