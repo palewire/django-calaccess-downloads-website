@@ -53,7 +53,8 @@
             {% if obj.processed_version %}Processed{% elif obj.clean_zip_archive %}Cleaned{% else %}Raw{% endif %}
         </td>
         <td class="right">
-            {% if obj.processed_version %}{{ obj.processed_version.pretty_zip_size }}{% elif obj.clean_zip_archive %}{{ obj.pretty_clean_size }}{% else %}{{ obj.pretty_download_size }}{% endif %}
+            {% if obj.flat_zip %}{{ obj.flat_zip.pretty_zip_size }}
+            {% elif obj.relational_zip %}{{ obj.relational_zip.pretty_zip_size }}{% elif obj.clean_zip_archive %}{{ obj.pretty_clean_size }}{% else %}{{ obj.pretty_download_size }}{% endif %}
         </td>
     </tr>
     {% endfor %}

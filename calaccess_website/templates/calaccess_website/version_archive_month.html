@@ -51,7 +51,10 @@
           </a>
       </td>
       <td class="right">
-            {{ obj.pretty_clean_size }}
+            {% if obj.flat_zip %}{{ obj.flat_zip.pretty_zip_size }}
+            {% elif obj.relational_zip %}{{ obj.relational_zip.pretty_zip_size }}
+            {% else %}{{ obj.pretty_clean_size }}
+            {% endif %}
       </td>
   </tr>
   {% endfor %}

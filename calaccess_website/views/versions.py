@@ -4,11 +4,8 @@ from django.http import Http404
 from django.utils import timezone
 from .base import CalAccessModelListMixin
 from django.core.urlresolvers import reverse
-from calaccess_raw.models import RawDataVersion
-from calaccess_processed.models import (
-    ProcessedDataZip,
-    ProcessedDataFile,
-)
+from calaccess_processed.models import ProcessedDataFile
+from calaccess_website.models import RawDataVersionProxy
 from django.template.defaultfilters import date as dateformat
 from bakery.views import (
     BuildableArchiveIndexView,
@@ -22,9 +19,7 @@ class VersionArchiveIndex(BuildableArchiveIndexView):
     """
     A list of the latest versions of CAL-ACCESS in our archive
     """
-    queryset = RawDataVersion.objects.complete().exclude(
-        release_datetime__lte='2016-07-27'
-    ).select_related()
+    model = RawDataVersionProxy
     date_field = "release_datetime"
     template_name = "calaccess_website/version_archive.html"
     build_path = "downloads/index.html"
@@ -34,7 +29,7 @@ class VersionYearArchiveList(BuildableYearArchiveView):
     """
     A list of all versions of CAL-ACCESS in a given year
     """
-    queryset = RawDataVersion.objects.complete().exclude(release_datetime__lte='2016-07-27')
+    model = RawDataVersionProxy
     date_field = "release_datetime"
     make_object_list = False
     template_name = "calaccess_website/version_archive_year.html"
@@ -50,9 +45,7 @@ class VersionMonthArchiveList(BuildableMonthArchiveView):
     """
     A list of all versions of CAL-ACCESS in a given year
     """
-    queryset = RawDataVersion.objects.complete().exclude(
-        release_datetime__lte='2016-07-27'
-    ).select_related()
+    model = RawDataVersionProxy
     date_field = "release_datetime"
     month_format = "%m"
     make_object_list = True
@@ -72,7 +65,7 @@ class VersionDetail(BuildableDetailView, CalAccessModelListMixin):
     """
     A detail page with everything about an individual CAL-ACCESS version
     """
-    queryset = RawDataVersion.objects.complete().exclude(release_datetime__lte='2016-07-27')
+    model = RawDataVersionProxy
     template_name = 'calaccess_website/version_detail_archived.html'
 
     def set_kwargs(self, obj):
@@ -105,10 +98,11 @@ class VersionDetail(BuildableDetailView, CalAccessModelListMixin):
         Add some extra bits to the template's context
         """
         context = super(VersionDetail, self).get_context_data(**kwargs)
+        context['has_processed_version'] = self.object.has_processed_version
 
-        if self.processed_version:
-            context['flat_zip'] = self.get_processed_zip('flat')
-            context['relational_zip'] = self.get_processed_zip('relational')
+        if context['has_processed_version']:
+            context['flat_zip'] = self.object.flat_zip
+            context['relational_zip'] = self.object.relational_zip
             context['flat_files'] = self.get_flat_files()
 
         if self.object.error_count:
@@ -117,23 +111,6 @@ class VersionDetail(BuildableDetailView, CalAccessModelListMixin):
         else:
             context['error_pct'] = 0
         return context
-
-    def get_processed_zip(self, label):
-        """
-        Return a ProcessedDataZip instance with a name that includes label.
-
-        If no instance exists for the version, return None.
-        """
-        if self.processed_version:
-            try:
-                obj = self.processed_version.zips.get(
-                    zip_archive__icontains=label
-                )
-            except (ProcessedDataZip.DoesNotExist, AttributeError):
-                obj = None
-        else:
-            obj = None
-        return obj
 
     def get_raw_files_w_errors(self):
         """
@@ -148,7 +125,7 @@ class VersionDetail(BuildableDetailView, CalAccessModelListMixin):
         Return an iterable of dicts with info about the processed flat files.
         """
         flat_files = []
-        if self.processed_version:
+        if self.object.has_processed_version:
             flat_models = [
                 m for m in apps.get_models()
                 if getattr(m(), 'is_flat', False)
@@ -156,7 +133,7 @@ class VersionDetail(BuildableDetailView, CalAccessModelListMixin):
             for m in flat_models:
                 flat_file = {'name': m().file_name, 'doc': m().doc}
                 try:
-                    file_obj = self.processed_version.files.get(
+                    file_obj = self.object.processed_version.files.get(
                         file_name=flat_file['name']
                     )
                 except ProcessedDataFile.DoesNotExist:
@@ -178,17 +155,6 @@ class VersionDetail(BuildableDetailView, CalAccessModelListMixin):
                 time=dateformat(obj.release_datetime, 'His'),
             )
         )
-
-    @property
-    def processed_version(self):
-        """
-        An ProcessedDataVersion instance, if one exists for the view
-        """
-        try:
-            processed_version = self.object.processed_version
-        except AttributeError:
-            processed_version = None
-        return processed_version
 
 
 class LatestVersion(VersionDetail):
