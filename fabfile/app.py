@@ -58,7 +58,7 @@ def manage(cmd, *args, **kwargs):
                 for k, v in kwargs.items() if len(k) == 1
             ]),
             ' '.join([
-                '--{0}={1}'.format(k, v) 
+                '--{0}={1}'.format(k, v)
                 for k, v in kwargs.items() if len(k) > 1
             ]),
         )
