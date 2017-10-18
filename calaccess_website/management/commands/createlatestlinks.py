@@ -1,8 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-Save copies of data files from the most recently completed update in a latest
-directory in the default file storage of the Django project.
+Copy files to latest/ in the project's default file storage.
 """
 import os
 import re
@@ -17,11 +16,9 @@ logger = logging.getLogger(__name__)
 
 class Command(BaseCommand):
     """
-    Save copies of data files from the most recently completed update in a latest
-    directory in the default file storage of the Django project.
+    Copy files to latest/ in the project's default file storage.
     """
-    help = "Save copies of data files from the most recently completed update in \
-a latest directory in the default file storage of the Django project"
+    help = "Copy files to latest/ in the project's default file storage."
 
     def handle(self, *args, **options):
         # set up boto session
@@ -99,13 +96,13 @@ a latest directory in the default file storage of the Django project"
 
         # save processed zip to the latest dir
         if v.processed_version:
-            if v.processed_version.zip_archive:
+            for zf in v.processed_version.zips.all():
                 # strip the datetime from the zip name
                 zip_name = self.strip_datetime(
-                    os.path.basename(v.processed_version.zip_archive.name),
+                    os.path.basename(zf.zip_archive.name),
                 )
                 self.copy(
-                    v.processed_version.zip_archive.name,
+                    zf.zip_archive.name,
                     self.get_latest_path(zip_name),
                 )
             # same for processed files
