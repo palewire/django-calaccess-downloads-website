@@ -4,7 +4,6 @@ from django.http import Http404
 from django.utils import timezone
 from .base import CalAccessModelListMixin
 from django.core.urlresolvers import reverse
-from calaccess_processed.models import ProcessedDataFile
 from calaccess_website.models import RawDataVersionProxy
 from django.template.defaultfilters import date as dateformat
 from bakery.views import (
@@ -131,17 +130,11 @@ class VersionDetail(BuildableDetailView, CalAccessModelListMixin):
                 if getattr(m(), 'is_flat', False)
             ]
             for m in flat_models:
-                flat_file = {'name': m().file_name, 'doc': m().doc}
-                try:
-                    file_obj = self.object.processed_version.files.get(
-                        file_name=flat_file['name']
-                    )
-                except ProcessedDataFile.DoesNotExist:
-                    flat_file['archive'] = None
-                else:
-                    flat_file['archive'] = file_obj.file_archive.name
-                    if len(flat_file['archive']) == 0:
-                        flat_file['archive'] = None
+                flat_file = {
+                    'name': m().file_name,
+                    'doc': m().doc,
+                    'is_processed': self.object.processed_version.check_processed_model(m),
+                }
                 flat_files.append(flat_file)
         return flat_files
 
