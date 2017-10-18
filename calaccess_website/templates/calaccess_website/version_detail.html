@@ -128,28 +128,7 @@
         Error logs are included in the <a href="#full-archive">full archive download</a> above. You can also download individual logs below.
     </p>
     {% endif %}
-    <div class="row">
-    <div class="col-md-12">
-      <table style="table-layout: fixed; width: 100%" class="table table-striped">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th class="right">Errors</th>
-          <th class="right">CSV</th>
-        </tr>
-      </thead>
-      <tbody>
-      {% for file in raw_files_w_errors %}
-      <tr id="footnote-{{ file.file_name|slugify }}">
-        <td class="break"><a href="{% url 'calaccess_file_detail' slug=file.file_name|slugify %}">{{ file.file_name }}</a></td>
-        <td class="right">{{ file.error_count }}</td>
-        <td class="right"><a href="{% archive_url file.error_log_archive.name is_latest=is_latest %}">Download &raquo;</a></td>
-      </tr>
-      {% endfor %}
-      </tbody>
-      </table>
-    </div>
-    </div>
+    {% include 'calaccess_website/error_list.html' %}
   {% endif %}
 </section>
 {% endblock %}
