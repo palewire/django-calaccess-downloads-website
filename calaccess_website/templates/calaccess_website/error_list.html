@@ -1,5 +1,5 @@
 {% load calaccess_website_tags %}
-<button id="errors_button" type="button" class="btn btn-calaccess" data-toggle="collapse" data-target="#errors">Show errata</button>
+<button id="errors_button" type="button" class="btn btn-calaccess" data-toggle="collapse" data-target="#errors">Show errors</button>
 <div id="errors" class="collapse row">
   <div class="col-md-12">
     <table style="table-layout: fixed; width: 100%" class="table table-striped">
@@ -26,7 +26,7 @@
 <script type="text/javascript">
   $('#errors_button').click(function(){ //you can give id or class name here for $('button')
       $(this).text(function(i,old){
-          return old=='Show errata' ?  'Hide errata' : 'Show errata';
+          return old=='Show errors' ?  'Hide errors' : 'Show errors';
       });
   });
 </script>
