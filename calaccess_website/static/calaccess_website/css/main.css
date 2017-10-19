@@ -204,7 +204,7 @@ header .navbar-default .navbar-nav>li>a {
     color: #000;
     font-weight: 400;
     text-align: left;
-    border-bottom: 1px solid #fff;
+    border-bottom: 1px solid transparent;
     padding: 10px 10px 5px 5px;
 }
 .nav-stacked li:hover a {
