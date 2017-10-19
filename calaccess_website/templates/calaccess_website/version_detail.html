@@ -33,22 +33,22 @@
         &nbsp; <span>{{ flat_zip.pretty_zip_size }} zip</span>
       </p>
       <section class='sub-chapter container'>
-        <h3>Available data</h3>
+        <h2>Available data</h2>
         <div class="row">
         {% for file in flat_files %}
           {% if file.is_processed %}
             <div class='col-sm-6 col-md-5'>
-              <h4><a href="{% url 'ccdc_file_detail' slug=file.name|slugify %}">{{ file.name }}</a></h4>
+              <h4><a href="{% url 'ccdc_file_detail' slug=file.name|slugify %}"><i class="fa fa-file-text-o"></i>  {{ file.name }}</a></h4>
               <p>{{ file.doc|first_line|safe }}</p>
             </div>
           {% elif file.coming_soon %}
             <div class='col-sm-6 col-md-5 unavailable'>
-              <h4>{{ file.name }} <span style="font-variant: small-caps;">coming soon</span></h4>
+              <h4><i class="fa fa-file-text-o"></i>  {{ file.name }} <span style="font-variant: small-caps;">coming soon</span></h4>
               <p>{{ file.doc|first_line|safe }}</p>
             </div>
           {% else %}
             <div class='col-sm-6 col-md-5 unavailable'>
-              <h4 class='unavailable'>{{ file.name }}</h4>
+              <h4 class='unavailable'><i class="fa fa-file-text-o"></i>  </span>{{ file.name }}</h4>
               <p>{{ file.doc|first_line|safe }}</p>
             </div>
           {% endif %}
