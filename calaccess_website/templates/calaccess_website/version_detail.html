@@ -19,12 +19,14 @@
 {% endblock %}
 
 {% block content %}
-<section id="basic" class="chapter">
+<section id="basic" class="chapter container">
   <h2>Basic</h2>
-    <p>
-      For those who want only the essentials. Get the most simplified version of our processed files. This is a great place to start.
-    </p>
-    {% if flat_zip %}
+  <div class='row'>
+    <div class='col-md-10 col-lg-9'>
+      <p>
+        For those who want only the essentials. Get the most simplified version of our processed files. This is a great place to start.
+      </p>
+  {% if flat_zip %}
       <p>
         <a href="{% archive_url flat_zip.zip_archive.name is_latest=is_latest %}"
            class="btn btn-calaccess">
@@ -32,77 +34,66 @@
         </a>
         &nbsp; <span>{{ flat_zip.pretty_zip_size }} zip</span>
       </p>
-      <section class='sub-chapter container'>
-        <h2>Available data</h2>
-        <div class="row">
-        {% for file in flat_files %}
-          {% if file.is_processed %}
-            <div class='col-sm-6 col-md-5'>
-              <h4><a href="{% url 'ccdc_file_detail' slug=file.name|slugify %}"><i class="fa fa-file-text-o"></i>  {{ file.name }}</a></h4>
-              <p>{{ file.doc|first_line|safe }}</p>
-            </div>
-          {% elif file.coming_soon %}
-            <div class='col-sm-6 col-md-5 unavailable'>
-              <h4><i class="fa fa-file-text-o"></i>  {{ file.name }} <span style="font-variant: small-caps;">coming soon</span></h4>
-              <p>{{ file.doc|first_line|safe }}</p>
-            </div>
-          {% else %}
-            <div class='col-sm-6 col-md-5 unavailable'>
-              <h4 class='unavailable'><i class="fa fa-file-text-o"></i>  </span>{{ file.name }}</h4>
-              <p>{{ file.doc|first_line|safe }}</p>
-            </div>
-          {% endif %}
-        {% endfor %}
-        </div>
-      </section>
-    {% else %}
-      <p><a class="btn btn-inactive">Unavailable</a>
-    {% endif %}
+    </div>
+  </div>
 </section>
-
-<section id="advanced" class="chapter">
-  <h2>Advanced</h2>
-  <p>
-    For those who prefer more control. Get the full set of our processed data tables, ready to load into any relational database manager. <a href="{% url 'ccdc_file_list' %}#relational">Learn more &raquo;</a>
-  </p>
-  {% if relational_zip %}
-    <p>
-      <a href="{% archive_url relational_zip.zip_archive.name is_latest=is_latest %}"
-         class="btn btn-calaccess">
-          Download
-      </a>
-      &nbsp; <span>{{ relational_zip.pretty_zip_size }} zip</span>
-    </p>
-    <p>Alternatively, retrieve with <code>curl</code>.</p>
-    <input type="text" class="download-link input-monospace"
-        value="$ curl -O {% archive_url relational_zip.zip_archive.name is_latest=is_latest %}"
-        readonly>
+    {% include 'calaccess_website/available_data.html' %}
   {% else %}
-    <p><a class="btn btn-inactive">Unavailable</a>
-  {% endif %}  
+    <p><a class="btn btn-inactive">Unavailable</a></p>
+    </div>
+  </div>
 </section>
+  {% endif %}
 
-<section id="raw" class="chapter">
-  <h2>Raw files</h2>
-  <p>
-    For those with a masochistic edge. Get the complete package of {{ object.clean_file_count }} tables released by California's Secretary of State, cleaned and converted into {{ object.clean_record_count|intword }} rows of comma-separated values.
-  </p>
-  {% if object.clean_zip_archive %}
-    <p>
-        <a href="{% archive_url object.clean_zip_archive.name is_latest=is_latest %}"
+<section id="advanced" class="chapter container">
+  <h2>Advanced</h2>
+  <div class='row'>
+    <div class='col-md-10 col-lg-9'>
+      <p>
+        For those who prefer more control. Get the full set of our processed data tables, ready to load into any relational database manager. <a href="{% url 'ccdc_file_list' %}#relational">Learn more &raquo;</a>
+      </p>
+  {% if relational_zip %}
+      <p>
+        <a href="{% archive_url relational_zip.zip_archive.name is_latest=is_latest %}"
            class="btn btn-calaccess">
             Download
         </a>
-        &nbsp; <span>{{ object.pretty_clean_size }} zip</span>
-    </p>
-    <p>
-        Alternatively, retrieve with <code>curl</code>.
-    </p>
-    <input type="text" class="download-link input-monospace"
-        value="$ curl -O {% archive_url object.clean_zip_archive.name is_latest=is_latest %}"
-        readonly>
+        &nbsp; <span>{{ relational_zip.pretty_zip_size }} zip</span>
+      </p>
+      <p>Alternatively, retrieve with <code>curl</code>.</p>
+      <input type="text" class="download-link input-monospace"
+          value="$ curl -O {% archive_url relational_zip.zip_archive.name is_latest=is_latest %}"
+          readonly>
   {% else %}
-    <p><a class="btn btn-inactive">Unavailable</a>
+      <p><a class="btn btn-inactive">Unavailable</a></p>
+  {% endif %}
+    </div>
+  </div>
+</section>
+
+<section id="raw" class="chapter container">
+  <h2>Raw files</h2>
+  <div class='row'>
+    <div class='col-md-10 col-lg-9'>
+      <p>
+        For those with a masochistic edge. Get the complete package of {{ object.clean_file_count }} tables released by California's Secretary of State, cleaned and converted into {{ object.clean_record_count|intword }} rows of comma-separated values.
+      </p>
+  {% if object.clean_zip_archive %}
+      <p>
+          <a href="{% archive_url object.clean_zip_archive.name is_latest=is_latest %}"
+             class="btn btn-calaccess">
+              Download
+          </a>
+          &nbsp; <span>{{ object.pretty_clean_size }} zip</span>
+      </p>
+      <p>
+          Alternatively, retrieve with <code>curl</code>.
+      </p>
+      <input type="text" class="download-link input-monospace"
+          value="$ curl -O {% archive_url object.clean_zip_archive.name is_latest=is_latest %}"
+          readonly>
+  {% else %}
+      <p><a class="btn btn-inactive">Unavailable</a></p>
   {% endif %}
   {% if object.error_count %}
     <p>
@@ -113,5 +104,7 @@
     </p>
     {% include 'calaccess_website/error_list.html' %}
   {% endif %}
+    </div>
+  </div>
 </section>
 {% endblock %}
