@@ -92,6 +92,7 @@ section.chapter {
     background-color: transparent;
     border-radius: 0;
     font-size: 18px;
+    outline: 0;
 }
 .btn-calaccess:hover,
 .btn-calaccess.active {
@@ -625,4 +626,7 @@ and (max-width : 490px) {
 }
 .sub-chapter h3 {
     margin-top: 20px;
+}
+.unavailable {
+    opacity: 0.5;
 }

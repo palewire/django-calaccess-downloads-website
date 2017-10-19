@@ -8,10 +8,8 @@
 
 {% block affix-nav %}
 <ul class="nav nav-stacked">
-  <li class="active"><a href="#basic">Getting started</a></li>
-  {% if has_processed_version %}
-  <li><a href="#advanced">Advanced usage</a></li>
-  {% endif %}
+  <li class="active"><a href="#basic">Basic</a></li>
+  <li><a href="#advanced">Advanced</a></li>
   <li><a href="#raw">Raw files</a></li>
 </ul>
 {% endblock %}
@@ -22,11 +20,11 @@
 
 {% block content %}
 <section id="basic" class="chapter">
-  <h2>Getting started</h2>
-  {% if has_processed_version %}
+  <h2>Basic</h2>
     <p>
-      Our complete package of {{ flat_file_count }} tables refined from data extracted and scraped from CAL-ACCESS. This is a great place to start. <a href="{% url 'ccdc_file_list' %}">Learn more &raquo;</a>
+      For those who want only the essentials. Get the most simplified version of our processed files. This is a great place to start.
     </p>
+    {% if flat_zip %}
       <p>
         <a href="{% archive_url flat_zip.zip_archive.name is_latest=is_latest %}"
            class="btn btn-calaccess">
@@ -34,69 +32,62 @@
         </a>
         &nbsp; <span>{{ flat_zip.pretty_zip_size }} zip</span>
       </p>
-    <section class='sub-chapter'>
-      <h3>Available data</h3>
-      <div class="container-fluid">
-        <div class="row">
-        {% for file in flat_files %}
-          <div class='col-md-6'>
-            <h4>
-              {% if file.is_processed %}
-                <a href="{% url 'ccdc_file_detail' slug=file.name|slugify %}">{{ file.name }}</a>
-              {% else %}
-                {{ file.name }}
-              {% endif %}
-            </h4>
-            <p>{{ file.doc|first_line|safe }}</p>
+      <section class='sub-chapter'>
+        <h3>Available data</h3>
+        <div class="container">
+          <div class="row">
+          {% for file in flat_files %}
+            {% if file.is_processed %}
+              <div class='col-md-6'>
+                <h4><a href="{% url 'ccdc_file_detail' slug=file.name|slugify %}">{{ file.name }}</a></h4>
+                <p>{{ file.doc|first_line|safe }}</p>
+              </div>
+            {% elif file.coming_soon %}
+              <div class='col-md-6 unavailable'>
+                <h4>{{ file.name }} <span style="font-variant: small-caps;">coming soon</span></h4>
+                <p>{{ file.doc|first_line|safe }}</p>
+              </div>
+            {% else %}
+              <div class='col-md-6 unavailable'>
+                <h4 class='unavailable'>{{ file.name }}</h4>
+                <p>{{ file.doc|first_line|safe }}</p>
+              </div>
+            {% endif %}
+          {% endfor %}
           </div>
-        {% endfor %}
         </div>
-      </div>
-    </section>
-  {% else %}
-    <p>
-      The complete package of {{ object.download_file_count }} database tables released by California's Secretary of State, which we have cleaned up with {{ object.clean_record_count|intword }} rows of comma-separated values<sup><a href="#errata">*</a></sup>.
-    </p>
-    {% if object.clean_zip_archive %}
-      <p>
-          <a href="{% archive_url object.clean_zip_archive.name is_latest=is_latest %}"
-             class="btn btn-calaccess">
-              Download
-          </a>
-          &nbsp; <span>{{ object.pretty_clean_size }} zip</span>
-      </p>
+      </section>
     {% else %}
       <p><a class="btn btn-inactive">Unavailable</a>
     {% endif %}
-  {% endif %}
 </section>
 
-{% if relational_zip %}
 <section id="advanced" class="chapter">
-  <h2>Advanced usage</h2>
+  <h2>Advanced</h2>
   <p>
-      Prefer databases or want more control? We've refined the raw CAL-ACCESS data into easy-to-use tables you can load into any SQL database.
+    For those who prefer more control. Get the full set of our processed data tables, ready to load into any relational database manager. <a href="{% url 'ccdc_file_list' %}#relational">Learn more &raquo;</a>
   </p>
-  <p>
+  {% if relational_zip %}
+    <p>
       <a href="{% archive_url relational_zip.zip_archive.name is_latest=is_latest %}"
          class="btn btn-calaccess">
           Download
       </a>
       &nbsp; <span>{{ relational_zip.pretty_zip_size }} zip</span>
-  </p>
-  <p>
-      Alternatively, retrieve with <code>curl</code>.
-  </p>
-  <input type="text" class="download-link input-monospace"
-      value="$ curl -O {% archive_url relational_zip.zip_archive.name is_latest=is_latest %}"
-      readonly>
+    </p>
+    <p>Alternatively, retrieve with <code>curl</code>.</p>
+    <input type="text" class="download-link input-monospace"
+        value="$ curl -O {% archive_url relational_zip.zip_archive.name is_latest=is_latest %}"
+        readonly>
+  {% else %}
+    <p><a class="btn btn-inactive">Unavailable</a>
+  {% endif %}  
 </section>
-{% endif %}
 
 <section id="raw" class="chapter">
   <h2>Raw files</h2>
   <p>
-      The complete package of {{ object.download_file_count }} database tables released by California's Secretary of State, which we have cleaned up and converted into flat files with {{ object.clean_record_count|intword }} rows of comma-separated values<sup><a href="#errata">*</a></sup>.
+    For those with a masochistic edge. Get the complete package of {{ object.clean_file_count }} tables released by California's Secretary of State, cleaned and converted into {{ object.clean_record_count|intword }} rows of comma-separated values.
   </p>
   {% if object.clean_zip_archive %}
     <p>
@@ -116,18 +107,12 @@
     <p><a class="btn btn-inactive">Unavailable</a>
   {% endif %}
   {% if object.error_count %}
-    <h3>Errata</h3>
     <p>
        The raw data provided by the state contains errors in how some values are escaped, quoted and delimited. The result is a small number of records lost when we prepare files for download.
     </p>
     <p>
         However, those {{ object.error_count|intcomma }} lost records represent only {{ error_pct|floatformat:"5" }}% of the source data.
     </p>
-    {% if has_processed_version %}
-    <p>
-        Error logs are included in the <a href="#full-archive">full archive download</a> above. You can also download individual logs below.
-    </p>
-    {% endif %}
     {% include 'calaccess_website/error_list.html' %}
   {% endif %}
 </section>

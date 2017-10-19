@@ -134,8 +134,19 @@ class VersionDetail(BuildableDetailView, CalAccessModelListMixin):
                     'name': m().file_name,
                     'doc': m().doc,
                     'is_processed': self.object.processed_version.check_processed_model(m),
+                    'coming_soon': False
                 }
                 flat_files.append(flat_file)
+            # append coming soon files
+            for i in ['Committees', 'Contributions', 'Expenditures']:
+                flat_file = {
+                    'name': i,
+                    'doc': 'Every campaign finance %s recorded in CAL-ACCESS.' % i.strip('s').lower(),
+                    'is_processed': False,
+                    'coming_soon': True
+                }
+                flat_files.append(flat_file)
+
         return flat_files
 
     def get_url(self, obj):

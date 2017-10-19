@@ -26,12 +26,7 @@
 {% block top %}
     <h1>Archived download</h1>
     <p>
-        The {{ object.release_datetime|date:"l, N j, Y" }} release
-        of CAL-ACCESS database, the government database
-        that tracks campaign finance and lobbying activity in California politics.
-
-        It was published by state officials
-        at {{ object.release_datetime|date:"P" }}
+        Our archived release of California state campaign finance data, extracted from CAL-ACCESS on on {{ object.release_datetime|date:"l, N j, Y" }} at {{ object.release_datetime|date:"P" }}.
         <a href="{% url 'version_latest' %}">Latest release &raquo;</a>&nbsp;
         <a href="{% url 'version_archive_index' %}">Other past releases &raquo;</a>
     </p>
