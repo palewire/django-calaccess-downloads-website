@@ -172,7 +172,7 @@ class LatestVersion(VersionDetail):
         Return the latest object from the queryset every time.
         """
         try:
-            return self.get_queryset().latest("release_datetime")
+            return self.get_queryset().complete().latest("release_datetime")
         except self.queryset.model.DoesNotExist:
             raise Http404
 
