@@ -39,6 +39,11 @@
   {% for group in object_list %}
   <section id="{{ group.grouper|slugify }}">
     <h2>{{ group.grouper|capfirst }} files</h2>
+    {% if group.grouper == "Flat" %}
+        <p class="definition">Simple, all-in-one files for those who want to skip the SQL join queries.</p>
+    {% elif group.grouper == "Relational" %}
+        <p class="definition">Our full set of processed data in <a href='https://opencivicdata.readthedocs.io/en/latest/proposals/drafts/elections.html'>Open Civic Data</a> format and ready to load into any database manager.</p>
+    {% endif %}
     <table style="table-layout: fixed; width: 100%" class="table table-striped">
     <thead>
         <tr>

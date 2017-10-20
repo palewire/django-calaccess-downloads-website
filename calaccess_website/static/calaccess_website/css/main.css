@@ -646,3 +646,7 @@ and (max-width : 490px) {
     font-size: 18px;
     margin-bottom: 30px;
 }
+.definition {
+    text-indent: 2px;
+    font-size: 18px;
+}
