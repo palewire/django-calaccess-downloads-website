@@ -636,7 +636,7 @@ and (max-width : 490px) {
     padding-right: 40px;
     display: inline-block;
     width: auto;
-    min-width: 260px;
+    min-width: 275px;
 }
 .unavailable {
     opacity: 0.5;
