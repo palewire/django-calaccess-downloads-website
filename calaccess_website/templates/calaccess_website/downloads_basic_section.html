@@ -1,0 +1,17 @@
+{% load calaccess_website_tags %}
+<section id="basic" class="chapter">
+  <h2>Basic</h2>
+  <p>
+    For those who only want the essentials. Get the most simplified version of our processed data. This is a great place to start.
+  </p>
+  {% if flat_zip %}
+    <p>
+      <a href="{% archive_url flat_zip.zip_archive.name is_latest=is_latest %}" class="btn btn-calaccess">Download</a>
+      &nbsp; <span>{{ flat_zip.pretty_zip_size }} zip</span>
+    </p>
+</section>
+    {% include 'calaccess_website/available_data.html' %}
+  {% else %}
+    <p><a class="btn btn-inactive">Unavailable</a></p>
+</section>
+  {% endif %}

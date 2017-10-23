@@ -66,5 +66,15 @@ class RawDataVersionProxy(RawDataVersion):
         else:
             return True
 
+    @property
+    def processed_version_completed(self):
+        """
+        Check if the processed version completed.
+        """
+        if self.has_processed_version:
+            return self.processed_version.update_completed
+        else:
+            return False
+
     class Meta:
         proxy = True

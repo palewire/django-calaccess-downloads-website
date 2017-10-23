@@ -98,6 +98,7 @@ class VersionDetail(BuildableDetailView, CalAccessModelListMixin):
         """
         context = super(VersionDetail, self).get_context_data(**kwargs)
         context['has_processed_version'] = self.object.has_processed_version
+        context['processed_version_completed'] = self.object.processed_version_completed
 
         if context['has_processed_version']:
             context['flat_zip'] = self.object.flat_zip

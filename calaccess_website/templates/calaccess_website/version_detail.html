@@ -8,103 +8,14 @@
 
 {% block affix-nav %}
 <ul class="nav nav-stacked">
-  <li class="active"><a href="#basic">Basic</a></li>
-  <li><a href="#advanced">Advanced</a></li>
-  <li><a href="#raw">Raw files</a></li>
+  {% if processed_version_completed or is_latest %}
+    <li class="active"><a href="#basic">Basic</a></li>
+    <li><a href="#advanced">Advanced</a></li>
+  {% endif %}
+  <li {% if not processed_version_completed and not is_latest %}class="active"{% endif %}><a href="#raw">Raw files</a></li>
 </ul>
 {% endblock %}
 
 {% block javascript %}
 {% include 'calaccess_website/affix_nav_logic.html' %}
-{% endblock %}
-
-{% block content %}
-<section id="basic" class="chapter container">
-  <h2>Basic</h2>
-  <div class='row'>
-    <div class='col-md-9'>
-      <p>
-        For those who want only the essentials. Get the most simplified version of our processed data. This is a great place to start.
-      </p>
-  {% if flat_zip %}
-      <p>
-        <a href="{% archive_url flat_zip.zip_archive.name is_latest=is_latest %}"
-           class="btn btn-calaccess">
-            Download
-        </a>
-        &nbsp; <span>{{ flat_zip.pretty_zip_size }} zip</span>
-      </p>
-    </div>
-  </div>
-</section>
-    {% include 'calaccess_website/available_data.html' %}
-  {% else %}
-    <p><a class="btn btn-inactive">Unavailable</a></p>
-    </div>
-  </div>
-</section>
-  {% endif %}
-
-<section id="advanced" class="chapter container">
-  <h2>Advanced</h2>
-  <div class='row'>
-    <div class='col-md-9'>
-      <p>
-        For those who prefer more control. Get the full set of our processed data tables, ready to load into any relational database manager. <a href="{% url 'ccdc_file_list' %}#relational">Learn more &raquo;</a>
-      </p>
-  {% if relational_zip %}
-      <p>
-        <a href="{% archive_url relational_zip.zip_archive.name is_latest=is_latest %}"
-           class="btn btn-calaccess">
-            Download
-        </a>
-        &nbsp; <span>{{ relational_zip.pretty_zip_size }} zip</span>
-      </p>
-      <p>Alternatively, retrieve with <code>curl</code>.</p>
-      <input type="text" class="download-link input-monospace"
-          value="$ curl -O {% archive_url relational_zip.zip_archive.name is_latest=is_latest %}"
-          readonly>
-  {% else %}
-      <p><a class="btn btn-inactive">Unavailable</a></p>
-  {% endif %}
-    </div>
-  </div>
-</section>
-
-<section id="raw" class="chapter container">
-  <h2>Raw files</h2>
-  <div class='row'>
-    <div class='col-md-9'>
-      <p>
-        For those with a masochistic edge. Get the complete package of {{ object.clean_file_count }} tables released by California's Secretary of State, cleaned and converted into {{ object.clean_record_count|intword }} rows of comma-separated values.
-      </p>
-  {% if object.clean_zip_archive %}
-      <p>
-          <a href="{% archive_url object.clean_zip_archive.name is_latest=is_latest %}"
-             class="btn btn-calaccess">
-              Download
-          </a>
-          &nbsp; <span>{{ object.pretty_clean_size }} zip</span>
-      </p>
-      <p>
-          Alternatively, retrieve with <code>curl</code>.
-      </p>
-      <input type="text" class="download-link input-monospace"
-          value="$ curl -O {% archive_url object.clean_zip_archive.name is_latest=is_latest %}"
-          readonly>
-  {% else %}
-      <p><a class="btn btn-inactive">Unavailable</a></p>
-  {% endif %}
-  {% if object.error_count %}
-    <p>
-       The raw data provided by the state contains errors in how some values are escaped, quoted and delimited. The result is a small number of records lost when we prepare files for download.
-    </p>
-    <p>
-        However, those {{ object.error_count|intcomma }} lost records represent only {{ error_pct|floatformat:"5" }}% of the source data.
-    </p>
-    {% include 'calaccess_website/error_list.html' %}
-  {% endif %}
-    </div>
-  </div>
-</section>
 {% endblock %}
