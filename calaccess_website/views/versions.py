@@ -173,7 +173,7 @@ class LatestVersion(VersionDetail):
         """
         try:
             return self.get_queryset().complete().latest("release_datetime")
-        except self.queryset.model.DoesNotExist:
+        except self.model.DoesNotExist:
             raise Http404
 
     def get_context_data(self, **kwargs):
