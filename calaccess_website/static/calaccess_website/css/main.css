@@ -650,3 +650,6 @@ and (max-width : 490px) {
     text-indent: 2px;
     font-size: 18px;
 }
+#errors_button {
+    min-width: 124px;
+}
