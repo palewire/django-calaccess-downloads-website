@@ -37,7 +37,7 @@
 
 {% block content %}
   {% for group in object_list %}
-  <section id="{{ group.grouper|slugify }}">
+  <section id="{{ group.grouper|slugify }}" class='chapter'>
     <h2>{{ group.grouper|capfirst }} files</h2>
     {% if group.grouper == "Flat" %}
         <p class="definition">Simple, all-in-one files for those who want to skip the SQL join queries.</p>

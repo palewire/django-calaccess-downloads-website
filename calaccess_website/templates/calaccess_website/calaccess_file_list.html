@@ -37,7 +37,7 @@
 
 {% block content %}
   {% for group in object_list %}
-  <section id="{{ group.grouper|slugify }}">
+  <section id="{{ group.grouper|slugify }}" class="chapter">
     <h2>{{ group.grouper|capfirst }} files</h2>
     <table style="table-layout: fixed; width: 100%" class="table table-striped">
     <thead>

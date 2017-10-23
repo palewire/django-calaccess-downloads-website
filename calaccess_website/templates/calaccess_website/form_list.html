@@ -49,7 +49,7 @@
 
 {% block content %}
   {% for group in object_list %}
-  <section id="{{ group.grouper|slugify }}">
+  <section id="{{ group.grouper|slugify }}" class="chapter">
     <h2>{{ group.grouper|lower|capfirst }} forms</h2>
     <table class="table table-striped">
     <thead>
