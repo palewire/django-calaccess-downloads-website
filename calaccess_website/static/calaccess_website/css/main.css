@@ -639,6 +639,10 @@ and (max-width : 490px) {
     width: auto;
     min-width: 275px;
 }
+.container hr {
+    border-bottom: 1px solid #cccccc;
+    margin-bottom: 40px;
+}
 .unavailable {
     opacity: 0.5;
 }
