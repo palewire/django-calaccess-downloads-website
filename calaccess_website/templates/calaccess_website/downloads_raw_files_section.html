@@ -1,8 +1,8 @@
 {% load calaccess_website_tags humanize %}
 <section id="raw" class="chapter">
-  <h2>Raw files</h2>
+  <h2>Raw</h2>
   <p>
-    For those with a masochistic edge. Get the complete package of {{ object.clean_file_count }} tables released by California's Secretary of State, cleaned and converted into {{ object.clean_record_count|intword }} rows of comma-separated values.
+    For CAL-ACCESS experts only. The {{ object.clean_file_count }} jumbled, dirty and difficult tables released by the state cleaned and converted into {{ object.clean_record_count|intword }} rows. Use with caution.
   </p>
   {% if object.clean_zip_archive %}
     <p>
@@ -22,11 +22,9 @@
     <p><a class="btn btn-inactive">Unavailable</a></p>
   {% endif %}
   {% if object.error_count %}
+    <h3>Errata</h3>
     <p>
-       The raw data provided by the state contains errors in how some values are escaped, quoted and delimited. The result is a small number of records lost when we prepare files for download.
-    </p>
-    <p>
-        However, those {{ object.error_count|intcomma }} lost records represent only {{ error_pct|floatformat:"5" }}% of the source data.
+       The raw tables released by the state contain errors in how values are escaped, quoted and delimited. The result is a small number of records lost when we prepare files for download. However, those {{ object.error_count|intcomma }} lost records represent only {{ error_pct|floatformat:"5" }}% of the source data.
     </p>
     {% include 'calaccess_website/error_list.html' %}
   {% endif %}
