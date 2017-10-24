@@ -2,20 +2,20 @@
 {% load humanize calaccess_website_tags staticfiles %}
 
 {% block breadcrumbs %}
-{{ block.super }}
-<li><a href="{% url 'version_archive_index' %}">Downloads</a></li>
+    {{ block.super }}
+    <li><a href="{% url 'version_archive_index' %}">Downloads</a></li>
 {% endblock %}
 
 {% block affix-nav %}
-<ul class="nav nav-stacked">
-  {% if processed_version_completed or is_latest %}
-    <li class="active"><a href="#basic">Basic</a></li>
-    <li><a href="#advanced">Advanced</a></li>
-  {% endif %}
-  <li {% if not processed_version_completed and not is_latest %}class="active"{% endif %}><a href="#raw">Raw files</a></li>
-</ul>
+    <ul class="nav nav-stacked">
+      {% if processed_version_completed or is_latest %}
+        <li class="active"><a href="#basic">Basic</a></li>
+        <li><a href="#advanced">Advanced</a></li>
+      {% endif %}
+      <li {% if not processed_version_completed and not is_latest %}class="active"{% endif %}><a href="#raw">Raw files</a></li>
+    </ul>
 {% endblock %}
 
 {% block javascript %}
-{% include 'calaccess_website/affix_nav_logic.html' %}
+    {% include 'calaccess_website/affix_nav_logic.html' %}
 {% endblock %}
