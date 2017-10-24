@@ -97,6 +97,9 @@ class VersionDetail(BuildableDetailView, CalAccessModelListMixin):
         Add some extra bits to the template's context
         """
         context = super(VersionDetail, self).get_context_data(**kwargs)
+        context['date_string'] = dateformat(self.object.release_datetime, "N j, Y")
+        context['description'] = "The {} release of CAL-ACCESS database, the government database that tracks \
+campaign finance and lobbying activity in California politics.".format(context['date_string'])
         context['has_processed_version'] = self.object.has_processed_version
         context['processed_version_completed'] = self.object.processed_version_completed
 
