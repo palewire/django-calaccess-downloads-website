@@ -139,7 +139,7 @@ class VersionDetail(BuildableDetailView, CalAccessModelListMixin):
                 }
                 flat_files.append(flat_file)
             # append coming soon files
-            for i in ['Committees', 'Contributions', 'Expenditures', 'Filings']:
+            for i in ['Committees', 'Filings', 'Contributions', 'Expenditures']:
                 flat_file = {
                     'name': i,
                     'doc': 'Every campaign finance %s.' % i.strip('s').lower(),
