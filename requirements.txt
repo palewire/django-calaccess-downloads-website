@@ -1,5 +1,7 @@
 Django==1.10
-django-calaccess-raw-data==1.5.3rc
+django-calaccess-raw-data==1.6.1
+django-calaccess-scraped-data==0.1.0rc1
+django-calaccess-processed-data==0.1.0rc47
 psycopg2==2.6.1
 boto3==1.4
 django-storages
