@@ -183,6 +183,9 @@ class LatestVersion(VersionDetail):
         """
         context = super(LatestVersion, self).get_context_data(**kwargs)
         # A hint we can use in the template as a switch
+        context['title'] = 'Latest download'
+        context['description'] = 'The most recent release of CAL-ACCESS, the government database that tracks campaign \
+finance and lobbying activity in California politics.'
         context['is_latest'] = True
         return context
 

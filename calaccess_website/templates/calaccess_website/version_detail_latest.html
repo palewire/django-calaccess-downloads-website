@@ -1,30 +1,21 @@
 {% extends 'calaccess_website/version_detail.html' %}
 {% load humanize calaccess_website_tags staticfiles %}
 
-{% block title %}Latest download - {{ block.super }}{% endblock%}
+{% block title %}{{ title }} - {{ block.super }}{% endblock %}
+{% block description %}{{ description }}{% endblock %}
 
-{% block meta %}
-<meta property="og:site_name" content="{{ CALACCESS_WEBSITE_DOMAIN }}"/>
-<meta property="og:title" content="Latest download - {{ CALACCESS_WEBSITE_TITLE }}"/>
-<meta property="og:description" content="The most recent release of CAL-ACCESS, the government database that tracks campaign finance and lobbying activity in California politics."/>
-<meta property="og:url" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}{{ request.path }}" />
-<meta property="og:image" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}/static/calaccess_website/images/brown-bear-share.png"/>
-
-<meta property="twitter:site" content="@cacivicdata">
-<meta property="twitter:title" content="Latest download - {{ CALACCESS_WEBSITE_TITLE }}">
-<meta property="twitter:description" content="The most recent release of CAL-ACCESS, the government database that tracks campaign finance and lobbying activity in California politics."/>
-<meta property="twitter:url" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}{{ request.path }}" />
-<meta property="twitter:image:src" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}/static/calaccess_website/images/brown-bear-share.png">
-<meta property="twitter:card" content="summary_large_image">
-{% endblock %}
+{% block og-title %}{{ title }} - {{ block.super }}{% endblock %}
+{% block og-description %}{{ description }}{% endblock %}
+{% block twitter-title %}{{ title }} - Documentation - {{ block.super }}{% endblock %}
+{% block twitter-description %}{{ description }}{% endblock %}
 
 {% block breadcrumbs %}
-{{ block.super }}
-<li>Latest</li>
+    {{ block.super }}
+    <li>Latest</li>
 {% endblock %}
 
 {% block top %}
-    <h1>Latest download</h1>
+    <h1>{{ title }}</h1>
     <p>
         Our most recent release of California campaign finance data, extracted from CAL-ACCESS on {{ object.release_datetime|date:"l, N j, Y" }} at {{ object.release_datetime|date:"P" }}
     </p>
@@ -34,8 +25,7 @@
 {% endblock %}
 
 {% block content %}
-{% include 'calaccess_website/downloads_basic_section.html' %}
-{% include 'calaccess_website/downloads_advanced_section.html' %}
-{% include 'calaccess_website/downloads_raw_files_section.html' %}
-
+    {% include 'calaccess_website/downloads_basic_section.html' %}
+    {% include 'calaccess_website/downloads_advanced_section.html' %}
+    {% include 'calaccess_website/downloads_raw_files_section.html' %}
 {% endblock %}
