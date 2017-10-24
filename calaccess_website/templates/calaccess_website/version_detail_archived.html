@@ -17,7 +17,7 @@
 {% block top %}
     <h1>Archived download</h1>
     <p>
-        Our archived release of California campaign finance data, extracted from CAL-ACCESS on {{ object.release_datetime|date:"l, N j, Y" }} at {{ object.release_datetime|date:"P" }}
+        Our release of California campaign finance data, extracted {% if processed_version_completed %} and processed{% endif %} on {{ object.release_datetime|date:"l, N j, Y" }} at {{ object.release_datetime|date:"P" }}
     </p>
     <p>
         <a href="{% url 'version_latest' %}">Latest release &raquo;</a>&nbsp;
