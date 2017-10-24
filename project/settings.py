@@ -246,6 +246,16 @@ LOGGING = {
             'level': 'DEBUG',
             'propagate': True,
         },
+        'calaccess_scraped.management': {
+            'handlers': ['logfile', 'mail_admins'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+        'calaccess_processed.management': {
+            'handlers': ['logfile', 'mail_admins'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
         'calaccess_website.management': {
             'handlers': ['console', 'logfile'],
             'level': 'DEBUG',
