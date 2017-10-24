@@ -87,6 +87,7 @@ section.chapter {
 }
 .btn-calaccess,
 .btn-calaccess:focus {
+    margin: 10px 0;
     color: #ba0a35;
     border: 1px solid #ba0a35;
     background-color: transparent;
@@ -641,9 +642,21 @@ and (max-width : 490px) {
 .unavailable {
     opacity: 0.5;
 }
+.sub-chapter i.fa {
+    vertical-align: middle;
+    font-size:10px;
+    line-height: 18px;
+    margin-right: 3px;
+}
+.sub-chapter h4 span.hed {
+    vertical-align: middle;
+    font-size:18px;
+    line-height: 18px;
+}
 .sub-chapter p {
-    text-indent: 20px;
-    font-size: 18px;
+    text-indent: 17px;
+    font-size: 16px;
+    margin-top: 0px;
     margin-bottom: 30px;
 }
 .definition {
