@@ -1,6 +1,7 @@
 from itertools import groupby
 from calaccess_raw.models import RawDataFile
 from calaccess_raw.annotations import FilingForm
+from calaccess_processed.models import ProcessedDataFile
 
 
 class CalAccessModelListMixin(object):
@@ -8,8 +9,11 @@ class CalAccessModelListMixin(object):
     Processes lists of CAL-ACCESS models to be better organized.
     """
     def get_klass_group(self, model_or_obj):
-        # If it's a RawDataFile do our trick
-        if isinstance(model_or_obj, RawDataFile):
+        # If it's a RawDataFile or ProcessedDataFile do our trick
+        if (
+            isinstance(model_or_obj, RawDataFile)
+            or isinstance(model_or_obj, ProcessedDataFile)
+        ):
             return model_or_obj.model().klass_group
         # If it's a FilingForm also do our trick
         elif isinstance(model_or_obj, FilingForm):
@@ -35,17 +39,21 @@ class CalAccessModelListMixin(object):
         Accepts a model list and returns them regrouped by klass_group
         """
         # First sort by the klass group
-        l = sorted(model_list, key=lambda obj: self.get_klass_group(obj))
+        sorted_list = sorted(
+            model_list, key=lambda obj: self.get_klass_group(obj)
+        )
 
         # Group the model list by klass_group
-        l = [
+        grouped_list = [
             {'grouper': key, 'list': list(val)}
             for key, val in
-            groupby(l, lambda obj: self.get_klass_group(obj))
+            groupby(sorted_list, lambda obj: self.get_klass_group(obj))
         ]
 
         # Sort the inactive and deprecated models to the end
-        l = sorted(l, key=lambda d: self.sort_klass_group(d['grouper']))
+        resorted_groups = sorted(
+            grouped_list, key=lambda d: self.sort_klass_group(d['grouper'])
+        )
 
         # Return the list
-        return l
+        return resorted_groups
