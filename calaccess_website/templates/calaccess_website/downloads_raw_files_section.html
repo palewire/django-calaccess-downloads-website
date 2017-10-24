@@ -2,7 +2,7 @@
 <section id="raw" class="chapter">
   <h2>Raw files</h2>
   <p>
-    For CAL-ACCESS experts. The {{ object.clean_file_count }} jumbled, dirty and difficult tables released by the state cleaned and converted into {{ object.clean_record_count|intword }} rows. Use with caution.
+    For CAL-ACCESS experts. The {{ object.clean_file_count }} jumbled, dirty and difficult tables released by the state cleaned and converted into {{ object.clean_record_count|intword }} rows. Use with caution. <a href="{% url 'calaccess_file_list' %}">Learn more &raquo;</a>
   </p>
   {% if object.clean_zip_archive %}
     <p>
@@ -20,12 +20,5 @@
         readonly>
   {% else %}
     <p><a class="btn btn-inactive">Unavailable</a></p>
-  {% endif %}
-  {% if object.error_count %}
-    <h3>Errata</h3>
-    <p>
-       The raw tables released by the state contain errors in how values are escaped, quoted and delimited. The result is a small number of records lost when we prepare files for download. However, those {{ object.error_count|intcomma }} lost records represent only {{ error_pct|floatformat:"5" }}% of the source data.
-    </p>
-    {% include 'calaccess_website/error_list.html' %}
   {% endif %}
 </section>
