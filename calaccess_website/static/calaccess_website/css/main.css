@@ -614,7 +614,7 @@ and (max-width : 490px) {
         font-size: 24px;
     }
 }
-.chapter h2 {
+.downloads .chapter h2 {
     border-bottom: 1px solid #ba0a35;
     padding-bottom: 5px;
     padding-right: 40px;
@@ -622,14 +622,14 @@ and (max-width : 490px) {
     width: auto;
     min-width: 275px;
 }
-.chapter p {
+.downloads .chapter p {
     margin-top: 15px;
     margin-bottom: 25px;
 }
-.sub-chapter {
+.downloads .sub-chapter {
     background-color: rgb(248, 248, 248);
 }
-.sub-chapter h3 {
+.downloads .sub-chapter h3 {
     margin-top: 20px;
     margin-bottom: 20px;
     border-bottom: 1px solid #cccccc;
@@ -639,25 +639,25 @@ and (max-width : 490px) {
     width: auto;
     min-width: 275px;
 }
-.container hr {
+.downloads hr {
     border-bottom: 1px solid #cccccc;
     margin-bottom: 40px;
 }
 .unavailable {
     opacity: 0.5;
 }
-.sub-chapter i.fa {
+.downloads .sub-chapter i.fa {
     vertical-align: middle;
     font-size:10px;
     line-height: 18px;
     margin-right: 3px;
 }
-.sub-chapter h4 span.hed {
+.downloads .sub-chapter h4 span.hed {
     vertical-align: middle;
     font-size:18px;
     line-height: 18px;
 }
-.sub-chapter p {
+.downloads .sub-chapter p {
     text-indent: 17px;
     font-size: 16px;
     margin-top: 0px;

@@ -22,9 +22,11 @@
 {% endblock %}
 
 {% block content %}
+<div class="downloads">
     {% include 'calaccess_website/downloads_basic_section.html' %}
     {% include 'calaccess_website/downloads_advanced_section.html' %}
-    <hr>
+    <hr class="downloads">
     {% include 'calaccess_website/downloads_raw_files_section.html' %}
     {% include 'calaccess_website/downloads_errata_section.html' %}
+</div>
 {% endblock %}
