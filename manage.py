@@ -21,8 +21,9 @@ if __name__ == "__main__":
 
     # If the env doesn't exist, throw an error
     if not cp.has_section(cp_sect):
-        raise EnvironmentError("No [{0}] section found in .env file (run "
-            "`fab createconfig).".format(cp_sect))
+        raise EnvironmentError(
+            "No [{0}] section found in .env file (run `fab createconfig).".format(cp_sect)
+        )
 
     # Load the files variables into the environment
     for i in cp.items(os.getenv("CALACCESS_WEBSITE_ENV").upper()):
