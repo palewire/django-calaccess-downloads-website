@@ -34,6 +34,7 @@ class Command(updatecommand):
         """
         super(Command, self).handle(*args, **options)
 
+        call_command('processcalaccessdata')
         self.header('Creating latest file links')
         call_command('createlatestlinks')
         self.header('Baking downloads-website content')
