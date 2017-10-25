@@ -135,7 +135,7 @@ campaign finance and lobbying activity in California politics.".format(context['
             ]
             for m in flat_models:
                 flat_file = {
-                    'name': m().file_name,
+                    'name': m()._meta.verbose_name_plural,
                     'doc': m().doc.replace(".", ""),
                     'is_processed': self.object.processed_version.check_processed_model(m),
                     'coming_soon': False

@@ -8,7 +8,7 @@
           <h4 style="display: inline-block;">
             <a href="{% url 'ccdc_file_detail' slug=file.name|slugify %}">
                 <i class="fa fa-stop"></i>
-                <span class="hed">{{ file.name }}</span>
+                <span class="hed">{{ file.name|capfirst }}</span>
             </a>
           </h4>
           <p>{{ file.doc|first_line|safe }}</p>
@@ -17,14 +17,14 @@
         <div class='col-sm-6 col-md-5 unavailable'>
           <h4>
             <i class="fa fa-stop"></i>
-            <span class="hed">{{ file.name }}</span> <span class="hed--coming-soon">coming soon</span>
+            <span class="hed">{{ file.name|capfirst }}</span> <span class="hed--coming-soon">coming soon</span>
           </h4>
           <p>{{ file.doc|first_line|safe }}</p>
         </div>
       {% else %}
         <div class='col-sm-6 col-md-5 unavailable'>
           <h4 class='unavailable'>
-            <i class="fa fa-stop"></i>  {{ file.name }}
+            <i class="fa fa-stop"></i>{{ file.name|capfirst }}
           </h4>
           <p>{{ file.doc|first_line|safe }}</p>
         </div>
