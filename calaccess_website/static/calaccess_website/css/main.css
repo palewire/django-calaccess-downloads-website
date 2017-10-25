@@ -685,8 +685,6 @@ and (max-width : 490px) {
 #errors_button {
     min-width: 124px;
 }
-@media (min-width: 1200px) {
-    .basic-container{
-        width: 100%;
-    }
+.basic-container{
+    width: 100%;
 }
