@@ -21,12 +21,22 @@
     </p>
 {% endblock %}
 
-{% block content %}
-<div class="downloads">
+{% block first-content-block %}
     {% include 'calaccess_website/downloads_basic_section.html' %}
-    {% include 'calaccess_website/downloads_advanced_section.html' %}
-    <hr>
-    {% include 'calaccess_website/downloads_raw_files_section.html' %}
-    {% include 'calaccess_website/downloads_errata_section.html' %}
-</div>
+{% endblock %}
+
+{% block second-content-block %}
+    {% if flat_zip %}
+    <div class="container">
+        {% include 'calaccess_website/available_data.html' %}
+    </div>
+    {% endif %}
+    <div class="container">
+        <div class="col-md-9">
+            {% include 'calaccess_website/downloads_advanced_section.html' %}
+            <hr>
+            {% include 'calaccess_website/downloads_raw_files_section.html' %}
+            {% include 'calaccess_website/downloads_errata_section.html' %}
+        </div>
+    </div>
 {% endblock %}

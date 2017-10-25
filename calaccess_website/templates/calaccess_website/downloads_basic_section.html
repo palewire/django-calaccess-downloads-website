@@ -9,7 +9,6 @@
     <a href="{% archive_url flat_zip.zip_archive.name is_latest=is_latest %}" class="btn btn-calaccess">Download</a>
     &nbsp; <span>{{ flat_zip.pretty_zip_size }} zip</span>
   </p>
-    {% include 'calaccess_website/available_data.html' %}
   {% else %}
     <p><a class="btn btn-inactive">Unavailable</a></p>
   {% endif %}
