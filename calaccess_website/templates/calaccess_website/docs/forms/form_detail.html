@@ -48,7 +48,7 @@
 {% endblock %}
 
 {% block content %}
-
+<article class="file-detail">
 {% if form.description %}
 <section id="description" class="chapter">
     <h2>Description</h2>
@@ -127,5 +127,5 @@
     {% documentcloud_embed form.documentcloud.id %}
   </section>
 {% endif %}
-
+</article>
 {% endblock %}
