@@ -615,10 +615,10 @@ and (max-width : 490px) {
         font-size: 24px;
     }
 }
-.downloads #affix-nav {
+#affix-nav {
     margin-top: 30px;
 }
-.downloads .chapter h2 {
+.chapter h2 {
     border-bottom: 1px solid #ba0a35;
     padding-bottom: 5px;
     padding-right: 40px;
