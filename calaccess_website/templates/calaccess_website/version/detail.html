@@ -6,10 +6,6 @@
     <li><a href="{% url 'version_archive_index' %}">Downloads</a></li>
 {% endblock %}
 
-{% block javascript %}
-    {% include 'calaccess_website/nav.html' %}
-{% endblock %}
-
 {% block content-container %}
 <div class="downloads">
     <div class="container">
@@ -28,6 +24,7 @@
                           <li {% if not processed_version_completed and not is_latest %}class="active"{% endif %}><a href="#raw">Raw files</a></li>
                           <li><a href="#errata">Errata</a></li>
                         </ul>
+                        {% include 'calaccess_website/nav.html' %}
                     {% endblock %}
                 </nav>
             </div>

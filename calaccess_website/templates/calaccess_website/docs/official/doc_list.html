@@ -9,9 +9,9 @@
 {% block twitter-description %}{{ description }}{% endblock %}
 
 {% block breadcrumbs %}
-{{ block.super }}
-<li><a href="{% url 'docs_index' %}">Documentation</a></li>
-<li>{{ title }}</li>
+    {{ block.super }}
+    <li><a href="{% url 'docs_index' %}">Documentation</a></li>
+    <li>{{ title }}</li>
 {% endblock %}
 
 {% block top %}
