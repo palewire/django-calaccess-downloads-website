@@ -626,7 +626,8 @@ and (max-width : 490px) {
     width: auto;
     min-width: 275px;
 }
-.downloads .chapter p {
+.downloads .chapter p,
+.file-detail .chapter p {
     margin-top: 15px;
     margin-bottom: 25px;
 }

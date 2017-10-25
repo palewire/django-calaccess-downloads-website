@@ -24,15 +24,11 @@
 {% block affix-nav %}
 <ul class="nav nav-stacked">
     <li class="active"><a href="#latest-download">Latest download</a></li>
-
     {% if not empty %}
     <li><a href="#sample">Sample</a></li>
     {% endif %}
-
     <li><a href="#fields">Fields</a></li>
-
     {% if version_list %}
-
         {% with version_list.0 as latest_file %}
         {% if latest_file.error_count %}
         <li><a href="#errata">Errata</a></li>
@@ -40,17 +36,13 @@
         {% endwith %}
 
         <li><a href="#archive">Archive</a></li>
-
     {% endif %}
-
 </ul>
-{% endblock %}
-
-{% block javascript %}
-  {% include 'calaccess_website/nav.html' %}
+{% include 'calaccess_website/nav.html' %}
 {% endblock %}
 
 {% block content %}
+<article class="file-detail">
 <section id="latest-download" class="chapter">
   <h2>Latest download</h2>
     {% if version_list.0 %}
@@ -168,5 +160,5 @@
         </table>
     </section>
 {% endif %}
-
+</article>
 {% endblock %}
