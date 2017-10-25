@@ -1,9 +1,9 @@
 {% extends 'calaccess_website/base_with_top.html' %}
 {% load humanize calaccess_website_tags %}
 
-{% block title %}{% if object.is_flat %}{{ verbose_name_plural }}{% else %}{{ object.file_name }}{% endif %} - Processed files - Documentation - {{ block.super }}{% endblock %}
-{% block og-title %}{% if object.is_flat %}{{ verbose_name_plural }}{% else %}{{ object.file_name }}{% endif %} - Processed files - Documentation - {{ block.super }}{% endblock %}
-{% block twitter-title %}{% if object.is_flat %}{{ verbose_name_plural }}{% else %}{{ object.file_name }}{% endif %} - Processed files - Documentation - {{ block.super }}{% endblock %}
+{% block title %}{{ object.model.display_name }} - Processed files - Documentation - {{ block.super }}{% endblock %}
+{% block og-title %}{{ object.model.display_name }} - Processed files - Documentation - {{ block.super }}{% endblock %}
+{% block twitter-title %}{{ object.model.display_name }} - Processed files - Documentation - {{ block.super }}{% endblock %}
 
 {% block description %}{{ object.doc.strip|first_line|striptags }}{% endblock %}
 {% block og-description %}{{ object.doc.strip|first_line|striptags }}{% endblock %}
@@ -13,11 +13,11 @@
     {{ block.super }}
     <li><a href="{% url 'docs_index' %}">Documentation</a></li>
     <li><a href="{% url 'ccdc_file_list' %}">Processed files</a></li>
-    <li>{% if object.is_flat %}{{ verbose_name_plural }}{% else %}{{ object.file_name }}{% endif %}</li>
+    <li>{{ object.model.display_name }}</li>
 {% endblock %}
 
 {% block top %}
-  <h1 class="break">{% if object.is_flat %}{{ verbose_name_plural }}{% else %}{{ object.file_name }}{% endif %}</h1>
+  <h1 class="break">{{ object.model.display_name }}</h1>
   <p>{{ object.model.doc.strip|first_line|safe }}</p>
 {% endblock %}
 
