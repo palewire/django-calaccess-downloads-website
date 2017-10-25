@@ -1,22 +1,13 @@
 {% extends 'calaccess_website/base_with_top.html' %}
 {% load calaccess_website_tags humanize %}
 
-{% block title %}Downloads - {{ block.super }}{% endblock%}
+{% block title %}Downloads - {{ block.super }}{% endblock %}
+{% block description %}The last {{ latest|length|apnumber }} release{{ latest|length|pluralize }} of CAL-ACCESS, the government database that tracks campaign finance and lobbying activity in California politics.{% endblock %}
 
-{% block meta %}
-<meta property="og:site_name" content="{{ CALACCESS_WEBSITE_DOMAIN }}"/>
-<meta property="og:title" content="Downloads - {{ CALACCESS_WEBSITE_TITLE }}"/>
-<meta property="og:description" content="The last {{ latest|length|apnumber }} release{{ latest|length|pluralize }} of CAL-ACCESS, the government database that tracks campaign finance and lobbying activity in California politics."/>
-<meta property="og:url" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}{{ request.path }}" />
-<meta property="og:image" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}/static/calaccess_website/images/brown-bear-share.png"/>
-
-<meta property="twitter:site" content="@cacivicdata">
-<meta property="twitter:title" content="Downloads - {{ CALACCESS_WEBSITE_TITLE }}">
-<meta property="twitter:description" content="The last {{ latest|length|apnumber }} release{{ latest|length|pluralize }} of CAL-ACCESS, the government database that tracks campaign finance and lobbying activity in California politics."/>
-<meta property="twitter:url" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}{{ request.path }}" />
-<meta property="twitter:image:src" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}/static/calaccess_website/images/brown-bear-share.png">
-<meta property="twitter:card" content="summary_large_image">
-{% endblock %}
+{% block og-title %}Downloads - {{ block.super }}{% endblock %}
+{% block og-description %}The last {{ latest|length|apnumber }} release{{ latest|length|pluralize }} of CAL-ACCESS, the government database that tracks campaign finance and lobbying activity in California politics.{% endblock %}
+{% block twitter-title %}Downloads - {{ block.super }}{% endblock %}
+{% block twitter-description %}The last {{ latest|length|apnumber }} release{{ latest|length|pluralize }} of CAL-ACCESS, the government database that tracks campaign finance and lobbying activity in California politics.{% endblock %}
 
 {% block breadcrumbs %}
 {{ block.super }}
@@ -62,7 +53,7 @@
     <tfoot>
     <tr>
         <td colspan=2>
-            Browse all by year: {% for date in date_list %}<a href="{% url 'version_archive_year' date.year %}">{{ date.year }}</a>{% if not forloop.last %},{% endif %}{% endfor %}
+            Browse all by year: {% for date in date_list %}<a href="{% url 'version_archive_year' date.year %}">{{ date.year }}</a>{% if not forloop.last %}, {% endif %}{% endfor %}
         </td>
     </tfoot>
 </table>
