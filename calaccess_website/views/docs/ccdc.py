@@ -1,6 +1,7 @@
 from django.apps import apps
-from django.core.urlresolvers import reverse
 from django.http import Http404
+from django.core.urlresolvers import reverse
+from django.template.defaultfilters import capfirst
 from calaccess_processed.models import ProcessedDataFile
 from calaccess_processed.models.proxies import opencivicdata
 from calaccess_website.views import CalAccessModelListMixin
@@ -107,6 +108,10 @@ class BaseFileDetailView(BuildableDetailView):
             context['empty'] = context['version_list'][0].records_count == 0
         except IndexError:
             context['empty'] = True
+
+        # Get objects verbose name
+        context['verbose_name_plural'] = capfirst(self.object.model._meta.verbose_name_plural)
+
         return context
 
     def build_queryset(self):

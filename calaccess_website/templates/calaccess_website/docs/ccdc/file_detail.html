@@ -1,38 +1,23 @@
 {% extends 'calaccess_website/base_with_top.html' %}
 {% load humanize calaccess_website_tags %}
 
-{% block title %}{{ object.file_name }} - Processed files - Documentation - {{ block.super }}{% endblock %}
-{% block og-title %}{{ object.file_name }} - Processed files - Documentation - {{ block.super }}{% endblock %}
-{% block twitter-title %}{{ object.file_name }} - Processed files - Documentation - {{ block.super }}{% endblock %}
+{% block title %}{% if object.is_flat %}{{ verbose_name_plural }}{% else %}{{ object.file_name }}{% endif %} - Processed files - Documentation - {{ block.super }}{% endblock %}
+{% block og-title %}{% if object.is_flat %}{{ verbose_name_plural }}{% else %}{{ object.file_name }}{% endif %} - Processed files - Documentation - {{ block.super }}{% endblock %}
+{% block twitter-title %}{% if object.is_flat %}{{ verbose_name_plural }}{% else %}{{ object.file_name }}{% endif %} - Processed files - Documentation - {{ block.super }}{% endblock %}
 
 {% block description %}{{ object.doc.strip|first_line|striptags }}{% endblock %}
 {% block og-description %}{{ object.doc.strip|first_line|striptags }}{% endblock %}
 {% block twitter-description %}{{ object.doc.strip|first_line|striptags }}{% endblock %}
 
-{% block meta %}
-<meta property="og:site_name" content="{{ CALACCESS_WEBSITE_DOMAIN }}"/>
-<meta property="og:title" content=""/>
-<meta property="og:description" content=""/>
-<meta property="og:url" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}{{ request.path }}" />
-<meta property="og:image" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}/static/calaccess_website/images/brown-bear-share.png"/>
-
-<meta property="twitter:site" content="@cacivicdata">
-<meta property="twitter:title" content="{{ object.file_name }} - Processed files - Documentation - {{ CALACCESS_WEBSITE_TITLE }}">
-<meta property="twitter:description" content="{{ object.doc.strip|first_line|striptags }}"/>
-<meta property="twitter:url" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}{{ request.path }}" />
-<meta property="twitter:image:src" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}/static/calaccess_website/images/brown-bear-share.png">
-<meta property="twitter:card" content="summary_large_image">
-{% endblock %}
-
 {% block breadcrumbs %}
-{{ block.super }}
-<li><a href="{% url 'docs_index' %}">Documentation</a></li>
-<li><a href="{% url 'ccdc_file_list' %}">Processed files</a></li>
-<li>{{ object.file_name }}</li>
+    {{ block.super }}
+    <li><a href="{% url 'docs_index' %}">Documentation</a></li>
+    <li><a href="{% url 'ccdc_file_list' %}">Processed files</a></li>
+    <li>{% if object.is_flat %}{{ verbose_name_plural }}{% else %}{{ object.file_name }}{% endif %}</li>
 {% endblock %}
 
 {% block top %}
-  <h1 class="break">{{ object.file_name }}</h1>
+  <h1 class="break">{% if object.is_flat %}{{ verbose_name_plural }}{% else %}{{ object.file_name }}{% endif %}</h1>
   <p>{{ object.model.doc.strip|first_line|safe }}</p>
 {% endblock %}
 
