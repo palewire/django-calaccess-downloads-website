@@ -20,7 +20,7 @@ class VersionArchiveIndex(BuildableArchiveIndexView):
     """
     model = RawDataVersionProxy
     date_field = "release_datetime"
-    template_name = "calaccess_website/version_archive.html"
+    template_name = "calaccess_website/version/archive.html"
     build_path = "downloads/index.html"
 
 
@@ -31,7 +31,7 @@ class VersionYearArchiveList(BuildableYearArchiveView):
     model = RawDataVersionProxy
     date_field = "release_datetime"
     make_object_list = False
-    template_name = "calaccess_website/version_archive_year.html"
+    template_name = "calaccess_website/version/archive_year.html"
 
     def get_url(self):
         return reverse(
@@ -48,7 +48,7 @@ class VersionMonthArchiveList(BuildableMonthArchiveView):
     date_field = "release_datetime"
     month_format = "%m"
     make_object_list = True
-    template_name = "calaccess_website/version_archive_month.html"
+    template_name = "calaccess_website/version/archive_month.html"
 
     def get_url(self):
         return reverse(
@@ -65,7 +65,7 @@ class VersionDetail(BuildableDetailView, CalAccessModelListMixin):
     A detail page with everything about an individual CAL-ACCESS version
     """
     model = RawDataVersionProxy
-    template_name = 'calaccess_website/version_detail_archived.html'
+    template_name = 'calaccess_website/version/detail_archived.html'
 
     def set_kwargs(self, obj):
         super(VersionDetail, self).set_kwargs(obj)
@@ -169,7 +169,7 @@ class LatestVersion(VersionDetail):
     """
     Detail page of the latest CAL-ACCESS version
     """
-    template_name = 'calaccess_website/version_detail_latest.html'
+    template_name = 'calaccess_website/version/detail_latest.html'
 
     def get_object(self, **kwargs):
         """

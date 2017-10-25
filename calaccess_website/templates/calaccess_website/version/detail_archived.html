@@ -1,4 +1,4 @@
-{% extends 'calaccess_website/version_detail.html' %}
+{% extends 'calaccess_website/version/detail.html' %}
 {% load humanize calaccess_website_tags staticfiles %}
 
 {% block title %}Downloads - {{ date_string }} - {{ block.super }}{% endblock%}
@@ -27,9 +27,9 @@
 
 {% block content %}
     {% if processed_version_completed %}
-      {% include 'calaccess_website/downloads_basic_section.html' %}
-      {% include 'calaccess_website/downloads_advanced_section.html' %}
-      {% include 'calaccess_website/downloads_raw_files_section.html' %}
+    {% include 'calaccess_website/version/sections/basic.html' %}
+    {% include 'calaccess_website/version/sections/advanced.html' %}
+    {% include 'calaccess_website/version/sections/raw.html' %}
     {% else %}
     <section id="raw" class="chapter">
       <h2>Raw files</h2>
