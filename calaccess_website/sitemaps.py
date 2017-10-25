@@ -2,7 +2,7 @@ from bakery.views import BuildableListView
 from calaccess_raw import get_model_list
 from calaccess_raw.models import RawDataVersion
 from calaccess_raw.annotations.filing_forms import all_filing_forms
-from calaccess_website.views.docs.ccdc_files import get_processed_data_files
+from calaccess_website.views.docs.ccdc import get_processed_data_files
 
 
 class AbstractSitemapView(BuildableListView):
