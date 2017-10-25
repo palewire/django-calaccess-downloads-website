@@ -1,4 +1,4 @@
-Django==1.10
+Django==1.11.6
 django-calaccess-raw-data==1.6.1
 django-calaccess-scraped-data==0.1.0rc0
 -e git+https://github.com/california-civic-data-coalition/django-calaccess-processed-data.git@HEAD#egg=django-calaccess-processed-data
