@@ -7,7 +7,7 @@ from bakery.views import BuildableDetailView, BuildableListView
 
 
 class FormList(BuildableListView, CalAccessModelListMixin):
-    template_name = 'calaccess_website/form_list.html'
+    template_name = 'calaccess_website/docs/forms/form_list.html'
     build_path = "documentation/calaccess-forms/index.html"
 
     def get_queryset(self):
@@ -26,7 +26,7 @@ class FormDetail(BuildableDetailView):
     """
     A detail page with everything we know about the provided filing form.
     """
-    template_name = 'calaccess_website/form_detail.html'
+    template_name = 'calaccess_website/docs/forms/form_detail.html'
     context_object_name = 'form'
 
     def get_queryset(self):

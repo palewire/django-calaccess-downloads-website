@@ -8,7 +8,7 @@ from calaccess_website.templatetags.calaccess_website_tags import slugify
 
 
 class CalAccessFileList(BuildableListView, CalAccessModelListMixin):
-    template_name = 'calaccess_website/calaccess_file_list.html'
+    template_name = 'calaccess_website/docs/calaccess/file_list.html'
     build_path = "documentation/raw-files/index.html"
 
     def get_queryset(self):
@@ -83,7 +83,7 @@ class CalAccessFileDownloadsList(BaseFileDetailView):
     """
     A detail page with links to all downloads for the provided raw data file.
     """
-    template_name = 'calaccess_website/calaccess_file_downloads_list.html'
+    template_name = 'calaccess_website/docs/calaccess/download_list.html'
 
     def get_url(self, obj):
         return reverse('calaccess_file_downloads_list', kwargs=dict(slug=obj))
@@ -93,7 +93,7 @@ class CalAccessFileDetail(BaseFileDetailView):
     """
     A detail page with all documentation for the provided raw data file.
     """
-    template_name = 'calaccess_website/calaccess_file_detail.html'
+    template_name = 'calaccess_website/docs/calaccess/file_detail.html'
 
     def get_url(self, obj):
         return reverse('calaccess_file_detail', kwargs=dict(slug=obj))

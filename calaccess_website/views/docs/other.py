@@ -9,7 +9,7 @@ class DocumentationIndex(BuildableTemplateView):
     An index page for linking to all of our documentation sections
     """
     build_path = "documentation/index.html"
-    template_name = "calaccess_website/documentation_index.html"
+    template_name = "calaccess_website/docs/index.html"
 
     def get_context_data(self):
         model_list = calaccess_raw.get_model_list()
@@ -66,4 +66,4 @@ class FAQ(BuildableTemplateView):
     Frequently asked questions.
     """
     build_path = "documentation/frequently-asked-questions/index.html"
-    template_name = "calaccess_website/faq_detail.html"
+    template_name = "calaccess_website/docs/faq/question_list.html"

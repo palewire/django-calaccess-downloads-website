@@ -1,15 +1,15 @@
-from .calaccess_files import (
+from .calaccess import (
     CalAccessFileList,
     CalAccessFileDetail,
     CalAccessFileDownloadsList,
 )
-from .ccdc_files import (
+from .ccdc import (
     CcdcFileList,
     CcdcFileDetail,
     CcdcFileDownloadsList,
 )
-from .calaccess_forms import FormList, FormDetail
-from .calaccess_official import OfficialDocumentation
+from .forms import FormList, FormDetail
+from .official import OfficialDocumentation
 from .other import DocumentationIndex, FAQ
 
 

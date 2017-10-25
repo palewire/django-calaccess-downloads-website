@@ -37,7 +37,7 @@ def get_processed_data_files():
 
 
 class CcdcFileList(BuildableListView, CalAccessModelListMixin):
-    template_name = 'calaccess_website/ccdc_file_list.html'
+    template_name = 'calaccess_website/docs/ccdc/file_list.html'
     build_path = "documentation/processed-files/index.html"
 
     def get_queryset(self):
@@ -117,7 +117,7 @@ class CcdcFileDownloadsList(BaseFileDetailView):
     """
     A detail page with links to all downloads for the provided CCDC data file.
     """
-    template_name = 'calaccess_website/ccdc_file_downloads_list.html'
+    template_name = 'calaccess_website/docs/ccdc/download_list.html'
 
     def get_url(self, obj):
         return reverse('ccdc_file_downloads_list', kwargs=dict(slug=obj))
@@ -127,7 +127,7 @@ class CcdcFileDetail(BaseFileDetailView):
     """
     A detail page with all documentation for the provided CCDC data file.
     """
-    template_name = 'calaccess_website/ccdc_file_detail.html'
+    template_name = 'calaccess_website/docs/ccdc/file_detail.html'
 
     def get_url(self, obj):
         return reverse('ccdc_file_detail', kwargs=dict(slug=obj))
