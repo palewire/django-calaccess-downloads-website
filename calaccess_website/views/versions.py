@@ -136,7 +136,7 @@ campaign finance and lobbying activity in California politics.".format(context['
             for m in flat_models:
                 flat_file = {
                     'name': m().file_name,
-                    'doc': m().doc,
+                    'doc': m().doc.replace(".", ""),
                     'is_processed': self.object.processed_version.check_processed_model(m),
                     'coming_soon': False
                 }
@@ -145,7 +145,7 @@ campaign finance and lobbying activity in California politics.".format(context['
             for i in ['Committees', 'Filings', 'Contributions', 'Expenditures']:
                 flat_file = {
                     'name': i,
-                    'doc': 'Every campaign finance %s.' % i.strip('s').lower(),
+                    'doc': 'Every campaign %s' % i.strip('s').lower(),
                     'is_processed': False,
                     'coming_soon': True
                 }
