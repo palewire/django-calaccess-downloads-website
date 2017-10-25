@@ -2,7 +2,7 @@
 {% load humanize calaccess_website_tags %}
 
 {% block title %}{{ title }} - Documentation - {{ block.super }}{% endblock%}
-
+{% block description %}{{ description }}{% endblock %}
 {% block og-title %}{{ title }} - Documentation - {{ block.super }}{% endblock %}
 {% block og-description %}{{ description }}{% endblock %}
 {% block twitter-title %}{{ title }} - Documentation - {{ block.super }}{% endblock %}

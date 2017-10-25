@@ -1,22 +1,13 @@
 {% extends 'calaccess_website/base_with_top.html' %}
 {% load humanize calaccess_website_tags %}
 
-{% block title %}{{ object.db_table }} - CAL-ACCESS files - Documentation - {{ block.super }}{% endblock%}
+{% block title %}{{ object.db_table }} - CAL-ACCESS files - Documentation - {{ block.super }}{% endblock %}
+{% block og-title %}{{ object.db_table }} - CAL-ACCESS files - Documentation - {{ block.super }}{% endblock %}
+{% block twitter-title %}{{ object.db_table }} - CAL-ACCESS files - Documentation - {{ block.super }}{% endblock %}
 
-{% block meta %}
-<meta property="og:site_name" content="{{ CALACCESS_WEBSITE_DOMAIN }}"/>
-<meta property="og:title" content="{{ object.db_table }} - CAL-ACCESS files - Documentation - {{ CALACCESS_WEBSITE_TITLE }}"/>
-<meta property="og:description" content="{{ object.doc.strip|first_line|striptags }}"/>
-<meta property="og:url" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}{{ request.path }}" />
-<meta property="og:image" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}/static/calaccess_website/images/brown-bear-share.png"/>
-
-<meta property="twitter:site" content="@cacivicdata">
-<meta property="twitter:title" content="{{ object.db_table }} - CAL-ACCESS files - Documentation - {{ CALACCESS_WEBSITE_TITLE }}">
-<meta property="twitter:description" content="{{ object.doc.strip|first_line|striptags }}"/>
-<meta property="twitter:url" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}{{ request.path }}" />
-<meta property="twitter:image:src" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}/static/calaccess_website/images/brown-bear-share.png">
-<meta property="twitter:card" content="summary_large_image">
-{% endblock %}
+{% block description %}{{ object.doc.strip|first_line|striptags }}{% endblock %}
+{% block og-description %}{{ object.doc.strip|first_line|striptags }}{% endblock %}
+{% block twitter-description %}{{ object.doc.strip|first_line|striptags }}{% endblock %}
 
 {% block breadcrumbs %}
 {{ block.super }}

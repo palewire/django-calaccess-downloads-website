@@ -1,36 +1,26 @@
 {% extends 'calaccess_website/base_with_top.html' %}
 {% load humanize calaccess_website_tags %}
 
-{% block title %}Frequently asked questions - Documentation - {{ block.super }}{% endblock%}
+{% block title %}Frequently asked questions - Documentation - {{ block.super }}{% endblock %}
+{% block og-title %}Frequently asked questions - Documentation - {{ block.super }}{% endblock %}
+{% block twitter-title %}Frequently asked questions - Documentation - {{ block.super }}{% endblock %}
 
-{% block meta %}
-<meta property="og:site_name" content="{{ CALACCESS_WEBSITE_DOMAIN }}"/>
-<meta property="og:title" content="Frequently asked questions - Documentation - {{ CALACCESS_WEBSITE_TITLE }}"/>
-<meta property="og:description" content="Questions and answers about this project and the underlying the CAL-ACCESS database."/>
-<meta property="og:url" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}{{ request.path }}" />
-<meta property="og:image" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}/static/calaccess_website/images/brown-bear-share.png"/>
-
-<meta property="twitter:site" content="@cacivicdata">
-<meta property="twitter:title" content="Frequently asked questions - Documentation - {{ CALACCESS_WEBSITE_TITLE }}">
-<meta property="twitter:description" content="Questions and answers about this project and the underlying the CAL-ACCESS database."/>
-<meta property="twitter:url" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}{{ request.path }}" />
-<meta property="twitter:image:src" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}/static/calaccess_website/images/brown-bear-share.png">
-<meta property="twitter:card" content="summary_large_image">
-{% endblock %}
+{% block description %}Questions and answers about this project and the underlying the CAL-ACCESS database.{% endblock %}
+{% block og-description %}Questions and answers about this project and the underlying the CAL-ACCESS database.{% endblock %}
+{% block twitter-description %}Questions and answers about this project and the underlying the CAL-ACCESS database.{% endblock %}
 
 {% block breadcrumbs %}
-{{ block.super }}
-<li><a href="{% url 'docs_index' %}">Documentation</a></li>
-<li>Frequently asked questions</li>
+    {{ block.super }}
+    <li><a href="{% url 'docs_index' %}">Documentation</a></li>
+    <li>Frequently asked questions</li>
 {% endblock %}
 
 {% block top %}
-<h1>Frequently asked questions</h1>
-<p>
-    Questions and answers about this project and the underlying the CAL-ACCESS database.
-</p>
+    <h1>Frequently asked questions</h1>
+    <p>
+        Questions and answers about this project and the underlying the CAL-ACCESS database.
+    </p>
 {% endblock %}
-
 
 {% block affix-nav %}
 <ul class="nav nav-stacked">
@@ -41,12 +31,8 @@
     <li><a href="#do-you-offer-all-data">Do you offer all of the available data?</a></li>
     <li><a href="#do-you-modify-data">Do you modify the source data?</a></li>
 </ul>
+{% include 'calaccess_website/nav.html' %}
 {% endblock %}
-
-{% block javascript %}
-  {% include 'calaccess_website/nav.html' %}
-{% endblock %}
-
 
 {% block content %}
 <section id="why-is-all-this-necessary" class="chapter">
