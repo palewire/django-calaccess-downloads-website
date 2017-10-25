@@ -631,7 +631,7 @@ and (max-width : 490px) {
 }
 .downloads .sub-chapter h3 {
     margin-top: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     border-bottom: 1px solid #cccccc;
     padding-bottom: 5px;
     padding-right: 40px;
