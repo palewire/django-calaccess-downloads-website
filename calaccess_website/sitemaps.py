@@ -21,7 +21,7 @@ class OtherSitemap(AbstractSitemapView):
     Hodge podge of links we need to add manually to the sitemap.
     """
     build_path = "other-sitemap.xml"
-    template_name = "calaccess_website/other-sitemap.xml"
+    template_name = "calaccess_website/sitemaps/other-sitemap.xml"
     url_list = [
         "http://calaccess.californiacivicdata.org/downloads/",
         "http://calaccess.californiacivicdata.org/downloads/latest/",
@@ -42,7 +42,7 @@ class VersionSitemap(AbstractSitemapView):
     A machine-readable list of all version detail pages.
     """
     build_path = 'downloads-sitemap.xml'
-    template_name = 'calaccess_website/version-sitemap.xml'
+    template_name = 'calaccess_website/sitemaps/version-sitemap.xml'
     queryset = RawDataVersion.objects.complete().exclude(release_datetime__lte='2016-07-27')
 
 
@@ -51,7 +51,7 @@ class VersionYearSitemap(AbstractSitemapView):
     A machine-readable list of the version year archive pages.
     """
     build_path = "downloads-year-sitemap.xml"
-    template_name = "calaccess_website/version-archive-year.xml"
+    template_name = "calaccess_website/sitemaps/version-archive-year.xml"
     model = RawDataVersion
 
     def get_queryset(self):
@@ -65,7 +65,7 @@ class VersionMonthSitemap(AbstractSitemapView):
     A machine-readable list of the version month archive pages.
     """
     build_path = "downloads-month-sitemap.xml"
-    template_name = "calaccess_website/version-archive-month.xml"
+    template_name = "calaccess_website/sitemaps/version-archive-month.xml"
     model = RawDataVersion
 
     def get_queryset(self):
@@ -79,7 +79,7 @@ class CalAccessFileSitemap(AbstractSitemapView):
     A machine-readable list of all CalAccess file detail pages.
     """
     build_path = 'raw-file-sitemap.xml'
-    template_name = 'calaccess_website/calaccess-file-sitemap.xml'
+    template_name = 'calaccess_website/sitemaps/calaccess-file-sitemap.xml'
     queryset = get_model_list()
 
 
@@ -88,7 +88,7 @@ class CcdcFileSitemap(AbstractSitemapView):
     A machine-readable list of all CCDC file detail pages.
     """
     build_path = 'processed-file-sitemap.xml'
-    template_name = 'calaccess_website/ccdc-file-sitemap.xml'
+    template_name = 'calaccess_website/sitemaps/ccdc-file-sitemap.xml'
     queryset = get_processed_data_files()
 
 
@@ -97,7 +97,7 @@ class CalAccessFileDownloadsSitemap(AbstractSitemapView):
     A machine-readable list of all CalAccess file archive download pages.
     """
     build_path = 'raw-file-downloads-sitemap.xml'
-    template_name = 'calaccess_website/calaccess-file-downloads-sitemap.xml'
+    template_name = 'calaccess_website/sitemaps/calaccess-file-downloads-sitemap.xml'
     queryset = get_model_list()
 
 
@@ -106,7 +106,7 @@ class CcdcFileDownloadsSitemap(AbstractSitemapView):
     A machine-readable list of all CCDC file archive download pages.
     """
     build_path = 'processed-file-downloads-sitemap.xml'
-    template_name = 'calaccess_website/ccdc-file-downloads-sitemap.xml'
+    template_name = 'calaccess_website/sitemaps/ccdc-file-downloads-sitemap.xml'
     queryset = get_processed_data_files()
 
 
@@ -115,5 +115,5 @@ class FormSitemap(AbstractSitemapView):
     A machine-readable list of all form detail pages.
     """
     build_path = 'form-sitemap.xml'
-    template_name = 'calaccess_website/form-sitemap.xml'
+    template_name = 'calaccess_website/sitemaps/form-sitemap.xml'
     queryset = all_filing_forms
