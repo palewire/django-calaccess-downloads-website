@@ -1,8 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-Save copies of data files from the most recently completed update in a latest
-directory in the default file storage of the Django project.
+Copy files to latest/ in the project's default file storage.
 """
 import os
 import re
@@ -17,11 +16,9 @@ logger = logging.getLogger(__name__)
 
 class Command(BaseCommand):
     """
-    Save copies of data files from the most recently completed update in a latest
-    directory in the default file storage of the Django project.
+    Copy files to latest/ in the project's default file storage.
     """
-    help = "Save copies of data files from the most recently completed update in \
-a latest directory in the default file storage of the Django project"
+    help = "Copy files to latest/ in the project's default file storage."
 
     def handle(self, *args, **options):
         # set up boto session
@@ -44,7 +41,9 @@ a latest directory in the default file storage of the Django project"
             self.delete_keys(latest_key_list)
 
         # get the version of last update that finished
-        v = RawDataVersion.objects.exclude(update_finish_datetime=None).latest('update_finish_datetime')
+        v = RawDataVersion.objects.exclude(
+            update_finish_datetime=None
+        ).latest('update_finish_datetime')
 
         logger.debug(
             'Copying files for {:%m-%d-%Y %H:%M:%S} version to latest/'.format(
@@ -94,6 +93,27 @@ a latest directory in the default file storage of the Django project"
                     f.error_log_archive.name,
                     self.get_latest_path(f.error_log_archive.name)
                 )
+
+        # save processed zip to the latest dir
+        if v.processed_version:
+            for zf in v.processed_version.zips.all():
+                # strip the datetime from the zip name
+                zip_name = self.strip_datetime(
+                    os.path.basename(zf.zip_archive.name),
+                )
+                self.copy(
+                    zf.zip_archive.name,
+                    self.get_latest_path(zip_name),
+                )
+            # same for processed files
+            for f in v.processed_version.files.all():
+                # save processed file to the latest directory
+                if f.file_archive:
+                    # save cleaned file to the latest directory
+                    self.copy(
+                        f.file_archive.name,
+                        self.get_latest_path(f.file_archive.name)
+                    )
 
         # Clear the cloudfront cache by sending an invalidation request
         if latest_key_list['KeyCount'] > 0:
