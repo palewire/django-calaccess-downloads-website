@@ -19,7 +19,7 @@ a, a.btn-default{
     color: #ba0a35;
 }
 a:hover{
-    color: #d87d85;
+    color: #6D031D;
 }
 b, strong {
     font-weight: 600;
@@ -650,16 +650,27 @@ and (max-width : 490px) {
 .unavailable {
     opacity: 0.5;
 }
-.downloads .sub-chapter i.fa {
+.downloads .sub-chapter h4 span {
+    line-height: 22px;
+    height: 22px;
+}
+.downloads .sub-chapter h4 i.fa {
     vertical-align: middle;
     font-size:10px;
-    line-height: 18px;
     margin-right: 3px;
 }
 .downloads .sub-chapter h4 span.hed {
     vertical-align: middle;
     font-size:18px;
-    line-height: 18px;
+}
+.downloads .sub-chapter h4 span.hed--coming-soon {
+    position: relative;
+    font-size:14px;
+    top: 2px;
+    left: 10px;
+    text-transform: uppercase;
+    vertical-align: middle;
+    color: rgb(172, 172, 172);
 }
 .downloads .sub-chapter p {
     text-indent: 17px;
