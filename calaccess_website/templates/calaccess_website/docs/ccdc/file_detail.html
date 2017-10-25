@@ -38,7 +38,10 @@
         <li><a href="#archive">Archive</a></li>
     {% endif %}
 </ul>
-{% include 'calaccess_website/nav.html' %}
+{% endblock %}
+
+{% block javascript %}
+    {% include 'calaccess_website/nav.html' %}
 {% endblock %}
 
 {% block content %}

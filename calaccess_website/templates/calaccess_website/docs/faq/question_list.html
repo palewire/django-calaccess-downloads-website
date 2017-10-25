@@ -31,7 +31,10 @@
     <li><a href="#do-you-offer-all-data">Do you offer all of the available data?</a></li>
     <li><a href="#do-you-modify-data">Do you modify the source data?</a></li>
 </ul>
-{% include 'calaccess_website/nav.html' %}
+{% endblock %}
+
+{% block javascript %}
+    {% include 'calaccess_website/nav.html' %}
 {% endblock %}
 
 {% block content %}
