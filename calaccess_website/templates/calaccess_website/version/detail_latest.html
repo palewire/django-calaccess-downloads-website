@@ -1,0 +1,42 @@
+{% extends 'calaccess_website/version/detail.html' %}
+{% load humanize calaccess_website_tags staticfiles %}
+
+{% block title %}{{ title }} - {{ block.super }}{% endblock %}
+{% block description %}{{ description }}{% endblock %}
+
+{% block og-title %}{{ title }} - {{ block.super }}{% endblock %}
+{% block og-description %}{{ description }}{% endblock %}
+{% block twitter-title %}{{ title }} - Documentation - {{ block.super }}{% endblock %}
+{% block twitter-description %}{{ description }}{% endblock %}
+
+{% block breadcrumbs %}
+    {{ block.super }}
+    <li>Latest</li>
+{% endblock %}
+
+{% block top %}
+    <h1>{{ title }}</h1>
+    <p>
+        Download the most recent release of the state database tracking money in politics. Processed {{ object.release_datetime|date:"l, N j, Y" }} at {{ object.release_datetime|date:"P" }}
+    </p>
+{% endblock %}
+
+{% block first-content-block %}
+    {% include 'calaccess_website/version/sections/basic.html' %}
+{% endblock %}
+
+{% block second-content-block %}
+    {% if flat_zip %}
+    <div class="container basic-container">
+        {% include 'calaccess_website/version/sections/picker.html' %}
+    </div>
+    {% endif %}
+    <div class="container">
+        <div class="col-md-9">
+            {% include 'calaccess_website/version/sections/advanced.html' %}
+            <hr>
+            {% include 'calaccess_website/version/sections/raw.html' %}
+            {% include 'calaccess_website/version/sections/errata.html' %}
+        </div>
+    </div>
+{% endblock %}

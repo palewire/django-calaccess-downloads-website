@@ -59,6 +59,10 @@ def rendernodejson():
     """
     Render chef's node.json file from a template
     """
+    if env.config_section == "DEV":
+        env.branch = 'development'
+    else:
+        env.branch = 'master'
     template = open("./chef/node.json.template", "r").read()
     data = json.loads(
         template % env,

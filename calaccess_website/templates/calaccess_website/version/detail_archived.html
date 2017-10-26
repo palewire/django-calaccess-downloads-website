@@ -1,0 +1,49 @@
+{% extends 'calaccess_website/version/detail.html' %}
+{% load humanize calaccess_website_tags staticfiles %}
+
+{% block title %}Archived California campaign finance data - {{ date_string }} - {{ block.super }}{% endblock%}
+{% block description %}{{ description }}{% endblock %}
+
+{% block og-title %}Archived California campaign finance data - {{ date_string }} - {{ block.super }}{% endblock %}
+{% block og-description %}{{ description }}{% endblock %}
+{% block twitter-title %}Archived California campaign finance data - {{ date_string }} - {{ block.super }}{% endblock %}
+{% block twitter-description %}{{ description }}{% endblock %}
+
+{% block breadcrumbs %}
+{{ block.super }}
+<li>{{ object.release_datetime|date:"N j, Y" }}, {{ object.release_datetime|date:"P" }}</li>
+{% endblock %}
+
+{% block top %}
+    <h1>Archived California campaign finance data</h1>
+    <p>
+        Our archived release of the state database tracking money in politics. Processed {{ object.release_datetime|date:"l, N j, Y" }} at {{ object.release_datetime|date:"P" }} <a href="{% url 'version_latest' %}">Latest release &raquo;</a>&nbsp;
+    </p>
+{% endblock %}
+
+{% block first-content-block %}
+    {% if processed_version_completed %}
+        {% include 'calaccess_website/version/sections/basic.html' %}
+    {% else %}
+        {% include 'calaccess_website/version/sections/raw.html' %}
+        {% include 'calaccess_website/version/sections/errata.html' %}
+    {% endif %}
+{% endblock %}
+
+{% block second-content-block %}
+    {% if processed_version_completed %}
+        {% if flat_zip %}
+        <div class="container basic-container">
+            {% include 'calaccess_website/version/sections/picker.html' %}
+        </div>
+        {% endif %}
+        <div class="container">
+            <div class="col-md-9">
+                {% include 'calaccess_website/version/sections/advanced.html' %}
+                <hr>
+                {% include 'calaccess_website/version/sections/raw.html' %}
+                {% include 'calaccess_website/version/sections/errata.html' %}
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

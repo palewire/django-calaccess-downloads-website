@@ -1,11 +1,13 @@
-Django==1.10
-django-calaccess-raw-data==1.6.1
-django-calaccess-scraped-data==0.1.0rc1
-django-calaccess-processed-data==0.1.0rc47
+Django==1.11.6
+django-calaccess-raw-data==1.6.2
+django-calaccess-scraped-data==0.1.1
+django-calaccess-processed-data==0.1.0
+
 # this requirement can be removed after next release of ocd package
 -e git+https://github.com/california-civic-data-coalition/python-opencivicdata.git@HEAD#egg=opencivicdata
+
 backports.csv
-psycopg2==2.6.1
+psycopg2>=2.7
 boto3==1.4
 django-storages
 django-bakery==0.8.11
@@ -16,3 +18,4 @@ coveralls
 configparser
 django-compressor
 greeking
+PyGithub

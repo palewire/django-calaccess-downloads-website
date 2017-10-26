@@ -19,7 +19,7 @@ a, a.btn-default{
     color: #ba0a35;
 }
 a:hover{
-    color: #d87d85;
+    color: #6D031D;
 }
 b, strong {
     font-weight: 600;
@@ -37,7 +37,8 @@ sup {
     top: -.2em;
 }
 section.chapter {
-    margin-bottom: 50px;
+    margin-top: 40px;
+    margin-bottom: 10px;
 }
 .bg-red {
     background-color: #ba0a35;
@@ -87,11 +88,13 @@ section.chapter {
 }
 .btn-calaccess,
 .btn-calaccess:focus {
+    margin: 10px 0;
     color: #ba0a35;
     border: 1px solid #ba0a35;
     background-color: transparent;
     border-radius: 0;
     font-size: 18px;
+    outline: 0;
 }
 .btn-calaccess:hover,
 .btn-calaccess.active {
@@ -203,7 +206,7 @@ header .navbar-default .navbar-nav>li>a {
     color: #000;
     font-weight: 400;
     text-align: left;
-    border-bottom: 1px solid #fff;
+    border-bottom: 1px solid transparent;
     padding: 10px 10px 5px 5px;
 }
 .nav-stacked li:hover a {
@@ -386,7 +389,7 @@ td.center, th.center{
     display: inline-block;
 }
 .filters .btn {
-    width: 120px;
+    width: 160px;
     display: inline-block;
 }
 .filters .dropdown-menu {
@@ -611,4 +614,78 @@ and (max-width : 490px) {
     .home .home-card h2 {
         font-size: 24px;
     }
+}
+#affix-nav {
+    margin-top: 30px;
+}
+.chapter h2 {
+    border-bottom: 1px solid #ba0a35;
+    padding-bottom: 5px;
+    padding-right: 40px;
+    display: inline-block;
+    width: auto;
+    min-width: 275px;
+}
+.downloads .chapter p,
+.file-detail .chapter p {
+    margin-top: 15px;
+    margin-bottom: 25px;
+}
+.downloads .basic-container {
+    background-color: rgb(248, 248, 248);
+}
+.downloads .sub-chapter h3 {
+    margin-top: 20px;
+    margin-bottom: 25px;
+    border-bottom: 1px solid #cccccc;
+    padding-bottom: 5px;
+    padding-right: 40px;
+    display: inline-block;
+    width: auto;
+    min-width: 275px;
+}
+.downloads hr {
+    border-bottom: 1px solid #cccccc;
+    margin-top: 40px;
+}
+.unavailable {
+    opacity: 0.5;
+}
+.downloads .sub-chapter h4 span {
+    line-height: 22px;
+    height: 22px;
+}
+.downloads .sub-chapter h4 i.fa {
+    vertical-align: middle;
+    font-size:10px;
+    margin-right: 3px;
+}
+.downloads .sub-chapter h4 span.hed {
+    vertical-align: middle;
+    font-size:18px;
+}
+.downloads .sub-chapter h4 span.hed--coming-soon {
+    position: relative;
+    font-size:14px;
+    top: 2px;
+    left: 10px;
+    text-transform: uppercase;
+    vertical-align: middle;
+    color: rgb(172, 172, 172);
+}
+.downloads .sub-chapter p {
+    text-indent: 17px;
+    font-size: 16px;
+    margin-top: 0px;
+    margin-bottom: 30px;
+}
+.definition {
+    text-indent: 2px;
+    font-size: 18px;
+}
+#errors_button {
+    min-width: 124px;
+}
+.basic-container{
+    width: 100%;
 }

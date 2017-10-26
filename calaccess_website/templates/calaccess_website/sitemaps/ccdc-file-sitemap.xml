@@ -1,0 +1,8 @@
+{% load calaccess_website_tags %}<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+{% for obj in object_list %}
+  <url>
+    <loc>http://{{ CALACCESS_WEBSITE_DOMAIN }}{% url 'ccdc_file_detail' slug=obj.file_name|slugify %}</loc> 
+  </url>
+{% endfor %}
+</urlset>

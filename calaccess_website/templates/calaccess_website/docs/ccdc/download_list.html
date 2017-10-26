@@ -1,0 +1,61 @@
+{% extends 'calaccess_website/base_with_top.html' %}
+{% load humanize calaccess_website_tags %}
+
+{% block title %}{{ object.file_name }} downloads - Processed files - Documentation - {{ block.super }}{% endblock %}
+{% block og-title %}{{ object.file_name }} downloads - Processed files - Documentation - {{ block.super }}{% endblock %}
+{% block twitter-title %}{{ object.file_name }} downloads - Processed files - Documentation - {{ block.super }}{% endblock %}
+
+{% block description %}The last {{ version_list|length }} downloads for this file.{% endblock %}
+{% block og-description %}The last {{ version_list|length }} downloads for this file.{% endblock %}
+{% block twitter-description %}The last {{ version_list|length }} downloads for this file.{% endblock %}
+
+{% block extra-meta %}
+<link rel="canonical" href="http://{{ CALACCESS_WEBSITE_DOMAIN }}{% url 'ccdc_file_detail' object.file_name|slugify %}" />
+{% endblock %}
+
+{% block breadcrumbs %}
+{{ block.super }}
+<li><a href="{% url 'docs_index' %}">Documentation</a></li>
+<li><a href="{% url 'ccdc_file_list' %}">Processed files</a></li>
+<li><a href="{% url 'ccdc_file_detail' object.file_name|slugify %}">{{ object.file_name }}</a></li>
+<li>Downloads</li>
+{% endblock %}
+
+{% block top %}
+  <h1 class="break">{{ object.file_name }}</h1>
+  <p>The last {{ version_list|length }} downloads for this file. <a href="{% url 'ccdc_file_detail' object.file_name|slugify %}">See documentation &raquo;</a></p>
+{% endblock %}
+
+{% block content %}
+  <div class="row">
+    <div class="col-md-12">
+      {% if version_list %}
+      <table class="table table-striped">
+      <thead>
+        <th>Date</th>
+        <th width=8% class="right">Records</th>
+        <th width=8% class="right hidden-xs">Size</th>
+        <th width=15% class="right"></th>
+      </thead>
+      <tbody>
+        {% for file in version_list %}
+        <tr>
+          <td><a href="{% url 'version_detail' year=file.version.raw_version.release_datetime.year month=file.version.raw_version.release_datetime|date:'m' day=file.version.raw_version.release_datetime|date:'d' time=file.version.raw_version.release_datetime|date:'His' %}">{{ file.version.raw_version.release_datetime|date:"N j, Y" }}</a></td>
+          {% if file.file_archive %}
+          <td class="right">{{ file.records_count|intcomma }}</td>
+          <td class="right hidden-xs">{{ file.pretty_file_size }}</td>
+          <td class="nobreak right"><a href="{% archive_url file.file_archive.name %}">Download &raquo;</a></td>
+          {% else %}
+          <td colspan=3></td>
+          <td class="right">Unavailable</td>
+          {% endif %}
+        {% endfor %}
+      </tbody>
+      </table>
+
+      {% else %}
+          <p>No files.</p>
+      {% endif %}
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'calaccess_website/base_with_top.html' %}
+{% load humanize calaccess_website_tags staticfiles %}
+
+{% block breadcrumbs %}
+    {{ block.super }}
+    <li><a href="{% url 'version_archive_index' %}">Downloads</a></li>
+{% endblock %}
+
+{% block content-container %}
+<div class="downloads">
+    <div class="container">
+        <div class="row" style='padding-left:0px;'>
+            <div class="col-md-9">
+                {% block first-content-block %}{% endblock %}
+            </div>
+            <div class="col-md-2 col-md-offset-1 affix-container visible-md visible-lg">
+                <nav id="affix-nav">
+                    {% block affix-nav %}
+                        <ul class="nav nav-stacked">
+                          {% if processed_version_completed or is_latest %}
+                            <li class="active"><a href="#basic">Getting started</a></li>
+                            <li><a href="#advanced">Advanced usage</a></li>
+                          {% endif %}
+                          <li {% if not processed_version_completed and not is_latest %}class="active"{% endif %}><a href="#raw">Raw files</a></li>
+                          <li><a href="#errata">Errata</a></li>
+                        </ul>
+                    {% endblock %}
+                </nav>
+            </div>
+        </div>
+    </div>
+    {% block second-content-block %}
+    {% endblock %}
+</div>
+{% endblock %}
+
+{% block javascript %}
+    {% include 'calaccess_website/nav.html' %}
+{% endblock %}

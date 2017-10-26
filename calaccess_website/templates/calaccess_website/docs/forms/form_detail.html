@@ -1,28 +1,19 @@
 {% extends 'calaccess_website/base_with_top.html' %}
 {% load humanize calaccess_website_tags %}
 
-{% block title %}{{ form.type_and_num|safe }}: {{ form.title|safe }} - CAL-ACCESS forms - Documentation {{ block.super }}{% endblock%}
+{% block title %}{{ form.type_and_num|safe }}: {{ form.title|safe }} - CAL-ACCESS forms - Documentation {{ block.super }}{% endblock %}
+{% block og-title %}{{ form.type_and_num|safe }}: {{ form.title|safe }} - CAL-ACCESS forms - Documentation {{ block.super }}{% endblock %}
+{% block twitter-title %}{{ form.type_and_num|safe }}: {{ form.title|safe }} - CAL-ACCESS forms - Documentation {{ block.super }}{% endblock %}
 
-{% block meta %}
-<meta property="og:site_name" content="{{ CALACCESS_WEBSITE_DOMAIN }}"/>
-<meta property="og:title" content="{{ form.type_and_num|safe }}: {{ form.title|safe }} - CAL-ACCESS forms - Documentation - {{ CALACCESS_WEBSITE_TITLE }}"/>
-<meta property="og:description" content="{{ form.title|safe }}"/>
-<meta property="og:url" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}{{ request.path }}" />
-<meta property="og:image" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}/static/calaccess_website/images/brown-bear-share.png"/>
-
-<meta property="twitter:site" content="@cacivicdata">
-<meta property="twitter:title" content="{{ form.type_and_num|safe }}: {{ form.title|safe }} - CAL-ACCESS forms - Documentation - {{ CALACCESS_WEBSITE_TITLE }}">
-<meta property="twitter:description" content="{{ form.title|safe }}"/>
-<meta property="twitter:url" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}{{ request.path }}" />
-<meta property="twitter:image:src" content="http://{{ CALACCESS_WEBSITE_DOMAIN }}/static/calaccess_website/images/brown-bear-share.png">
-<meta property="twitter:card" content="summary_large_image">
-{% endblock %}
+{% block description %}{{ form.title|safe }}{% endblock %}
+{% block og-description %}{{ form.title|safe }}{% endblock %}
+{% block twitter-description %}{{ form.title|safe }}{% endblock %}
 
 {% block breadcrumbs %}
-{{ block.super }}
-<li><a href="{% url 'docs_index' %}">Documentation</a></li>
-<li><a href="{% url 'form_list' %}">CAL-ACCESS forms</a></li>
-<li>{{ form.type_and_num }}</li>
+    {{ block.super }}
+    <li><a href="{% url 'docs_index' %}">Documentation</a></li>
+    <li><a href="{% url 'form_list' %}">CAL-ACCESS forms</a></li>
+    <li>{{ form.type_and_num }}</li>
 {% endblock %}
 
 {% block top %}
@@ -53,11 +44,11 @@
 {% endblock %}
 
 {% block javascript %}
-  {% include 'calaccess_website/affix_nav_logic.html' %}
+  {% include 'calaccess_website/nav.html' %}
 {% endblock %}
 
 {% block content %}
-
+<article class="file-detail">
 {% if form.description %}
 <section id="description" class="chapter">
     <h2>Description</h2>
@@ -117,7 +108,7 @@
     {% for model in form.get_models %}
         <tr>
             <td class="break">
-                <a href="{% url 'file_detail' slug=model.db_table|slugify %}">
+                <a href="{% url 'calaccess_file_detail' slug=model.db_table|slugify %}">
                     {{ model.db_table }}
                 </a>
             </td>
@@ -136,5 +127,5 @@
     {% documentcloud_embed form.documentcloud.id %}
   </section>
 {% endif %}
-
+</article>
 {% endblock %}

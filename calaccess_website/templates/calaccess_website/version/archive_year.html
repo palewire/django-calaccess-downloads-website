@@ -1,0 +1,46 @@
+{% extends 'calaccess_website/base_with_top.html' %}
+{% load calaccess_website_tags %}
+
+{% block title %}{{ year.year }} - Downloads - {{ block.super }}{% endblock %}
+{% block description %}All {{ year|date:"Y" }} release{{ latest|length|pluralize }} of CAL-ACCESS, the government database that tracks campaign finance and lobbying activity in California politics.{% endblock %}
+
+{% block og-title %}{{ year.year }} - Downloads - {{ block.super }}{% endblock %}
+{% block og-description %}All {{ year|date:"Y" }} release{{ latest|length|pluralize }} of CAL-ACCESS, the government database that tracks campaign finance and lobbying activity in California politics.{% endblock %}
+{% block twitter-title %}{{ year.year }} - Downloads - {{ block.super }}{% endblock %}
+{% block twitter-description %}All {{ year|date:"Y" }} release{{ latest|length|pluralize }} of CAL-ACCESS, the government database that tracks campaign finance and lobbying activity in California politics.{% endblock %}
+
+{% block breadcrumbs %}
+  {{ block.super }}
+  <li><a href="{% url 'version_archive_index' %}">Downloads</a></li>
+  <li>{{ year.year }}</li>
+{% endblock %}
+
+{% block top %}
+    <h1>Archived data from {{ year|date:"Y" }}</h1>
+    <p>
+        All {{ year|date:"Y" }} release{{ latest|length|pluralize }} of CAL-ACCESS,
+        the government database that tracks campaign finance and lobbying activity in California politics.
+        <a href="{% url 'version_latest' %}">Latest release &raquo;</a>
+    </p>
+{% endblock %}
+
+{% block content %}
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Month</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for date in date_list %}
+      <tr>
+          <td>
+              <a href="{% url 'version_archive_month' year=date.year month=date|date:'m' %}">
+                  {{ date|date:"F" }}
+              </a>
+          </td>
+      </tr>
+  {% endfor %}
+  </tbody>
+  </table>
+{% endblock %}

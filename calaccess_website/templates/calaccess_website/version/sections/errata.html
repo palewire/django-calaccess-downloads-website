@@ -1,0 +1,31 @@
+{% load calaccess_website_tags humanize %}
+{% if object.error_count %}
+<section id="errata" class="chapter">
+  <h2>Errata</h2>
+  <p>
+     The raw tables released by the state contain errors in how values are escaped, quoted and delimited. The result is a small number of records lost when we prepare files for download. However, those {{ object.error_count|intcomma }} lost records represent only {{ error_pct|floatformat:"5" }}% of the source data.
+  </p>
+  <div id="errors" class="row">
+    <div class="col-md-12">
+      <table style="table-layout: fixed; width: 100%" class="table table-striped">
+      <thead>
+        <tr>
+          <th class='col-xs-6'>Name</th>
+          <th class="col-xs-3 right">Errors</th>
+          <th class="col-xs-3 right">CSV</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for file in raw_files_w_errors %}
+      <tr id="footnote-{{ file.file_name|slugify }}">
+        <td class="break"><a href="{% url 'calaccess_file_detail' slug=file.file_name|slugify %}">{{ file.file_name }}</a></td>
+        <td class="right">{{ file.error_count }}</td>
+        <td class="right"><a href="{% archive_url file.error_log_archive.name is_latest=is_latest %}">Download &raquo;</a></td>
+      </tr>
+      {% endfor %}
+      </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+{% endif %}
