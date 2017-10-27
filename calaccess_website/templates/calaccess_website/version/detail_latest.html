@@ -32,11 +32,13 @@
     </div>
     {% endif %}
     <div class="container">
-        <div class="col-md-9">
-            {% include 'calaccess_website/version/sections/advanced.html' %}
-            <hr>
-            {% include 'calaccess_website/version/sections/raw.html' %}
-            {% include 'calaccess_website/version/sections/errata.html' %}
+        <div class="row">
+            <div class="col-md-9">
+                {% include 'calaccess_website/version/sections/advanced.html' %}
+                <hr>
+                {% include 'calaccess_website/version/sections/raw.html' %}
+                {% include 'calaccess_website/version/sections/errata.html' %}
+            </div>
         </div>
     </div>
 {% endblock %}
