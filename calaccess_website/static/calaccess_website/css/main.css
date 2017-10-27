@@ -618,7 +618,7 @@ and (max-width : 490px) {
 #affix-nav {
     margin-top: 30px;
 }
-.about h3,
+.about h2,
 .chapter h2 {
     border-bottom: 1px solid #ba0a35;
     padding-bottom: 5px;
