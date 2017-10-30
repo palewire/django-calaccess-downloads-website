@@ -1,0 +1,24 @@
+{% load calaccess_website_tags humanize %}
+<section id="raw" class="chapter">
+  <h2>Raw files</h2>
+  <p>
+    For CAL-ACCESS experts. The {{ object.clean_file_count }} jumbled, dirty and difficult tables released by the state cleaned and converted into {{ object.clean_record_count|intword }} rows. Use with caution. <a href="{% url 'calaccess_file_list' %}">Learn more &raquo;</a>
+  </p>
+  {% if object.clean_zip_archive %}
+    <p>
+      <a href="{% archive_url object.clean_zip_archive.name is_latest=is_latest %}"
+           class="btn btn-calaccess">
+            Download
+      </a>
+      &nbsp; <span>{{ object.pretty_clean_size }} zip</span>
+    </p>
+    <p>
+      Alternatively, retrieve with <code>curl</code>.
+    </p>
+    <input type="text" class="download-link input-monospace"
+        value="$ curl -O {% archive_url object.clean_zip_archive.name is_latest=is_latest %}"
+        readonly>
+  {% else %}
+    <p><a class="btn btn-inactive">Unavailable</a></p>
+  {% endif %}
+</section>

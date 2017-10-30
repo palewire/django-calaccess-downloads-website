@@ -54,19 +54,36 @@ urlpatterns = [
 
     # CAL-ACCESS file views
     url(
-        r'^documentation/calaccess-files/$',
-        views.FileList.as_view(),
-        name='file_list'
+        r'^documentation/raw-files/$',
+        views.CalAccessFileList.as_view(),
+        name='calaccess_file_list'
     ),
     url(
-        r'^documentation/calaccess-files/(?P<slug>[-\w]+)/$',
-        views.FileDetail.as_view(),
-        name='file_detail',
+        r'^documentation/raw-files/(?P<slug>[-\w]+)/$',
+        views.CalAccessFileDetail.as_view(),
+        name='calaccess_file_detail',
     ),
     url(
-        r'^documentation/calaccess-files/(?P<slug>[-\w]+)/downloads/$',
-        views.FileDownloadsList.as_view(),
-        name='file_downloads_list',
+        r'^documentation/raw-files/(?P<slug>[-\w]+)/downloads/$',
+        views.CalAccessFileDownloadsList.as_view(),
+        name='calaccess_file_downloads_list',
+    ),
+
+    # CCDC file views
+    url(
+        r'^documentation/processed-files/$',
+        views.CcdcFileList.as_view(),
+        name='ccdc_file_list'
+    ),
+    url(
+        r'^documentation/processed-files/(?P<slug>[-\w]+)/$',
+        views.CcdcFileDetail.as_view(),
+        name='ccdc_file_detail',
+    ),
+    url(
+        r'^documentation/processed-files/(?P<slug>[-\w]+)/downloads/$',
+        views.CcdcFileDownloadsList.as_view(),
+        name='ccdc_file_downloads_list',
     ),
 
     # Form views
@@ -105,14 +122,24 @@ urlpatterns = [
         name='robots_txt'
     ),
     url(
-        r'^file-sitemap.xml$',
-        sitemaps.FileSitemap.as_view(),
-        name='file_sitemap'
+        r'^raw-file-sitemap.xml$',
+        sitemaps.CalAccessFileSitemap.as_view(),
+        name='calaccess_file_sitemap'
     ),
     url(
-        r'^file-downloads-sitemap.xml$',
-        sitemaps.FileDownloadsSitemap.as_view(),
-        name='file_downloads_sitemap'
+        r'^raw-file-downloads-sitemap.xml$',
+        sitemaps.CalAccessFileDownloadsSitemap.as_view(),
+        name='calaccess_file_downloads_sitemap'
+    ),
+    url(
+        r'^processed-file-sitemap.xml$',
+        sitemaps.CcdcFileSitemap.as_view(),
+        name='ccdc_file_sitemap'
+    ),
+    url(
+        r'^processed-file-downloads-sitemap.xml$',
+        sitemaps.CcdcFileDownloadsSitemap.as_view(),
+        name='ccdc_file_downloads_sitemap'
     ),
     url(
         r'^form-sitemap.xml$',

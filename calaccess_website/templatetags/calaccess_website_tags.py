@@ -1,4 +1,5 @@
 import os
+import re
 from django import template
 from django.template import defaultfilters
 from django.utils.safestring import mark_safe
@@ -33,21 +34,31 @@ def archive_url(file_path, is_latest=False):
     Returns a fully-qualified absolute URL where it can be downloaded.
     """
     # If this is the 'latest' version of the file the path will need to be hacked
+    if os.getenv("CALACCESS_WEBSITE_ENV").upper() == 'PROD':
+        stub = "calaccess.download"
+    else:
+        stub = "s3-{aws_region_name}.amazonaws.com/{s3_archived_data_bucket}".format(**os.environ)
+
     if is_latest:
         # Split off the file name
-        filepath = os.path.basename(file_path)
-        # Special hack for the clean biggie zip
-        if filepath.startswith("clean_"):
-            filepath = "clean.zip"
+        file_name = os.path.basename(file_path)
+        # Special hack for the zip files
+        if file_name.endswith('.zip'):
+            file_name = re.sub(
+                r'_\d{4}-\d{2}-\d{2}_\d{2}-\d{2}-\d{2}',
+                '',
+                file_name,
+            )
+
         # Concoct the latest URL
         path = os.path.join(
-            "calaccess.download",
+            stub,
             'latest',
-            filepath
+            file_name,
         )
     # If not we can just join it to the subject name
     else:
-        path = os.path.join("calaccess.download", file_path)
+        path = os.path.join(stub, file_path)
 
     # Either way, join it to the base and pass it back
     return "https://{}".format(path)
@@ -59,7 +70,9 @@ def slugify(value):
     """
     Extend the default slugify filter to replace underscores with hyphens.
     """
-    return defaultfilters.slugify(value).replace('_', '-')
+    s1 = re.sub(r'(.)([A-Z][a-z]+)', r'\1_\2', value)
+    s2 = re.sub(r'([a-z0-9])([A-Z])', r'\1_\2', s1)
+    return defaultfilters.slugify(s2).replace('_', '-')
 
 
 @register.filter

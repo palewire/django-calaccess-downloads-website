@@ -1,0 +1,15 @@
+{% load calaccess_website_tags %}
+<section id="basic" class="chapter">
+  <h2>Getting started</h2>
+  <p>
+    The best place for beginners. Simple, standalone files refined from the state's data. Ready for instant investigation with Excel, Python and other analysis tools.
+  </p>
+  {% if flat_zip %}
+  <p>
+    <a href="{% archive_url flat_zip.zip_archive.name is_latest=is_latest %}" class="btn btn-calaccess">Download</a>
+    &nbsp; <span>{{ flat_zip.pretty_zip_size }} zip</span>
+  </p>
+  {% else %}
+    <p><a class="btn btn-inactive">Unavailable</a></p>
+  {% endif %}
+</section>

@@ -37,15 +37,33 @@ def pull():
     """
     Pull the lastest changes from the GitHub repo
     """
+    if env.config_section == "DEV":
+        env.branch = 'development'
+    else:
+        env.branch = 'master'
     _venv('git pull origin {}'.format(env.branch))
 
 
 @task(task_class=ConfigTask)
-def manage(cmd):
+def manage(cmd, *args, **kwargs):
     """
     Run a manage.py command inside the Django virtualenv
     """
-    _venv("python manage.py %s" % cmd)
+    cmd_str = "python manage.py {0} {1}".format(cmd, ' '.join(args))
+    if len(kwargs) > 1:
+        cmd_str = "{0} {1}".format(
+            cmd_str,
+            ' '.join([
+                '-{0}={1}'.format(k, v)
+                for k, v in kwargs.items() if len(k) == 1
+            ]),
+            ' '.join([
+                '--{0}={1}'.format(k, v)
+                for k, v in kwargs.items() if len(k) > 1
+            ]),
+        )
+
+    _venv(cmd_str.replace('  ', ' ').strip())
 
 
 @task(task_class=ConfigTask)

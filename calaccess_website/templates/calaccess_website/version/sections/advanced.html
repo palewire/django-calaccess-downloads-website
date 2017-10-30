@@ -1,0 +1,22 @@
+{% load calaccess_website_tags %}
+<section id="advanced" class="chapter">
+  <h2>Advanced usage</h2>
+  <p>
+    For database junkies. The data above in relational format. Ready to import into PostgreSQL, MySQL and other database software. <a href="{% url 'ccdc_file_list' %}#relational">Learn more &raquo;</a>
+  </p>
+  {% if relational_zip %}
+    <p>
+      <a href="{% archive_url relational_zip.zip_archive.name is_latest=is_latest %}"
+         class="btn btn-calaccess">
+          Download
+      </a>
+      &nbsp; <span>{{ relational_zip.pretty_zip_size }} zip</span>
+    </p>
+    <p>Alternatively, retrieve with <code>curl</code>.</p>
+    <input type="text" class="download-link input-monospace"
+        value="$ curl -O {% archive_url relational_zip.zip_archive.name is_latest=is_latest %}"
+        readonly>
+  {% else %}
+    <p><a class="btn btn-inactive">Unavailable</a></p>
+  {% endif %}
+</section>

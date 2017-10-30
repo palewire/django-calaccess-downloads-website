@@ -1,0 +1,60 @@
+{% extends 'calaccess_website/base_with_top.html' %}
+{% load calaccess_website_tags humanize %}
+
+{% block title %}Downloads - {{ block.super }}{% endblock %}
+{% block description %}The last {{ latest|length|apnumber }} release{{ latest|length|pluralize }} of CAL-ACCESS, the government database that tracks campaign finance and lobbying activity in California politics.{% endblock %}
+
+{% block og-title %}Downloads - {{ block.super }}{% endblock %}
+{% block og-description %}The last {{ latest|length|apnumber }} release{{ latest|length|pluralize }} of CAL-ACCESS, the government database that tracks campaign finance and lobbying activity in California politics.{% endblock %}
+{% block twitter-title %}Downloads - {{ block.super }}{% endblock %}
+{% block twitter-description %}The last {{ latest|length|apnumber }} release{{ latest|length|pluralize }} of CAL-ACCESS, the government database that tracks campaign finance and lobbying activity in California politics.{% endblock %}
+
+{% block breadcrumbs %}
+    {{ block.super }}
+    <li>Downloads</li>
+{% endblock %}
+
+{% block top %}
+    <h1>Downloads</h1>
+    <p>
+        The last {{ latest|length|apnumber }} release{{ latest|length|pluralize }} of CAL-ACCESS,
+        the government database that tracks campaign finance and lobbying activity in California politics.
+    </p>
+{% endblock %}
+
+{% block content %}
+<br>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Status</th>
+            <th class="right">Size</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for obj in latest %}
+    <tr>
+        <td>
+            <a href="{% url 'version_detail' year=obj.release_datetime.year month=obj.release_datetime|date:'m' day=obj.release_datetime|date:'d' time=obj.release_datetime|date:'His' %}">
+                {{ obj.release_datetime|date:"N j, Y" }}
+            </a>
+        </td>
+        <td>
+            {% if obj.processed_version %}Processed{% elif obj.clean_zip_archive %}Cleaned{% else %}Raw{% endif %}
+        </td>
+        <td class="right">
+            {% if obj.flat_zip %}{{ obj.flat_zip.pretty_zip_size }}
+            {% elif obj.relational_zip %}{{ obj.relational_zip.pretty_zip_size }}{% elif obj.clean_zip_archive %}{{ obj.pretty_clean_size }}{% else %}{{ obj.pretty_download_size }}{% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+    <tfoot>
+    <tr>
+        <td colspan=2>
+            Browse all by year: {% for date in date_list %}<a href="{% url 'version_archive_year' date.year %}">{{ date.year }}</a>{% if not forloop.last %}, {% endif %}{% endfor %}
+        </td>
+    </tfoot>
+</table>
+{% endblock %}

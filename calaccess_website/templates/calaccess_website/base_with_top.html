@@ -20,8 +20,9 @@
             </div>
         </div>
     </div>
+    {% block content-container %}
     <div class="container">
-        <div class="row">
+        <div class="row" style='padding-left:0px;'>
             <div class="col-md-9">
                 {% block content %}{% endblock %}
             </div>
@@ -32,5 +33,6 @@
             </div>
         </div>
     </div>
+    {% endblock %}
 </article>
 {% endblock %}

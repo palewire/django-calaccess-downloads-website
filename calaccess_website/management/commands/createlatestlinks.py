@@ -140,7 +140,7 @@ class Command(BaseCommand):
         """
         Copies the provided source key to the provided target key
         """
-        logger.debug('Saving copy of %s' % os.path.basename(source))
+        logger.debug('Saving copy of {} to {}'.format(os.path.basename(source), target))
         copy_source = {
             'Bucket': settings.AWS_STORAGE_BUCKET_NAME,
             'Key': source

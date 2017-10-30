@@ -7,9 +7,9 @@ from bakery.views import BuildableDetailView, BuildableListView
 from calaccess_website.templatetags.calaccess_website_tags import slugify
 
 
-class FileList(BuildableListView, CalAccessModelListMixin):
-    template_name = 'calaccess_website/file_list.html'
-    build_path = "documentation/calaccess-files/index.html"
+class CalAccessFileList(BuildableListView, CalAccessModelListMixin):
+    template_name = 'calaccess_website/docs/calaccess/file_list.html'
+    build_path = "documentation/raw-files/index.html"
 
     def get_queryset(self):
         """
@@ -18,8 +18,12 @@ class FileList(BuildableListView, CalAccessModelListMixin):
         return self.regroup_by_klass_group(get_model_list())
 
     def get_context_data(self, **kwargs):
-        context = super(FileList, self).get_context_data(**kwargs)
-        context['model_list'] = get_model_list()
+        context = super(CalAccessFileList, self).get_context_data(**kwargs)
+        model_list = get_model_list()
+        context['model_list'] = model_list
+        context['title'] = 'Raw files'
+        context['description'] = "Definitions, record layouts and data dictionaries for the {} raw \
+files released from the California Secretary of State's CAL-ACCESS database. For experts only.".format(len(model_list))
         return context
 
 
@@ -32,7 +36,9 @@ class BaseFileDetailView(BuildableDetailView):
         Returns a list of the raw data files as a key dictionary
         with the URL slug as the keys.
         """
-        return dict((slugify(m().db_table), m) for m in get_model_list())
+        return dict(
+            (slugify(m().db_table), m) for m in get_model_list()
+        )
 
     def set_kwargs(self, obj):
         self.kwargs = {
@@ -73,30 +79,30 @@ class BaseFileDetailView(BuildableDetailView):
         [self.build_object(o) for o in self.get_queryset()]
 
 
-class FileDownloadsList(BaseFileDetailView):
+class CalAccessFileDownloadsList(BaseFileDetailView):
     """
     A detail page with links to all downloads for the provided raw data file.
     """
-    template_name = 'calaccess_website/file_downloads_list.html'
+    template_name = 'calaccess_website/docs/calaccess/download_list.html'
 
     def get_url(self, obj):
-        return reverse('file_downloads_list', kwargs=dict(slug=obj))
+        return reverse('calaccess_file_downloads_list', kwargs=dict(slug=obj))
 
 
-class FileDetail(BaseFileDetailView):
+class CalAccessFileDetail(BaseFileDetailView):
     """
     A detail page with all documentation for the provided raw data file.
     """
-    template_name = 'calaccess_website/file_detail.html'
+    template_name = 'calaccess_website/docs/calaccess/file_detail.html'
 
     def get_url(self, obj):
-        return reverse('file_detail', kwargs=dict(slug=obj))
+        return reverse('calaccess_file_detail', kwargs=dict(slug=obj))
 
     def get_context_data(self, **kwargs):
         """
         Add some extra bits to the template's context
         """
-        context = super(FileDetail, self).get_context_data(**kwargs)
+        context = super(CalAccessFileDetail, self).get_context_data(**kwargs)
         # Add list of choice fields to context
         context['choice_fields'] = self.get_choice_fields()
         # Add dict of docs to context

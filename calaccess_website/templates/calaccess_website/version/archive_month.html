@@ -1,0 +1,54 @@
+{% extends 'calaccess_website/base_with_top.html' %}
+{% load calaccess_website_tags %}
+
+{% block title %}{{ month|date:"F Y" }} - Downloads - {{ block.super }}{% endblock %}
+{% block description %}All {{ month|date:"F Y" }} release{{ latest|length|pluralize }} of CAL-ACCESS, the government database that tracks campaign finance and lobbying activity in California politics.{% endblock %}
+
+{% block og-title %}{{ month|date:"F Y" }} - Downloads - {{ block.super }}{% endblock %}
+{% block og-description %}All {{ month|date:"F Y" }} release{{ latest|length|pluralize }} of CAL-ACCESS, the government database that tracks campaign finance and lobbying activity in California politics.{% endblock %}
+{% block twitter-title %}{{ month|date:"F Y" }} - Downloads - {{ block.super }}{% endblock %}
+{% block twitter-description %}All {{ month|date:"F Y" }} release{{ latest|length|pluralize }} of CAL-ACCESS, the government database that tracks campaign finance and lobbying activity in California politics.{% endblock %}
+
+{% block breadcrumbs %}
+  {{ block.super }}
+  <li><a href="{% url 'version_archive_index' %}">Downloads</a></li>
+  <li><a href="{% url 'version_archive_year' month.year %}">{{ month.year }}</a></li>
+  <li>{{ month|date:"N" }}</li>
+{% endblock %}
+
+{% block top %}
+    <h1>Archived data from {{ month|date:"F Y" }}</h1>
+    <p>
+        All {{ month|date:"F Y" }} release{{ latest|length|pluralize }} of CAL-ACCESS,
+        the government database that tracks campaign finance and lobbying activity in California politics.
+        <a href="{% url 'version_latest' %}">Latest release &raquo;</a>
+    </p>
+{% endblock %}
+
+{% block content %}
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th class="right">Size</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for obj in object_list %}
+  <tr>
+      <td>
+          <a href="{% url 'version_detail' year=obj.release_datetime.year month=obj.release_datetime|date:'m' day=obj.release_datetime|date:'d' time=obj.release_datetime|date:'His' %}">
+              {{ obj.release_datetime|date:"l, N j" }}
+          </a>
+      </td>
+      <td class="right">
+            {% if obj.flat_zip %}{{ obj.flat_zip.pretty_zip_size }}
+            {% elif obj.relational_zip %}{{ obj.relational_zip.pretty_zip_size }}
+            {% else %}{{ obj.pretty_clean_size }}
+            {% endif %}
+      </td>
+  </tr>
+  {% endfor %}
+  </tbody>
+  </table>
+{% endblock %}

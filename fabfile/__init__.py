@@ -10,7 +10,8 @@ from .app import (
     migrate,
     collectstatic,
     rmpyc,
-    pull
+    pull,
+    compress,
 )
 from .dev import rs, ssh
 from .env import dev, prod, env
@@ -21,7 +22,7 @@ from .configure import (
     createconfig,
     loadconfig,
     printconfig,
-    printenv
+    printenv,
 )
 
 __all__ = (
@@ -55,4 +56,5 @@ __all__ = (
     'rmpyc',
     'rs',
     'pull',
+    'compress',
 )
