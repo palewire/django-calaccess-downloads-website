@@ -30,14 +30,24 @@ class Command(UpdateCommand):
         """
         Make it happen.
         """
+        # Run the raw data loading command.
         super(Command, self).handle(*args, **options)
 
+        # Process it.
         call_command('processcalaccessdata')
+
+        # Sync it the with the CSV bucket.
         self.header('Creating latest file links')
         call_command('createlatestlinks')
+
+        # Build it.
         self.header('Baking downloads-website content')
         call_command('build')
+
+        # Publish it.
         if options['publish']:
             self.header('Publishing baked content to S3 bucket.')
             call_command('publish')
+
+        # We're out.
         self.success("Done!")
