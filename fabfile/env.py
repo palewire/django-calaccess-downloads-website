@@ -11,7 +11,7 @@ env.key_file_dir = os.path.expanduser('~/.ec2/')
 # Applications user
 env.app_user = 'ccdc'
 env.app_group = 'ccdc'
-env.app_dir = '/apps/calaccess/'
+env.app_dir = '/apps/django-calaccess-downloads-website/'
 env.activate = 'source {}'.format(
     os.path.join(env.app_dir, "bin", "activate")
 )

@@ -1,5 +1,5 @@
 # Create user and group
-user node[:app][:user] do 
+user node[:app][:user] do
     comment node[:app][:user]
     uid 1001
     shell "/bin/bash"
@@ -65,5 +65,5 @@ script "Install requirements" do
     interpreter "bash"
     user node[:app][:user]
     group node[:app][:group]
-    code "/apps/#{node[:app][:name]}/bin/pip install -r /apps/#{node[:app][:name]}/repo/requirements.txt"
+    code "/apps/#{node[:app][:name]}/bin/pip install -r /apps/#{node[:app][:name]}/repo/requirements.txt  --no-cache-dir"
 end
