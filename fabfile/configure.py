@@ -163,7 +163,7 @@ def loadconfig():
 
     # Load all of the configuration settings
     config = getconfig()
-    for k, v in config.iteritems():
+    for k, v in config.items():
         env[k] = v
 
     # If there is an EC2_HOST set, patch it onto the Fabric env object

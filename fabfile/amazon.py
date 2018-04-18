@@ -66,9 +66,9 @@ def createrds(
 @task(task_class=ConfigTask)
 def createec2(
     instance_name="calaccess_website",
-    block_gb_size=100,
-    instance_type='c3.large',
-    ami='ami-978dd9a7'
+    block_gb_size=10,
+    instance_type='m3.medium',
+    ami='ami-ca89eeb2'
 ):
     """
     Spin up a new Ubuntu 14.04 server on Amazon EC2.
