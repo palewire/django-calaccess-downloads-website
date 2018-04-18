@@ -15,12 +15,12 @@
         "libssl-dev"
     ],
     "python_version": {
-        "major": 2,
-        "minor": 7,
-        "micro": 13
+        "major": 3,
+        "minor": 6,
+        "micro": 4
     },
     "app": {
-        "name": "calaccess",
+        "name": "django-calaccess-downloads-website",
         "user": "%(app_user)s",
         "group": "%(app_group)s",
         "repo": "https://github.com/%(repo)s.git",

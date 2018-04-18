@@ -2,7 +2,6 @@ from django.apps import apps
 from django.http import Http404
 from django.urls import reverse
 from calaccess_processed.models import ProcessedDataFile
-from calaccess_processed_elections.proxies import opencivicdata
 from calaccess_website.views import CalAccessModelListMixin
 from calaccess_website.templatetags.calaccess_website_tags import slugify
 from bakery.views import BuildableDetailView, BuildableListView
@@ -10,29 +9,18 @@ from bakery.views import BuildableDetailView, BuildableListView
 
 def get_ocd_proxy_models():
     """
-    Return an iterable of OCD proxy models, defined in the processed_data app.
+    Return an iterable of all OCD proxy models from the processed_data app.
     """
-    models = []
-
-    for i in opencivicdata.__all__:
-        try:
-            model = apps.get_model('calaccess_processed', i)
-        except LookupError:
-            pass
-        else:
-            if hasattr(model.objects, 'to_csv'):
-                models.append(model)
-
-    return tuple(m for m in models)
+    election_proxies = apps.get_app_config('calaccess_processed_elections', i).get_ocd_models_map().values()
+    flat_proxies = apps.get_app_config("calaccess_processed_flatfiles").get_flat_proxy_list()
+    return list(election_proxies) + list(flat_proxies)
 
 
 def get_processed_data_files():
     """
     Return a tuple of ProcessedDataFile instances for published files.
     """
-    file_list = [
-        ProcessedDataFile(file_name=m().file_name) for m in get_ocd_proxy_models()
-    ]
+    file_list = [ProcessedDataFile(file_name=m().file_name) for m in get_ocd_proxy_models()]
     return sorted(file_list, key=lambda f: f.file_name)
 
 
