@@ -1,6 +1,6 @@
 from django.http import Http404
+from django.urls import reverse
 from calaccess_raw import get_model_list
-from django.core.urlresolvers import reverse
 from calaccess_raw.models.tracking import RawDataFile
 from calaccess_website.views import CalAccessModelListMixin
 from bakery.views import BuildableDetailView, BuildableListView

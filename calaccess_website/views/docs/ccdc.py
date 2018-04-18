@@ -1,8 +1,8 @@
 from django.apps import apps
 from django.http import Http404
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from calaccess_processed.models import ProcessedDataFile
-from calaccess_processed.models.proxies import opencivicdata
+from calaccess_processed_elections.proxies import opencivicdata
 from calaccess_website.views import CalAccessModelListMixin
 from calaccess_website.templatetags.calaccess_website_tags import slugify
 from bakery.views import BuildableDetailView, BuildableListView

@@ -5,6 +5,7 @@ import configparser
 import logging
 logger = logging.getLogger('management_commands')
 
+
 if __name__ == "__main__":
     # Allow invoking manage.py from any directory
     repo_dir = os.path.dirname(os.path.realpath(__file__))

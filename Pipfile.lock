@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "5981ea5845171987a1e721da4827cee637fb71f7e3020ef223fcf49bf1cf7e1e"
+            "sha256": "f3da3ee1c2b4e8bfa5be11b9bb29b37a20e4fe6c5900cd6e871d61093c5b59d8"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -41,6 +41,13 @@
                 "sha256:877b7b85adb5f0325455bba8d50a1623fa32af33680b554feca7c756a15ad9b4"
             ],
             "version": "==0.5.3"
+        },
+        "appdirs": {
+            "hashes": [
+                "sha256:9e5896d1372858f8dd3344faf4e5014d21849c756c8d5701f78f8a103b372d92",
+                "sha256:d8b24664561d0d34ddfaec54636d502d7cea6e29c3eaf68f3df6180863e2166e"
+            ],
+            "version": "==1.4.3"
         },
         "args": {
             "hashes": [
@@ -112,27 +119,20 @@
             ],
             "version": "==4.6.0"
         },
-        "boto": {
-            "hashes": [
-                "sha256:13be844158d1bd80a94c972c806ec8381b9ea72035aa06123c5db6bc6a6f3ead",
-                "sha256:deb8925b734b109679e3de65856018996338758f4b916ff4fe7bb62b6d7000d1"
-            ],
-            "version": "==2.48.0"
-        },
         "boto3": {
             "hashes": [
-                "sha256:16bf1ce40156356b41b057c307c1f1e225f8e7661c7bd60e0071183749a40249",
-                "sha256:c365144fb98d022ad6f6cdeb1abf8a4849f1a135e3c4ef78ef5053982ed914b3"
+                "sha256:13ad5f64a247d655a27dca83274588e9d14cba61b38d3d4fd2b011b7197d88dd",
+                "sha256:a56b21efbc994580fc9cef454f0f949745c152326f939aed6609d1c47b2a0f8f"
             ],
             "index": "pypi",
-            "version": "==1.4"
+            "version": "==1.7.4"
         },
         "botocore": {
             "hashes": [
-                "sha256:3954b0c3bf67473181e9f6e3347154ba8ac6e66fab9bc07a25bb9e4e165d9726",
-                "sha256:a527115c1418e98657621b94028a177a49c5017475079a7ea4dd016ed12f288d"
+                "sha256:5602738392ecde5c02a06a3b02de07171f440a44cdfef0aadff4b59567359607",
+                "sha256:77f2869b8c27afbab78b72ce6b74c75923421f364c7a0153ac1a38858c59cd91"
             ],
-            "version": "==1.4.93"
+            "version": "==1.10.4"
         },
         "certifi": {
             "hashes": [
@@ -171,6 +171,7 @@
                 "sha256:edabd457cd23a02965166026fd9bfd196f4324fe6032e866d0f3bd0301cd486f",
                 "sha256:fdf1c1dc5bafc32bc5d08b054f94d659422b05aba244d6be4ddc1c72d9aa70fb"
             ],
+            "markers": "platform_python_implementation != 'PyPy'",
             "version": "==1.11.5"
         },
         "chardet": {
@@ -294,11 +295,11 @@
         },
         "django-bakery": {
             "hashes": [
-                "sha256:2bfdefabcdd738d5e2236e5d818552ce26972f6a19f9b054c789f508790dec9b",
-                "sha256:e2748c509325dbe7e42398f0eddb8b4e3d334c34293fefb9f1ae4fe95ca08218"
+                "sha256:3a24e8113ea44b9c02db4d0abae29858c41a9d58b3c8c150653692e1b00b4560",
+                "sha256:8270c0afe2fd25ded4eb4333dbdc40ad7f1d3410a614eac5cd1cb860f0def7b8"
             ],
             "index": "pypi",
-            "version": "==0.8.11"
+            "version": "==0.12.5"
         },
         "django-calaccess-processed-data": {
             "hashes": [
@@ -383,6 +384,13 @@
             "index": "pypi",
             "version": "==3.5.0"
         },
+        "fs": {
+            "hashes": [
+                "sha256:93486a6be63a5a29ff29e04fd44f57f74973f01369d60897e509f06de6d0cdd1",
+                "sha256:abb0d53da9fcafcd06ece08c5d662a12c01cdcb06e2e92d27080d84491d11d41"
+            ],
+            "version": "==2.0.20"
+        },
         "future": {
             "hashes": [
                 "sha256:e39ced1ab767b5936646cedba8bcce582398233d6a627067d4c6a454c90cfedb"
@@ -448,7 +456,7 @@
         "opencivicdata": {
             "editable": true,
             "git": "https://github.com/california-civic-data-coalition/python-opencivicdata.git",
-            "ref": "0708b34626d3bbdc6169f9064210f84a868333dd"
+            "ref": "HEAD"
         },
         "openpyxl": {
             "hashes": [
@@ -586,10 +594,10 @@
         },
         "python-dateutil": {
             "hashes": [
-                "sha256:3220490fb9741e2342e1cf29a503394fdac874bc39568288717ee67047ff29df",
-                "sha256:9d8074be4c993fbe4947878ce593052f71dac82932a677d49194d8ce9778002e"
+                "sha256:891c38b2a02f5bb1be3e4793866c8df49c7d19baabf9c1bad62547e0b4866aca",
+                "sha256:95511bae634d69bc7329ba55e646499a842bc4ec342ad54a8cdb65645a0aad3c"
             ],
-            "version": "==2.7.2"
+            "version": "==2.6.1"
         },
         "python-slugify": {
             "hashes": [

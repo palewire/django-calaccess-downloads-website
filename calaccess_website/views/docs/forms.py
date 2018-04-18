@@ -1,5 +1,5 @@
 from django.http import Http404
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.template.defaultfilters import slugify
 from calaccess_website.views.base import CalAccessModelListMixin
 from calaccess_raw.annotations.filing_forms import all_filing_forms

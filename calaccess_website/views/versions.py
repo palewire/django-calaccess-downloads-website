@@ -1,9 +1,9 @@
 from datetime import datetime
 from django.apps import apps
 from django.http import Http404
+from django.urls import reverse
 from django.utils import timezone
 from .base import CalAccessModelListMixin
-from django.core.urlresolvers import reverse
 from calaccess_website.models import RawDataVersionProxy
 from django.template.defaultfilters import date as dateformat
 from bakery.views import (
