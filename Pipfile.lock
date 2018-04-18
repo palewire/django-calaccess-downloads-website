@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "f3da3ee1c2b4e8bfa5be11b9bb29b37a20e4fe6c5900cd6e871d61093c5b59d8"
+            "sha256": "48fa5f681698c4b7ac9b7a8ec9fa9e7b62fbbdc826cd93ec958465d3f14f869b"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -171,7 +171,6 @@
                 "sha256:edabd457cd23a02965166026fd9bfd196f4324fe6032e866d0f3bd0301cd486f",
                 "sha256:fdf1c1dc5bafc32bc5d08b054f94d659422b05aba244d6be4ddc1c72d9aa70fb"
             ],
-            "markers": "platform_python_implementation != 'PyPy'",
             "version": "==1.11.5"
         },
         "chardet": {
@@ -303,11 +302,11 @@
         },
         "django-calaccess-processed-data": {
             "hashes": [
-                "sha256:5029d85779b56f933dfc3e4e2497e1d86f0e6454e81a7e414a79940c82ff148c",
-                "sha256:97c618b6482238bad7c860891653514ecbbfdb6ae845d4b3d3eba6cb05bb5f79"
+                "sha256:4ac21ebfd24d46d4c0926ea17d6945950620e5bea8a6290314192ae32126b4e5",
+                "sha256:92c949249a15dc03460713af5ce3161b076ea6369d863beaba9c2a58f4fb9cac"
             ],
             "index": "pypi",
-            "version": "==0.2.0"
+            "version": "==0.2.1"
         },
         "django-calaccess-raw-data": {
             "hashes": [
@@ -368,13 +367,13 @@
             ],
             "version": "==1.0.1"
         },
-        "fabric": {
+        "fabric3": {
             "hashes": [
-                "sha256:1b993ca92703948b4259d1fa7d1309643b5ce478913054482261b16ad6bc8b13",
-                "sha256:81572002a562b26df657ca10d06b5bcfc6fd56b53374037392c83d4a2158208f"
+                "sha256:647e485ec83f30b587862f92374d6affc217f3d79819d1d7f512e42e7ae51e81",
+                "sha256:7c5a5f2eb3079eb6bd2a69931f1ca298844c730ce3fdc68111db16e8857a0408"
             ],
             "index": "pypi",
-            "version": "==1.14.0"
+            "version": "==1.14.post1"
         },
         "flake8": {
             "hashes": [
@@ -456,7 +455,7 @@
         "opencivicdata": {
             "editable": true,
             "git": "https://github.com/california-civic-data-coalition/python-opencivicdata.git",
-            "ref": "HEAD"
+            "ref": "1679a4e5df381c777c3e6c53d7c056321662e99a"
         },
         "openpyxl": {
             "hashes": [

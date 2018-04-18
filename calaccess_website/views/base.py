@@ -10,11 +10,10 @@ class CalAccessModelListMixin(object):
     """
     def get_klass_group(self, model_or_obj):
         # If it's a RawDataFile or ProcessedDataFile do our trick
-        if (
-            isinstance(model_or_obj, RawDataFile)
-            or isinstance(model_or_obj, ProcessedDataFile)
-        ):
+        if isinstance(model_or_obj, RawDataFile):
             return model_or_obj.model().klass_group
+        elif isinstance(model_or_obj, ProcessedDataFile):
+            return "Flat" if model_or_obj.is_flat else "Relational"
         # If it's a FilingForm also do our trick
         elif isinstance(model_or_obj, FilingForm):
             return model_or_obj.group

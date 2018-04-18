@@ -1,9 +1,19 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+"""
+Views for CCDC file documetnation pages.
+"""
+# Django tricks
 from django.apps import apps
 from django.http import Http404
 from django.urls import reverse
-from calaccess_processed.models import ProcessedDataFile
-from calaccess_website.views import CalAccessModelListMixin
 from calaccess_website.templatetags.calaccess_website_tags import slugify
+
+# Models
+from calaccess_processed.models import ProcessedDataFile
+
+# Views
+from calaccess_website.views import CalAccessModelListMixin
 from bakery.views import BuildableDetailView, BuildableListView
 
 
@@ -11,7 +21,7 @@ def get_ocd_proxy_models():
     """
     Return an iterable of all OCD proxy models from the processed_data app.
     """
-    election_proxies = apps.get_app_config('calaccess_processed_elections', i).get_ocd_models_map().values()
+    election_proxies = apps.get_app_config('calaccess_processed_elections').get_ocd_models_map().values()
     flat_proxies = apps.get_app_config("calaccess_processed_flatfiles").get_flat_proxy_list()
     return list(election_proxies) + list(flat_proxies)
 
@@ -52,9 +62,7 @@ class BaseFileDetailView(BuildableDetailView):
         Returns a list of the ccdc data files as a key dictionary
         with the URL slug as the keys.
         """
-        return dict(
-            (slugify(f.file_name), f) for f in get_processed_data_files()
-        )
+        return dict((slugify(f.file_name), f) for f in get_processed_data_files())
 
     def set_kwargs(self, obj):
         self.kwargs = {
@@ -128,7 +136,6 @@ class CcdcFileDetail(BaseFileDetailView):
         context = super(CcdcFileDetail, self).get_context_data(**kwargs)
         # Add list of fields to context
         context['fields'] = self.get_sorted_fields()
-
         return context
 
     def get_sorted_fields(self):
@@ -136,7 +143,6 @@ class CcdcFileDetail(BaseFileDetailView):
         Return a list of fields (dicts) sorted by name.
         """
         field_list = []
-
         for field in self.object.model().get_field_list():
             field_data = {
                 'column': field.name,
