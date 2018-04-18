@@ -1,6 +1,6 @@
 {
     "run_list": [
-        "ccdc:system",
+        "ccdc::system",
         "ccdc::app",
         "ccdc::cron",
         "ccdc::newrelic",
