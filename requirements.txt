@@ -10,7 +10,7 @@ backports.csv
 psycopg2>=2.7
 boto3==1.4
 django-storages
-django-bakery==0.8.11
+django-bakery==0.12.5
 six
 Fabric3
 flake8
