@@ -137,10 +137,10 @@ def getconfig():
     """
     Return a dict of the vars currently in the config_file
     """
-    print "Loading {} configuration settings from {}".format(
+    print("Loading {} configuration settings from {}".format(
         cyan(env.config_section),
         cyan(env.config_file)
-    )
+    ))
 
     # Open the configuration file
     cp = configparser.SafeConfigParser()
