@@ -30,7 +30,7 @@ def setconfig(key, value):
     cp.set(env.config_section, key, value)
 
     # Write to the .env file
-    with open(env.config_file, 'wb') as f:
+    with open(env.config_file, 'w') as f:
         cp.write(f)
 
 
