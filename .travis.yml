@@ -6,7 +6,7 @@ cache:
   - pip
 
 python:
- - "2.7"
+ - "3.6"
 
 addons:
  postgresql: "9.4"
@@ -15,7 +15,7 @@ addons:
    - "postgresql-9.4-postgis-2.3"
 
 env:
- - DJANGO_VERSION=1.11
+ - DJANGO_VERSION=2.0.*
    db_name=calaccess_website
    db_user=postgres
    db_password=''

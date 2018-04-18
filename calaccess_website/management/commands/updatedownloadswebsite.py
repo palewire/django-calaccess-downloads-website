@@ -3,13 +3,11 @@
 """
 Update to the latest CAL-ACCESS snapshot and bake static website pages.
 """
-import logging
 from django.core.management import call_command
-from calaccess_raw.management.commands.updatecalaccessrawdata import Command as updatecommand
-logger = logging.getLogger(__name__)
+from calaccess_raw.management.commands.updatecalaccessrawdata import Command as UpdateCommand
 
 
-class Command(updatecommand):
+class Command(UpdateCommand):
     """
     Update to the latest CAL-ACCESS snapshot and bake static website pages.
     """
@@ -42,5 +40,4 @@ class Command(updatecommand):
         if options['publish']:
             self.header('Publishing baked content to S3 bucket.')
             call_command('publish')
-
         self.success("Done!")
