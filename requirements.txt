@@ -1,7 +1,7 @@
 Django==1.11.6
-django-calaccess-raw-data==1.6.2
-django-calaccess-scraped-data==0.1.1
-django-calaccess-processed-data==0.1.8
+django-calaccess-raw-data==1.7.0
+django-calaccess-scraped-data==0.2.0
+django-calaccess-processed-data==0.2.0
 
 # this requirement can be removed after next release of ocd package
 -e git+https://github.com/california-civic-data-coalition/python-opencivicdata.git@HEAD#egg=opencivicdata

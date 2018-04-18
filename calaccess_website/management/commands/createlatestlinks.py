@@ -155,9 +155,7 @@ class Command(BaseCommand):
         """
         Delete all the provided s3 keys.
         """
-        logger.debug(
-            'Deleting %s keys currently under latest/' % key_list['KeyCount']
-        )
+        logger.debug('Deleting {} keys currently under latest/'.format(key_list['KeyCount']))
         # format
         objects = [{'Key': o['Key']} for o in key_list['Contents']]
         # delete
