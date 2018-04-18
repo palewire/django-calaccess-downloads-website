@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-from configure import ConfigTask
+from .configure import ConfigTask
 from fabric.api import sudo, env, cd, task, settings
 
 

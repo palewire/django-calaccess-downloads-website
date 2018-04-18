@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-from configure import ConfigTask
+from .configure import ConfigTask
 from fabric.operations import prompt
 from fabric.api import local, task, env
 

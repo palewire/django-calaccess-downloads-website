@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 import json
 import collections
-from app import migrate, collectstatic
-from configure import ConfigTask, copyconfig
+from .app import migrate, collectstatic
+from .configure import ConfigTask, copyconfig
 from fabric.api import sudo, task, env
 from fabric.contrib.project import rsync_project
 from fabric.colors import green

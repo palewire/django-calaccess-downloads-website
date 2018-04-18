@@ -7,7 +7,7 @@ import boto3
 from fabric.colors import green
 from fabric.api import task, env
 from botocore.exceptions import ClientError
-from configure import loadconfig, setconfig, ConfigTask
+from .configure import loadconfig, setconfig, ConfigTask
 
 
 @task(task_class=ConfigTask)

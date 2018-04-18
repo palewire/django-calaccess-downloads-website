@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import os
-from collections import OrderedDict
 import configparser
+from collections import OrderedDict
 from fabric.tasks import Task
 from fabric.colors import green, cyan
 from fabric.api import task, env, sudo
