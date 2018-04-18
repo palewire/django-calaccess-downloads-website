@@ -15,7 +15,7 @@ opencivicdata = {git = "https://github.com/california-civic-data-coalition/pytho
 django-storages = "*"
 django-bakery = "*"
 six = "*"
-Fabric = "*"
+Fabric3 = "*"
 "flake8" = "*"
 coveralls = "*"
 configparser = "*"

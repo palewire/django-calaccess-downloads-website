@@ -12,7 +12,7 @@ boto3==1.4
 django-storages
 django-bakery==0.8.11
 six
-Fabric
+Fabric3
 flake8
 coveralls
 configparser
