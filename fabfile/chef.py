@@ -30,7 +30,7 @@ def bootstrap():
          "/apps/django-calaccess-downloads-website/bin/activate" % env.config_section)
 
     # Fire up the Django project
-    # migrate()
+    migrate()
     collectstatic()
 
     # Done deal

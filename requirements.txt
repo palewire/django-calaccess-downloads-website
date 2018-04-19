@@ -8,7 +8,7 @@ django-calaccess-processed-data==0.2.1
 
 backports.csv
 psycopg2>=2.7
-boto3==1.4
+boto3>=1.4.4
 django-storages
 django-bakery==0.12.5
 six
