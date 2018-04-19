@@ -29,7 +29,7 @@ def pipinstall():
     """
     Install the Python requirements inside the virtualenv
     """
-    _venv("pip install -r requirements.txt --upgrade --log-file=/tmp/pip.log")
+    _venv("pip install -r requirements.txt --upgrade --log-file=/tmp/pip.log --no-cache-dir")
 
 
 @task(task_class=ConfigTask)
@@ -119,5 +119,5 @@ def deploy():
     migrate()
     compress()
     collectstatic()
-    build()
-    publish()
+    # build()
+    # publish()
