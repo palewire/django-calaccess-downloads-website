@@ -27,10 +27,10 @@ def bootstrap():
     # Set the CALACCESS_WEBSITE_ENV var when the virtualenv is activated.
     # Otherwise the Django project will default to DEV.
     sudo("echo 'export CALACCESS_WEBSITE_ENV=%s' >> "
-         "/apps/calaccess/bin/activate" % env.config_section)
+         "/apps/django-calaccess-downloads-website/bin/activate" % env.config_section)
 
     # Fire up the Django project
-    migrate()
+    # migrate()
     collectstatic()
 
     # Done deal
