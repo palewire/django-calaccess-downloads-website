@@ -129,10 +129,7 @@ campaign finance and lobbying activity in California politics.".format(context['
         """
         flat_files = []
         if self.object.has_processed_version:
-            flat_models = [
-                m for m in apps.get_models()
-                if getattr(m(), 'is_flat', False)
-            ]
+            flat_models = apps.get_app_config("calaccess_processed_flatfiles").get_flat_proxy_list()
             for m in flat_models:
                 flat_file = {
                     'name': m()._meta.verbose_name_plural,
