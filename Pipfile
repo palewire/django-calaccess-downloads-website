@@ -7,7 +7,7 @@ name = "pypi"
 Django = "==2.0.4"
 django-calaccess-raw-data = "==1.7.0"
 django-calaccess-scraped-data = "==0.2.0"
-django-calaccess-processed-data = "==0.2.5"
+django-calaccess-processed-data = "==0.2.6"
 opencivicdata = {git = "https://github.com/california-civic-data-coalition/python-opencivicdata.git", editable = true, ref = "HEAD"}
 "backports.csv" = "*"
 "psycopg2" = "*"
