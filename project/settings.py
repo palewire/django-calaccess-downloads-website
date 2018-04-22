@@ -268,6 +268,21 @@ LOGGING = {
             'level': 'DEBUG',
             'propagate': True,
         },
+        'calaccess_processed_elections': {
+            'handlers': ['console', 'logfile',],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+        'calaccess_processed_filings': {
+            'handlers': ['console', 'logfile',],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+        'calaccess_processed_flatfiles': {
+            'handlers': ['console', 'logfile',],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
         'bakery': {
             'handlers': ['console', 'logfile'],
             'level': 'DEBUG',
