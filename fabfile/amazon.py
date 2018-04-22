@@ -66,7 +66,7 @@ def createrds(
 @task(task_class=ConfigTask)
 def createec2(
     instance_name="calaccess_website",
-    block_gb_size=10,
+    block_gb_size=50,
     instance_type='m3.medium',
     ami='ami-ca89eeb2'
 ):
