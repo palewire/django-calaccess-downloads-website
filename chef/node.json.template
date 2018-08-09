@@ -12,7 +12,10 @@
         "libpq-dev",
         "libffi-dev",
         "build-essential",
-        "libssl-dev"
+        "libssl-dev",
+        "libxml2-dev",
+        "libxslt1-dev",
+        "zlib1g-dev"
     ],
     "python_version": {
         "major": 3,
