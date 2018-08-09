@@ -15,7 +15,8 @@
         "libssl-dev",
         "libxml2-dev",
         "libxslt1-dev",
-        "zlib1g-dev"
+        "zlib1g-dev",
+        "python3.5-dev"
     ],
     "python_version": {
         "major": 3,
