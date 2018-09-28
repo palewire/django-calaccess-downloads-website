@@ -14,7 +14,7 @@ class FormList(BuildableListView, CalAccessModelListMixin):
         """
         Returns a list of all forms.
         """
-        return self.regroup_by_klass_group(all_filing_forms)
+        return self.regroup_by_klass_group(FORMS)
 
     def get_context_data(self, **kwargs):
         context = super(FormList, self).get_context_data(**kwargs)
