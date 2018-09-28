@@ -1,5 +1,5 @@
 Django==2.0.4
-django-calaccess-raw-data==1.7.0
+django-calaccess-raw-data==2.0.4
 django-calaccess-scraped-data==0.2.0
 django-calaccess-processed-data==0.2.9
 
