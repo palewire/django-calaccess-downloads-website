@@ -1,8 +1,8 @@
 from django.http import Http404
 from django.urls import reverse
+from calaccess_raw.annotations import FORMS
 from django.template.defaultfilters import slugify
 from calaccess_website.views.base import CalAccessModelListMixin
-from calaccess_raw.annotations.filing_forms import all_filing_forms
 from bakery.views import BuildableDetailView, BuildableListView
 
 
@@ -18,7 +18,7 @@ class FormList(BuildableListView, CalAccessModelListMixin):
 
     def get_context_data(self, **kwargs):
         context = super(FormList, self).get_context_data(**kwargs)
-        context['form_list'] = all_filing_forms
+        context['form_list'] = FORMS
         return context
 
 
@@ -34,7 +34,7 @@ class FormDetail(BuildableDetailView):
         Returns a list of the forms as a key dictionary
         with the URL slug as the keys.
         """
-        return dict((slugify(m.id), m) for m in all_filing_forms)
+        return dict((slugify(m.id), m) for m in FORMS)
 
     def set_kwargs(self, obj):
         self.kwargs = {

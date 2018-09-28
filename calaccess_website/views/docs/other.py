@@ -1,7 +1,7 @@
 import calaccess_raw
 from django.urls import reverse
+from calaccess_raw.annotations import FORMS
 from bakery.views import BuildableTemplateView
-from calaccess_raw.annotations.filing_forms import all_filing_forms
 
 
 class DocumentationIndex(BuildableTemplateView):
@@ -13,7 +13,7 @@ class DocumentationIndex(BuildableTemplateView):
 
     def get_context_data(self):
         model_list = calaccess_raw.get_model_list()
-        form_list = all_filing_forms
+        form_list = FORMS
         object_list = [
             dict(
                 name='Processed files from the California Civic Data Coalition',

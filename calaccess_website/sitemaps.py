@@ -1,7 +1,7 @@
 from bakery.views import BuildableListView
 from calaccess_raw import get_model_list
 from calaccess_raw.models import RawDataVersion
-from calaccess_raw.annotations.filing_forms import all_filing_forms
+from calaccess_raw.annotations import FORMS
 from calaccess_website.views.docs.ccdc import get_processed_data_files
 
 
@@ -116,4 +116,4 @@ class FormSitemap(AbstractSitemapView):
     """
     build_path = 'form-sitemap.xml'
     template_name = 'calaccess_website/sitemaps/form-sitemap.xml'
-    queryset = all_filing_forms
+    queryset = FORMS
