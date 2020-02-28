@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "61b64b91e1470bbce974a5d954534510285bb54893bfd78a109e83beea2178df"
+            "sha256": "61d8dc073ff4ec91d19d4148315d64d9b1aae55fff877c3dd7fd89381547f32c"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -304,12 +304,13 @@
             "version": "==0.2.9"
         },
         "django-calaccess-raw-data": {
+            "git": "https://github.com/california-civic-data-coalition/django-calaccess-raw-data.git",
             "hashes": [
                 "sha256:0eb828de01b0664802748c6182e205cfa8050f595039cca2637ed36f98db112f",
                 "sha256:db525970e908c3e21ba16f2818aeedee045bad8b75c8b15810d8ecb1955e1d54"
             ],
-            "index": "pypi",
-            "version": "==1.7.0"
+            "ref": "dab2bf103b713eee6d76295ffbd2d5d58c2796e4",
+            "version": "==2.0.5"
         },
         "django-calaccess-scraped-data": {
             "hashes": [

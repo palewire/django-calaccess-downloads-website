@@ -35,7 +35,8 @@ def archive_url(file_path, is_latest=False):
     """
     # If this is the 'latest' version of the file the path will need to be hacked
     if os.getenv("CALACCESS_WEBSITE_ENV").upper() == 'PROD':
-        stub = "calaccess.download"
+        # stub = "calaccess.download"  This is currently broken
+        stub = "s3-{aws_region_name}.amazonaws.com/{s3_archived_data_bucket}".format(**os.environ)
     else:
         stub = "s3-{aws_region_name}.amazonaws.com/{s3_archived_data_bucket}".format(**os.environ)
 
