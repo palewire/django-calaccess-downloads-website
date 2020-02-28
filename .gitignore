@@ -11,3 +11,4 @@ node.json
 .static
 django.log
 .python-version
+.vscode/
