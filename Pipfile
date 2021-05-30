@@ -4,26 +4,23 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-Django = "==2.0.4"
-django-calaccess-raw-data = {git = "https://github.com/california-civic-data-coalition/django-calaccess-raw-data.git", ref = "master"}
-django-calaccess-scraped-data = "==0.2.0"
-django-calaccess-processed-data = "==0.3.0"
+Django = ">=3.2.0"
+django-calaccess-raw-data = "==3.0.1"
+django-calaccess-scraped-data = "==3.1.0"
+django-calaccess-processed-data = "==0.3.2"
 opencivicdata = {git = "https://github.com/california-civic-data-coalition/python-opencivicdata.git", editable = true, ref = "master"}
 "backports.csv" = "*"
-"psycopg2" = "*"
+"psycopg2-binary" = "*"
 "boto3" = "*"
 django-storages = "*"
 django-bakery = "*"
-six = "*"
-Fabric3 = "*"
-"flake8" = "*"
-coveralls = "*"
 configparser = "*"
 django_compressor = "*"
 greeking = "*"
 PyGithub = "*"
 
 [dev-packages]
+"flake8" = "*"
 
 [requires]
-python_version = "3.6"
+python_version = "3.8"
