@@ -19,7 +19,6 @@ dj-database-url = "*"
 django-heroku = "*"
 gunicorn = "*"
 whitenoise = "*"
-pyicu-binary = "*"
 
 [dev-packages]
 "flake8" = "*"
