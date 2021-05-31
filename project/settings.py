@@ -1,4 +1,6 @@
 import os
+import dj_database_url
+import django_heroku
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '8++yeqnsqgtb8=%oa0&*oa8$2o*6gh0j-+5o+0kq-uq-ycoo3@'
@@ -168,15 +170,15 @@ COMPRESS_REBUILD_TIMEOUT = 0
 #
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.getenv('db_name'),
-        'USER': os.getenv('db_user'),
-        'PASSWORD': os.getenv('db_password'),
-        'HOST': os.getenv('db_host'),
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "calaccess_website",
+        "USER": "postgres",
+        "HOST": "localhost",
         'PORT': '5432',
-    },
+    }
 }
+DATABASES["default"].update(dj_database_url.config(conn_max_age=500, ssl_require=True))
 
 #
 # Password validation
