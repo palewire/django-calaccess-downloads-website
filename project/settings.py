@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'opencivicdata.elections.apps.BaseConfig',
     'storages',
     'toolbox',
+    'whitenoise.runserver_nostatic',
 ]
 
 LANGUAGE_CODE = 'en-us'
@@ -51,6 +52,7 @@ STATICFILES_FINDERS = (
 )
 
 MIDDLEWARE = [
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -297,7 +299,5 @@ LOGGING = {
     }
 }
 
-try:
-    from settings_local import *  # NOQA
-except ImportError:
-    pass
+# Activate Django-Heroku.
+django_heroku.settings(locals())
