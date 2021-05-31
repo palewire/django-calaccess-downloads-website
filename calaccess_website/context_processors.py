@@ -1,4 +1,3 @@
-# from greeking.lorem
 
 
 def calaccess_website(request):

@@ -31,7 +31,6 @@ INSTALLED_APPS = [
     'opencivicdata.elections.apps.BaseConfig',
     'storages',
     'toolbox',
-    'greeking',
 ]
 
 LANGUAGE_CODE = 'en-us'
