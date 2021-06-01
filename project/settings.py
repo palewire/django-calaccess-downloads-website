@@ -33,7 +33,7 @@ INSTALLED_APPS = [
     'opencivicdata.elections.apps.BaseConfig',
     'storages',
     'toolbox',
-    'whitenoise.runserver_nostatic',
+    'whitenoise.runserver_nostatic'
 ]
 
 LANGUAGE_CODE = 'en-us'
