@@ -1,3 +1,4 @@
+staticfiles/
 prod.dump
 *.pyc
 .DS_Store

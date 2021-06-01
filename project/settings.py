@@ -8,7 +8,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 ADMINS = (
-    ('California Civic Data Coalition', 'cacivicdata@gmail.com'),
+    ('California Civic Data Coalition', 'b@palewi.re'),
     ('Los Angeles Times Data Desk', 'datadesk@latimes.com'),
 )
 
@@ -42,7 +42,7 @@ USE_I18N = True
 USE_L10N = False
 USE_TZ = True
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, ".static")
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
