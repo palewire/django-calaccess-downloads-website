@@ -1,4 +1,4 @@
-<!DOCTYPE html>{% load compress static %}
+<!DOCTYPE html>{% load static %}
 <!--[if IE 9]><html class="lt-ie10" lang="en" > <![endif]-->
 <html class="no-js" lang="en" >
   <head>
@@ -28,12 +28,10 @@
 
     {% block extra-meta %}{% endblock %}
 
-    {% compress css %}
     <link rel="stylesheet" type="text/css" href="/static/calaccess_website/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="/static/calaccess_website/css/sourcesanspro.css">
     <link rel="stylesheet" type="text/css" href="/static/calaccess_website/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/static/calaccess_website/css/main.css">
-    {% endcompress %}
     <link href="//fonts.googleapis.com/css?family=Raleway:400,600" rel="stylesheet">
     <script type="text/javascript" src="{% static "calaccess_website/js/jquery.min.js" %}"></script>
   </head>
@@ -49,7 +47,6 @@
 
     {% include 'calaccess_website/footer.html' %}
 
-    {% compress js %}
       <script src="{% static "calaccess_website/js/bootstrap.js" %}"></script>
       <script src="{% static "calaccess_website/js/underscore-min.js" %}"></script>
       {% block javascript %}
@@ -65,6 +62,5 @@
         ga('send', 'pageview');
       </script>
       {% endblock %}
-    {% endcompress %}
   </body>
 </html>
