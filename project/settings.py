@@ -146,7 +146,7 @@ BAKERY_GZIP = True
 #
 
 CALACCESS_DAT_SOURCE = ''
-CALACCESS_STORE_ARCHIVE = True
+CALACCESS_STORE_ARCHIVE = False
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 AWS_STORAGE_BUCKET_NAME = os.getenv('s3_archived_data_bucket')
 CLOUDFRONT_ARCHIVED_DATA_DISTRIBUTION = os.getenv('cloudfront_archived_data_distribution')
