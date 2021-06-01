@@ -17,6 +17,7 @@ dj-database-url = "*"
 django-heroku = "*"
 gunicorn = "*"
 whitenoise = "*"
+csvkit = "*"
 
 [dev-packages]
 "flake8" = "*"

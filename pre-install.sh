@@ -1,3 +1,1 @@
-ls -alF ./.apt/
-# ls /app/.apt;
-# sed -i 's/locale\.h/locale2.h/g' *.cpp;
+sed -i 's/locale\.h/locale2.h/g' *.cpp;
