@@ -181,6 +181,8 @@ DATABASES = {
 }
 DATABASES["default"].update(dj_database_url.config(conn_max_age=500, ssl_require=True))
 
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
 #
 # Password validation
 #
