@@ -1,11 +1,11 @@
-from bakery.views import BuildableListView
+from django.views.generic.list import ListView
 from calaccess_raw import get_model_list
 from calaccess_raw.models import RawDataVersion
 from calaccess_raw.annotations import FORMS
 from calaccess_website.views.docs.ccdc import get_processed_data_files
 
 
-class AbstractSitemapView(BuildableListView):
+class AbstractSitemapView(ListView):
     """
     Abstract base class that will render a generic ListView as XML.
     """

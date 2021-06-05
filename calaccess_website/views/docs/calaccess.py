@@ -3,13 +3,12 @@ from django.urls import reverse
 from calaccess_raw import get_model_list
 from calaccess_raw.models.tracking import RawDataFile
 from calaccess_website.views import CalAccessModelListMixin
-from bakery.views import BuildableDetailView, BuildableListView
+from django.views.generic import DetailView, ListView
 from calaccess_website.templatetags.calaccess_website_tags import slugify
 
 
-class CalAccessFileList(BuildableListView, CalAccessModelListMixin):
+class CalAccessFileList(ListView, CalAccessModelListMixin):
     template_name = 'calaccess_website/docs/calaccess/file_list.html'
-    build_path = "documentation/raw-files/index.html"
 
     def get_queryset(self):
         """
@@ -27,7 +26,7 @@ files released from the California Secretary of State's CAL-ACCESS database. For
         return context
 
 
-class BaseFileDetailView(BuildableDetailView):
+class BaseFileDetailView(DetailView):
     """
     Base class for views providing information about a raw data file.
     """
@@ -74,9 +73,6 @@ class BaseFileDetailView(BuildableDetailView):
         except IndexError:
             context['empty'] = True
         return context
-
-    def build_queryset(self):
-        [self.build_object(o) for o in self.get_queryset()]
 
 
 class CalAccessFileDownloadsList(BaseFileDetailView):

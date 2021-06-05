@@ -3,12 +3,11 @@ from django.urls import reverse
 from calaccess_raw.annotations import FORMS
 from django.template.defaultfilters import slugify
 from calaccess_website.views.base import CalAccessModelListMixin
-from bakery.views import BuildableDetailView, BuildableListView
+from django.views.generic import DetailView, ListView
 
 
-class FormList(BuildableListView, CalAccessModelListMixin):
+class FormList(ListView, CalAccessModelListMixin):
     template_name = 'calaccess_website/docs/forms/form_list.html'
-    build_path = "documentation/calaccess-forms/index.html"
 
     def get_queryset(self):
         """
@@ -22,7 +21,7 @@ class FormList(BuildableListView, CalAccessModelListMixin):
         return context
 
 
-class FormDetail(BuildableDetailView):
+class FormDetail(DetailView):
     """
     A detail page with everything we know about the provided filing form.
     """
@@ -56,6 +55,3 @@ class FormDetail(BuildableDetailView):
 
     def get_url(self, obj):
         return reverse('form_detail', kwargs=dict(id=obj))
-
-    def build_queryset(self):
-        [self.build_object(o) for o in self.get_queryset()]

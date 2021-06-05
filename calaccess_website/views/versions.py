@@ -6,25 +6,24 @@ from django.utils import timezone
 from .base import CalAccessModelListMixin
 from calaccess_website.models import RawDataVersionProxy
 from django.template.defaultfilters import date as dateformat
-from bakery.views import (
-    BuildableArchiveIndexView,
-    BuildableYearArchiveView,
-    BuildableMonthArchiveView,
-    BuildableDetailView
+from django.views.generic import (
+    ArchiveIndexView,
+    YearArchiveView,
+    MonthArchiveView,
+    DetailView
 )
 
 
-class VersionArchiveIndex(BuildableArchiveIndexView):
+class VersionArchiveIndex(ArchiveIndexView):
     """
     A list of the latest versions of CAL-ACCESS in our archive
     """
     model = RawDataVersionProxy
     date_field = "release_datetime"
     template_name = "calaccess_website/version/archive.html"
-    build_path = "downloads/index.html"
 
 
-class VersionYearArchiveList(BuildableYearArchiveView):
+class VersionYearArchiveList(YearArchiveView):
     """
     A list of all versions of CAL-ACCESS in a given year
     """
@@ -40,7 +39,7 @@ class VersionYearArchiveList(BuildableYearArchiveView):
         )
 
 
-class VersionMonthArchiveList(BuildableMonthArchiveView):
+class VersionMonthArchiveList(MonthArchiveView):
     """
     A list of all versions of CAL-ACCESS in a given year
     """
@@ -60,7 +59,7 @@ class VersionMonthArchiveList(BuildableMonthArchiveView):
         )
 
 
-class VersionDetail(BuildableDetailView, CalAccessModelListMixin):
+class VersionDetail(DetailView, CalAccessModelListMixin):
     """
     A detail page with everything about an individual CAL-ACCESS version
     """
@@ -194,9 +193,3 @@ finance and lobbying activity in California politics.'
         The never-changing latest URL.
         """
         return reverse('version_latest')
-
-    def build_queryset(self):
-        """
-        Only build this view for one object, the latest one.
-        """
-        return self.build_object(self.get_object())

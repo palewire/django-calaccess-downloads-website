@@ -229,11 +229,6 @@ LOGGING = {
             'level': 'DEBUG',
             'propagate': True,
         },
-        'bakery': {
-            'handlers': ['console', 'logfile'],
-            'level': 'DEBUG',
-            'propagate': True,
-        },
         'management_commands': {
             'handlers': ['mail_admins', 'logfile'],
             'level': 'ERROR',

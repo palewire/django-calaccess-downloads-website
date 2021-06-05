@@ -14,7 +14,7 @@ from calaccess_processed.models import ProcessedDataFile
 
 # Views
 from calaccess_website.views import CalAccessModelListMixin
-from bakery.views import BuildableDetailView, BuildableListView
+from django.views.generic import DetailView, ListView
 
 
 def get_ocd_proxy_models():
@@ -34,9 +34,8 @@ def get_processed_data_files():
     return sorted(file_list, key=lambda f: f.file_name)
 
 
-class CcdcFileList(BuildableListView, CalAccessModelListMixin):
+class CcdcFileList(ListView, CalAccessModelListMixin):
     template_name = 'calaccess_website/docs/ccdc/file_list.html'
-    build_path = "documentation/processed-files/index.html"
 
     def get_queryset(self):
         """
@@ -53,7 +52,7 @@ processed data files released by the California Civic Data Coalition. Recommende
         return context
 
 
-class BaseFileDetailView(BuildableDetailView):
+class BaseFileDetailView(DetailView):
     """
     Base class for views providing information about a CCDC data file.
     """
@@ -105,9 +104,6 @@ class BaseFileDetailView(BuildableDetailView):
             context['empty'] = True
 
         return context
-
-    def build_queryset(self):
-        [self.build_object(o) for o in self.get_queryset()]
 
 
 class CcdcFileDownloadsList(BaseFileDetailView):

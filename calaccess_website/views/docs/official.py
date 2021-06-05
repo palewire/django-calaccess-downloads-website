@@ -1,11 +1,10 @@
-from bakery.views import BuildableTemplateView
+from django.views.generic.base import TemplateView
 
 
-class OfficialDocumentation(BuildableTemplateView):
+class OfficialDocumentation(TemplateView):
     """
     Explanation of official CAL-ACCESS documentation.
     """
-    build_path = "documentation/calaccess-official-documentation/index.html"
     template_name = "calaccess_website/docs/official/doc_list.html"
 
     def get_context_data(self):

@@ -1,35 +1,20 @@
 from calaccess_raw.models.tracking import RawDataVersion
-from bakery.views import BuildableArchiveIndexView, Buildable404View, BuildableRedirectView
+from django.views.generic import ArchiveIndexView, TemplateView
 
 
-class Home(BuildableArchiveIndexView):
+class Home(ArchiveIndexView):
     """
     The site homepage.
     """
     model = RawDataVersion
     date_field = "release_datetime"
-    build_path = "index.html"
     template_name = "calaccess_website/home.html"
 
 
-class HomeRedirect(BuildableRedirectView):
-    build_path = "index.html"
-    url = "http://www.californiacivicdata.org/"
-
-
-class CalAccess404View(Buildable404View):
-    """
-    The 404 page.
-    """
-    build_path = "404.html"
-    template_name = "calaccess_website/404.html"
-
-
-class CalAccessRobotsTxt(Buildable404View):
+class CalAccessRobotsTxt(TemplateView):
     """
     The robots.txt file.
     """
-    build_path = "robots.txt"
     template_name = "calaccess_website/robots.txt"
 
     def render_to_response(self, context):
