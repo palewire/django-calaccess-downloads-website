@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "598f4a99f1c21ace3673f1c4f493a8b61e0bf74e139a28c25fa2de12ee49b3ec"
+            "sha256": "ecb8811e3b87ddd8dbba1bbc699dbed75f26d8b4a01d6c357b0f2f920ed33874"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -39,13 +39,6 @@
                 "sha256:056dc9e587fbdfdf3f1c9950f4793a5ee87622c19deba31aa0a6d6681816dcde"
             ],
             "version": "==0.5.6"
-        },
-        "appdirs": {
-            "hashes": [
-                "sha256:7d5d0167b2b1ba821647616af46a749d1c653740dd0d2415100fe26e27afdf41",
-                "sha256:a841dacd6b99318a741b166adb07e19ee71a274450e68237b4650ca1055ab128"
-            ],
-            "version": "==1.4.4"
         },
         "args": {
             "hashes": [
@@ -226,14 +219,6 @@
             "index": "pypi",
             "version": "==3.2.4"
         },
-        "django-bakery": {
-            "hashes": [
-                "sha256:48156dbd9ddb762bef4352350a5f43744740529148fd70598120d8d2ae5e273c",
-                "sha256:9eb91d1a65ecc0ba08c58ef091130b7daa012e4a1e30b4c3960ea36d9477fcef"
-            ],
-            "index": "pypi",
-            "version": "==0.12.7"
-        },
         "django-calaccess-processed-data": {
             "hashes": [
                 "sha256:066395740f79562daddd331ea74fb2e3fe19f193a93902fa39e0718bcacd68a9",
@@ -287,13 +272,6 @@
             ],
             "markers": "python_version >= '3.6'",
             "version": "==1.1.0"
-        },
-        "fs": {
-            "hashes": [
-                "sha256:1d10cc8f9c55fbcf7b23775289a13f6796dca7acd5a135c379f49e87a56a7230",
-                "sha256:caab4dc1561d63c92f36ee78976f6a4a01381830d8420ce34a78d4f1bb1dc95f"
-            ],
-            "version": "==2.4.13"
         },
         "greenlet": {
             "hashes": [
