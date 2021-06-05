@@ -20,7 +20,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
-    'bakery',
     'calaccess_raw',
     'calaccess_scraped',
     'calaccess_processed',
@@ -97,47 +96,6 @@ EMAIL_USE_TLS = True
 AWS_ACCESS_KEY_ID = os.getenv('aws_access_key_id')
 AWS_SECRET_ACCESS_KEY = os.getenv('aws_secret_access_key')
 AWS_S3_REGION_NAME = os.getenv('aws_region_name')
-
-#
-# Bakery
-#
-
-AWS_S3_CALLING_FORMAT = 'boto.s3.connection.OrdinaryCallingFormat'
-AWS_S3_HOST = 's3-%s.amazonaws.com' % AWS_S3_REGION_NAME
-AWS_BUCKET_NAME = os.getenv('s3_baked_content_bucket')
-
-BUILD_DIR = os.path.join(BASE_DIR, '.build')
-BAKERY_VIEWS = (
-    'calaccess_website.views.HomeRedirect',
-    'calaccess_website.views.VersionArchiveIndex',
-    'calaccess_website.views.VersionYearArchiveList',
-    'calaccess_website.views.VersionMonthArchiveList',
-    'calaccess_website.views.VersionDetail',
-    'calaccess_website.views.LatestVersion',
-    'calaccess_website.views.DocumentationIndex',
-    'calaccess_website.views.FAQ',
-    'calaccess_website.views.CalAccessFileList',
-    'calaccess_website.views.CalAccessFileDetail',
-    'calaccess_website.views.CalAccessFileDownloadsList',
-    'calaccess_website.views.CcdcFileList',
-    'calaccess_website.views.CcdcFileDetail',
-    'calaccess_website.views.CcdcFileDownloadsList',
-    'calaccess_website.views.FormList',
-    'calaccess_website.views.FormDetail',
-    'calaccess_website.views.OfficialDocumentation',
-    'calaccess_website.views.CalAccess404View',
-    'calaccess_website.views.CalAccessRobotsTxt',
-    'calaccess_website.sitemaps.VersionSitemap',
-    'calaccess_website.sitemaps.VersionYearSitemap',
-    'calaccess_website.sitemaps.VersionMonthSitemap',
-    'calaccess_website.sitemaps.CalAccessFileSitemap',
-    'calaccess_website.sitemaps.CalAccessFileDownloadsSitemap',
-    'calaccess_website.sitemaps.CcdcFileSitemap',
-    'calaccess_website.sitemaps.CcdcFileDownloadsSitemap',
-    'calaccess_website.sitemaps.FormSitemap',
-    'calaccess_website.sitemaps.OtherSitemap',
-)
-BAKERY_GZIP = True
 
 #
 # Archiving
