@@ -18,7 +18,7 @@ def updater():
 
     # Run the command
     from django.core.management import call_command
-    call_command("updatedownloadswebsite", noinput=True, verbosity=2)
+    call_command("updatedownloadswebsite", noinput=True, verbosity=3)
 
 
 sched.start()

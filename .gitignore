@@ -1,5 +1,5 @@
 staticfiles/
-prod.dump
+*.dump
 *.pyc
 .DS_Store
 data/
