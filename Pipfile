@@ -9,7 +9,7 @@ django-calaccess-scraped-data = "==3.1.0"
 django-calaccess-processed-data = "==0.3.6"
 "backports.csv" = "*"
 "psycopg2-binary" = "*"
-"boto3" = "*"
+boto3 = "*"
 django-storages = "*"
 PyGithub = "*"
 dj-database-url = "*"
@@ -20,7 +20,8 @@ PyICU = {version = "*", markers="sys_platform == 'foobar'"}
 apscheduler = "*"
 
 [dev-packages]
-"flake8" = "*"
+flake8 = "*"
+coverage = "*"
 
 [requires]
 python_version = "3.9"
