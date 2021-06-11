@@ -21,7 +21,7 @@ class Command(UpdateCommand):
         super(Command, self).handle(*args, **options)
 
         # Process it.
-        call_command('processcalaccessdata', **options)
+        call_command('processcalaccessdata', verbosity=options['verbosity'])
 
         # We're out.
         self.success("Done!")
