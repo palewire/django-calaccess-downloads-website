@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "ba8a7284f8906cd2a8855192d4ce5b18f92bf2370f5d39391632312cdbc795c8"
+            "sha256": "ed59147bbd2054c0e4fae33a93a5479bff903a64e0239e356b10115da87d9b19"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -229,11 +229,11 @@
         },
         "django-calaccess-processed-data": {
             "hashes": [
-                "sha256:066395740f79562daddd331ea74fb2e3fe19f193a93902fa39e0718bcacd68a9",
-                "sha256:8eb3078e5918be7be357e26b364d66eb079de9e151805f485eeb6d7bf89273a9"
+                "sha256:66624fbe3dd3d140354c23972da4007dbe7fefbd87fafccde53a8e0967903edf",
+                "sha256:b111fa9a3c2590bf4c989de0d5e21e629574cb8f5ceb99bcf49298a528db65c6"
             ],
             "index": "pypi",
-            "version": "==0.3.6"
+            "version": "==0.3.7"
         },
         "django-calaccess-raw-data": {
             "hashes": [
@@ -247,7 +247,6 @@
                 "sha256:2074f3629f451c17d7f8bfa3b523a3e2166aa8566072c580ff33870e32339092",
                 "sha256:6a07f4706766763d6debb6d3425883245d0a10d2b15937b1279d6122f6f9d7b8"
             ],
-            "index": "pypi",
             "version": "==3.1.0"
         },
         "django-heroku": {

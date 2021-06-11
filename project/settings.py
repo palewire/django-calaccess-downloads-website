@@ -26,9 +26,9 @@ INSTALLED_APPS = [
     'calaccess_processed_filings',
     'calaccess_processed_elections',
     'calaccess_processed_flatfiles',
-    'calaccess_website',
     'opencivicdata.core.apps.BaseConfig',
     'opencivicdata.elections.apps.BaseConfig',
+    'calaccess_website',
     'storages',
     'toolbox',
     'whitenoise.runserver_nostatic'
