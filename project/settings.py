@@ -9,7 +9,6 @@ DEBUG = os.environ.get("DEBUG") != "false"
 ALLOWED_HOSTS = []
 ADMINS = (
     ('California Civic Data Coalition', 'b@palewi.re'),
-    ('Los Angeles Times Data Desk', 'datadesk@latimes.com'),
 )
 
 INSTALLED_APPS = [
@@ -98,9 +97,16 @@ IA_STORAGE_ACCESS_KEY = os.getenv('IA_STORAGE_ACCESS_KEY')
 IA_STORAGE_SECRET_KEY = os.getenv('IA_STORAGE_SECRET_KEY')
 IA_STORAGE_COLLECTION = 'california-civic-data-coalition'
 IA_STORAGE_CONTRIBUTOR = 'palewire'
-IA_STORAGE_CREATOR = "California Secretary of State"
+IA_STORAGE_CREATOR = "California Secretary of State and California Civic Data Coalition"
 IA_STORAGE_MEDIATYPE = "data"
-IA_STORAGE_SUBJECT = ['government-data', 'campaign-finance', 'data', 'money-in-politics']
+IA_STORAGE_SUBJECT = [
+    'government-data',
+    'campaign-finance',
+    'data',
+    'money-in-politics',
+    'open-data',
+    'journalism'
+]
 
 #
 # Databases
@@ -226,6 +232,11 @@ LOGGING = {
         'management_commands': {
             'handlers': ['mail_admins', 'logfile'],
             'level': 'ERROR',
+            'propagate': True,
+        },
+        'ia_storage': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
             'propagate': True,
         },
     }
