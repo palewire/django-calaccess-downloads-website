@@ -3,8 +3,8 @@ django-calaccess-downloads-website
 
 An open-source archive of campaign finance and lobbying disclosure data from the California Secretary of State’s CAL-ACCESS database.
 
-.. image:: https://travis-ci.org/california-civic-data-coalition/django-calaccess-downloads-website.svg?branch=master
-    :target: https://travis-ci.org/california-civic-data-coalition/django-calaccess-downloads-website
+.. image:: https://github.com/california-civic-data-coalition/django-calaccess-downloads-website/actions/workflows/test.yaml/badge.svg
+    :target: https://github.com/california-civic-data-coalition/django-calaccess-downloads-website/actions/workflows/test.yaml
 .. image:: https://coveralls.io/repos/github/california-civic-data-coalition/django-calaccess-downloads-website/badge.svg?branch=master
     :target: https://coveralls.io/github/california-civic-data-coalition/django-calaccess-downloads-website?branch=master
 
