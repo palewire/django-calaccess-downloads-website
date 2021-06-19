@@ -90,23 +90,17 @@ EMAIL_HOST_PASSWORD = os.getenv('email_password')
 EMAIL_USE_TLS = True
 
 #
-# Amazon S3
-#
-
-AWS_ACCESS_KEY_ID = os.getenv('aws_access_key_id')
-AWS_SECRET_ACCESS_KEY = os.getenv('aws_secret_access_key')
-AWS_S3_REGION_NAME = os.getenv('aws_region_name')
-
-#
 # Archiving
 #
 
-CALACCESS_DAT_SOURCE = ''
-CALACCESS_STORE_ARCHIVE = False
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-AWS_STORAGE_BUCKET_NAME = os.getenv('s3_archived_data_bucket')
-CLOUDFRONT_ARCHIVED_DATA_DISTRIBUTION = os.getenv('cloudfront_archived_data_distribution')
-AWS_S3_USE_SSL = False
+CALACCESS_STORE_ARCHIVE = True
+IA_STORAGE_ACCESS_KEY = os.getenv('IA_STORAGE_ACCESS_KEY')
+IA_STORAGE_SECRET_KEY = os.getenv('IA_STORAGE_SECRET_KEY')
+IA_STORAGE_COLLECTION = 'california-civic-data-coalition'
+IA_STORAGE_CONTRIBUTOR = 'palewire'
+IA_STORAGE_CREATOR = "California Secretary of State"
+IA_STORAGE_MEDIATYPE = "data"
+IA_STORAGE_SUBJECT = ['government-data', 'campaign-finance', 'data', 'money-in-politics']
 
 #
 # Databases

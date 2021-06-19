@@ -17,8 +17,9 @@ def updater():
     django.setup()
 
     # Run the command
-    from django.core.management import call_command
-    call_command("updatedownloadswebsite", noinput=True, verbosity=3)
+    print("Running clock updater")
+    # from django.core.management import call_command
+    # call_command("updatedownloadswebsite", noinput=True, verbosity=3)
 
 
 sched.start()
