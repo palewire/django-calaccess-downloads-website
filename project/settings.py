@@ -85,7 +85,7 @@ WSGI_APPLICATION = 'project.wsgi.application'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = os.getenv('email_user', 'cacivicdata@gmail.com')
-EMAIL_HOST_PASSWORD = os.getenv('email_password')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_PASSWORD')
 EMAIL_USE_TLS = True
 
 #
