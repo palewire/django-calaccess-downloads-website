@@ -27,8 +27,8 @@ jobs:
         with:
           postgresql version: '11'
           postgresql db: calaccess_processed
-          postgresql user: test
-          postgresql password: test
+          postgresql user: postgres
+          postgresql password: postgres
 
       - id: install-pipenv
         name: Install pipenv
@@ -53,5 +53,3 @@ jobs:
 
       - name: Test
         run: make test
-        env:
-          PGPASSWORD: 'test'
