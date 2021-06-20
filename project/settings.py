@@ -244,3 +244,8 @@ LOGGING = {
 
 # Activate Django-Heroku.
 django_heroku.settings(locals())
+
+try:
+    from .settings_local import *
+except ImportError:
+    pass

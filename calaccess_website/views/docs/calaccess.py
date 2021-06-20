@@ -111,7 +111,7 @@ class CalAccessFileDetail(BaseFileDetailView):
         """
         choice_fields = []
         for field in self.object._meta.fields:
-            if len(field.choices) > 0:
+            if field.choices and len(field.choices) > 0:
                 # add doc title, page_url list to each choice field
                 field.docs = {}
                 for doc in sorted(

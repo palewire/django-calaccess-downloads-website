@@ -145,7 +145,7 @@ class CcdcFileDetail(BaseFileDetailView):
                 'description': field.description,
                 'help_text': field.help_text,
             }
-            if len(field.choices) > 0:
+            if field.choices and len(field.choices) > 0:
                 field_data['choices'] = [c for c in field.choices]
             else:
                 field_data['choices'] = None
