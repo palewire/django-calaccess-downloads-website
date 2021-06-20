@@ -78,4 +78,3 @@ class RawDataVersionProxy(RawDataVersion):
 
     class Meta:
         proxy = True
-        app_label = 'calaccess_website'
