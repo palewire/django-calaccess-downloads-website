@@ -3,18 +3,14 @@
 """
 Proxy models for augmenting models from other apps.
 """
-from __future__ import unicode_literals
 from calaccess_raw.models import RawDataVersion
 from calaccess_processed.models import ProcessedDataZip
-from .managers import RawDataVersionManager
 
 
 class RawDataVersionProxy(RawDataVersion):
     """
     Proxy model of the RawDataVersion.
     """
-    objects = RawDataVersionManager()
-
     def get_processed_zip(self, label):
         """
         Return a ProcessedDataZip instance with a name that includes label.
