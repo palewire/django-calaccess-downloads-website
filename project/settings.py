@@ -246,6 +246,6 @@ LOGGING = {
 django_heroku.settings(locals())
 
 try:
-    from .settings_local import *
+    from .settings_local import *  # noqa
 except ImportError:
     pass
