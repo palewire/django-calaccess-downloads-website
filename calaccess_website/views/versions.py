@@ -4,7 +4,7 @@ from django.http import Http404
 from django.urls import reverse
 from django.utils import timezone
 from .base import CalAccessModelListMixin
-from calaccess_website.models import RawDataVersionProxy, ProcessedDataVersionProxy
+from calaccess_website.models import ProcessedDataVersionProxy
 from django.template.defaultfilters import date as dateformat
 from django.views.generic import (
     ArchiveIndexView,
@@ -109,7 +109,9 @@ campaign finance and lobbying activity in California politics.".format(context['
 
         if self.object.raw_version.error_count:
             context['raw_files_w_errors'] = self.get_raw_files_w_errors()
-            context['error_pct'] = 100 * self.object.raw_version.error_count / float(self.object.raw_version.download_record_count)
+            context['error_pct'] = (
+                100 * self.object.raw_version.error_count / float(self.object.raw_version.download_record_count)
+            )
         else:
             context['error_pct'] = 0
         return context
