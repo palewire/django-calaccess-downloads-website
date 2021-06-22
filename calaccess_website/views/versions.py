@@ -3,6 +3,7 @@ from django.apps import apps
 from django.http import Http404
 from django.urls import reverse
 from django.utils import timezone
+from django.http import HttpResponse
 from .base import CalAccessModelListMixin
 from calaccess_website.models import ProcessedDataVersionProxy
 from django.template.defaultfilters import date as dateformat
@@ -12,6 +13,30 @@ from django.views.generic import (
     MonthArchiveView,
     DetailView
 )
+
+
+def redirect_latest_processed(request, slug):
+    queryset = ProcessedDataVersionProxy.objects.exclude(process_finish_datetime=None)
+    try:
+        obj = queryset.latest("process_finish_datetime")
+    except queryset.model.DoesNotExist:
+        raise Http404
+    fobj = obj.files.all()[0]
+    name = fobj.file_archive.name.split("/")[0]
+    url = f"https://archive.org/download/{name}/{slug}"
+    return HttpResponse(url)
+
+
+def redirect_latest_raw(request, slug):
+    queryset = ProcessedDataVersionProxy.objects.exclude(process_finish_datetime=None)
+    try:
+        obj = queryset.latest("process_finish_datetime").raw_version
+    except queryset.model.DoesNotExist:
+        raise Http404
+    fobj = obj.files.all()[0]
+    name = fobj.clean_file_archive.name.split("/")[0]
+    url = f"https://archive.org/download/{name}/{slug}"
+    return HttpResponse(url)
 
 
 class VersionArchiveIndex(ArchiveIndexView):

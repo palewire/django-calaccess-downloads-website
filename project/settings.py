@@ -19,6 +19,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
+    'django.contrib.sites',
     'calaccess_raw',
     'calaccess_scraped',
     'calaccess_processed',
@@ -33,6 +34,7 @@ INSTALLED_APPS = [
     'whitenoise.runserver_nostatic'
 ]
 
+SITE_ID = 1
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
 USE_I18N = True

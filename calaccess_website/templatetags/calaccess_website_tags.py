@@ -3,6 +3,7 @@ import re
 from django import template
 from django.template import defaultfilters
 from django.utils.safestring import mark_safe
+from django.contrib.sites.models import Site
 register = template.Library()
 
 
@@ -34,10 +35,14 @@ def archive_url(file_path, is_latest=False):
     Returns a fully-qualified absolute URL where it can be downloaded.
     """
     # If this is the 'latest' version of the file the path will need to be hacked
-    stub = "archive.org/download/"
-    path = os.path.join(stub, file_path)
-    # Either way, join it to the base and pass it back
-    return f"https://{path}"
+    if is_latest:
+        current_site = Site.objects.get_current()
+        return f"{current_site.domain}"
+    else:
+        stub = "archive.org/download/"
+        path = os.path.join(stub, file_path)
+        # Either way, join it to the base and pass it back
+        return f"https://{path}"
 
 
 @register.filter

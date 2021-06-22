@@ -113,6 +113,22 @@ urlpatterns = [
     ),
 
     #
+    # Redirects
+    #
+
+    url(
+        r'^redirect/latest/processed/(?P<slug>[-\w\_\.]+)/$',
+        views.redirect_latest_processed,
+        name='redirect_latest_processed'
+    ),
+
+    url(
+        r'^redirect/latest/raw/(?P<slug>[-\w\_\.]+)/$',
+        views.redirect_latest_raw,
+        name='redirect_latest_raw'
+    ),
+
+    #
     # Machine-readable stuff
     #
 

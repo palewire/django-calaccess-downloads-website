@@ -21,7 +21,9 @@ from .versions import (
     VersionYearArchiveList,
     VersionMonthArchiveList,
     VersionDetail,
-    LatestVersion
+    LatestVersion,
+    redirect_latest_processed,
+    redirect_latest_raw,
 )
 
 
@@ -45,4 +47,6 @@ __all__ = (
     'VersionYearArchiveList',
     'VersionMonthArchiveList',
     'VersionDetail',
+    'redirect_latest_processed',
+    'redirect_latest_raw',
 )
