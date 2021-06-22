@@ -3,9 +3,10 @@
 """
 Import all class from submodules and thread them together.
 """
-from .proxies import RawDataVersionProxy
+from .proxies import RawDataVersionProxy, ProcessedDataVersionProxy
 
 
 __all__ = (
     'RawDataVersionProxy',
+    'ProcessedDataVersionProxy',
 )

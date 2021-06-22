@@ -4,7 +4,7 @@ from django.http import Http404
 from django.urls import reverse
 from django.utils import timezone
 from .base import CalAccessModelListMixin
-from calaccess_website.models import RawDataVersionProxy
+from calaccess_website.models import RawDataVersionProxy, ProcessedDataVersionProxy
 from django.template.defaultfilters import date as dateformat
 from django.views.generic import (
     ArchiveIndexView,
@@ -18,8 +18,8 @@ class VersionArchiveIndex(ArchiveIndexView):
     """
     A list of the latest versions of CAL-ACCESS in our archive
     """
-    model = RawDataVersionProxy
-    date_field = "release_datetime"
+    queryset = ProcessedDataVersionProxy.objects.exclude(process_finish_datetime=None)
+    date_field = "process_finish_datetime"
     template_name = "calaccess_website/version/archive.html"
 
 
