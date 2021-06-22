@@ -19,9 +19,7 @@ class ProcessedDataVersionProxy(ProcessedDataVersion):
         If no instance exists for the version, return None.
         """
         try:
-            return self.processed_version.zips.get(
-                zip_archive__icontains=label
-            )
+            return self.zips.get(zip_archive__icontains=label)
         except ProcessedDataZip.DoesNotExist:
             return None
 
