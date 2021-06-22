@@ -56,7 +56,7 @@
     </p>
     {% if latest_file.file_archive %}
         <p>
-            <a href="{% archive_url latest_file.file_archive.name is_latest=True %}"
+            <a href="{% archive_url latest_file.file_archive.name app='processed' is_latest=True %}"
                class="btn btn-calaccess">
                 Download latest
             </a>
@@ -66,7 +66,7 @@
             Alternatively, retrieve with <code>curl</code>.
         </p>
         <input type="text" class="download-link input-monospace"
-            value="$ curl -O {% archive_url latest_file.file_archive.name is_latest=True %}"
+            value="$ curl -O {% archive_url latest_file.file_archive.name app='processed' is_latest=True %}"
             readonly>
     {% else %}
     <p><a class="btn btn-inactive">Download unavailable</a>
@@ -146,7 +146,7 @@
             {% if file.file_archive %}
             <td class="right">{{ file.records_count|intcomma }}</td>
             <td class="right hidden-xs">{{ file.pretty_file_size }}</td>
-            <td class="nobreak right"><a href="{% archive_url file.file_archive.name %}">Download &raquo;</a></td>
+            <td class="nobreak right"><a href="{% archive_url file.file_archive.name app='processed' %}">Download &raquo;</a></td>
             {% else %}
             <td colspan=2></td>
             <td class="right">Unavailable</td>

@@ -6,7 +6,7 @@
   </p>
   {% if flat_zip %}
   <p>
-    <a href="{% archive_url flat_zip.zip_archive.name is_latest=is_latest %}" class="btn btn-calaccess">Download</a>
+    <a href="{% archive_url flat_zip.zip_archive.name app='processed' is_latest=is_latest %}" class="btn btn-calaccess">Download</a>
     &nbsp; <span>{{ flat_zip.pretty_zip_size }} zip</span>
   </p>
   {% else %}

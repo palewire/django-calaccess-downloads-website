@@ -4,6 +4,7 @@ from django.http import Http404
 from django.urls import reverse
 from django.utils import timezone
 from django.http import HttpResponse
+from django.shortcuts import redirect
 from .base import CalAccessModelListMixin
 from calaccess_website.models import ProcessedDataVersionProxy
 from django.template.defaultfilters import date as dateformat
@@ -24,7 +25,7 @@ def redirect_latest_processed(request, slug):
     fobj = obj.files.all()[0]
     name = fobj.file_archive.name.split("/")[0]
     url = f"https://archive.org/download/{name}/{slug}"
-    return HttpResponse(url)
+    return redirect(url)
 
 
 def redirect_latest_raw(request, slug):
@@ -36,7 +37,7 @@ def redirect_latest_raw(request, slug):
     fobj = obj.files.all()[0]
     name = fobj.clean_file_archive.name.split("/")[0]
     url = f"https://archive.org/download/{name}/{slug}"
-    return HttpResponse(url)
+    return redirect(url)
 
 
 class VersionArchiveIndex(ArchiveIndexView):

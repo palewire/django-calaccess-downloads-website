@@ -28,7 +28,7 @@ def documentcloud_embed(slug):
 
 
 @register.simple_tag
-def archive_url(file_path, is_latest=False):
+def archive_url(file_path, app="processed", is_latest=False):
     """
     Accepts the relative path to a CAL-ACCESS file in our achive.
 
@@ -37,7 +37,7 @@ def archive_url(file_path, is_latest=False):
     # If this is the 'latest' version of the file the path will need to be hacked
     if is_latest:
         current_site = Site.objects.get_current()
-        return f"{current_site.domain}"
+        return f"https://{current_site.domain}/redirect/latest/{app}/{file_path.split('/')[1]}"
     else:
         stub = "archive.org/download/"
         path = os.path.join(stub, file_path)

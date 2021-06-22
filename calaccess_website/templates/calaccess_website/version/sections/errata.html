@@ -20,7 +20,7 @@
       <tr id="footnote-{{ file.file_name|slugify }}">
         <td class="break"><a href="{% url 'calaccess_file_detail' slug=file.file_name|slugify %}">{{ file.file_name }}</a></td>
         <td class="right">{{ file.error_count }}</td>
-        <td class="right"><a href="{% archive_url file.error_log_archive.name is_latest=is_latest %}">Download &raquo;</a></td>
+        <td class="right"><a href="{% archive_url file.error_log_archive.name app='raw' is_latest=is_latest %}">Download &raquo;</a></td>
       </tr>
       {% endfor %}
       </tbody>

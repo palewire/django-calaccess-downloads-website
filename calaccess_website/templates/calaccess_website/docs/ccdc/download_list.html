@@ -44,7 +44,7 @@
           {% if file.file_archive %}
           <td class="right">{{ file.records_count|intcomma }}</td>
           <td class="right hidden-xs">{{ file.pretty_file_size }}</td>
-          <td class="nobreak right"><a href="{% archive_url file.file_archive.name %}">Download &raquo;</a></td>
+          <td class="nobreak right"><a href="{% archive_url file.file_archive.name app='processed' %}">Download &raquo;</a></td>
           {% else %}
           <td colspan=3></td>
           <td class="right">Unavailable</td>
