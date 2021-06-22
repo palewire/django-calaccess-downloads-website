@@ -3,7 +3,6 @@ from django.apps import apps
 from django.http import Http404
 from django.urls import reverse
 from django.utils import timezone
-from django.http import HttpResponse
 from django.shortcuts import redirect
 from .base import CalAccessModelListMixin
 from calaccess_website.models import ProcessedDataVersionProxy
