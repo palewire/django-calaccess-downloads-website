@@ -39,6 +39,9 @@ class ProcessedDataVersionProxy(ProcessedDataVersion):
         """
         return self.get_processed_zip('relational')
 
+    class Meta:
+        proxy = True
+
 
 class RawDataVersionProxy(RawDataVersion):
     """
