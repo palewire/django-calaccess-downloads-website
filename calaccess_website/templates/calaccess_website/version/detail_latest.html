@@ -17,7 +17,7 @@
 {% block top %}
     <h1>{{ title }}</h1>
     <p>
-        Download the most recent release of the state database tracking money in politics. Processed {{ object.release_datetime|date:"l, N j, Y" }} at {{ object.release_datetime|date:"P" }}
+        Download the most recent release of the state database tracking money in politics. Processed {{ object.raw_version.release_datetime|date:"l, N j, Y" }} at {{ object.raw_version.release_datetime|date:"P" }}
     </p>
 {% endblock %}
 
