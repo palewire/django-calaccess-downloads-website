@@ -16,7 +16,7 @@
       Alternatively, retrieve with <code>curl</code>.
     </p>
     <input type="text" class="download-link input-monospace"
-        value="$ curl -O {% archive_url object.raw_version.clean_zip_archive.name app='raw' is_latest=is_latest %}"
+        value="curl -O -L {% archive_url object.raw_version.clean_zip_archive.name app='raw' is_latest=is_latest %}"
         readonly>
   {% else %}
     <p><a class="btn btn-inactive">Unavailable</a></p>
