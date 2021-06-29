@@ -1,12 +1,13 @@
 from django.conf.urls import url
 from calaccess_website import views, sitemaps
+from django.views.generic.base import RedirectView
 
 
 urlpatterns = [
     # The homepage
     url(
         r'^$',
-        views.Home.as_view(),
+        RedirectView.as_view(url='https://www.californiacivicdata.org/'),
         name="home",
     ),
 
