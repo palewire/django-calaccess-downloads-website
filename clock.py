@@ -3,7 +3,7 @@ from apscheduler.schedulers.blocking import BlockingScheduler
 sched = BlockingScheduler()
 
 
-@sched.scheduled_job('cron', hour="*/3", minute=0)
+@sched.scheduled_job('cron', hour="*/6", minute=0)
 def updater():
     """
     Run our update command every three hours.
