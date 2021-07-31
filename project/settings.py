@@ -8,7 +8,7 @@ DEBUG = os.environ.get("DEBUG") != "false"
 
 ALLOWED_HOSTS = []
 ADMINS = (
-    ('California Civic Data Coalition', 'b@palewi.re'),
+    ('Ben Welsh', 'b@palewi.re'),
 )
 
 INSTALLED_APPS = [
@@ -245,7 +245,7 @@ LOGGING = {
 }
 
 # Activate Django-Heroku.
-django_heroku.settings(locals())
+django_heroku.settings(locals(), logging=False)
 
 try:
     from .settings_local import *  # noqa
