@@ -21,5 +21,4 @@ hack:
 	python manage.py archivecalaccessfilingsfile Form497Part1Item;
 	python manage.py archivecalaccessfilingsfile Form460ScheduleASummary;
 	python manage.py archivecalaccessfilingsfile Form460ScheduleCSummary;
-	python manage.py archivecalaccessfilingsfile Form460ScheduleBSummary;
 	python manage.py archivecalaccessfilingsfile Form460ScheduleESummary;
