@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python: [3.9,]
+        python: ['3.9',]
     steps:
       - name: Checkout the repo
         uses: actions/checkout@v2
@@ -30,7 +30,7 @@ jobs:
 
       - uses: actions/setup-python@v2
         with:
-          python-version: '3.9'
+          python-version: ${{ matrix.python }}
           cache: 'pipenv'
 
       - id: pipenv-install
