@@ -4,7 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-Django = ">=3.2.*"
+Django = "==3.2.13"
 django-calaccess-processed-data = "==0.4.4"
 "backports.csv" = "*"
 "psycopg2-binary" = "*"
