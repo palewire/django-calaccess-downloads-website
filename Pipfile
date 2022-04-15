@@ -15,8 +15,6 @@ dj-database-url = "*"
 django-heroku = "*"
 gunicorn = "*"
 whitenoise = "*"
-PyICU = {version = "*", markers="sys_platform == 'foobar'"}
-apscheduler = "*"
 
 [dev-packages]
 flake8 = "*"
