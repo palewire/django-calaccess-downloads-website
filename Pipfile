@@ -5,8 +5,8 @@ name = "pypi"
 
 [packages]
 Django = "==3.2.13"
-django-calaccess-raw-data = "==4.0.3"
-django-calaccess-processed-data = "==0.4.4"
+django-calaccess-raw-data = "==4.1.0"
+django-calaccess-processed-data = "==0.4.5"
 "backports.csv" = "*"
 "psycopg2-binary" = "*"
 boto3 = "*"
@@ -23,6 +23,3 @@ coverage = "*"
 
 [requires]
 python_version = "3.9"
-
-[pipenv]
-allow_prereleases = true
