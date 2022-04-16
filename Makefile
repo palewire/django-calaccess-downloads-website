@@ -15,8 +15,12 @@ hack:
 	python manage.py archivecalaccessfilingsfile Form460Filing;
 	python manage.py archivecalaccessfilingsfile Form460ScheduleAItem;
 	python manage.py archivecalaccessfilingsfile Form460ScheduleCItem;
+	python manage.py archivecalaccessfilingsfile Form460ScheduleDItem;
 	python manage.py archivecalaccessfilingsfile Form460ScheduleEItem;
 	python manage.py archivecalaccessfilingsfile Form460ScheduleB1Item;
+	python manage.py archivecalaccessfilingsfile Form496Filing;
+	python manage.py archivecalaccessfilingsfile Form496Part1Item;
+	python manage.py archivecalaccessfilingsfile Form496Part2Item;
 	python manage.py archivecalaccessfilingsfile Form497Filing;
 	python manage.py archivecalaccessfilingsfile Form497Part1Item;
 	python manage.py archivecalaccessfilingsfile Form460ScheduleASummary;

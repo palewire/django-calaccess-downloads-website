@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "312631c67865eef689df9f164c32b34160f9d0eaf9c4c1483df17c4cfcdcb61a"
+            "sha256": "63fa102a8c539cd4067d7e4e7c54091538ac470709dedb900963d7d9bd57e9b0"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -64,19 +64,19 @@
         },
         "boto3": {
             "hashes": [
-                "sha256:3b5a3c701bb9b48e145723c1a72d2752fa3613f6e5aaf0660ef605bf13f82bb4",
-                "sha256:986aa67e577b44b65a6cc42bfd74593e6d95e2dbc0b0c37e358f2253b00542db"
+                "sha256:895fb88c69be78f82cfee58a79c97a3ad8d4a2a1209041a411d7d6b9fc5393e4",
+                "sha256:bcb541175a7d190dd919a0af0e807ee6e9d26f135551e741b10d94343f2d7588"
             ],
             "index": "pypi",
-            "version": "==1.21.41"
+            "version": "==1.21.42"
         },
         "botocore": {
             "hashes": [
-                "sha256:57ed9843e5b6a74f82530b31dc622c8042b1c62a5ca9d46e92d2b4366450039b",
-                "sha256:65be3e46bb10056c7e6407303928c649e7ea8a01e0e3f449d5cbb6b73f8146e0"
+                "sha256:14aee41c8bf59d2dd2d89e8751fa37d3c95dcb92707d1966aa02697e914c1417",
+                "sha256:a2baa9484bbaee96ef312c049b8e360badcab58329e487b57567644a571b5f4a"
             ],
             "markers": "python_version >= '3.6'",
-            "version": "==1.24.41"
+            "version": "==1.24.42"
         },
         "bs4": {
             "hashes": [
@@ -234,11 +234,11 @@
         },
         "django-calaccess-raw-data": {
             "hashes": [
-                "sha256:7f60661a91fed90e33bdc7d6aeac5d6970a593b07a1ddc4862ca97631bba1817",
-                "sha256:ffb3c73c928a2d0dec0fe52bdb241a54d1ec69a8ed8c7c7e24a632ed9cc00a5e"
+                "sha256:2a540b66abfd6226b2f5e88ee5573344151f523106d8e80728a26a5a0c7da654",
+                "sha256:6d1888637031c56348142f7699b78b056c7bc2f1e7fa66bf5e157116d8a89905"
             ],
             "index": "pypi",
-            "version": "==4.0.2"
+            "version": "==4.0.3"
         },
         "django-calaccess-scraped-data": {
             "hashes": [
