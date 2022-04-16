@@ -36,7 +36,7 @@ jobs:
       - name: Update downloads website
         run: |
           pipenv run python -W ignore manage.py migrate;
-          pipenv run python -W ignore manage.py updatedownloadswebsite --noinput --verbosity=1;
+          pipenv run python -W ignore manage.py updatedownloadswebsite --noinput --verbosity=3;
         shell: bash
         env:
           PGPASSWORD: postgres
