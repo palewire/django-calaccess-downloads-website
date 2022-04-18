@@ -10,18 +10,16 @@ jobs:
       - name: Maximize build space
         uses: easimon/maximize-build-space@master
         with:
-          root-reserve-mb: 512
+          root-reserve-mb: 35000
           swap-size-mb: 1024
           remove-dotnet: 'true'
+          remove-android: 'true'
+          remove-haskell: 'true'
 
       - name: Checkout the repo
         uses: actions/checkout@v2
 
-      - name: Install GIS packages
-        run: sudo apt-get install binutils libproj-dev gdal-bin
-
-      - name: Set up PostGIS
-        uses: huaxk/postgis-action@v1
+      - uses: harmon758/postgresql-action@v1
         with:
           postgresql version: '11'
           postgresql db: calaccess_website
@@ -48,3 +46,10 @@ jobs:
         shell: bash
         env:
           PGPASSWORD: postgres
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: django-calaccess-downloads-website-data
+          path: data/
+          if-no-files-found: error
