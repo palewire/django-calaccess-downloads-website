@@ -1,0 +1,3 @@
+print("Importing settings_local.py")
+
+CALACCESS_STORE_ARCHIVE = True

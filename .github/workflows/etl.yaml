@@ -6,6 +6,7 @@ jobs:
   etl:
     name: "ETL"
     runs-on: ubuntu-latest
+
     steps:
       - name: Maximize build space
         uses: easimon/maximize-build-space@master
@@ -16,15 +17,15 @@ jobs:
           remove-android: 'true'
           remove-haskell: 'true'
 
-      - name: Checkout the repo
-        uses: actions/checkout@v2
-
       - uses: harmon758/postgresql-action@v1
         with:
           postgresql version: '11'
           postgresql db: calaccess_website
           postgresql user: postgres
           postgresql password: postgres
+
+      - name: Checkout the repo
+        uses: actions/checkout@v2
 
       - name: Install pipenv
         run: pipx install pipenv
@@ -38,18 +39,59 @@ jobs:
         name: Install Python dependencies
         run: pipenv install --dev --python `which python`
 
-      - name: Update downloads website
-        run: |
-          pipenv run python -W ignore manage.py migrate;
-          pipenv run python -W ignore manage.py loadcalaccessscrapeddata --verbosity=3;
-          pipenv run python -W ignore manage.py updatedownloadswebsite --noinput --verbosity=3;
+      - name: Set Django settings
+        run: cp project/settings_actions.py.template project/settings_local.py
+        shell: bash
+
+      - name: Migrate database
+        run: pipenv run python -W ignore manage.py migrate;
         shell: bash
         env:
           PGPASSWORD: postgres
 
-      - name: Upload artifact
+      - name: Load scraped data
+        run: pipenv run python -W ignore manage.py loadcalaccessscrapeddata --verbosity=3;
+        shell: bash
+        env:
+          PGPASSWORD: postgres
+
+      - name: Load raw data
+        run: pipenv run python -W ignore manage.py updatedownloadswebsite --keep-files --noinput --verbosity=3;
+        shell: bash
+        env:
+          PGPASSWORD: postgres
+
+      - name: Upload source download as artifact
         uses: actions/upload-artifact@v3
         with:
-          name: django-calaccess-downloads-website-data
-          path: data/
+          name: source
+          path: data/download
           if-no-files-found: error
+
+      - name: Upload logs as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: logs
+          path: data/log
+          if-no-files-found: error
+
+      - name: Upload raw files as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: raw-data
+          path: data/csv
+          if-no-files-found: error
+
+      - name: Upload processed files as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: processed-data
+          path: data/processed
+          if-no-files-found: error
+
+      - name: Upload all files to biglocalnews.org
+        uses: biglocalnews/upload-files@v1
+        with:
+          api-key: ${{ secrets.BLN_API_TOKEN }}
+          project-id: ${{ secrets.BLN_PROJECT_ID }}
+          path: example/data/
