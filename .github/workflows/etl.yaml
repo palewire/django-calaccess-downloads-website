@@ -94,4 +94,4 @@ jobs:
         with:
           api-key: ${{ secrets.BLN_API_TOKEN }}
           project-id: ${{ secrets.BLN_PROJECT_ID }}
-          path: example/data/
+          path: ./data/
