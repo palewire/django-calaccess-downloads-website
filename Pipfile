@@ -14,7 +14,6 @@ django-storages = "*"
 
 [dev-packages]
 flake8 = "*"
-coverage = "*"
 
 [requires]
 python_version = "3.9"

@@ -4,24 +4,39 @@ on:
   workflow_dispatch:
 
 jobs:
-  tests:
-    name: "Tests"
+  lint:
+    name: Lint
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python: ['3.9',]
     steps:
       - name: Checkout the repo
         uses: actions/checkout@v2
 
-      - name: Install GIS packages
-        run: sudo apt-get install binutils libproj-dev gdal-bin
+      - name: Install pipenv
+        run: pipx install pipenv
 
-      - name: Set up PostGIS
-        uses: huaxk/postgis-action@v1
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+          cache: 'pipenv'
+
+      - id: pipenv-install
+        name: Install Python dependencies
+        run: pipenv install --dev --python `which python`
+
+      - name: Lint
+        run: pipenv run flake8 calaccess_website  --exclude=calaccess_website/migrations/*
+
+  tests:
+    name: Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repo
+        uses: actions/checkout@v2
+
+      - uses: harmon758/postgresql-action@v1
         with:
           postgresql version: '11'
-          postgresql db: calaccess_processed
+          postgresql db: calaccess_website
           postgresql user: postgres
           postgresql password: postgres
 
@@ -30,7 +45,7 @@ jobs:
 
       - uses: actions/setup-python@v2
         with:
-          python-version: ${{ matrix.python }}
+          python-version: '3.9'
           cache: 'pipenv'
 
       - id: pipenv-install
@@ -38,6 +53,6 @@ jobs:
         run: pipenv install --dev --python `which python`
 
       - name: Test
-        run: make test
+        run: pipenv run python manage.py test calaccess_website
         env:
           PGPASSWORD: postgres
