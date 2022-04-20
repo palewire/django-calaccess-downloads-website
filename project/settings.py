@@ -1,6 +1,4 @@
 import os
-import dj_database_url
-import django_heroku
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '8++yeqnsqgtb8=%oa0&*oa8$2o*6gh0j-+5o+0kq-uq-ycoo3@'
@@ -31,7 +29,6 @@ INSTALLED_APPS = [
     'calaccess_website',
     'storages',
     'toolbox',
-    'whitenoise.runserver_nostatic'
 ]
 
 SITE_ID = 1
@@ -94,21 +91,7 @@ EMAIL_USE_TLS = True
 # Archiving
 #
 
-CALACCESS_STORE_ARCHIVE = False
-IA_STORAGE_ACCESS_KEY = os.getenv('IA_STORAGE_ACCESS_KEY')
-IA_STORAGE_SECRET_KEY = os.getenv('IA_STORAGE_SECRET_KEY')
-IA_STORAGE_COLLECTION = 'california-civic-data-coalition'
-IA_STORAGE_CONTRIBUTOR = 'palewire'
-IA_STORAGE_CREATOR = "California Secretary of State and California Civic Data Coalition"
-IA_STORAGE_MEDIATYPE = "data"
-IA_STORAGE_SUBJECT = [
-    'government-data',
-    'campaign-finance',
-    'data',
-    'money-in-politics',
-    'open-data',
-    'journalism'
-]
+CALACCESS_STORE_ARCHIVE = True
 
 #
 # Databases
@@ -123,7 +106,6 @@ DATABASES = {
         'PORT': '5432',
     }
 }
-DATABASES["default"].update(dj_database_url.config(conn_max_age=500, ssl_require=True))
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
@@ -243,9 +225,6 @@ LOGGING = {
         },
     }
 }
-
-# Activate Django-Heroku.
-django_heroku.settings(locals(), logging=False)
 
 try:
     from .settings_local import *  # noqa

@@ -5,17 +5,12 @@ name = "pypi"
 
 [packages]
 Django = "==3.2.13"
-django-calaccess-raw-data = "==4.1.1"
-django-calaccess-processed-data = "==0.4.5"
+django-calaccess-raw-data = "==4.1.2"
+django-calaccess-processed-data = "==0.5.0"
 "backports.csv" = "*"
 "psycopg2-binary" = "*"
 boto3 = "*"
 django-storages = "*"
-PyGithub = "*"
-dj-database-url = "*"
-django-heroku = "*"
-gunicorn = "*"
-whitenoise = "*"
 
 [dev-packages]
 flake8 = "*"
