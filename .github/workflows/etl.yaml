@@ -90,7 +90,7 @@ jobs:
           if-no-files-found: error
 
       - name: Upload all files to biglocalnews.org
-        uses: biglocalnews/upload-files@v1
+        uses: biglocalnews/upload-files@v2
         with:
           api-key: ${{ secrets.BLN_API_TOKEN }}
           project-id: ${{ secrets.BLN_PROJECT_ID }}
