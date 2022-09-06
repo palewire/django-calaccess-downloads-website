@@ -38,7 +38,7 @@ jobs:
         shell: bash
 
       - name: Install psycopg2 prerequisites
-        run: sudo apt-get install libpq-dev
+        run: apt-get install libpq-dev
         shell: bash
 
       - id: pipenv-install
