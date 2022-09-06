@@ -38,7 +38,7 @@ jobs:
 
       - id: pipenv-install
         name: Install Python dependencies
-        run: pipenv install --python `which python`
+        run: pipenv install --python 3.9 --skip-lock
 
       - name: Set Django settings
         run: cp project/settings_actions.py.template project/settings_local.py
