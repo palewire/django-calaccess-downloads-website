@@ -36,6 +36,9 @@ jobs:
       - name: Install pipenv
         run: curl https://raw.githubusercontent.com/pypa/pipenv/master/get-pipenv.py | python
 
+      - name: Install psycopg2 prerequisites
+        run: sudo apt-get install libpq-dev
+
       - id: pipenv-install
         name: Install Python dependencies
         run: pipenv install --python 3.9 --skip-lock
