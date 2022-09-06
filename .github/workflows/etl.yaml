@@ -35,13 +35,16 @@ jobs:
 
       - name: Install pipenv
         run: curl https://raw.githubusercontent.com/pypa/pipenv/master/get-pipenv.py | python
+        shell: bash
 
       - name: Install psycopg2 prerequisites
         run: sudo apt-get install libpq-dev
+        shell: bash
 
       - id: pipenv-install
         name: Install Python dependencies
         run: pipenv install --python 3.9 --skip-lock
+        shell: bash
 
       - name: Set Django settings
         run: cp project/settings_actions.py.template project/settings_local.py
