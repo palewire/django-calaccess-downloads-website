@@ -22,7 +22,6 @@ jobs:
           --health-timeout 5s
           --health-retries 5
         ports:
-          # Maps tcp port 5432 on service container to the host
           - 5432:5432
 
     steps:
@@ -35,10 +34,6 @@ jobs:
 
       - name: Install pipenv
         run: curl https://raw.githubusercontent.com/pypa/pipenv/master/get-pipenv.py | python
-        shell: bash
-
-      - name: Install psycopg2 prerequisites
-        run: apt-get install libpq-dev
         shell: bash
 
       - id: pipenv-install
