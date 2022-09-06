@@ -9,6 +9,22 @@ jobs:
     name: "ETL"
     runs-on: ubuntu-latest
 
+    services:
+      postgres:
+        image: postgres
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: calaccess_website
+          POSTGRES_USER: postgres
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          # Maps tcp port 5432 on service container to the host
+          - 5432:5432
+
     steps:
       - name: Maximize build space
         uses: easimon/maximize-build-space@master
@@ -19,27 +35,20 @@ jobs:
           remove-android: 'true'
           remove-haskell: 'true'
 
-      - uses: harmon758/postgresql-action@v1
-        with:
-          postgresql version: '11'
-          postgresql db: calaccess_website
-          postgresql user: postgres
-          postgresql password: postgres
-
       - name: Checkout the repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
-      - name: Install pipenv
-        run: pipx install pipenv
-
-      - uses: actions/setup-python@v3
+      - uses: actions/setup-python@v4
         with:
           python-version: '3.9'
           cache: 'pipenv'
 
+      - name: Install pipenv
+        run: curl https://raw.githubusercontent.com/pypa/pipenv/master/get-pipenv.py | python
+
       - id: pipenv-install
         name: Install Python dependencies
-        run: pipenv install --dev --python `which python`
+        run: pipenv install --python `which python`
 
       - name: Set Django settings
         run: cp project/settings_actions.py.template project/settings_local.py
