@@ -28,17 +28,9 @@ jobs:
       - name: Checkout the repo
         uses: actions/checkout@v3
 
-      - uses: actions/setup-python@v4
-        with:
-          python-version: '3.9'
-
-      - name: Install pipenv
-        run: curl https://raw.githubusercontent.com/pypa/pipenv/master/get-pipenv.py | python
-        shell: bash
-
       - id: pipenv-install
         name: Install Python dependencies
-        run: pipenv install --python 3.9 --skip-lock
+        run: pipenv install
         shell: bash
 
       - name: Set Django settings
