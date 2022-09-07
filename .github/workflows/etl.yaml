@@ -33,7 +33,7 @@ jobs:
           python-version: '3.9'
 
       - name: pip install
-        run: pip install Django==3.2.15 psycopg2-binary "backports.csv" boto3 django-storages django-calaccess-raw-data==4.1.* django-calaccess-processed-data==0.5.3
+        run: pip install Django==3.2.15 psycopg2-binary "backports.csv" boto3 django-storages django-calaccess-raw-data==4.1.4 django-calaccess-processed-data==0.5.3
 
       - name: Set Django settings
         run: cp project/settings_actions.py.template project/settings_local.py

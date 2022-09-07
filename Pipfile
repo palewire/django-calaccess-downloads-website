@@ -5,8 +5,8 @@ name = "pypi"
 
 [packages]
 Django = "==3.2.15"
-django-calaccess-raw-data = "==4.1.*"
-django-calaccess-processed-data = "==0.5.2"
+django-calaccess-raw-data = "==4.1.4"
+django-calaccess-processed-data = "==0.5.3"
 "backports.csv" = "*"
 "psycopg2-binary" = "*"
 boto3 = "*"
