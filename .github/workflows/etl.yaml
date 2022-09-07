@@ -28,9 +28,9 @@ jobs:
       - name: Checkout the repo
         uses: actions/checkout@v3
 
-      - uses: actions/setup-python@v4
-        with:
-          python-version: '3.9-dev'
+#      - uses: actions/setup-python@v4
+#        with:
+#          python-version: '3.9-dev'
 
       - name: which python
         run: which python
@@ -44,7 +44,7 @@ jobs:
 
       - id: pipenv-install
         name: Install Python dependencies
-        run: pipenv install --python 3.9 --skip-lock
+        run: pipenv install --skip-lock
         shell: bash
 
       - name: Set Django settings
