@@ -7,7 +7,7 @@ on:
 jobs:
   etl:
     name: "ETL"
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     services:
       postgres:
@@ -22,26 +22,15 @@ jobs:
           --health-timeout 5s
           --health-retries 5
         ports:
-          # Maps tcp port 5432 on service container to the host
           - 5432:5432
 
     steps:
-      - name: Maximize build space
-        uses: easimon/maximize-build-space@master
-        with:
-          root-reserve-mb: 40960
-          swap-size-mb: 1024
-          remove-dotnet: 'true'
-          remove-android: 'true'
-          remove-haskell: 'true'
-
       - name: Checkout the repo
         uses: actions/checkout@v3
 
       - uses: actions/setup-python@v4
         with:
           python-version: '3.9'
-          cache: 'pipenv'
 
       - name: which python
         run: which python
@@ -51,10 +40,12 @@ jobs:
 
       - name: Install pipenv
         run: curl https://raw.githubusercontent.com/pypa/pipenv/master/get-pipenv.py | python
+        shell: bash
 
       - id: pipenv-install
         name: Install Python dependencies
-        run: pipenv install --python `which python`
+        run: pipenv install --python 3.9 --skip-lock
+        shell: bash
 
       - name: Set Django settings
         run: cp project/settings_actions.py.template project/settings_local.py

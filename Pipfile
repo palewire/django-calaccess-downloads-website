@@ -4,7 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-Django = "==3.2.14"
+Django = "==3.2.15"
 django-calaccess-raw-data = "==4.1.*"
 django-calaccess-processed-data = "==0.5.1"
 "backports.csv" = "*"
