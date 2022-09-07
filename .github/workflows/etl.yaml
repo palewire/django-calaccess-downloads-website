@@ -41,6 +41,12 @@ jobs:
       - name: which pip
         run: which pip
 
+      - name: pip install
+        run: pip install Django==3.2.15
+
+      - name: pip freeze
+        run: pip freeze
+
 #      - name: Install pipenv
 #        run: curl https://raw.githubusercontent.com/pypa/pipenv/master/get-pipenv.py | python
 #        shell: bash
