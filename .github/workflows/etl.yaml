@@ -63,7 +63,7 @@ jobs:
         shell: bash
 
       - name: Migrate database
-        run: pipenv run python -W ignore manage.py migrate;
+        run: python -W ignore manage.py migrate;
         shell: bash
         env:
           PGPASSWORD: postgres
