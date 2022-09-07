@@ -58,15 +58,15 @@ jobs:
       #     pipenv install --python=3.10
       #   shell: bash
 
-      # - name: Set Django settings
-      #   run: cp project/settings_actions.py.template project/settings_local.py
-      #   shell: bash
+      - name: Set Django settings
+        run: cp project/settings_actions.py.template project/settings_local.py
+        shell: bash
 
-      # - name: Migrate database
-      #   run: pipenv run python -W ignore manage.py migrate;
-      #   shell: bash
-      #   env:
-      #     PGPASSWORD: postgres
+      - name: Migrate database
+        run: pipenv run python -W ignore manage.py migrate;
+        shell: bash
+        env:
+          PGPASSWORD: postgres
 
       # - name: Load scraped data
       #   run: pipenv run python -W ignore manage.py loadcalaccessscrapeddata --verbosity=3;
