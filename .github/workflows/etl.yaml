@@ -50,6 +50,10 @@ jobs:
       - name: Checkout the repo
         uses: actions/checkout@v3
 
+      - run: which python
+      - run: python --version
+      - run: which pip
+
       - uses: actions/setup-python@v4
         with:
           python-version: '3.9.14'
