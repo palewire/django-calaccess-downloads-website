@@ -43,6 +43,12 @@ jobs:
           python-version: '3.9'
           cache: 'pipenv'
 
+      - name: which python
+        run: which python
+
+      - name: python version
+        run: python --version
+
       - name: Install pipenv
         run: curl https://raw.githubusercontent.com/pypa/pipenv/master/get-pipenv.py | python
 
