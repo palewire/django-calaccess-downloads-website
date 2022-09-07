@@ -38,9 +38,12 @@ jobs:
       - name: python version
         run: python --version
 
-      - name: Install pipenv
-        run: curl https://raw.githubusercontent.com/pypa/pipenv/master/get-pipenv.py | python
-        shell: bash
+      - name: which pipenv
+        run: which pipenv
+
+#      - name: Install pipenv
+#        run: curl https://raw.githubusercontent.com/pypa/pipenv/master/get-pipenv.py | python
+#        shell: bash
 
       - id: pipenv-install
         name: Install Python dependencies
