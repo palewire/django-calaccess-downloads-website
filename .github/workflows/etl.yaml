@@ -29,7 +29,7 @@ jobs:
           security-group-id: sg-055bdb11da346a139
 
   etl:
-    name: Do the job on the runner
+    name: Extract, transform and load
     needs: start-runner
     runs-on: ${{ needs.start-runner.outputs.label }}
     services:
