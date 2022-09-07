@@ -50,9 +50,7 @@ jobs:
       - name: Checkout the repo
         uses: actions/checkout@v3
 
-      - uses: actions/setup-python@v2
-        with:
-          python-version: '3.7'
+      - uses: actions/setup-python@v4
 
       - name: pip install
         run: pip install Django==3.2.15 psycopg2-binary "backports.csv" boto3 django-storages django-calaccess-raw-data==4.1.4 django-calaccess-processed-data==0.5.3
