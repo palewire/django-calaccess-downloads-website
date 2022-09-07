@@ -47,7 +47,9 @@ jobs:
 
       - id: pipenv-install
         name: Install Python dependencies
-        run: pipenv install --python=`which python` --skip-lock
+        run: |
+          pipenv --rm
+          pipenv install --python=3.10
         shell: bash
 
       - name: Set Django settings
