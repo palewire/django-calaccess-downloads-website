@@ -53,10 +53,10 @@ jobs:
   stop-runner:
     name: Stop self-hosted EC2 runner
     needs:
-      - etl # required to get output from the start-runner job
-      - do-the-job # required to wait when the main job is done
+      - start-runner
+      - etl
     runs-on: ubuntu-latest
-    if: ${{ always() }} # required to stop the runner even if the error happened in the previous jobs
+    if: ${{ always() }}
     steps:
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
