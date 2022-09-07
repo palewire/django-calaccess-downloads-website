@@ -42,7 +42,7 @@ jobs:
         run: which pip
 
       - name: pip install
-        run: pip install Django==3.2.15 "backports.csv" boto3 django-storages
+        run: pip install Django==3.2.15 "backports.csv" boto3 django-storages django-calaccess-raw-data
 
       - name: pip freeze
         run: pip freeze
