@@ -52,6 +52,8 @@ jobs:
 
       - run: which python
       - run: python --version
+      - run: whoami
+      - run: pwd
       - run: which pip
 
       - uses: actions/setup-python@v4
