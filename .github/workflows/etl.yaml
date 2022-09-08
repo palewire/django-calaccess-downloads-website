@@ -67,19 +67,19 @@ jobs:
         shell: bash
 
       - name: Migrate database
-        run: pipenv run -W ignore manage.py migrate;
+        run: pipenv run python -W ignore manage.py migrate;
         shell: bash
         env:
           PGPASSWORD: postgres
 
       - name: Load scraped data
-        run: pipenv run -W ignore manage.py loadcalaccessscrapeddata --verbosity=3;
+        run: pipenv run python -W ignore manage.py loadcalaccessscrapeddata --verbosity=3;
         shell: bash
         env:
           PGPASSWORD: postgres
 
       - name: Update raw and processed data
-        run: pipenv run -W ignore manage.py updatedownloadswebsite --keep-files --noinput --verbosity=3;
+        run: pipenv run python -W ignore manage.py updatedownloadswebsite --keep-files --noinput --verbosity=3;
         shell: bash
         env:
           PGPASSWORD: postgres
