@@ -55,23 +55,22 @@ jobs:
       - uses: actions/setup-python@v4
         with:
           python-version: '3.9' 
+          cache: 'pipenv'
 
-      - run: which python
-      - run: python --version
+      - name: Install pipenv
+        run: curl https://raw.githubusercontent.com/pypa/pipenv/master/get-pipenv.py | python
 
-      - name: pip install
-        run: pip3.8 install Django==3.2.15 psycopg2-binary "backports.csv" boto3 django-storages django-calaccess-raw-data==4.1.4 django-calaccess-processed-data==0.5.3
+      - run: pipenv install
+
+      - name: Set Django settings
+        run: cp project/settings_actions.py.template project/settings_local.py
         shell: bash
 
-#      - name: Set Django settings
-#        run: cp project/settings_actions.py.template project/settings_local.py
-#        shell: bash
-
-#      - name: Migrate database
-#        run: python3.8 -W ignore manage.py migrate;
-#        shell: bash
-#        env:
-#          PGPASSWORD: postgres
+      - name: Migrate database
+        run: python3.8 -W ignore manage.py migrate;
+        shell: bash
+        env:
+          PGPASSWORD: postgres
 
 #      - name: Load scraped data
 #        run: python3.8 -W ignore manage.py loadcalaccessscrapeddata --verbosity=3;
