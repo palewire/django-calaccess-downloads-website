@@ -25,7 +25,7 @@ jobs:
         with:
           mode: start
           github-token: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
-          ec2-image-id: ami-0b0bf66fbc167c04d
+          ec2-image-id: ami-085284d24fe829cd0
           ec2-instance-type: t2.large
           subnet-id: subnet-0add5e99d1a0f11e1
           security-group-id: sg-055bdb11da346a139
@@ -52,86 +52,96 @@ jobs:
       - name: Checkout the repo
         uses: actions/checkout@v3
 
+      - run: which python
+      - run: python --version
+
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.9' 
+
+      - run: which python
+      - run: python --version
+
       - name: pip install
         run: pip3.8 install Django==3.2.15 psycopg2-binary "backports.csv" boto3 django-storages django-calaccess-raw-data==4.1.4 django-calaccess-processed-data==0.5.3
         shell: bash
 
-      - name: Set Django settings
-        run: cp project/settings_actions.py.template project/settings_local.py
-        shell: bash
+#      - name: Set Django settings
+#        run: cp project/settings_actions.py.template project/settings_local.py
+#        shell: bash
 
-      - name: Migrate database
-        run: python3.8 -W ignore manage.py migrate;
-        shell: bash
-        env:
-          PGPASSWORD: postgres
+#      - name: Migrate database
+#        run: python3.8 -W ignore manage.py migrate;
+#        shell: bash
+#        env:
+#          PGPASSWORD: postgres
 
-      - name: Load scraped data
-        run: python3.8 -W ignore manage.py loadcalaccessscrapeddata --verbosity=3;
-        shell: bash
-        env:
-          PGPASSWORD: postgres
+#      - name: Load scraped data
+#        run: python3.8 -W ignore manage.py loadcalaccessscrapeddata --verbosity=3;
+#        shell: bash
+#        env:
+#          PGPASSWORD: postgres
 
-      - name: Update raw and processed data
-        run: python3.8 -W ignore manage.py updatedownloadswebsite --keep-files --noinput --verbosity=3;
-        shell: bash
-        env:
-          PGPASSWORD: postgres
+#      - name: Update raw and processed data
+#        run: python3.8 -W ignore manage.py updatedownloadswebsite --keep-files --noinput --verbosity=3;
+#        shell: bash
+#        env:
+#          PGPASSWORD: postgres
 
-      - name: Upload source download as artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: source
-          path: data/download
-          if-no-files-found: error
+#      - name: Upload source download as artifact
+#        uses: actions/upload-artifact@v3
+#        with:
+#          name: source
+#          path: data/download
+#          if-no-files-found: error
 
-      - name: Upload logs as artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: logs
-          path: data/log
-          if-no-files-found: error
+#      - name: Upload logs as artifact
+#        uses: actions/upload-artifact@v3
+#        with:
+#          name: logs
+#          path: data/log
+#          if-no-files-found: error
 
-      - name: Upload raw files as artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: raw-data
-          path: data/csv
-          if-no-files-found: error
+#      - name: Upload raw files as artifact
+#        uses: actions/upload-artifact@v3
+#        with:
+#          name: raw-data
+#          path: data/csv
+#          if-no-files-found: error
 
-      - name: Upload processed files as artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: processed-data
-          path: data/processed
-          if-no-files-found: error
+#      - name: Upload processed files as artifact
+#        uses: actions/upload-artifact@v3
+#        with:
+#          name: processed-data
+#          path: data/processed
+#          if-no-files-found: error
 
-      - name: Upload all files to biglocalnews.org
-        uses: biglocalnews/upload-files@v2
-        with:
-          api-key: ${{ secrets.BLN_API_TOKEN }}
-          project-id: ${{ secrets.BLN_PROJECT_ID }}
-          path: ./data/
+#      - name: Upload all files to biglocalnews.org
+#        uses: biglocalnews/upload-files@v2
+#        with:
+#          api-key: ${{ secrets.BLN_API_TOKEN }}
+#          project-id: ${{ secrets.BLN_PROJECT_ID }}
+#          path: ./data/
 
-  stop-runner:
-    name: Stop self-hosted EC2 runner
-    needs:
-      - start-runner
-      - etl
-    runs-on: ubuntu-latest
-    if: ${{ always() }}
-    steps:
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ secrets.AWS_REGION }}
-      - name: Stop EC2 runner
-        uses: machulav/ec2-github-runner@v2
-        with:
-          mode: stop
-          github-token: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
-          label: ${{ needs.start-runner.outputs.label }}
-          ec2-instance-id: ${{ needs.start-runner.outputs.ec2-instance-id }}
+#  stop-runner:
+#    name: Stop self-hosted EC2 runner
+#    needs:
+#      - start-runner
+#      - etl
+#    runs-on: ubuntu-latest
+#    if: ${{ always() }}
+#    steps:
+#      - name: Configure AWS credentials
+#        uses: aws-actions/configure-aws-credentials@v1
+#        with:
+#          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+#          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+#          aws-region: ${{ secrets.AWS_REGION }}
+#      - name: Stop EC2 runner
+#        uses: machulav/ec2-github-runner@v2
+#        with:
+#          mode: stop
+#          github-token: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
+#          label: ${{ needs.start-runner.outputs.label }}
+#          ec2-instance-id: ${{ needs.start-runner.outputs.ec2-instance-id }}
 
