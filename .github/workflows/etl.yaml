@@ -66,52 +66,52 @@ jobs:
         env:
           PGPASSWORD: postgres
 
-       - name: Load scraped data
-         run: python3.8 -W ignore manage.py loadcalaccessscrapeddata --verbosity=3;
-         shell: bash
-         env:
-           PGPASSWORD: postgres
+      - name: Load scraped data
+        run: python3.8 -W ignore manage.py loadcalaccessscrapeddata --verbosity=3;
+        shell: bash
+        env:
+          PGPASSWORD: postgres
 
-       - name: Update raw and processed data
-         run: python3.8 -W ignore manage.py updatedownloadswebsite --keep-files --noinput --verbosity=3;
-         shell: bash
-         env:
-           PGPASSWORD: postgres
+      - name: Update raw and processed data
+        run: python3.8 -W ignore manage.py updatedownloadswebsite --keep-files --noinput --verbosity=3;
+        shell: bash
+        env:
+          PGPASSWORD: postgres
 
-       - name: Upload source download as artifact
-         uses: actions/upload-artifact@v3
-         with:
-           name: source
-           path: data/download
-           if-no-files-found: error
+      - name: Upload source download as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: source
+          path: data/download
+          if-no-files-found: error
 
-       - name: Upload logs as artifact
-         uses: actions/upload-artifact@v3
-         with:
-           name: logs
-           path: data/log
-           if-no-files-found: error
+      - name: Upload logs as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: logs
+          path: data/log
+          if-no-files-found: error
 
-       - name: Upload raw files as artifact
-         uses: actions/upload-artifact@v3
-         with:
-           name: raw-data
-           path: data/csv
-           if-no-files-found: error
+      - name: Upload raw files as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: raw-data
+          path: data/csv
+          if-no-files-found: error
 
-       - name: Upload processed files as artifact
-         uses: actions/upload-artifact@v3
-         with:
-           name: processed-data
-           path: data/processed
-           if-no-files-found: error
+      - name: Upload processed files as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: processed-data
+          path: data/processed
+          if-no-files-found: error
 
-       - name: Upload all files to biglocalnews.org
-         uses: biglocalnews/upload-files@v2
-         with:
-           api-key: ${{ secrets.BLN_API_TOKEN }}
-           project-id: ${{ secrets.BLN_PROJECT_ID }}
-           path: ./data/
+      - name: Upload all files to biglocalnews.org
+        uses: biglocalnews/upload-files@v2
+        with:
+          api-key: ${{ secrets.BLN_API_TOKEN }}
+          project-id: ${{ secrets.BLN_PROJECT_ID }}
+          path: ./data/
 
   stop-runner:
     name: Stop self-hosted EC2 runner
