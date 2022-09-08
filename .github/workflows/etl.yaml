@@ -1,6 +1,8 @@
 name: Extract, transform and load
 on:
   workflow_dispatch:
+#   # schedule:
+#   #   - cron: "0 14 * * *"
 
 jobs:
   start-runner:
@@ -50,12 +52,6 @@ jobs:
       - name: Checkout the repo
         uses: actions/checkout@v3
 
-      - run: which python3.8
-      - run: python3.8 --version
-      - run: whoami
-      - run: pwd
-      - run: which pip3.8
-
       - name: pip install
         run: pip3.8 install Django==3.2.15 psycopg2-binary "backports.csv" boto3 django-storages django-calaccess-raw-data==4.1.4 django-calaccess-processed-data==0.5.3
         shell: bash
@@ -69,6 +65,53 @@ jobs:
         shell: bash
         env:
           PGPASSWORD: postgres
+
+       - name: Load scraped data
+         run: python3.8 -W ignore manage.py loadcalaccessscrapeddata --verbosity=3;
+         shell: bash
+         env:
+           PGPASSWORD: postgres
+
+       - name: Update raw and processed data
+         run: python3.8 -W ignore manage.py updatedownloadswebsite --keep-files --noinput --verbosity=3;
+         shell: bash
+         env:
+           PGPASSWORD: postgres
+
+       - name: Upload source download as artifact
+         uses: actions/upload-artifact@v3
+         with:
+           name: source
+           path: data/download
+           if-no-files-found: error
+
+       - name: Upload logs as artifact
+         uses: actions/upload-artifact@v3
+         with:
+           name: logs
+           path: data/log
+           if-no-files-found: error
+
+       - name: Upload raw files as artifact
+         uses: actions/upload-artifact@v3
+         with:
+           name: raw-data
+           path: data/csv
+           if-no-files-found: error
+
+       - name: Upload processed files as artifact
+         uses: actions/upload-artifact@v3
+         with:
+           name: processed-data
+           path: data/processed
+           if-no-files-found: error
+
+       - name: Upload all files to biglocalnews.org
+         uses: biglocalnews/upload-files@v2
+         with:
+           api-key: ${{ secrets.BLN_API_TOKEN }}
+           project-id: ${{ secrets.BLN_PROJECT_ID }}
+           path: ./data/
 
   stop-runner:
     name: Stop self-hosted EC2 runner
@@ -92,97 +135,3 @@ jobs:
           label: ${{ needs.start-runner.outputs.label }}
           ec2-instance-id: ${{ needs.start-runner.outputs.ec2-instance-id }}
 
-# name: Extract, transform and load
-# on:
-#   workflow_dispatch:
-#   # schedule:
-#   #   - cron: "0 14 * * *"
-
-# jobs:
-#   etl:
-#     name: "ETL"
-#     runs-on: self-hosted
-
-#     services:
-#       postgres:
-#         image: postgres
-#         env:
-#           POSTGRES_PASSWORD: postgres
-#           POSTGRES_DB: calaccess_website
-#           POSTGRES_USER: postgres
-#         options: >-
-#           --health-cmd pg_isready
-#           --health-interval 10s
-#           --health-timeout 5s
-#           --health-retries 5
-#         ports:
-#           - 5432:5432
-
-#     steps:
-#       - name: Checkout the repo
-#         uses: actions/checkout@v3
-
-#       - uses: actions/setup-python@v4
-#         with:
-#           python-version: '3.9'
-
-#       - name: pip install
-#         run: pip install Django==3.2.15 psycopg2-binary "backports.csv" boto3 django-storages django-calaccess-raw-data==4.1.4 django-calaccess-processed-data==0.5.3
-#         shell: bash
-
-#       - name: Set Django settings
-#         run: cp project/settings_actions.py.template project/settings_local.py
-#         shell: bash
-
-#       - name: Migrate database
-#         run: python -W ignore manage.py migrate;
-#         shell: bash
-#         env:
-#           PGPASSWORD: postgres
-
-#       - name: Load scraped data
-#         run: python -W ignore manage.py loadcalaccessscrapeddata --verbosity=3;
-#         shell: bash
-#         env:
-#           PGPASSWORD: postgres
-
-#       - name: Update raw and processed data
-#         run: python -W ignore manage.py updatedownloadswebsite --keep-files --noinput --verbosity=3;
-#         shell: bash
-#         env:
-#           PGPASSWORD: postgres
-
-#       - name: Upload source download as artifact
-#         uses: actions/upload-artifact@v3
-#         with:
-#           name: source
-#           path: data/download
-#           if-no-files-found: error
-
-#       - name: Upload logs as artifact
-#         uses: actions/upload-artifact@v3
-#         with:
-#           name: logs
-#           path: data/log
-#           if-no-files-found: error
-
-#       - name: Upload raw files as artifact
-#         uses: actions/upload-artifact@v3
-#         with:
-#           name: raw-data
-#           path: data/csv
-#           if-no-files-found: error
-
-#       - name: Upload processed files as artifact
-#         uses: actions/upload-artifact@v3
-#         with:
-#           name: processed-data
-#           path: data/processed
-#           if-no-files-found: error
-
-#       - name: Upload all files to biglocalnews.org
-#         uses: biglocalnews/upload-files@v2
-#         with:
-#           api-key: ${{ secrets.BLN_API_TOKEN }}
-#           project-id: ${{ secrets.BLN_PROJECT_ID }}
-#           path: ./data/
