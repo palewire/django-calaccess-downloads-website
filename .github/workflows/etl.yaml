@@ -23,7 +23,7 @@ jobs:
         with:
           mode: start
           github-token: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
-          ec2-image-id: ami-0dc2b65a376bf5e5b
+          ec2-image-id: ami-058422d772bd6d327
           ec2-instance-type: t2.large
           subnet-id: subnet-0add5e99d1a0f11e1
           security-group-id: sg-055bdb11da346a139
@@ -50,19 +50,14 @@ jobs:
       - name: Checkout the repo
         uses: actions/checkout@v3
 
-      - run: which python
-      - run: python --version
+      - run: which python3.8
+      - run: python3.8 --version
       - run: whoami
       - run: pwd
-      - run: which pip
-
-      - uses: actions/setup-python@v4
-        with:
-          python-version: '3.9.14'
-          architecture: 'x86'
+      - run: which pip3.8
 
       - name: pip install
-        run: pip install Django==3.2.15 psycopg2-binary "backports.csv" boto3 django-storages django-calaccess-raw-data==4.1.4 django-calaccess-processed-data==0.5.3
+        run: pip3.8 install Django==3.2.15 psycopg2-binary "backports.csv" boto3 django-storages django-calaccess-raw-data==4.1.4 django-calaccess-processed-data==0.5.3
         shell: bash
 
       - name: Set Django settings
@@ -70,7 +65,7 @@ jobs:
         shell: bash
 
       - name: Migrate database
-        run: python -W ignore manage.py migrate;
+        run: python3.8 -W ignore manage.py migrate;
         shell: bash
         env:
           PGPASSWORD: postgres
