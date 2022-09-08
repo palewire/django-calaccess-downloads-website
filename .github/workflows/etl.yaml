@@ -1,6 +1,9 @@
 name: Extract, transform and load
+
 on:
   workflow_dispatch:
+  schedule:
+    - cron: "0 14 * * *"
 
 jobs:
   start-runner:
@@ -23,8 +26,8 @@ jobs:
         with:
           mode: start
           github-token: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
-          ec2-image-id: ami-0dc2b65a376bf5e5b
-          ec2-instance-type: t2.large
+          ec2-image-id: ami-0134997ea21a525a5
+          ec2-instance-type: t2.2xlarge
           subnet-id: subnet-0add5e99d1a0f11e1
           security-group-id: sg-055bdb11da346a139
 
@@ -47,33 +50,90 @@ jobs:
         ports:
           - 5432:5432
     steps:
-      - name: Checkout the repo
+      - id: checkout
+        name: Checkout the `django-calaccess-downloads-website` repository
         uses: actions/checkout@v3
 
-      - run: which python
-      - run: python --version
-      - run: whoami
-      - run: pwd
-      - run: which pip
-
-      - uses: actions/setup-python@v4
+      - id: setup-python
+        name: Install Python 3.9
+        uses: actions/setup-python@v4
         with:
-          python-version: '3.9.14'
-          architecture: 'x86'
+          python-version: '3.9' 
+          cache: 'pipenv'
 
-      - name: pip install
-        run: pip install Django==3.2.15 psycopg2-binary "backports.csv" boto3 django-storages django-calaccess-raw-data==4.1.4 django-calaccess-processed-data==0.5.3
-        shell: bash
+      - id: install-pipenv
+        name: Install pipenv
+        run: curl https://raw.githubusercontent.com/pypa/pipenv/master/get-pipenv.py | python
 
-      - name: Set Django settings
+      - id: install-python-deps
+        name: Install Python packages
+        run: pipenv install
+
+      - id: django-settings
+        name: Configure Django settings
         run: cp project/settings_actions.py.template project/settings_local.py
         shell: bash
 
-      - name: Migrate database
-        run: python -W ignore manage.py migrate;
+      - id: migrate
+        name: Migrate database
+        run: pipenv run python -W ignore manage.py migrate;
         shell: bash
         env:
           PGPASSWORD: postgres
+
+      - id: load-scraped
+        name: Load scraped data
+        run: pipenv run python -W ignore manage.py loadcalaccessscrapeddata --verbosity=3;
+        shell: bash
+        env:
+          PGPASSWORD: postgres
+
+      - id: update
+        name: Load and process CAL-ACCESS daily extract
+        run: pipenv run python -W ignore manage.py updatedownloadswebsite --keep-files --noinput --verbosity=3;
+        shell: bash
+        env:
+          PGPASSWORD: postgres
+
+      - id: upload-zip
+        name: Upload CAL-ACCESS ZIP
+        uses: actions/upload-artifact@v3
+        with:
+          name: source
+          path: data/download
+          if-no-files-found: error
+
+      - id: upload-raw
+        name: Upload raw CAL-ACCESS files
+        uses: actions/upload-artifact@v3
+        with:
+          name: raw-data
+          path: data/csv
+          if-no-files-found: error
+
+      - id: upload-processed
+        name: Upload processed CAL-ACCESS files
+        uses: actions/upload-artifact@v3
+        with:
+          name: processed-data
+          path: data/processed
+          if-no-files-found: error
+
+      - id: upload-logs
+        name: Upload logs
+        uses: actions/upload-artifact@v3
+        with:
+          name: logs
+          path: data/log
+          if-no-files-found: error
+
+      - id: publish-to-bln
+        name: Publish files to biglocalnews.org
+        uses: biglocalnews/upload-files@v2
+        with:
+          api-key: ${{ secrets.BLN_API_TOKEN }}
+          project-id: ${{ secrets.BLN_PROJECT_ID }}
+          path: ./data/
 
   stop-runner:
     name: Stop self-hosted EC2 runner
@@ -89,6 +149,7 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
+
       - name: Stop EC2 runner
         uses: machulav/ec2-github-runner@v2
         with:
@@ -97,97 +158,3 @@ jobs:
           label: ${{ needs.start-runner.outputs.label }}
           ec2-instance-id: ${{ needs.start-runner.outputs.ec2-instance-id }}
 
-# name: Extract, transform and load
-# on:
-#   workflow_dispatch:
-#   # schedule:
-#   #   - cron: "0 14 * * *"
-
-# jobs:
-#   etl:
-#     name: "ETL"
-#     runs-on: self-hosted
-
-#     services:
-#       postgres:
-#         image: postgres
-#         env:
-#           POSTGRES_PASSWORD: postgres
-#           POSTGRES_DB: calaccess_website
-#           POSTGRES_USER: postgres
-#         options: >-
-#           --health-cmd pg_isready
-#           --health-interval 10s
-#           --health-timeout 5s
-#           --health-retries 5
-#         ports:
-#           - 5432:5432
-
-#     steps:
-#       - name: Checkout the repo
-#         uses: actions/checkout@v3
-
-#       - uses: actions/setup-python@v4
-#         with:
-#           python-version: '3.9'
-
-#       - name: pip install
-#         run: pip install Django==3.2.15 psycopg2-binary "backports.csv" boto3 django-storages django-calaccess-raw-data==4.1.4 django-calaccess-processed-data==0.5.3
-#         shell: bash
-
-#       - name: Set Django settings
-#         run: cp project/settings_actions.py.template project/settings_local.py
-#         shell: bash
-
-#       - name: Migrate database
-#         run: python -W ignore manage.py migrate;
-#         shell: bash
-#         env:
-#           PGPASSWORD: postgres
-
-#       - name: Load scraped data
-#         run: python -W ignore manage.py loadcalaccessscrapeddata --verbosity=3;
-#         shell: bash
-#         env:
-#           PGPASSWORD: postgres
-
-#       - name: Update raw and processed data
-#         run: python -W ignore manage.py updatedownloadswebsite --keep-files --noinput --verbosity=3;
-#         shell: bash
-#         env:
-#           PGPASSWORD: postgres
-
-#       - name: Upload source download as artifact
-#         uses: actions/upload-artifact@v3
-#         with:
-#           name: source
-#           path: data/download
-#           if-no-files-found: error
-
-#       - name: Upload logs as artifact
-#         uses: actions/upload-artifact@v3
-#         with:
-#           name: logs
-#           path: data/log
-#           if-no-files-found: error
-
-#       - name: Upload raw files as artifact
-#         uses: actions/upload-artifact@v3
-#         with:
-#           name: raw-data
-#           path: data/csv
-#           if-no-files-found: error
-
-#       - name: Upload processed files as artifact
-#         uses: actions/upload-artifact@v3
-#         with:
-#           name: processed-data
-#           path: data/processed
-#           if-no-files-found: error
-
-#       - name: Upload all files to biglocalnews.org
-#         uses: biglocalnews/upload-files@v2
-#         with:
-#           api-key: ${{ secrets.BLN_API_TOKEN }}
-#           project-id: ${{ secrets.BLN_PROJECT_ID }}
-#           path: ./data/
