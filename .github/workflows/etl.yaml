@@ -1,8 +1,9 @@
 name: Extract, transform and load
+
 on:
   workflow_dispatch:
-#   # schedule:
-#   #   - cron: "0 14 * * *"
+  schedule:
+    - cron: "0 14 * * *"
 
 jobs:
   start-runner:
@@ -49,70 +50,85 @@ jobs:
         ports:
           - 5432:5432
     steps:
-      - name: Checkout the repo
+      - id: checkout
+        name: Checkout the `django-calaccess-downloads-website` repository
         uses: actions/checkout@v3
 
-      - uses: actions/setup-python@v4
+      - id: setup-python
+        name: Install Python 3.9
+        uses: actions/setup-python@v4
         with:
           python-version: '3.9' 
           cache: 'pipenv'
 
-      - name: Install pipenv
+      - id: install-pipenv
+        name: Install pipenv
         run: curl https://raw.githubusercontent.com/pypa/pipenv/master/get-pipenv.py | python
 
-      - run: pipenv install
+      - id: install-python-deps
+        name: Install Python packages
+        run: pipenv install
 
-      - name: Set Django settings
+      - id: django-settings
+        name: Configure Django settings
         run: cp project/settings_actions.py.template project/settings_local.py
         shell: bash
 
-      - name: Migrate database
+      - id: migrate
+        name: Migrate database
         run: pipenv run python -W ignore manage.py migrate;
         shell: bash
         env:
           PGPASSWORD: postgres
 
-      - name: Load scraped data
+      - id: load-scraped
+        name: Load scraped data
         run: pipenv run python -W ignore manage.py loadcalaccessscrapeddata --verbosity=3;
         shell: bash
         env:
           PGPASSWORD: postgres
 
-      - name: Update raw and processed data
+      - id: update
+        name: Load and process CAL-ACCESS daily extract
         run: pipenv run python -W ignore manage.py updatedownloadswebsite --keep-files --noinput --verbosity=3;
         shell: bash
         env:
           PGPASSWORD: postgres
 
-      - name: Upload source download as artifact
+      - id: upload-zip
+        name: Upload CAL-ACCESS ZIP
         uses: actions/upload-artifact@v3
         with:
           name: source
           path: data/download
           if-no-files-found: error
 
-      - name: Upload logs as artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: logs
-          path: data/log
-          if-no-files-found: error
-
-      - name: Upload raw files as artifact
+      - id: upload-raw
+        name: Upload raw CAL-ACCESS files
         uses: actions/upload-artifact@v3
         with:
           name: raw-data
           path: data/csv
           if-no-files-found: error
 
-      - name: Upload processed files as artifact
+      - id: upload-processed
+        name: Upload processed CAL-ACCESS files
         uses: actions/upload-artifact@v3
         with:
           name: processed-data
           path: data/processed
           if-no-files-found: error
 
-      - name: Upload all files to biglocalnews.org
+      - id: upload-logs
+        name: Upload logs
+        uses: actions/upload-artifact@v3
+        with:
+          name: logs
+          path: data/log
+          if-no-files-found: error
+
+      - id: publish-to-bln
+        name: Publish files to biglocalnews.org
         uses: biglocalnews/upload-files@v2
         with:
           api-key: ${{ secrets.BLN_API_TOKEN }}
@@ -133,6 +149,7 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
+
       - name: Stop EC2 runner
         uses: machulav/ec2-github-runner@v2
         with:
