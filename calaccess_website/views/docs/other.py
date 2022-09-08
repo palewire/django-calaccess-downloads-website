@@ -1,14 +1,15 @@
 import calaccess_raw
 from django.urls import reverse
 from calaccess_raw.annotations import FORMS
-from django.views.generic.base import TemplateView
+from bakery.views import BuildableTemplateView
 
 
-class DocumentationIndex(TemplateView):
+class DocumentationIndex(BuildableTemplateView):
     """
     An index page for linking to all of our documentation sections
     """
     template_name = "calaccess_website/docs/index.html"
+    build_path = "documentation/index.html"
 
     def get_context_data(self):
         model_list = calaccess_raw.get_model_list()
@@ -60,8 +61,9 @@ California politics."
         }
 
 
-class FAQ(TemplateView):
+class FAQ(BuildableTemplateView):
     """
     Frequently asked questions.
     """
     template_name = "calaccess_website/docs/faq/question_list.html"
+    build_path = "documentation/frequently-asked-questions/index.html"

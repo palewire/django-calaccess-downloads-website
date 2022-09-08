@@ -3,12 +3,13 @@ from django.urls import reverse
 from calaccess_raw import get_model_list
 from calaccess_raw.models.tracking import RawDataFile
 from calaccess_website.views import CalAccessModelListMixin
-from django.views.generic import DetailView, ListView
+from bakery.views import BuildableDetailView, BuildableListView
 from calaccess_website.templatetags.calaccess_website_tags import slugify
 
 
-class CalAccessFileList(ListView, CalAccessModelListMixin):
+class CalAccessFileList(BuildableListView, CalAccessModelListMixin):
     template_name = 'calaccess_website/docs/calaccess/file_list.html'
+    build_path = "documentation/raw-files/index.html"
 
     def get_queryset(self):
         """
@@ -26,7 +27,7 @@ files released from the California Secretary of State's CAL-ACCESS database. For
         return context
 
 
-class BaseFileDetailView(DetailView):
+class BaseFileDetailView(BuildableDetailView):
     """
     Base class for views providing information about a raw data file.
     """
@@ -38,6 +39,9 @@ class BaseFileDetailView(DetailView):
         return dict(
             (slugify(m().db_table), m) for m in get_model_list()
         )
+
+    def build_queryset(self):
+        [self.build_object(o) for o in self.get_queryset()]
 
     def set_kwargs(self, obj):
         self.kwargs = {
@@ -68,10 +72,7 @@ class BaseFileDetailView(DetailView):
             file_name=file_name
         ).order_by('-version__release_datetime').exclude(version__release_datetime__lte='2016-07-27')
         # note if the most recent version of the file is empty
-        try:
-            context['empty'] = context['version_list'][0].download_records_count == 0
-        except IndexError:
-            context['empty'] = True
+        context['empty'] = True
         return context
 
 

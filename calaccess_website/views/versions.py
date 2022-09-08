@@ -7,11 +7,11 @@ from django.shortcuts import redirect
 from .base import CalAccessModelListMixin
 from calaccess_website.models import ProcessedDataVersionProxy
 from django.template.defaultfilters import date as dateformat
-from django.views.generic import (
-    ArchiveIndexView,
-    YearArchiveView,
-    MonthArchiveView,
-    DetailView
+from bakery.views import (
+    BuildableArchiveIndexView,
+    BuildableYearArchiveView,
+    BuildableMonthArchiveView,
+    BuildableDetailView
 )
 
 
@@ -39,16 +39,17 @@ def redirect_latest_raw(request, slug):
     return redirect(url)
 
 
-class VersionArchiveIndex(ArchiveIndexView):
+class VersionArchiveIndex(BuildableArchiveIndexView):
     """
     A list of the latest versions of CAL-ACCESS in our archive
     """
     queryset = ProcessedDataVersionProxy.objects.exclude(process_finish_datetime=None)
     date_field = "process_finish_datetime"
     template_name = "calaccess_website/version/archive.html"
+    build_path = "downloads/index.html"
 
 
-class VersionYearArchiveList(YearArchiveView):
+class VersionYearArchiveList(BuildableYearArchiveView):
     """
     A list of all versions of CAL-ACCESS in a given year
     """
@@ -64,7 +65,7 @@ class VersionYearArchiveList(YearArchiveView):
         )
 
 
-class VersionMonthArchiveList(MonthArchiveView):
+class VersionMonthArchiveList(BuildableMonthArchiveView):
     """
     A list of all versions of CAL-ACCESS in a given year
     """
@@ -84,12 +85,18 @@ class VersionMonthArchiveList(MonthArchiveView):
         )
 
 
-class VersionDetail(DetailView, CalAccessModelListMixin):
+class VersionDetail(BuildableDetailView, CalAccessModelListMixin):
     """
     A detail page with everything about an individual CAL-ACCESS version
     """
     queryset = ProcessedDataVersionProxy.objects.exclude(process_finish_datetime=None)
     template_name = 'calaccess_website/version/detail_archived.html'
+
+    def build_queryset(self):
+        """
+        Only build this view for one object, the latest one.
+        """
+        return self.build_object(self.get_object())
 
     def set_kwargs(self, obj):
         super(VersionDetail, self).set_kwargs(obj)
@@ -132,13 +139,6 @@ campaign finance and lobbying activity in California politics.".format(context['
             context['relational_zip'] = self.object.relational_zip
             context['flat_files'] = self.get_flat_files()
 
-        if self.object.raw_version.error_count:
-            context['raw_files_w_errors'] = self.get_raw_files_w_errors()
-            context['error_pct'] = (
-                100 * self.object.raw_version.error_count / float(self.object.raw_version.download_record_count)
-            )
-        else:
-            context['error_pct'] = 0
         return context
 
     def get_raw_files_w_errors(self):

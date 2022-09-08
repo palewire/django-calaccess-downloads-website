@@ -11,6 +11,7 @@ django-calaccess-processed-data = "==0.5.3"
 "psycopg2-binary" = "*"
 boto3 = "*"
 django-storages = "*"
+django-bakery = "==0.13.1"
 
 [dev-packages]
 flake8 = "*"

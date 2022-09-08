@@ -14,6 +14,8 @@ from .docs import (
 )
 from .other import (
     Home,
+    HomeRedirect,
+    CalAccess404View,
     CalAccessRobotsTxt
 )
 from .versions import (
@@ -37,6 +39,8 @@ __all__ = (
     'CcdcFileList',
     'CcdcFileDetail',
     'CcdcFileDownloadsList',
+    'HomeRedirect',
+    'CalAccess404View',
     'DocumentationIndex',
     'FAQ',
     'FormList',

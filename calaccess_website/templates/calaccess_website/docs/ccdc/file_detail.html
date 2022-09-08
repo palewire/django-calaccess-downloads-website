@@ -23,20 +23,10 @@
 
 {% block affix-nav %}
 <ul class="nav nav-stacked">
-    <li class="active"><a href="#latest-download">Latest download</a></li>
     {% if not empty %}
     <li><a href="#sample">Sample</a></li>
     {% endif %}
     <li><a href="#fields">Fields</a></li>
-    {% if version_list %}
-        {% with version_list.0 as latest_file %}
-        {% if latest_file.error_count %}
-        <li><a href="#errata">Errata</a></li>
-        {% endif %}
-        {% endwith %}
-
-        <li><a href="#archive">Archive</a></li>
-    {% endif %}
 </ul>
 {% endblock %}
 
@@ -46,38 +36,6 @@
 
 {% block content %}
 <article class="file-detail">
-<section id="latest-download" class="chapter">
-  <h2>Latest download</h2>
-    {% if version_list.0 %}
-    {% with version_list.0 as latest_file %}
-    <p>
-        Our most recent release of CAL-ACCESS data, transformed to <a href="https://opencivicdata.readthedocs.io/en/latest/">Open Civic Data</a> format.
-        It contains {{ latest_file.records_count|intword|intcomma }} rows of data published on {{ latest_file.process_finish_datetime|date:"l, N j, Y" }}.
-    </p>
-    {% if latest_file.file_archive %}
-        <p>
-            <a href="{% archive_url latest_file.file_archive.name app='processed' is_latest=True %}"
-               class="btn btn-calaccess">
-                Download latest
-            </a>
-            &nbsp; <span>{{ latest_file.pretty_file_size }} CSV</span>
-        </p>
-        <p>
-            Alternatively, retrieve with <code>curl</code>.
-        </p>
-        <input type="text" class="download-link input-monospace"
-            value="curl -O -L {% archive_url latest_file.file_archive.name app='processed' is_latest=True %}"
-            readonly>
-    {% else %}
-    <p><a class="btn btn-inactive">Download unavailable</a>
-        {% endif %}
-    {% endwith %}
-    {% else %}
-    <p><a class="btn btn-inactive">Download unavailable</a>
-    {% endif %}
-    <p>Or, <a href="{% url 'ccdc_file_downloads_list' object.file_name|slugify %}">explore past downloads of this file</a>.</p>
-</section>
-
 {% if not empty %}
 <section id="sample" class="chapter">
   <h2>Sample</h2>
@@ -123,45 +81,5 @@
   <hr>
   {% endfor %}
 </section>
-
-{% if version_list %}
-    <section id="archive" class="chapter">
-        <h2>Archive</h2>
-        <p>Download previous versions of this file from our archive.</p>
-
-        <h4>Last 10 downloads</h4>
-        <table class="table table-striped">
-        <thead>
-          <tr>
-            <th>Date</th>
-            <th style="width:8%;" class="right">Records</th>
-            <th style="width:8%;" class="right hidden-xs">Size</th>
-            <th style="width:15%;" class="right"></th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for file in version_list|slice:":10" %}
-          <tr>
-            <td><a href="{% url 'version_detail' year=file.version.raw_version.release_datetime.year month=file.version.raw_version.release_datetime|date:'m' day=file.version.raw_version.release_datetime|date:'d' time=file.version.raw_version.release_datetime|date:'His' %}">{{ file.version.raw_version.release_datetime|date:"N j, Y" }}</a></td>
-            {% if file.file_archive %}
-            <td class="right">{{ file.records_count|intcomma }}</td>
-            <td class="right hidden-xs">{{ file.pretty_file_size }}</td>
-            <td class="nobreak right"><a href="{% archive_url file.file_archive.name app='processed' %}">Download &raquo;</a></td>
-            {% else %}
-            <td colspan=2></td>
-            <td class="right">Unavailable</td>
-            {% endif %}
-          {% endfor %}
-        </tbody>
-        <tfoot>
-            <tr>
-                <td colspan=4>
-                    <a href="{% url 'ccdc_file_downloads_list' object.file_name|slugify %}">More past downloads &raquo;</a>
-                </td>
-            </tr>
-        </tfoot>
-        </table>
-    </section>
-{% endif %}
 </article>
 {% endblock %}
