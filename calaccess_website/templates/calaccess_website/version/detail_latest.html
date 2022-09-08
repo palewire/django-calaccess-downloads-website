@@ -17,7 +17,7 @@
 {% block top %}
     <h1>{{ title }}</h1>
     <p>
-        Download the most recent release of the state database tracking money in politics. Processed {{ object.raw_version.release_datetime|date:"l, N j, Y" }} at {{ object.raw_version.release_datetime|date:"P" }}
+        Download the most recent release of the state database tracking money in politics.
     </p>
 {% endblock %}
 
@@ -26,18 +26,21 @@
 {% endblock %}
 
 {% block second-content-block %}
-    {% if flat_zip %}
-    <div class="container basic-container">
-        {% include 'calaccess_website/version/sections/picker.html' %}
-    </div>
-    {% endif %}
     <div class="container">
         <div class="row">
             <div class="col-md-9">
-                {% include 'calaccess_website/version/sections/advanced.html' %}
-                <hr>
-                {% include 'calaccess_website/version/sections/raw.html' %}
-                {% include 'calaccess_website/version/sections/errata.html' %}
+                <section id="basic" class="chapter">
+                  <h2>Get data from Big Local News</h2>
+                  <p>
+                    The data gathered and processed by the California Civic Data Coalition’s open-source software is now hosted by the Big Local News project at Stanford University via <a href="https://biglocalnews.org">biglocalnews.org</a>.
+                  </p>
+                  <p>The files update daily. You can access them by registering for an account at <a href="https://biglocalnews.org">biglocalnews.org</a> and accessing the <a href="https://biglocalnews.org/#/project/UHJvamVjdDo2MDVjNzdiYS0wODI4LTRlOTEtOGM3OC03ZjA4NGI2ZDEwZWE="></a>“California campaign finance data” project</a>, or by clicking the link below.</p>
+                  <p>
+                    <a target="_blank" 
+                       href="https://biglocalnews.org/#/project/UHJvamVjdDo2MDVjNzdiYS0wODI4LTRlOTEtOGM3OC03ZjA4NGI2ZDEwZWE="
+                       class="btn btn-calaccess">Download</a>
+                  </p>
+                </section>
             </div>
         </div>
     </div>
