@@ -137,11 +137,11 @@ AUTH_PASSWORD_VALIDATORS = [
 # Bakery
 #
 
-AWS_SECRET_ACCESS_KEY = os.getenv('aws_secret_access_key')
-AWS_S3_REGION_NAME = os.getenv('aws_region_name')
-AWS_S3_CALLING_FORMAT = 'boto.s3.connection.OrdinaryCallingFormat'
-AWS_S3_HOST = 's3-%s.amazonaws.com' % AWS_S3_REGION_NAME
-AWS_BUCKET_NAME = os.getenv('s3_baked_content_bucket')
+# AWS_SECRET_ACCESS_KEY = os.getenv('aws_secret_access_key')
+# AWS_S3_REGION_NAME = os.getenv('aws_region_name')
+# AWS_S3_CALLING_FORMAT = 'boto.s3.connection.OrdinaryCallingFormat'
+# AWS_S3_HOST = 's3-%s.amazonaws.com' % AWS_S3_REGION_NAME
+# AWS_BUCKET_NAME = os.getenv('s3_baked_content_bucket')
 
 BUILD_DIR = os.path.join(BASE_DIR, '.build')
 BAKERY_VIEWS = (
