@@ -27,7 +27,6 @@ INSTALLED_APPS = [
     'opencivicdata.core.apps.BaseConfig',
     'opencivicdata.elections.apps.BaseConfig',
     'calaccess_website',
-    'storages',
     'toolbox',
     'bakery',
 ]
