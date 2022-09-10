@@ -90,7 +90,7 @@ jobs:
 
       - id: update
         name: Load and process CAL-ACCESS daily extract
-        run: pipenv run python -W ignore manage.py updatedownloadswebsite --keep-files --noinput --verbosity=3;
+        run: pipenv run python -W ignore manage.py updatedownloadswebsite --keep-files --verbosity=3;
         shell: bash
         env:
           PGPASSWORD: postgres
