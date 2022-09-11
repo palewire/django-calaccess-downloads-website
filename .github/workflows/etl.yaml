@@ -127,6 +127,27 @@ jobs:
           path: data/log
           if-no-files-found: error
 
+  upload:
+    name: Stop self-hosted EC2 runner
+    needs:
+      - start-runner
+      - etl
+    runs-on: ubuntu-latest
+    steps:
+      - id: upload-raw
+        name: Upload raw CAL-ACCESS files
+        uses: actions/download-artifact@v3
+        with:
+          name: raw-data
+          path: data/csv
+
+      - id: upload-processed
+        name: Upload processed CAL-ACCESS files
+        uses: actions/download-artifact@v3
+        with:
+          name: processed-data
+          path: data/processed
+
       - id: publish-to-bln
         name: Publish files to biglocalnews.org
         uses: biglocalnews/upload-files@v2
