@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "4319e8c4abb788a26edb2eae33b47c697fb7e1f448deb75fda90ab1c1ba573df"
+            "sha256": "59419c2ee496090df6b15193fd34b40eb286e8b93b46582fecbce87e5cff93f7"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -176,11 +176,11 @@
         },
         "django-calaccess-processed-data": {
             "hashes": [
-                "sha256:22448aca8b6b7602fbc7b9363ff9586a46d5a0eaa2e34b6ee068eed962b09a1b",
-                "sha256:7dcd6e17e4ade995dfc0674958826372e64422b7245c1f228ab69b7babb51de5"
+                "sha256:200ec08ff159ca11475de5c2c284a8bbc1835edfb8361f37dbdb7ae8da3a3ffd",
+                "sha256:8f1170626ef619559da4e44696efe3d51fa7c105b4092b5fecf7cab4991db0c1"
             ],
             "index": "pypi",
-            "version": "==1.0.3"
+            "version": "==1.0.4"
         },
         "django-calaccess-raw-data": {
             "hashes": [
