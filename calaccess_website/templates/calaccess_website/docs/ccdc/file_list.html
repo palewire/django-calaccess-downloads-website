@@ -56,11 +56,11 @@
         <tr>
             <td class="break" style="width:30%">
                 <a href="{% url 'ccdc_file_detail' slug=file.file_name|slugify %}">
-                    {{ file.model.display_name }}
+                    {{ file.display_name }}
                 </a>
             </td>
             <td style="width:70%">
-                {{ file.model.doc.strip|first_line|safe  }}
+                {{ file.doc.strip|first_line|safe  }}
             </td>
         </tr>
     {% endfor %}

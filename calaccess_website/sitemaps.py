@@ -1,6 +1,5 @@
 from bakery.views import BuildableListView
 from calaccess_raw import get_model_list
-from calaccess_raw.models import RawDataVersion
 from calaccess_raw.annotations import FORMS
 from calaccess_website.views.docs.ccdc import get_processed_data_files
 
@@ -35,43 +34,6 @@ class OtherSitemap(AbstractSitemapView):
 
     def get_queryset(self):
         return [dict(url=url) for url in self.url_list]
-
-
-class VersionSitemap(AbstractSitemapView):
-    """
-    A machine-readable list of all version detail pages.
-    """
-    build_path = 'downloads-sitemap.xml'
-    template_name = 'calaccess_website/sitemaps/version-sitemap.xml'
-    queryset = RawDataVersion.objects.complete().exclude(release_datetime__lte='2016-07-27')
-
-
-class VersionYearSitemap(AbstractSitemapView):
-    """
-    A machine-readable list of the version year archive pages.
-    """
-    build_path = "downloads-year-sitemap.xml"
-    template_name = "calaccess_website/sitemaps/version-archive-year.xml"
-    model = RawDataVersion
-
-    def get_queryset(self):
-        return self.model.objects.complete().exclude(
-            release_datetime__lte='2016-07-27'
-        ).datetimes("release_datetime", "year")
-
-
-class VersionMonthSitemap(AbstractSitemapView):
-    """
-    A machine-readable list of the version month archive pages.
-    """
-    build_path = "downloads-month-sitemap.xml"
-    template_name = "calaccess_website/sitemaps/version-archive-month.xml"
-    model = RawDataVersion
-
-    def get_queryset(self):
-        return self.model.objects.complete().exclude(
-            release_datetime__lte='2016-07-27'
-        ).datetimes("release_datetime", "month")
 
 
 class CalAccessFileSitemap(AbstractSitemapView):

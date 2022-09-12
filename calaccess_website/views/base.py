@@ -1,7 +1,5 @@
 from itertools import groupby
-from calaccess_raw.models import RawDataFile
 from calaccess_raw.annotations import FilingForm
-from calaccess_processed.models import ProcessedDataFile
 
 
 class CalAccessModelListMixin(object):
@@ -9,11 +7,11 @@ class CalAccessModelListMixin(object):
     Processes lists of CAL-ACCESS models to be better organized.
     """
     def get_klass_group(self, model_or_obj):
-        # If it's a RawDataFile or ProcessedDataFile do our trick
-        if isinstance(model_or_obj, RawDataFile):
-            return model_or_obj.model().klass_group
-        elif isinstance(model_or_obj, ProcessedDataFile):
-            return "Flat" if model_or_obj.is_flat else "Relational"
+        # If it's a raw or processed file do our trick
+        if 'calaccess_raw' in str(model_or_obj):
+            return model_or_obj().klass_group
+        elif 'calaccess_processed' in str(model_or_obj):
+            return "Flat" if model_or_obj().is_flat else "Relational"
         # If it's a FilingForm also do our trick
         elif isinstance(model_or_obj, FilingForm):
             return model_or_obj.group

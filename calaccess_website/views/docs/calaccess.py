@@ -1,7 +1,6 @@
 from django.http import Http404
 from django.urls import reverse
 from calaccess_raw import get_model_list
-from calaccess_raw.models.tracking import RawDataFile
 from calaccess_website.views import CalAccessModelListMixin
 from bakery.views import BuildableDetailView, BuildableListView
 from calaccess_website.templatetags.calaccess_website_tags import slugify
@@ -67,10 +66,6 @@ class BaseFileDetailView(BuildableDetailView):
         """
         file_name = self.kwargs['slug'].upper().replace("-", "_")
         context = super(BaseFileDetailView, self).get_context_data(**kwargs)
-        # Pull all previous versions of the provided file
-        context['version_list'] = RawDataFile.objects.filter(
-            file_name=file_name
-        ).order_by('-version__release_datetime').exclude(version__release_datetime__lte='2016-07-27')
         # note if the most recent version of the file is empty
         context['empty'] = True
         return context

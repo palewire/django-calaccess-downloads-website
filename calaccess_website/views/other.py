@@ -1,13 +1,10 @@
-from calaccess_raw.models.tracking import RawDataVersion
-from bakery.views import BuildableArchiveIndexView, Buildable404View, BuildableRedirectView, BuildableTemplateView
+from bakery.views import Buildable404View, BuildableRedirectView, BuildableTemplateView
 
 
-class Home(BuildableArchiveIndexView):
+class Home(BuildableTemplateView):
     """
     The site homepage.
     """
-    model = RawDataVersion
-    date_field = "release_datetime"
     template_name = "calaccess_website/home.html"
 
 

@@ -1,16 +1,9 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-"""
-Views for CCDC file documetnation pages.
-"""
+"""Views for CCDC file documetnation pages."""
 # Django tricks
 from django.apps import apps
 from django.http import Http404
 from django.urls import reverse
 from calaccess_website.templatetags.calaccess_website_tags import slugify
-
-# Models
-from calaccess_processed.models import ProcessedDataFile
 
 # Views
 from calaccess_website.views import CalAccessModelListMixin
@@ -28,11 +21,9 @@ def get_ocd_proxy_models():
 
 def get_processed_data_files():
     """
-    Return a tuple of ProcessedDataFile instances for published files.
+    Return a tuple of instances for published files.
     """
-    file_list = [ProcessedDataFile(file_name=m().file_name) for m in get_ocd_proxy_models()]
-    return sorted(file_list, key=lambda f: f.file_name)
-
+    return [m for m in get_ocd_proxy_models()]
 
 class CcdcFileList(BuildableListView, CalAccessModelListMixin):
     template_name = 'calaccess_website/docs/ccdc/file_list.html'
@@ -62,7 +53,7 @@ class BaseFileDetailView(BuildableDetailView):
         Returns a list of the ccdc data files as a key dictionary
         with the URL slug as the keys.
         """
-        return dict((slugify(f.file_name), f) for f in get_processed_data_files())
+        return dict((slugify(f().file_name), f()) for f in get_processed_data_files())
 
     def build_queryset(self):
         [self.build_object(o) for o in self.get_queryset()]
@@ -80,6 +71,7 @@ class BaseFileDetailView(BuildableDetailView):
         Raises a 404 error if one is not found
         """
         key = self.kwargs['slug']
+        print(key)
         try:
             return self.get_queryset()[key.lower()]
         except KeyError:
@@ -91,22 +83,7 @@ class BaseFileDetailView(BuildableDetailView):
         """
         file_name = self.kwargs['slug'].replace("-", "")
         context = super(BaseFileDetailView, self).get_context_data(**kwargs)
-
-        # Pull all previous versions of the provided file
-        context['version_list'] = ProcessedDataFile.objects.filter(
-            file_name__icontains=file_name
-        ).order_by(
-            '-version__raw_version__release_datetime'
-        ).exclude(
-            version__raw_version__release_datetime__lte='2016-07-27'
-        )
-
-        # note if the most recent version of the file is empty
-        try:
-            context['empty'] = context['version_list'][0].records_count == 0
-        except IndexError:
-            context['empty'] = True
-
+        context['empty'] = True
         return context
 
 
@@ -143,7 +120,7 @@ class CcdcFileDetail(BaseFileDetailView):
         Return a list of fields (dicts) sorted by name.
         """
         field_list = []
-        for field in self.object.model().get_field_list():
+        for field in self.object.get_field_list():
             field_data = {
                 'column': field.name,
                 'description': field.description,
