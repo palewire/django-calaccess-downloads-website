@@ -41,12 +41,6 @@ for the CAL-ACCESS database provided by California's Secretary of State. For mor
 information refer to the materials above.",
                 url=reverse("official_documentation"),
             ),
-#             dict(
-#                 name='Technical documentation',
-#                 description="A user manual for the collection of \
-# California Civic Data Coalition applications that power this site. For developers only.",
-#                 url="//django-calaccess.californiacivicdata.org"
-#             ),
             dict(
                 name="Frequently asked questions",
                 description="Answers to common questions about this project and the underlying CAL-ACCESS database.",

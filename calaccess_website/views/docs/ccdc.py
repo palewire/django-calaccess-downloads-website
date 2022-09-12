@@ -26,6 +26,7 @@ def get_processed_data_files():
     """
     return sorted([m for m in get_ocd_proxy_models()], key=lambda m: m().display_name)
 
+
 class CcdcFileList(BuildableListView, CalAccessModelListMixin):
     template_name = 'calaccess_website/docs/ccdc/file_list.html'
     build_path = "documentation/processed-files/index.html"
@@ -82,7 +83,6 @@ class BaseFileDetailView(BuildableDetailView):
         """
         Add some extra bits to the template's context
         """
-        file_name = self.kwargs['slug'].replace("-", "")
         context = super(BaseFileDetailView, self).get_context_data(**kwargs)
         context['empty'] = True
         return context

@@ -64,7 +64,6 @@ class BaseFileDetailView(BuildableDetailView):
         """
         Add some extra bits to the template's context
         """
-        file_name = self.kwargs['slug'].upper().replace("-", "_")
         context = super(BaseFileDetailView, self).get_context_data(**kwargs)
         # note if the most recent version of the file is empty
         context['empty'] = True
