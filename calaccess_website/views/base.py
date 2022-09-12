@@ -11,7 +11,9 @@ class CalAccessModelListMixin(object):
         if 'calaccess_raw' in str(model_or_obj):
             return model_or_obj().klass_group
         elif 'calaccess_processed' in str(model_or_obj):
-            return "Flat" if model_or_obj().is_flat else "Relational"
+            if model_or_obj().is_flat:
+                return "Flat"
+            return model_or_obj().klass_group
         # If it's a FilingForm also do our trick
         elif isinstance(model_or_obj, FilingForm):
             return model_or_obj.group

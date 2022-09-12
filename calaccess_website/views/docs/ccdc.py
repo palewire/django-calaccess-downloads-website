@@ -16,14 +16,15 @@ def get_ocd_proxy_models():
     """
     election_proxies = apps.get_app_config('calaccess_processed_elections').get_ocd_models_map().values()
     flat_proxies = apps.get_app_config("calaccess_processed_flatfiles").get_flat_proxy_list()
-    return list(election_proxies) + list(flat_proxies)
+    filing_proxies = apps.get_app_config("calaccess_processed_filings").get_filing_models()
+    return list(election_proxies) + list(flat_proxies) + list(filing_proxies)
 
 
 def get_processed_data_files():
     """
     Return a tuple of instances for published files.
     """
-    return [m for m in get_ocd_proxy_models()]
+    return sorted([m for m in get_ocd_proxy_models()], key=lambda m: m().display_name)
 
 class CcdcFileList(BuildableListView, CalAccessModelListMixin):
     template_name = 'calaccess_website/docs/ccdc/file_list.html'
