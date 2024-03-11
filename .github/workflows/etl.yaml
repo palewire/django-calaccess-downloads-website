@@ -52,11 +52,11 @@ jobs:
     steps:
       - id: checkout
         name: Checkout the `django-calaccess-downloads-website` repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - id: setup-python
         name: Install Python 3.9
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: '3.9' 
           cache: 'pipenv'
@@ -126,6 +126,21 @@ jobs:
           name: logs
           path: data/log
           if-no-files-found: error
+
+      - name: Datestamp
+        run: date > timestamp.txt
+        shell: bash
+
+      - name: Commit results
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "actions@github.com"
+          git config pull.rebase false
+          git status
+          git pull origin $GITHUB_REF
+          git add ./timestamp.txt
+          git commit -m "Scrape" && git push || true
+        shell: bash
 
   upload:
     name: Upload data to Big Local News
