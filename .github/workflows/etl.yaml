@@ -3,7 +3,7 @@ name: Extract, transform and load
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 14 * * Mon"
+    - cron: "0 0 1 * *"
 
 jobs:
   start-runner:
