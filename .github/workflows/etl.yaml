@@ -97,7 +97,7 @@ jobs:
 
       - id: upload-zip
         name: Upload CAL-ACCESS ZIP
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: source
           path: data/download
@@ -105,7 +105,7 @@ jobs:
 
       - id: upload-raw
         name: Upload raw CAL-ACCESS files
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: raw-data
           path: data/csv
@@ -113,7 +113,7 @@ jobs:
 
       - id: upload-processed
         name: Upload processed CAL-ACCESS files
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: processed-data
           path: data/processed
@@ -121,7 +121,7 @@ jobs:
 
       - id: upload-logs
         name: Upload logs
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: logs
           path: data/log
@@ -136,14 +136,14 @@ jobs:
     steps:
       - id: upload-raw
         name: Upload raw CAL-ACCESS files
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: raw-data
           path: data/csv
 
       - id: upload-processed
         name: Upload processed CAL-ACCESS files
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: processed-data
           path: data/processed
